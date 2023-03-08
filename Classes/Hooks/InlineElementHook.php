@@ -1,14 +1,15 @@
 <?php
 
-namespace GeorgRinger\News\Hooks;
-
-use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Hooks;
+
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 
 use TYPO3\CMS\Backend\Form\Element\InlineElement;
 use TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface;
@@ -18,6 +19,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Inline Element Hook
+ * @deprecated replace by event for v12
+ * @extensionScannerIgnoreFile
  */
 class InlineElementHook implements InlineElementHookInterface
 {
@@ -25,8 +28,6 @@ class InlineElementHook implements InlineElementHookInterface
      * Initializes this hook object.
      *
      * @param InlineElement $parentObject
-     *
-     * @return void
      */
     public function init(&$parentObject): void
     {
@@ -41,8 +42,6 @@ class InlineElementHook implements InlineElementHookInterface
      * @param array $childConfig TCA configuration of the current field of the child record
      * @param bool $isVirtual Defines whether the current records is only virtually shown and not physically part of the parent record
      * @param array &$enabledControls (reference) Associative array with the enabled control items
-     *
-     * @return void
      */
     public function renderForeignRecordHeaderControl_preProcess(
         $parentUid,
@@ -63,8 +62,6 @@ class InlineElementHook implements InlineElementHookInterface
      * @param array $childConfig TCA configuration of the current field of the child record
      * @param bool $isVirtual Defines whether the current records is only virtually shown and not physically part of the parent record
      * @param array &$controlItems (reference) Associative array with the currently available control items
-     *
-     * @return void
      */
     public function renderForeignRecordHeaderControl_postProcess(
         $parentUid,

@@ -1,0 +1,25 @@
+tx_news_domain_model_tag,,,,
+,uid,pid,title
+,1,1,"Tag 1"
+,2,1,"Tag 2"
+,3,1,"Tag 3"
+,4,1,"Tag 4"
+,5,1,"Tag 5"
+tx_news_domain_model_news,,,,
+,uid,pid,title,tags
+,130,10,"tag1,tag2,tag3","3"
+,131,10,"tag3","1"
+,132,10,"tag4","1"
+,133,10,"tag5","1"
+,134,10,"tag4,tag5","2"
+tx_news_domain_model_news_tag_mm,,,
+,uid_local,uid_foreign,sorting
+,130,1,1
+,130,2,2
+,130,3,3
+,131,3,1
+,132,4,1
+,133,5,1
+,134,4,1
+,134,5,2
+,134,5,2

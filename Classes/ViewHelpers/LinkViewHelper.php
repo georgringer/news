@@ -1,16 +1,17 @@
 <?php
 
-namespace GeorgRinger\News\ViewHelpers;
-
-use GeorgRinger\News\Domain\Model\News;
-use GeorgRinger\News\Service\SettingsService;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\ViewHelpers;
+
+use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\Service\SettingsService;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -73,8 +74,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
     /**
      * @param \GeorgRinger\News\Service\SettingsService $pluginSettingsService
-     *
-     * @return void
      */
     public function injectSettingsService(SettingsService $pluginSettingsService): void
     {
@@ -96,7 +95,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     /**
      * Render link to news item or internal/external pages
      *
-     * @return null|string link
+     * @return string|null link
      */
     public function render(): ?string
     {
@@ -118,7 +117,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             }
         }
 
-        $this->init();
+        $this->initializeContentObjectRenderer();
         $linkedContent = $this->renderChildren();
 
         if ($newsItem === null) {
@@ -131,11 +130,11 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             case 1:
                 $configuration['parameter'] = $newsItem->getInternalurl();
                 break;
-            // external news
+                // external news
             case 2:
                 $configuration['parameter'] = $newsItem->getExternalurl();
                 break;
-            // normal news record
+                // normal news record
             default:
                 $configuration = $this->getLinkToNewsItem($newsItem, $tsSettings, $configuration);
         }
@@ -213,6 +212,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             }
 
             if (!$detailPid && isset($GLOBALS['TSFE'])) {
+                // @extensionScannerIgnoreLine
                 $detailPid = $GLOBALS['TSFE']->id;
             }
             $configuration['parameter'] = $detailPid;
@@ -316,12 +316,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         return isset($settings['detailPid']) ? (int)$settings['detailPid'] : 0;
     }
 
-    /**
-     * Initialize properties
-     *
-     * @return void
-     */
-    protected function init(): void
+    protected function initializeContentObjectRenderer(): void
     {
         $this->cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
     }

@@ -1,16 +1,16 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
-
-use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
-use TYPO3\TestingFramework\Core\BaseTestCase;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
+
+use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Test for SimplePrevNextViewHelper
@@ -27,21 +27,17 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
 
     /**
      * @test
-     *
-     * @return void
      */
     public function wrongIdWillReturnNullForObject(): void
     {
-        $this->viewHelper->expects($this->any())->method('getRawRecord')->withAnyParameters()->will($this->returnValue(null));
+        $this->viewHelper->expects(self::any())->method('getRawRecord')->withAnyParameters()->willReturn(null);
 
         $out = $this->viewHelper->_call('getObject', 0);
-        $this->assertEquals($out, null);
+        self::assertEquals($out, null);
     }
 
     /**
      * @test
-     *
-     * @return void
      */
     public function queryResultWillReturnCorrectOutputForAllLinks(): void
     {
@@ -54,13 +50,11 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
         $exp = ['prev' => 123, 'next' => 789];
         $viewHelper->expects(self::exactly(2))->method('getObject')->willReturnOnConsecutiveCalls(123, 789);
         $out = $viewHelper->_call('mapResultToObjects', $in);
-        $this->assertEquals($out, $exp);
+        self::assertEquals($out, $exp);
     }
 
     /**
      * @test
-     *
-     * @return void
      */
     public function queryResultWillReturnCorrectOutputFor2Links(): void
     {
@@ -72,13 +66,11 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
         $exp = ['prev' => 147];
         $viewHelper->expects(self::exactly(1))->method('getObject')->willReturnOnConsecutiveCalls(147);
         $out = $viewHelper->_call('mapResultToObjects', $in);
-        $this->assertEquals($out, $exp);
+        self::assertEquals($out, $exp);
     }
 
     /**
      * @test
-     *
-     * @return void
      */
     public function queryResultWillReturnCorrectOutputFor1Link(): void
     {
@@ -90,6 +82,6 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
         $exp = ['next' => 369];
         $viewHelper->expects(self::exactly(1))->method('getObject')->willReturnOnConsecutiveCalls(369);
         $out = $viewHelper->_call('mapResultToObjects', $in);
-        $this->assertEquals($out, $exp);
+        self::assertEquals($out, $exp);
     }
 }

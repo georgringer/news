@@ -1,17 +1,16 @@
 <?php
 
-namespace GeorgRinger\News\Hooks;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Hooks;
+
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -37,8 +36,6 @@ class ItemsProcFunc
      * Itemsproc function to extend the selection of templateLayouts in the plugin
      *
      * @param array &$config configuration array
-     *
-     * @return void
      */
     public function user_templateLayout(array &$config): void
     {
@@ -54,7 +51,7 @@ class ItemsProcFunc
             foreach ($templateLayouts as $layout) {
                 $additionalLayout = [
                     htmlspecialchars($this->getLanguageService()->sL($layout[0])),
-                    $layout[1]
+                    $layout[1],
                 ];
                 array_push($config['items'], $additionalLayout);
             }
@@ -99,8 +96,6 @@ class ItemsProcFunc
      * needs different ones then a news action
      *
      * @param array &$config configuration array
-     *
-     * @return void
      */
     public function user_orderBy(array &$config): void
     {
@@ -111,12 +106,12 @@ class ItemsProcFunc
             $flexformConfig = GeneralUtility::xml2array($row['pi_flexform']);
 
             // check if there is a flexform configuration
-            if (isset($flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
-                $selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'] ?? '';
-                // check for selected action
-                if (str_starts_with($selectedActionList, 'Category')) {
+            if (isset($flexformConfig['data']['sDEF']['lDEF'])) {
+                $selectedPlugin = strtolower($row['CType']) ?? '';
+                // check for selected plugin
+                if ($selectedPlugin === 'news_categorylist') {
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'];
-                } elseif (str_starts_with($selectedActionList, 'Tag')) {
+                } elseif ($selectedPlugin === 'news_taglist') {
                     $this->removeNonValidOrderFields($config, 'tx_news_domain_model_tag');
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'];
                 } else {
@@ -150,8 +145,6 @@ class ItemsProcFunc
      *
      * @param array $config tca items
      * @param string $tableName table name
-     *
-     * @return void
      */
     protected function removeNonValidOrderFields(array &$config, $tableName): void
     {
@@ -165,44 +158,10 @@ class ItemsProcFunc
     }
 
     /**
-     * Modifies the selectbox of available actions
-     *
-     * @param array &$config
-     *
-     * @return void
-     */
-    public function user_switchableControllerActions(array &$config): void
-    {
-        if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'])) {
-            $configuration = (int)$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'];
-            switch ($configuration) {
-                case 1:
-                    $this->removeActionFromList($config, 'News->list');
-                    break;
-                case 2:
-                    $this->removeActionFromList($config, 'News->list;News->detail');
-                    break;
-                default:
-            }
-        }
-
-        // Add additional actions
-        if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
-            && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
-        ) {
-            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'] as $key => $label) {
-                array_push($config['items'], [$this->getLanguageService()->sL($label), $key, '']);
-            }
-        }
-    }
-
-    /**
      * Remove given action from switchableControllerActions
      *
      * @param array $config available items
      * @param string $action action to be removed
-     *
-     * @return void
      */
     private function removeActionFromList(array &$config, $action): void
     {
@@ -256,16 +215,6 @@ class ItemsProcFunc
      */
     protected function getAllLanguages(): array
     {
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() === 10) {
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getQueryBuilderForTable('sys_language');
-            return $queryBuilder->select('*')
-                ->from('sys_language')
-                ->orderBy('sorting')
-                ->execute()
-                ->fetchAll();
-        }
         $siteLanguages = [];
         foreach (GeneralUtility::makeInstance(SiteFinder::class)->getAllSites() as $site) {
             foreach ($site->getAllLanguages() as $languageId => $language) {

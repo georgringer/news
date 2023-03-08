@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\ViewHelpers;
 
 use GeorgRinger\News\Domain\Model\News;
@@ -12,13 +19,6 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 
 /**
  * ViewHelper for a **simple** prev/next link.
@@ -70,8 +70,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
      * Inject the DataMapper
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper
-     *
-     * @return void
      */
     public function injectDataMapper(DataMapper $dataMapper): void
     {
@@ -141,6 +139,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
 
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']) && $languageAspect->getContentId() > 0) {
+            // @extensionScannerIgnoreLine
             $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
                 'tx_news_domain_model_news',
                 $rawRecord,
@@ -178,7 +177,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
             $queryBuilder = $connection->createQueryBuilder();
 
             $extraWhere = [
-                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), \PDO::PARAM_INT))
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), \PDO::PARAM_INT)),
             ];
             if ((bool)($this->arguments['includeInternalType'] ?? false) === false) {
                 $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));
@@ -212,7 +211,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
                 ->andWhere(...$extraWhere)
                 ->setMaxResults(1)
                 ->orderBy($sortField, ($label === 'prev' ? 'desc' : 'asc'))
-                ->execute()->fetch();
+                ->executeQuery()->fetchAssociative();
             if (is_array($row)) {
                 $data[$label] = $row;
             }
@@ -243,7 +242,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
             )
             ->setMaxResults(1)
-            ->execute()->fetch();
+            ->executeQuery()->fetchAssociative();
         return $rawRecord;
     }
 }

@@ -1,21 +1,20 @@
 <?php
 
-namespace GeorgRinger\News\Domain\Repository;
-
-use GeorgRinger\News\Domain\Model\DemandInterface;
-use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface;
-use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Persistence\Repository;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Domain\Repository;
+
+use GeorgRinger\News\Domain\Model\DemandInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
  * Abstract demanded repository
@@ -29,8 +28,6 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
-     *
-     * @return void
      */
     public function injectStorageBackend(
         BackendInterface $storageBackend
@@ -87,19 +84,14 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): string
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() >= 11) {
-            $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
-        } else {
-            $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
-        }
+        $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
 
         $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
         $queryParameters = $queryBuilder->getParameters();
         $params = [];
         foreach ($queryParameters as $key => $value) {
             // prefix array keys with ':'
-            $params[':' . $key] = (is_numeric($value)) ? $value : "'" . $value . "'"; //all non numeric values have to be quoted
+            $params[':' . $key] = "'" . $value . "'";
             unset($params[$key]);
         }
         // replace placeholders with real values
@@ -146,7 +138,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
         if (!empty($constraints)) {
             $query->matching(
-                $query->logicalAnd($constraints)
+                $query->logicalAnd(...array_values($constraints))
             );
         }
 
@@ -186,7 +178,6 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
             );
         }
 
-        $result = $query->execute();
-        return $result->count();
+        return $query->execute()->count();
     }
 }

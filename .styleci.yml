@@ -23,4 +23,5 @@ finder:
     - "*.php"
   not-path:
     - ".Build"
+    - "Build/php-cs-fixer"
     - "Documentation"

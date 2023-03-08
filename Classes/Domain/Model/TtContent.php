@@ -1,15 +1,16 @@
 <?php
 
-namespace GeorgRinger\News\Domain\Model;
-
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Domain\Model;
+
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+
 /**
  * Model of tt_content
  */
@@ -136,7 +137,7 @@ class TtContent extends AbstractEntity
     protected $listType = '';
 
     /**
-     * @return null|\DateTime
+     * @return \DateTime|null
      */
     public function getCrdate(): ?\DateTime
     {
@@ -145,8 +146,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param \DateTime $crdate
-     *
-     * @return void
      */
     public function setCrdate($crdate): void
     {
@@ -154,7 +153,7 @@ class TtContent extends AbstractEntity
     }
 
     /**
-     * @return null|\DateTime
+     * @return \DateTime|null
      */
     public function getTstamp(): ?\DateTime
     {
@@ -163,8 +162,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param \DateTime $tstamp
-     *
-     * @return void
      */
     public function setTstamp($tstamp): void
     {
@@ -181,8 +178,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $ctype
-     *
-     * @return void
      */
     public function setCType(string $ctype): void
     {
@@ -199,8 +194,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $header
-     *
-     * @return void
      */
     public function setHeader(string $header): void
     {
@@ -217,8 +210,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $headerPosition
-     *
-     * @return void
      */
     public function setHeaderPosition(string $headerPosition): void
     {
@@ -235,8 +226,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $bodytext
-     *
-     * @return void
      */
     public function setBodytext(string $bodytext): void
     {
@@ -257,8 +246,6 @@ class TtContent extends AbstractEntity
      * Set colpos
      *
      * @param int $colPos
-     *
-     * @return void
      */
     public function setColPos($colPos): void
     {
@@ -275,8 +262,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $image
-     *
-     * @return void
      */
     public function setImage(string $image): void
     {
@@ -293,8 +278,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $imagewidth
-     *
-     * @return void
      */
     public function setImagewidth(int $imagewidth): void
     {
@@ -311,8 +294,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $imageorient
-     *
-     * @return void
      */
     public function setImageorient(int $imageorient): void
     {
@@ -329,8 +310,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $imagecaption
-     *
-     * @return void
      */
     public function setImagecaption(string $imagecaption): void
     {
@@ -347,8 +326,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $imagecols
-     *
-     * @return void
      */
     public function setImagecols(int $imagecols): void
     {
@@ -365,8 +342,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $imageborder
-     *
-     * @return void
      */
     public function setImageborder(int $imageborder): void
     {
@@ -383,8 +358,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $media
-     *
-     * @return void
      */
     public function setMedia(string $media): void
     {
@@ -401,8 +374,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $layout
-     *
-     * @return void
      */
     public function setLayout(string $layout): void
     {
@@ -419,8 +390,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $cols
-     *
-     * @return void
      */
     public function setCols(int $cols): void
     {
@@ -437,8 +406,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $subheader
-     *
-     * @return void
      */
     public function setSubheader(string $subheader): void
     {
@@ -455,8 +422,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $headerLink
-     *
-     * @return void
      */
     public function setHeaderLink(string $headerLink): void
     {
@@ -473,8 +438,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $imageLink
-     *
-     * @return void
      */
     public function setImageLink(string $imageLink): void
     {
@@ -491,8 +454,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $imageZoom
-     *
-     * @return void
      */
     public function setImageZoom(string $imageZoom): void
     {
@@ -509,8 +470,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $altText
-     *
-     * @return void
      */
     public function setAltText(string $altText): void
     {
@@ -527,8 +486,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $titleText
-     *
-     * @return void
      */
     public function setTitleText(string $titleText): void
     {
@@ -545,8 +502,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param $headerLayout
-     *
-     * @return void
      */
     public function setHeaderLayout(string $headerLayout): void
     {
@@ -563,7 +518,6 @@ class TtContent extends AbstractEntity
 
     /**
      * @param string $listType
-     * @return void
      */
     public function setListType(string $listType): void
     {

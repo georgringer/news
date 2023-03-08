@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\Hooks;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Hooks;
+
 use GeorgRinger\News\Service\CategoryService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -21,8 +22,6 @@ class Labels
      * including the title of the parent category
      *
      * @param array $params
-     *
-     * @return void
      */
     public function getUserLabelCategory(array &$params): void
     {

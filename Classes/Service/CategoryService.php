@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Service;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Service;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Cache\CacheManager;
@@ -97,9 +97,9 @@ class CategoryService
             ->where(
                 $queryBuilder->expr()->in('parent', $queryBuilder->createNamedParameter(array_map('intval', explode(',', $idList)), Connection::PARAM_INT_ARRAY))
             )
-            ->execute();
+            ->executeQuery();
 
-        while (($row = $res->fetch())) {
+        while ($row = $res->fetchAssociative()) {
             $counter++;
             if ($counter > 10000) {
                 GeneralUtility::makeInstance(TimeTracker::class)->setTSlogMessage('EXT:news: one or more recursive categories where found');
@@ -119,14 +119,9 @@ class CategoryService
      * @param string $default default label
      * @param array $row category record
      * @return string
-     * @throws \UnexpectedValueException
      */
     public static function translateCategoryRecord($default, array $row = []): string
     {
-        if (TYPO3_MODE !== 'BE') {
-            throw new \UnexpectedValueException('TYPO3 Mode must be BE');
-        }
-
         $overlayLanguage = (int)($GLOBALS['BE_USER']->uc['newsoverlay'] ?? 0);
 
         $title = '';
@@ -146,7 +141,7 @@ class CategoryService
                     $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($row['uid'], \PDO::PARAM_INT))
                 )
                 ->setMaxResults(1)
-                ->execute()->fetch();
+                ->executeQuery()->fetchAssociative();
 
             if (is_array($overlayRecord) && !empty($overlayRecord)) {
                 $title = $overlayRecord['title'] . ' (' . $row['title'] . ')';

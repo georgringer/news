@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Domain\Service;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
@@ -14,25 +21,13 @@ use TYPO3\CMS\Core\Resource\ProcessedFile;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 class AbstractImportService implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
     public const UPLOAD_PATH = 'uploads/tx_news/';
-
-    /**
-     * @var ObjectManager
-     */
-    protected $objectManager;
 
     /**
      * @var PersistenceManager
@@ -67,19 +62,16 @@ class AbstractImportService implements LoggerAwareInterface
      * AbstractImportService constructor.
      * @param PersistenceManager $persistenceManager
      * @param EmConfiguration $emSettings
-     * @param ObjectManager $objectManager
      * @param CategoryRepository $categoryRepository
      * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         PersistenceManager $persistenceManager,
-        ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
         EventDispatcherInterface $eventDispatcher
     ) {
         $this->emSettings = GeneralUtility::makeInstance(EmConfiguration::class);
         $this->persistenceManager = $persistenceManager;
-        $this->objectManager = $objectManager;
         $this->categoryRepository = $categoryRepository;
         $this->eventDispatcher = $eventDispatcher;
     }
@@ -100,7 +92,6 @@ class AbstractImportService implements LoggerAwareInterface
      * Find a existing file by its hash
      *
      * @param string $hash
-     *
      * @return File|ProcessedFile|null
      */
     protected function findFileByHash($hash)
@@ -143,29 +134,16 @@ class AbstractImportService implements LoggerAwareInterface
         return $this->importFolder;
     }
 
-    /**
-     * Returns an instance of the FileIndexRepository
-     *
-     * @return FileIndexRepository
-     */
     protected function getFileIndexRepository(): FileIndexRepository
     {
-        return FileIndexRepository::getInstance();
+        return GeneralUtility::makeInstance(FileIndexRepository::class);
     }
 
-    /**
-     * Get resource storage
-     *
-     * @return ResourceStorage
-     */
     protected function getResourceStorage(): ResourceStorage
     {
         return $this->getResourceFactory()->getStorageObject($this->emSettings->getStorageUidImporter());
     }
 
-    /**
-     * @return ResourceFactory
-     */
     protected function getResourceFactory(): ResourceFactory
     {
         /** @var ResourceFactory $resourceFactory */

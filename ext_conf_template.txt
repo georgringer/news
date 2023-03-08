@@ -12,9 +12,6 @@ rteForTeaser = 0
 # cat=records/enable/110; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.contentElementRelation
 contentElementRelation = 1
 
-# cat=records/enable/111; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.contentElementPreview
-contentElementPreview = 1
-
 # cat=records/enable/120; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.manualSorting
 manualSorting = 0
 
@@ -30,9 +27,6 @@ dateTimeNotRequired = 0
 # cat=records/enable/2; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.archiveDate.date=date,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.archiveDate.datetime=datetime]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.archiveDate
 archiveDate = date
 
-# cat=records/enable/150; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.mediaPreview
-mediaPreview = false
-
 # cat=records/enable/153; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.advancedMediaPreview
 advancedMediaPreview = 1
 
@@ -46,9 +40,6 @@ showAdministrationModule = 1
 
 # cat=backend module/enable/12; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.hidePageTreeForAdministrationModule
 hidePageTreeForAdministrationModule = 0
-
-# cat=import module/enable/20; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.showImporter
-showImporter = 0
 
 # cat=import module/enable/21; type=int; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.storageUidImporter
 storageUidImporter = 1

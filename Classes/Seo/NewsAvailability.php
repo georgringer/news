@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Seo;
 
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,13 +17,6 @@ use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\Entity\SiteInterface;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 
 /**
  * Check if a news record is available
@@ -52,6 +52,7 @@ class NewsAvailability
     protected function mustBeIncluded(int $newsId, SiteLanguage $language): bool
     {
         if ($language->getFallbackType() === 'strict') {
+            // @extensionScannerIgnoreLine
             $newsRecord = $this->getNewsRecord($newsId, $language->getLanguageId());
 
             if (!is_array($newsRecord) || empty($newsRecord)) {
@@ -80,29 +81,29 @@ class NewsAvailability
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
         if ($language === 0) {
             $where = [
-                $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->or(
                     $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT)),
                     $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(-1, \PDO::PARAM_INT))
                 ),
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT)),
             ];
         } else {
             $where = [
-                $queryBuilder->expr()->orX(
-                    $queryBuilder->expr()->andX(
+                $queryBuilder->expr()->or(
+                    $queryBuilder->expr()->and(
                         $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(-1, \PDO::PARAM_INT)),
                         $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
                     ),
-                    $queryBuilder->expr()->andX(
+                    $queryBuilder->expr()->and(
                         $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT)),
                         $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT))
                     ),
-                    $queryBuilder->expr()->andX(
+                    $queryBuilder->expr()->and(
                         $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT)),
                         $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
                         $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT))
                     )
-                )
+                ),
             ];
         }
 
@@ -110,8 +111,7 @@ class NewsAvailability
             ->select('uid', 'l10n_parent', 'sys_language_uid')
             ->from('tx_news_domain_model_news')
             ->where(...$where)
-            ->execute()
-            ->fetch();
+            ->executeQuery()->fetchAssociative();
 
         return $row ?: null;
     }

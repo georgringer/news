@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
+
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
@@ -76,7 +77,7 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
                 $categoryList .= ',' . $categoryId;
             }
         } else {
-            $categoryList = GeneralUtility::rmFromList($categoryId, $categoryList);
+            $categoryList = self::rmFromList($categoryId, $categoryList);
         }
 
         if (!empty($categoryList)) {
@@ -84,13 +85,24 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
             $categoryArray = [
                 'tx_news_pi1' => [
                     'overwriteDemand' => [
-                        'categories' => $categoryList
-                    ]
-                ]
+                        'categories' => $categoryList,
+                    ],
+                ],
             ];
             ArrayUtility::mergeRecursiveWithOverrule($allArguments, $categoryArray);
         }
 
         return $allArguments;
+    }
+
+    private static function rmFromList($element, $list)
+    {
+        $items = explode(',', $list);
+        foreach ($items as $k => $v) {
+            if ($v == $element) {
+                unset($items[$k]);
+            }
+        }
+        return implode(',', $items);
     }
 }

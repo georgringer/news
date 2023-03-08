@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Utility;
 
 use TYPO3\CMS\Core\Cache\CacheManager;
@@ -7,13 +14,6 @@ use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 
 /**
  * Class ClassLoader
@@ -62,8 +62,6 @@ class ClassLoader implements SingletonInterface
 
     /**
      * Register instance of this class as spl autoloader
-     *
-     * @return void
      */
     public static function registerAutoloader(): void
     {
@@ -103,7 +101,7 @@ class ClassLoader implements SingletonInterface
      *
      * @param string $className
      *
-     * @return null|string
+     * @return string|null
      */
     protected function getExtensionKey($className): ?string
     {

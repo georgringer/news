@@ -1,15 +1,16 @@
 <?php
 
-namespace GeorgRinger\News\ViewHelpers\Format;
-
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\ViewHelpers\Format;
+
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  * ViewHelper to render children which don't print out any actual content
  *
@@ -33,8 +34,6 @@ class NothingViewHelper extends AbstractViewHelper
 
     /**
      * Render children but do nothing else
-     *
-     * @return void
      */
     public function render(): void
     {

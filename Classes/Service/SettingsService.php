@@ -1,16 +1,17 @@
 <?php
 
-namespace GeorgRinger\News\Service;
-
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Service;
+
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+
 /**
  * Provide a way to get the configuration just everywhere
  *
@@ -39,8 +40,6 @@ class SettingsService
      * Injects the Configuration Manager and loads the settings
      *
      * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
-     *
-     * @return void
      */
     public function injectConfigurationManager(
         ConfigurationManagerInterface $configurationManager

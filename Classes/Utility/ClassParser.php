@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\Utility;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Utility;
+
 class ClassParser
 {
     private $classes = [];
@@ -101,7 +102,7 @@ class ClassParser
                                     'name' => $token[1],
                                     'modifiers' => $mod,
                                     'doc' => $doc,
-                                    'start' => $token[2]
+                                    'start' => $token[2],
                                 ];
                                 break;
                             case T_FUNCTION:
@@ -113,7 +114,7 @@ class ClassParser
                                     $classes[$clsc - 1]['functions'][$token[1]] = [
                                         'modifiers' => $mod,
                                         'doc' => $doc,
-                                        'start' => $token[2]
+                                        'start' => $token[2],
                                     ];
                                 }
                                 break;

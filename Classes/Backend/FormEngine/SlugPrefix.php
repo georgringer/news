@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace GeorgRinger\News\Backend\FormEngine;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Backend\FormEngine;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Site\Entity\Site;
@@ -57,8 +57,8 @@ class SlugPrefix
             'tx_news_pi1' => [
                 'action' => 'detail',
                 'controller' => 'News',
-                'news' => $recordId
-            ]
+                'news' => $recordId,
+            ],
         ];
         return (string)$site->getRouter()->generateUri(
             (string)$pageId,

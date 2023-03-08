@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace GeorgRinger\News\ViewHelpers\Iterator;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\ViewHelpers\Iterator;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
@@ -75,12 +75,12 @@ class ChunkViewHelper extends AbstractViewHelper
             $preserveKeys
         );
         $output = [];
-        if (0 >= $count) {
+        if ($count <= 0) {
             return $output;
         }
         if ($fixed) {
             $subjectSize = count($subject);
-            if (0 < $subjectSize) {
+            if ($subjectSize > 0) {
                 $chunkSize = (int)ceil($subjectSize / $count);
 
                 $output = array_chunk($subject, $chunkSize, $preserveKeys);
@@ -140,7 +140,7 @@ class ChunkViewHelper extends AbstractViewHelper
         RenderingContextInterface $renderingContext,
         \Closure $renderChildrenClosure
     ) {
-        if (true === empty($as)) {
+        if (empty($as) === true) {
             return $variable;
         }
         $variables = [$as => $variable];
@@ -202,7 +202,7 @@ class ChunkViewHelper extends AbstractViewHelper
     {
         foreach ($variables as $variableName => $variableValue) {
             $templateVariableContainer->remove($variableName);
-            if (true === isset($backups[$variableName])) {
+            if (isset($backups[$variableName]) === true) {
                 $templateVariableContainer->add($variableName, $variableValue);
             }
         }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="europa-icons"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="96px"
+     height="96px"
+     viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#999999;}
+	.st2{fill:#7D83DE;}
+	.st3{fill:#E84F35;}
+	.st4{fill:#FAFAFA;}
+</style>
+    <g id="list">
+	<rect id="white_00000122703791127434438960000005851921403146812337_" class="st4" width="16" height="16"/>
+        <rect id="orange" x="3.5" y="10.2" class="st3" width="3" height="3"/>
+        <path id="lila" class="st2" d="M12.5,11.2h-5v-1h5V11.2z M11.5,12.2h-4v1h4V12.2z M10.5,5.8h-7v-1h7V5.8z M9.5,2.8h-6v1h6V2.8z
+		 M0,0v16h16V0H0z M15,15H1V8.5h14V15z M1,7.5V1h14v6.5H1z"/>
+</g>
+</svg>

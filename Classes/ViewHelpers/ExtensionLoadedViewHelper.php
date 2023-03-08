@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\ViewHelpers;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\ViewHelpers;
+
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
@@ -32,16 +33,5 @@ class ExtensionLoadedViewHelper extends AbstractConditionViewHelper
     protected static function evaluateCondition($arguments = null): bool
     {
         return ExtensionManagementUtility::isLoaded($arguments['extensionKey']);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function render()
-    {
-        if (static::evaluateCondition($this->arguments)) {
-            return $this->renderThenChild();
-        }
-        return $this->renderElseChild();
     }
 }

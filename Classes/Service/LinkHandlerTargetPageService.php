@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Service;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 class LinkHandlerTargetPageService
 {
     /** @var ContentObjectRenderer */
@@ -58,7 +59,7 @@ class LinkHandlerTargetPageService
             )
             ->orderBy('sys_category_record_mm.sorting')
             ->setMaxResults(1)
-            ->execute()->fetch();
+            ->executeQuery()->fetchAssociative();
         return (int)($categoryRecord['single_pid'] ?? 0);
     }
 }

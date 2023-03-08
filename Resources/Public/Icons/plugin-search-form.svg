@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="europa-icons"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="96px" height="96px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#999999;}
+	.st2{fill:#7D83DE;}
+	.st3{fill:#E84F35;}
+	.st4{fill:#FAFAFA;}
+</style>
+<g id="surch-form">
+	<rect id="white_00000068645533818871859780000006314687927583946424_" class="st0" width="16" height="16"/>
+	<path id="lila_00000116199907169423409220000014812993897688225428_" class="st2" d="M0,0v16h16V0H0z M15,15H1V1h14V15z M7.5,9h-3
+		c-0.6,0-1-0.4-1-1v0c0-0.6,0.4-1,1-1h3c0.6,0,1,0.4,1,1v0C8.5,8.6,8.1,9,7.5,9z"/>
+	<path id="orange_00000161619361762406837970000015168046057926009773_" class="st3" d="M13.2,9.8c-0.2,0.2-0.5,0.2-0.7,0l-1-1
+		C11.3,9,11.1,9,10.9,9c-0.8,0-1.5-0.7-1.5-1.5S10.1,6,10.9,6s1.5,0.7,1.5,1.5c0,0.2-0.1,0.4-0.1,0.6l1,1
+		C13.4,9.3,13.4,9.7,13.2,9.8z M11.4,7.5c0-0.3-0.2-0.5-0.5-0.5c-0.3,0-0.5,0.2-0.5,0.5c0,0.3,0.2,0.5,0.5,0.5
+		C11.2,8,11.4,7.8,11.4,7.5z"/>
+</g>
+</svg>
