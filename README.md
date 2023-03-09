@@ -1,6 +1,6 @@
 [![Latest Stable Version](https://poser.pugx.org/georgringer/news/v/stable)](https://extensions.typo3.org/extension/news/)
 [![TYPO3 11](https://img.shields.io/badge/TYPO3-11-orange.svg)](https://get.typo3.org/version/11)
-[![TYPO3 10](https://img.shields.io/badge/TYPO3-10-orange.svg)](https://get.typo3.org/version/10)
+[![TYPO3 12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
 [![Total Downloads](https://poser.pugx.org/georgringer/news/d/total)](https://packagist.org/packages/georgringer/news)
 [![Monthly Downloads](https://poser.pugx.org/georgringer/news/d/monthly)](https://packagist.org/packages/georgringer/news)
 ![Build](https://github.com/georgringer/news/actions/workflows/ci.yml/badge.svg)
@@ -40,7 +40,6 @@ It includes these features:
 
 ## Compatibility
 
-=======
 | News     | TYPO3     | PHP       | Support / Development                |
 |----------|-----------|-----------|--------------------------------------|
 | dev-main | 11 - 12   | 7.4 - 8.2 | unstable development branch          |
