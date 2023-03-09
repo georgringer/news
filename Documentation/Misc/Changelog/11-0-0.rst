@@ -51,6 +51,30 @@ Please adopt your code if you e.g. select plugins based on the `CType` or if mod
 Features
 --------
 
+Improved routing
+----------------
+
+With the change `b8e2b3ea` the routing configuration has been simplified.
+
+.. code-block:: yaml
+
+   # before
+   aspects:
+     news-title:
+        type: PersistedAliasMapper
+        tableName: tx_news_domain_model_news
+        routeFieldName: path_segment
+        type: NewsTitle
+
+
+   # now
+   aspects:
+      news-title:
+        type: NewsTitle
+
+Additionally, if a record can't be retrieved for the given slug (e.g. because it has been deleted), the controller can now show the fallback again.
+
+
 Optional namespaces for plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -82,6 +106,9 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+   2023-03-09 [DOC] Cleanup readme.md (Commit 06543a51 by Georg Ringer)
+   2023-03-09 [DOC] Clarify version information (Commit 9b8a0e87 by Georg Ringer)
+   2023-03-08 Support of TYPO3 v12 (#2022) (Commit 2f8c4b03 by Georg Ringer)
    2023-02-19 Support for php 8.2 (Commit 80145a6d by Georg Ringer)
    2023-02-19 [BUGFIX] Avoid dependency conflict with core requirements (Commit 62455558 by Stefan Bürk)
    2023-02-17 [TASK] Xclass ExtensionService of extbase (Commit 259631ff by Georg Ringer)
@@ -190,5 +217,25 @@ This is a list of all changes in this release: ::
    2022-10-12 [TASK] Set correct version constraints (Commit 8cdf6b7d by Georg Ringer)
    2022-10-12 [TASK] Rename mode (Commit ab66a58b by Georg Ringer)
    2022-10-12 [TASK] Move icons (Commit e2532645 by Georg Ringer)
+   2023-03-09 [DOC] Update badges in readme (Commit ba86b8ef by Georg Ringer)
+   2023-03-07 [DOC] Add TsCode snippets to documentation about how to reduce allowed cont… (#2021) (Commit d47ed617 by Patrick Crausaz)
+   2023-03-06 Update "requirements" indentation for DateManu (#2020) (Commit 7e07114a by mtness)
+   2023-02-28 [BUGFIX] prevent error in cleanup:deletedrecords command (#2012) (Commit 202051a2 by Andreas Kießling)
+   2023-02-24 Correct small typo (#2015) (Commit 005a9c6b by Myrmod)
+   2023-02-17 Fix Typo (Commit f4e0c3f6 by Myrmod)
+   2023-02-01 Update README.md (Commit f95d8f3d by Georg Ringer)
+   2023-01-30 [BUGFIX] Check for valid recordId before generating URL (Commit 8cbed9b8 by Julian Hofmann)
+   2023-01-23 Update Example Template Multi Category Selection (Commit 1802b367 by lauralang)
+   2023-01-17 Loading Issue with large category tree backwards compatibility (Commit 8acdc810 by Alexander Bohn)
+   2023-01-09 Revert "Loading Issue with large category tree" (Commit 8d625392 by Alexander Bohn)
+   2023-01-09 Loading Issue with large category tree (Commit 3b50db4a by Alexander Bohn)
+   2022-12-21 [BUGFIX] Fix notice in LinkHandlerTargetService (Commit 7b474e18 by Georg Ringer)
+   2022-12-14 [DOC] Add section about render content with b13/container and example TypoScript lib (Commit a127506e by Manuel Munz)
+   2022-12-12 [BUGFIX] fix undefined array key warnings (Commit 344ab7e8 by Johannes Kasberger)
+   2022-12-09 [DOC] Add EXT:news_seo to manual (Commit b056d6ae by Georg Ringer)
+   2022-12-07 [TASK] Remove superfluous TypoScript setting googlePlusLocale (Commit cdeb51f7 by Josef Glatz)
+   2022-11-29 [BUGFIX] Add PHP version constraints (Commit fa8589c3 by Andreas Fernandez)
+   2022-11-24 [FEATURE] Introduce simplified AliasMapper for News Routing (Commit b8e2b3ea by Benni Mack)
+   2022-11-24 [FEATURE] Add top/bottom move buttons in plugin's flexform (Commit a54751d7 by Philipp Idler)
 
 This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
