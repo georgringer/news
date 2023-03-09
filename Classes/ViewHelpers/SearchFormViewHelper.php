@@ -11,12 +11,12 @@ namespace GeorgRinger\News\ViewHelpers;
 
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
 use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService;
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
 use TYPO3\CMS\Extbase\Service\ExtensionService;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormViewHelper;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\CheckboxViewHelper;
 
@@ -154,19 +154,20 @@ class SearchFormViewHelper extends AbstractFormViewHelper
             }
 
             $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-            if ($versionInformation->getMajorVersion() >= 11) {
-                $uriBuilder = $this->renderingContext->getUriBuilder();
+            if ($versionInformation->getMajorVersion() >= 12) {
+                /** @var RenderingContext $renderingContext */
+                $renderingContext = $this->renderingContext;
+                /** @var RequestInterface $request */
+                $request = $renderingContext->getRequest();
+                $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+                $uriBuilder
+                    ->reset()
+                    ->setRequest($request);
             } else {
-                // @extensionScannerIgnoreLine
-                $uriBuilder = GeneralUtility::makeInstance(ObjectManager::class)->get(UriBuilder::class);
-                /** @var ControllerContext $controllerContext */
-                $controllerContext = $this->renderingContext->getControllerContext();
-                if ($controllerContext) {
-                    $uriBuilder->setRequest($controllerContext->getRequest());
-                }
+                $uriBuilder = $this->renderingContext->getUriBuilder();
+                $uriBuilder->reset();
             }
             $uriBuilder
-                ->reset()
                 ->setTargetPageType($this->arguments['pageType'] ?? 0)
                 ->setNoCache($this->arguments['noCache'] ?? false)
                 ->setSection($this->arguments['section'] ?? '')
