@@ -1,7 +1,7 @@
 .. include:: /Includes.rst.txt
 
-11.0.0 - XXth XXXXXXXXX 2023
-============================
+11.0.0 - 9th March 2023
+=======================
 
 This is the first release of the extension that supports TYPO3 12 and 11.
 This also means that the **active** support for TYPO3 10 (EXT:news v9) has been stopped.
