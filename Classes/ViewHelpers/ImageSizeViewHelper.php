@@ -62,7 +62,7 @@ class ImageSizeViewHelper extends AbstractViewHelper
 
         $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
         $imagesOnPage = $assetCollector->getMedia();
-        
+
         if (isset($imagesOnPage[$usedImage])) {
             if ($arguments['property'] == 'size') {
                 $file = Environment::getPublicPath() . '/' . ltrim(parse_url($usedImage, PHP_URL_PATH), '/');
