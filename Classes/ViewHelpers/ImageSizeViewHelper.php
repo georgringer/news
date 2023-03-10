@@ -87,15 +87,13 @@ class ImageSizeViewHelper extends AbstractViewHelper
                     }
                 }
 
-                if (isset($imagesOnPage[$usedImage])) {
-                    switch ($arguments['property']) {
-                        case 'width':
-                            $value = $imagesOnPage[$usedImage][0];
-                            break;
-                        case 'height':
-                            $value = $imagesOnPage[$usedImage][1];
-                            break;
-                    }
+                switch ($arguments['property']) {
+                    case 'width':
+                        $value = $imagesOnPage[$usedImage][0];
+                        break;
+                    case 'height':
+                        $value = $imagesOnPage[$usedImage][1];
+                        break;
                 }
             }
         }
