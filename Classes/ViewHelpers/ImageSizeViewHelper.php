@@ -65,11 +65,11 @@ class ImageSizeViewHelper extends AbstractViewHelper
         
         if (isset($imagesOnPage[$usedImage])) {
             if ($arguments['property'] == 'size') {
-            $file = Environment::getPublicPath() . '/' . ltrim(parse_url($usedImage, PHP_URL_PATH), '/');
-            if (is_file($file)) {
-                return (int) @filesize($file);
-            }
-            elseif (in_array($arguments['property'], ['width', 'height'])) {
+                $file = Environment::getPublicPath() . '/' . ltrim(parse_url($usedImage, PHP_URL_PATH), '/');
+                if (is_file($file)) {
+                    return (int) @filesize($file);
+                }
+            } elseif (in_array($arguments['property'], ['width', 'height'])) {
 
                 // Get missing info if required
                 if (!array_key_exists(0, $imagesOnPage[$usedImage])
