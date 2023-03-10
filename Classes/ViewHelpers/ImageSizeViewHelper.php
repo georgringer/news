@@ -63,38 +63,39 @@ class ImageSizeViewHelper extends AbstractViewHelper
         $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
         $imagesOnPage = $assetCollector->getMedia();
         
-        if (isset($imagesOnPage[$usedImage]) && $arguments['property'] == 'size') {
+        if (isset($imagesOnPage[$usedImage])) {
+            if ($arguments['property'] == 'size') {
             $file = Environment::getPublicPath() . '/' . ltrim(parse_url($usedImage, PHP_URL_PATH), '/');
             if (is_file($file)) {
                 return (int) @filesize($file);
             }
-        }
-        elseif (in_array($arguments['property'], ['width', 'height'])) {
+            elseif (in_array($arguments['property'], ['width', 'height'])) {
 
-            // Get missing info if required
-            if (!array_key_exists(0, $imagesOnPage[$usedImage])
-                || !array_key_exists(1, $imagesOnPage[$usedImage])
-            ) {
-                $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
-                $fileObject = $resourceFactory->getFileObjectFromCombinedIdentifier($usedImage);
-                if ($fileObject->isImage()
-                    && $fileObject->getStorage()->getDriverType() === 'Local'
+                // Get missing info if required
+                if (!array_key_exists(0, $imagesOnPage[$usedImage])
+                    || !array_key_exists(1, $imagesOnPage[$usedImage])
                 ) {
-                    $rawFileLocation = $fileObject->getForLocalProcessing();
-                    $imageInfo = GeneralUtility::makeInstance(ImageInfo::class, $rawFileLocation);
-                    $imagesOnPage[$usedImage][0] = $imageInfo->getWidth();
-                    $imagesOnPage[$usedImage][1] = $imageInfo->getHeight();
+                    $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+                    $fileObject = $resourceFactory->getFileObjectFromCombinedIdentifier($usedImage);
+                    if ($fileObject->isImage()
+                        && $fileObject->getStorage()->getDriverType() === 'Local'
+                    ) {
+                        $rawFileLocation = $fileObject->getForLocalProcessing();
+                        $imageInfo = GeneralUtility::makeInstance(ImageInfo::class, $rawFileLocation);
+                        $imagesOnPage[$usedImage][0] = $imageInfo->getWidth();
+                        $imagesOnPage[$usedImage][1] = $imageInfo->getHeight();
+                    }
                 }
-            }
 
-            if (isset($imagesOnPage[$usedImage])) {
-                switch ($arguments['property']) {
-                    case 'width':
-                        $value = $imagesOnPage[$usedImage][0];
-                        break;
-                    case 'height':
-                        $value = $imagesOnPage[$usedImage][1];
-                        break;
+                if (isset($imagesOnPage[$usedImage])) {
+                    switch ($arguments['property']) {
+                        case 'width':
+                            $value = $imagesOnPage[$usedImage][0];
+                            break;
+                        case 'height':
+                            $value = $imagesOnPage[$usedImage][1];
+                            break;
+                    }
                 }
             }
         }
