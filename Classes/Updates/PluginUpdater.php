@@ -116,6 +116,9 @@ class PluginUpdater implements UpgradeWizardInterface
             $flexFormData = GeneralUtility::xml2array($record['pi_flexform']);
             $flexForm = $this->flexFormService->convertFlexFormContentToArray($record['pi_flexform']);
             $targetListType = $this->getTargetListType($flexForm['switchableControllerActions']);
+            if ($targetListType === '') {
+                continue;
+            }
             $allowedSettings = $this->getAllowedSettingsFromFlexForm($targetListType);
 
             // Remove flexform data which do not exist in flexform of new plugin
@@ -177,6 +180,10 @@ class PluginUpdater implements UpgradeWizardInterface
 
     protected function getAllowedSettingsFromFlexForm(string $listType): array
     {
+        if (!isset($GLOBALS['TCA']['tt_content']['columns']['pi_flexform']['config']['ds']['*,' . $listType])) {
+            return [];
+        }
+
         $flexFormFile = $GLOBALS['TCA']['tt_content']['columns']['pi_flexform']['config']['ds']['*,' . $listType];
         $flexFormContent = file_get_contents(GeneralUtility::getFileAbsFileName(substr(trim($flexFormFile), 5)));
         $flexFormData = GeneralUtility::xml2array($flexFormContent);
