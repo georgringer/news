@@ -54,7 +54,7 @@ class CategoryImportService extends AbstractImportService
                 ];
             }
 
-            if ($importItem['parentcategory']) {
+            if ($importItem['parentcategory'] ?? false) {
                 $this->postPersistQueue[$importItem['import_id']] = [
                     'category' => $category,
                     'action' => self::ACTION_SET_PARENT_CATEGORY,
