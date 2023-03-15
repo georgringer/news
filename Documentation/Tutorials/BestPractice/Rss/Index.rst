@@ -48,13 +48,9 @@ A very simple way to generate the RSS feed is using plain TypoScript. All you ne
           absRefPrefix = {$plugin.tx_news.rss.channel.link}
           linkVars >
        }
-       10 < tt_content.list.20.news_pi1
+       10 < tt_content.news_pi1.20
        10 {
-          switchableControllerActions {
-             News {
-                1 = list
-             }
-          }
+
           settings < plugin.tx_news.settings
           settings {
              categories = 9

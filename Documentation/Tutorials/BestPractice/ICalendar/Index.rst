@@ -47,13 +47,8 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
     pageNewsICalendar = PAGE
     pageNewsICalendar {
        typeNum = 9819
-       10 < tt_content.list.20.news_pi1
+       10 < tt_content.news_pi1.20
        10 {
-          switchableControllerActions {
-             News {
-                1 = list
-             }
-          }
           settings < plugin.tx_news.settings
           settings {
              categories = 9
