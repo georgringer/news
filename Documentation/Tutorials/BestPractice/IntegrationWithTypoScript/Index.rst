@@ -108,12 +108,8 @@ You could use a code like the following one to render e.g. the title of a news a
 
 .. code-block:: typoscript
 
-    [globalVar = TSFE:id = NEWS-DETAIL-PAGE-ID]
-
-    config.noPageTitle = 2
-
-    temp.newsTitle = RECORDS
-    temp.newsTitle {
+    lib.newsTitle = RECORDS
+    lib.newsTitle {
       dontCheckPid = 1
             tables = tx_news_domain_model_news
             source.data = GP:tx_news_pi1|news
@@ -123,12 +119,8 @@ You could use a code like the following one to render e.g. the title of a news a
                 field = title
                 htmlSpecialChars = 1
             }
-            wrap = <title>|</title>
+            wrap = <h3>|</h3>
     }
-    page.headerData.1 >
-    page.headerData.1 < temp.newsTitle
-
-    [global]
 
 If you want to show the categories of a news record, you can use the following code:
 
