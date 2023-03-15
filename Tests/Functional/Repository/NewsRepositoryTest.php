@@ -172,7 +172,7 @@ class NewsRepositoryTest extends FunctionalTestCase
         );
 
         // get all news maximum 6 days old
-        $demand->setTimeRestriction((6 * 86400));
+        $demand->setTimeRestriction(6 * 86400);
         self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 4);
 
         // no restriction should get you all
