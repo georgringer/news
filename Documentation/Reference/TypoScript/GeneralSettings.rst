@@ -404,7 +404,7 @@ detail.media
                width = {$styles.content.textmedia.linkWrap.width}
                height = {$styles.content.textmedia.linkWrap.height}
             }
-            # If using css_styled_content, use those ssettings
+            # If using css_styled_content, use those settings
             # lightbox {
             #    enabled = {$styles.content.imgtext.linkWrap.lightboxEnabled}
             #    class = {$styles.content.imgtext.linkWrap.lightboxCssClass}

@@ -1,21 +1,21 @@
 <?php
 
-namespace GeorgRinger\News\Domain\Model;
-
-use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Domain\Model;
+
+use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
+
 /**
  * Tag model
  */
 class Tag extends AbstractValueObject
 {
-
     /**
      * @var \DateTime
      */
@@ -57,7 +57,7 @@ class Tag extends AbstractValueObject
     /**
      * Get crdate
      *
-     * @return null|\DateTime
+     * @return \DateTime|null
      */
     public function getCrdate(): ?\DateTime
     {
@@ -68,8 +68,6 @@ class Tag extends AbstractValueObject
      * Set crdate
      *
      * @param \DateTime $crdate crdate
-     *
-     * @return void
      */
     public function setCrdate($crdate): void
     {
@@ -79,7 +77,7 @@ class Tag extends AbstractValueObject
     /**
      * Get Tstamp
      *
-     * @return null|\DateTime
+     * @return \DateTime|null
      */
     public function getTstamp(): ?\DateTime
     {
@@ -90,8 +88,6 @@ class Tag extends AbstractValueObject
      * Set tstamp
      *
      * @param \DateTime $tstamp tstamp
-     *
-     * @return void
      */
     public function setTstamp($tstamp): void
     {
@@ -112,8 +108,6 @@ class Tag extends AbstractValueObject
      * Set title
      *
      * @param string $title title
-     *
-     * @return void
      */
     public function setTitle($title): void
     {
@@ -130,8 +124,6 @@ class Tag extends AbstractValueObject
 
     /**
      * @param string $seoTitle
-     *
-     * @return void
      */
     public function setSeoTitle($seoTitle): void
     {
@@ -148,8 +140,6 @@ class Tag extends AbstractValueObject
 
     /**
      * @param string $seoDescription
-     *
-     * @return void
      */
     public function setSeoDescription($seoDescription): void
     {
@@ -166,8 +156,6 @@ class Tag extends AbstractValueObject
 
     /**
      * @param string $seoHeadline
-     *
-     * @return void
      */
     public function setSeoHeadline($seoHeadline): void
     {
@@ -184,8 +172,6 @@ class Tag extends AbstractValueObject
 
     /**
      * @param string $seoText
-     *
-     * @return void
      */
     public function setSeoText($seoText): void
     {
@@ -202,8 +188,6 @@ class Tag extends AbstractValueObject
 
     /**
      * @param string $slug
-     *
-     * @return void
      */
     public function setSlug($slug): void
     {

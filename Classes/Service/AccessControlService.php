@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Service;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Service;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class AccessControlService
 {
-
     /**
      * Check if a user has access to all categories of a news record
      *
@@ -107,8 +106,7 @@ class AccessControlService
                         $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
                         $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR))
                     )
-                    ->execute()
-                    ->fetchColumn(0);
+                    ->executeQuery()->fetchOne();
                 if ($newsRecordCategoriesCount > 0) {
                     // take categories from localized version
                     $newsRecordUid = $newsRecord['uid'];
@@ -147,13 +145,13 @@ class AccessControlService
                 $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR)),
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsRecordUid, \PDO::PARAM_INT))
             )
-            ->execute();
+            ->executeQuery();
 
         $categories = [];
-        while ($row =$res->fetch()) {
+        while ($row =$res->fetchAssociative()) {
             $categories[] = [
                 'uid' => $row['uid_local'],
-                'title' => $row['title']
+                'title' => $row['title'],
             ];
         }
         return $categories;

@@ -34,7 +34,7 @@ First, register your implementation in the file ``ext_localconf.php``:
 .. code-block:: php
 
    <?php
-   defined('TYPO3_MODE') or die();
+   defined('TYPO3') or die();
 
    $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'][$_EXTKEY]
       = 'YourVendor\\Extkey\\Hooks\\Repository->modify';
@@ -83,7 +83,7 @@ First, register your implementation in the file ``ext_localconf.php``:
 .. code-block:: php
 
    <?php
-   defined('TYPO3_MODE') or die();
+   defined('TYPO3') or die();
 
    $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'][$_EXTKEY]
       = 'YourVendor\\Extkey\\Hooks\\NewsControllerSettings->modify';

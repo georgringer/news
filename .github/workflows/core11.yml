@@ -1,0 +1,55 @@
+name: core 11
+
+on: [ push, pull_request ]
+
+jobs:
+  tests:
+    name: v11
+    runs-on: ubuntu-20.04
+    strategy:
+      # This prevents cancellation of matrix job runs, if one/two already failed and let the
+      # rest matrix jobs be executed anyway.
+      fail-fast: false
+      matrix:
+        php: [ '7.4', '8.0', '8.1', '8.2' ]
+        composerInstall: [ 'composerInstallLowest', 'composerInstallHighest' ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Validate composer.json and composer.lock
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s composer -e 'validate'
+
+      - name: Install testing system
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s ${{ matrix.composerInstall }}
+
+      - name: Lint PHP
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s lint
+
+      - name: Validate code against CGL
+        run: PHP_CS_FIXER_IGNORE_ENV=1 Build/Scripts/runTests.sh -t 11 -p 8.1 -s cgl -n
+
+      - name: Unit Tests
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s unit
+
+      - name: Functional Tests with mariadb and mysqli
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d mariadb -a mysqli -s functional
+
+      - name: Functional Tests with mariadb and pdo_mysql
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d mariadb -a pdo_mysql -s functional
+
+      - name: Functional Tests with mysql and mysqli
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d mysql -a mysqli -s functional
+
+      - name: Functional Tests with mysql and pdo_mysql
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d mysql -a pdo_mysql -s functional
+
+      - name: Functional Tests with postgres
+        # v11 postgres functional disabled with PHP 8.2 since https://github.com/doctrine/dbal/commit/73eec6d882b99e1e2d2d937accca89c1bd91b2d7
+        # is not fixed in doctrine core v11 doctrine 2.13.9
+        if: ${{ matrix.php <= '8.1' }}
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d postgres -s functional
+
+      # @todo disabled, due cross dbmns issues in code. Should be fixed first
+      # - name: Functional Tests with sqlite
+      #  run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d sqlite -s functional

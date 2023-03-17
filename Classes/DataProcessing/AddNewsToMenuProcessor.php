@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\DataProcessing;
 
 use TYPO3\CMS\Core\Context\Context;
@@ -13,13 +20,6 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
-
-/**
  * Add the current news record to any menu, e.g. breadcrumb
  *
  * 20 = GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor
@@ -27,7 +27,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class AddNewsToMenuProcessor implements DataProcessorInterface
 {
-
     /**
      * @param ContentObjectRenderer $cObj
      * @param array $contentObjectConfiguration
@@ -57,8 +56,6 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
      *
      * @param array $newsRecord
      * @param array $menu
-     *
-     * @return void
      */
     protected function addNewsRecordToMenu(array $newsRecord, array &$menu): void
     {
@@ -72,7 +69,7 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
             'active' => 1,
             'current' => 1,
             'link' => GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'),
-            'isNews' => true
+            'isNews' => true,
         ];
     }
 
@@ -98,10 +95,10 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
                 ->where(
                     $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
                 )
-                ->execute()
-                ->fetch();
+                ->executeQuery()->fetchAssociative();
 
             if ($row) {
+                // @extensionScannerIgnoreLine
                 $row = $this->getTsfe()->sys_page->getRecordOverlay('tx_news_domain_model_news', $row, $this->getCurrentLanguage());
             }
 

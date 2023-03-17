@@ -1,14 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
-namespace GeorgRinger\News\Backend\FormEngine;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Backend\FormEngine;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Site\Entity\Site;
@@ -20,16 +21,18 @@ class SlugPrefix
     public function getPrefix(array $parameters): string
     {
         $row = $parameters['row'];
+        $sysLanguageUid = is_array($row['sys_language_uid']) ? (int)$row['sys_language_uid'][0] : $row['sys_language_uid'];
         $pagesTsConfig = BackendUtility::getPagesTSconfig($row['pid']);
         $configuration = $pagesTsConfig['tx_news.']['slugPrefix'] ?? '';
         if ($configuration === 'none' || $configuration === '') {
             return '';
         }
         if ($configuration === 'default') {
-            return $this->getPrefixForSite($parameters['site'], $row['sys_language_uid']);
+            return $this->getPrefixForSite($parameters['site'], $sysLanguageUid);
         }
-        if (MathUtility::canBeInterpretedAsInteger($configuration)) {
-            $prefix = $this->generateUrl($parameters['site'], (int)$configuration, $row['uid'], $row['sys_language_uid']);
+        // New, not already saved records get a uid like "NEW56fe740dd5a455"; those records can not have a URL yet
+        if (MathUtility::canBeInterpretedAsInteger($configuration) && MathUtility::canBeInterpretedAsInteger($row['uid'])) {
+            $prefix = $this->generateUrl($parameters['site'], (int)$configuration, $row['uid'], $sysLanguageUid);
             return $this->stripNewsSegment($prefix, $parameters['row']['path_segment']);
         }
 
@@ -54,8 +57,8 @@ class SlugPrefix
             'tx_news_pi1' => [
                 'action' => 'detail',
                 'controller' => 'News',
-                'news' => $recordId
-            ]
+                'news' => $recordId,
+            ],
         ];
         return (string)$site->getRouter()->generateUri(
             (string)$pageId,

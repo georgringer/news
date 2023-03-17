@@ -1,0 +1,241 @@
+.. include:: /Includes.rst.txt
+
+11.0.0 - 9th March 2023
+=======================
+
+This is the first release of the extension that supports TYPO3 12 and 11.
+This also means that the **active** support for TYPO3 10 (EXT:news v9) has been stopped.
+
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Breaking changes
+-----------------
+Even though a new major version has been released, there is only one important change which has a couple of various consequences:
+
+Split plugins into separate plugins
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+With the removal of the so called "SwitchableControllerActions" in TYPO3 12, the plugin of EXT:news has been splitted into separate plugins.
+This means that every selection in the former flexform field "*What to display*" is now a separate plugin.
+
+An updated wizard in the Install Tool is available to migrate the plugins to the new plugins.
+
+Permission configuration
+^^^^^^^^^^^^^^^^^^^^^^^^
+Due to the plugin splitting, the access permissions must be adopted as not only the plugin `news_pi1` must be allowed but all various plugins an editor is allowed to use.
+
+An updated wizard in the Install Tool is available to migrate the permissions to the new plugins.
+
+Changed plugin registration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Instead of using the field `CType` with `list` and `list_type` with `news_pi1, only the field `CType` is now used:
+
+- `news_pi1`: article list view + detail view
+- `news_newsliststicky`: article list view with doesn't switch to a detail view
+- `news_newsdetail`: article detail view
+- `news_newsselectedlist`: selected list of articles
+- `news_newsdatemenu`: date menu of articles
+- `news_newssearchform`: search form
+- `news_newssearchresult`: search result
+- `news_categorylist`: category listing
+- `news_taglist`: tag listing
+
+Please adopt your code if you e.g. select plugins based on the `CType` or if modify the TCA of the plugin element.
+
+
+Features
+--------
+
+Improved routing
+----------------
+
+With the change `b8e2b3ea` the routing configuration has been simplified.
+
+.. code-block:: yaml
+
+   # before
+   aspects:
+     news-title:
+        type: PersistedAliasMapper
+        tableName: tx_news_domain_model_news
+        routeFieldName: path_segment
+        type: NewsTitle
+
+
+   # now
+   aspects:
+      news-title:
+        type: NewsTitle
+
+Additionally, if a record can't be retrieved for the given slug (e.g. because it has been deleted), the controller can now show the fallback again.
+
+
+Optional namespaces for plugins
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As a result, the plugins can now also be configured more independently from each other by using the **optional** custom namespaces:
+
+.. code-block:: typoscript
+
+   plugin {
+      tx_news_newsliststicky.settings {
+         myCustomSetting = 1
+      }
+
+      tx_news_newsdetail.settings {}
+      tx_news_newsselectedlist.settings {}
+      tx_news_newsdatemenu.settings {}
+      tx_news_categorylist.settings {}
+      tx_news_newssearchform.settings {}
+      tx_news_newssearchresult.settings {}
+      tx_news_taglist.settings {}
+   }
+
+Support of PostgreSQL
+^^^^^^^^^^^^^^^^^^^^^
+PostgreSQL is now supported as database backend.
+This means that the extension can be used with PostgreSQL as well as MySQL and MariaDB.
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2023-03-09 [DOC] Cleanup readme.md (Commit 06543a51 by Georg Ringer)
+   2023-03-09 [DOC] Clarify version information (Commit 9b8a0e87 by Georg Ringer)
+   2023-03-08 Support of TYPO3 v12 (#2022) (Commit 2f8c4b03 by Georg Ringer)
+   2023-02-19 Support for php 8.2 (Commit 80145a6d by Georg Ringer)
+   2023-02-19 [BUGFIX] Avoid dependency conflict with core requirements (Commit 62455558 by Stefan Bürk)
+   2023-02-17 [TASK] Xclass ExtensionService of extbase (Commit 259631ff by Georg Ringer)
+   2023-02-16 [TASK] Require typo3/cms-composer-installers 3.1.3 for PHP 8.2 compatibility (Commit 97c530cf by Markus Klein)
+   2023-02-16 [TASK] Make php-csfixer happy (Commit 599ef39a by Georg Ringer)
+   2023-01-12 [FEATURE] Support EXT:sys_reaction (Commit 34309fea by Georg Ringer)
+   2023-01-11 [FEATURE] Migrate plugin permissions (Commit 6238d17b by Georg Ringer)
+   2022-12-28 [DOC] Start release notes (Commit b4dbee4f by Georg Ringer)
+   2022-12-14 [TASK] Simplify error handling (Commit 1651e7e5 by Georg Ringer)
+   2022-12-13 [TASK] Use same namespace for all plugins (Commit ff9983f1 by Georg Ringer)
+   2022-12-13 [BUGFIX] Fix call in CategoryRepository (Commit 70900efd by Georg Ringer)
+   2022-11-28 [BUGFIX] Order news list by sorting is missing (Commit d256ca92 by Henrik Ziegenhain)
+   2022-11-28 [BUGFIX] Order news list by sorting is missing (Commit 175662c5 by Henrik Ziegenhain)
+   2022-11-24 Merge remote-tracking branch 'origin/main' into 11-12 (Commit 8bb71c5a by Georg Ringer)
+   2022-11-24 [BUGFIX] Order news list by sorting is missing (Commit a2348223 by Henrik Ziegenhain)
+   2022-11-22 [TASK] Show count of plugins to be updated (Commit c4e2f60b by Georg Ringer)
+   2022-11-22 [FEATURE] Updater for plugins (Commit 7f8b6f30 by Georg Ringer)
+   2022-11-20 [BUGFIX] Fix datemenu label (Commit 7751c5e2 by Georg Ringer)
+   2022-11-15 [TASK] Force 11.5.19 to avoid regression of 11.5.18 (Commit f52b8468 by Georg Ringer)
+   2022-11-14 [TASK] Improve wording of plugin selection (Commit 99766863 by Georg Ringer)
+   2022-11-14 [BUGFIX] Make datemenu work (Commit 4d5c0450 by Georg Ringer)
+   2022-11-12 [TASK] Enable postgres functional testing in GitHub Action workflow (Commit ade6337b by Stefan Bürk)
+   2022-11-11 [!!!][TASK] Remove not needed FlexformHook (Commit a5c59a26 by Georg Ringer)
+   2022-11-10 [TASK] Set minimum version to 11.5.18 (Commit af0fffb5 by Georg Ringer)
+   2022-11-10 [TASK] Add .php-cs-fixer.cache to gitignore (Commit cb6743a0 by Georg Ringer)
+   2022-11-10 [TASK] Improve csfixer (Commit d5a91e33 by Georg Ringer)
+   2022-11-10 [TASK] Make cgl happy (Commit bab2890a by Georg Ringer)
+   2022-11-09 [TASK] Support postgres (Commit 635c0c94 by Georg Ringer)
+   2022-11-04 [TASK] Ensure unique docker-compose name for runTests.sh execution (Commit 0ae07522 by Stefan Bürk)
+   2022-11-04 [TASK] Add unit tests execution to GitHub Action workflows (Commit b0798263 by Stefan Bürk)
+   2022-11-03 [TASK] Ensure code files follows cgl rules (Commit 8fe9ed21 by Stefan Bürk)
+   2022-11-03 [TASK] Implement coding-style guideline guard (Commit ff376ae7 by Stefan Bürk)
+   2022-11-03 [BUGFIX] Fix update wizard DB queries (Commit 4e6ef7ab by Georg Ringer)
+   2022-11-03 [BUGFIX] Remove unused class (Commit 91d387be by Georg Ringer)
+   2022-11-03 [TASK] Ignore more false positives of extension scanner (Commit f5f5e56b by Georg Ringer)
+   2022-11-01 Apply fixes from StyleCI (Commit 9327a28e by StyleCI Bot)
+   2022-11-01 [TASK] Introduce Build/Scripts/runTests.sh as testing wrapper (Commit c096f4b3 by Stefan Bürk)
+   2022-11-01 [BUGFIX] Avoid PHP8.1 error if null is passed for int method argument (Commit 4cf87d59 by Stefan Bürk)
+   2022-11-01 [BUGFIX] Avoid incorrect TCA language type configuration (Commit 7e36261a by Stefan Bürk)
+   2022-11-01 [TASK] Remove old "ci" workflow (Commit f8a9cfb1 by Stefan Bürk)
+   2022-11-01 [TASK] Avoid dependency as non-dev and dev dependency (Commit d00217ba by Stefan Bürk)
+   2022-11-01 [BUGFIX] Avoid `Cannot unpack array with string keys` error (Commit 614811f1 by Stefan Bürk)
+   2022-11-01 [TASK] Avoid prophecy in skipped TagControllerTest (Commit 888a23df by Stefan Bürk)
+   2022-11-01 [TASK] Move php-cs-fixer configuration (Commit 404e6b38 by Stefan Bürk)
+   2022-11-01 [TASK] Add typo3/testing-framework as dev dependency (Commit a4597ba1 by Stefan Bürk)
+   2022-11-01 [TASK] Remove unused dev dependency `php-coveralls` (Commit f179cbf0 by Stefan Bürk)
+   2022-11-01 [TASK] Add .idea and .fleet folders to .gitignore (Commit 455b52df by Stefan Bürk)
+   2022-11-01 [TASK] Remove wildly distributed duplicates of tests configs (Commit 2050d267 by Stefan Bürk)
+   2022-11-01 [TASK] Disable GitHub Action workflow jobs (Commit 7523183e by Stefan Bürk)
+   2022-10-29 [TASK] Use ContextualFeedbackSeverity::INFO if available (Commit f95d0a30 by Georg Ringer)
+   2022-10-29 [!!!][TASK] Remove the import controller (Commit be192a72 by Georg Ringer)
+   2022-10-29 [TASK] Remove usage of objectmanager (Commit 69f7ddce by Georg Ringer)
+   2022-10-29 [TASK] Remove outdated usage of ::getInstance (Commit f095a50f by Georg Ringer)
+   2022-10-29 [TASK] Skip false positives in extension scanner (Commit 3216cf4f by Georg Ringer)
+   2022-10-29 [BUGFIX] Fix test (Commit eb10333c by Georg Ringer)
+   2022-10-29 [BUGFIX] Force editlink to be a string (Commit 2128ee75 by Georg Ringer)
+   2022-10-29 [TASK] Migrate to withFormat (Commit 6497cf5f by Georg Ringer)
+   2022-10-29 [TASK] Simplify code in LinkViewHelper (Commit e2312f7e by Georg Ringer)
+   2022-10-29 [TASK] Proper initilization of RendererRegistry (Commit dcd6b70a by Georg Ringer)
+   2022-10-29 [TASK] Let extension scanner skip implementation of QueryGenerator (Commit 10ce1b97 by Georg Ringer)
+   2022-10-29 [TASK] Remove usage of TYPO3_mode from Utility\Page (Commit 99df8a6c by Georg Ringer)
+   2022-10-29 [TASK] Migrate ExtensionManagementUtility::allowTableOnStandardPages (Commit 3eb33fd9 by Georg Ringer)
+   2022-10-29 [TASK] Let extension scanner skip handled issues in SearchFormViewHelper (Commit 33ca5f9d by Georg Ringer)
+   2022-10-29 [!!!][TASK] The ViewHelper IncludeFileViewHelper has been removed (Commit 29285166 by Georg Ringer)
+   2022-10-29 [TASK] Use own implementation of GeneralUtility::rmFromList (Commit 9e88753d by Georg Ringer)
+   2022-10-29 [TASK] Use own implementation of the QueryGenerator (Commit ccbd8360 by Georg Ringer)
+   2022-10-29 [TASK] Remove non needed typo3_mode call (Commit 11523181 by Georg Ringer)
+   2022-10-29 [TASK] let extension scanner skip a class (Commit 26c8ee15 by Georg Ringer)
+   2022-10-29 [TASK] Migrate to forwardResponse (Commit 99b05012 by Georg Ringer)
+   2022-10-29 [TASK] Replace calls to orX & andX (Commit 66ba7377 by Georg Ringer)
+   2022-10-29 [TASK] Let extension scanner skip fixed deprecated usage (Commit 1510ed74 by Georg Ringer)
+   2022-10-29 [TASK] Replace hook modifyQuery for pagemodule (Commit bd4675d1 by Georg Ringer)
+   2022-10-29 [TASK] Skip CSH for 12+ (Commit c5c50d45 by Georg Ringer)
+   2022-10-29 [TASK] Replace usage of tceformsInlineHook (Commit 8a2691ef by Georg Ringer)
+   2022-10-29 [!!!] Remove contentElementPreview (Commit 7c775efe by Georg Ringer)
+   2022-10-29 [BUGFIX] Use correct error response (Commit bbee02d1 by Georg Ringer)
+   2022-10-29 [TASK] Change preview rendering (Commit dc697be9 by Georg Ringer)
+   2022-10-29 [TASK] Unify icon names (Commit 2b8376e7 by Georg Ringer)
+   2022-10-28 [TASK] Followup, allow it as plugin.. (Commit 0daa22cf by Georg Ringer)
+   2022-10-28 [TASK] Require sbuerk/typo3-cmscomposerinstallers-testingframework-bridge (Commit ab8c8875 by Georg Ringer)
+   2022-10-28 [TASK] Allow 12 in tests (Commit 93bba8cc by Georg Ringer)
+   2022-10-28 [TASK] Raise testing framework (Commit 4d3a2cf6 by Georg Ringer)
+   2022-10-28 [BUGFIX] Update queries (Commit 700d2b22 by Georg Ringer)
+   2022-10-28 [TASK] Migrate ExtensionManagementUtility::getFileFieldTCAConfig (Commit d5998e15 by Georg Ringer)
+   2022-10-28 [TASK] Migrate TCA (Commit 96a7fbed by Georg Ringer)
+   2022-10-28 [BUGFIX] Fix typo in fixture (Commit 81a542ee by Georg Ringer)
+   2022-10-28 [TASK] Update queries + unit tests (Commit 8c73c1bb by Georg Ringer)
+   2022-10-28 [BUGFIX] Fix icons (Commit 0291fc73 by Georg Ringer)
+   2022-10-28 [TASK] Add invidiual icons for content elements (#1893) (Commit c6d55178 by Malte Riechmann)
+   2022-10-26 [TASK] Migrate DB call (Commit 928dcba7 by Georg Ringer)
+   2022-10-26 [TASK] Migrate missing controller pieces (Commit 35d8301e by Georg Ringer)
+   2022-10-26 [TASK] 1st cleanup of FlexformHook (Commit b2721f93 by Georg Ringer)
+   2022-10-26 [TASK] Update flexforms (Commit 85ac6ff7 by Georg Ringer)
+   2022-10-26 Apply fixes from StyleCI (#1894) (Commit 4c885f6a by Georg Ringer)
+   2022-10-25 [TASK] Move test base to csv (Commit c7603d23 by Georg Ringer)
+   2022-10-25 [!!!][WIP][FEATURE] Switch to plugins instead of switchable controller actions" (Commit 2a3eda69 by Georg Ringer)
+   2022-10-12 [TASK] Avoid usage of objectmanager (Commit 8a086688 by Georg Ringer)
+   2022-10-12 [TASK] Switch to proper response in actions (Commit fb367c3e by Georg Ringer)
+   2022-10-12 [TASK] Remove leftover of tca (Commit 8b3e2772 by Georg Ringer)
+   2022-10-12 [TASK] Use other variable name for icons (Commit 4ea14028 by Georg Ringer)
+   2022-10-12 [TASK] Remove t3ver_ fields from ext_tables.sql (Commit 01b540c8 by Georg Ringer)
+   2022-10-12 [TASK] Remove tca showRemovedLocalizationRecords option (Commit c31ad45c by Georg Ringer)
+   2022-10-12 [TASK] Remove ctrl|thumbnail usage (Commit 846970f5 by Georg Ringer)
+   2022-10-12 [TASK] Convert tca sys_language_uid (Commit a566f9e0 by Georg Ringer)
+   2022-10-12 [TASK] Remove not needed check (Commit 791969b5 by Georg Ringer)
+   2022-10-12 [TASK] Set correct version constraints (Commit 8cdf6b7d by Georg Ringer)
+   2022-10-12 [TASK] Rename mode (Commit ab66a58b by Georg Ringer)
+   2022-10-12 [TASK] Move icons (Commit e2532645 by Georg Ringer)
+   2023-03-09 [DOC] Update badges in readme (Commit ba86b8ef by Georg Ringer)
+   2023-03-07 [DOC] Add TsCode snippets to documentation about how to reduce allowed cont… (#2021) (Commit d47ed617 by Patrick Crausaz)
+   2023-03-06 Update "requirements" indentation for DateManu (#2020) (Commit 7e07114a by mtness)
+   2023-02-28 [BUGFIX] prevent error in cleanup:deletedrecords command (#2012) (Commit 202051a2 by Andreas Kießling)
+   2023-02-24 Correct small typo (#2015) (Commit 005a9c6b by Myrmod)
+   2023-02-17 Fix Typo (Commit f4e0c3f6 by Myrmod)
+   2023-02-01 Update README.md (Commit f95d8f3d by Georg Ringer)
+   2023-01-30 [BUGFIX] Check for valid recordId before generating URL (Commit 8cbed9b8 by Julian Hofmann)
+   2023-01-23 Update Example Template Multi Category Selection (Commit 1802b367 by lauralang)
+   2023-01-17 Loading Issue with large category tree backwards compatibility (Commit 8acdc810 by Alexander Bohn)
+   2023-01-09 Revert "Loading Issue with large category tree" (Commit 8d625392 by Alexander Bohn)
+   2023-01-09 Loading Issue with large category tree (Commit 3b50db4a by Alexander Bohn)
+   2022-12-21 [BUGFIX] Fix notice in LinkHandlerTargetService (Commit 7b474e18 by Georg Ringer)
+   2022-12-14 [DOC] Add section about render content with b13/container and example TypoScript lib (Commit a127506e by Manuel Munz)
+   2022-12-12 [BUGFIX] fix undefined array key warnings (Commit 344ab7e8 by Johannes Kasberger)
+   2022-12-09 [DOC] Add EXT:news_seo to manual (Commit b056d6ae by Georg Ringer)
+   2022-12-07 [TASK] Remove superfluous TypoScript setting googlePlusLocale (Commit cdeb51f7 by Josef Glatz)
+   2022-11-29 [BUGFIX] Add PHP version constraints (Commit fa8589c3 by Andreas Fernandez)
+   2022-11-24 [FEATURE] Introduce simplified AliasMapper for News Routing (Commit b8e2b3ea by Benni Mack)
+   2022-11-24 [FEATURE] Add top/bottom move buttons in plugin's flexform (Commit a54751d7 by Philipp Idler)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

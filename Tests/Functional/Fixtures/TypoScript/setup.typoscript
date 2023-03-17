@@ -16,8 +16,6 @@ plugin.tx_news {
     layoutRootPaths {
       0 = EXT:news/Resources/Private/Layouts/
     }
-
-    widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/
   }
 
   # ====================================
@@ -144,40 +142,6 @@ plugin.tx_news {
         insertBelow = 1
         maximumNumberOfLinks = 3
       }
-    }
-  }
-}
-
-# ==============================================
-# Persistence object mapping configuration
-# ==============================================
-config.tx_extbase.persistence.classes {
-  GeorgRinger\News\Domain\Model\News {
-    subclasses {
-      0 = GeorgRinger\News\Domain\Model\NewsDefault
-      1 = GeorgRinger\News\Domain\Model\NewsInternal
-      2 = GeorgRinger\News\Domain\Model\NewsExternal
-    }
-  }
-
-  GeorgRinger\News\Domain\Model\NewsDefault {
-    mapping {
-      recordType = 0
-      tableName = tx_news_domain_model_news
-    }
-  }
-
-  GeorgRinger\News\Domain\Model\NewsInternal {
-    mapping {
-      recordType = 1
-      tableName = tx_news_domain_model_news
-    }
-  }
-
-  GeorgRinger\News\Domain\Model\NewsExternal {
-    mapping {
-      recordType = 2
-      tableName = tx_news_domain_model_news
     }
   }
 }

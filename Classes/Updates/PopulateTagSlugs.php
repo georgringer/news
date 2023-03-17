@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace GeorgRinger\News\Updates;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Updates;
+
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
@@ -72,7 +73,7 @@ class PopulateTagSlugs implements UpgradeWizardInterface
     public function getPrerequisites(): array
     {
         return [
-            DatabaseUpdatedPrerequisite::class
+            DatabaseUpdatedPrerequisite::class,
         ];
     }
 
@@ -89,8 +90,6 @@ class PopulateTagSlugs implements UpgradeWizardInterface
 
     /**
      * Fills the database table  with slugs based on the page title and its configuration.
-     *
-     * @return void
      */
     protected function populateSlugs(): void
     {
@@ -101,7 +100,7 @@ class PopulateTagSlugs implements UpgradeWizardInterface
             ->select('*')
             ->from($this->table)
             ->where(
-                $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->or(
                     $queryBuilder->expr()->eq($this->fieldName, $queryBuilder->createNamedParameter('')),
                     $queryBuilder->expr()->isNull($this->fieldName)
                 )
@@ -110,7 +109,7 @@ class PopulateTagSlugs implements UpgradeWizardInterface
             ->addOrderBy('t3ver_wsid', 'asc')
             ->addOrderBy('pid', 'asc')
             ->addOrderBy('sorting', 'asc')
-            ->execute();
+            ->executeQuery();
 
         // Check for existing slugs from realurl
         $suggestedSlugs = [];
@@ -121,7 +120,7 @@ class PopulateTagSlugs implements UpgradeWizardInterface
         $hasToBeUniqueInPid = in_array('uniqueInPid', $evalInfo, true);
         $slugHelper = GeneralUtility::makeInstance(SlugHelper::class, $this->table, $this->fieldName, $fieldConfig);
 
-        while ($record = $statement->fetch()) {
+        while ($record = $statement->fetchAssociative()) {
             $recordId = (int)$record['uid'];
             $pid = (int)$record['pid'];
             $languageId = (int)$record['sys_language_uid'];
@@ -137,7 +136,7 @@ class PopulateTagSlugs implements UpgradeWizardInterface
                         ->from($this->table)
                         ->where(
                             $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($record['t3ver_oid'], \PDO::PARAM_INT))
-                        )->execute()->fetch();
+                        )->executeQuery()->fetchAssociative();
                     $pid = (int)$liveVersion['pid'];
                 }
                 $slug = $slugHelper->generate($record, $pid);
@@ -176,13 +175,12 @@ class PopulateTagSlugs implements UpgradeWizardInterface
             ->count('uid')
             ->from($this->table)
             ->where(
-                $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->or(
                     $queryBuilder->expr()->eq($this->fieldName, $queryBuilder->createNamedParameter('')),
                     $queryBuilder->expr()->isNull($this->fieldName)
                 )
             )
-            ->execute()
-            ->fetchColumn();
+            ->executeQuery()->fetchOne();
         return $numberOfEntries > 0;
     }
 }

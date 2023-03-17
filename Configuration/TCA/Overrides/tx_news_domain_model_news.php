@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 $boot = static function (): void {
     // Add seo sitemap fields
@@ -18,13 +18,13 @@ $boot = static function (): void {
                             ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.weekly', 'weekly'],
                             ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.monthly', 'monthly'],
                             ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.yearly', 'yearly'],
-                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.never', 'never']
+                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.never', 'never'],
                         ],
                         'renderType' => 'selectSingle',
-                        'type' => 'select'
+                        'type' => 'select',
                     ],
                     'exclude' => true,
-                    'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq'
+                    'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq',
                 ],
                 'sitemap_priority' => [
                     'config' => [
@@ -39,21 +39,21 @@ $boot = static function (): void {
                             ['0.7', '0.7'],
                             ['0.8', '0.8'],
                             ['0.9', '0.9'],
-                            ['1.0', '1.0']
+                            ['1.0', '1.0'],
                         ],
                         'renderType' => 'selectSingle',
                         'type' => 'select',
                         'default' => '0.5',
                     ],
                     'exclude' => true,
-                    'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_priority'
-                ]
+                    'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_priority',
+                ],
             ]
         );
 
         $GLOBALS['TCA']['tx_news_domain_model_news']['palettes']['sitemap'] = [
             'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.palettes.sitemap',
-            'showitem' => 'sitemap_changefreq,sitemap_priority'
+            'showitem' => 'sitemap_changefreq,sitemap_priority',
         ];
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(

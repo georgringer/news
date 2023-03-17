@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\ViewHelpers\Category;
 
 use TYPO3\CMS\Core\Context\Context;
@@ -12,13 +19,6 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
-
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 
 /**
  * Get usage count. This ViewHelper retrieves a simple count and does *not* take any additional constraints into account!
@@ -74,7 +74,7 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
                 $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->quoteIdentifier('sys_category_record_mm.uid_local'))
             )
             ->where(
-                $queryBuilder->expr()->andX(
+                $queryBuilder->expr()->and(
                     $queryBuilder->expr()->eq(
                         'sys_category.uid',
                         $queryBuilder->createNamedParameter($categoryUid, \PDO::PARAM_INT)
@@ -93,8 +93,7 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
                     )
                 )
             )
-            ->execute()
-            ->fetchColumn(0);
+            ->executeQuery()->fetchOne();
 
         return $count;
     }

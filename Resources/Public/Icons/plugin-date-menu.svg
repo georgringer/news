@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="detail" 
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="96px" height="96px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FAFAFA;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#7D83DE;}
+	.st3{fill:#999999;}
+	.st4{fill:#E84F35;}
+	.st5{fill:#D2D3F1;}
+	.st6{fill:#AFB2E9;}
+	.st7{fill:none;stroke:#FAFAFA;stroke-miterlimit:10;}
+	.st8{fill:none;stroke:#FAFAFA;stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+<rect class="st1" width="16" height="16"/>
+<path class="st2" d="M0,0v16h16V0H0z M15,15H1V1h14V15z"/>
+<rect x="5.5" y="6.5" class="st4" width="1" height="1"/>
+<path class="st2" d="M3.5,5.5v5c0,0.6,0.4,1,1,1h7c0.6,0,1-0.4,1-1v-5c0-0.6-0.4-1-1-1h-7C3.9,4.5,3.5,4.9,3.5,5.5z M11.5,10.5h-7
+	v-5h7V10.5z"/>
+<rect x="7.5" y="6.5" class="st2" width="1" height="1"/>
+<rect x="9.5" y="6.5" class="st2" width="1" height="1"/>
+<rect x="5.5" y="8.5" class="st2" width="1" height="1"/>
+<rect x="7.5" y="8.5" class="st2" width="1" height="1"/>
+<rect x="9.5" y="8.5" class="st2" width="1" height="1"/>
+<path class="st2" d="M6.5,4.5h-1V3.7c0-0.1,0.1-0.2,0.2-0.2h0.6c0.1,0,0.2,0.1,0.2,0.2V4.5z"/>
+<path class="st2" d="M10.5,4.5h-1V3.7c0-0.1,0.1-0.2,0.2-0.2h0.6c0.1,0,0.2,0.1,0.2,0.2V4.5z"/>
+</svg>

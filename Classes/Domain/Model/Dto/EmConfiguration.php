@@ -1,23 +1,22 @@
 <?php
 
-namespace GeorgRinger\News\Domain\Model\Dto;
-
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace GeorgRinger\News\Domain\Model\Dto;
+
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Extension Manager configuration
  */
 class EmConfiguration
 {
-
     /**
      * Fill the properties properly
      *
@@ -56,9 +55,6 @@ class EmConfiguration
     protected $contentElementRelation = true;
 
     /** @var bool */
-    protected $contentElementPreview = true;
-
-    /** @var bool */
     protected $manualSorting = false;
 
     /** @var string */
@@ -66,9 +62,6 @@ class EmConfiguration
 
     /** @var bool */
     protected $dateTimeNotRequired = false;
-
-    /** @var bool */
-    protected $showImporter = false;
 
     /** @var bool */
     protected $rteForTeaser = false;
@@ -84,9 +77,6 @@ class EmConfiguration
 
     /** @var string */
     protected $resourceFolderImporter = '/news_import';
-
-    /** @var bool */
-    protected $mediaPreview = false;
 
     /** @var bool */
     protected $advancedMediaPreview = true;
@@ -119,11 +109,6 @@ class EmConfiguration
         return (bool)$this->contentElementRelation;
     }
 
-    public function getContentElementPreview(): bool
-    {
-        return (bool)$this->contentElementPreview;
-    }
-
     public function getManualSorting(): bool
     {
         return (bool)$this->manualSorting;
@@ -132,11 +117,6 @@ class EmConfiguration
     public function getArchiveDate(): string
     {
         return $this->archiveDate;
-    }
-
-    public function getShowImporter(): bool
-    {
-        return (bool)$this->showImporter;
     }
 
     public function setShowAdministrationModule($showAdministrationModule): void
@@ -177,11 +157,6 @@ class EmConfiguration
     public function getHidePageTreeForAdministrationModule(): bool
     {
         return (bool)$this->hidePageTreeForAdministrationModule;
-    }
-
-    public function isMediaPreview(): bool
-    {
-        return (bool)$this->mediaPreview;
     }
 
     public function isAdvancedMediaPreview(): bool

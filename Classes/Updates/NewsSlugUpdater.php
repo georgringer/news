@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace GeorgRinger\News\Updates;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Updates;
+
 use GeorgRinger\News\Service\SlugService;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
@@ -19,7 +20,7 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
  */
 class NewsSlugUpdater implements UpgradeWizardInterface
 {
-    const TABLE = 'tx_news_domain_model_news';
+    public const TABLE = 'tx_news_domain_model_news';
 
     /** @var SlugService */
     protected $slugService;
@@ -50,7 +51,7 @@ class NewsSlugUpdater implements UpgradeWizardInterface
     public function getPrerequisites(): array
     {
         return [
-            DatabaseUpdatedPrerequisite::class
+            DatabaseUpdatedPrerequisite::class,
         ];
     }
 

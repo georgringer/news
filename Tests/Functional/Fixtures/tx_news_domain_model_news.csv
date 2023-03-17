@@ -1,0 +1,38 @@
+tx_news_domain_model_news,,,,,,,,,,
+,uid,pid,type,title,import_source,import_id,istopnews,archive,datetime
+,1,456,0,"findRecordsByUid","","",0,0,0
+,456,4561,1,"findRecordsByImportSource","functional_test","2",0,0,0
+,2,19191,1,"findRecordsByImportSource","functional_test","2",0,0,0
+,310,2,1,"findTopNewsRecords 1","","",1,0,0
+,311,2,2,"findTopNewsRecords 2","","",1,0,0
+,312,2,2,"findTopNewsRecords 3","","",1,0,0
+,313,2,2,"findTopNewsRecords 4","","",0,0,0
+,314,2,2,"findTopNewsRecords 5","","",0,0,0
+,6,3,0,"findRecordsByStartingpointRestriction 1","","",0,0,0
+,7,3,0,"findRecordsByStartingpointRestriction 2","","",0,0,0
+,8,4,0,"findRecordsByStartingpointRestriction page 4","","",0,0,0
+,9,4,0,"findRecordsByStartingpointRestriction page 4","","",0,0,0
+,10,4,0,"findRecordsByStartingpointRestriction page 4","","",0,0,0
+,11,4,0,"findRecordsByStartingpointRestriction page 4","","",0,0,0
+,12,5,0,"findRecordsByStartingpointRestriction page 5","","",0,0,0
+,20,7,0,"findRecordsByArchiveRestriction 22.3.2014","","",0,1395516100,0
+,21,7,0,"findRecordsByArchiveRestriction 27.3.2014","","",0,1395948100,0
+,22,7,0,"findRecordsByArchiveRestriction 1.4.2014","","",0,1396380100,0
+,23,7,0,"findRecordsByArchiveRestriction 6.4.2014","","",0,1396812100,0
+,24,7,0,"findRecordsByArchiveRestriction 11.4.2014","","",0,1397244100,0
+,30,8,0,"Feb 19 2011 23:00:00 GMT+0000","","",0,0,1298156400
+,31,8,0,"Feb 21 2011 23:00:00 GMT+0000","","",0,0,1298329200
+,31,8,0,"Feb 21 2011 23:00:00 GMT+0000","","",0,0,1298329200
+,32,8,0,"Feb 28 2011 23:00:00 GMT+0000","","",0,0,1298934000
+,33,8,0,"Feb 28 2011 23:00:00 GMT+0000","","",0,0,1298934000
+,34,8,0,"Mar 09 2011 23:00:00 GMT+0000","","",0,0,1299711600
+,35,8,0,"Mar 30 2011 22:00:00 GMT+0000","","",0,0,1301522400
+,36,8,0,"Mar 31 2011 20:03:20 GMT+0000","","",0,0,1301601800
+,39,8,0,"Apr 14 2011 06:52:24 GMT+0000","","",0,0,1302763944
+,40,8,0,"Jun 14 2011 06:52:24 GMT+0000","","",0,0,1308034344
+,101,9,0,"findLatestLimitRecords 22.3.2014","","",0,0,1395516730
+,102,9,0,"findLatestLimitRecords 25.3.2014","","",0,0,1395775956
+,103,9,0,"findLatestLimitRecords 28.3.2014","","",0,0,1396035186
+,104,9,0,"findLatestLimitRecords 29.3.2014","","",0,0,1396121600
+,105,9,0,"findLatestLimitRecords 2.4.2014","","",0,0,1396467221
+,106,9,0,"findLatestLimitRecords 4.4.2014","","",0,0,1396640035

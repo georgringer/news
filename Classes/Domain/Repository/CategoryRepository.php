@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\Domain\Repository;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Domain\Repository;
+
 use Doctrine\DBAL\Connection;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\DemandInterface;
@@ -103,7 +104,7 @@ class CategoryRepository extends AbstractDemandedRepository
         foreach ($categories as $category) {
             $flatCategories[$category->getUid()] = [
                 'item' => $category,
-                'parent' => ($category->getParentcategory()) ? $category->getParentcategory()->getUid() : null
+                'parent' => ($category->getParentcategory()) ? $category->getParentcategory()->getUid() : null,
             ];
         }
 
@@ -157,9 +158,7 @@ class CategoryRepository extends AbstractDemandedRepository
         }
 
         return $query->matching(
-            $query->logicalAnd(
-                $conditions
-            )
+            $query->logicalAnd(...$conditions)
         )->execute();
     }
 
@@ -187,8 +186,6 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @param array $idList
      * return void
-     *
-     * @return void
      */
     protected function overlayTranslatedCategoryIds(array &$idList): void
     {
@@ -204,7 +201,7 @@ class CategoryRepository extends AbstractDemandedRepository
                         $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT)),
                         $queryBuilder->expr()->in('l10n_parent', $queryBuilder->createNamedParameter($idList, Connection::PARAM_INT_ARRAY))
                     )
-                    ->execute()->fetchAll();
+                    ->executeQuery()->fetchAllAssociative();
 
                 $idList = $this->replaceCategoryIds($idList, $rows);
             }

@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Controller;
 
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
@@ -22,24 +29,18 @@ use GeorgRinger\News\Utility\ClassCacheManager;
 use GeorgRinger\News\Utility\Page;
 use GeorgRinger\News\Utility\TypoScript;
 use GeorgRinger\NumberedPagination\NumberedPagination;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
 
 /**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
-
-/**
  * Controller of news records
- *
  */
 class NewsController extends NewsBaseController
 {
@@ -86,15 +87,13 @@ class NewsController extends NewsBaseController
 
     /**
      * Initializes the current action
-     *
-     * @return void
      */
     public function initializeAction()
     {
         GeneralUtility::makeInstance(ClassCacheManager::class)->reBuildSimple();
         $this->buildSettings();
         if (isset($this->settings['format'])) {
-            $this->request->setFormat($this->settings['format']);
+            $this->request = $this->request->withFormat($this->settings['format']);
         }
         // Only do this in Frontend Context
         if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
@@ -212,12 +211,13 @@ class NewsController extends NewsBaseController
      * Output a list view of news
      *
      * @param array|null $overwriteDemand
-     *
-     * @return void
      */
-    public function listAction(array $overwriteDemand = null)
+    public function listAction(array $overwriteDemand = null): ResponseInterface
     {
-        $this->forwardToDetailActionWhenRequested();
+        $possibleRedirect = $this->forwardToDetailActionWhenRequested();
+        if ($possibleRedirect) {
+            return $possibleRedirect;
+        }
 
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -276,20 +276,22 @@ class NewsController extends NewsBaseController
         ]);
 
         Cache::addPageCacheTagsByDemandObject($demand);
+        return $this->htmlResponse();
     }
 
     /**
      * When list action is called along with a news argument, we forward to detail action.
      */
-    protected function forwardToDetailActionWhenRequested()
+    protected function forwardToDetailActionWhenRequested(): ?ForwardResponse
     {
         if (!$this->isActionAllowed('detail')
             || !$this->request->hasArgument('news')
         ) {
-            return;
+            return null;
         }
 
-        $this->forward('detail', null, null, ['news' => $this->request->getArgument('news')]);
+        $forwardResponse = new ForwardResponse('detail');
+        return $forwardResponse->withArguments(['news' => $this->request->getArgument('news')]);
     }
 
     /**
@@ -301,6 +303,7 @@ class NewsController extends NewsBaseController
     protected function isActionAllowed(string $action): bool
     {
         $frameworkConfiguration = $this->configurationManager->getConfiguration($this->configurationManager::CONFIGURATION_TYPE_FRAMEWORK);
+        // @extensionScannerIgnoreLine
         $allowedActions = $frameworkConfiguration['controllerConfiguration']['News']['actions'] ?? [];
 
         return \in_array($action, $allowedActions, true);
@@ -309,7 +312,7 @@ class NewsController extends NewsBaseController
     /**
      * Output a selected list view of news
      */
-    public function selectedListAction(): void
+    public function selectedListAction(): ResponseInterface
     {
         $newsRecords = [];
 
@@ -332,7 +335,7 @@ class NewsController extends NewsBaseController
         $assignedValues = [
             'news' => $newsRecords,
             'demand' => $demand,
-            'settings' => $this->settings
+            'settings' => $this->settings,
         ];
 
         $event = $this->eventDispatcher->dispatch(new NewsListSelectedActionEvent($this, $assignedValues, $this->request));
@@ -341,17 +344,16 @@ class NewsController extends NewsBaseController
         if (!empty($newsRecords) && is_a($newsRecords[0], News::class)) {
             Cache::addCacheTagsByNewsRecords($newsRecords);
         }
+        return $this->htmlResponse();
     }
 
     /**
      * Single view of a news record
      *
-     * @param \GeorgRinger\News\Domain\Model\News $news news item
+     * @param News $news news item
      * @param int $currentPage current page for optional pagination
-     *
-     * @return null|string
      */
-    public function detailAction(News $news = null, $currentPage = 1)
+    public function detailAction(News $news = null, $currentPage = 1): ResponseInterface
     {
         if ($news === null || ($this->settings['isShortcut'] ?? false)) {
             $previewNewsId = (int)($this->settings['singleNews'] ?? 0);
@@ -380,7 +382,7 @@ class NewsController extends NewsBaseController
             'newsItem' => $news,
             'currentPage' => (int)$currentPage,
             'demand' => $demand,
-            'settings' => $this->settings
+            'settings' => $this->settings,
         ];
 
         $event = $this->eventDispatcher->dispatch(new NewsDetailActionEvent($this, $assignedValues, $this->request));
@@ -408,11 +410,12 @@ class NewsController extends NewsBaseController
                 $provider->setTitleByNews($news, $providerConfiguration);
             }
         } elseif (isset($this->settings['detail']['errorHandling'])) {
-            $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
-            if ($errorContent) {
-                return $errorContent;
+            $errorResponse = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling'] ?? '');
+            if ($errorResponse) {
+                return $errorResponse;
             }
         }
+        return $this->htmlResponse();
     }
 
     /**
@@ -427,8 +430,8 @@ class NewsController extends NewsBaseController
         $allowedStoragePages = GeneralUtility::trimExplode(
             ',',
             Page::extendPidListByChildren(
-                $this->settings['startingpoint'],
-                $this->settings['recursive']
+                (string)($this->settings['startingpoint'] ?? ''),
+                (int)($this->settings['recursive'] ?? 0)
             ),
             true
         );
@@ -456,12 +459,8 @@ class NewsController extends NewsBaseController
 
     /**
      * Render a menu by dates, e.g. years, months or dates
-     *
-     * @param array|null $overwriteDemand
-     *
-     * @return void
      */
-    public function dateMenuAction(array $overwriteDemand = null): void
+    public function dateMenuAction(array $overwriteDemand = null): ResponseInterface
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -497,30 +496,26 @@ class NewsController extends NewsBaseController
             'news' => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
-            'settings' => $this->settings
+            'settings' => $this->settings,
         ];
 
         $event = $this->eventDispatcher->dispatch(new NewsDateMenuActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
+        return $this->htmlResponse();
     }
 
     /**
      * Display the search form
-     *
-     * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
-     * @param array $overwriteDemand
-     *
-     * @return void
      */
     public function searchFormAction(
         Search $search = null,
         array $overwriteDemand = []
-    ): void {
+    ): ResponseInterface {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+        if ((bool)($this->settings['disableOverrideDemand'] ?? false) && $overwriteDemand !== null) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
@@ -533,26 +528,22 @@ class NewsController extends NewsBaseController
             'search' => $search,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
-            'settings' => $this->settings
+            'settings' => $this->settings,
         ];
 
         $event = $this->eventDispatcher->dispatch(new NewsSearchFormActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
+        return $this->htmlResponse();
     }
 
     /**
      * Displays the search result
-     *
-     * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
-     * @param array $overwriteDemand
-     *
-     * @return void
      */
     public function searchResultAction(
         Search $search = null,
         array $overwriteDemand = []
-    ): void {
+    ): ResponseInterface {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -588,18 +579,17 @@ class NewsController extends NewsBaseController
                 'currentPage' => $currentPage,
                 'paginator' => $paginator,
                 'pagination' => $pagination,
-            ]
+            ],
         ];
 
         $event = $this->eventDispatcher->dispatch(new NewsSearchResultActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
+        return $this->htmlResponse();
     }
 
     /**
      * initialize search result action
-     *
-     * @return void
      */
     public function initializeSearchResultAction(): void
     {
@@ -608,8 +598,6 @@ class NewsController extends NewsBaseController
 
     /**
      * Initialize search form action
-     *
-     * @return void
      */
     public function initializeSearchFormAction(): void
     {
@@ -618,8 +606,6 @@ class NewsController extends NewsBaseController
 
     /**
      * Initialize searchForm and searchResult actions
-     *
-     * @return void
      */
     protected function initializeSearchActions(): void
     {
@@ -689,8 +675,6 @@ class NewsController extends NewsBaseController
      * This function is for testing purposes only.
      *
      * @param \TYPO3\CMS\Fluid\View\TemplateView $view the view to inject
-     *
-     * @return void
      */
     public function setView(TemplateView $view): void
     {

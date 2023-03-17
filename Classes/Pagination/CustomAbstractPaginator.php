@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\Pagination\AbstractPaginator;
 
 abstract class CustomAbstractPaginator extends AbstractPaginator
 {
-
     /**
      * @var int
      */
@@ -74,7 +73,7 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
 
         $isUpdated = false;
         if ($this->currentPageNumber === $this->numberOfPages && $this->initialLimit > 0) {
-            $difference = $this->initialLimit - ((integer)($this->itemsPerPage * ($this->currentPageNumber - 1)));
+            $difference = $this->initialLimit - ((int)($this->itemsPerPage * ($this->currentPageNumber - 1)));
             if ($difference > 0) {
                 $this->updatePaginatedItems($difference, $offset);
                 $isUpdated = true;

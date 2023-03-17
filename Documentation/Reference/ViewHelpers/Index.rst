@@ -33,7 +33,6 @@ All ViewHelpers
 
    ExcludeDisplayedNewsViewHelper
    HeaderDataViewHelper
-   IncludeFileViewHelper
    LinkViewHelper
    MediaFactoryViewHelper
    MetaTagViewHelper

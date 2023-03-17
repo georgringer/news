@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\Backend\RecordList;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Backend\RecordList;
+
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
 use TYPO3\CMS\Core\Context\Context;
@@ -22,7 +23,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class RecordListConstraint
 {
-    const TABLE = 'tx_news_domain_model_news';
+    public const TABLE = 'tx_news_domain_model_news';
 
     /**
      * Check if current module is the news administration module
@@ -59,11 +60,11 @@ class RecordListConstraint
                     }
                 }
                 if (!empty($likeParts)) {
-                    $fieldParts[] = $expressionBuilder->orX(...$likeParts);
+                    $fieldParts[] = $expressionBuilder->or(...$likeParts);
                 }
             }
-            $parameters['whereDoctrine'][] = $expressionBuilder->orX(...$fieldParts);
-            $parameters['where'][] = $expressionBuilder->orX(...$fieldParts);
+            $parameters['whereDoctrine'][] = $expressionBuilder->or(...$fieldParts);
+            $parameters['where'][] = $expressionBuilder->or(...$fieldParts);
         }
         // top news
         $topNewsSetting = (int)$arguments['topNewsRestriction'];
@@ -83,13 +84,13 @@ class RecordListConstraint
             $currentTime = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
             if ($archived === 1) {
                 $parameters['where'][] = '(archive > ' . $currentTime . ' OR archive=0)';
-                $parameters['whereDoctrine'][] = $expressionBuilder->orX(
+                $parameters['whereDoctrine'][] = $expressionBuilder->or(
                     $expressionBuilder->gt('archive', $currentTime),
                     $expressionBuilder->eq('archive', 0)
                 );
             } elseif ($archived === 2) {
                 $parameters['where'][] = 'archive > 0 AND archive <' . $currentTime;
-                $parameters['whereDoctrine'][] = $expressionBuilder->andX(
+                $parameters['whereDoctrine'][] = $expressionBuilder->and(
                     $expressionBuilder->gt('archive', 0),
                     $expressionBuilder->lt('archive', $currentTime)
                 );
@@ -171,10 +172,10 @@ class RecordListConstraint
                             $parameters['whereDoctrine'][] = $expressionBuilder->eq('uid', 0);
                         } else {
                             $parameters['where'][] = implode(' OR ', $orConstraint);
-                            $parameters['whereDoctrine'][] = $expressionBuilder->orX(...$orConstraintDoctrine);
+                            $parameters['whereDoctrine'][] = $expressionBuilder->or(...$orConstraintDoctrine);
                         }
                         break;
-                    // @todo test that
+                        // @todo test that
                     case 'notor':
                         $orConstraint = $orConstraintDoctrine = [];
                         foreach ($arguments['selectedCategories'] as $category) {
@@ -193,7 +194,7 @@ class RecordListConstraint
                         } else {
                             $orConstraint = array_unique($orConstraint);
                             $parameters['where'][] = ' NOT (' . implode(' OR ', $orConstraint) . ')';
-                            $parameters['whereDoctrine'][] = $expressionBuilder->andX(...$orConstraintDoctrine);
+                            $parameters['whereDoctrine'][] = $expressionBuilder->and(...$orConstraintDoctrine);
                         }
                         break;
                     case 'notand':
@@ -248,10 +249,10 @@ class RecordListConstraint
                 $queryBuilder->expr()->isNotNull('tx_news_domain_model_news.uid'),
                 $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->createNamedParameter($categoryId, \PDO::PARAM_INT))
             )
-            ->execute();
+            ->executeQuery();
 
         $idList = [];
-        while ($row = $res->fetch()) {
+        while ($row = $res->fetchAssociative()) {
             $idList[] = $row['uid'];
         }
 

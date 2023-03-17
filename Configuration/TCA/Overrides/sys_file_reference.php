@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 $emConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
 if ($emConfiguration->isAdvancedMediaPreview()) {
@@ -17,7 +17,7 @@ if ($emConfiguration->isAdvancedMediaPreview()) {
 } else {
     $fieldConfig = [
         'type' => 'check',
-        'default' => 0
+        'default' => 0,
     ];
 }
 
@@ -25,7 +25,7 @@ $newSysFileReferenceColumns = [
     'showinpreview' => [
         'exclude' => true,
         'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinviews',
-        'config' => $fieldConfig
+        'config' => $fieldConfig,
     ],
 ];
 

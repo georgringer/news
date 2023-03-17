@@ -1,20 +1,22 @@
 <?php
 
-namespace GeorgRinger\News\Utility;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Utility;
+
+use GeorgRinger\News\Database\QueryGenerator;
 use TYPO3\CMS\Backend\Tree\View\PageTreeView;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -22,7 +24,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 class Page
 {
-
     /**
      * Find all ids from given ids and level
      *
@@ -42,13 +43,14 @@ class Page
         $storagePids = GeneralUtility::intExplode(',', $pidList);
         foreach ($storagePids as $startPid) {
             if ($startPid >= 0) {
+                // @extensionScannerIgnoreLine
                 $pids = $queryGenerator->getTreeList($startPid, $recursive);
                 if (strlen($pids) > 0) {
                     $recursiveStoragePids .= ',' . $pids;
                 }
             }
         }
-        return GeneralUtility::uniqueList($recursiveStoragePids);
+        return StringUtility::uniqueList($recursiveStoragePids);
     }
 
     /**
@@ -58,8 +60,6 @@ class Page
      * @param string $properties comma separated list of properties
      * @param mixed $object object or array to get the properties
      * @param string $prefix optional prefix
-     *
-     * @return void
      */
     public static function setRegisterProperties($properties, $object, $prefix = 'news'): void
     {
@@ -99,13 +99,10 @@ class Page
      * @param int $treeLevel count of levels
      * @return PageTreeView
      * @throws \Exception
+     * @deprecated not in use
      */
     public static function pageTree($pageUid, $treeLevel): PageTreeView
     {
-        if (TYPO3_MODE !== 'BE') {
-            throw new \Exception('Page::pageTree does only work in the backend!');
-        }
-
         $pageUid = (int)$pageUid;
         if ($pageUid === 0 && !self::getBackendUser()->isAdmin()) {
             $mounts = self::getBackendUser()->returnWebmounts();
@@ -124,7 +121,7 @@ class Page
         // Creating top icon; the current page
         $tree->tree[] = [
             'row' => $treeStartingRecord,
-            'HTML' => is_array($treeStartingRecord) ? $iconFactory->getIconForRecord('pages', $treeStartingRecord, Icon::SIZE_SMALL)->render() : ''
+            'HTML' => is_array($treeStartingRecord) ? $iconFactory->getIconForRecord('pages', $treeStartingRecord, Icon::SIZE_SMALL)->render() : '',
         ];
 
         $tree->getTree($pageUid, $treeLevel, '');

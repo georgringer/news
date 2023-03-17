@@ -3,7 +3,7 @@
 	  data-namespace-typo3-fluid="true">
 
 <f:if condition="{settings.cssFile}">
-	<n:includeFile path="{settings.cssFile}" />
+	<f:asset.css identifier="ext-news" href="{settings.cssFile}" />
 </f:if>
 
 <div class="news news-single">

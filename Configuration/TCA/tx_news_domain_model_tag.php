@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
@@ -24,27 +24,20 @@ return [
             'disabled' => 'hidden',
         ],
         'typeicon_classes' => [
-            'default' => 'ext-news-tag'
+            'default' => 'ext-news-tag',
         ],
         'searchFields' => 'uid,title',
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
     'columns' => [
         'sys_language_uid' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'special' => 'languages',
-                'items' => [
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
-                        -1,
-                        'flags-multiple'
-                    ],
-                ],
-                'default' => 0,
-            ]
+                'type' => 'language',
+            ],
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -63,24 +56,24 @@ return [
                     ],
                 ],
                 'default' => 0,
-            ]
+            ],
         ],
         'l10n_source' => [
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'l10n_diffsource' => [
             'config' => [
                 'type' => 'passthrough',
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ],
         'pid' => [
             'label' => 'pid',
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'crdate' => [
             'label' => 'crdate',
@@ -88,7 +81,7 @@ return [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
-            ]
+            ],
         ],
         'tstamp' => [
             'label' => 'tstamp',
@@ -96,15 +89,15 @@ return [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
-            ]
+            ],
         ],
         'hidden' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
-                'default' => 0
-            ]
+                'default' => 0,
+            ],
         ],
         'title' => [
             'exclude' => false,
@@ -113,7 +106,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'required,unique,trim',
-            ]
+            ],
         ],
         'slug' => [
             'exclude' => true,
@@ -125,13 +118,13 @@ return [
                 'generatorOptions' => [
                     'fields' => ['title'],
                     'replacements' => [
-                        '/' => '-'
+                        '/' => '-',
                     ],
                 ],
                 'fallbackCharacter' => '-',
                 'eval' => $configuration->getSlugBehaviour(),
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ],
         'seo_headline' => [
             'exclude' => true,
@@ -167,8 +160,8 @@ return [
             'config' => [
                 'type' => 'text',
                 'rows' => 10,
-                'cols' => 48
-            ]
+                'cols' => 48,
+            ],
         ],
     ],
     'types' => [
@@ -179,8 +172,8 @@ return [
                     notes,
 			--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
-                --palette--;;paletteLanguage,'
-        ]
+                --palette--;;paletteLanguage,',
+        ],
     ],
     'palettes' => [
         'paletteCore' => [
@@ -191,5 +184,5 @@ return [
                 sys_language_uid;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:sys_language_uid_formlabel,l10n_parent, l10n_diffsource,
             ',
         ],
-    ]
+    ],
 ];

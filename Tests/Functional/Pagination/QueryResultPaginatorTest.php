@@ -1,42 +1,33 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Functional\Pagination;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace GeorgRinger\News\Tests\Functional\Pagination;
+
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Pagination\QueryResultPaginator;
-use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class QueryResultPaginatorTest extends FunctionalTestCase
 {
-
     /**
      * @var NewsRepository
      */
     protected $newsRepository;
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/news'];
+    protected array $testExtensionsToLoad = ['typo3conf/ext/news'];
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/news_pagination.csv');
-        $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() === 11) {
-            $this->newsRepository = $this->getContainer()->get(NewsRepository::class);
-        } else {
-            $this->newsRepository = GeneralUtility::makeInstance(ObjectManager::class)->get(NewsRepository::class);
-        }
+        $this->newsRepository = $this->getContainer()->get(NewsRepository::class);
     }
 
     /**

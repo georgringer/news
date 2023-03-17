@@ -1,13 +1,15 @@
 <?php
 
-namespace GeorgRinger\News\Domain\Repository;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Domain\Repository;
+
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Service\CategoryService;
@@ -17,6 +19,7 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -25,7 +28,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class NewsRepository extends AbstractDemandedRepository
 {
-
     /**
      * Returns a category constraint created by
      * a given list of categories and a junction string
@@ -68,7 +70,7 @@ class NewsRepository extends AbstractDemandedRepository
                     }
                 }
                 if ($subCategoryConstraint) {
-                    $categoryConstraints[] = $query->logicalOr($subCategoryConstraint);
+                    $categoryConstraints[] = $query->logicalOr(...$subCategoryConstraint);
                 }
             } else {
                 $categoryConstraints[] = $query->contains('categories', $category);
@@ -78,17 +80,17 @@ class NewsRepository extends AbstractDemandedRepository
         if ($categoryConstraints) {
             switch (strtolower($conjunction)) {
                 case 'or':
-                    $constraint = $query->logicalOr($categoryConstraints);
+                    $constraint = $query->logicalOr(...$categoryConstraints);
                     break;
                 case 'notor':
-                    $constraint = $query->logicalNot($query->logicalOr($categoryConstraints));
+                    $constraint = $query->logicalNot($query->logicalOr(...$categoryConstraints));
                     break;
                 case 'notand':
-                    $constraint = $query->logicalNot($query->logicalAnd($categoryConstraints));
+                    $constraint = $query->logicalNot($query->logicalAnd(...$categoryConstraints));
                     break;
                 case 'and':
                 default:
-                    $constraint = $query->logicalAnd($categoryConstraints);
+                    $constraint = $query->logicalAnd(...$categoryConstraints);
             }
         }
 
@@ -183,7 +185,7 @@ class NewsRepository extends AbstractDemandedRepository
 
         // month & year OR year only
         if ($demand->getYear() > 0) {
-            if (null === $demand->getDateField()) {
+            if ($demand->getDateField() === null) {
                 throw new \InvalidArgumentException('No Datefield is set, therefore no Datemenu is possible!');
             }
             if ($demand->getMonth() > 0) {
@@ -198,10 +200,11 @@ class NewsRepository extends AbstractDemandedRepository
                 $begin = mktime(0, 0, 0, 1, 1, $demand->getYear());
                 $end = mktime(23, 59, 59, 12, 31, $demand->getYear());
             }
-            $constraints['datetime'] = $query->logicalAnd([
+            $dateConstraints = [
                 $query->greaterThanOrEqual($demand->getDateField(), $begin),
-                $query->lessThanOrEqual($demand->getDateField(), $end)
-            ]);
+                $query->lessThanOrEqual($demand->getDateField(), $end),
+            ];
+            $constraints['datetime'] = $query->logicalAnd(...$dateConstraints);
         }
 
         // Tags
@@ -214,14 +217,14 @@ class NewsRepository extends AbstractDemandedRepository
                 $subConstraints[] = $query->contains('tags', $singleTag);
             }
             if (count($subConstraints) > 0) {
-                $constraints['tags'] = $query->logicalOr($subConstraints);
+                $constraints['tags'] = $query->logicalOr(...$subConstraints);
             }
         }
 
         // Search
         $searchConstraints = $this->getSearchConstraints($query, $demand);
         if (!empty($searchConstraints)) {
-            $constraints['search'] = $query->logicalAnd($searchConstraints);
+            $constraints['search'] = $query->logicalAnd(...$searchConstraints);
         }
 
         // Exclude already displayed
@@ -253,7 +256,7 @@ class NewsRepository extends AbstractDemandedRepository
 
         // Clean not used constraints
         foreach ($constraints as $key => $value) {
-            if (null === $value) {
+            if ($value === null) {
                 unset($constraints[$key]);
             }
         }
@@ -376,16 +379,22 @@ class NewsRepository extends AbstractDemandedRepository
         $field = $demand->getDateField();
         $field = empty($field) ? 'datetime' : $field;
 
-        $sql = 'SELECT MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND ) AS "_Month",' .
-            ' YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND) AS "_Year" ,' .
-            ' count(MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND )) as count_month,' .
-            ' count(YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND)) as count_year' .
-            ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
-
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getConnectionForTable('tx_news_domain_model_news');
+        $isPostgres = $connection->getDatabasePlatform() instanceof PostgreSQLPlatform;
+        if ($isPostgres) {
+            $sql = 'SELECT count(*), date_trunc(\'year\', to_timestamp(' . $field . '/1)::date) as _year, date_trunc(\'month\', to_timestamp(' . $field . '/1)::date)  as _MONTH 
+from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
+        } else {
+            $sql = 'SELECT MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND ) AS "_month",' .
+                ' YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND) AS "_year" ,' .
+                ' count(MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND )) as count_month,' .
+                ' count(YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND)) as count_year' .
+                ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
+        }
 
-        if (TYPO3_MODE === 'FE') {
+        if (ApplicationType::fromRequest($GLOBALS['TYPO3_REQUEST'])->isFrontend()) {
+            // @extensionScannerIgnoreLine
             $sql .= $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
         } else {
             $expressionBuilder = $connection
@@ -400,14 +409,19 @@ class NewsRepository extends AbstractDemandedRepository
         if ($orderDirection !== 'desc' && $orderDirection !== 'asc') {
             $orderDirection = 'asc';
         }
-        $sql .= ' GROUP BY _Month, _Year ORDER BY _Year ' . $orderDirection . ', _Month ' . $orderDirection;
+        $sql .= ' GROUP BY _month, _year ORDER BY _year ' . $orderDirection . ', _month ' . $orderDirection;
 
-        $res = $connection->query($sql);
-        while ($row = $res->fetch()) {
-            $month = strlen($row['_Month']) === 1 ? ('0' . $row['_Month']) : $row['_Month'];
-            $data['single'][$row['_Year']][$month] = $row['count_month'];
+        $res = $connection->executeQuery($sql);
+
+        while ($row = $res->fetchAssociative()) {
+            if ($isPostgres) {
+                $splitMonth = explode('-', $row['_month']);
+                $data['single'][$splitMonth[0]][$splitMonth[1]] = $row['count'];
+            } else {
+                $month = strlen($row['_month']) === 1 ? ('0' . $row['_month']) : $row['_month'];
+                $data['single'][$row['_year']][$month] = $row['count_month'];
+            }
         }
-
         // Add totals
         if (is_array($data['single'])) {
             foreach ($data['single'] as $year => $months) {
@@ -442,8 +456,6 @@ class NewsRepository extends AbstractDemandedRepository
 
         $searchSubject = $searchObject->getSubject();
         if (!empty($searchSubject)) {
-            $queryBuilder = $this->getQueryBuilder('tx_news_domain_model_news');
-
             $searchFields = GeneralUtility::trimExplode(',', $searchObject->getFields(), true);
             $searchConstraints = [];
 
@@ -460,19 +472,17 @@ class NewsRepository extends AbstractDemandedRepository
                             $subConstraints[] = $query->like($field, '%' . $searchSubjectSplittedPart . '%');
                         }
                     }
-                    $searchConstraints[] = $query->logicalAnd($subConstraints);
+                    $searchConstraints[] = $query->logicalAnd(...$subConstraints);
                 }
                 if (count($searchConstraints)) {
-                    $constraints[] = $query->logicalOr($searchConstraints);
+                    $constraints[] = $query->logicalOr(...$searchConstraints);
                 }
             } else {
-                if (!empty($searchSubject)) {
-                    foreach ($searchFields as $field) {
-                        $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
-                    }
+                foreach ($searchFields as $field) {
+                    $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
                 }
-                if (count($searchConstraints)) {
-                    $constraints[] = $query->logicalOr($searchConstraints);
+                if (count($searchConstraints) > 0) {
+                    $constraints[] = $query->logicalOr(...$searchConstraints);
                 }
             }
         }

@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Domain\Service;
 
 use GeorgRinger\News\Domain\Model\FileReference;
@@ -18,16 +25,9 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 class NewsImportService extends AbstractImportService
 {
     public const ACTION_IMPORT_L10N_OVERLAY = 1;
@@ -52,13 +52,12 @@ class NewsImportService extends AbstractImportService
      */
     public function __construct(
         PersistenceManager $persistenceManager,
-        ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
         EventDispatcherInterface $eventDispatcher,
         NewsRepository $newsRepository,
         TtContentRepository $ttContentRepository
     ) {
-        parent::__construct($persistenceManager, $objectManager, $categoryRepository, $eventDispatcher);
+        parent::__construct($persistenceManager, $categoryRepository, $eventDispatcher);
 
         $this->newsRepository = $newsRepository;
         $this->ttContentRepository = $ttContentRepository;
@@ -101,7 +100,8 @@ class NewsImportService extends AbstractImportService
             $importItem = array_merge($importItem, $importItemOverwrite);
         }
         $news->setPid($importItem['pid']);
-        $news->setHidden($importItem['hidden']);
+        $news->setHidden((bool)($importItem['hidden'] ?? false));
+
         if (
             isset($importItem['starttime'])
             && $date = $this->convertTimestampToDateTime((int)$importItem['starttime'])
@@ -155,8 +155,8 @@ class NewsImportService extends AbstractImportService
         $news->setAuthor($importItem['author'] ?? '');
         $news->setAuthorEmail($importItem['author_email'] ?? '');
 
-        $news->setImportId((int)($importItem['import_id'] ?? ''));
-        $news->setImportSource((int)($importItem['import_source'] ?? ''));
+        $news->setImportId((string)($importItem['import_id'] ?? ''));
+        $news->setImportSource((string)($importItem['import_source'] ?? ''));
 
         $news->setPathSegment($importItem['path_segment'] ?? '');
 
@@ -204,7 +204,6 @@ class NewsImportService extends AbstractImportService
 
                 /** @var $media FileReference */
                 if (!$media = $this->getIfFalRelationIfAlreadyExists($news->getFalMedia(), $file)) {
-
                     // file not inside a storage copy the one form storage 0 to the import folder
                     if ($file->getStorage()->getUid() === 0) {
                         $file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
@@ -228,7 +227,6 @@ class NewsImportService extends AbstractImportService
         // related files
         if (is_array($importItem['related_files'] ?? false)) {
             foreach ($importItem['related_files'] as $fileItem) {
-
                 // get fileObject by given identifier (file UID, combined identifier or path/filename)
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($fileItem['file']);
@@ -251,7 +249,6 @@ class NewsImportService extends AbstractImportService
 
                 /** @var $relatedFile FileReference */
                 if (!$relatedFile = $this->getIfFalRelationIfAlreadyExists($news->getFalRelatedFiles(), $file)) {
-
                     // file not inside a storage copy the one form storage 0 to the import folder
                     if ($file->getStorage()->getUid() === 0) {
                         $file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
@@ -305,7 +302,7 @@ class NewsImportService extends AbstractImportService
                 $this->postPersistQueue[$importItem['import_id']] = [
                     'action' => self::ACTION_IMPORT_L10N_OVERLAY,
                     'category' => null,
-                    'importItem' => $importItem
+                    'importItem' => $importItem,
                 ];
                 continue;
             }

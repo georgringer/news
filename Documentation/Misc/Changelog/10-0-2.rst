@@ -1,0 +1,48 @@
+.. include:: /Includes.rst.txt
+
+10.0.2 - 27th October 2022
+==========================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Bugfix release
+--------------
+
+Remove some bugfixes and improve the docs
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2022-10-27 [Docs] Fix rendering error (#1899) (Commit 2d06e890 by Lina Wolf)
+   2022-10-27 [Docs] Fix rendering (#1900) (Commit 70e438ed by Lina Wolf)
+   2022-10-27 [Docs] promote news Administration by a link (#1901) (Commit ef5812a4 by Lina Wolf)
+   2022-10-26 [BUGFIX] Fix TypeError when using SlugPrefix option (#1886) (#1890) (Commit 0a1dcbd3 by Thomas Balko)
+   2022-10-24 [BUGFIX] Remove wrong tag in administration template (#1891) (Commit 964ccb0f by Torben Hansen)
+   2022-10-19 [DOC] Rename numbered_navigation > numbered_pagination #1888 (Commit 3799160b by Georg Ringer)
+   2022-10-13 [BUGFIX] Use correct route for NewsAdministration module (#1874) (Commit 52a3ddef by Eric Bode)
+   2022-10-13 [TASK] Update to psr12 (#1884) (Commit 4e6649da by Georg Ringer)
+   2022-10-13 [TASK] Remove funding.yaml (Commit 8b2a397d by Georg Ringer)
+   2022-10-13 Update FUNDING.yml (Commit 7601f274 by Georg Ringer)
+   2022-10-12 [DOC] Add additional note (Commit 37f24fe6 by Georg Ringer)
+   2022-10-12 [DOC] Add ext:news_redirect_slug_change (Commit d1f8c546 by Georg Ringer)
+   2022-10-12 [DOC] Add ext:news_content_elements (Commit d5f4d0c1 by Georg Ringer)
+   2022-10-11 [BUGFIX] Make SearchFormVH work in v10 (Commit bc1fab82 by Georg Ringer)
+   2022-10-10 Cast hidden value to bool in import services (#1871) (Commit f0fa5212 by Stefan Frömken)
+   2022-10-10 Better strict types for import (#1870) (Commit 8fe79dc5 by Stefan Frömken)
+   2022-10-05 Do not convert empty timestamp to DateTime (#1867) (Commit 7e4406e4 by Stefan Frömken)
+   2022-10-05 Convert timestamps to DateTime before assigning to object (#1866) (Commit 1240c15d by Stefan Frömken)
+   2022-10-05 Migrate endtime with set endtime #1863 (#1864) (Commit 4c27a5f3 by Stefan Frömken)
+   2022-10-04 [BUGFIX] Proper check for news in workspace in LinkVh (#1861) (Commit 307e1c00 by Georg Ringer)
+   2022-09-28 [BUGFIX] Typecast of attributes in RenderMediaVh (Commit 61e69e15 by Georg Ringer)
+   2022-09-28 [TASK] Use ImageService directly in RenderMediaVh (Commit a4810b1a by Georg Ringer)
+   2022-09-28 [BUGFIX] Fix notices in NewsImportServices (Commit 9d17438b by Georg Ringer)
+   2022-09-27 [BUGFIX] Remove debug message (Commit d13312ec by Georg Ringer)
+   2022-09-27 [BUGFIX] Move pagination after event #1855 (#1856) (Commit 8cc6d511 by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

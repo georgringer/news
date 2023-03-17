@@ -1,13 +1,88 @@
-mod.wizards.newContentElement.wizardItems.plugins {
-	elements {
-		news {
-			iconIdentifier = ext-news-wizard-icon
-			title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title
-			description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_plus_wiz_description
-			tt_content_defValues {
-				CType = list
-				list_type = news_pi1
-			}
-		}
-	}
+mod.wizards.newContentElement.wizardItems.ext-news {
+    header = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title
+    after = common
+    elements {
+        news_list {
+            iconIdentifier = ext-news-plugin-news-list
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_list.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_list.description
+            tt_content_defValues {
+                CType = news_pi1
+            }
+        }
+
+        news_list_sticky {
+            iconIdentifier = ext-news-plugin-news-list-sticky
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_list_sticky.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_list_sticky.description
+            tt_content_defValues {
+                CType = news_newsliststicky
+            }
+        }
+
+        news_detail {
+            iconIdentifier = ext-news-plugin-detail
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_detail.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_detail.description
+            tt_content_defValues {
+                CType = news_newsdetail
+            }
+        }
+
+        news_selectedlist {
+            iconIdentifier = ext-news-plugin-news-selected-list
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_selected_list.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_selected_list.description
+            tt_content_defValues {
+                CType = news_newsselectedlist
+            }
+        }
+
+        news_datemenu {
+            iconIdentifier = ext-news-plugin-news-date-menu
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_date_menu.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_date_menu.description
+            tt_content_defValues {
+                CType = news_newsdatemenu
+            }
+        }
+
+        categorylist {
+            iconIdentifier = ext-news-plugin-category-list
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.category_list.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.category_list.description
+            tt_content_defValues {
+                CType = news_categorylist
+            }
+        }
+
+        news_searchform {
+            iconIdentifier = ext-news-plugin-news-search-form
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_form.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_form.description
+            tt_content_defValues {
+                CType = news_newssearchform
+            }
+        }
+
+        news_searchresult {
+            iconIdentifier = ext-news-plugin-news-search-result
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_result.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_result.description
+            tt_content_defValues {
+                CType = news_newssearchresult
+            }
+        }
+
+        taglist {
+            iconIdentifier = ext-news-plugin-tag-list
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.tag_list.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.tag_list.description
+            tt_content_defValues {
+                CType = news_taglist
+            }
+        }
+    }
+
+    show = *
 }

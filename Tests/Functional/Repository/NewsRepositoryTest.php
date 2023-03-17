@@ -1,85 +1,76 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Functional\Repository;
-
-use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
-use GeorgRinger\News\Domain\Repository\NewsRepository;
-use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Context\DateTimeAspect;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
-use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace GeorgRinger\News\Tests\Functional\Repository;
+
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Domain\Repository\NewsRepository;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\DateTimeAspect;
+use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
+
 /**
  * Functional test for the \GeorgRinger\News\Domain\Repository\NewsRepository
  */
 class NewsRepositoryTest extends FunctionalTestCase
 {
-
-    /** @var  \GeorgRinger\News\Domain\Repository\NewsRepository */
+    /** @var  NewsRepository */
     protected $newsRepository;
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/news'];
+    protected array $testExtensionsToLoad = ['typo3conf/ext/news'];
 
-    protected $coreExtensionsToLoad = ['fluid'];
+    protected array $coreExtensionsToLoad = ['fluid'];
 
     public function setUp(): void
     {
         parent::setUp();
+        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())
+            ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_BE);
 
-        $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
-        if ($versionInformation->getMajorVersion() === 11) {
-            $this->newsRepository = $this->getContainer()->get(NewsRepository::class);
-        } else {
-            $this->newsRepository = GeneralUtility::makeInstance(ObjectManager::class)->get(NewsRepository::class);
-        }
+        $this->newsRepository = $this->getContainer()->get(NewsRepository::class);
 
-        $this->importDataSet(__DIR__ . '/../Fixtures/tags.xml');
-        $this->importDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.xml');
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/tags.csv');
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.csv');
     }
 
     /**
      * Test if startingpoint is working
      *
      * @test
-     *
-     * @return void
      */
     public function findRecordsByUid(): void
     {
         $news = $this->newsRepository->findByUid(1);
 
-        $this->assertEquals($news->getTitle(), 'findRecordsByUid');
+        self::assertEquals($news->getTitle(), 'findRecordsByUid');
     }
 
     /**
      * Test if by import source is done
      *
      * @test
-     *
-     * @return void
      */
     public function findRecordsByImportSource(): void
     {
         $news = $this->newsRepository->findOneByImportSourceAndImportId('functional_test', '2');
 
-        $this->assertEquals($news->getTitle(), 'findRecordsByImportSource');
+        self::assertEquals($news->getTitle(), 'findRecordsByImportSource');
     }
 
     /**
      * Test if top news constraint works
      *
      * @test
-     *
-     * @return void
      */
     public function findTopNewsRecords(): void
     {
@@ -88,23 +79,21 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         // no matter about top news
         $demand->setTopNewsRestriction(0);
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
 
         // Only Top news
         $demand->setTopNewsRestriction(1);
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
 
         // Only non Top news
         $demand->setTopNewsRestriction(2);
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
     }
 
     /**
      * Test if startingpoint is working
      *
      * @test
-     *
-     * @return void
      */
     public function findRecordsByStartingpointRestriction(): void
     {
@@ -112,23 +101,21 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         // simple starting point
         $demand->setStoragePage(3);
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
 
         // multiple starting points
         $demand->setStoragePage('4,5');
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
 
         // multiple starting points, including invalid values and commas
         $demand->setStoragePage('5 ,  x ,3');
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
     }
 
     /**
      * Test if record are found by archived/non archived flag
      *
      * @test
-     *
-     * @return void
      */
     public function findRecordsByArchiveRestriction(): void
     {
@@ -142,42 +129,37 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         // Archived means: archive date must be lower than current time AND != 0
         $demand->setArchiveRestriction('archived');
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
 
         // Active means: archive date must be in future or no archive date
         $demand->setArchiveRestriction('active');
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
 
         // no value means: give all
         $demand->setArchiveRestriction('');
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
     }
 
     /**
      * Test if record by month/year constraint works
      *
      * @test
-     *
-     * @return void
      */
     public function findRecordsByMonthAndYear(): void
     {
-        $this->markTestSkipped('Does not work in travis');
         $demand = new NewsDemand();
         $demand->setStoragePage(8);
 
         $demand->setDateField('datetime');
         $demand->setMonth('4');
         $demand->setYear('2011');
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 1);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 1);
     }
 
     /**
      * Test if latest limit constraint works
      *
      * @test
-     *
-     * @return void
      */
     public function findLatestLimitRecords(): void
     {
@@ -191,19 +173,17 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         // get all news maximum 6 days old
         $demand->setTimeRestriction((6 * 86400));
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 4);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 4);
 
         // no restriction should get you all
         $demand->setTimeRestriction(0);
-        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 6);
+        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 6);
     }
 
     /**
      * Test if by import source is done
      *
      * @test
-     *
-     * @return void
      */
     public function findRecordsByTags(): void
     {
@@ -215,23 +195,21 @@ class NewsRepositoryTest extends FunctionalTestCase
         // given is 1 tag
         $demand->setTags('3');
         $news = $this->newsRepository->findDemanded($demand);
-        $this->assertEquals('130,131', $this->getIdListOfNews($news));
+        self::assertEquals('130,131', $this->getIdListOfNews($news));
 
         // given are 2 tags
         $demand->setTags('1,5');
         $news = $this->newsRepository->findDemanded($demand);
-        $this->assertEquals('130,133,134', $this->getIdListOfNews($news));
+        self::assertEquals('130,133,134', $this->getIdListOfNews($news));
 
         // given are 3 real tags & 1 not existing
         $demand->setTags('5,3,1,10');
         $news = $this->newsRepository->findDemanded($demand);
-        $this->assertEquals('130,131,133,134', $this->getIdListOfNews($news));
+        self::assertEquals('130,131,133,134', $this->getIdListOfNews($news));
     }
 
     /**
      * @test
-     *
-     * @return void
      */
     public function findRecordsForDateMenu(): void
     {
@@ -242,38 +220,36 @@ class NewsRepositoryTest extends FunctionalTestCase
             'single' => [
                 '2014' => [
                     '03' => 4,
-                    '04' => 2
-                ]
+                    '04' => 2,
+                ],
             ],
             'total' => [
-                '2014' => 6
-            ]
+                '2014' => 6,
+            ],
         ];
         $dateMenuData = $this->newsRepository->countByDate($demand);
-        $this->assertEquals($expected, $dateMenuData);
+        self::assertEquals($expected, $dateMenuData);
     }
 
     /**
      * Test if records are found by type
      *
      * @test
-     *
-     * @return void
      */
     public function findRecordsByType(): void
     {
         $demand = new NewsDemand();
-        $demand->setStoragePage('1,2');
+        $demand->setStoragePage('1,2,4561');
 
         // given is 1 tag
         $demand->setTypes(['1']);
         $count = $this->newsRepository->findDemanded($demand)->count();
-        $this->assertEquals(2, $count);
+        self::assertEquals(2, $count);
 
         // given are 2 tags
         $demand->setTypes(['1', 2]);
         $count = $this->newsRepository->findDemanded($demand)->count();
-        $this->assertEquals(5, $count);
+        self::assertEquals(6, $count);
     }
 
     /**

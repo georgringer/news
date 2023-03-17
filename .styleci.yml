@@ -1,12 +1,9 @@
-preset: psr2
+preset: psr12
 
 enabled:
-    - no_leading_import_slash
     - no_trailing_comma_in_singleline_array
     - no_singleline_whitespace_before_semicolons
     - no_unused_imports
-    - concat_with_spaces
-    - no_whitespace_in_blank_line
     - ordered_imports
     - single_quote
     - no_extra_consecutive_blank_lines
@@ -15,10 +12,7 @@ enabled:
     - no_blank_lines_after_phpdoc
     - short_array_syntax
     - whitespace_after_comma_in_array
-    - function_typehint_space
     - hash_to_slash_comment
-    - lowercase_cast
-    - no_leading_namespace_whitespace
     - native_function_casing
     - no_empty_statement
     - no_short_bool_cast
@@ -29,4 +23,5 @@ finder:
     - "*.php"
   not-path:
     - ".Build"
+    - "Build/php-cs-fixer"
     - "Documentation"

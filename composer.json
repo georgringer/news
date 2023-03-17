@@ -25,7 +25,8 @@
         "GPL-2.0-or-later"
     ],
     "require": {
-        "typo3/cms-core": "^10.4 || ^11"
+        "typo3/cms-core": "^11.5.24 || ^12",
+        "php": ">= 7.4 < 8.3"
     },
     "conflict": {
         "symfony/finder": "2.7.44 || 2.8.37 || 3.4.7 || 4.0.7"
@@ -36,8 +37,13 @@
         "georgringer/numbered-pagination": "Improved pagination API"
     },
     "require-dev": {
-        "php-coveralls/php-coveralls": "^2.1",
-        "typo3/cms-install": "^10.4 || ^11"
+        "typo3/cms-composer-installers": "^3.1.3 || 4.0.0-RC1 || ^5.0",
+        "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": "^0.0.1",
+        "typo3/testing-framework": "~7.0@dev",
+        "phpunit/phpunit": "^9",
+        "typo3/coding-standards": "^0.5.3",
+        "friendsofphp/php-cs-fixer": "^3.13.0",
+        "webmozart/assert": "^1.11.0"
     },
     "autoload": {
         "psr-4": {
@@ -56,11 +62,14 @@
         "vendor-dir": ".Build/vendor",
         "bin-dir": ".Build/bin",
         "allow-plugins": {
+            "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true,
             "typo3/class-alias-loader": true,
             "typo3/cms-composer-installers": true
         }
     },
     "scripts": {
+        "cs": "php ./.Build/bin/php-cs-fixer fix  --dry-run -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
+        "csfix": "php ./.Build/bin/php-cs-fixer fix  -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
         "post-autoload-dump": [
             "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
         ]

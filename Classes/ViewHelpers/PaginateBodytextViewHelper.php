@@ -1,14 +1,16 @@
 <?php
 
-namespace GeorgRinger\News\ViewHelpers;
-
-use GeorgRinger\News\Domain\Model\News;
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\ViewHelpers;
+
+use GeorgRinger\News\Domain\Model\News;
+
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -143,7 +145,7 @@ class PaginateBodytextViewHelper extends AbstractViewHelper
         $pagination = [
             'pages' => $pages,
             'numberOfPages' => $numberOfPages,
-            'current' => $currentPage
+            'current' => $currentPage,
         ];
 
         if ($currentPage < $numberOfPages) {

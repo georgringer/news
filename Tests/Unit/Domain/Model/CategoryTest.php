@@ -1,26 +1,25 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\Domain\Model;
-
-use GeorgRinger\News\Domain\Model\Category;
-use GeorgRinger\News\Domain\Model\FileReference;
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace GeorgRinger\News\Tests\Unit\Domain\Model;
+
+use GeorgRinger\News\Domain\Model\Category;
+use GeorgRinger\News\Domain\Model\FileReference;
+
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for \GeorgRinger\News\Domain\Model\Category
- *
  */
 class CategoryTest extends BaseTestCase
 {
-
     /**
      * @var Category
      */
@@ -43,7 +42,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getSortingInitiallyReturnsZero(): void
     {
-        $this->assertSame(
+        self::assertSame(
             0,
             $this->instance->getSorting()
         );
@@ -55,7 +54,7 @@ class CategoryTest extends BaseTestCase
     public function setSortingWithStringConvertsValueToInt(): void
     {
         $this->instance->setSorting('123');
-        $this->assertSame(
+        self::assertSame(
             123,
             $this->instance->getSorting()
         );
@@ -68,7 +67,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 123;
         $this->instance->setSorting($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getSorting()
         );
@@ -79,7 +78,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getCrdateInitiallyReturnsNull(): void
     {
-        $this->assertNull(
+        self::assertNull(
             $this->instance->getCrdate()
         );
     }
@@ -91,7 +90,7 @@ class CategoryTest extends BaseTestCase
     {
         $date = new \DateTime('now');
         $this->instance->setCrdate($date);
-        $this->assertSame(
+        self::assertSame(
             $date,
             $this->instance->getCrdate()
         );
@@ -102,7 +101,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getTstampInitiallyReturnsNull(): void
     {
-        $this->assertNull(
+        self::assertNull(
             $this->instance->getTstamp()
         );
     }
@@ -114,7 +113,7 @@ class CategoryTest extends BaseTestCase
     {
         $date = new \DateTime('now');
         $this->instance->setTstamp($date);
-        $this->assertSame(
+        self::assertSame(
             $date,
             $this->instance->getTstamp()
         );
@@ -125,7 +124,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getStarttimeInitiallyReturnsNull(): void
     {
-        $this->assertNull(
+        self::assertNull(
             $this->instance->getStarttime()
         );
     }
@@ -137,7 +136,7 @@ class CategoryTest extends BaseTestCase
     {
         $date = new \DateTime('now');
         $this->instance->setStarttime($date);
-        $this->assertSame(
+        self::assertSame(
             $date,
             $this->instance->getStarttime()
         );
@@ -148,7 +147,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getEndtimeInitiallyReturnsNull(): void
     {
-        $this->assertNull(
+        self::assertNull(
             $this->instance->getEndtime()
         );
     }
@@ -160,7 +159,7 @@ class CategoryTest extends BaseTestCase
     {
         $date = new \DateTime('now');
         $this->instance->setEndtime($date);
-        $this->assertSame(
+        self::assertSame(
             $date,
             $this->instance->getEndtime()
         );
@@ -171,7 +170,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getHiddenInitiallyReturnsFalse(): void
     {
-        $this->assertFalse(
+        self::assertFalse(
             $this->instance->getHidden()
         );
     }
@@ -182,7 +181,7 @@ class CategoryTest extends BaseTestCase
     public function setHiddenWithStringSetsHidden(): void
     {
         $this->instance->setHidden('1');
-        $this->assertTrue(
+        self::assertTrue(
             $this->instance->getHidden()
         );
     }
@@ -193,7 +192,7 @@ class CategoryTest extends BaseTestCase
     public function setHiddenWithIntSetsHidden(): void
     {
         $this->instance->setHidden(1);
-        $this->assertTrue(
+        self::assertTrue(
             $this->instance->getHidden()
         );
     }
@@ -204,7 +203,7 @@ class CategoryTest extends BaseTestCase
     public function setHiddenWithTrueSetsHidden(): void
     {
         $this->instance->setHidden(true);
-        $this->assertTrue(
+        self::assertTrue(
             $this->instance->getHidden()
         );
     }
@@ -215,7 +214,7 @@ class CategoryTest extends BaseTestCase
     public function setHiddenWithFalseSetsHidden(): void
     {
         $this->instance->setHidden(false);
-        $this->assertFalse(
+        self::assertFalse(
             $this->instance->getHidden()
         );
     }
@@ -225,7 +224,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getSysLanguageUidInitiallyReturnsZero(): void
     {
-        $this->assertSame(
+        self::assertSame(
             0,
             $this->instance->getSysLanguageUid()
         );
@@ -237,7 +236,7 @@ class CategoryTest extends BaseTestCase
     public function setSysLanguageUidWithStringConvertsToInt(): void
     {
         $this->instance->setSysLanguageUid('2');
-        $this->assertSame(
+        self::assertSame(
             2,
             $this->instance->getSysLanguageUid()
         );
@@ -250,7 +249,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 3;
         $this->instance->setSysLanguageUid($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getSysLanguageUid()
         );
@@ -261,7 +260,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getL10nParentInitiallyReturnsZero(): void
     {
-        $this->assertSame(
+        self::assertSame(
             0,
             $this->instance->getL10nParent()
         );
@@ -273,7 +272,7 @@ class CategoryTest extends BaseTestCase
     public function setL10nParentWithStringConvertsToInt(): void
     {
         $this->instance->setL10nParent('2');
-        $this->assertSame(
+        self::assertSame(
             2,
             $this->instance->getL10nParent()
         );
@@ -286,7 +285,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 3;
         $this->instance->setL10nParent($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getL10nParent()
         );
@@ -297,7 +296,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getTitleInitiallyReturnsEmptyString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->instance->getTitle()
         );
@@ -309,7 +308,7 @@ class CategoryTest extends BaseTestCase
     public function setTitleWithIntConvertsToSting(): void
     {
         $this->instance->setTitle(123);
-        $this->assertSame(
+        self::assertSame(
             '123',
             $this->instance->getTitle()
         );
@@ -322,7 +321,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 'Hello';
         $this->instance->setTitle($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getTitle()
         );
@@ -333,7 +332,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getDescriptionInitiallyReturnsEmptyString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->instance->getDescription()
         );
@@ -345,7 +344,7 @@ class CategoryTest extends BaseTestCase
     public function setDescriptionWithIntConvertsToSting(): void
     {
         $this->instance->setDescription(123);
-        $this->assertSame(
+        self::assertSame(
             '123',
             $this->instance->getDescription()
         );
@@ -358,7 +357,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 'Hello';
         $this->instance->setDescription($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getDescription()
         );
@@ -369,7 +368,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getParentcategoryInitiallyReturnsNull(): void
     {
-        $this->assertNull(
+        self::assertNull(
             $this->instance->getParentcategory()
         );
     }
@@ -382,7 +381,7 @@ class CategoryTest extends BaseTestCase
         $value = new Category();
         $value->setTitle('TYPO3');
         $this->instance->setParentcategory($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getParentcategory()
         );
@@ -394,7 +393,7 @@ class CategoryTest extends BaseTestCase
     public function getImagesInitiallyReturnsObjectStorage(): void
     {
         $value = new ObjectStorage();
-        $this->assertEquals(
+        self::assertEquals(
             $value,
             $this->instance->getImages()
         );
@@ -407,7 +406,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = new ObjectStorage();
         $this->instance->setImages($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getImages()
         );
@@ -424,7 +423,7 @@ class CategoryTest extends BaseTestCase
         $images->attach($fileReference);
 
         $this->instance->addImage($fileReference);
-        $this->assertEquals(
+        self::assertEquals(
             $images,
             $this->instance->getImages()
         );
@@ -446,7 +445,7 @@ class CategoryTest extends BaseTestCase
         $this->instance->setImages($images);
 
         $this->instance->removeImage($fileReference);
-        $this->assertEquals(
+        self::assertEquals(
             $expectedImages,
             $this->instance->getImages()
         );
@@ -457,7 +456,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getFirstImageInitiallyReturnsNull(): void
     {
-        $this->assertNull(
+        self::assertNull(
             $this->instance->getFirstImage()
         );
     }
@@ -479,7 +478,7 @@ class CategoryTest extends BaseTestCase
 
         $this->instance->setImages($images);
 
-        $this->assertSame(
+        self::assertSame(
             $fileReference1,
             $this->instance->getFirstImage()
         );
@@ -490,7 +489,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getShortcutInitiallyReturnsZero(): void
     {
-        $this->assertSame(
+        self::assertSame(
             0,
             $this->instance->getShortcut()
         );
@@ -502,7 +501,7 @@ class CategoryTest extends BaseTestCase
     public function setShortcutWithStringConvertsToInt(): void
     {
         $this->instance->setShortcut('43');
-        $this->assertSame(
+        self::assertSame(
             43,
             $this->instance->getShortcut()
         );
@@ -515,7 +514,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 23;
         $this->instance->setShortcut($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getShortcut()
         );
@@ -526,7 +525,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getSinglePidInitiallyReturnsZero(): void
     {
-        $this->assertSame(
+        self::assertSame(
             0,
             $this->instance->getSinglePid()
         );
@@ -538,7 +537,7 @@ class CategoryTest extends BaseTestCase
     public function setSinglePidWithStringConvertsToInt(): void
     {
         $this->instance->setSinglePid('43');
-        $this->assertSame(
+        self::assertSame(
             43,
             $this->instance->getSinglePid()
         );
@@ -551,7 +550,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 23;
         $this->instance->setSinglePid($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getSinglePid()
         );
@@ -562,7 +561,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getImportIdInitiallyReturnsEmptyString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->instance->getImportId()
         );
@@ -574,7 +573,7 @@ class CategoryTest extends BaseTestCase
     public function setImportIdWithIntConvertsToString(): void
     {
         $this->instance->setImportId(24);
-        $this->assertSame(
+        self::assertSame(
             '24',
             $this->instance->getImportId()
         );
@@ -587,7 +586,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = '1324';
         $this->instance->setImportId($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getImportId()
         );
@@ -598,7 +597,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getImportSourceInitiallyReturnsEmptyString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->instance->getImportSource()
         );
@@ -610,7 +609,7 @@ class CategoryTest extends BaseTestCase
     public function setImportSourceWithIntConvertsToString(): void
     {
         $this->instance->setImportSource(24);
-        $this->assertSame(
+        self::assertSame(
             '24',
             $this->instance->getImportSource()
         );
@@ -623,7 +622,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = '1324';
         $this->instance->setImportSource($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getImportSource()
         );
@@ -634,7 +633,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getFeGroupInitiallyReturnsEmptyString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->instance->getImportSource()
         );
@@ -646,7 +645,7 @@ class CategoryTest extends BaseTestCase
     public function setFeGroupWithIntConvertsToString(): void
     {
         $this->instance->setFeGroup(24);
-        $this->assertSame(
+        self::assertSame(
             '24',
             $this->instance->getFeGroup()
         );
@@ -659,7 +658,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = '1324';
         $this->instance->setFeGroup($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getFeGroup()
         );
@@ -670,7 +669,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getSeoTitleInitiallyReturnsEmptyString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->instance->getSeoTitle()
         );
@@ -682,7 +681,7 @@ class CategoryTest extends BaseTestCase
     public function setSeoTitleWithIntConvertsToString(): void
     {
         $this->instance->setSeoTitle(24);
-        $this->assertSame(
+        self::assertSame(
             '24',
             $this->instance->getSeoTitle()
         );
@@ -695,7 +694,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 'TYPO3';
         $this->instance->setSeoTitle($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getSeoTitle()
         );
@@ -706,7 +705,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getSeoDescriptionInitiallyReturnsEmptyString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->instance->getSeoDescription()
         );
@@ -718,7 +717,7 @@ class CategoryTest extends BaseTestCase
     public function setSeoDescriptionWithIntConvertsToString(): void
     {
         $this->instance->setSeoDescription(24);
-        $this->assertSame(
+        self::assertSame(
             '24',
             $this->instance->getSeoDescription()
         );
@@ -731,7 +730,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 'TYPO3';
         $this->instance->setSeoDescription($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getSeoDescription()
         );
@@ -742,7 +741,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getSeoHeadlineInitiallyReturnsEmptyString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->instance->getSeoHeadline()
         );
@@ -754,7 +753,7 @@ class CategoryTest extends BaseTestCase
     public function setSeoHeadlineWithIntConvertsToString(): void
     {
         $this->instance->setSeoHeadline(24);
-        $this->assertSame(
+        self::assertSame(
             '24',
             $this->instance->getSeoHeadline()
         );
@@ -767,7 +766,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 'TYPO3';
         $this->instance->setSeoHeadline($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getSeoHeadline()
         );
@@ -778,7 +777,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getSeoTextInitiallyReturnsEmptyString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->instance->getSeoText()
         );
@@ -790,7 +789,7 @@ class CategoryTest extends BaseTestCase
     public function setSeoTextWithIntConvertsToString(): void
     {
         $this->instance->setSeoText(24);
-        $this->assertSame(
+        self::assertSame(
             '24',
             $this->instance->getSeoText()
         );
@@ -803,7 +802,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 'TYPO3';
         $this->instance->setSeoText($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getSeoText()
         );
@@ -814,7 +813,7 @@ class CategoryTest extends BaseTestCase
      */
     public function getSlugInitiallyReturnsEmptyString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->instance->getSlug()
         );
@@ -826,7 +825,7 @@ class CategoryTest extends BaseTestCase
     public function setSlugWithIntConvertsToString(): void
     {
         $this->instance->setSlug(24);
-        $this->assertSame(
+        self::assertSame(
             '24',
             $this->instance->getSlug()
         );
@@ -839,7 +838,7 @@ class CategoryTest extends BaseTestCase
     {
         $value = 'TYPO3';
         $this->instance->setSlug($value);
-        $this->assertSame(
+        self::assertSame(
             $value,
             $this->instance->getSlug()
         );

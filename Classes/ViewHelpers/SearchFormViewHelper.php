@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
@@ -9,9 +9,14 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService;
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
 use TYPO3\CMS\Extbase\Service\ExtensionService;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormViewHelper;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\CheckboxViewHelper;
 
@@ -147,9 +152,22 @@ class SearchFormViewHelper extends AbstractFormViewHelper
             if (isset($this->arguments['addQueryStringMethod'])) {
                 trigger_error('Using the argument "addQueryStringMethod" in <f:form> ViewHelper has no effect anymore and will be removed in TYPO3 v12. Remove the argument in your fluid template, as it will result in a fatal error.', E_USER_DEPRECATED);
             }
-            $uriBuilder = $this->renderingContext->getUriBuilder();
+
+            $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+            if ($versionInformation->getMajorVersion() >= 12) {
+                /** @var RenderingContext $renderingContext */
+                $renderingContext = $this->renderingContext;
+                /** @var RequestInterface $request */
+                $request = $renderingContext->getRequest();
+                $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+                $uriBuilder
+                    ->reset()
+                    ->setRequest($request);
+            } else {
+                $uriBuilder = $this->renderingContext->getUriBuilder();
+                $uriBuilder->reset();
+            }
             $uriBuilder
-                ->reset()
                 ->setTargetPageType($this->arguments['pageType'] ?? 0)
                 ->setNoCache($this->arguments['noCache'] ?? false)
                 ->setSection($this->arguments['section'] ?? '')
@@ -320,7 +338,13 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      */
     protected function getDefaultFieldNamePrefix()
     {
-        $request = $this->renderingContext->getRequest();
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($versionInformation->getMajorVersion() >= 11) {
+            $request = $this->renderingContext->getRequest();
+        } else {
+            // @extensionScannerIgnoreLine
+            $request = $this->renderingContext->getControllerContext()->getRequest();
+        }
         if ($this->hasArgument('extensionName')) {
             $extensionName = $this->arguments['extensionName'];
         } else {

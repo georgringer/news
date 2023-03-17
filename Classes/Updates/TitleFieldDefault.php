@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace GeorgRinger\News\Updates;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Updates;
+
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -61,19 +62,18 @@ final class TitleFieldDefault implements UpgradeWizardInterface
                 Connection::PARAM_INT
             )
             ->where($query->expr()->isNull(self::FIELD_RELATED_LINKS))
-            ->execute();
+            ->executeStatement();
         return true;
     }
 
     public function updateNecessary(): bool
     {
         $query = self::getQueryBuilderForNews();
-        return (bool) $query
+        return (bool)$query
             ->count(self::FIELD_UID)
             ->from(self::TABLE_NEWS)
             ->where($query->expr()->isNull(self::FIELD_RELATED_LINKS))
-            ->execute()
-            ->fetchColumn(0);
+            ->executeQuery()->fetchOne();
     }
 
     public function getPrerequisites(): array

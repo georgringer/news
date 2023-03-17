@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\Backend\FormDataProvider;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Tests\Unit\Backend\FormDataProvider;
 
 use GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
@@ -15,17 +15,14 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class NewsRowInitializeNewTest extends BaseTestCase
 {
-
     /**
      * @test
-     *
-     * @return void
      */
     public function dateTimeIsFilled(): void
     {
         $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
         $mockedEmConfiguration = $this->getAccessibleMock(EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
-        $mockedEmConfiguration->expects($this->once())->method('getDateTimeRequired')->will($this->returnValue(true));
+        $mockedEmConfiguration->expects(self::once())->method('getDateTimeRequired')->willReturn(true);
 
         $provider->_set('emConfiguration', $mockedEmConfiguration);
 
@@ -33,24 +30,22 @@ class NewsRowInitializeNewTest extends BaseTestCase
 
         $result = [
             'command' => 'new',
-            'tableName' => 'tx_news_domain_model_news'
+            'tableName' => 'tx_news_domain_model_news',
         ];
 
         $expected = [
             'command' => 'new',
             'tableName' => 'tx_news_domain_model_news',
             'databaseRow' => [
-                'datetime' => $GLOBALS['EXEC_TIME']
-            ]
+                'datetime' => $GLOBALS['EXEC_TIME'],
+            ],
         ];
 
-        $this->assertEquals($expected, $provider->addData($result));
+        self::assertEquals($expected, $provider->addData($result));
     }
 
     /**
      * @test
-     *
-     * @return void
      */
     public function dateTimeIsNotFilledIfSetInExtensionManagerConfiguration(): void
     {
@@ -61,26 +56,24 @@ class NewsRowInitializeNewTest extends BaseTestCase
 
         $result = [
             'command' => 'new',
-            'tableName' => 'tx_news_domain_model_news'
+            'tableName' => 'tx_news_domain_model_news',
         ];
         $expected = [
             'command' => 'new',
             'tableName' => 'tx_news_domain_model_news',
         ];
 
-        $this->assertEquals($expected, $mockedProvider->addData($result));
+        self::assertEquals($expected, $mockedProvider->addData($result));
     }
 
     /**
      * @test
-     *
-     * @return void
      */
     public function archiveTimeIsFilled(): void
     {
         $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
         $mockedEmConfiguration = $this->getAccessibleMock(EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
-        $mockedEmConfiguration->expects($this->once())->method('getDateTimeRequired')->will($this->returnValue(true));
+        $mockedEmConfiguration->expects(self::once())->method('getDateTimeRequired')->willReturn(true);
 
         $provider->_set('emConfiguration', $mockedEmConfiguration);
 
@@ -92,16 +85,16 @@ class NewsRowInitializeNewTest extends BaseTestCase
             'pageTsConfig' => [
                 'tx_news.' => [
                     'predefine.' => [
-                        'archive' => '+10 days'
-                    ]
-                ]
-            ]
+                        'archive' => '+10 days',
+                    ],
+                ],
+            ],
         ];
 
         $expected = $result;
         $expected['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
         $expected['databaseRow']['archive'] = strtotime('+10 days');
 
-        $this->assertEquals($expected, $provider->addData($result));
+        self::assertEquals($expected, $provider->addData($result));
     }
 }

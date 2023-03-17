@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace GeorgRinger\News\Seo;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Seo;
+
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\WorkspaceAspect;
@@ -68,7 +69,8 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
                 $GLOBALS['TCA'][$table]['ctrl']['languageField'],
                 [
                     -1, // All languages
-                    $this->getLanguageId()  // Current language
+                    // @extensionScannerIgnoreLine
+                    $this->getLanguageId(),  // Current language
                 ]
             );
         }
@@ -122,25 +124,24 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
         // Count all items
         $queryBuilder->count('*');
-        $this->itemCount = $queryBuilder->execute()->fetchColumn(0);
+        $this->itemCount = $queryBuilder->executeQuery()->fetchOne();
 
         // Select only the right range
         $queryBuilder->select('*');
-        $pageNumber = (int) ($this->request->getQueryParams()['page'] ?? 0);
+        $pageNumber = (int)($this->request->getQueryParams()['page'] ?? 0);
         $page = $pageNumber > 0 ? $pageNumber : 0;
         $queryBuilder
             ->setFirstResult($page * $this->numberOfItemsPerPage)
             ->setMaxResults($this->numberOfItemsPerPage);
 
         $rows = $queryBuilder->orderBy($sortField, $forGoogleNews ? 'DESC' : 'ASC')
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()->fetchAllAssociative();
 
         foreach ($rows as $row) {
             $this->items[] = [
                 'data' => $row,
                 'lastMod' => (int)$row[$lastModifiedField],
-                'priority' => 0.5
+                'priority' => 0.5,
             ];
         }
     }
@@ -162,7 +163,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      */
     public function getNumberOfPages(): int
     {
-        return (int) ceil($this->itemCount / $this->numberOfItemsPerPage);
+        return (int)ceil($this->itemCount / $this->numberOfItemsPerPage);
     }
 
     /**
@@ -171,6 +172,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      */
     protected function defineUrl(array $data): array
     {
+        // @extensionScannerIgnoreLine
         $pageId = $this->config['url']['pageId'] ?? $GLOBALS['TSFE']->id;
         if (($this->config['url']['useCategorySinglePid'] ?? false) && $pageIdFromCategory = $this->getSinglePidFromCategory($data['data']['uid'])) {
             $pageId = $pageIdFromCategory;
@@ -238,7 +240,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
             )
             ->setMaxResults(1)
-            ->execute()->fetch();
+            ->executeQuery()->fetchAssociative();
         return (int)$categoryRecord['single_pid'];
     }
 

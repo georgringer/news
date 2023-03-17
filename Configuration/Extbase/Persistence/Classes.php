@@ -8,7 +8,7 @@ return [
             0 => \GeorgRinger\News\Domain\Model\NewsDefault::class,
             1 => \GeorgRinger\News\Domain\Model\NewsInternal::class,
             2 => \GeorgRinger\News\Domain\Model\NewsExternal::class,
-        ]
+        ],
     ],
     \GeorgRinger\News\Domain\Model\NewsDefault::class => [
         'tableName' => 'tx_news_domain_model_news',
@@ -29,16 +29,16 @@ return [
         'tableName' => 'tt_content',
         'properties' => [
             'altText' => [
-                'fieldName' => 'altText'
+                'fieldName' => 'altText',
             ],
             'titleText' => [
-                'fieldName' => 'titleText'
+                'fieldName' => 'titleText',
             ],
             'colPos' => [
-                'fieldName' => 'colPos'
+                'fieldName' => 'colPos',
             ],
             'CType' => [
-                'fieldName' => 'CType'
+                'fieldName' => 'CType',
             ],
         ],
     ],
@@ -46,7 +46,7 @@ return [
         'tableName' => 'sys_category',
         'properties' => [
             'parentcategory' => [
-                'fieldName' => 'parent'
+                'fieldName' => 'parent',
             ],
         ],
     ],

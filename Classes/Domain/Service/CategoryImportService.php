@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Domain\Service;
 
 use GeorgRinger\News\Domain\Model\Category;
@@ -12,15 +19,8 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 class CategoryImportService extends AbstractImportService
 {
     public const ACTION_SET_PARENT_CATEGORY = 1;
@@ -31,11 +31,10 @@ class CategoryImportService extends AbstractImportService
      */
     public function __construct(
         PersistenceManager $persistenceManager,
-        ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
         EventDispatcherInterface $eventDispatcher
     ) {
-        parent::__construct($persistenceManager, $objectManager, $categoryRepository, $eventDispatcher);
+        parent::__construct($persistenceManager, $categoryRepository, $eventDispatcher);
     }
 
     public function import(array $importArray): void
@@ -51,15 +50,15 @@ class CategoryImportService extends AbstractImportService
                     'category' => $category,
                     'importItem' => $importItem,
                     'action' => self::ACTION_CREATE_L10N_CHILDREN_CATEGORY,
-                    'titleLanguageOverlay' => $importItem['title_lang_ol']
+                    'titleLanguageOverlay' => $importItem['title_lang_ol'],
                 ];
             }
 
-            if ($importItem['parentcategory']) {
+            if ($importItem['parentcategory'] ?? false) {
                 $this->postPersistQueue[$importItem['import_id']] = [
                     'category' => $category,
                     'action' => self::ACTION_SET_PARENT_CATEGORY,
-                    'parentCategoryOriginUid' => $importItem['parentcategory']
+                    'parentCategoryOriginUid' => $importItem['parentcategory'],
                 ];
             }
         }
@@ -109,7 +108,7 @@ class CategoryImportService extends AbstractImportService
         }
 
         $category->setPid($importItem['pid']);
-        $category->setHidden($importItem['hidden']);
+        $category->setHidden((bool)($importItem['hidden'] ?? false));
 
         if (
             isset($importItem['starttime'])
@@ -156,7 +155,6 @@ class CategoryImportService extends AbstractImportService
      */
     protected function setFileRelationFromImage(Category $category, string $image): void
     {
-
         // get fileObject by given identifier (file UID, combined identifier or path/filename)
         try {
             $newImage = $this->getResourceFactory()->retrieveFileOrFolderObject($image);
@@ -191,7 +189,6 @@ class CategoryImportService extends AbstractImportService
         if ($newImage) {
             // file not inside a storage then search for existing file or copy the one form storage 0 to the import folder
             if ($newImage->getStorage()->getUid() === 0) {
-
                 // search DB for same file based on hash (to prevent duplicates)
                 $existingFile = $this->findFileByHash($newImage->getSha1());
 
