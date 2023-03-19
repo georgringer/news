@@ -107,7 +107,7 @@ class PaginateBodytextViewHelper extends AbstractViewHelper
             for ($j = 0; $j < $currentPage; $j++) {
                 $chunk = $parts[$j];
 
-                while (($chunk = mb_strstr($chunk, '<'))) {
+                while ($chunk = mb_strstr($chunk, '<')) {
                     $tag = $this->extractTag($chunk);
                     $tagStrLen = mb_strlen($tag);
 
