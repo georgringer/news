@@ -115,7 +115,7 @@ class PluginUpdater implements UpgradeWizardInterface
         foreach ($records as $record) {
             $flexFormData = GeneralUtility::xml2array($record['pi_flexform']);
             $flexForm = $this->flexFormService->convertFlexFormContentToArray($record['pi_flexform']);
-            $targetListType = $this->getTargetListType($flexForm['switchableControllerActions']);
+            $targetListType = $this->getTargetListType($flexForm['switchableControllerActions'] ?? '');
             if ($targetListType === '') {
                 continue;
             }
