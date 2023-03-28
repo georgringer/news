@@ -194,7 +194,7 @@ class NewsRepository extends AbstractDemandedRepository
                     $end = mktime(23, 59, 59, $demand->getMonth(), $demand->getDay(), $demand->getYear());
                 } else {
                     $begin = mktime(0, 0, 0, $demand->getMonth(), 1, $demand->getYear());
-                    $end = mktime(23, 59, 59, ($demand->getMonth() + 1), 0, $demand->getYear());
+                    $end = mktime(23, 59, 59, $demand->getMonth() + 1, 0, $demand->getYear());
                 }
             } else {
                 $begin = mktime(0, 0, 0, 1, 1, $demand->getYear());
