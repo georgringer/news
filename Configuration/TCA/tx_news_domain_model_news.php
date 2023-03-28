@@ -194,11 +194,13 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => [
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
                     [
                         0 => '',
                         1 => '',
                     ],
+                ] : [
+                    ['label' => '', 'value' => ''],
                 ],
             ],
         ],
@@ -272,19 +274,14 @@ $tx_news_domain_model_news = [
                 'renderType' => 'selectMultipleSideBySide',
                 'size' => 5,
                 'maxitems' => 20,
-                'items' => [
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
-                        -1,
-                    ],
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
-                        -2,
-                    ],
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
-                        '--div--',
-                    ],
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login', -1],
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login', -2],
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups', '--div--'],
+                ] : [
+                    ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login', 'value' => -1],
+                    ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login', 'value' => -2],
+                    ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups', 'value' => '--div--'],
                 ],
                 'exclusiveKeys' => '-1,-2',
                 'foreign_table' => 'fe_groups',
@@ -479,10 +476,14 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => [
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
                     [$ll . 'tx_news_domain_model_news.type.I.0', 0, 'ext-news-type-default'],
                     [$ll . 'tx_news_domain_model_news.type.I.1', 1, 'ext-news-type-internal'],
                     [$ll . 'tx_news_domain_model_news.type.I.2', 2, 'ext-news-type-external'],
+                ] : [
+                    ['label' => $ll . 'tx_news_domain_model_news.type.I.0', 'value' => 0, 'icon' => 'ext-news-type-default'],
+                    ['label' => $ll . 'tx_news_domain_model_news.type.I.1', 'value' => 1, 'icon' => 'ext-news-type-internal'],
+                    ['label' => $ll . 'tx_news_domain_model_news.type.I.2', 'value' => 2, 'icon' => 'ext-news-type-external'],
                 ],
                 'fieldWizard' => [
                     'selectIcons' => [
@@ -547,11 +548,10 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => [
-                    [
-                        0 => '',
-                        1 => '',
-                    ],
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
+                    ['', ''],
+                ] : [
+                    ['label' => '', 'value' => ''],
                 ],
             ],
         ],
@@ -562,11 +562,10 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => [
-                    [
-                        0 => '',
-                        1 => '',
-                    ],
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
+                    ['', ''],
+                ] : [
+                    ['label' => '', 'value' => ''],
                 ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
