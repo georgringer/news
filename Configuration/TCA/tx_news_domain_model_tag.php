@@ -4,6 +4,7 @@ defined('TYPO3') or die();
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
+$versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
 
 return [
     'ctrl' => [
@@ -45,8 +46,10 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => [
-                    ['', 0],
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
+                    ['', ''],
+                ] : [
+                    ['label' => '', 'value' => ''],
                 ],
                 'foreign_table' => 'tx_news_domain_model_tag',
                 'foreign_table_where' => 'AND tx_news_domain_model_tag.pid=###CURRENT_PID### AND tx_news_domain_model_tag.sys_language_uid IN (-1,0)',
