@@ -51,7 +51,7 @@ class ClassCacheManager
     public function reBuildSimple(bool $forceRebuild = false)
     {
         if (!function_exists('token_get_all')) {
-            throw new \Exception(('The function token_get_all must exist. Please install the module PHP Module Tokenizer'));
+            throw new \Exception('The function token_get_all must exist. Please install the module PHP Module Tokenizer');
         }
 
         if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'])) {
@@ -69,7 +69,7 @@ class ClassCacheManager
         $classPath = 'Classes/';
 
         if (!function_exists('token_get_all')) {
-            throw new \Exception(('The function token_get_all must exist. Please install the module PHP Module Tokenizer'));
+            throw new \Exception('The function token_get_all must exist. Please install the module PHP Module Tokenizer');
         }
 
         if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'])) {
@@ -147,7 +147,7 @@ class ClassCacheManager
                 $innerPart = array_slice(
                     $codeInLines,
                     $classParserInformation['start'],
-                    ($classParserInformation['eol'] - $classParserInformation['start'] - 1)
+                    $classParserInformation['eol'] - $classParserInformation['start'] - 1
                 );
             } else {
                 $innerPart = array_slice($codeInLines, $classParserInformation['start']);
@@ -185,7 +185,7 @@ class ClassCacheManager
                     $this->constructorLines['code'][] = $innerPart[$i];
                 } elseif (trim($innerPart[$i]) === ') {' || trim($innerPart[$i]) === '{') {
                     $codePart = true;
-                } elseif (trim($innerPart[$i]) !== ')' && $i >= ($constructorInfo['inner_start'])) {
+                } elseif (trim($innerPart[$i]) !== ')' && $i >= $constructorInfo['inner_start']) {
                     $this->constructorLines['parameters'][] = LF . rtrim($innerPart[$i], ',');
                 }
                 unset($innerPart[$i]);
