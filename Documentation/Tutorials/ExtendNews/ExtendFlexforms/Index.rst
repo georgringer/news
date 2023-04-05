@@ -57,7 +57,7 @@ Add this to ``Services.yaml`` of your extension:
 
 **Add the hook**
 
-Create the class ``FlexFormHook`` in your extension in ``Classes/EventListener/ModifyFlexformEvent.php`` and add the path to an additional
+Create the class ``ModifyFlexformEvent`` in your extension in ``Classes/EventListener/ModifyFlexformEvent.php`` and add the path to an additional
 FlexForm file.
 
 .. code-block:: php
