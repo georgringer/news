@@ -42,47 +42,50 @@ Extend FlexForms with custom fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you need additional fields in the FlexForm configuration, this can be done by using a hook in the Core.
 
-**Register the hook**
+**Register the Event**
 
-Add this to the ``ext_localconf.php`` of your extension:
+Add this to ``Services.yaml`` of your extension:
 
-.. code-block:: php
+.. code-block:: yaml
 
-   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing'][]
-      = \Vendor\ExtKey\Hooks\FlexFormHook::class;
+   services:
+       Vendor\ExtKey\EventListener\ModifyFlexformEvent:
+           tags:
+               - name: event.listener
+                 identifier: 'flexParsing'
+                 event: TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent
 
 **Add the hook**
 
-Create the class ``FlexFormHook`` in your extension in ``Classes/Hooks/FlexFormHook.php`` and add the path to an additional
+Create the class ``FlexFormHook`` in your extension in ``Classes/EventListener/ModifyFlexformEvent.php`` and add the path to an additional
 FlexForm file.
 
 .. code-block:: php
 
    <?php
 
-   namespace Vendor\ExtKey\Hooks;
+   namespace Vendor\ExtKey\EventListener;
 
    use TYPO3\CMS\Core\Core\Environment;
    use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-   class FlexFormHook
+   class ModifyFlexformEvent
    {
-      /**
-      * @param array $dataStructure
-      * @param array $identifier
-      * @return array
-      */
-      public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier): array
-      {
-        if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
-            $file = GeneralUtility::getFileAbsFileName('EXT:extKey/Configuration/FlexForms/tx_news.xml');
-            $content = file_get_contents($file);
-            if ($content) {
-                $dataStructure['sheets']['extraEntry'] = GeneralUtility::xml2array($content);
-            }
-        }
-        return $dataStructure;
-      }
+       public function __invoke(AfterFlexFormDataStructureParsedEvent $event): void
+       {
+           $dataStructure = $event->getDataStructure();
+           $identifier = $event->getIdentifier();
+
+           if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === '*,news_pi1') {
+               $file = GeneralUtility::getFileAbsFileName('EXT:extKey/Configuration/Example.xml');
+               $content = file_get_contents($file);
+               if ($content) {
+                   ArrayUtility::mergeRecursiveWithOverrule($dataStructure, GeneralUtility::xml2array($content));
+               }
+           }
+
+           $event->setDataStructure($dataStructure);
+       }
    }
 
 **Create the FlexForm file**
@@ -93,21 +96,17 @@ Create the FlexForm file you just referenced in the hook. This can look like tha
 
     <extra>
         <ROOT>
-            <TCEforms>
-                <sheetTitle>Fo</sheetTitle>
-            </TCEforms>
+             <sheetTitle>Fo</sheetTitle>
             <type>array</type>
             <el>
                 <settings.postsPerPage>
-                    <TCEforms>
-                        <label>Max. number of posts to display per page</label>
-                        <config>
-                            <type>input</type>
-                            <size>2</size>
-                            <eval>int</eval>
-                            <default>3</default>
-                        </config>
-                    </TCEforms>
+                    <label>Max. number of posts to display per page</label>
+                    <config>
+                        <type>input</type>
+                        <size>2</size>
+                        <eval>int</eval>
+                        <default>3</default>
+                    </config>
                 </settings.postsPerPage>
             </el>
         </ROOT>
