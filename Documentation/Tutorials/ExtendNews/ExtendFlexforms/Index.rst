@@ -75,7 +75,7 @@ FlexForm file.
       public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier): array
       {
         if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
-            $file = Environment::getPublicPath() . '/typo3conf/ext/extKey/Configuration/Example.xml';
+            $file = GeneralUtility::getFileAbsFileName('EXT:extKey/Configuration/FlexForms/tx_news.xml');
             $content = file_get_contents($file);
             if ($content) {
                 $dataStructure['sheets']['extraEntry'] = GeneralUtility::xml2array($content);
