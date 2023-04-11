@@ -189,7 +189,7 @@ class LinkViewHelperTest extends BaseTestCase
      */
     public function noNewsReturnsChildren(): void
     {
-        $settingService = $this->getAccessibleMock(SettingsService::class, ['getConfiguration', 'getSettings']);
+        $settingService = $this->getAccessibleMock(SettingsService::class, ['getSettings']);
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['renderChildren', 'getSettings']);
         $viewHelper->_set('pluginSettingsService', $settingService);
         $viewHelper->setArguments([
