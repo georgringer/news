@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3') or die();
+defined('TYPO3') or die;
 
 $pluginConfig = ['pi1', 'news_list_sticky', 'news_detail', 'news_date_menu', 'news_search_form', 'news_search_result', 'news_selected_list', 'category_list', 'tag_list'];
 foreach ($pluginConfig as $pluginName) {
