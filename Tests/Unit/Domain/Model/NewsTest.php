@@ -15,6 +15,7 @@ use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Model\Tag;
+use TYPO3\CMS\Core\Resource\FileReference as FileReferenceCore;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -313,7 +314,7 @@ class NewsTest extends BaseTestCase
     {
         $news = new News();
 
-        $mockedElement1 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
+        $mockedElement1 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
         $mockedElement1->_set('uid', 1);
         $mockedElement1->_set('showinpreview', 1);
         $mockedElement1->expects(self::any())->method('getProperty')->willReturn(1);
@@ -323,7 +324,7 @@ class NewsTest extends BaseTestCase
         $mediaItem1->_setProperty('uid', 1);
         $news->addFalMedia($mediaItem1);
 
-        $mockedElement2 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
+        $mockedElement2 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
         $mockedElement2->_set('uid', 2);
         $mockedElement2->_set('showinpreview', 0);
         $mockedElement2->expects(self::any())->method('getProperty')->willReturn(0);
@@ -333,7 +334,7 @@ class NewsTest extends BaseTestCase
         $mediaItem2->_setProperty('uid', 2);
         $news->addFalMedia($mediaItem2);
 
-        $mockedElement3 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
+        $mockedElement3 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
         $mockedElement3->_set('uid', 3);
         $mockedElement3->_set('showinpreview', 1);
         $mockedElement3->expects(self::any())->method('getProperty')->willReturn(1);
@@ -343,7 +344,7 @@ class NewsTest extends BaseTestCase
         $mediaItem3->_setProperty('originalResource', $mockedElement3);
         $news->addFalMedia($mediaItem3);
 
-        $mockedElement4 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
+        $mockedElement4 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
         $mockedElement4->_set('uid', 4);
         $mockedElement4->_set('showinpreview', 2);
         $mockedElement4->expects(self::any())->method('getProperty')->willReturn(2);

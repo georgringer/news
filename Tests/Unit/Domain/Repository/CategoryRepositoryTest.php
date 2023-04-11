@@ -29,7 +29,7 @@ class CategoryRepositoryTest extends BaseTestCase
      */
     public function categoryIdsAreCorrectlyReplaced($expectedResult, $given): void
     {
-        $mockTemplateParser = $this->getAccessibleMock(CategoryRepository::class, ['dummy'], [], '', false);
+        $mockTemplateParser = $this->getAccessibleMock(CategoryRepository::class, null, [], '', false);
 
         $result = $mockTemplateParser->_call('replaceCategoryIds', $given['idList'], $given['toBeChanged']);
 

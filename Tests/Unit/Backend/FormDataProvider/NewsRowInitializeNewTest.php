@@ -20,7 +20,7 @@ class NewsRowInitializeNewTest extends BaseTestCase
      */
     public function dateTimeIsFilled(): void
     {
-        $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
+        $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, null, [], '', false);
         $mockedEmConfiguration = $this->getAccessibleMock(EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
         $mockedEmConfiguration->expects(self::once())->method('getDateTimeRequired')->willReturn(true);
 
@@ -49,7 +49,7 @@ class NewsRowInitializeNewTest extends BaseTestCase
      */
     public function dateTimeIsNotFilledIfSetInExtensionManagerConfiguration(): void
     {
-        $mockedProvider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
+        $mockedProvider = $this->getAccessibleMock(NewsRowInitializeNew::class, null, [], '', false);
         $configuration = ['dateTimeNotRequired' => true];
         $settings = new EmConfiguration($configuration);
         $mockedProvider->_set('emConfiguration', $settings);
@@ -71,7 +71,7 @@ class NewsRowInitializeNewTest extends BaseTestCase
      */
     public function archiveTimeIsFilled(): void
     {
-        $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
+        $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, null, [], '', false);
         $mockedEmConfiguration = $this->getAccessibleMock(EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
         $mockedEmConfiguration->expects(self::once())->method('getDateTimeRequired')->willReturn(true);
 
