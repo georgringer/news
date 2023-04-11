@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3') or die();
+defined('TYPO3') or die;
 
 call_user_func(static function () {
     $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
