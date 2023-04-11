@@ -40,7 +40,7 @@ class EmConfigurationTest extends BaseTestCase
             'slugBehaviour' => 'uniqueInSite',
         ];
 
-        $configurationInstance = $this->getAccessibleMock(EmConfiguration::class, ['dummy'], [], '', false);
+        $configurationInstance = $this->getAccessibleMock(EmConfiguration::class, null, [], '', false);
         foreach ($configuration as $key => $value) {
             $configurationInstance->_set($key, $value);
         }
@@ -73,7 +73,7 @@ class EmConfigurationTest extends BaseTestCase
             'slugBehaviour' => 'unique',
         ];
 
-        $configurationInstance = $this->getAccessibleMock(EmConfiguration::class, ['dummy'], [], '', false);
+        $configurationInstance = $this->getAccessibleMock(EmConfiguration::class, null, [], '', false);
 
         foreach ($configuration as $key => $value) {
             $functionName = 'get' . ucwords($key);
