@@ -111,7 +111,7 @@ class LinkViewHelperTest extends BaseTestCase
      */
     public function getDetailPidFromCategoriesReturnsCorrectValue(): void
     {
-        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
+        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, null);
 
         $newsItem = new \GeorgRinger\News\Domain\Model\News();
 
@@ -140,7 +140,7 @@ class LinkViewHelperTest extends BaseTestCase
      */
     public function getDetailPidFromDefaultDetailPidReturnsCorrectValue($settings, $expected): void
     {
-        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
+        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, null);
 
         $result = $viewHelper->_call('getDetailPidFromDefaultDetailPid', $settings, null);
         self::assertEquals($expected, $result);
@@ -168,7 +168,7 @@ class LinkViewHelperTest extends BaseTestCase
      */
     public function getDetailPidFromFlexformReturnsCorrectValue($settings, $expected): void
     {
-        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
+        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, null);
 
         $result = $viewHelper->_call('getDetailPidFromFlexform', $settings, null);
         self::assertEquals($expected, $result);

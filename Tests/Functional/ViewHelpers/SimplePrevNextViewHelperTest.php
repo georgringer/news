@@ -33,7 +33,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->mockedViewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['dummy'], [], '', true, true, false);
+        $this->mockedViewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, null, [], '', true, true, false);
 
         $this->news = new News();
         $this->news->_setProperty('uid', 123);
