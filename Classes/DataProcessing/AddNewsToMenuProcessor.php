@@ -36,6 +36,10 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
      */
     public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData): array
     {
+        if (isset($processorConfiguration['if.']) && !$cObj->checkIf($processorConfiguration['if.'])) {
+            return $processedData;
+        }
+
         if (!$processorConfiguration['menus']) {
             return $processedData;
         }
