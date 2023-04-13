@@ -61,7 +61,7 @@ class TypoScript
     {
         $found = true;
 
-        for ($x = 0; ($x < count($path) && $found); $x++) {
+        for ($x = 0; $x < count($path) && $found; $x++) {
             $key = $path[$x];
 
             if (isset($data[$key])) {
