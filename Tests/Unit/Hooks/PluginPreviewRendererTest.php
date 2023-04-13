@@ -31,7 +31,7 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $GLOBALS['LANG'] = $languageService;
 
-        $this->pageLayoutView = $this->getAccessibleMock(PluginPreviewRenderer::class, ['dummy'], [], '', false);
+        $this->pageLayoutView = $this->getAccessibleMock(PluginPreviewRenderer::class, null, [], '', false);
         $this->pageLayoutView->_set('databaseConnection', $this->getMockBuilder('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection')->setMethods(['exec_SELECTquery', 'exec_SELECTgetRows'])->getMock());
     }
 
