@@ -326,7 +326,7 @@ DOCKER_PHP_IMAGE=`echo "php${PHP_VERSION}" | sed -e 's/\.//'`
 shift $((OPTIND - 1))
 TEST_FILE=${1}
 if [ -n "${1}" ]; then
-    TEST_FILE=".Build/public/typo3conf/ext/news/${1}"
+    TEST_FILE=".Build/Web/typo3conf/ext/news/${1}"
 fi
 
 if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
@@ -430,7 +430,7 @@ case ${TEST_SUITE} in
                 # Since docker is executed as root (yay!), the path to this dir is owned by
                 # root if docker creates it. Thank you, docker. We create the path beforehand
                 # to avoid permission issues.
-                mkdir -p ${ROOT_DIR}/public/typo3temp/var/tests/functional-sqlite-dbs/
+                mkdir -p ${ROOT_DIR}/Web/typo3temp/var/tests/functional-sqlite-dbs/
                 docker-compose run functional_sqlite
                 SUITE_EXIT_CODE=$?
                 ;;
