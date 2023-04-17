@@ -78,7 +78,7 @@
         "typo3/cms": {
             "extension-key": "news",
             "app-dir": ".Build",
-            "web-dir": ".Build/public"
+            "web-dir": ".Build/Web"
         }
     }
 }
