@@ -112,7 +112,7 @@ class ClassLoader implements SingletonInterface
                 '\\',
                 $className,
                 0,
-                (substr($className, 0, 9) === 'TYPO3\\CMS' ? 4 : 3)
+                substr($className, 0, 9) === 'TYPO3\\CMS' ? 4 : 3
             );
             array_pop($namespaceParts);
             $extensionKey = GeneralUtility::camelCaseToLowerCaseUnderscored(array_pop($namespaceParts));
