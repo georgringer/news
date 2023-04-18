@@ -3,6 +3,7 @@
 #
 # TYPO3 core test runner based on docker and docker-compose.
 #
+IMAGE_PREFIX="ghcr.io/typo3/"
 
 # Function to write a .env file in Build/testing-docker
 # This is read by docker-compose and vars defined here are
@@ -34,6 +35,7 @@ setUpDockerComposeDotEnv() {
         echo "MYSQL_VERSION=${MYSQL_VERSION}"
         echo "POSTGRES_VERSION=${POSTGRES_VERSION}"
         echo "USED_XDEBUG_MODES=${USED_XDEBUG_MODES}"
+        echo "IMAGE_PREFIX=${IMAGE_PREFIX}"
     } > .env
 }
 
@@ -170,10 +172,10 @@ Options:
         Activate dry-run in CGL check that does not actively change files and only prints broken ones.
 
     -u
-        Update existing typo3/core-testing-*:latest docker images. Maintenance call to docker pull latest
+        Update existing ${IMAGE_PREFIX}core-testing-*:latest docker images. Maintenance call to docker pull latest
         versions of the main php images. The images are updated once in a while and only the youngest
         ones are supported by core testing. Use this if weird test errors occur. Also removes obsolete
-        image versions of typo3/core-testing-*.
+        image versions of ${IMAGE_PREFIX}core-testing-*.
 
     -v
         Enable verbose script output. Shows variables and docker commands.
@@ -326,7 +328,7 @@ DOCKER_PHP_IMAGE=`echo "php${PHP_VERSION}" | sed -e 's/\.//'`
 shift $((OPTIND - 1))
 TEST_FILE=${1}
 if [ -n "${1}" ]; then
-    TEST_FILE=".Build/public/typo3conf/ext/news/${1}"
+    TEST_FILE=".Build/Web/typo3conf/ext/news/${1}"
 fi
 
 if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
@@ -430,7 +432,7 @@ case ${TEST_SUITE} in
                 # Since docker is executed as root (yay!), the path to this dir is owned by
                 # root if docker creates it. Thank you, docker. We create the path beforehand
                 # to avoid permission issues.
-                mkdir -p ${ROOT_DIR}/public/typo3temp/var/tests/functional-sqlite-dbs/
+                mkdir -p ${ROOT_DIR}/Web/typo3temp/var/tests/functional-sqlite-dbs/
                 docker-compose run functional_sqlite
                 SUITE_EXIT_CODE=$?
                 ;;
@@ -467,10 +469,10 @@ case ${TEST_SUITE} in
         docker-compose down
         ;;
     update)
-        # pull typo3/core-testing-*:latest versions of those ones that exist locally
-        docker images typo3/core-testing-*:latest --format "{{.Repository}}:latest" | xargs -I {} docker pull {}
-        # remove "dangling" typo3/core-testing-* images (those tagged as <none>)
-        docker images typo3/core-testing-* --filter "dangling=true" --format "{{.ID}}" | xargs -I {} docker rmi {}
+        # pull ${IMAGE_PREFIX}core-testing-*:latest versions of those ones that exist locally
+        docker images ${IMAGE_PREFIX}core-testing-*:latest --format "{{.Repository}}:latest" | xargs -I {} docker pull {}
+        # remove "dangling" ${IMAGE_PREFIX}core-testing-* images (those tagged as <none>)
+        docker images ${IMAGE_PREFIX}core-testing-* --filter "dangling=true" --format "{{.ID}}" | xargs -I {} docker rmi {}
         ;;
     *)
         echo "Invalid -s option argument ${TEST_SUITE}" >&2
