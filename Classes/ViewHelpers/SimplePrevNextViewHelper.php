@@ -210,7 +210,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
                 )
                 ->andWhere(...$extraWhere)
                 ->setMaxResults(1)
-                ->orderBy($sortField, ($label === 'prev' ? 'desc' : 'asc'))
+                ->orderBy($sortField, $label === 'prev' ? 'desc' : 'asc')
                 ->executeQuery()->fetchAssociative();
             if (is_array($row)) {
                 $data[$label] = $row;
