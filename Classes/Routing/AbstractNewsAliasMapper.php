@@ -24,34 +24,15 @@ use TYPO3\CMS\Core\Routing\Aspect\PersistedAliasMapper;
  *    Mapper name as registered and use "autoconfiguration" for table names and field names.
  * 2. It allows to use "fallback handling" which is only available in TYPO3 v12.1
  *    see https://review.typo3.org/c/Packages/TYPO3.CMS/+/76545 to have our News plugin
- *    manage the optional parameter for a news detail page, when a news was not found.
+ *    manage the optional parameter for a news detail page, when a news record was not found.
  *    For v12 setups, the fallbackValue is automatically set to "null" to keep the same functionality
  *    as in v11 with this news mapper.
- *
- * @deprecated File is not used by news extension anymore and will be removed with version 12
  */
-class NewsAliasMapper extends PersistedAliasMapper
+abstract class AbstractNewsAliasMapper extends PersistedAliasMapper
 {
     public function __construct(array $settings)
     {
-        // Use the shorthand to reduce configuration overhead
-        switch ($settings['type']) {
-            case 'NewsCategory':
-                $settings['tableName'] = $settings['tableName'] ?? 'sys_category';
-                $settings['routeFieldName'] = $settings['routeFieldName'] ?? 'slug';
-                $settings['fallbackValue'] = array_key_exists('fallbackValue', $settings) ? $settings['fallbackValue'] : null;
-                break;
-            case 'NewsTag':
-                $settings['tableName'] = $settings['tableName'] ?? 'tx_news_domain_model_tag';
-                $settings['routeFieldName'] = $settings['routeFieldName'] ?? 'slug';
-                $settings['fallbackValue'] = array_key_exists('fallbackValue', $settings) ? $settings['fallbackValue'] : null;
-                break;
-            case 'NewsTitle':
-            default:
-                $settings['tableName'] = $settings['tableName'] ?? 'tx_news_domain_model_news';
-                $settings['routeFieldName'] = $settings['routeFieldName'] ?? 'path_segment';
-                $settings['fallbackValue'] = array_key_exists('fallbackValue', $settings) ? $settings['fallbackValue'] : null;
-        }
+        $settings['fallbackValue'] = array_key_exists('fallbackValue', $settings) ? $settings['fallbackValue'] : null;
         parent::__construct($settings);
     }
 
