@@ -330,8 +330,6 @@ by date. Also includes configuration for the pagination.
            _controller: 'News::list'
            _arguments:
              page: 'currentPage'
-           requirements:
-             page: '\d+'
          - routePath: '/{news-title}'
            _controller: 'News::detail'
            _arguments:

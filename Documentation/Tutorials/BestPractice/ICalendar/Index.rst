@@ -133,7 +133,7 @@ The TypoScript code looks like this.
        pageNewsICalendar = PAGE
        pageNewsICalendar.typeNum = 9819
        pageNewsICalendar.10 < styles.content.get
-       pageNewsICalendar.10.select.where = colPos=0 AND list_type = "news_pi1"
+       pageNewsICalendar.10.select.where = colPos=0 AND CType = "news_pi1"
        pageNewsICalendar.10.select {
           orderBy = sorting ASC
           max = 1

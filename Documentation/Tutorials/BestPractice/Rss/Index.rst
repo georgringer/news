@@ -140,7 +140,7 @@ The TypoScript code looks like this.
       pageNewsRSS = PAGE
       pageNewsRSS.typeNum = {$plugin.tx_news.rss.channel.typeNum}
       pageNewsRSS.10 < styles.content.get
-      pageNewsRSS.10.select.where = colPos=0 AND list_type = "news_pi1"
+      pageNewsRSS.10.select.where = colPos=0 AND CType = "news_pi1"
       pageNewsRSS.10.select {
          orderBy = sorting ASC
          max = 1
