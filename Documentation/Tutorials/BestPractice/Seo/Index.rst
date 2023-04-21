@@ -177,7 +177,7 @@ With TYPO3 10 it is possible to define multiple sitemaps. This can be used to de
                      # ...
                   }
                }
-
+            }
          }
          googleNewsSitemap {
             sitemaps {
