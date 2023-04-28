@@ -261,7 +261,8 @@ class NewsController extends NewsBaseController
 
         // pagination
         $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
-        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
+        $itemsPerPage = intval($this->settings['paginate']['itemsPerPage']??0) ?: ( intval($paginationConfiguration['itemsPerPage']??0) ?: 10 ); // 1: flexform, 2: typoscript, 3: default
+        
         $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
 
         $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
@@ -561,7 +562,7 @@ class NewsController extends NewsBaseController
         $newsRecords = $this->newsRepository->findDemanded($demand);
 
         $paginationConfiguration = $this->settings['search']['paginate'] ?? [];
-        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
+        $itemsPerPage = intval($this->settings['paginate']['itemsPerPage']??0) ?: ( intval($paginationConfiguration['itemsPerPage']??0) ?: 10 ); // 1: flexform, 2: typoscript, 3: default
         $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
 
         $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
