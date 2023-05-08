@@ -327,9 +327,6 @@ DOCKER_PHP_IMAGE=`echo "php${PHP_VERSION}" | sed -e 's/\.//'`
 # Set $1 to first mass argument, this is the optional test file or test directory to execute
 shift $((OPTIND - 1))
 TEST_FILE=${1}
-if [ -n "${1}" ]; then
-    TEST_FILE=".Build/Web/typo3conf/ext/news/${1}"
-fi
 
 if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
     set -x
