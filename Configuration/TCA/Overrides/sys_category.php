@@ -12,10 +12,10 @@ $imageSettings = [
     'overrideChildTca' => [
         'types' => [
             '0' => [
-                'showitem' => '--palette--;;imageoverlayPalette, --palette--;;filePalette'
+                'showitem' => '--palette--;;imageoverlayPalette, --palette--;;filePalette',
             ],
             \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                'showitem' => '--palette--;;imageoverlayPalette, --palette--;;filePalette'
+                'showitem' => '--palette--;;imageoverlayPalette, --palette--;;filePalette',
             ],
         ],
     ],
