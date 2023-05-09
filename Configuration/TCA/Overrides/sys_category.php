@@ -9,6 +9,16 @@ $imageSettings = [
     'behaviour' => [
         'allowLanguageSynchronization' => true,
     ],
+    'overrideChildTca' => [
+        'types' => [
+            '0' => [
+                'showitem' => '--palette--;;imageoverlayPalette, --palette--;;filePalette',
+            ],
+            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                'showitem' => '--palette--;;imageoverlayPalette, --palette--;;filePalette',
+            ],
+        ],
+    ],
     'appearance' => [
         'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
         'showPossibleLocalizationRecords' => true,
