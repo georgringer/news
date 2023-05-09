@@ -9,7 +9,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -48,6 +48,7 @@ class MetaTagViewHelper extends AbstractViewHelper
         $this->registerArgument('content', 'string', 'Content of meta tag', true, null, false);
         $this->registerArgument('useCurrentDomain', 'boolean', 'Use current domain', false, false);
         $this->registerArgument('forceAbsoluteUrl', 'boolean', 'Force absolut domain', false, false);
+        $this->registerArgument('replace', 'boolean', 'Replace potential existing tag', false, false);
     }
 
     public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
@@ -83,11 +84,13 @@ class MetaTagViewHelper extends AbstractViewHelper
         }
 
         if ($content !== '') {
-            $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+            $registry = GeneralUtility::makeInstance(MetaTagManagerRegistry::class);
             if ($arguments['property']) {
-                $pageRenderer->setMetaTag('property', $arguments['property'], $content);
+                $manager = $registry->getManagerForProperty($arguments['property']);
+                $manager->addProperty($arguments['property'], $content, [], $arguments['replace'], 'property');
             } elseif ($arguments['name']) {
-                $pageRenderer->setMetaTag('name', $arguments['name'], $content);
+                $manager = $registry->getManagerForProperty($arguments['name']);
+                $manager->addProperty($arguments['name'], $content, [], $arguments['replace'], 'name');
             }
         }
     }

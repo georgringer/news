@@ -28,27 +28,27 @@ class ExcludeDisplayedNewsViewHelperTest extends BaseTestCase
         $viewHelper->setRenderingContext($this->getMockBuilder(RenderingContext::class)->disableOriginalConstructor()->getMock());
 
         $newsItem1 = new News();
-        $newsItem1->_setProperty('uid', '123');
+        $newsItem1->_setProperty('uid', 123);
 
         $viewHelper->setArguments(['newsItem' => $newsItem1]);
         $viewHelper->render();
-        self::assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123']);
+        self::assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], [123 => 123]);
 
         $newsItem1 = new News();
-        $newsItem1->_setProperty('uid', '123');
-        self::assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123']);
+        $newsItem1->_setProperty('uid', 123);
+        self::assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], [123 => 123]);
 
         $newsItem2 = new News();
-        $newsItem2->_setProperty('uid', '12');
+        $newsItem2->_setProperty('uid', 12);
         $viewHelper->setArguments(['newsItem' => $newsItem2]);
         $viewHelper->render();
-        self::assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123', '12' => '12']);
+        self::assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], [123 => 123, 12 => 12]);
 
         $newsItem3 = new News();
-        $newsItem3->_setProperty('uid', '12');
-        $newsItem3->_setProperty('_localizedUid', '456');
+        $newsItem3->_setProperty('uid', 12);
+        $newsItem3->_setProperty('_localizedUid', 456);
         $viewHelper->setArguments(['newsItem' => $newsItem3]);
         $viewHelper->render();
-        self::assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123', '12' => '12', '456' => '456']);
+        self::assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], [123 => 123, 12 => 12, 456 => 456]);
     }
 }

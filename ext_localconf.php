@@ -101,15 +101,15 @@ $boot = static function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news'] =
         \GeorgRinger\News\Hooks\DataHandlerHook::class;
 
-//    // Modify flexform fields since core 8.5 via formEngine: Inject a data provider between TcaFlexPrepare and TcaFlexProcess
-//    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation::class] = [
-//        'depends' => [
-//            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexPrepare::class,
-//        ],
-//        'before' => [
-//            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexProcess::class,
-//        ],
-//    ];
+    //    // Modify flexform fields since core 8.5 via formEngine: Inject a data provider between TcaFlexPrepare and TcaFlexProcess
+    //    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation::class] = [
+    //        'depends' => [
+    //            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexPrepare::class,
+    //        ],
+    //        'before' => [
+    //            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexProcess::class,
+    //        ],
+    //    ];
 
     // Hide content elements in list module & filter in administration module
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery']['ext:news']
@@ -226,9 +226,9 @@ $boot = static function (): void {
     ];
 
     // Add routing features
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsCategory'] = \GeorgRinger\News\Routing\NewsAliasMapper::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsTag'] = \GeorgRinger\News\Routing\NewsAliasMapper::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsTitle'] = \GeorgRinger\News\Routing\NewsAliasMapper::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsCategory'] = \GeorgRinger\News\Routing\NewsCategoryMapper::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsTag'] = \GeorgRinger\News\Routing\NewsTagMapper::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsTitle'] = \GeorgRinger\News\Routing\NewsTitleMapper::class;
 };
 
 $boot();

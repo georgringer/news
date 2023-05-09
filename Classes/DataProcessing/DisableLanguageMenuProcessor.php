@@ -22,6 +22,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  * Disable language item on a detail page if the news is not translated
  *
  * 20 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
+ * 20.if.isTrue.data = GP:tx_news_pi1|news
  * 20.menus = languageMenu
  */
 class DisableLanguageMenuProcessor implements DataProcessorInterface
@@ -35,6 +36,10 @@ class DisableLanguageMenuProcessor implements DataProcessorInterface
      */
     public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData): array
     {
+        if (isset($processorConfiguration['if.']) && !$cObj->checkIf($processorConfiguration['if.'])) {
+            return $processedData;
+        }
+
         if (!$processorConfiguration['menus']) {
             return $processedData;
         }

@@ -26,7 +26,10 @@ Usage
    }
 
    11 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
-   11.menus = languageMenu
+   11 {
+     if.isTrue.data = GP:tx_news_pi1|news
+     menus = languageMenu
+   }
 
 The property :typoscript:`menus` is a comma-separated list of
 :php:`MenuProcessors`.
