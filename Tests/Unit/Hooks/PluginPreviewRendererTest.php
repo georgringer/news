@@ -112,7 +112,7 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $out = $this->pageLayoutView->_call('getOrderDirectionSetting');
-        self::assertEquals((strlen($out) > 1), true);
+        self::assertEquals(strlen($out) > 1, true);
     }
 
     /**
@@ -127,7 +127,7 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $out = $this->pageLayoutView->_call('getTopNewsFirstSetting');
-        self::assertEquals((strlen($out) > 1), true);
+        self::assertEquals(strlen($out) > 1, true);
     }
 
     /**
