@@ -42,6 +42,11 @@ Extend FlexForms with custom fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you need additional fields in the FlexForm configuration, this can be done by using a hook in the Core.
 
+.. important::
+
+  Using such event is *not* restricted to the news extension. It can be used for any extension.
+  One working example can be found in `FlexFormHook` of EXT:eventnews.
+
 **Register the Event**
 
 Add this to ``Services.yaml`` of your extension:
@@ -76,6 +81,7 @@ FlexForm file.
            $dataStructure = $event->getDataStructure();
            $identifier = $event->getIdentifier();
 
+           // $identifier['dataStructureKey'] depends on the selected plugin!
            if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === '*,news_pi1') {
                $file = GeneralUtility::getFileAbsFileName('EXT:extKey/Configuration/Example.xml');
                $content = file_get_contents($file);

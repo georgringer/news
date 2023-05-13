@@ -38,8 +38,7 @@
     },
     "require-dev": {
         "typo3/cms-composer-installers": "^3.1.3 || 4.0.0-RC1 || ^5.0",
-        "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": "^0.0.1",
-        "typo3/testing-framework": "~7.0@dev",
+        "typo3/testing-framework": "^7.0.1",
         "phpunit/phpunit": "^9",
         "typo3/coding-standards": "^0.5.3",
         "friendsofphp/php-cs-fixer": "^3.13.0",
@@ -62,7 +61,6 @@
         "vendor-dir": ".Build/vendor",
         "bin-dir": ".Build/bin",
         "allow-plugins": {
-            "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true,
             "typo3/class-alias-loader": true,
             "typo3/cms-composer-installers": true
         }

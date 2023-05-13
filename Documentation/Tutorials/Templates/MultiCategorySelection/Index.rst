@@ -37,7 +37,7 @@ The default category template `Category/List` allows only filtering by a single 
             <f:for each="{categories}" as="category">
                 <f:variable name="categoryUid">{category.item.uid}</f:variable>
                 <f:if condition="{category.item.sysLanguageUid} > 0">
-                    <f:variable name="categoryUid"{category.item.l10nParent}</f:variable>
+                    <f:variable name="categoryUid">{category.item.l10nParent}</f:variable>
                 </f:if>
                 <li>
                     <n:multiCategoryLink.isCategoryActive list="{overwriteDemand.categories}" item="{categoryUid}">
