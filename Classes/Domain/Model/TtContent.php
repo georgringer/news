@@ -9,7 +9,11 @@
 
 namespace GeorgRinger\News\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Model of tt_content
@@ -52,9 +56,10 @@ class TtContent extends AbstractEntity
     protected $colPos = 0;
 
     /**
-     * @var string
+     * @var LazyLoadingProxy|ObjectStorage<FileReference>
+     * @Lazy
      */
-    protected $image = '';
+    protected $image;
 
     /**
      * @var int
@@ -82,9 +87,10 @@ class TtContent extends AbstractEntity
     protected $imageborder = 0;
 
     /**
-     * @var string
+     * @var LazyLoadingProxy|ObjectStorage<FileReference>
+     * @Lazy
      */
-    protected $media = '';
+    protected $media;
 
     /**
      * @var string
@@ -135,6 +141,12 @@ class TtContent extends AbstractEntity
      * @var string
      */
     protected $listType = '';
+
+    public function __construct()
+    {
+        $this->image = $this->image ?? new ObjectStorage();
+        $this->media = $this->media ?? new ObjectStorage();
+    }
 
     /**
      * @return \DateTime|null
@@ -252,18 +264,40 @@ class TtContent extends AbstractEntity
         $this->colPos = $colPos;
     }
 
-    /**
-     * @return string
-     */
-    public function getImage(): string
+    public function addImage(FileReference $image): void
     {
-        return $this->image;
+        $this->image = $this->getImage();
+        $this->image->attach($image);
     }
 
     /**
-     * @param $image
+     * @return ObjectStorage<FileReference>
      */
-    public function setImage(string $image): void
+    public function getImage(): ObjectStorage
+    {
+        if ($this->image instanceof LazyLoadingProxy) {
+            $this->image->_loadRealInstance();
+        }
+        if ($this->image instanceof ObjectStorage) {
+            return $this->image;
+        }
+
+        /** @var ObjectStorage<FileReference> */
+        $image = new ObjectStorage();
+
+        return $this->image = $image;
+    }
+
+    public function removeImage(FileReference $image): void
+    {
+        $this->image = $this->getImage();
+        $this->image->detach($image);
+    }
+
+    /**
+     * @param ObjectStorage<FileReference> $image
+     */
+    public function setImage(ObjectStorage $image): void
     {
         $this->image = $image;
     }
@@ -348,18 +382,40 @@ class TtContent extends AbstractEntity
         $this->imageborder = $imageborder;
     }
 
-    /**
-     * @return string
-     */
-    public function getMedia(): string
+    public function addMedia(FileReference $media): void
     {
-        return $this->media;
+        $this->media = $this->getMedia();
+        $this->media->attach($media);
     }
 
     /**
-     * @param $media
+     * @return ObjectStorage<FileReference>
      */
-    public function setMedia(string $media): void
+    public function getMedia(): ObjectStorage
+    {
+        if ($this->media instanceof LazyLoadingProxy) {
+            $this->media->_loadRealInstance();
+        }
+        if ($this->media instanceof ObjectStorage) {
+            return $this->media;
+        }
+
+        /** @var ObjectStorage<FileReference> */
+        $media = new ObjectStorage();
+
+        return $this->media = $media;
+    }
+
+    public function removeMedia(FileReference $media): void
+    {
+        $this->media = $this->getMedia();
+        $this->media->detach($media);
+    }
+
+    /**
+     * @param ObjectStorage<FileReference> $media
+     */
+    public function setMedia(ObjectStorage $media): void
     {
         $this->media = $media;
     }
