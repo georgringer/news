@@ -124,7 +124,7 @@ class PluginUpdater implements UpgradeWizardInterface
             // Remove flexform data which do not exist in flexform of new plugin
             foreach ($flexFormData['data'] as $sheetKey => $sheetData) {
                 foreach ($sheetData['lDEF'] as $settingName => $setting) {
-                    if (sizeof($allowedSettings) && !in_array($settingName, $allowedSettings, true)) {
+                    if (count($allowedSettings) && !in_array($settingName, $allowedSettings, true)) {
                         unset($flexFormData['data'][$sheetKey]['lDEF'][$settingName]);
                     }
                 }
