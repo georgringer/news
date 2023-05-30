@@ -95,6 +95,30 @@ The Core ships a basic sitemap configuration which can also be used for news rec
        }
    }
 
+This sitemap can be added in the site config so it has a nice url:
+
+.. code-block:: yaml
+   :caption: config/mysite/config.yaml
+   :emphasize-lines: 10
+
+   routeEnhancers:
+     Sitemap:
+       type: Simple
+       routePath: 'sitemap/{sitemap}'
+       aspects:
+         sitemap:
+           type: StaticValueMapper
+           map:
+             pages: pages
+             news: news
+     PageTypeSuffix:
+       type: PageType
+       default: '/'
+       index: ''
+       map:
+         '/': 0
+         sitemap.xml: 1533906435
+
 
 Extended sitemap
 ~~~~~~~~~~~~~~~~
