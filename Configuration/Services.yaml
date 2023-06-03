@@ -16,7 +16,9 @@ services:
   GeorgRinger\News\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
-
+  
+  GeorgRinger\News\Domain\Service\NewsImportService:
+    public: true
 
   GeorgRinger\News\Utility\ClassCacheManager:
     arguments: ['@news.cache']
