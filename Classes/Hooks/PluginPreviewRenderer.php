@@ -118,6 +118,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
 
             if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PluginPreviewRenderer']['extensionSummary'] ?? []) {
                 $params['action'] = $actionTranslationKey;
+                $params['item'] = $item;
                 foreach ($hooks as $reference) {
                     GeneralUtility::callUserFunction($reference, $params, $this);
                 }
