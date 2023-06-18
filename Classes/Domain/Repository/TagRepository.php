@@ -49,9 +49,7 @@ class TagRepository extends AbstractDemandedRepository
         }
 
         return $query->matching(
-            $query->logicalAnd(
-                $conditions
-            )
+            $query->logicalAnd(...$conditions)
         )->execute();
     }
 
