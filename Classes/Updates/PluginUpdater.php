@@ -58,6 +58,10 @@ class PluginUpdater implements UpgradeWizardInterface
             'switchableControllerActions' => 'Tag->list',
             'targetListType' => 'news_taglist',
         ],
+        [
+            'switchableControllerActions' => 'News->month',
+            'targetListType' => 'eventnews_newsmonth',
+        ],
     ];
 
     /** @var FlexFormService */
