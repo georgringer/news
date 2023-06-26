@@ -56,8 +56,8 @@ class TtContent extends AbstractEntity
     protected $colPos = 0;
 
     /**
-     * @var LazyLoadingProxy|ObjectStorage<FileReference>
      * @Lazy
+     * @var ObjectStorage<FileReference>
      */
     protected $image;
 
@@ -87,8 +87,8 @@ class TtContent extends AbstractEntity
     protected $imageborder = 0;
 
     /**
-     * @var LazyLoadingProxy|ObjectStorage<FileReference>
      * @Lazy
+     * @var ObjectStorage<FileReference>
      */
     protected $media;
 
@@ -143,6 +143,11 @@ class TtContent extends AbstractEntity
     protected $listType = '';
 
     public function __construct()
+    {
+        $this->initializeObject();
+    }
+
+    public function initializeObject(): void
     {
         $this->image = $this->image ?? new ObjectStorage();
         $this->media = $this->media ?? new ObjectStorage();
@@ -278,14 +283,12 @@ class TtContent extends AbstractEntity
         if ($this->image instanceof LazyLoadingProxy) {
             $this->image->_loadRealInstance();
         }
+
         if ($this->image instanceof ObjectStorage) {
             return $this->image;
         }
 
-        /** @var ObjectStorage<FileReference> */
-        $image = new ObjectStorage();
-
-        return $this->image = $image;
+        return $this->image = new ObjectStorage();
     }
 
     public function removeImage(FileReference $image): void
@@ -396,14 +399,12 @@ class TtContent extends AbstractEntity
         if ($this->media instanceof LazyLoadingProxy) {
             $this->media->_loadRealInstance();
         }
+
         if ($this->media instanceof ObjectStorage) {
             return $this->media;
         }
 
-        /** @var ObjectStorage<FileReference> */
-        $media = new ObjectStorage();
-
-        return $this->media = $media;
+        return $this->media = new ObjectStorage();
     }
 
     public function removeMedia(FileReference $media): void
