@@ -91,7 +91,7 @@ if ($versionInformation->getMajorVersion() > 11) {
         'appearance' => $imageSettingsFalMedia['appearance'],
         'behaviour' => $imageSettingsFalMedia['behaviour'],
         'overrideChildTca' => $imageSettingsFalMedia['overrideChildTca'],
-        'allowed' => 'common-image-types',
+        'allowed' => 'common-media-types',
     ];
     $imageConfigurationFalRelatedFiles = [
         'type' => 'file',
@@ -105,7 +105,7 @@ if ($versionInformation->getMajorVersion() > 11) {
     $imageConfigurationFalMedia = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
         'fal_media',
         $imageSettingsFalMedia,
-        $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
     );
     /** @noinspection PhpDeprecationInspection */
     // @extensionScannerIgnoreLine
