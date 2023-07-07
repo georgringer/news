@@ -29,7 +29,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class LargeStaticRangeMapper extends StaticRangeMapper
 {
-
     public function __construct(array $settings)
     {
         parent::__construct($settings);
@@ -48,7 +47,7 @@ class LargeStaticRangeMapper extends StaticRangeMapper
             ->execute()
             ->fetchFirstColumn()[0];
 
-        return (int)(ceil($count / $perPage ?: 10));
+        return (int)ceil($count / $perPage ?: 10);
     }
 
     protected function buildRange(): array
