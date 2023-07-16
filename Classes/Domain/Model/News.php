@@ -242,9 +242,7 @@ class News extends AbstractEntity
     protected $notes ='';
 
     /**
-     * Initialize categories and media relation
-     *
-     * @return \GeorgRinger\News\Domain\Model\News
+     * Initialize relation objects
      */
     public function __construct()
     {

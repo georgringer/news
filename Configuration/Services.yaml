@@ -56,3 +56,10 @@ services:
         identifier: 'ext-news/modify-database-query-for-content'
         method: 'modify'
         event: TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForContentEvent
+
+  GeorgRinger\News\Event\Listener\ModifyDatabaseQueryForRecordListingEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'ext-news/modify-database-query-for-list'
+        method: 'modify'
+        event: TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForRecordListingEvent

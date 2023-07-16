@@ -19,6 +19,9 @@ List of versions
    :titlesonly:
    :glob:
 
+   11-1-2
+   11-1-1
+   11-1-0
    11-0-0
    10-0-3
    10-0-2
