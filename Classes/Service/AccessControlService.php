@@ -95,7 +95,7 @@ class AccessControlService
         // determine localization overlay mode to select categories either from parent or localized record
         if (($newsRecord['sys_language_uid'] ?? 0) > 0 && ($newsRecord['l10n_parent'] ?? 0) > 0) {
             // localized version of a news record
-            $categoryL10nMode = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['categories']['l10n_mode'];
+            $categoryL10nMode = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['categories']['l10n_mode'] ?? '';
             if ($categoryL10nMode === 'mergeIfNotBlank') {
                 $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                     ->getQueryBuilderForTable('sys_category_record_mm');
