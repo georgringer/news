@@ -36,7 +36,7 @@ Now it is possible to use a condition in the template to change the layouts, and
             <f:else>
                <div class="news news-list-view">
                   <f:for each="{news}" as="newsItem">
-                     <f:render partial="List/Item-special" arguments="{newsItem: newsItem, settings:settings}"/>
+                     <f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings}"/>
                   </f:for>
                </div>
             </f:else>
