@@ -47,7 +47,7 @@ class LargeStaticRangeMapper extends StaticRangeMapper
             ->execute()
             ->fetchFirstColumn()[0];
 
-        return (int)(ceil($count / $perPage ?: 10));
+        return (int)ceil($count / $perPage ?: 10);
     }
 
     protected function buildRange(): array
