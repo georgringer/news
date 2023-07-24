@@ -486,7 +486,7 @@ class News extends AbstractEntity
     /**
      * Get categories
      *
-     * @return ObjectStorage|null
+     * @return ObjectStorage<\GeorgRinger\News\Domain\Model\Category>|null
      */
     public function getCategories(): ?ObjectStorage
     {
@@ -511,7 +511,7 @@ class News extends AbstractEntity
     /**
      * Set categories
      *
-     * @param  ObjectStorage $categories
+     * @param  ObjectStorage<\GeorgRinger\News\Domain\Model\Category> $categories
      */
     public function setCategories($categories): void
     {
@@ -541,7 +541,7 @@ class News extends AbstractEntity
     /**
      * Set related from
      *
-     * @param ObjectStorage $relatedFrom
+     * @param ObjectStorage<\GeorgRinger\News\Domain\Model\News> $relatedFrom
      */
     public function setRelatedFrom($relatedFrom): void
     {
@@ -632,7 +632,7 @@ class News extends AbstractEntity
     /**
      * Get related links
      *
-     * @return ObjectStorage|null
+     * @return ObjectStorage<\GeorgRinger\News\Domain\Model\Link>|null
      */
     public function getRelatedLinks(): ?ObjectStorage
     {
@@ -642,7 +642,7 @@ class News extends AbstractEntity
     /**
      * Get FAL related files
      *
-     * @return ObjectStorage|null
+     * @return ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>|null
      */
     public function getFalRelatedFiles(): ?ObjectStorage
     {
@@ -652,7 +652,7 @@ class News extends AbstractEntity
     /**
      * Short method for getFalRelatedFiles
      *
-     * @return ObjectStorage|null
+     * @return ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>|null
      */
     public function getRelatedFiles(): ?ObjectStorage
     {
@@ -662,7 +662,7 @@ class News extends AbstractEntity
     /**
      * Set FAL related files
      *
-     * @param ObjectStorage $falRelatedFiles FAL related files
+     * @param ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference> $falRelatedFiles FAL related files
      */
     public function setFalRelatedFiles($falRelatedFiles): void
     {
@@ -685,7 +685,7 @@ class News extends AbstractEntity
     /**
      * Set related links
      *
-     * @param ObjectStorage $relatedLinks related links relation
+     * @param ObjectStorage<\GeorgRinger\News\Domain\Model\Link> $relatedLinks related links relation
      */
     public function setRelatedLinks($relatedLinks): void
     {
@@ -768,7 +768,7 @@ class News extends AbstractEntity
     /**
      * Get the Fal media items
      *
-     * @return ObjectStorage|null
+     * @return ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>|null
      */
     public function getFalMedia(): ?ObjectStorage
     {
@@ -778,7 +778,7 @@ class News extends AbstractEntity
     /**
      * Short method for getFalMedia()
      *
-     * @return ObjectStorage|null
+     * @return ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>|null
      */
     public function getMedia(): ?ObjectStorage
     {
@@ -788,7 +788,7 @@ class News extends AbstractEntity
     /**
      * Set Fal media relation
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $falMedia
+     * @param ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference> $falMedia
      */
     public function setFalMedia(ObjectStorage $falMedia): void
     {
@@ -960,7 +960,7 @@ class News extends AbstractEntity
     /**
      * Get content elements
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\TtContent>
      */
     public function getContentElements(): ?\TYPO3\CMS\Extbase\Persistence\ObjectStorage
     {
@@ -970,7 +970,7 @@ class News extends AbstractEntity
     /**
      * Set content element list
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $contentElements content elements
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\TtContent> $contentElements content elements
      */
     public function setContentElements($contentElements): void
     {
@@ -1033,7 +1033,7 @@ class News extends AbstractEntity
     /**
      * Get Tags
      *
-     * @return ObjectStorage|null
+     * @return ObjectStorage<\GeorgRinger\News\Domain\Model\Tag>|null
      */
     public function getTags(): ?ObjectStorage
     {
@@ -1043,7 +1043,7 @@ class News extends AbstractEntity
     /**
      * Set Tags
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags tags
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Tag> $tags tags
      */
     public function setTags($tags): void
     {
