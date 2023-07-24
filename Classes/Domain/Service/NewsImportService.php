@@ -162,7 +162,7 @@ class NewsImportService extends AbstractImportService
 
         if (is_array($importItem['categories'] ?? false)) {
             foreach ($importItem['categories'] as $categoryUid) {
-                if ($this->settings['findCategoriesByImportSource']) {
+                if ($this->settings['findCategoriesByImportSource'] ?? false) {
                     $category = $this->categoryRepository->findOneByImportSourceAndImportId(
                         $this->settings['findCategoriesByImportSource'],
                         $categoryUid
