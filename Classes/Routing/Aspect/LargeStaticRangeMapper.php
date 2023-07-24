@@ -29,7 +29,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class LargeStaticRangeMapper extends StaticRangeMapper
 {
-
     public function __construct(array $settings)
     {
         parent::__construct($settings);

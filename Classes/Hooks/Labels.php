@@ -10,7 +10,6 @@
 namespace GeorgRinger\News\Hooks;
 
 use GeorgRinger\News\Service\CategoryService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Userfunc to get alternative label
