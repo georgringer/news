@@ -63,3 +63,6 @@ services:
         identifier: 'ext-news/modify-database-query-for-list'
         method: 'modify'
         event: TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForRecordListingEvent
+
+  GeorgRinger\News\Domain\Service\NewsImportService:
+    public: true
