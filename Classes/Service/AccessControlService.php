@@ -148,7 +148,7 @@ class AccessControlService
             ->executeQuery();
 
         $categories = [];
-        while ($row =$res->fetchAssociative()) {
+        while ($row = $res->fetchAssociative()) {
             $categories[] = [
                 'uid' => $row['uid_local'],
                 'title' => $row['title'],

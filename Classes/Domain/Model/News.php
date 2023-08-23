@@ -83,7 +83,7 @@ class News extends AbstractEntity
     /**
      * @var string
      */
-    protected $teaser ='';
+    protected $teaser = '';
 
     /**
      * @var string
@@ -239,7 +239,7 @@ class News extends AbstractEntity
     protected $sorting = 0;
 
     /** @var string */
-    protected $notes ='';
+    protected $notes = '';
 
     /**
      * Initialize relation objects
