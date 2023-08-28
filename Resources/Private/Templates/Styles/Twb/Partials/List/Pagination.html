@@ -4,21 +4,21 @@
             <f:then>
                 <f:comment>
                     <li class="first">
-                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: 1})}" title="{f:translate(key:'pagination.first')}">
+                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: 1})}" title="{f:translate(key:'paginate_first')}">
                             <i class="material-icons">first_page</i>
                         </a>
                     </li>
                 </f:comment>
                 <li class="previous">
-                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber})}" title="{f:translate(key:'pagination.previous')}">
-                        {f:translate(key:'widget.pagination.previous', extensionName: 'fluid')}
+                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber})}" title="{f:translate(key:'paginate_previous')}">
+                        {f:translate(key:'paginate_previous')}
                     </a>
                 </li>
             </f:then>
             <f:else>
                 <f:comment>
                     <li class="disabled"><span><i class="material-icons">first_page</i></span></li>
-                    <li class="disabled"><span>{f:translate(key:'widget.pagination.previous', extensionName: 'fluid')}</span></li>
+                    <li class="disabled"><span>{f:translate(key:'paginate_previous')}</span></li>
                 </f:comment>
             </f:else>
         </f:if>
@@ -43,13 +43,13 @@
         <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
             <f:then>
                 <li class="next">
-                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber})}" title="{f:translate(key:'pagination.next')}">
-                        {f:translate(key:'widget.pagination.next', extensionName: 'fluid')}
+                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber})}" title="{f:translate(key:'paginate_next')}">
+                        {f:translate(key:'paginate_next')}
                     </a>
                 </li>
                 <f:comment>
                     <li class="last">
-                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.lastPageNumber})}" title="{f:translate(key:'pagination.last')}">
+                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.lastPageNumber})}" title="{f:translate(key:'paginate_last')}">
                             last
                         </a>
                     </li>
@@ -57,7 +57,7 @@
             </f:then>
             <f:else>
                 <f:comment>
-                    <li class="disabled"><span>{f:translate(key:'widget.pagination.next', extensionName: 'fluid')}</span></li>
+                    <li class="disabled"><span>{f:translate(key:'paginate_next', extensionName: 'fluid')}</span></li>
                     <li class="disabled"><span>last page</span></li>
                 </f:comment>
             </f:else>
