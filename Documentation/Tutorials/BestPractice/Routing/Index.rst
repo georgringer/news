@@ -449,7 +449,7 @@ configuration of PHP function `date <http://www.php.net/date>`__.
 How to create URLs in PHP
 -------------------------
 
-The following snippet is a good example how an URL can be generated propertly
+The following snippet is a good example how an URL can be generated properly
 
 .. code-block:: php
    :caption: PHP Code

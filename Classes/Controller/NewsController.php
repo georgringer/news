@@ -31,6 +31,7 @@ use GeorgRinger\News\Utility\TypoScript;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
+use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -644,7 +645,7 @@ class NewsController extends NewsBaseController
             $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
             $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
             foreach ($stdWrapProperties as $key) {
-                if (is_array($typoScriptArray[$key . '.'])) {
+                if (is_array($typoScriptArray[$key . '.'] ?? null)) {
                     $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
                         $typoScriptArray[$key] ?? '',
                         $typoScriptArray[$key . '.']
@@ -691,6 +692,8 @@ class NewsController extends NewsBaseController
     {
         if (class_exists(NumberedPagination::class) && $paginationClass === NumberedPagination::class && $maximumNumberOfLinks) {
             $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
+        } elseif (class_exists(SlidingWindowPagination::class) && $paginationClass === SlidingWindowPagination::class && $maximumNumberOfLinks) {
+            $pagination = GeneralUtility::makeInstance(SlidingWindowPagination::class, $paginator, $maximumNumberOfLinks);
         } elseif (class_exists($paginationClass)) {
             $pagination = GeneralUtility::makeInstance($paginationClass, $paginator);
         } else {

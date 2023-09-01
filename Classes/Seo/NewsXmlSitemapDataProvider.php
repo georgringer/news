@@ -241,7 +241,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
             )
             ->setMaxResults(1)
             ->executeQuery()->fetchAssociative();
-        return (int)$categoryRecord['single_pid'];
+        return (int)($categoryRecord['single_pid'] ?? 0);
     }
 
     /**

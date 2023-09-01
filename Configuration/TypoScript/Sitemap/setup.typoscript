@@ -1,3 +1,4 @@
+# TODO: remove with the next major version
 tx_news_sitemap = PAGE
 tx_news_sitemap {
 	typeNum = {$plugin.tx_news.settings.sitemap.typeNumber}

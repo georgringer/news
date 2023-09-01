@@ -262,7 +262,6 @@ The syntax of ``FlexForms`` is identical to the one of ``TCA`` with the only dif
                         <label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
                         <config>
                            <type>group</type>
-                           <internal_type>db</internal_type>
                            <allowed>pages</allowed>
                            <size>3</size>
                            <maxitems>50</maxitems>

@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3') or die();
+defined('TYPO3') or die;
 
 call_user_func(static function () {
     $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
@@ -40,13 +40,6 @@ call_user_func(static function () {
                 'allowLanguageSynchronization' => true,
             ],
         ];
-
-        // internal type
-        foreach (['sys_category' => ['single_pid', 'shortcut'], 'tx_news_domain_model_news' => ['l10n_parent', 'related_from', 'related']] as $table => $fields) {
-            foreach ($fields as $field) {
-                unset($GLOBALS['TCA'][$table]['columns'][$field]['config']['internal_type']);
-            }
-        }
 
         // required fields
         foreach (['tx_news_domain_model_link' => ['uri'], 'tx_news_domain_model_news' => ['title', 'externalurl'], 'tx_news_domain_model_tag' => ['title']] as $table => $fields) {

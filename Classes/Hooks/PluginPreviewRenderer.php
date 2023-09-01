@@ -18,6 +18,7 @@ use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -118,6 +119,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
 
             if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PluginPreviewRenderer']['extensionSummary'] ?? []) {
                 $params['action'] = $actionTranslationKey;
+                $params['item'] = $item;
                 foreach ($hooks as $reference) {
                     GeneralUtility::callUserFunction($reference, $params, $this);
                 }
@@ -520,7 +522,11 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
     protected function renderSettingsAsTable(string $header = '', int $recordUid = 0): string
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-        $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/PageLayout');
+        if ((new Typo3Version())->getMajorVersion() >= 12) {
+            $pageRenderer->loadJavaScriptModule('@georgringer/news/page-layout.js');
+        } else {
+            $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/PageLayout');
+        }
         $pageRenderer->addCssFile('EXT:news/Resources/Public/Css/Backend/PageLayoutView.css');
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);

@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3') or die();
+defined('TYPO3') or die;
 
 $boot = static function (): void {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -211,6 +211,8 @@ $boot = static function (): void {
         $GLOBALS['TYPO3_CONF_VARS']['FE']['additionalCanonicalizedUrlParameters'] = array_merge(
             $GLOBALS['TYPO3_CONF_VARS']['FE']['additionalCanonicalizedUrlParameters'] ?? [],
             [
+                'tx_news_pi1[action]',
+                'tx_news_pi1[controller]',
                 'tx_news_pi1[news]',
                 'tx_news_pi1[overwriteDemand][tags]',
                 'tx_news_pi1[overwriteDemand][categories]',

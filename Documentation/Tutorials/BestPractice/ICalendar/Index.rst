@@ -181,6 +181,14 @@ To be able to render a link in the header section of the normal page which point
         <link rel="alternate" type="text/calendar" title="iCalendar 2.0" href="{f:uri.page(additionalParams:{type:9819})}" />
     </n:headerData>
 
+Add a link in fluid
+"""""""""""""""""""
+
+Use the following snippet to create a link to the detail view
+
+.. code-block:: html
+
+   <n:link newsItem="{newsItem}" configuration="{additionalParams:'&type=9819'}">ical</n:link>
 
 Change the iCalendar feed link with routing
 """""""""""""""""""""""""""""""""""""""""""
@@ -192,10 +200,10 @@ about :ref:`rewriting URLs for news <routing>`.
 
    routeEnhancers:
      News:
-       PageTypeSuffix:
-         type: PageType
-         map:
-           'feed.xml': 9818
-           'calendar.ical': 9819
+     PageTypeSuffix:
+       type: PageType
+       map:
+         'feed.xml': 9818
+         'calendar.ical': 9819
 
 This will change the URL to :code:`/calendar.ical`.

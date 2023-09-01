@@ -54,7 +54,7 @@ class NewsRepositoryTest extends BaseTestCase
 
         $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
-//
+    //
     /**
      * @test
      */
@@ -71,7 +71,7 @@ class NewsRepositoryTest extends BaseTestCase
 
         $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
-//
+    //
     /**
      * @test
      */
@@ -89,7 +89,7 @@ class NewsRepositoryTest extends BaseTestCase
 
         $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
-//
+    //
     /**
      * @test
      */

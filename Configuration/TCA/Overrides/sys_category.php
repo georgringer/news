@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3') or die();
+defined('TYPO3') or die;
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
@@ -8,6 +8,16 @@ $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRing
 $imageSettings = [
     'behaviour' => [
         'allowLanguageSynchronization' => true,
+    ],
+    'overrideChildTca' => [
+        'types' => [
+            '0' => [
+                'showitem' => '--palette--;;imageoverlayPalette, --palette--;;filePalette',
+            ],
+            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                'showitem' => '--palette--;;imageoverlayPalette, --palette--;;filePalette',
+            ],
+        ],
     ],
     'appearance' => [
         'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
@@ -78,7 +88,6 @@ $newSysCategoryColumns = [
         'label' => $ll . 'tx_news_domain_model_category.single_pid',
         'config' => [
             'type' => 'group',
-            'internal_type' => 'db',
             'allowed' => 'pages',
             'size' => 1,
             'maxitems' => 1,
@@ -98,7 +107,6 @@ $newSysCategoryColumns = [
         'label' => $ll . 'tx_news_domain_model_category.shortcut',
         'config' => [
             'type' => 'group',
-            'internal_type' => 'db',
             'allowed' => 'pages',
             'size' => 1,
             'maxitems' => 1,

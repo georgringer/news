@@ -10,7 +10,6 @@
 namespace GeorgRinger\News\Hooks;
 
 use GeorgRinger\News\Service\CategoryService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Userfunc to get alternative label
@@ -25,13 +24,13 @@ class Labels
      */
     public function getUserLabelCategory(array &$params): void
     {
-        if (!isset($params['row'])) {
+        if (!isset($params['row'], $params['row']['title'])) {
             return;
         }
 
         $showTranslationInformation = false;
 
-        $getVars = GeneralUtility::_GET();
+        $getVars = $GLOBALS['TYPO3_REQUEST']->getQueryParams();
         if (isset($getVars['route']) && $getVars['route'] === '/record/edit'
             && isset($getVars['edit']) && is_array($getVars['edit'])
             && (isset($getVars['edit']['tt_content']) || isset($getVars['edit']['tx_news_domain_model_news']) || isset($getVars['edit']['sys_category']))
