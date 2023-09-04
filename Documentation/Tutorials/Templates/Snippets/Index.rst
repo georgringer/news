@@ -136,3 +136,28 @@ The provided example will wrap 3 items into a div with the class "row".
       </div>
    </f:for>
 
+Override pagination labels
+--------------------------
+To override the labels used in the pagination, you can use the following TypoScript snippet:
+
+.. code-block:: typoscript
+
+   plugin.tx_fluid {
+      _LOCAL_LANG {
+         // default for default = english language
+         default {
+            widget.pagination.next = my custom next
+         }
+         de {
+            widget.pagination.next = nächste Seite
+         }
+      }
+   }
+
+As an alternative it is also possible to adopt the partial `List/Pagination.html` and use XLF files of your own extension.
+
+.. code-block:: html
+
+   <a href="...">
+      {f:translate(key:'widget.pagination.next', extensionName: 'yourSitePackage')}
+   </a>
