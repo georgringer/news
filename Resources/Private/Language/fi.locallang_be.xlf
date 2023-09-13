@@ -534,8 +534,10 @@ TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST = 120. Tätä 
         <target state="final">Tallennus on poistettu käytöstä</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content" approved="yes">
-        <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="final">Tallenteelle on määritetty seuraavat luokat, joita ei ole määritetty käyttöoikeudessasi:</target>
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">Tallenteelle on määritetty seuraavat luokat, joita ei ole määritetty käyttöoikeudessasi:
+                </target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title" approved="yes">
         <source>Content elements are hidden</source>
