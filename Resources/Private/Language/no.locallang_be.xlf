@@ -427,8 +427,10 @@
         <target state="final">Lagring er slått av</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content" approved="yes">
-        <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="final">Denne posten har følgende kategorier tildelte som ikke er definert i dine tillatelser:</target>
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">Denne posten har følgende kategorier tildelte som ikke er definert i dine tillatelser:
+                </target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title" approved="yes">
         <source>Content elements are hidden</source>
