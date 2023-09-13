@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news" target-language="ru">
+    <header/>
+    <body>
+      <trans-unit id="search-text" xml:space="preserve" approved="yes">
+				<source>There are %1$s results for &quot;%2$s&quot;.</source>
+			<target state="final">Найдено %1$s результатов для &amp;quot;%2$s&amp;quot;.</target></trans-unit>
+      <trans-unit id="search-start" xml:space="preserve" approved="yes">
+				<source>Start search</source>
+			<target state="final">Начать поиск</target></trans-unit>
+      <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
+				<source>No news found.</source>
+			<target state="final">Новостей не найдено.</target></trans-unit>
+      <trans-unit id="search-subject" xml:space="preserve" approved="yes">
+				<source>Text</source>
+			<target state="final">Текст</target></trans-unit>
+      <trans-unit id="search-minimumDate" xml:space="preserve" approved="yes">
+				<source>Minimum Date</source>
+			<target state="final">Начальная дата</target></trans-unit>
+      <trans-unit id="search-maximumDate" xml:space="preserve" approved="yes">
+				<source>Maximum Date</source>
+			<target state="final">Конечная дата</target></trans-unit>
+      <trans-unit id="more-link" xml:space="preserve" approved="yes">
+				<source>Read more</source>
+			<target state="final">Далее</target></trans-unit>
+      <trans-unit id="back-link" xml:space="preserve" approved="yes">
+				<source>Back</source>
+			<target state="final">Назад</target></trans-unit>
+      <trans-unit id="related-news" xml:space="preserve" approved="yes">
+				<source>Related News</source>
+			<target state="final">Связанные новости</target></trans-unit>
+      <trans-unit id="related-files" xml:space="preserve" approved="yes">
+				<source>Related Files</source>
+			<target state="final">Связанные файлы</target></trans-unit>
+      <trans-unit id="related-links" xml:space="preserve" approved="yes">
+				<source>Related Links</source>
+			<target state="final">Связанные ссылки</target></trans-unit>
+      <trans-unit id="author" xml:space="preserve" approved="yes">
+				<source>Created by %s</source>
+			<target state="final">автор %s</target></trans-unit>
+      <trans-unit id="author_simple" xml:space="preserve" approved="yes">
+				<source>Created by</source>
+			<target state="final">автор</target></trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
+				<source>Next</source>
+			<target state="final">Далее</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
+				<source>Previous</source>
+			<target state="final">Назад</target></trans-unit>
+      <trans-unit id="categories" xml:space="preserve" approved="yes">
+				<source>Categories</source>
+			<target state="final">Категории</target></trans-unit>
+      <trans-unit id="tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="final">Метки</target></trans-unit>
+      <trans-unit id="entry" xml:space="preserve" approved="yes">
+				<source>entry</source>
+			<target state="final">статья</target></trans-unit>
+      <trans-unit id="entries" xml:space="preserve" approved="yes">
+				<source>entries</source>
+			<target state="final">статей</target></trans-unit>
+      <trans-unit id="month.01" xml:space="preserve" approved="yes">
+				<source>January</source>
+			<target state="final">Январь</target></trans-unit>
+      <trans-unit id="month.02" xml:space="preserve" approved="yes">
+				<source>February</source>
+			<target state="final">Февраль</target></trans-unit>
+      <trans-unit id="month.03" xml:space="preserve" approved="yes">
+				<source>March</source>
+			<target state="final">Март</target></trans-unit>
+      <trans-unit id="month.04" xml:space="preserve" approved="yes">
+				<source>April</source>
+			<target state="final">Апрель</target></trans-unit>
+      <trans-unit id="month.05" xml:space="preserve" approved="yes">
+				<source>May</source>
+			<target state="final">Май</target></trans-unit>
+      <trans-unit id="month.06" xml:space="preserve" approved="yes">
+				<source>June</source>
+			<target state="final">Июнь</target></trans-unit>
+      <trans-unit id="month.07" xml:space="preserve" approved="yes">
+				<source>July</source>
+			<target state="final">Июль</target></trans-unit>
+      <trans-unit id="month.08" xml:space="preserve" approved="yes">
+				<source>August</source>
+			<target state="final">Август</target></trans-unit>
+      <trans-unit id="month.09" xml:space="preserve" approved="yes">
+				<source>September</source>
+			<target state="final">Сентябрь</target></trans-unit>
+      <trans-unit id="month.10" xml:space="preserve" approved="yes">
+				<source>October</source>
+			<target state="final">Октябрь</target></trans-unit>
+      <trans-unit id="month.11" xml:space="preserve" approved="yes">
+				<source>November</source>
+			<target state="final">Ноябрь</target></trans-unit>
+      <trans-unit id="month.12" xml:space="preserve" approved="yes">
+				<source>December</source>
+			<target state="final">Декабрь</target></trans-unit>
+      <trans-unit id="day.1" xml:space="preserve" approved="yes">
+				<source>Monday</source>
+			<target state="final">Понедельник</target></trans-unit>
+      <trans-unit id="day.2" xml:space="preserve" approved="yes">
+				<source>Tuesday</source>
+			<target state="final">Вторник</target></trans-unit>
+      <trans-unit id="day.3" xml:space="preserve" approved="yes">
+				<source>Wednesday</source>
+			<target state="final">Среда</target></trans-unit>
+      <trans-unit id="day.4" xml:space="preserve" approved="yes">
+				<source>Thursday</source>
+			<target state="final">Четверг</target></trans-unit>
+      <trans-unit id="day.5" xml:space="preserve" approved="yes">
+				<source>Friday</source>
+			<target state="final">Пятница</target></trans-unit>
+      <trans-unit id="day.6" xml:space="preserve" approved="yes">
+				<source>Saturday</source>
+			<target state="final">Суббота</target></trans-unit>
+      <trans-unit id="day.7" xml:space="preserve" approved="yes">
+				<source>Sunday</source>
+			<target state="final">Воскресенье</target></trans-unit>
+      <trans-unit id="dateFormat" xml:space="preserve" approved="yes">
+				<source>%m/%d/%Y</source>
+			<target state="final">%d.%m.%Y</target></trans-unit>
+      <trans-unit id="list_nonewsfound" xml:space="preserve" approved="yes">
+				<source>No news available.</source>
+			<target state="final">Новости отсутствуют.</target></trans-unit>
+      <trans-unit id="list_nocategoriesfound" xml:space="preserve" approved="yes">
+				<source>No categories available.</source>
+			<target state="final">Категории недоступны.</target></trans-unit>
+      <trans-unit id="newsNotFound" xml:space="preserve" approved="yes">
+				<source>The news record is not available anymore.</source>
+			<target state="final">Запись новостей более недоступна.</target></trans-unit>
+    </body>
+  </file>
+</xliff>
