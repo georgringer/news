@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T22:47:43Z" product-name="news" target-language="de">
+    <header/>
+    <body>
+      <trans-unit id="showinpreview.description" xml:space="preserve" approved="yes">
+				<source>If set, this media element will be rendered in the list view (or where it is desired by changing the templates).</source>
+			<target state="final">Wenn gesetzt, wird dieses Medienelement in der Listenansicht dargestellt (oder wo es durch Ändern der Vorlagen gewünscht wird).</target></trans-unit>
+    </body>
+  </file>
+</xliff>
