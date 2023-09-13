@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:17Z" product-name="news" target-language="de">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Tag record</source>
+			<target state="final">Tag-Eintrag</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>News records can be tagged by those records</source>
+			<target state="final">News-Einträge können von diesen Datensätzen markiert werden</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="final">Mehr Informationen unter http://www.montagmorgen.at/</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden elements are never shown in the frontend.</source>
+			<target state="final">Versteckte Elemente werden auf der Website nicht angezeigt.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Title of the tag.</source>
+			<target state="final">Titel des Tags.</target></trans-unit>
+    </body>
+  </file>
+</xliff>
