@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:52Z" product-name="news" target-language="ru">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Link record</source>
+			<target state="final">Запись ссылки</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Relation to other pages and records.</source>
+			<target state="final">Связь с другими страницами и записями.</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="final">Смотрите также сайт http://www.news.com/</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden elements are never shown in the frontend.</source>
+			<target state="final">Скрытые элементы ни при каких условиях не выводятся на сайте.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Optional title of a link.</source>
+			<target state="final">Возможное название для ссылки.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Description of a link.</source>
+			<target state="final">Описание ссылки.</target></trans-unit>
+      <trans-unit id="uri.description" xml:space="preserve" approved="yes">
+				<source>Link to a file, ... .</source>
+			<target state="final">Ссылка на файл...</target></trans-unit>
+    </body>
+  </file>
+</xliff>
