@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news" target-language="uk">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>News system</source>
+			<target state="final">Система новин</target></trans-unit>
+      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
+				<source>Versatile news system</source>
+			<target state="final">Універсальна система новин</target></trans-unit>
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="final">Налаштування</target></trans-unit>
+      <trans-unit id="flexforms_tab.additional" xml:space="preserve" approved="yes">
+				<source>Additional</source>
+			<target state="final">Додатково</target></trans-unit>
+      <trans-unit id="flexforms_tab.template" xml:space="preserve" approved="yes">
+				<source>Template</source>
+			<target state="final">Шаблон</target></trans-unit>
+      <trans-unit id="flexforms_general.mode" xml:space="preserve" approved="yes">
+				<source>What to display</source>
+			<target state="final">Що відображати</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_list" xml:space="preserve" approved="yes">
+				<source>List view</source>
+			<target state="final">У вигляді списку</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_listOnly" xml:space="preserve" approved="yes">
+				<source>List view (without overloading detail view)</source>
+			<target state="final">Перегляд списку (без перевантаження детального перегляду)</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_detail" xml:space="preserve" approved="yes">
+				<source>Detail view</source>
+			<target state="final">У вигляді подробиць</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchform" xml:space="preserve" approved="yes">
+				<source>Search form</source>
+			<target state="final">Форма пошуку</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchresult" xml:space="preserve" approved="yes">
+				<source>Search result</source>
+			<target state="final">Результати пошуку</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve" approved="yes">
+				<source>Date menu</source>
+			<target state="final">Меню Дата</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_selectedlist" xml:space="preserve" approved="yes">
+				<source>List of selected items</source>
+			<target state="final">Список вибраних елементів</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve" approved="yes">
+				<source>Category Menu</source>
+			<target state="final">Меню категорій</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve" approved="yes">
+				<source>No view yet configured</source>
+			<target state="final">Перегляд ще не налаштовано</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="final">Пошук</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve" approved="yes">
+				<source>Others</source>
+			<target state="final">Інші</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve" approved="yes">
+				<source>Tag list</source>
+			<target state="final">Список тегів</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve" approved="yes">
+				<source>Archive</source>
+			<target state="final">Архів</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve" approved="yes">
+				<source>Only active (non archived)</source>
+			<target state="final">Лише активні (не у архіві)</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve" approved="yes">
+				<source>Archived</source>
+			<target state="final">У архіві</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy" xml:space="preserve" approved="yes">
+				<source>Sort by</source>
+			<target state="final">Сортувати за</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve" approved="yes">
+				<source>Uid</source>
+			<target state="final">Uid</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
+				<source>Manual sorting</source>
+			<target state="final">Ручне сортування</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve" approved="yes">
+				<source>Last edited</source>
+			<target state="final">Останній відредагований</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve" approved="yes">
+				<source>Created</source>
+			<target state="final">Створено</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="final">Задана дата/час</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve" approved="yes">
+				<source>Title</source>
+			<target state="final">Назва</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection" xml:space="preserve" approved="yes">
+				<source>Sort direction</source>
+			<target state="final">Напрямок сортування</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve" approved="yes">
+				<source>Ascending</source>
+			<target state="final">За зростанням</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve" approved="yes">
+				<source>Descending</source>
+			<target state="final">За спаданням</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField" xml:space="preserve" approved="yes">
+				<source>Date field to use</source>
+			<target state="final">Поле дати для використання</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="final">Задана дата/час</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve" approved="yes">
+				<source>Archive date</source>
+			<target state="final">Дата архіву</target></trans-unit>
+      <trans-unit id="flexforms_general.categories" xml:space="preserve" approved="yes">
+				<source>Category selection</source>
+			<target state="final">Вибір категорії</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve" approved="yes">
+				<source>Category mode</source>
+			<target state="final">Режим категорій</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve" approved="yes">
+				<source>Don't care, show all</source>
+			<target state="final">Не хвилює, показати все</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve" approved="yes">
+				<source>Show items with selected categories (OR)</source>
+			<target state="final">Показати елементи з вибраними категоріями (АБО)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve" approved="yes">
+				<source>Show items with selected categories (AND)</source>
+			<target state="final">Показати елементи з вибраними категоріями (І)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve" approved="yes">
+				<source>Do NOT show items with selected categories (AND)</source>
+			<target state="final">Не показувати елементи з вибраними категоріями (І)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve" approved="yes">
+				<source>Do NOT show items with selected categories (OR)</source>
+			<target state="final">Не показувати елементи з вибраними категоріями (АБО)</target></trans-unit>
+      <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve" approved="yes">
+				<source>Include subcategories</source>
+			<target state="final">Включити підкатегорії</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Article date higher than:</source>
+			<target state="final">Дата статті вища за:</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Article date lower than:</source>
+			<target state="final">Дата статті нижча, ніж:</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction" xml:space="preserve" approved="yes">
+				<source>Top News</source>
+			<target state="final">Топ новини</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.1" xml:space="preserve" approved="yes">
+				<source>only Top News records</source>
+			<target state="final">лише записи Топ новин</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.2" xml:space="preserve" approved="yes">
+				<source>except Top News records</source>
+			<target state="final">крім записів Топ новин</target></trans-unit>
+      <trans-unit id="flexforms_general.singleNews" xml:space="preserve" approved="yes">
+				<source>Show a single news record</source>
+			<target state="final">Показати один запис новин</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve" approved="yes">
+				<source>Allow preview of hidden records</source>
+			<target state="final">Дозволити попередній перегляд прихованих записів</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="final">Ні</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="final">Так</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="final">Визначено в TypoScript</target></trans-unit>
+      <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="final">Визначено в TypoScript</target></trans-unit>
+      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
+				<source>[no constraint]</source>
+			<target state="final">[без обмежень]</target></trans-unit>
+      <trans-unit id="flexforms_general.selectedList" xml:space="preserve" approved="yes">
+				<source>List of articles</source>
+			<target state="final">Список статей</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve" approved="yes">
+				<source>Max width for media elements</source>
+			<target state="final">Максимальна ширина для медіа елементів</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve" approved="yes">
+				<source>Max height for media elements</source>
+			<target state="final">Максимальна висота для медіа елементів</target></trans-unit>
+      <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve" approved="yes">
+				<source>Length of teaser (in chars)</source>
+			<target state="final">Довжина тизера (в символах)</target></trans-unit>
+      <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
+				<source>Template Layout</source>
+			<target state="final">Макет шаблону</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve" approved="yes">
+				<source>1</source>
+			<target state="final">1</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve" approved="yes">
+				<source>2</source>
+			<target state="final">2</target></trans-unit>
+      <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
+				<source>PageId for single news display</source>
+			<target state="final">Ідентифікатор сторінки для окремого відображення новин</target></trans-unit>
+      <trans-unit id="flexforms_additional.backPid" xml:space="preserve" approved="yes">
+				<source>PageId to return to</source>
+			<target state="final">Ідентифікатор сторінки щоб повернутися до</target></trans-unit>
+      <trans-unit id="flexforms_additional.listPid" xml:space="preserve" approved="yes">
+				<source>PageId for list display</source>
+			<target state="final">Ідентифікатор сторінки для відображення списку</target></trans-unit>
+      <trans-unit id="flexforms_additional.limit" xml:space="preserve" approved="yes">
+				<source>Max records displayed</source>
+			<target state="final">Максимум записів для показу</target></trans-unit>
+      <trans-unit id="flexforms_additional.offset" xml:space="preserve" approved="yes">
+				<source>Starting with given news record. 0 means first record, 1 the 2nd one!</source>
+			<target state="final">Починаючи з даного запису новин. 0 означає перший запис, 1 - другий!</target></trans-unit>
+      <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve" approved="yes">
+				<source>Hide the pagination</source>
+			<target state="final">Приховати нумерацію сторінок</target></trans-unit>
+      <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve" approved="yes">
+				<source>Items per Page</source>
+			<target state="final">Елементів на сторінці</target></trans-unit>
+      <trans-unit id="flexforms_additional.topNewsFirst" xml:space="preserve" approved="yes">
+				<source>Sort &quot;Top news&quot; before</source>
+			<target state="final">Сортувати "Топ новини" раніше</target></trans-unit>
+      <trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve" approved="yes">
+				<source>Disable override demand</source>
+			<target state="final">Вимкнути перевизначення попиту</target></trans-unit>
+      <trans-unit id="flexforms_additional.excludeAlreadyDisplayedNews" xml:space="preserve" approved="yes">
+				<source>Exclude already displayed news</source>
+			<target state="final">Виключити вже показані новини</target></trans-unit>
+      <trans-unit id="flexforms_additional.tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="final">Мітки</target></trans-unit>
+      <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve" approved="yes">
+				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
+			<target state="final">Сторінка з ідентифікатором "% s" більше не доступна!</target></trans-unit>
+      <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve" approved="yes">
+				<source>Record with uid "%s" is not available anymore!</source>
+			<target state="final">Запис із ідентифікатором "% s" більше не доступний!</target></trans-unit>
+      <trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve" approved="yes">
+				<source>News record with uid &quot;%s&quot; is not available anymore!</source>
+			<target state="final">Запис новини з ідентифікатором "%s" більше не доступний!</target></trans-unit>
+      <trans-unit id="pagemodule.switchToPage" xml:space="preserve" approved="yes">
+				<source>Switch to this page</source>
+			<target state="final">Перемкнути на цю сторінку</target></trans-unit>
+      <trans-unit id="pagemodule_simple" xml:space="preserve" approved="yes">
+				<source>Simple list</source>
+			<target state="final">Простий список</target></trans-unit>
+      <trans-unit id="pagemodule_advanced" xml:space="preserve" approved="yes">
+				<source>Advanced list</source>
+			<target state="final">Розширений список</target></trans-unit>
+      <trans-unit id="pagemodule_complex" xml:space="preserve" approved="yes">
+				<source>Full list</source>
+			<target state="final">Повний список</target></trans-unit>
+      <trans-unit id="extmng.prependAtCopy" xml:space="preserve" approved="yes">
+				<source>Prepend at copy: Prepend string &quot;copy X&quot;.</source>
+			<target state="final">Додати перед копіюванням: Додати перед рядком "копіювати X".</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction" xml:space="preserve" approved="yes">
+				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
+			</source>
+			<target state="final">Обмеження категорій: обмежте доступні категорії в записах новин. PageTsConfig:
+TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Ця функція наразі розробляється і не очікується, що вона працюватиме!
+			</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve" approved="yes">
+				<source>Categories from current page</source>
+			<target state="final">Категорії з поточної сторінки</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.siteroot" xml:space="preserve" approved="yes">
+				<source>Categories from site root</source>
+			<target state="final">Категорії кореня сайту</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.pages_tsconfig" xml:space="preserve" approved="yes">
+				<source>Page TsConfig</source>
+			<target state="final">Сторінка TsConfig</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.none" xml:space="preserve" approved="yes">
+				<source>No restriction</source>
+			<target state="final">Без обмежень</target></trans-unit>
+      <trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve" approved="yes">
+				<source>Editor needs to have permissions to all selected categories to save a news item</source>
+			<target state="final">Щоб зберегти новину, редактору потрібні дозволи на всі вибрані категорії</target></trans-unit>
+      <trans-unit id="extmng.manualSorting" xml:space="preserve" approved="yes">
+				<source>Enable manual sorting of news records</source>
+			<target state="final">Увімкнути ручне сортування записів новин</target></trans-unit>
+      <trans-unit id="extmng.contentElementRelation" xml:space="preserve" approved="yes">
+				<source>Use content element relation:If set, content elements can be added to news records.</source>
+			<target state="final">Використовувати зв’язок елемента вмісту: якщо встановлено, елементи вмісту можна додавати до записів новин.</target></trans-unit>
+      <trans-unit id="extmng.contentElementPreview" xml:space="preserve" approved="yes">
+				<source>Improved preview of content element relations:If set, the preview in the backend is rendered as in the page module.</source>
+			<target state="final">Покращено попередній перегляд зв’язків елементів вмісту: якщо встановлено, попередній перегляд у серверній частині відображається як у модулі сторінки.</target></trans-unit>
+      <trans-unit id="extmng.tagPid" xml:space="preserve" approved="yes">
+				<source>Define pid of tag records:Tags are collected on one central page.</source>
+			<target state="final">Визначте pid записів тегів: теги зібрані на одній центральній сторінці.</target></trans-unit>
+      <trans-unit id="extmng.archiveDate" xml:space="preserve" approved="yes">
+				<source>Archive Date: Define if the archive date is a &quot;Date&quot; or &quot;Date &amp; Time&quot;</source>
+			<target state="final">Дата архіву: Визначте, чи є дата архіву "Дата" чи "Дата &amp; Час"</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.date" xml:space="preserve" approved="yes">
+				<source>Date</source>
+			<target state="final">Дата</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve" approved="yes">
+				<source>Date &amp; Time</source>
+			<target state="final">Дата &amp; Час</target></trans-unit>
+      <trans-unit id="extmng.showImporter" xml:space="preserve" approved="yes">
+				<source>Show importer:Backend module to import into news</source>
+			<target state="final">Показати імпортер: серверний модуль для імпорту в новини</target></trans-unit>
+      <trans-unit id="extmng.storageUidImporter" xml:space="preserve" approved="yes">
+				<source>UID of storage to use when importing files/images:Default (fileadmin) storage is 1</source>
+			<target state="final">UID сховища для використання під час імпорту файлів/зображень: сховище за замовчуванням (fileadmin) дорівнює 1</target></trans-unit>
+      <trans-unit id="extmng.resourceFolderImporter" xml:space="preserve" approved="yes">
+				<source>In which folder should the importer save files/images (has to exist)</source>
+			<target state="final">У якій папці імпортер має зберігати файли/зображення (має існувати)</target></trans-unit>
+      <trans-unit id="extmng.showAdministrationModule" xml:space="preserve" approved="yes">
+				<source>Show administration module:Backend module to administrate news records</source>
+			<target state="final">Показати модуль адміністрування: серверний модуль для адміністрування записів новин</target></trans-unit>
+      <trans-unit id="extmng.rteForTeaser" xml:space="preserve" approved="yes">
+				<source>Enable a RTE for the teaser field.</source>
+			<target state="final">Увімкніть RTE для поля тизера.</target></trans-unit>
+      <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve" approved="yes">
+				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
+			<target state="final">Вимкнути обов’язкове поле дати: якщо встановлено, поле дати не є обов’язковим і не заповнюється автоматично під час створення нового запису.</target></trans-unit>
+      <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve" approved="yes">
+				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
+			<target state="final">Приховати дерево сторінок для модуля адміністрування: щоб спростити використання, приховайте дерево сторінок для модуля адміністрування.</target></trans-unit>
+      <trans-unit id="extmng.mediaPreview" xml:space="preserve" approved="yes">
+				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
+			<target state="final">Показувати ескізи в модулі внутрішнього списку: якщо ввімкнено, модуль списку показуватиме мініатюри медіа-елементів.</target></trans-unit>
+      <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve" approved="yes">
+				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
+			<target state="final">Розширена конфігурація попереднього перегляду для медіа-файлів: якщо ввімкнено, для редакторів доступні додаткові параметри, які визначають, де має відображатися медіа-елемент.</target></trans-unit>
+      <trans-unit id="extmng.slugBehaviour" xml:space="preserve" approved="yes">
+				<source>Slug behaviour: uniqueInSite: The same slug can be used for news in different sites. Use this setting *only* if no news records are shared between sites. "unique" means that same news title will lead to different slug names.</source>
+			<target state="final">Поведінка слагу: uniqueInSite: той самий слаг можна використовувати для новин на різних сайтах. Використовуйте це налаштування *лише*, якщо сайти не використовують спільні записи новин. «унікальний» означає, що той самий заголовок новин призведе до різних імен слагів.</target></trans-unit>
+      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
+				<source>Use this overlay for news categories in the Backend</source>
+			<target state="final">Використовуйте це накладання для категорій новин у бекенді</target></trans-unit>
+      <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
+				<source>There are no languages available, so nothing to choose.</source>
+			<target state="final">Немає доступних мов, тому нічого обрати.</target></trans-unit>
+      <trans-unit id="start_import" xml:space="preserve" approved="yes">
+				<source>Start import with %s record(s).</source>
+			<target state="final">Розпочати імпорт з %s запису(ів).</target></trans-unit>
+      <trans-unit id="tag_suggest" xml:space="preserve" approved="yes">
+				<source>Tag &quot;%s&quot; could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
+			<target state="final">Тег "%s" не знайдено, хочете створити його? &lt;strong&gt;Натисніть тут&lt;/strong&gt;</target></trans-unit>
+      <trans-unit id="tag_suggest2" xml:space="preserve" approved="yes">
+				<source>Tag could not be found, wanna create it? Click here!</source>
+			<target state="final">Тег не знайдено, хочете створити його? Натисніть тут!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve" approved="yes">
+				<source>No tag submitted!</source>
+			<target state="final">Немає відправлених тегів!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-newsid" xml:space="preserve" approved="yes">
+				<source>No news id given!</source>
+			<target state="final">Не вказано ідентифікатор новин!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-found" xml:space="preserve" approved="yes">
+				<source>No pid for the tag record could be found by reading settings of Extension Manager!</source>
+			<target state="final">Не вдалося знайти pid для запису тегу, прочитавши налаштування Extension Manager!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag-created" xml:space="preserve" approved="yes">
+				<source>No new tag created!</source>
+			<target state="final">Новий тег не створено!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-defined" xml:space="preserve" approved="yes">
+				<source>No page defined to save tag. Please add the id in the settings of the extension manager.</source>
+			<target state="final">Не визначено сторінку для збереження тегу. Будь ласка, додайте ідентифікатор у налаштуваннях менеджера розширень.</target></trans-unit>
+      <trans-unit id="module.headline" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="final">Налаштування</target></trans-unit>
+      <trans-unit id="module.recursive" xml:space="preserve" approved="yes">
+				<source>Recursive</source>
+			<target state="final">Рекурсивно</target></trans-unit>
+      <trans-unit id="module.timeRange" xml:space="preserve" approved="yes">
+				<source>Time range</source>
+			<target state="final">Діапазон часу</target></trans-unit>
+      <trans-unit id="module.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Time Restriction</source>
+			<target state="final">Обмеження часу</target></trans-unit>
+      <trans-unit id="module.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Time Restriction High</source>
+			<target state="final">Високе обмеження часу</target></trans-unit>
+      <trans-unit id="module.createNewCategory" xml:space="preserve" approved="yes">
+				<source>Create a new category</source>
+			<target state="final">Створити нову категорію</target></trans-unit>
+      <trans-unit id="module.createNewNewsRecord" xml:space="preserve" approved="yes">
+				<source>Create new news record</source>
+			<target state="final">Створити новий запис новин</target></trans-unit>
+      <trans-unit id="module.createNewTag" xml:space="preserve" approved="yes">
+				<source>Create new tag record</source>
+			<target state="final">Створити новий запис тегу</target></trans-unit>
+      <trans-unit id="module.topNewsYes" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="final">Так</target></trans-unit>
+      <trans-unit id="module.topNewsNo" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="final">Ні</target></trans-unit>
+      <trans-unit id="module.searchWord" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="final">Пошук</target></trans-unit>
+      <trans-unit id="module.newsListing" xml:space="preserve" approved="yes">
+				<source>News Listing</source>
+			<target state="final">Список новин</target></trans-unit>
+      <trans-unit id="module.newsCount" xml:space="preserve" approved="yes">
+				<source>%s news records</source>
+			<target state="final">%s записи новин</target></trans-unit>
+      <trans-unit id="module.newsPidListing" xml:space="preserve" approved="yes">
+				<source>News Pid listing</source>
+			<target state="final">Список новин Pid</target></trans-unit>
+      <trans-unit id="module.donate" xml:space="preserve" approved="yes">
+				<source>Support &amp; Donate</source>
+			<target state="final">Підтримати &amp; Пожертвувати</target></trans-unit>
+      <trans-unit id="administration.title" xml:space="preserve" approved="yes">
+				<source>News administration</source>
+			<target state="final">Адміністрування новин</target></trans-unit>
+      <trans-unit id="administration.nopageselected" xml:space="preserve" approved="yes">
+				<source>Please click the page title in the page tree to the left to show the records on that page.</source>
+			<target state="final">Клацніть назву сторінки в дереві сторінок ліворуч, щоб відобразити записи на цій сторінці.</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.header" xml:space="preserve" approved="yes">
+				<source>List pages with count of news &amp; category records</source>
+			<target state="final">Список сторінок із кількістю новин &amp; записів категорій</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.description" xml:space="preserve" approved="yes">
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
+			</source>
+			<target state="final">Виберіть рекурсивний рівень, щоб відобразити дерево сторінок із відповідними записами. Клацніть на заголовку сторінки, щоб переглянути записи новин сторінки.
+			</target></trans-unit>
+      <trans-unit id="administration.nolimit" xml:space="preserve" approved="yes">
+				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
+			<target state="final">У налаштуванні "%s" обмеження не визначено! Включіть типовий TypoScript у кореневу сторінку.</target></trans-unit>
+      <trans-unit id="administration.toggleForm" xml:space="preserve" approved="yes">
+				<source>Show/Hide filter</source>
+			<target state="final">Показати/приховати фільтр</target></trans-unit>
+      <trans-unit id="administration.nonewsfound" xml:space="preserve" approved="yes">
+				<source>No news found</source>
+			<target state="final">Новин не знайдено</target></trans-unit>
+      <trans-unit id="administration.nonewsfoundText" xml:space="preserve" approved="yes">
+				<source>The current page does not contain any news records. Either select another page in the page tree on the left or create the first news record on this page.</source>
+			<target state="final">Поточна сторінка не містить записів новин. Або виберіть іншу сторінку в дереві сторінок ліворуч, або створіть перший запис новин на цій сторінці.</target></trans-unit>
+      <trans-unit id="administration.nonewsfoundSwitch" xml:space="preserve" approved="yes">
+				<source>See all pages containing news records</source>
+			<target state="final">Переглянути всі сторінки, що містять записи новин</target></trans-unit>
+      <trans-unit id="administration.filter.hidden" xml:space="preserve" approved="yes">
+				<source>Hidden</source>
+			<target state="final">Приховано</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.hidden" xml:space="preserve" approved="yes">
+				<source>only hidden</source>
+			<target state="final">тільки приховані</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve" approved="yes">
+				<source>only non-hidden</source>
+			<target state="final">тільки не приховані</target></trans-unit>
+      <trans-unit id="administration.donation.title" xml:space="preserve" approved="yes">
+				<source>Support &amp; Donate</source>
+			<target state="final">Підтримати &amp; Пожертвувати</target></trans-unit>
+      <trans-unit id="administration.donation.link" xml:space="preserve" approved="yes">
+				<source>Click so see all options</source>
+			<target state="final">Клацніть, щоб побачити всі параметри</target></trans-unit>
+      <trans-unit id="administration.donation.lead_intro" xml:space="preserve" approved="yes">
+				<source>Great that you are using this extension!</source>
+			<target state="final">Чудово, що ви використовуєте це розширення!</target></trans-unit>
+      <trans-unit id="administration.donation.lead_full" xml:space="preserve" approved="yes">
+				<source>The editors have created %d articles with %d relations to categories.</source>
+			<target state="final">Редакція створила %d статей з %d відношеннями до категорій.</target></trans-unit>
+      <trans-unit id="administration.donation.lead_news_only" xml:space="preserve" approved="yes">
+				<source>The editors have created %d articles.</source>
+			<target state="final">Редактори створили %d статей.</target></trans-unit>
+      <trans-unit id="administration.donation.lead_none" xml:space="preserve" approved="yes">
+				<source>Did you just setup the system? No articles yet created.</source>
+			<target state="final">Ви щойно налаштували систему? Ще не створено статей.</target></trans-unit>
+      <trans-unit id="administration.donation.support" xml:space="preserve" approved="yes">
+				<source>Help supporting further development</source>
+			<target state="final">Допомога в підтримці подальшого розвитку</target></trans-unit>
+      <trans-unit id="administration.donation.why" xml:space="preserve" approved="yes">
+				<source>Why?</source>
+			<target state="final">Чому?</target></trans-unit>
+      <trans-unit id="administration.donation.why.text" xml:space="preserve" approved="yes">
+				<source>The news extension is a powerful tool with a lot of features, always trying to thrive on the latest
+            possibilities of the TYPO3 core.
+            This implies a lot of work bringing this to the TYPO3 community.</source>
+			<target state="final">Розширення новин — це потужний інструмент із багатьма функціями, який завжди намагається процвітати завдяки останнім можливостям ядра TYPO3.
+Це передбачає велику роботу, щоб донести це до спільноти TYPO3.</target></trans-unit>
+      <trans-unit id="administration.donation.how" xml:space="preserve" approved="yes">
+				<source>How?</source>
+			<target state="final">Як?</target></trans-unit>
+      <trans-unit id="administration.donation.how.text" xml:space="preserve" approved="yes">
+				<source>There are multiple ways to support the further development:</source>
+			<target state="final">Є кілька способів підтримки подальшого розвитку:</target></trans-unit>
+      <trans-unit id="administration.donation.invoice" xml:space="preserve" approved="yes">
+				<source>Invoice</source>
+			<target state="final">Рахунок-фактура</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.sub" xml:space="preserve" approved="yes">
+				<source>An invoice is possible!</source>
+			<target state="final">Рахунок-фактура можливо!</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.text" xml:space="preserve" approved="yes">
+				<source>I can create a proper invoice to keep your accounting happy - contact me for details.</source>
+			<target state="final">Я можу створити належний рахунок-фактуру, щоб ваш облік був задоволеним - зв’яжіться зі мною для отримання деталей.</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.sub" xml:space="preserve" approved="yes">
+				<source>Support me on patreon.com</source>
+			<target state="final">Підтримайте мене на patreon.com</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.text" xml:space="preserve" approved="yes">
+				<source>Support me on patreon and get access to additional extensions and snippets as reward.</source>
+			<target state="final">Підтримайте мене на Patreon і отримайте доступ до додаткових розширень та фрагментів коду, як винагороду та подяку за підтримку.</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.sub" xml:space="preserve" approved="yes">
+				<source>Donate via PayPal</source>
+			<target state="final">Пожертвувати через Paypal</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.text" xml:space="preserve" approved="yes">
+				<source>Support me by a donation on paypal.com. It is just one click away.</source>
+			<target state="final">Підтримайте мене пожертвою на paypal.com. Це лише один клік.</target></trans-unit>
+      <trans-unit id="administration.donation.amazon" xml:space="preserve" approved="yes">
+				<source>Amazon wishlist</source>
+			<target state="final">Перелік мої бажань на Amazon</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.sub" xml:space="preserve" approved="yes">
+				<source>Satisfy a wish of my Amazon wishlist</source>
+			<target state="final">Задові́льніть мої потреби з мого списку бажань на Amazon</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.text" xml:space="preserve" approved="yes">
+				<source>Most of the listed products are for my family and our hobby cooking. Make us happy!</source>
+			<target state="final">Більшість із перелічених продуктів є для моєї родини та для нашого хобі кулінарії. Порадуйте нас!</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors" xml:space="preserve" approved="yes">
+				<source>Current sponsors</source>
+			<target state="final">Поточні спонсори</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors.text" xml:space="preserve" approved="yes">
+				<source>The following companies and people have already supported me.</source>
+			<target state="final">Наступні компанії та люди, мене вже підтримали.</target></trans-unit>
+      <trans-unit id="news-folder" xml:space="preserve" approved="yes">
+				<source>News</source>
+			<target state="final">Новини</target></trans-unit>
+      <trans-unit id="news-page" xml:space="preserve" approved="yes">
+				<source>Page with news plugins</source>
+			<target state="final">Сторінка з додатком новин</target></trans-unit>
+      <trans-unit id="import.header" xml:space="preserve" approved="yes">
+				<source>News Importer</source>
+			<target state="final">Імпорт новин</target></trans-unit>
+      <trans-unit id="import.choose_a_job" xml:space="preserve" approved="yes">
+				<source>Choose a job</source>
+			<target state="final">Виберіть роботу</target></trans-unit>
+      <trans-unit id="import.description" xml:space="preserve" approved="yes">
+				<source>This is the "News importer module". </source>
+			<target state="final">Це "Модуль імпортера новин". </target></trans-unit>
+      <trans-unit id="import.done" xml:space="preserve" approved="yes">
+				<source>The import has been completed. Reload the module to start a new one.</source>
+			<target state="final">Імпорт завершено. Перезавантажте модуль, щоб почати новий.</target></trans-unit>
+      <trans-unit id="import.backupwarning" xml:space="preserve" approved="yes">
+				<source>It's strongly recommended to backup all news tables before running an import job.</source>
+			<target state="final">Наполегливо рекомендується створити резервну копію всіх таблиць новин перед запуском процесу імпорту.</target></trans-unit>
+      <trans-unit id="import.backupwarning.header" xml:space="preserve" approved="yes">
+				<source>Important!</source>
+			<target state="final">Важливо!</target></trans-unit>
+      <trans-unit id="import.nojobs" xml:space="preserve" approved="yes">
+				<source>No jobs available for the importer.</source>
+			<target state="final">Жодних робіт для імпортера немає.</target></trans-unit>
+      <trans-unit id="import.error.configuration.title" xml:space="preserve" approved="yes">
+				<source>The configuration for the import is incomplete!</source>
+			<target state="final">Конфігурація імпорту неповна!</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter" xml:space="preserve" approved="yes">
+				<source>Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</source>
+			<target state="final">Будь ласка, визначте налаштування "resourceFolderImporter" у конфігурації менеджера розширень! Даний каталог буде містити всі імпортовані файли.</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter.notExist" xml:space="preserve" approved="yes">
+				<source>The directory defined in the setting "resourceFolderImporter" does not exist!</source>
+			<target state="final">Каталог, визначений у налаштуваннях "resourceFolderImporter", відсутній!</target></trans-unit>
+      <trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve" approved="yes">
+				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
+			<target state="final">Будь ласка, визначте налаштування "storageUidImporter" у конфігурації менеджера розширень! Даний ідентифікатор - це використане сховище файлів.</target></trans-unit>
+      <trans-unit id="record.savingdisabled.header" approved="yes">
+        <source>Saving is disabled</source>
+        <target state="final">Збереження вимкнено</target>
+      </trans-unit>
+      <trans-unit id="record.savingdisabled.content" approved="yes">
+        <source>This record has the following categories assigned that are not defined in your permissions:</source>
+        <target state="final">Цей запис містить категорії, які не визначені у ваших дозволах:</target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.title" approved="yes">
+        <source>Content elements are hidden</source>
+        <target state="final">Елементи вмісту приховані</target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.description" approved="yes">
+        <source>Content elements are hidden in sys folders of type "news"!</source>
+        <target state="final">Елементи вмісту приховані в системних теках типу "новини"!</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
