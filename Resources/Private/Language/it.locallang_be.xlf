@@ -546,8 +546,10 @@
         <target state="final">Il salvataggio è disabilitato</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content" approved="yes">
-        <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="final">Questo record ha le seguenti categorie assegnate che non sono state definite nei tuoi permessi:</target>
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">Questo record ha le seguenti categorie assegnate che non sono state definite nei tuoi permessi:
+                </target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title" approved="yes">
         <source>Content elements are hidden</source>
