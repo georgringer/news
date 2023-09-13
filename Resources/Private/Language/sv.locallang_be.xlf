@@ -523,8 +523,10 @@
         <target state="final">Sparfunktionen är avaktiverad</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content" approved="yes">
-        <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="final">Denna post har följande kategorier tilldelade, som ej finns definierade i dina rättigheter:</target>
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">Denna post har följande kategorier tilldelade, som ej finns definierade i dina rättigheter:
+                </target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title" approved="yes">
         <source>Content elements are hidden</source>
