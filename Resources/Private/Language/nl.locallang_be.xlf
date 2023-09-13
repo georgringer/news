@@ -535,8 +535,10 @@
         <target state="final">Opslaan is uitgeschakeld</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content" approved="yes">
-        <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="final">Dit record heeft de volgende categorieën toegewezen die niet gedefinieerd zijn in uw permissies:</target>
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">Dit record heeft de volgende categorieën toegewezen die niet gedefinieerd zijn in uw permissies:
+                </target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title" approved="yes">
         <source>Content elements are hidden</source>
