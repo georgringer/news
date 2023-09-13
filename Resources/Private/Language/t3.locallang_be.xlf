@@ -9,6 +9,61 @@
       <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
 				<source>Versatile news system</source>
 			<target>crwdns17990:0crwdne17990:0</target></trans-unit>
+      <trans-unit id="plugin.news_list.title" xml:space="preserve">
+				<source>List articles with detail view</source>
+			<target>crwdns292815:0crwdne292815:0</target></trans-unit>
+      <trans-unit id="plugin.news_list.description" xml:space="preserve">
+				<source>Display of articles chosen by various optional properties like storage page, categories,...
+					Plugin is capable of displaying the detail view as well.</source>
+			<target>crwdns292817:0crwdne292817:0</target></trans-unit>
+      <trans-unit id="plugin.news_list_sticky.title" xml:space="preserve">
+				<source>Sticky article list view</source>
+			<target>crwdns292819:0crwdne292819:0</target></trans-unit>
+      <trans-unit id="plugin.news_list_sticky.description" xml:space="preserve">
+				<source>Display of articles chosen by various optional properties like storage page, categories,...</source>
+			<target>crwdns292821:0crwdne292821:0</target></trans-unit>
+      <trans-unit id="plugin.news_detail.title" xml:space="preserve">
+				<source>Article detail view</source>
+			<target>crwdns292823:0crwdne292823:0</target></trans-unit>
+      <trans-unit id="plugin.news_detail.description" xml:space="preserve">
+				<source>Display the detail view of an article</source>
+			<target>crwdns292825:0crwdne292825:0</target></trans-unit>
+      <trans-unit id="plugin.news_date_menu.title" xml:space="preserve">
+				<source>Date menu of articles</source>
+			<target>crwdns292827:0crwdne292827:0</target></trans-unit>
+      <trans-unit id="plugin.news_date_menu.description" xml:space="preserve">
+				<source>Display a menu of months &amp; years of articles. The menu can be used to filter a list view dynamically.</source>
+			<target>crwdns292829:0crwdne292829:0</target></trans-unit>
+      <trans-unit id="plugin.news_search_form.title" xml:space="preserve">
+				<source>Search form</source>
+			<target>crwdns292831:0crwdne292831:0</target></trans-unit>
+      <trans-unit id="plugin.news_search_form.description" xml:space="preserve">
+				<source>Display a search form to let users search within articles</source>
+			<target>crwdns292833:0crwdne292833:0</target></trans-unit>
+      <trans-unit id="plugin.news_search_result.title" xml:space="preserve">
+				<source>Search result</source>
+			<target>crwdns292835:0crwdne292835:0</target></trans-unit>
+      <trans-unit id="plugin.news_search_result.description" xml:space="preserve">
+				<source>Display the result of the search</source>
+			<target>crwdns292837:0crwdne292837:0</target></trans-unit>
+      <trans-unit id="plugin.news_selected_list.title" xml:space="preserve">
+				<source>Selected list of articles</source>
+			<target>crwdns292839:0crwdne292839:0</target></trans-unit>
+      <trans-unit id="plugin.news_selected_list.description" xml:space="preserve">
+				<source>Display a manually picked list of articles.</source>
+			<target>crwdns292841:0crwdne292841:0</target></trans-unit>
+      <trans-unit id="plugin.category_list.title" xml:space="preserve">
+				<source>Category menu</source>
+			<target>crwdns292843:0crwdne292843:0</target></trans-unit>
+      <trans-unit id="plugin.category_list.description" xml:space="preserve">
+				<source>Display a menu of categories. The menu can be used to filter a list view dynamically.</source>
+			<target>crwdns292845:0crwdne292845:0</target></trans-unit>
+      <trans-unit id="plugin.tag_list.title" xml:space="preserve">
+				<source>Tag list</source>
+			<target>crwdns292847:0crwdne292847:0</target></trans-unit>
+      <trans-unit id="plugin.tag_list.description" xml:space="preserve">
+				<source>Display a list of tags. The list can be used to filter a list view dynamically.</source>
+			<target>crwdns292849:0crwdne292849:0</target></trans-unit>
       <trans-unit id="flexforms_tab.settings" xml:space="preserve">
 				<source>Settings</source>
 			<target>crwdns17992:0crwdne17992:0</target></trans-unit>
@@ -543,8 +598,10 @@
         <target>crwdns18338:0crwdne18338:0</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content">
-        <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target>crwdns18340:0crwdne18340:0</target>
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target>crwdns18340:0crwdne18340:0
+                </target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title">
         <source>Content elements are hidden</source>
