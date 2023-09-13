@@ -444,8 +444,10 @@
         <target state="final">Ukládání je zakázáno</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content" approved="yes">
-        <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="final">Tento záznam má přiřazené následující kategorie, které nejsou definovány ve vašich oprávněních:</target>
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">Tento záznam má přiřazené následující kategorie, které nejsou definovány ve vašich oprávněních:
+                </target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title" approved="yes">
         <source>Content elements are hidden</source>
