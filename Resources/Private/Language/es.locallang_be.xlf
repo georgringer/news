@@ -519,8 +519,10 @@
         <target state="final">La búsqueda está desactivada</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content" approved="yes">
-        <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="final">Este registro tiene las siguientes categorías asignadas que no están definidas en sus permisos:</target>
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">Este registro tiene las siguientes categorías asignadas que no están definidas en sus permisos:
+                </target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title" approved="yes">
         <source>Content elements are hidden</source>
