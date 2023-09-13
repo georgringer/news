@@ -525,8 +525,10 @@
         <target state="final">ذخیره غیرفعال است</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content" approved="yes">
-        <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="final">به این ردیف دسته‌هائی منتسب شده که در حیطۀ مجوزهای شما قرار ندارد:</target>
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">به این ردیف دسته‌هائی منتسب شده که در حیطۀ مجوزهای شما قرار ندارد:
+                </target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title" approved="yes">
         <source>Content elements are hidden</source>
