@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:11Z" product-name="news" target-language="uk">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>News record</source>
+			<target state="final">Запис новин</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Versatile news system.</source>
+			<target state="final">Універсальна система новин.</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
+				<source>Language of the news record.</source>
+			<target state="final">Мова запису новин.</target></trans-unit>
+      <trans-unit id="starttime.description" xml:space="preserve" approved="yes">
+				<source>Define a date on which the news record should be shown.</source>
+			<target state="final">Визначте дату показу запису новин.</target></trans-unit>
+      <trans-unit id="endtime.description" xml:space="preserve" approved="yes">
+				<source>Define a date on which the news record should be hidden.</source>
+			<target state="final">Визначте дату, коли запис новини має бути приховано.</target></trans-unit>
+      <trans-unit id="fe_group.description" xml:space="preserve" approved="yes">
+				<source>Select the user groups which are allowed to see the news record.</source>
+			<target state="final">Виберіть групи користувачів, яким дозволено переглядати запис новин.</target></trans-unit>
+      <trans-unit id="editlock.description" xml:space="preserve" approved="yes">
+				<source>If checked, this news record can only be edited by administrators.</source>
+			<target state="final">Якщо позначено, цей запис новин можуть редагувати лише адміністратори.</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden records are not shown in the frontend.</source>
+			<target state="final">Приховані записи не відображаються у фронтенді.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>News title</source>
+			<target state="final">Заголовок новини</target></trans-unit>
+      <trans-unit id="alternative_title.description" xml:space="preserve" approved="yes">
+				<source>Alternative Title will be used as the title for the browser window / tab</source>
+			<target state="final">Альтернативний заголовок використовуватиметься як заголовок для вікна/вкладки браузера</target></trans-unit>
+      <trans-unit id="teaser.description" xml:space="preserve" approved="yes">
+				<source>Be aware that it can be cropped.</source>
+			<target state="final">Майте на увазі, що його можна обрізати.</target></trans-unit>
+      <trans-unit id="type.description" xml:space="preserve" approved="yes">
+				<source>Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</source>
+			<target state="final">Виберіть тип, яким може бути звичайний запис новин, посилання на внутрішню сторінку або посилання на зовнішню сторінку.</target></trans-unit>
+      <trans-unit id="istopnews.description" xml:space="preserve" approved="yes">
+				<source>Top news records can get a special treated concerning layout, sorting, ...</source>
+			<target state="final">Записи найпопулярніших новин можуть отримати особливу обробку щодо компонування, сортування, ...</target></trans-unit>
+      <trans-unit id="author.description" xml:space="preserve" approved="yes">
+				<source>Author of the news record</source>
+			<target state="final">Автор запису новин</target></trans-unit>
+      <trans-unit id="author_email.description" xml:space="preserve" approved="yes">
+				<source>Email address of the author</source>
+			<target state="final">Електронна адреса автора</target></trans-unit>
+      <trans-unit id="datetime.description" xml:space="preserve" approved="yes">
+				<source>Date of the news record</source>
+			<target state="final">Дата запису новини</target></trans-unit>
+      <trans-unit id="archive.description" xml:space="preserve" approved="yes">
+				<source>Archive date. A date is required if the news record should once be treated as archived news.</source>
+			<target state="final">Дата архіву. Дата обов’язкова, якщо запис новин колись слід буде розглядати як архівні новини.</target></trans-unit>
+      <trans-unit id="bodytext.description" xml:space="preserve" approved="yes">
+				<source>Main content of the news record</source>
+			<target state="final">Основний зміст запису новин</target></trans-unit>
+      <trans-unit id="categories.description" xml:space="preserve" approved="yes">
+				<source>Select the categories which are related to this record.</source>
+			<target state="final">Виберіть категорії, пов’язані з цим записом.</target></trans-unit>
+      <trans-unit id="tags.description" xml:space="preserve" approved="yes">
+				<source>Define and select tags which fit to the article.</source>
+			<target state="final">Визначте та виберіть теги, які підходять до статті.</target></trans-unit>
+      <trans-unit id="content_elements.description" xml:space="preserve" approved="yes">
+				<source>Content elements can be used to generate feature rich news articles.</source>
+			<target state="final">Елементи вмісту можна використовувати для створення статей новин, в яких багато функцій.</target></trans-unit>
+      <trans-unit id="keywords.description" xml:space="preserve" approved="yes">
+				<source>Define keywords which can be used for SEO optimizations.</source>
+			<target state="final">Визначте ключові слова, які можна використовувати для оптимізації SEO.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Define a description which can be used for SEO optimizations.</source>
+			<target state="final">Визначте опис, який можна використовувати для оптимізації SEO.</target></trans-unit>
+      <trans-unit id="related.description" xml:space="preserve" approved="yes">
+				<source>Select related news records.</source>
+			<target state="final">Виберіть відповідні записи новин.</target></trans-unit>
+      <trans-unit id="related_from.description" xml:space="preserve" approved="yes">
+				<source>Show news which select current news record as related.</source>
+			<target state="final">Показати новини, які вибирають поточний запис новин як споріднений.</target></trans-unit>
+      <trans-unit id="related_links.description" xml:space="preserve" approved="yes">
+				<source>Define related links to internal and external pages.</source>
+			<target state="final">Визначте відповідні посилання на внутрішні та зовнішні сторінки.</target></trans-unit>
+    </body>
+  </file>
+</xliff>
