@@ -537,8 +537,10 @@ TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Fe
         <target state="final">Speichern ist deaktiviert.</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content" approved="yes">
-        <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="final">Diesem Datensatz sind die folgenden Kategorien zugeordnet, für die Sie keine Berechtigungen zugewiesen bekommen haben:</target>
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">Diesem Datensatz sind die folgenden Kategorien zugeordnet, für die Sie keine Berechtigungen zugewiesen bekommen haben:
+                </target>
       </trans-unit>
       <trans-unit id="hiddenContentElements.title" approved="yes">
         <source>Content elements are hidden</source>
