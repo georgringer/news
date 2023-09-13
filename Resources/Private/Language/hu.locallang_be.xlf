@@ -350,8 +350,10 @@
         <target state="final">A mentés letilva</target>
       </trans-unit>
       <trans-unit id="record.savingdisabled.content" approved="yes">
-        <source>This record has the following categories assigned that are not defined in your permissions:</source>
-        <target state="final">Ehhez a rekordhoz a következő kategóriák vannak hozzárendelve, amelyeknél nem definiált a hozzáférés:</target>
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">Ehhez a rekordhoz a következő kategóriák vannak hozzárendelve, amelyeknél nem definiált a hozzáférés:
+                </target>
       </trans-unit>
     </body>
   </file>
