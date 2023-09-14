@@ -200,7 +200,9 @@ class NewsController extends NewsBaseController
             }
             if ($propertyValue !== '' || $this->settings['allowEmptyStringsForOverwriteDemand']) {
                 if (in_array($propertyName, ['categories'], true)) {
-                    $propertyValue = GeneralUtility::trimExplode(',', $propertyValue, true);
+                    if (!is_array($propertyValue)) {
+                        $propertyValue = GeneralUtility::trimExplode(',', $propertyValue, true);
+                    }
                 }
                 ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
             }
