@@ -686,7 +686,7 @@ class NewsController extends NewsBaseController
      * @param $paginationClass
      * @param int $maximumNumberOfLinks
      * @param $paginator
-     * @return \#o#Э#A#M#C\GeorgRinger\News\Controller\NewsController.getPagination.0|NumberedPagination|mixed|\Psr\Log\LoggerAwareInterface|string|SimplePagination|\TYPO3\CMS\Core\SingletonInterface
+     * @return \GeorgRinger\News\Controller\NewsController.getPagination.0|NumberedPagination|mixed|\Psr\Log\LoggerAwareInterface|string|SimplePagination|\TYPO3\CMS\Core\SingletonInterface
      */
     protected function getPagination($paginationClass, int $maximumNumberOfLinks, $paginator)
     {
