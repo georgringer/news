@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Updates;
 
+use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
@@ -67,9 +68,15 @@ class PluginUpdater implements UpgradeWizardInterface
     /** @var FlexFormService */
     protected $flexFormService;
 
+    /**
+     * @var FlexFormTools
+     */
+    protected $flexFormTools;
+
     public function __construct()
     {
         $this->flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
+        $this->flexFormTools = GeneralUtility::makeInstance(FlexFormTools::class);
     }
 
     public function getIdentifier(): string
@@ -117,22 +124,23 @@ class PluginUpdater implements UpgradeWizardInterface
         $records = $this->getMigrationRecords();
 
         foreach ($records as $record) {
-            $flexFormData = GeneralUtility::xml2array($record['pi_flexform']);
             $flexForm = $this->flexFormService->convertFlexFormContentToArray($record['pi_flexform']);
             $targetListType = $this->getTargetListType($flexForm['switchableControllerActions'] ?? '');
             if ($targetListType === '') {
                 continue;
             }
-            $allowedSettings = $this->getAllowedSettingsFromFlexForm($targetListType);
+
+            // Update record with migrated types (this is needed because FlexFormTools
+            // looks up those values in the given record and assumes they're up-to-date)
+            $record['CType'] = $targetListType;
+            $record['list_type'] = '';
+
+            // Clean up flexform
+            $newFlexform = $this->flexFormTools->cleanFlexFormXML('tt_content', 'pi_flexform', $record);
+            $flexFormData = GeneralUtility::xml2array($newFlexform);
 
             // Remove flexform data which do not exist in flexform of new plugin
             foreach ($flexFormData['data'] as $sheetKey => $sheetData) {
-                foreach ($sheetData['lDEF'] as $settingName => $setting) {
-                    if (!in_array($settingName, $allowedSettings, true)) {
-                        unset($flexFormData['data'][$sheetKey]['lDEF'][$settingName]);
-                    }
-                }
-
                 // Remove empty sheets
                 if (!count($flexFormData['data'][$sheetKey]['lDEF']) > 0) {
                     unset($flexFormData['data'][$sheetKey]);
@@ -158,7 +166,7 @@ class PluginUpdater implements UpgradeWizardInterface
         $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
 
         return $queryBuilder
-            ->select('uid', 'list_type', 'pi_flexform')
+            ->select('uid', 'pid', 'CType', 'list_type', 'pi_flexform')
             ->from('tt_content')
             ->where(
                 $queryBuilder->expr()->eq(
@@ -180,27 +188,6 @@ class PluginUpdater implements UpgradeWizardInterface
         }
 
         return '';
-    }
-
-    protected function getAllowedSettingsFromFlexForm(string $listType): array
-    {
-        if (!isset($GLOBALS['TCA']['tt_content']['columns']['pi_flexform']['config']['ds']['*,' . $listType])) {
-            return [];
-        }
-
-        $flexFormFile = $GLOBALS['TCA']['tt_content']['columns']['pi_flexform']['config']['ds']['*,' . $listType];
-        $flexFormContent = file_get_contents(GeneralUtility::getFileAbsFileName(substr(trim($flexFormFile), 5)));
-        $flexFormData = GeneralUtility::xml2array($flexFormContent);
-
-        // Iterate each sheet and extract all settings
-        $settings = [];
-        foreach ($flexFormData['sheets'] as $sheet) {
-            foreach ($sheet['ROOT']['el'] as $setting => $tceForms) {
-                $settings[] = $setting;
-            }
-        }
-
-        return $settings;
     }
 
     /**
