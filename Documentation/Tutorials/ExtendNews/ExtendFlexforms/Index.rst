@@ -96,13 +96,13 @@ FlexForm file.
 
 **Create the FlexForm file**
 
-Create the FlexForm file you just referenced in the hook. This can look like that.
+Create the FlexForm file you just referenced in the hook. This can look like that. (Syntax for TYPO3 12 LTS+)
 
 .. code-block:: html
 
     <extra>
         <ROOT>
-             <sheetTitle>Fo</sheetTitle>
+            <sheetTitle>Fo</sheetTitle>
             <type>array</type>
             <el>
                 <settings.postsPerPage>
@@ -117,4 +117,3 @@ Create the FlexForm file you just referenced in the hook. This can look like tha
             </el>
         </ROOT>
     </extra>
-
