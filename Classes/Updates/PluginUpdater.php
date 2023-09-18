@@ -15,7 +15,7 @@ use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
-use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
@@ -126,7 +126,7 @@ class PluginUpdater implements UpgradeWizardInterface
 
         // Initialize the global $LANG object if it does not exist.
         // This is needed by the ext:form flexforms hook in Core v11
-        $GLOBALS['LANG'] = $GLOBALS['LANG'] ?? GeneralUtility::makeInstance(LanguageService::class);
+        $GLOBALS['LANG'] = $GLOBALS['LANG'] ?? GeneralUtility::makeInstance(LanguageServiceFactory::class)->create('default');
 
         foreach ($records as $record) {
             $flexForm = $this->flexFormService->convertFlexFormContentToArray($record['pi_flexform']);
