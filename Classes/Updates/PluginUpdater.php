@@ -175,6 +175,10 @@ class PluginUpdater implements UpgradeWizardInterface
             ->from('tt_content')
             ->where(
                 $queryBuilder->expr()->eq(
+                    'CType',
+                    $queryBuilder->createNamedParameter('list')
+                ),
+                $queryBuilder->expr()->eq(
                     'list_type',
                     $queryBuilder->createNamedParameter('news_pi1')
                 )
