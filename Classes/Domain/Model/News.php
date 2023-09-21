@@ -1021,7 +1021,7 @@ class News extends AbstractEntity
         $idList = [];
         $contentElements = $this->getContentElements();
         if ($contentElements) {
-            foreach ($this->getContentElements() as $contentElement) {
+            foreach ($contentElements as $contentElement) {
                 if ($contentElement->getColPos() >= 0) {
                     $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
                 }
