@@ -1029,6 +1029,28 @@ class News extends AbstractEntity
         }
         return implode(',', $idList);
     }
+    
+    /**
+     * Collect id list of non-nested content elements
+     * Currently only supports container elements of EXT:container
+     *
+     * @param bool $original
+     * @return string
+     */
+    protected function getIdOfNonNestedContentElements($original = true): string
+    {
+        $idList = [];
+        $contentElements = $this->getContentElements();
+        if ($contentElements) {
+            foreach ($contentElements as $contentElement) {
+                if ($contentElement->getColPos() >= 0 && $contentElement->getTxContainerParent() === 0) {
+                    $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
+                }
+            }
+        }
+        
+        return implode(',', $idList);
+    }
 
     /**
      * Get Tags
