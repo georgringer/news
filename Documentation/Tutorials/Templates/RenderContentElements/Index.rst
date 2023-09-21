@@ -64,6 +64,15 @@ in containers:
        }
    }
 
+Changing ``lib.tx_news.contentElementRendering = RECORDS`` to ``lib.tx_news.contentElementRendering = CONTENT`` can have some side effects for the sorting of translated content elements. You can also fix this by using Fluid only:
+
+.. code-block:: html
+
+   <f:if condition="{newsItem.contentElements}">
+      <!-- content elements -->
+      <f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.nonNestedContentElementIdList}</f:cObject>
+   </f:if>
+
 Using Fluid
 ===========
 
