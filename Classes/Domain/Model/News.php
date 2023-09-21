@@ -1025,7 +1025,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getNonNestedTranslatedContentElementIdList(): string
+    public function getTranslatedNonNestedContentElementIdList(): string
     {
         return $this->getIdOfNonNestedContentElements(false);
     }
