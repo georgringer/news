@@ -142,6 +142,11 @@ class TtContent extends AbstractEntity
      */
     protected $listType = '';
 
+    /**
+     * @var int
+     */
+    protected $txContainerParent = 0;
+
     public function __construct()
     {
         $this->initializeObject();
@@ -579,5 +584,21 @@ class TtContent extends AbstractEntity
     public function setListType(string $listType): void
     {
         $this->listType = $listType;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTxContainerParent(): int
+    {
+        return $this->txContainerParent;
+    }
+
+    /**
+     * @param int $txContainerParent
+     */
+    public function setTxContainerParent(int $txContainerParent): void
+    {
+        $this->txContainerParent = $txContainerParent;
     }
 }
