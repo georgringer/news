@@ -1049,7 +1049,7 @@ class News extends AbstractEntity
         }
         return implode(',', $idList);
     }
-    
+
     /**
      * Collect id list of non-nested content elements
      * Currently only supports container elements of EXT:container
@@ -1068,7 +1068,7 @@ class News extends AbstractEntity
                 }
             }
         }
-        
+
         return implode(',', $idList);
     }
 
