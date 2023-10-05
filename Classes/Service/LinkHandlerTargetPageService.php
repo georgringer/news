@@ -23,7 +23,8 @@ class LinkHandlerTargetPageService
     /**
      * called by ContentObjectRenderer->callUserFunction() to explicitly set an instance of the ContentObjectRenderer.
      */
-    public function setContentObjectRenderer(ContentObjectRenderer $cObj) {
+    public function setContentObjectRenderer(ContentObjectRenderer $cObj)
+    {
         $this->cObj = $cObj;
     }
 
