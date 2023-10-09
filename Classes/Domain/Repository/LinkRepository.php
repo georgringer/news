@@ -14,6 +14,4 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 /**
  * Repository for link objects
  */
-class LinkRepository extends Repository
-{
-}
+class LinkRepository extends Repository {}
