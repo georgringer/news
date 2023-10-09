@@ -14,6 +14,4 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 /**
  * Repository for file objects
  */
-class FileRepository extends Repository
-{
-}
+class FileRepository extends Repository {}

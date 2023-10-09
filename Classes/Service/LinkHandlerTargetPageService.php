@@ -18,7 +18,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 class LinkHandlerTargetPageService
 {
     /** @var ContentObjectRenderer */
-    protected $cObj = null;
+    protected $cObj;
 
     /**
      * called by ContentObjectRenderer->callUserFunction() to explicitly set an instance of the ContentObjectRenderer.
