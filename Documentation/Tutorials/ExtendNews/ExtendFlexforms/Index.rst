@@ -86,7 +86,7 @@ FlexForm file.
                $file = GeneralUtility::getFileAbsFileName('EXT:extKey/Configuration/Example.xml');
                $content = file_get_contents($file);
                if ($content) {
-                   ArrayUtility::mergeRecursiveWithOverrule($dataStructure, GeneralUtility::xml2array($content));
+                   ArrayUtility::mergeRecursiveWithOverrule($dataStructure['sheets'], GeneralUtility::xml2array($content));
                }
            }
 
@@ -100,20 +100,22 @@ Create the FlexForm file you just referenced in the hook. This can look like tha
 
 .. code-block:: html
 
-    <extra>
-        <ROOT>
-            <sheetTitle>Fo</sheetTitle>
-            <type>array</type>
-            <el>
-                <settings.postsPerPage>
-                    <label>Max. number of posts to display per page</label>
-                    <config>
-                        <type>input</type>
-                        <size>2</size>
-                        <eval>int</eval>
-                        <default>3</default>
-                    </config>
-                </settings.postsPerPage>
-            </el>
-        </ROOT>
-    </extra>
+    <sheets>
+        <extra>
+            <ROOT>
+                <sheetTitle>Fo</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.postsPerPage>
+                        <label>Max. number of posts to display per page</label>
+                        <config>
+                            <type>input</type>
+                            <size>2</size>
+                            <eval>int</eval>
+                            <default>3</default>
+                        </config>
+                    </settings.postsPerPage>
+                </el>
+            </ROOT>
+        </extra>
+    </sheets>
