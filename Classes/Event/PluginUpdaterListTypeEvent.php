@@ -9,19 +9,13 @@
 
 namespace GeorgRinger\News\Event;
 
-use GeorgRinger\News\Controller\NewsController;
-use TYPO3\CMS\Extbase\Mvc\Request;
-
 final class PluginUpdaterListTypeEvent
 {
-
     public function __construct(
         protected array $flexforms,
         protected array $row,
         protected string $listType
-    )
-    {
-
+    ) {
     }
 
     public function getFlexforms(): array
