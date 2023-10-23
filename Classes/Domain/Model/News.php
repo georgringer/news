@@ -1011,7 +1011,7 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get id list of non-nested content elements     
+     * Get id list of non-nested content elements
      */
     public function getNonNestedContentElementIdList(): string
     {
