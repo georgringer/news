@@ -1010,10 +1010,8 @@ class News extends AbstractEntity
         return $this->getIdOfContentElements(false);
     }
 
-     /**
-     * Get id list of non-nested content elements
-     *
-     * @return string
+    /**
+     * Get id list of non-nested content elements     
      */
     public function getNonNestedContentElementIdList(): string
     {
@@ -1022,8 +1020,6 @@ class News extends AbstractEntity
 
     /**
      * Get translated id list of non-nested content elements
-     *
-     * @return string
      */
     public function getTranslatedNonNestedContentElementIdList(): string
     {
