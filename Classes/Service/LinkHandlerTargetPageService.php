@@ -18,7 +18,15 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 class LinkHandlerTargetPageService
 {
     /** @var ContentObjectRenderer */
-    public $cObj;
+    protected $cObj;
+
+    /**
+     * called by ContentObjectRenderer->callUserFunction() to explicitly set an instance of the ContentObjectRenderer.
+     */
+    public function setContentObjectRenderer(ContentObjectRenderer $cObj)
+    {
+        $this->cObj = $cObj;
+    }
 
     public function process(string $content = '', array $configuration = []): int
     {

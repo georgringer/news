@@ -67,7 +67,7 @@ services:
         fi
         if [ ${TYPO3_VERSION} -eq 12 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^12.2
+            typo3/cms-core:^12.4.0
         fi
         composer install --no-progress;
       "
@@ -93,7 +93,7 @@ services:
         fi
         if [ ${TYPO3_VERSION} -eq 12 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^12.0
+            typo3/cms-core:^12.4.0
         fi
         composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest;
         composer show;
@@ -119,7 +119,7 @@ services:
         fi
         if [ ${TYPO3_VERSION} -eq 12 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^12.2
+            typo3/cms-core:^12.4.0
         fi
         composer update --no-progress --no-interaction;
         composer show;

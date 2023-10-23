@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Updates;
 
+use GeorgRinger\News\Event\PluginUpdaterListTypeEvent;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -74,10 +76,13 @@ class PluginUpdater implements UpgradeWizardInterface
      */
     protected $flexFormTools;
 
+    protected EventDispatcherInterface $eventDispatcher;
+
     public function __construct()
     {
         $this->flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
         $this->flexFormTools = GeneralUtility::makeInstance(FlexFormTools::class);
+        $this->eventDispatcher = GeneralUtility::makeInstance(EventDispatcherInterface::class);
     }
 
     public function getIdentifier(): string
@@ -131,6 +136,8 @@ class PluginUpdater implements UpgradeWizardInterface
         foreach ($records as $record) {
             $flexForm = $this->flexFormService->convertFlexFormContentToArray($record['pi_flexform']);
             $targetListType = $this->getTargetListType($flexForm['switchableControllerActions'] ?? '');
+            $targetListType = $this->eventDispatcher->dispatch(new PluginUpdaterListTypeEvent($flexForm, $record, $targetListType))->getListType();
+
             if ($targetListType === '') {
                 continue;
             }
