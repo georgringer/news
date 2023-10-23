@@ -1011,6 +1011,22 @@ class News extends AbstractEntity
     }
 
     /**
+     * Get id list of non-nested content elements
+     */
+    public function getNonNestedContentElementIdList(): string
+    {
+        return $this->getIdOfNonNestedContentElements();
+    }
+
+    /**
+     * Get translated id list of non-nested content elements
+     */
+    public function getTranslatedNonNestedContentElementIdList(): string
+    {
+        return $this->getIdOfNonNestedContentElements(false);
+    }
+
+    /**
      * Collect id list
      *
      * @param bool $original
@@ -1021,12 +1037,34 @@ class News extends AbstractEntity
         $idList = [];
         $contentElements = $this->getContentElements();
         if ($contentElements) {
-            foreach ($this->getContentElements() as $contentElement) {
+            foreach ($contentElements as $contentElement) {
                 if ($contentElement->getColPos() >= 0) {
                     $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
                 }
             }
         }
+        return implode(',', $idList);
+    }
+
+    /**
+     * Collect id list of non-nested content elements
+     * Currently only supports container elements of EXT:container
+     *
+     * @param bool $original
+     * @return string
+     */
+    protected function getIdOfNonNestedContentElements($original = true): string
+    {
+        $idList = [];
+        $contentElements = $this->getContentElements();
+        if ($contentElements) {
+            foreach ($contentElements as $contentElement) {
+                if ($contentElement->getColPos() >= 0 && $contentElement->getTxContainerParent() === 0) {
+                    $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
+                }
+            }
+        }
+
         return implode(',', $idList);
     }
 
