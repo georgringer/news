@@ -40,6 +40,7 @@ class CategoryRepository extends AbstractDemandedRepository
      * @param string $importSource import source
      * @param int $importId import id
      * @param bool $asArray return result as array
+     *
      * @return Category|array
      */
     public function findOneByImportSourceAndImportId($importSource, $importId, $asArray = false)
@@ -85,10 +86,12 @@ class CategoryRepository extends AbstractDemandedRepository
     /**
      * Find category tree
      *
-     * @param array $rootIdList list of id s
+     * @param array $rootIdList list of ids
+     * @param string|null $startingPoint
+     *
      * @return QueryInterface|array
      */
-    public function findTree(array $rootIdList, $startingPoint = null)
+    public function findTree(array $rootIdList, ?string $startingPoint = null)
     {
         $subCategories = CategoryService::getChildrenCategories(implode(',', $rootIdList));
 
@@ -131,12 +134,13 @@ class CategoryRepository extends AbstractDemandedRepository
     /**
      * Find categories by a given pid
      *
-     * @param array $idList list of id s
+     * @param array $idList list of ids
      * @param array $ordering ordering
+     * @param string|null $startingPoint
      *
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
+    public function findByIdList(array $idList, array $ordering = [], ?string $startingPoint = null)
     {
         if (empty($idList)) {
             throw new \InvalidArgumentException('The given id list is empty.', 1484823597);
