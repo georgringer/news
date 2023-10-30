@@ -101,8 +101,8 @@ Options:
     -d <sqlite|mariadb|mysql|postgres>
         Only with -s acceptance,functional
         Specifies on which DBMS tests are performed
-            - sqlite: (default) use sqlite
-            - mariadb: use mariadb
+            - sqlite: use sqlite
+            - mariadb: (default) use mariadb
             - mysql: use mysql
             - postgres: use postgres
 
@@ -210,7 +210,7 @@ else
   ROOT_DIR=`realpath ${PWD}/../../`
 fi
 TEST_SUITE=""
-DBMS="sqlite"
+DBMS="mariadb"
 PHP_VERSION="7.4"
 TYPO3_VERSION="11"
 PHP_XDEBUG_ON=0
