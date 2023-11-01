@@ -295,7 +295,7 @@ Solution: You can use the following TypoScript condition to allow search engines
 
 .. code-block:: typoscript
 
-   [traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
+   [request && traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
        page.meta.robots = index,follow
        page.meta.robots.replace = 1
    [global]
