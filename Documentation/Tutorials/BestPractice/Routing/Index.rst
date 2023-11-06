@@ -246,6 +246,12 @@ filter news records, their titles (slugs) are used.
          'feed.xml': 9818
          'calendar.ical': 9819
 
+.. tip::
+   If you are using the routing for pagination,
+   be sure it is in the code before the configuration
+   for the detail view! Otherwise you can run into trouble on pages
+   with plugin view "List articles with detail view".
+
 Localized pagination
 ~~~~~~~~~~~~~~~~~~~~
 
