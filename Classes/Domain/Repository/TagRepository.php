@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Domain\Repository;
 
 use GeorgRinger\News\Domain\Model\DemandInterface;
+use GeorgRinger\News\Domain\Model\Tag;
 use GeorgRinger\News\Utility\Validation;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -26,7 +27,7 @@ class TagRepository extends AbstractDemandedRepository
      * @param array $ordering ordering
      * @param string $startingPoint starting point uid or comma separated list
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface<Tag>
      */
     public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
     {

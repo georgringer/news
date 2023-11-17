@@ -69,7 +69,7 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @param int $pid pid
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface<Category>
      */
     public function findParentCategoriesByPid($pid)
     {
@@ -138,7 +138,7 @@ class CategoryRepository extends AbstractDemandedRepository
      * @param array $ordering ordering
      * @param string|null $startingPoint
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface<Category>
      */
     public function findByIdList(array $idList, array $ordering = [], ?string $startingPoint = null)
     {
@@ -171,7 +171,7 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @param int $parent parent
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface<Category>
      */
     public function findChildren($parent)
     {
