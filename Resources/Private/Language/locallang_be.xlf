@@ -10,59 +10,60 @@
 				<source>Versatile news system</source>
 			</trans-unit>
 			<trans-unit id="plugin.news_list.title" xml:space="preserve">
-				<source>List articles with detail view</source>
+				<source>News article list (incl. detail view)</source>
 			</trans-unit>
 			<trans-unit id="plugin.news_list.description" xml:space="preserve">
-				<source>Display of articles chosen by various optional properties like storage page, categories,...
-					Plugin is capable of displaying the detail view as well.</source>
+				<source>Listing of news articles chosen by various properties like storage folder, categories, time constraints, etc.
+					This plugin is capable of rendering the detail view as well.</source>
 			</trans-unit>
             <trans-unit id="plugin.news_list_sticky.title" xml:space="preserve">
-				<source>Sticky article list view</source>
+				<source>News article list</source>
 			</trans-unit>
             <trans-unit id="plugin.news_list_sticky.description" xml:space="preserve">
-				<source>Display of articles chosen by various optional properties like storage page, categories,...</source>
+				<source>Listing of news articles chosen by various properties like storage folder, categories, time constraints, etc.
+					This plugin cannot render the detail view of news articles.</source>
 			</trans-unit>
             <trans-unit id="plugin.news_detail.title" xml:space="preserve">
-				<source>Article detail view</source>
+				<source>News article detail view</source>
 			</trans-unit>
             <trans-unit id="plugin.news_detail.description" xml:space="preserve">
-				<source>Display the detail view of an article</source>
+				<source>Rendering the detail view of a news article.</source>
 			</trans-unit>
             <trans-unit id="plugin.news_date_menu.title" xml:space="preserve">
-				<source>Date menu of articles</source>
+				<source>Date menu of news articles</source>
 			</trans-unit>
             <trans-unit id="plugin.news_date_menu.description" xml:space="preserve">
 				<source>Display a menu of months &amp; years of articles. The menu can be used to filter a list view dynamically.</source>
 			</trans-unit>
             <trans-unit id="plugin.news_search_form.title" xml:space="preserve">
-				<source>Search form</source>
+				<source>News search form</source>
 			</trans-unit>
             <trans-unit id="plugin.news_search_form.description" xml:space="preserve">
-				<source>Display a search form to let users search within articles</source>
+				<source>Display a search form to let users search within articles.</source>
 			</trans-unit>
             <trans-unit id="plugin.news_search_result.title" xml:space="preserve">
-				<source>Search result</source>
+				<source>News search result</source>
 			</trans-unit>
             <trans-unit id="plugin.news_search_result.description" xml:space="preserve">
-				<source>Display the result of the search</source>
+				<source>Display the result of the search.</source>
 			</trans-unit>
             <trans-unit id="plugin.news_selected_list.title" xml:space="preserve">
-				<source>Selected list of articles</source>
+				<source>News article list (curated)</source>
 			</trans-unit>
             <trans-unit id="plugin.news_selected_list.description" xml:space="preserve">
-				<source>Display a manually picked list of articles.</source>
+				<source>Listing of manually picked news articles.</source>
 			</trans-unit>
             <trans-unit id="plugin.category_list.title" xml:space="preserve">
-				<source>Category menu</source>
+				<source>News category menu</source>
 			</trans-unit>
             <trans-unit id="plugin.category_list.description" xml:space="preserve">
-				<source>Display a menu of categories. The menu can be used to filter a list view dynamically.</source>
+				<source>Display a menu of categories. The menu can be used to filter a news list view dynamically.</source>
 			</trans-unit>
 			<trans-unit id="plugin.tag_list.title" xml:space="preserve">
-				<source>Tag list</source>
+				<source>News tag list</source>
 			</trans-unit>
             <trans-unit id="plugin.tag_list.description" xml:space="preserve">
-				<source>Display a list of tags. The list can be used to filter a list view dynamically.</source>
+				<source>Display a list of tags. The list can be used to filter a news list view dynamically.</source>
 			</trans-unit>
 
             <trans-unit id="flexforms_tab.settings" xml:space="preserve">
