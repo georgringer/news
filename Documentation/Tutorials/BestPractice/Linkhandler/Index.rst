@@ -7,7 +7,7 @@ LinkHandler
 ===========
 
 **LinkHandler** is the synonym for making it possible for editors to create links to custom records.
-Until 8 LTS a 3rd party extension has been required but since then it is integrated into the Core. Read at https://docs.typo3.org/typo3cms/extensions/core/8.7/Changelog/8.6/Feature-79626-IntegrateRecordLinkHandler.html about the feature.
+Until 8 LTS a 3rd party extension has been required but since then it is integrated into the Core. Read at https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/8.6/Feature-79626-IntegrateRecordLinkHandler.html about the feature.
 
 .. tip::
    This tutorial is also valid for creating links to any other record.
