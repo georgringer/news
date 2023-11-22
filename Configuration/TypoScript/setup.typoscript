@@ -172,6 +172,7 @@ plugin.tx_news {
 					generator = {$plugin.tx_news.rss.channel.generator}
 					link = {$plugin.tx_news.rss.channel.link}
 					typeNum = {$plugin.tx_news.rss.channel.typeNum}
+					ttl = {$plugin.tx_news.rss.channel.ttl}
 				}
 			}
 		}
