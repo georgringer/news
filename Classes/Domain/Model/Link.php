@@ -47,6 +47,13 @@ class Link extends AbstractValueObject
     protected $l10nParent = 0;
 
     /**
+     * This empty constructor is necessary so class is fully
+     * extensible by other extensions that might want to define
+     * an own __construct() method
+     */
+    public function __construct() {}
+
+    /**
      * Get creation date
      *
      * @return \DateTime|null

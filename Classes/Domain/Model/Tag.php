@@ -55,6 +55,13 @@ class Tag extends AbstractValueObject
     protected $slug = '';
 
     /**
+     * This empty constructor is necessary so class is fully
+     * extensible by other extensions that might want to define
+     * an own __construct() method
+     */
+    public function __construct() {}
+
+    /**
      * Get crdate
      *
      * @return \DateTime|null
