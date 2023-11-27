@@ -19,6 +19,7 @@ Configuration for the backend
 PageTsConfig is used to configure the link browser in the backend.
 
 .. code-block:: typoscript
+   :caption: EXT:my_sitepackage/Configuration/page.tsconfig
 
    # tx_news is an identifier, don't change it after links have been created
    TCEMAIN.linkHandler.tx_news {
@@ -35,6 +36,7 @@ PageTsConfig is used to configure the link browser in the backend.
       scanAfter = page
    }
 
+
 Configuration for the frontend
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -43,6 +45,7 @@ By using TypoScript, the link is transformed into an actual link.
 
 
 .. code-block:: typoscript
+   :caption: EXT:my_sitepackage/Configuration/TypoScript/setup.typoscript
 
    config.recordLinks.tx_news {
       typolink {
@@ -57,9 +60,10 @@ By using TypoScript, the link is transformed into an actual link.
 Dynamic target page from category field single_pid
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-if the detail page is provided by the category, the following code can be used to retrieve the target page:
+If the detail page is provided by the category, the following code can be used to retrieve the target page:
 
 .. code-block:: typoscript
+   :caption: EXT:my_sitepackage/Configuration/TypoScript/setup.typoscript
 
     config.recordLinks.tx_news {
         typolink {
