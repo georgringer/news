@@ -48,7 +48,7 @@ final class QueryResultPaginator extends CustomAbstractPaginator
         return $this->paginatedQueryResult;
     }
 
-    protected function updatePaginatedItems(int $limit, int $offset): void
+    public function updatePaginatedItems(int $limit, int $offset): void
     {
         $this->paginatedQueryResult = $this->queryResult
             ->getQuery()
@@ -57,12 +57,12 @@ final class QueryResultPaginator extends CustomAbstractPaginator
             ->execute();
     }
 
-    protected function getTotalAmountOfItems(): int
+    public function getTotalAmountOfItems(): int
     {
         return count($this->queryResult);
     }
 
-    protected function getAmountOfItemsOnCurrentPage(): int
+    public function getAmountOfItemsOnCurrentPage(): int
     {
         return count($this->paginatedQueryResult);
     }
