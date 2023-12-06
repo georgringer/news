@@ -133,12 +133,13 @@ Options:
             - 13
             - 14
 
-    -p <7.4|8.0|8.1|8.2>
+    -p <7.4|8.0|8.1|8.2|8.3>
         Specifies the PHP minor version to be used
             - 7.4 (default): use PHP 7.4
             - 8.0: use PHP 8.0
             - 8.1: use PHP 8.1
             - 8.2: use PHP 8.2
+            - 8.3: use PHP 8.3
 
     -t <11|12>
         Only with -s composerUpdate
@@ -225,8 +226,8 @@ POSTGRES_VERSION="10"
 USED_XDEBUG_MODES="debug,develop"
 #@todo the $$ would add the current process id to the name, keeping as plan b
 #PROJECT_NAME="runTests-$(basename $(dirname $ROOT_DIR))-$(basename $ROOT_DIR)-$$"
-PROJECT_NAME="runTests-$(basename $(dirname $ROOT_DIR))-$(basename $ROOT_DIR)"
-PROJECT_NAME="${PROJECT_NAME//[[:blank:]]/}"
+PROJECT_NAME="runtestsnews"
+# PROJECT_NAME="${PROJECT_NAME//[[:blank:]]/}"
 echo $PROJECT_NAME
 
 # Option parsing
@@ -266,7 +267,7 @@ while getopts ":s:a:d:i:j:k:p:t:e:xy:z:nhuv" OPT; do
             ;;
         p)
             PHP_VERSION=${OPTARG}
-            if ! [[ ${PHP_VERSION} =~ ^(7.4|8.0|8.1|8.2)$ ]]; then
+            if ! [[ ${PHP_VERSION} =~ ^(7.4|8.0|8.1|8.2|8.3)$ ]]; then
                 INVALID_OPTIONS+=("p ${OPTARG}")
             fi
             ;;
