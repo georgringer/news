@@ -22,34 +22,29 @@ Properties
 .. t3-field-list-table::
  :header-rows: 1
 
- - :Field:
-         Field:
-   :Description:
-             Description:
+  - :Field:
+          Title
+    :Description:
+          Title of the tag. This field is required!
 
-     - :Field:
-             Title
-       :Description:
-             Title of the tag. This field is required!
+  - :Field:
+          Hidden
+    :Description:
+          Hide a tag.
 
-     - :Field:
-             Hidden
-       :Description:
-             Hide a tag.
+  - :Field:
+          SEO: <title>-Tag
+    :Description:
+          Can be used to set a special <title>-Tag for category pages.
+          This must be enabled in the template:
 
-     - :Field:
-             SEO: <title>-Tag
-       :Description:
-             Can be used to set a special <title>-Tag for category pages.
-             This must be enabled in the template:
+          .. code-block:: html
 
-             .. code-block:: html
-
-                <f:if condition="{tags.0.title}">
-                   <n:titleTag>
-                      <f:format.htmlentitiesDecode>{tags.0.title}</f:format.htmlentitiesDecode>
-                   </n:titleTag>
-                </f:if>
+             <f:if condition="{tags.0.title}">
+                <n:titleTag>
+                   <f:format.htmlentitiesDecode>{tags.0.title}</f:format.htmlentitiesDecode>
+                </n:titleTag>
+             </f:if>
 
  - :Field:
          SEO: Meta-Description
