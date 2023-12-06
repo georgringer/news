@@ -19,8 +19,6 @@ plugin.tx_news {
 			0 = EXT:news/Resources/Private/Layouts/
 			1 = {$plugin.tx_news.view.layoutRootPath}
 		}
-
-		widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/
 	}
 
 	# Modify the translation

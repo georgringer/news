@@ -17,8 +17,6 @@ plugin.tx_news {
       1 = EXT:news/Resources/Private/Templates/Styles/Twb/Layouts/
       2 = {$plugin.tx_news.view.twb.layoutRootPath}
     }
-
-    widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/Styles/Twb/Templates/
   }
 
   settings {
