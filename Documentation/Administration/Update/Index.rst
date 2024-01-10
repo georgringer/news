@@ -1,6 +1,3 @@
-.. include:: /Includes.rst.txt
-
-
 Updating
 --------
 If you update EXT:news to a newer version, please read this section carefully!

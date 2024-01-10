@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. Set default language for code-blocks to TypoScript for this page!
 .. highlight:: typoscript
 

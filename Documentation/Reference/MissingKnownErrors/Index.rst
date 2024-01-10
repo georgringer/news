@@ -1,6 +1,3 @@
-.. include:: /Includes.rst.txt
-
-
 Known problems
 --------------
 The following issues are known problems. However those are either not fixable inside EXT:news or not too easy to solve!
