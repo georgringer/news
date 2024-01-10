@@ -1,7 +1,4 @@
-﻿.. include:: /Includes.rst.txt
-
-
-.. _admin-manual:
+﻿.. _admin-manual:
 
 Administration
 ==============

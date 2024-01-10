@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. highlight:: typoscript
 
 .. _integrationTypoScript:

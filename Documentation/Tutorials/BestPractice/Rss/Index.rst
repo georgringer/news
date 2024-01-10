@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _rss:
 
 ========
@@ -192,7 +190,7 @@ Don't forget to configure the RSS feed properly as the sample template won't ful
       copyright = TYPO3 News
       category =
       generator = TYPO3 EXT:news
-      ttl = 
+      ttl =
    }
 
 
