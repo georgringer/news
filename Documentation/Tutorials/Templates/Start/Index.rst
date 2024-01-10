@@ -12,9 +12,8 @@ already, you might skip this section.
 This documentation won't bring you all information about Fluid but only the
 most important things you need for using it. You can get
 more information in the TYPO3 Documentation
-:ref:`TYPO3 Explained: Fluid <t3coreapi:fluid>`,
-:doc:`Developing TYPO3 Extensions with Extbase and Fluid
-<t3extbasebook:Index>` or many third party sites, videos and books.
+:ref:`TYPO3 Explained: Fluid <t3coreapi:fluid>` or many third party sites,
+videos and books.
 
 .. _templatingSitepackage:
 
