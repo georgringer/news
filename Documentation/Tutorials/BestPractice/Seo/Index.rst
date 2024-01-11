@@ -259,7 +259,7 @@ If using languages with the language mode `strict`, the hreflang tag must only b
 
 .. note::
    This feature is only supported by TYPO3 10 and up, described
-   in :ref:`TYPO3 Explained, ModifyHrefLangTagsEvent<t3coreapi:ModifyHrefLangTagsEvent>`.
+   in :ref:`TYPO3 Explained, ModifyHrefLangTagsEvent <t3coreapi:ModifyHrefLangTagsEvent>`.
 
 EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
 

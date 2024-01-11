@@ -74,7 +74,7 @@ Templates
 
          .. rst-class:: card-header h3
 
-            .. rubric:: :ref:`Render content elements<renderContentElements>`
+            .. rubric:: :ref:`Render content elements <renderContentElements>`
 
          .. container:: card-body
 
