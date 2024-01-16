@@ -26,7 +26,7 @@
     ],
     "require": {
         "typo3/cms-core": "^11.5.24 || ^12.4.0",
-        "php": ">= 7.4 < 8.3"
+        "php": ">= 7.4 < 8.4"
     },
     "suggest": {
         "reelworx/rx-shariff": "GDPR compliant social sharing",
