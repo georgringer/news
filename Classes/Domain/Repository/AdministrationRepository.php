@@ -37,7 +37,7 @@ class AdministrationRepository
             ->from('sys_category_record_mm')
             ->where($queryBuilder->expr()->like(
                 'tablenames',
-                $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)
+                $queryBuilder->createNamedParameter('tx_news_domain_model_news', Connection::PARAM_STR)
             ))
             ->executeQuery()->fetchOne();
 
