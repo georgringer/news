@@ -38,7 +38,7 @@ class CategoryRepository extends AbstractDemandedRepository
      * Find category by import source and import id
      *
      * @param string $importSource import source
-     * @param int $importId import id
+     * @param string $importId import id
      * @param bool $asArray return result as array
      *
      * @return Category|array

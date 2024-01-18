@@ -307,7 +307,7 @@ class NewsRepository extends AbstractDemandedRepository
      * Find first news by import and source id
      *
      * @param string $importSource import source
-     * @param int $importId import id
+     * @param string $importId import id
      * @param bool $asArray return result as array
      * @return \GeorgRinger\News\Domain\Model\News|array
      */
