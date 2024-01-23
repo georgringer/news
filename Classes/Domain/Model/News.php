@@ -19,12 +19,12 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class News extends AbstractEntity
 {
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     protected $crdate;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     protected $tstamp;
 
@@ -39,12 +39,12 @@ class News extends AbstractEntity
     protected $l10nParent = 0;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     protected $starttime;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     protected $endtime;
 
@@ -91,12 +91,12 @@ class News extends AbstractEntity
     protected $bodytext = '';
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     protected $datetime;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     protected $archive;
 
