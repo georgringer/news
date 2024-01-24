@@ -12,6 +12,4 @@ namespace GeorgRinger\News\TreeProvider;
 /**
  * TCA tree data provider which considers
  */
-class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeDataProvider
-{
-}
+class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeDataProvider {}

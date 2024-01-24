@@ -55,9 +55,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * extensible by other extensions that might want to define
      * an own __construct() method
      */
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
      * Set File uid
