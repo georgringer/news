@@ -26,6 +26,7 @@
     ],
     "require": {
         "php": ">= 7.4 < 8.4",
+        "symfony/console": "^5.4 || ^6.4 || ^7.0",
         "typo3/cms-backend": "^11.5.24 || ^12.4.2",
         "typo3/cms-core": "^11.5.24 || ^12.4.2",
         "typo3/cms-extbase": "^11.5.24 || ^12.4.2",
