@@ -7,7 +7,7 @@ LinkHandler
 ===========
 
 **LinkHandler** is the synonym for making it possible for editors to create links to custom records.
-Until 8 LTS a 3rd party extension has been required but since then it is integrated into the Core. Read at https://docs.typo3.org/typo3cms/extensions/core/8.7/Changelog/8.6/Feature-79626-IntegrateRecordLinkHandler.html about the feature.
+Until 8 LTS a 3rd party extension has been required but since then it is integrated into the Core. Read at https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/8.6/Feature-79626-IntegrateRecordLinkHandler.html about the feature.
 
 .. tip::
    This tutorial is also valid for creating links to any other record.
@@ -19,6 +19,7 @@ Configuration for the backend
 PageTsConfig is used to configure the link browser in the backend.
 
 .. code-block:: typoscript
+   :caption: EXT:my_sitepackage/Configuration/page.tsconfig
 
    # tx_news is an identifier, don't change it after links have been created
    TCEMAIN.linkHandler.tx_news {
@@ -35,6 +36,7 @@ PageTsConfig is used to configure the link browser in the backend.
       scanAfter = page
    }
 
+
 Configuration for the frontend
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -43,6 +45,7 @@ By using TypoScript, the link is transformed into an actual link.
 
 
 .. code-block:: typoscript
+   :caption: EXT:my_sitepackage/Configuration/TypoScript/setup.typoscript
 
    config.recordLinks.tx_news {
       typolink {
@@ -57,9 +60,10 @@ By using TypoScript, the link is transformed into an actual link.
 Dynamic target page from category field single_pid
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-if the detail page is provided by the category, the following code can be used to retrieve the target page:
+If the detail page is provided by the category, the following code can be used to retrieve the target page:
 
 .. code-block:: typoscript
+   :caption: EXT:my_sitepackage/Configuration/TypoScript/setup.typoscript
 
     config.recordLinks.tx_news {
         typolink {

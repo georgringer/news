@@ -137,8 +137,8 @@ class CategoryService
                 ->select('title')
                 ->from('sys_category')
                 ->where(
-                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($overlayLanguage, \PDO::PARAM_INT)),
-                    $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($row['uid'], \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($overlayLanguage, Connection::PARAM_INT)),
+                    $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($row['uid'], Connection::PARAM_INT))
                 )
                 ->setMaxResults(1)
                 ->executeQuery()->fetchAssociative();

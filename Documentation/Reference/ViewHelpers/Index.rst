@@ -42,5 +42,3 @@ All ViewHelpers
 
    Format/NothingViewHelper
 
-   Widget/PaginateViewHelper
-

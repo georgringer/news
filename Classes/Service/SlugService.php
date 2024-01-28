@@ -36,7 +36,7 @@ class SlugService
             ->from('tx_news_domain_model_news')
             ->where(
                 $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)),
+                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', Connection::PARAM_STR)),
                     $queryBuilder->expr()->isNull('path_segment')
                 )
             )
@@ -54,7 +54,7 @@ class SlugService
             ->from('tx_news_domain_model_news')
             ->where(
                 $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)),
+                    $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', Connection::PARAM_STR)),
                     $queryBuilder->expr()->isNull('path_segment')
                 )
             )
@@ -68,7 +68,7 @@ class SlugService
                     ->where(
                         $queryBuilder->expr()->eq(
                             'uid',
-                            $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
+                            $queryBuilder->createNamedParameter($record['uid'], Connection::PARAM_INT)
                         )
                     )
                     ->set('path_segment', $this->getUniqueValue($record['uid'], $record['sys_language_uid'], $slug));
@@ -119,13 +119,13 @@ class SlugService
             ->where(
                 $queryBuilder->expr()->eq(
                     'path_segment',
-                    $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)
+                    $queryBuilder->createPositionalParameter($slug, Connection::PARAM_STR)
                 ),
                 $queryBuilder->expr()->eq(
                     'sys_language_uid',
-                    $queryBuilder->createPositionalParameter($languageId, \PDO::PARAM_INT)
+                    $queryBuilder->createPositionalParameter($languageId, Connection::PARAM_INT)
                 ),
-                $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, \PDO::PARAM_INT))
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, Connection::PARAM_INT))
             );
     }
 
@@ -160,7 +160,7 @@ class SlugService
                         $queryBuilder->expr()->or(
                             $queryBuilder->expr()->eq(
                                 'tx_news_domain_model_news.path_segment',
-                                $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)
+                                $queryBuilder->createNamedParameter('', Connection::PARAM_STR)
                             ),
                             $queryBuilder->expr()->isNull('tx_news_domain_model_news.path_segment')
                         ),
@@ -170,16 +170,16 @@ class SlugService
                         ),
                         $queryBuilder->expr()->eq(
                             'tx_realurl_uniqalias.tablename',
-                            $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)
+                            $queryBuilder->createNamedParameter('tx_news_domain_model_news', Connection::PARAM_STR)
                         ),
                         $queryBuilder->expr()->or(
                             $queryBuilder->expr()->eq(
                                 'tx_realurl_uniqalias.expire',
-                                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)
                             ),
                             $queryBuilder->expr()->gte(
                                 'tx_realurl_uniqalias.expire',
-                                $queryBuilder->createNamedParameter($GLOBALS['ACCESS_TIME'], \PDO::PARAM_INT)
+                                $queryBuilder->createNamedParameter($GLOBALS['ACCESS_TIME'], Connection::PARAM_INT)
                             )
                         )
                     )
@@ -238,7 +238,7 @@ class SlugService
                         $queryBuilder->expr()->or(
                             $queryBuilder->expr()->eq(
                                 'tx_news_domain_model_news.path_segment',
-                                $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)
+                                $queryBuilder->createNamedParameter('', Connection::PARAM_STR)
                             ),
                             $queryBuilder->expr()->isNull('tx_news_domain_model_news.path_segment')
                         ),
@@ -248,16 +248,16 @@ class SlugService
                         ),
                         $queryBuilder->expr()->eq(
                             'tx_realurl_uniqalias.tablename',
-                            $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)
+                            $queryBuilder->createNamedParameter('tx_news_domain_model_news', Connection::PARAM_STR)
                         ),
                         $queryBuilder->expr()->or(
                             $queryBuilder->expr()->eq(
                                 'tx_realurl_uniqalias.expire',
-                                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)
                             ),
                             $queryBuilder->expr()->gte(
                                 'tx_realurl_uniqalias.expire',
-                                $queryBuilder->createNamedParameter($GLOBALS['ACCESS_TIME'], \PDO::PARAM_INT)
+                                $queryBuilder->createNamedParameter($GLOBALS['ACCESS_TIME'], Connection::PARAM_INT)
                             )
                         )
                     )
@@ -272,7 +272,7 @@ class SlugService
                     ->where(
                         $queryBuilder->expr()->eq(
                             'uid',
-                            $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
+                            $queryBuilder->createNamedParameter($record['uid'], Connection::PARAM_INT)
                         )
                     )
                     ->set('path_segment', $this->getUniqueValue($record['uid'], $record['sys_language_uid'], $slug));

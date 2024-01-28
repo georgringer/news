@@ -30,9 +30,10 @@ Pricing
 - € 100.00 (ex. VAT) for 1 site
 - € 300.00 (ex. VAT) for unlimited sites related to the agency itself or its customers
 
-**Included**: Bugfix & feature releases, composer support
+**Included**: Bugfix & feature releases
 
 Contact: Please write an email to extension@ringer.it with the version you need and your invoice address + VAT ID.
+Additionally please add your GitHub username to get access to the repository to be able to download latest updates.
 
 Usage
 -----
