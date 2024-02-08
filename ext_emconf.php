@@ -8,7 +8,7 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'mail@ringer.it',
     'state' => 'stable',
     'clearCacheOnLoad' => true,
-    'version' => '11.4.0',
+    'version' => '11.4.1',
     'constraints' => [
         'depends' => [
             'php' => '7.4.0-8.3.99',
@@ -17,7 +17,6 @@ $EM_CONF[$_EXTKEY] = [
             'extbase' => '11.5.19-12.9.99',
             'fluid' => '11.5.19-12.9.99',
             'frontend' => '11.5.19-12.9.99',
-            'recordlist' => '11.5.19-12.9.99',
         ],
         'conflicts' => [],
         'suggests' => [
