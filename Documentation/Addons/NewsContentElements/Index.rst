@@ -21,8 +21,8 @@ This extension gives editors the possibility to use the power of page module for
 
 Requirements:
 
-- EXT:news 9/10
-- TYPO3 11.5 LTS
+- EXT:news 9/10/11
+- TYPO3 11.5, 12.4
 
 Pricing
 -------
