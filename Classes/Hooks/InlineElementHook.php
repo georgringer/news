@@ -29,7 +29,9 @@ class InlineElementHook implements InlineElementHookInterface
      *
      * @param InlineElement $parentObject
      */
-    public function init(&$parentObject): void {}
+    public function init(&$parentObject): void
+    {
+    }
 
     /**
      * Pre-processing to define which control items are enabled or disabled.
@@ -48,7 +50,8 @@ class InlineElementHook implements InlineElementHookInterface
         array $childConfig,
         $isVirtual,
         array &$enabledControls
-    ) {}
+    ) {
+    }
 
     /**
      * Post-processing to define which control items to show. Possibly own icons can be added here.

@@ -59,7 +59,9 @@ class Tag extends AbstractValueObject
      * extensible by other extensions that might want to define
      * an own __construct() method
      */
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     /**
      * Get crdate
