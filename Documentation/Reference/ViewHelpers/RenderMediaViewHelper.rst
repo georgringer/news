@@ -1,4 +1,3 @@
-.. include:: /Includes.rst.txt
 
 .. _viewHelperRenderMedia:
 
