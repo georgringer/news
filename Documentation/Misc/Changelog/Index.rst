@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. the changelog is displayed in the pagetree in Reference/Changelog
 .. there are external links to the github files however.
 

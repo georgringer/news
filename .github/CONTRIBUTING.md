@@ -40,6 +40,17 @@ email, or any other method with the owners of this repository before making a ch
 
 For changes of a trivial nature, it is not always necessary to create a new issue.
 
+## Render the documentation locally
+
+To render the documentation locally you can use the following `make` command:
+
+```
+    make docs
+```
+
+If `make` is not available on your machine you can also call the commands provided
+in the file `Makefile` manually.
+
 ## Additional resources
 
 * [Rendered documentation](https://docs.typo3.org/p/georgringer/news/main/en-us/)

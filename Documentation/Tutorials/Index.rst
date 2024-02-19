@@ -1,6 +1,4 @@
-﻿.. include:: /Includes.rst.txt
-
-.. _tutorials:
+﻿.. _tutorials:
 
 =========
 Tutorials

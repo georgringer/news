@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _routing:
 
 ===========================
@@ -18,11 +16,11 @@ beautify your URLs.
 Quick start
 ===========
 
-This section explains in short how to rewrite the URLs for the detail page in a 
-project where there is only one detail view page on the whole site and where 
+This section explains in short how to rewrite the URLs for the detail page in a
+project where there is only one detail view page on the whole site and where
 rewriting of things like pagination is not desired or needed.
 
-Open the configuration of the site. You should find it at 
+Open the configuration of the site. You should find it at
 :file:`/config/sites/<your_identifier>/config.yaml`.
 
 At the bottom of the file include the following:
@@ -53,7 +51,7 @@ Troubleshooting
 
 *   Did you save the site configuration file?
 *   Did you delete all caches?
-*   In the format YAML indentation matters. The code above **must** be indentated exactly 
+*   In the format YAML indentation matters. The code above **must** be indentated exactly
     as shown, the keyword `routeEnhancers` **must not** be indeted.
 *   The configuration above is limited to only one page containing a single view of news.
     Did you put the correct pid of page containing the news plugin displaying single news?

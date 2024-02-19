@@ -1,6 +1,4 @@
-    .. include:: /Includes.rst.txt
-
-.. _newsFegroupPreview:
+    .. _newsFegroupPreview:
 
 ========================
 EXT:news_fegroup_preview

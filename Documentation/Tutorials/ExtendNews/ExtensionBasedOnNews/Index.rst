@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _ext-based-on-news:
 
 Extensions based on EXT:news
