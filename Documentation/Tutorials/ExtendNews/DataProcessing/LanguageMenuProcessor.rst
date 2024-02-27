@@ -18,14 +18,14 @@ Usage
 
    10 = TYPO3\CMS\Frontend\DataProcessing\LanguageMenuProcessor
    10 {
-      as = languageMenu
-      addQueryString = 1
+       as = languageMenu
+       addQueryString = 1
    }
 
    11 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
    11 {
-     if.isTrue.data = GP:tx_news_pi1|news
-     menus = languageMenu
+       if.isTrue.data = GP:tx_news_pi1|news
+       menus = languageMenu
    }
 
 The property :typoscript:`menus` is a comma-separated list of

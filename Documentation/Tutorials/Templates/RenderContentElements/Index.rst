@@ -20,9 +20,9 @@ This is the default way in EXT:news. A basic TypoScript configuration is used to
 
    lib.tx_news.contentElementRendering = RECORDS
    lib.tx_news.contentElementRendering {
-           tables = tt_content
-           source.current = 1
-           dontCheckPid = 1
+       tables = tt_content
+       source.current = 1
+       dontCheckPid = 1
    }
 
 If you need to extend this, the best way is to introduce your own TypoScript which can be saved anywhere.
@@ -31,7 +31,7 @@ This needs then to be referenced in the template.
 .. code-block:: html
 
    <f:if condition="{newsItem.contentElements}">
-           <f:cObject typoscriptObjectPath="lib.yourownTypoScript">{newsItem.contentElements}</f:cObject>
+       <f:cObject typoscriptObjectPath="lib.yourownTypoScript">{newsItem.contentElements}</f:cObject>
    </f:if>
 
 Using TypoScript with nested content from b13/container
@@ -67,8 +67,8 @@ Changing ``lib.tx_news.contentElementRendering = RECORDS`` to ``lib.tx_news.cont
 .. code-block:: html
 
    <f:if condition="{newsItem.contentElements}">
-      <!-- content elements -->
-      <f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.nonNestedContentElementIdList}</f:cObject>
+       <!-- content elements -->
+       <f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.nonNestedContentElementIdList}</f:cObject>
    </f:if>
 
 Using Fluid
@@ -79,11 +79,11 @@ You can also use Fluid render the content elements. As an example:
 .. code-block:: html
 
    <f:if condition="{newsItem.contentElements}">
-      <f:for each="{newsItem.contentElements}" as="element">
-         <h3>{element.title}</h3>
-         <f:if condition="{element.CType} == 'text'">
-         {element.bodytext -> f:format.html()}
-         </f:if>
-      </f:for>
+       <f:for each="{newsItem.contentElements}" as="element">
+           <h3>{element.title}</h3>
+           <f:if condition="{element.CType} == 'text'">
+           {element.bodytext -> f:format.html()}
+           </f:if>
+       </f:for>
    </f:if>
 
