@@ -25,14 +25,14 @@ class CategoryController extends NewsController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($overwriteDemand !== null && $this->settings['disableOverrideDemand'] != 1) {
+        if ($overwriteDemand !== null && ($this->settings['disableOverrideDemand'] ?? 1) != 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
         $idList = explode(',', $this->settings['categories'] ?? '');
 
         $startingPoint = null;
-        if (!empty($this->settings['startingpoint'])) {
+        if (!empty($this->settings['startingpoint'] ?? '')) {
             $startingPoint = $this->settings['startingpoint'];
         }
 
