@@ -2,7 +2,7 @@ plugin.tx_news {
   view {
     templateRootPaths {
       0 = EXT:news/Resources/Private/Templates/
-      1 = EXT:news/Resources/Private/Templates/Styles/Twb/Templates
+      1 = EXT:news/Resources/Private/Templates/Styles/Twb/Templates/
       2 = {$plugin.tx_news.view.twb.templateRootPath}
     }
 
