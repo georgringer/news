@@ -11,24 +11,31 @@ namespace GeorgRinger\News\Controller;
 
 use GeorgRinger\News\Domain\Repository\AdministrationRepository;
 use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 
 /**
  * Administration controller
  */
 class AdministrationController extends NewsController
 {
-    /** @var string */
-    protected $defaultViewObjectName = BackendTemplateView::class;
-
     /**
      * @var \GeorgRinger\News\Domain\Repository\AdministrationRepository
      */
     protected $administrationRepository;
 
+    /**
+     * @var \TYPO3\CMS\Backend\Template\ModuleTemplateFactory
+     */
+    protected $moduleTemplateFactory;
+
     public function injectAdministrationRepository(AdministrationRepository $administrationRepository)
     {
         $this->administrationRepository = $administrationRepository;
+    }
+
+    public function injectModuleTemplateFactory(ModuleTemplateFactory $moduleTemplateFactory)
+    {
+        $this->moduleTemplateFactory = $moduleTemplateFactory;
     }
 
     public function indexAction(): ResponseInterface
@@ -36,6 +43,10 @@ class AdministrationController extends NewsController
         $this->view->assignMultiple([
             'counts' => $this->administrationRepository->getTotalCounts(),
         ]);
-        return $this->htmlResponse();
+
+        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+        $moduleTemplate->setContent($this->view->render());
+
+        return $this->htmlResponse($moduleTemplate->renderContent());
     }
 }
