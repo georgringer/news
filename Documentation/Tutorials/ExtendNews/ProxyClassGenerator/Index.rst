@@ -47,26 +47,26 @@ The file  :file:`ext_emconf.php` holds all basic information about the extension
 
    <?php
 
-   $EM_CONF[$_EXTKEY] = array(
+   $EM_CONF[$_EXTKEY] = [
       'title' => 'news events',
       'description' => 'Events for news',
       'category' => 'plugin',
       'author' => 'Georg Ringer',
       'author_email' => '',
       'state' => 'alpha',
-      'uploadfolder' => FALSE,
+      'uploadfolder' => false,
       'createDirs' => '',
-      'clearCacheOnLoad' => TRUE,
+      'clearCacheOnLoad' => true,
       'version' => '1.0.0',
-      'constraints' => array(
-         'depends' => array(
+      'constraints' => [
+         'depends' => [
             'typo3' => '7.6.13-8.7.99',
             'news' => '6.2.0-6.9.99',
-         ),
-         'conflicts' => array(),
-         'suggests' => array(),
-      ),
-   );
+         ],
+         'conflicts' => [],
+         'suggests' => [],
+      ],
+   ];
 
 SQL definition
 """"""""""""""
@@ -94,16 +94,16 @@ Therefore, create the file :file:`Configuration/TCA/Overrides/tx_news_domain_mod
    <?php
    defined('TYPO3') or die();
 
-   $fields = array(
-      'location_simple' => array(
+   $fields = [
+      'location_simple' => [
          'exclude' => 1,
          'label' => 'My location',
-         'config' => array(
+         'config' => [
             'type' => 'input',
             'size' => 15
-         ),
-      )
-   );
+         ],
+      ]
+   ];
 
    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_news_domain_model_news', $fields);
    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'location_simple');
@@ -138,7 +138,7 @@ Create the file :file:`ext_localconf.php` in the root of the extension:
 Custom class
 ^^^^^^^^^^^^
 As the class :php:`Domain/Model/News` should be extended, create a file at the same path in the own extension which is
-:file:`typo3conf/ext/eventnews/Classes/Domain/Model/News.php`:
+:file:`path/to/eventnews/Classes/Domain/Model/News.php`:
 
 .. code-block:: php
 
@@ -146,33 +146,28 @@ As the class :php:`Domain/Model/News` should be extended, create a file at the s
 
    namespace GeorgRinger\Eventnews\Domain\Model;
 
-   /**
-    * News
-    */
-   class News extends \GeorgRinger\News\Domain\Model\News {
+   class News extends \GeorgRinger\News\Domain\Model\News
+   {
+      protected string $locationSimple;
 
-      /**
-       * @var string
-       */
-      protected $locationSimple;
-
-      /**
-       * @return string
-       */
-      public function getLocationSimple() {
+      public function getLocationSimple(): string
+      {
          return $this->locationSimple;
       }
 
-      /**
-       * @param string $locationSimple
-       */
-      public function setLocationSimple($locationSimple) {
+      public function setLocationSimple(string $locationSimple)
+      {
          $this->locationSimple = $locationSimple;
       }
    }
 
 .. hint::
-    If you are using the extension :file:`extension_builder`, this class might have been created for you already.
+
+   If you are using the extension :file:`extension_builder`, this class might have been created for you already.
+
+.. important::
+
+   If you reference other objects, you must define the full namespace at the location and don't use namespace imports (with "use")!
 
 Clear system cache
 ^^^^^^^^^^^^^^^^^^

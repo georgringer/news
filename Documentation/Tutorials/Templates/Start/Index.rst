@@ -99,11 +99,11 @@ paths:
    :caption: TypoScript constants
 
    plugin.tx_news {
-      view {
-         templateRootPath = EXT:mysitepackage/Resources/Private/Extensions/News/Templates/
-         partialRootPath = EXT:mysitepackage/Resources/Private/Extensions/News/Partials/
-         layoutRootPath = EXT:mysitepackage/Resources/Private/Extensions/News/Layouts/
-      }
+       view {
+           templateRootPath = EXT:mysitepackage/Resources/Private/Extensions/News/Templates/
+           partialRootPath = EXT:mysitepackage/Resources/Private/Extensions/News/Partials/
+           layoutRootPath = EXT:mysitepackage/Resources/Private/Extensions/News/Layouts/
+       }
    }
 
 If needed, multiple fallbacks can be defined with TypoScript setup:
@@ -112,29 +112,29 @@ If needed, multiple fallbacks can be defined with TypoScript setup:
    :caption: TypoScript setup
 
    plugin.tx_news {
-      view {
-         templateRootPaths >
-         templateRootPaths {
-            0 = EXT:news/Resources/Private/Templates/
-            10 = EXT:mynewsextender/Resources/Private/Templates/
-            15 = EXT:myothernewsextender/Resources/Private/Templates/
-            20 = {$plugin.tx_news.view.templateRootPath}
-         }
-         partialRootPaths >
-         partialRootPaths {
-            0 = EXT:news/Resources/Private/Partials/
-            10 = EXT:mynewsextender/Resources/Private/Partials/
-            15 = EXT:myothernewsextender/Resources/Private/Partials/
-            20 = {$plugin.tx_news.view.partialRootPath}
-         }
-         layoutRootPaths >
-         layoutRootPaths {
-            0 = EXT:news/Resources/Private/Layouts/
-            10 = EXT:mynewsextender/Resources/Private/Layouts/
-            15 = EXT:myothernewsextender/Resources/Private/Layouts/
-            20 = {$plugin.tx_news.view.layoutRootPath}
-         }
-      }
+       view {
+           templateRootPaths >
+           templateRootPaths {
+               0 = EXT:news/Resources/Private/Templates/
+               10 = EXT:mynewsextender/Resources/Private/Templates/
+               15 = EXT:myothernewsextender/Resources/Private/Templates/
+               20 = {$plugin.tx_news.view.templateRootPath}
+           }
+           partialRootPaths >
+           partialRootPaths {
+               0 = EXT:news/Resources/Private/Partials/
+               10 = EXT:mynewsextender/Resources/Private/Partials/
+               15 = EXT:myothernewsextender/Resources/Private/Partials/
+               20 = {$plugin.tx_news.view.partialRootPath}
+           }
+           layoutRootPaths >
+           layoutRootPaths {
+               0 = EXT:news/Resources/Private/Layouts/
+               10 = EXT:mynewsextender/Resources/Private/Layouts/
+               15 = EXT:myothernewsextender/Resources/Private/Layouts/
+               20 = {$plugin.tx_news.view.layoutRootPath}
+           }
+       }
    }
 
 It is recommended to always include the path from the TypoScript constants
@@ -150,11 +150,11 @@ The path of the pagination widget can be changed by using a configuration like b
    :caption: TypoScript setup
 
    plugin.tx_news {
-      view {
-         widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper {
-            templateRootPath = EXT:mysitepackage/Resources/Private/Extensions/News/Templates/
-         }
-      }
+       view {
+           widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper {
+               templateRootPath = EXT:mysitepackage/Resources/Private/Extensions/News/Templates/
+           }
+       }
    }
 
 
@@ -176,7 +176,7 @@ A layout can look this:
    :caption: :file:`EXT:mysitepackage/Resources/Private/Extensions/News/Layouts/General.html`
 
    <div class="myFancyNews">
-      <f:render section="content" />
+       <f:render section="content" />
    </div>
 
 This means that the output of the section :html:`content` will be rendered
@@ -199,7 +199,7 @@ If :file:`Layouts` are used, it is required to define the name of the Layout
    <f:layout name="General" />
 
    <f:section name="content">
-      This will be rendered
+       This will be rendered
    </f:section>
 
 
@@ -254,9 +254,9 @@ namespace declaration like
 .. code-block:: html
 
    <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-        xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
-        xmlns:x="http://typo3.org/ns/Vendor/SomeExtension/ViewHelper"
-        data-namespace-typo3-fluid="true">
+       xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+       xmlns:x="http://typo3.org/ns/Vendor/SomeExtension/ViewHelper"
+       data-namespace-typo3-fluid="true">
    ...
    </html>
 

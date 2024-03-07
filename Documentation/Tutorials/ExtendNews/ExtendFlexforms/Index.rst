@@ -31,7 +31,7 @@ your own selections by adding those to
 
 .. code-block:: php
 
-   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']['myext'] = array('My Title', 'my value');
+   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']['myext'] = ['My Title', 'my value'];
 
 You can then access the variable in your template with
 :code:`{settings.templateLayout}` and use it for a condition or whatever.

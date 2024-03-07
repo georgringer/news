@@ -18,7 +18,7 @@ It includes these features:
 * Support for editors and authors by
 
    * well-structured plugins with good preview functionality
-   * a backend module with filter & search (Availlable as payed add-on [EXT:news_administration](https://docs.typo3.org/p/georgringer/news/main/en-us/Addons/NewsAdministration/Index.html))
+   * a backend module with filter & search (Available as paid add-on [EXT:news_administration](https://docs.typo3.org/p/georgringer/news/main/en-us/Addons/NewsAdministration/Index.html))
    * frontend template variant based on Twitter Bootstrap v5.
 
 * Use of as many elements from the system core as possible, e.g. FAL and system
