@@ -172,12 +172,6 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
 
-        if ($constraints = $this->createConstraintsFromDemand($query, $demand)) {
-            $query->matching(
-                $query->logicalAnd($constraints)
-            );
-        }
-
         return $query->execute()->count();
     }
 }
