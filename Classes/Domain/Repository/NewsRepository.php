@@ -251,7 +251,11 @@ class NewsRepository extends AbstractDemandedRepository
         // Id list
         $idList = $demand->getIdList();
         if ($idList) {
-            $constraints['idList'] = $query->in('uid', GeneralUtility::intExplode(',', $idList, true));
+            $commaSeparatedIdList = GeneralUtility::intExplode(',', $idList, true);
+            $constraints['idList'] = $query->logicalOr(
+                $query->in('uid', $commaSeparatedIdList),
+                $query->in('l10n_parent', $commaSeparatedIdList)
+            );
         }
 
         // Clean not used constraints
