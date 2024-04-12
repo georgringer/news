@@ -85,7 +85,7 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
         sort($categoryList);
 
         if (!empty($categoryList)) {
-            $categoryList = implode(',', $categoryList);;
+            $categoryList = implode(',', $categoryList);
             $categoryArray = [
                 'tx_news_pi1' => [
                     'overwriteDemand' => [
