@@ -231,28 +231,14 @@ $tx_news_domain_model_news = [
             'exclude' => true,
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => 16,
-                'eval' => 'datetime,int',
-                'default' => 0,
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
+                'type' => 'datetime',
             ],
         ],
         'endtime' => [
             'exclude' => true,
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => 16,
-                'eval' => 'datetime,int',
-                'default' => 0,
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
+                'type' => 'datetime',
             ],
         ],
         'fe_group' => [
@@ -321,10 +307,8 @@ $tx_news_domain_model_news = [
             'exclude' => false,
             'label' => $ll . 'tx_news_domain_model_news.datetime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => 16,
-                'eval' => 'datetime,int' . ($configuration->getDateTimeRequired() ? ',required' : ''),
+                'type' => 'datetime',
+                'required' => $configuration->getDateTimeRequired()
             ],
         ],
         'archive' => [
@@ -332,11 +316,8 @@ $tx_news_domain_model_news = [
             'l10n_mode' => 'copy',
             'label' => $ll . 'tx_news_domain_model_news.archive',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => 30,
-                'eval' => $configuration->getArchiveDate() . ',int',
-                'default' => 0,
+                'type' => 'datetime',
+                'format' => $configuration->getArchiveDate(),
             ],
         ],
         'author' => [

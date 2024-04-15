@@ -4,19 +4,8 @@ defined('TYPO3') or die;
 
 call_user_func(static function () {
     $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
-    $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
     $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
     if ($versionInformation->getMajorVersion() > 11) {
-
-        // set datetime for various date fields
-        foreach (['starttime', 'endtime', 'archive', 'datetime'] as $dateField) {
-            $GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$dateField]['config'] = [
-                'type' => 'datetime',
-            ];
-        }
-        $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['archive']['config']['format'] = $configuration->getArchiveDate();
-        $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['datetime']['config']['required'] = $configuration->getDateTimeRequired();
-
         // link fields
         $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['internalurl']['config'] = [
             'type' => 'link',
