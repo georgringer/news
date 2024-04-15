@@ -114,10 +114,6 @@ $boot = static function (): void {
     // Hide content elements in list module & filter in administration module
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery']['ext:news']
         = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
-    
-    // Inline records hook
-    // @extensionScannerIgnoreLine
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['news'] = \GeorgRinger\News\Hooks\InlineElementHook::class;
 
     /* ===========================================================================
         Custom cache, done with the caching framework
