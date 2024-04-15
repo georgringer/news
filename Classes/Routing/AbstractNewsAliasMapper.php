@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Routing;
 
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Routing\Aspect\PersistedAliasMapper;
 
 /**
@@ -36,15 +35,4 @@ abstract class AbstractNewsAliasMapper extends PersistedAliasMapper
         parent::__construct($settings);
     }
 
-    public function resolve(string $value): ?string
-    {
-        $result = parent::resolve($value);
-        // Fallback Layer for v11
-        if ((new Typo3Version())->getMajorVersion() < 12) {
-            if ($result === null) {
-                return '0';
-            }
-        }
-        return $result;
-    }
 }
