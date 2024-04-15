@@ -6,115 +6,6 @@ $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
 $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
 
-$imageSettingsFalMedia = [
-    'behaviour' => [
-        'allowLanguageSynchronization' => true,
-    ],
-    'appearance' => [
-        'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_media.add',
-        'showPossibleLocalizationRecords' => true,
-        'showAllLocalizationLink' => true,
-        'showSynchronizationLink' => true,
-    ],
-    'foreign_match_fields' => [
-        'fieldname' => 'fal_media',
-        'tablenames' => 'tx_news_domain_model_news',
-        'table_local' => 'sys_file',
-    ],
-    // custom configuration for displaying fields in the overlay/reference table
-    // to use the newsPalette and imageoverlayPalette instead of the basicoverlayPalette
-    'overrideChildTca' => [
-        'types' => [
-            \TYPO3\CMS\Core\Resource\File::FILETYPE_UNKNOWN => [
-                'showitem' => '
-                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette',
-            ],
-            \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-                'showitem' => '
-                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette',
-            ],
-            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                'showitem' => '
-                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette',
-            ],
-            \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-                'showitem' => '
-                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-                                    --palette--;;audioOverlayPalette,
-                                    --palette--;;filePalette',
-            ],
-            \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                'showitem' => '
-                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-                                    --palette--;;videoOverlayPalette,
-                                    --palette--;;filePalette',
-            ],
-            \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-                'showitem' => '
-                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette',
-            ],
-        ],
-    ],
-];
-$imageSettingsFalRelatedFiles = [
-    'behaviour' => [
-        'allowLanguageSynchronization' => true,
-    ],
-    'appearance' => [
-        'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_related_files.add',
-        'showPossibleLocalizationRecords' => true,
-        'showAllLocalizationLink' => true,
-        'showSynchronizationLink' => true,
-    ],
-    'inline' => [
-        'inlineOnlineMediaAddButtonStyle' => 'display:none',
-    ],
-    'foreign_match_fields' => [
-        'fieldname' => 'fal_related_files',
-        'tablenames' => 'tx_news_domain_model_news',
-        'table_local' => 'sys_file',
-    ],
-];
-
-$versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
-if ($versionInformation->getMajorVersion() > 11) {
-    $imageConfigurationFalMedia = [
-        'type' => 'file',
-        'appearance' => $imageSettingsFalMedia['appearance'],
-        'behaviour' => $imageSettingsFalMedia['behaviour'],
-        'overrideChildTca' => $imageSettingsFalMedia['overrideChildTca'],
-        'allowed' => 'common-media-types',
-    ];
-    $imageConfigurationFalRelatedFiles = [
-        'type' => 'file',
-        'appearance' => $imageSettingsFalRelatedFiles['appearance'],
-        'behaviour' => $imageSettingsFalRelatedFiles['behaviour'],
-        'inline' => $imageSettingsFalRelatedFiles['inline'],
-    ];
-} else {
-    /** @noinspection PhpDeprecationInspection */
-    // @extensionScannerIgnoreLine
-    $imageConfigurationFalMedia = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-        'fal_media',
-        $imageSettingsFalMedia,
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
-    );
-    /** @noinspection PhpDeprecationInspection */
-    // @extensionScannerIgnoreLine
-    $imageConfigurationFalRelatedFiles = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-        'fal_related_files',
-        $imageSettingsFalRelatedFiles,
-    );
-}
-
 $tx_news_domain_model_news = [
     'ctrl' => [
         'title' => $ll . 'tx_news_domain_model_news',
@@ -192,14 +83,9 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => $versionInformation->getMajorVersion() < 12 ? [
-                    [
-                        0 => '',
-                        1 => '',
-                    ],
-                ] : [
+                'items' => [
                     ['label' => '', 'value' => ''],
-                ],
+                ]
             ],
         ],
 
@@ -249,11 +135,7 @@ $tx_news_domain_model_news = [
                 'renderType' => 'selectMultipleSideBySide',
                 'size' => 5,
                 'maxitems' => 20,
-                'items' => $versionInformation->getMajorVersion() < 12 ? [
-                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login', -1],
-                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login', -2],
-                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups', '--div--'],
-                ] : [
+                'items' => [
                     ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login', 'value' => -1],
                     ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login', 'value' => -2],
                     ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups', 'value' => '--div--'],
@@ -444,11 +326,7 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => $versionInformation->getMajorVersion() < 12 ? [
-                    [$ll . 'tx_news_domain_model_news.type.I.0', 0, 'ext-news-type-default'],
-                    [$ll . 'tx_news_domain_model_news.type.I.1', 1, 'ext-news-type-internal'],
-                    [$ll . 'tx_news_domain_model_news.type.I.2', 2, 'ext-news-type-external'],
-                ] : [
+                'items' =>  [
                     ['label' => $ll . 'tx_news_domain_model_news.type.I.0', 'value' => 0, 'icon' => 'ext-news-type-default'],
                     ['label' => $ll . 'tx_news_domain_model_news.type.I.1', 'value' => 1, 'icon' => 'ext-news-type-internal'],
                     ['label' => $ll . 'tx_news_domain_model_news.type.I.2', 'value' => 2, 'icon' => 'ext-news-type-external'],
@@ -512,11 +390,9 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => $versionInformation->getMajorVersion() < 12 ? [
-                    ['', ''],
-                ] : [
+                'items' => [
                     ['label' => '', 'value' => ''],
-                ],
+                ]
             ],
         ],
         'editlock' => [
@@ -526,9 +402,7 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => $versionInformation->getMajorVersion() < 12 ? [
-                    ['', ''],
-                ] : [
+                'items' => [
                     ['label' => '', 'value' => ''],
                 ],
                 'behaviour' => [
@@ -621,12 +495,78 @@ $tx_news_domain_model_news = [
         'fal_media' => [
             'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_news.fal_media',
-            'config' => $imageConfigurationFalMedia,
+            'config' => [
+                'type' => 'file',
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+                'appearance' => [
+                    'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_media.add',
+                    'showPossibleLocalizationRecords' => true,
+                    'showAllLocalizationLink' => true,
+                    'showSynchronizationLink' => true,
+                ],
+                'overrideChildTca' => [
+                    'types' => [
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_UNKNOWN => [
+                            'showitem' => '
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;imageoverlayPalette,
+                                    --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                            'showitem' => '
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;imageoverlayPalette,
+                                    --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                            'showitem' => '
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;imageoverlayPalette,
+                                    --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                            'showitem' => '
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;audioOverlayPalette,
+                                    --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                            'showitem' => '
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;videoOverlayPalette,
+                                    --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                            'showitem' => '
+                                    --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;imageoverlayPalette,
+                                    --palette--;;filePalette',
+                        ],
+                    ],
+                ],
+                'allowed' => 'common-media-types',
+            ],
         ],
         'fal_related_files' => [
             'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_news.fal_related_files',
-            'config' => $imageConfigurationFalRelatedFiles,
+            'config' => [
+                'type' => 'file',
+                'appearance' => [
+                    'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_related_files.add',
+                    'showPossibleLocalizationRecords' => true,
+                    'showAllLocalizationLink' => true,
+                    'showSynchronizationLink' => true,
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+                'inline' => [
+                    'inlineOnlineMediaAddButtonStyle' => 'display:none',
+                ],
+            ],
         ],
         'notes' => [
             'label' => $ll . 'notes',
