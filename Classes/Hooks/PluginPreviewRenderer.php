@@ -48,6 +48,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
 
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
+    private int $pageId = 0;
 
     public function __construct()
     {
@@ -57,6 +58,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
 
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
+        $this->pageId = $item->getContext()->getPageId();
         $row = $item->getRecord();
         $actionTranslationKey = $result = '';
         $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
@@ -228,8 +230,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
 
             if ($table === 'pages') {
                 $id = $record['uid'];
-                $currentPageId = (int)GeneralUtility::_GET('id');
-                $link = htmlspecialchars($this->getEditLink($record, $currentPageId));
+                $link = htmlspecialchars($this->getEditLink($record, $this->pageId));
                 $switchLabel = $this->getLanguageService()->sL(self::LLPATH . 'pagemodule.switchToPage');
                 $content .= ' <a href="#" data-toggle="tooltip" data-placement="top" data-title="' . $switchLabel . '" onclick=\'top.jump("' . $link . '", "web_layout", "web", ' . $id . ');return false\'>' . $linkTitle . '</a>';
             } else {
