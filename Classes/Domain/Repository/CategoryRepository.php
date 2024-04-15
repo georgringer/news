@@ -15,7 +15,6 @@ use GeorgRinger\News\Service\CategoryService;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -222,9 +221,7 @@ class CategoryRepository extends AbstractDemandedRepository
     {
         $sysLanguage = 0;
 
-        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() === 10) {
-            $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
-        } elseif (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
             $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'contentId');
         } elseif ((int)GeneralUtility::_GP('L')) {
             $sysLanguage = (int)GeneralUtility::_GP('L');
