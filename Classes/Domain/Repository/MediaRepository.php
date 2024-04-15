@@ -14,4 +14,6 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 /**
  * Repository for media objects
  */
-class MediaRepository extends Repository {}
+class MediaRepository extends Repository
+{
+}
