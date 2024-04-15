@@ -9,7 +9,6 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
@@ -153,20 +152,15 @@ class SearchFormViewHelper extends AbstractFormViewHelper
                 trigger_error('Using the argument "addQueryStringMethod" in <f:form> ViewHelper has no effect anymore and will be removed in TYPO3 v12. Remove the argument in your fluid template, as it will result in a fatal error.', E_USER_DEPRECATED);
             }
 
-            $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-            if ($versionInformation->getMajorVersion() >= 12) {
-                /** @var RenderingContext $renderingContext */
-                $renderingContext = $this->renderingContext;
-                /** @var RequestInterface $request */
-                $request = $renderingContext->getRequest();
-                $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
-                $uriBuilder
-                    ->reset()
-                    ->setRequest($request);
-            } else {
-                $uriBuilder = $this->renderingContext->getUriBuilder();
-                $uriBuilder->reset();
-            }
+            /** @var RenderingContext $renderingContext */
+            $renderingContext = $this->renderingContext;
+            /** @var RequestInterface $request */
+            $request = $renderingContext->getRequest();
+            /** @var UriBuilder $uriBuilder */
+            $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+            $uriBuilder
+                ->reset()
+                ->setRequest($request);
             $uriBuilder
                 ->setTargetPageType($this->arguments['pageType'] ?? 0)
                 ->setNoCache($this->arguments['noCache'] ?? false)
@@ -338,13 +332,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      */
     protected function getDefaultFieldNamePrefix()
     {
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() >= 11) {
-            $request = $this->renderingContext->getRequest();
-        } else {
-            // @extensionScannerIgnoreLine
-            $request = $this->renderingContext->getControllerContext()->getRequest();
-        }
+        $request = $this->renderingContext->getRequest();
         if ($this->hasArgument('extensionName')) {
             $extensionName = $this->arguments['extensionName'];
         } else {
