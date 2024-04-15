@@ -89,7 +89,7 @@ class NewsController extends NewsBaseController
     /**
      * Initializes the current action
      */
-    protected function initializeAction()
+    protected function initializeAction(): void
     {
         GeneralUtility::makeInstance(ClassCacheManager::class)->reBuildSimple();
         $this->buildSettings();
