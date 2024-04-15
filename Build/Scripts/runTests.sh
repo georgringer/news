@@ -141,11 +141,11 @@ Options:
             - 8.2: use PHP 8.2
             - 8.3: use PHP 8.3
 
-    -t <11|12>
+    -t <12|13>
         Only with -s composerUpdate
         Specifies the TYPO3 core major version to be used
-            - 11 (default): use TYPO3 core v11
-            - 12: use TYPO3 core v12
+            - 12 (default): use TYPO3 core v12
+            - 13: use TYPO3 core v13
 
     -e "<composer, phpunit or codeception options>"
         Only with -s functional|unit|composer
@@ -267,13 +267,13 @@ while getopts ":s:a:d:i:j:k:p:t:e:xy:z:nhuv" OPT; do
             ;;
         p)
             PHP_VERSION=${OPTARG}
-            if ! [[ ${PHP_VERSION} =~ ^(7.4|8.0|8.1|8.2|8.3)$ ]]; then
+            if ! [[ ${PHP_VERSION} =~ ^(8.1|8.2|8.3)$ ]]; then
                 INVALID_OPTIONS+=("p ${OPTARG}")
             fi
             ;;
         t)
             TYPO3_VERSION=${OPTARG}
-            if ! [[ ${TYPO3_VERSION} =~ ^(11|12)$ ]]; then
+            if ! [[ ${TYPO3_VERSION} =~ ^(12|13)$ ]]; then
                 INVALID_OPTIONS+=("p ${OPTARG}")
             fi
             ;;
