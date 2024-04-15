@@ -34,5 +34,4 @@ abstract class AbstractNewsAliasMapper extends PersistedAliasMapper
         $settings['fallbackValue'] = array_key_exists('fallbackValue', $settings) ? $settings['fallbackValue'] : null;
         parent::__construct($settings);
     }
-
 }
