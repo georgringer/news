@@ -66,11 +66,6 @@ class News extends AbstractEntity
     protected $deleted = false;
 
     /**
-     * @var int
-     */
-    protected $cruserId = 0;
-
-    /**
      * @var string
      */
     protected $title = '';
@@ -1266,26 +1261,6 @@ class News extends AbstractEntity
     public function getDayOfTimestamp(): int
     {
         return (int)$this->tstamp->format('d');
-    }
-
-    /**
-     * Get id of creator user
-     *
-     * @return int
-     */
-    public function getCruserId(): int
-    {
-        return $this->cruserId;
-    }
-
-    /**
-     * Set cruser id
-     *
-     * @param int $cruserId id of creator user
-     */
-    public function setCruserId($cruserId): void
-    {
-        $this->cruserId = $cruserId;
     }
 
     /**

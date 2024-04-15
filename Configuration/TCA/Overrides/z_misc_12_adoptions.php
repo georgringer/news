@@ -8,8 +8,6 @@ call_user_func(static function () {
     $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
     if ($versionInformation->getMajorVersion() > 11) {
         foreach (['news', 'link', 'tag'] as $tableSuffix) {
-            // remove cruser_id
-            unset($GLOBALS['TCA']['tx_news_domain_model_' . $tableSuffix]['ctrl']['cruser_id']);
             // set datetime for tstamp/crdate
             foreach (['tstamp', 'crdate'] as $dateField) {
                 $GLOBALS['TCA']['tx_news_domain_model_' . $tableSuffix]['columns'][$dateField]['config'] = [

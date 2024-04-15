@@ -124,7 +124,6 @@ $tx_news_domain_model_news = [
         'hideAtCopy' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
         'editlock' => 'editlock',
@@ -203,12 +202,7 @@ $tx_news_domain_model_news = [
                 ],
             ],
         ],
-        'cruser_id' => [
-            'label' => 'cruser_id',
-            'config' => [
-                'type' => 'passthrough',
-            ],
-        ],
+
         'pid' => [
             'label' => 'pid',
             'config' => [
