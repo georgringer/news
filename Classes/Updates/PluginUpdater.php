@@ -20,9 +20,11 @@ use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
+#[UpgradeWizard('txNewsPluginUpdater')]
 class PluginUpdater implements UpgradeWizardInterface
 {
     private const MIGRATION_SETTINGS = [
@@ -83,11 +85,6 @@ class PluginUpdater implements UpgradeWizardInterface
         $this->flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
         $this->flexFormTools = GeneralUtility::makeInstance(FlexFormTools::class);
         $this->eventDispatcher = GeneralUtility::makeInstance(EventDispatcherInterface::class);
-    }
-
-    public function getIdentifier(): string
-    {
-        return 'txNewsPluginUpdater';
     }
 
     public function getTitle(): string

@@ -12,12 +12,14 @@ declare(strict_types=1);
 namespace GeorgRinger\News\Updates;
 
 use GeorgRinger\News\Service\SlugService;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 /**
  * Migrate empty slugs
  */
+#[UpgradeWizard('newsSlug')]
 class NewsSlugUpdater implements UpgradeWizardInterface
 {
     public const TABLE = 'tx_news_domain_model_news';
@@ -73,13 +75,5 @@ class NewsSlugUpdater implements UpgradeWizardInterface
     public function getDescription(): string
     {
         return 'Fills empty slug field "path_segment" of EXT:news records with urlized title.';
-    }
-
-    /**
-     * @return string Unique identifier of this updater
-     */
-    public function getIdentifier(): string
-    {
-        return 'newsSlug';
     }
 }

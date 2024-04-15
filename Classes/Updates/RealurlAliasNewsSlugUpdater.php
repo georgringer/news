@@ -25,6 +25,7 @@ namespace GeorgRinger\News\Updates;
  */
 
 use GeorgRinger\News\Service\SlugService;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
@@ -38,6 +39,7 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
  * Will only appear if missing slugs found between realurl and news, respecting language and expire date from realurl
  * Copies values from 'tx_realurl_uniqalias.value_alias' to 'tx_news_domain_model_news.path_segment'
  */
+#[UpgradeWizard('realurlAliasNewsSlug')]
 class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
 {
     public const TABLE = 'tx_news_domain_model_news';
@@ -101,14 +103,6 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
     public function getDescription(): string
     {
         return 'Migrates EXT:realurl unique alias values into empty slug field "path_segment" of EXT:news records.';
-    }
-
-    /**
-     * @return string Unique identifier of this updater
-     */
-    public function getIdentifier(): string
-    {
-        return 'realurlAliasNewsSlug';
     }
 
     /**

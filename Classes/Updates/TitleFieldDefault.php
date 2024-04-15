@@ -15,22 +15,19 @@ use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 /**
  * Migrate default value of title field
  */
+#[UpgradeWizard('txNewsTitleFieldDefault')]
 final class TitleFieldDefault implements UpgradeWizardInterface
 {
     private const TABLE_NEWS = 'tx_news_domain_model_news';
     private const FIELD_UID = 'uid';
     private const FIELD_RELATED_LINKS = 'title';
     private const RELATED_LINKS_DEFAULT_VALUE = '';
-
-    public function getIdentifier(): string
-    {
-        return 'txNewsTitleFieldDefault';
-    }
 
     public function getTitle(): string
     {

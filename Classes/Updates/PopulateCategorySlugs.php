@@ -17,25 +17,19 @@ use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 /**
  * Fills sys_category.slug with a proper value
  */
+#[UpgradeWizard('sysCategorySlugs')]
 class PopulateCategorySlugs implements UpgradeWizardInterface
 {
     protected $table = 'sys_category';
 
     protected $fieldName = 'slug';
-
-    /**
-     * @return string Unique identifier of this updater
-     */
-    public function getIdentifier(): string
-    {
-        return 'sysCategorySlugs';
-    }
 
     /**
      * @return string Title of this updater
