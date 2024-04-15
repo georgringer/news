@@ -18,26 +18,6 @@ $boot = static function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['news'] = 'tx_news_domain_model_news';
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['newstag'] = 'tx_news_domain_model_tag';
 
-    /* ===========================================================================
-        Register BE-Module for Administration
-    =========================================================================== */
-    if ($configuration->getShowAdministrationModule()) {
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-            'News',
-            'web',
-            'administration',
-            '',
-            [\GeorgRinger\News\Controller\AdministrationController::class => 'index,newNews,newCategory,newTag,newsPidListing,donate'],
-            [
-                'access' => 'user,group',
-                'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
-                'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
-                'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
-                'inheritNavigationComponentFromMainModule' => false,
-                'path' => '/module/web/NewsAdministration/',
-            ]
-        );
-    }
 
     /* ===========================================================================
         Default configuration
