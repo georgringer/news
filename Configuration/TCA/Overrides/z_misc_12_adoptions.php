@@ -7,7 +7,6 @@ call_user_func(static function () {
     $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
     $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
     if ($versionInformation->getMajorVersion() > 11) {
-
         // set datetime for various date fields
         foreach (['starttime', 'endtime', 'archive', 'datetime'] as $dateField) {
             $GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$dateField]['config'] = [
