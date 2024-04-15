@@ -4,33 +4,6 @@ use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 $boot = static function (): void {
-    $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-    if ($versionInformation->getMajorVersion() < 12) {
-        // CSH - context sensitive help
-        foreach (['news', 'tag', 'link'] as $table) {
-            // @extensionScannerIgnoreLine
-            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_' . $table);
-
-            // @extensionScannerIgnoreLine
-            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-                'tx_news_domain_model_' . $table,
-                'EXT:news/Resources/Private/Language/locallang_csh_' . $table . '.xlf'
-            );
-        }
-
-        // @extensionScannerIgnoreLine
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-            'tt_content.pi_flexform.news_pi1.list',
-            'EXT:news/Resources/Private/Language/locallang_csh_flexforms.xlf'
-        );
-
-        // @extensionScannerIgnoreLine
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-            'sys_file_reference',
-            'EXT:news/Resources/Private/Language/locallang_csh_sys_file_reference.xlf'
-        );
-    }
-
     $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
 
     // Extend user settings
