@@ -45,7 +45,7 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['label' => '', 'value' => '']
+                    ['label' => '', 'value' => ''],
                 ],
                 'foreign_table' => 'tx_news_domain_model_tag',
                 'foreign_table_where' => 'AND tx_news_domain_model_tag.pid=###CURRENT_PID### AND tx_news_domain_model_tag.sys_language_uid IN (-1,0)',

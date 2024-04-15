@@ -85,7 +85,7 @@ $tx_news_domain_model_news = [
                 'default' => 0,
                 'items' => [
                     ['label' => '', 'value' => ''],
-                ]
+                ],
             ],
         ],
 
@@ -190,7 +190,7 @@ $tx_news_domain_model_news = [
             'label' => $ll . 'tx_news_domain_model_news.datetime',
             'config' => [
                 'type' => 'datetime',
-                'required' => $configuration->getDateTimeRequired()
+                'required' => $configuration->getDateTimeRequired(),
             ],
         ],
         'archive' => [
@@ -392,7 +392,7 @@ $tx_news_domain_model_news = [
                 'default' => 0,
                 'items' => [
                     ['label' => '', 'value' => ''],
-                ]
+                ],
             ],
         ],
         'editlock' => [
