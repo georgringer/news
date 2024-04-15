@@ -11,7 +11,6 @@ namespace GeorgRinger\News\Utility;
 
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -38,25 +37,12 @@ class ClassLoader implements SingletonInterface
      */
     public function __construct(PhpFrontend $classCache = null, ClassCacheManager $classCacheManager = null)
     {
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() === 10) {
-            // Use DI
-            // something might fail, e.g loading checks in Install Tool
-            if ($classCacheManager !== null) {
-                $this->classCacheManager = $classCacheManager;
-                $this->isValidInstance = true;
-            }
-        } else {
-            $this->classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
-            $this->isValidInstance = true;
-        }
+        $this->classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
 
-        if ($this->isValidInstance) {
-            if ($classCache === null) {
-                $this->classCache = GeneralUtility::makeInstance(CacheManager::class)->getCache('news');
-            } else {
-                $this->classCache = $classCache;
-            }
+        if ($classCache === null) {
+            $this->classCache = GeneralUtility::makeInstance(CacheManager::class)->getCache('news');
+        } else {
+            $this->classCache = $classCache;
         }
     }
 
