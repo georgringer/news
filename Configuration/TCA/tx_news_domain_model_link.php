@@ -123,7 +123,6 @@ return [
             'config' => [
                 'type' => 'link',
                 'placeholder' => $ll . 'tx_news_domain_model_link.uri.placeholder',
-                'required' => 'true',
                 'softref' => 'typolink',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,

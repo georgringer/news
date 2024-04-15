@@ -103,7 +103,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'required,unique,trim',
+                'required' => true,
+                'eval' => 'unique,trim',
             ],
         ],
         'slug' => [

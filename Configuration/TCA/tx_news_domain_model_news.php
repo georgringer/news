@@ -271,7 +271,7 @@ $tx_news_domain_model_news = [
                 'type' => 'input',
                 'size' => 60,
                 'max' => 255,
-                'eval' => 'required',
+                'required' => true,
             ],
         ],
         'alternative_title' => [
@@ -501,7 +501,7 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'input',
                 'size' => 50,
-                'eval' => 'required',
+                'required' => true,
                 'softref' => 'typolink',
             ],
         ],
