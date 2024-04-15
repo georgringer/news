@@ -491,12 +491,8 @@ $tx_news_domain_model_news = [
             'exclude' => false,
             'label' => $ll . 'tx_news_domain_model_news.type.I.1',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputLink',
-                'size' => 30,
-                'max' => 255,
-                'eval' => 'trim,required',
-                'softref' => 'typolink',
+                'type' => 'link',
+                'required' => true,
             ],
         ],
         'externalurl' => [

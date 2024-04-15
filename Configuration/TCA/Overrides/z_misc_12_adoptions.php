@@ -6,21 +6,6 @@ call_user_func(static function () {
     $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
     $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
     if ($versionInformation->getMajorVersion() > 11) {
-        // link fields
-        $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['internalurl']['config'] = [
-            'type' => 'link',
-            'required' => true,
-        ];
-        $GLOBALS['TCA']['tx_news_domain_model_link']['columns']['uri']['config'] = [
-            'type' => 'link',
-            'placeholder' => $ll . 'tx_news_domain_model_link.uri.placeholder',
-            'required' => 'true',
-            'softref' => 'typolink',
-            'behaviour' => [
-                'allowLanguageSynchronization' => true,
-            ],
-        ];
-
         // required fields
         foreach (['tx_news_domain_model_link' => ['uri'], 'tx_news_domain_model_news' => ['title', 'externalurl'], 'tx_news_domain_model_tag' => ['title']] as $table => $fields) {
             foreach ($fields as $field) {

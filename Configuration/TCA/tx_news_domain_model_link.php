@@ -121,11 +121,9 @@ return [
             'exclude' => false,
             'label' => $ll . 'tx_news_domain_model_link.uri',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputLink',
+                'type' => 'link',
                 'placeholder' => $ll . 'tx_news_domain_model_link.uri.placeholder',
-                'size' => 30,
-                'eval' => 'trim,required',
+                'required' => 'true',
                 'softref' => 'typolink',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
