@@ -62,9 +62,8 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
         $row = $item->getRecord();
         $actionTranslationKey = $result = '';
         $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
-
         $this->tableData = [];
-        $flexforms = GeneralUtility::xml2array($row['pi_flexform']);
+        $flexforms = GeneralUtility::xml2array((string)$row['pi_flexform']);
         if (is_string($flexforms)) {
             return 'ERROR: ' . htmlspecialchars($flexforms);
         }
