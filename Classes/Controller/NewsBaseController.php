@@ -14,6 +14,7 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
@@ -22,8 +23,8 @@ class NewsBaseController extends ActionController
 {
     protected function initializeView($view)
     {
-        // @extensionScannerIgnoreLine
-        $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
+        $contentObjectData = $this->request->getAttribute('currentContentObject');
+        $view->assign('contentObjectData', $contentObjectData ? $contentObjectData->data : null);
         $view->assign('emConfiguration', GeneralUtility::makeInstance(EmConfiguration::class));
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
             $view->assign('pageData', $GLOBALS['TSFE']->page);
