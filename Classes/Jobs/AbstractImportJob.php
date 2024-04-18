@@ -9,15 +9,18 @@
 
 namespace GeorgRinger\News\Jobs;
 
+use GeorgRinger\News\Service\Import\DataProviderServiceInterface;
+use TYPO3\CMS\Core\SingletonInterface;
+
 /**
  * Abstract Import job
  */
 abstract class AbstractImportJob implements ImportJobInterface
 {
-    /** @var \GeorgRinger\News\Service\Import\DataProviderServiceInterface */
+    /** @var DataProviderServiceInterface */
     protected $importDataProviderService;
 
-    /** @var \TYPO3\CMS\Core\SingletonInterface */
+    /** @var SingletonInterface */
     protected $importService;
 
     /** @var array */

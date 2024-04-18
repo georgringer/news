@@ -11,7 +11,9 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
 
 use GeorgRinger\News\Hooks\PluginPreviewRenderer;
 use GeorgRinger\News\Utility\TemplateLayout;
+use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -19,7 +21,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class PluginPreviewRendererTest extends BaseTestCase
 {
-    /** @var PluginPreviewRenderer|\PHPUnit\Framework\MockObject\MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
+    /** @var PluginPreviewRenderer|MockObject|AccessibleObjectInterface */
     protected $pageLayoutView;
 
     public function setup(): void
@@ -213,7 +215,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         $this->addContentToFlexform($flexform, 'settings.disableOverrideDemand', '1', 'additional');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOverrideDemandSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
     /**

@@ -12,14 +12,16 @@ namespace GeorgRinger\News\Tests\Functional\ViewHelpers;
 use DateTime;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
+use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class SimplePrevNextViewHelperTest extends FunctionalTestCase
 {
-    /** @var \GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper|\PHPUnit\Framework\MockObject\MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
+    /** @var SimplePrevNextViewHelper|MockObject|AccessibleObjectInterface */
     protected $mockedViewHelper;
 
     /** @var News */

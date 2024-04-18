@@ -13,7 +13,7 @@ use GeorgRinger\News\Domain\Service\NewsImportService;
 
 final class NewsImportPreHydrateEvent
 {
-    private \GeorgRinger\News\Domain\Service\NewsImportService $newsImportService;
+    private NewsImportService $newsImportService;
 
     private array $importItem;
 

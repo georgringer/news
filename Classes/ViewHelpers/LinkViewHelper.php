@@ -53,7 +53,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     /** @var string */
     protected $tagName = 'a';
 
-    /** @var \GeorgRinger\News\Service\SettingsService */
+    /** @var SettingsService */
     protected $pluginSettingsService;
 
     /** @var array */
@@ -67,7 +67,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     protected $cObj;
 
     /**
-     * @param \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     * @param SettingsService $pluginSettingsService
      */
     public function injectSettingsService(SettingsService $pluginSettingsService): void
     {

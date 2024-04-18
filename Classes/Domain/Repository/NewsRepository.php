@@ -12,6 +12,7 @@ namespace GeorgRinger\News\Domain\Repository;
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
 use GeorgRinger\News\Utility\Validation;
@@ -21,6 +22,11 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
@@ -36,14 +42,14 @@ class NewsRepository extends AbstractDemandedRepository
      * @param  array $categories
      * @param  string $conjunction
      * @param  bool $includeSubCategories
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
+     * @return ConstraintInterface|null
      */
     protected function createCategoryConstraint(
         QueryInterface $query,
         $categories,
         $conjunction,
         $includeSubCategories = false
-    ): ?\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface {
+    ): ?ConstraintInterface {
         $constraint = null;
         $categoryConstraints = [];
 
@@ -105,9 +111,9 @@ class NewsRepository extends AbstractDemandedRepository
      * @throws \InvalidArgumentException
      * @throws \Exception
      *
-     * @return (\TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface|null)[]
+     * @return (AndInterface|ComparisonInterface|ConstraintInterface|NotInterface|OrInterface|null)[]
      *
-     * @psalm-return array<string, \TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface|null>
+     * @psalm-return array<string, (AndInterface | ComparisonInterface | ConstraintInterface | NotInterface | OrInterface | null)>
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
@@ -305,7 +311,7 @@ class NewsRepository extends AbstractDemandedRepository
      * @param string $importSource import source
      * @param string $importId import id
      * @param bool $asArray return result as array
-     * @return \GeorgRinger\News\Domain\Model\News|array
+     * @return News|array
      */
     public function findOneByImportSourceAndImportId($importSource, $importId, $asArray = false)
     {
@@ -335,9 +341,9 @@ class NewsRepository extends AbstractDemandedRepository
      *
      * @param int $uid id of record
      * @param bool $respectEnableFields if set to false, hidden records are shown
-     * @return \GeorgRinger\News\Domain\Model\News|null
+     * @return News|null
      */
-    public function findByUid($uid, $respectEnableFields = true): ?\GeorgRinger\News\Domain\Model\News
+    public function findByUid($uid, $respectEnableFields = true): ?News
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);

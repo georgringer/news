@@ -1,11 +1,13 @@
 <?php
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
 defined('TYPO3') or die;
 
 $boot = static function (): void {
     // Add seo sitemap fields
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('seo')) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
+    if (ExtensionManagementUtility::isLoaded('seo')) {
+        ExtensionManagementUtility::addTCAcolumns(
             'tx_news_domain_model_news',
             [
                 'sitemap_changefreq' => [
@@ -56,7 +58,7 @@ $boot = static function (): void {
             'showitem' => 'sitemap_changefreq,sitemap_priority',
         ];
 
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+        ExtensionManagementUtility::addToAllTCAtypes(
             'tx_news_domain_model_news',
             '--palette--;;sitemap',
             '',

@@ -24,8 +24,7 @@ class HrefLangEvent
     /** @var ContentObjectRenderer */
     public $cObj;
 
-    /** @var LanguageMenuProcessor */
-    protected $languageMenuProcessor;
+    protected LanguageMenuProcessor $languageMenuProcessor;
 
     public function __construct(ContentObjectRenderer $cObj, LanguageMenuProcessor $languageMenuProcessor)
     {

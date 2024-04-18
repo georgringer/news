@@ -24,8 +24,7 @@ class NewsSlugUpdater implements UpgradeWizardInterface
 {
     public const TABLE = 'tx_news_domain_model_news';
 
-    /** @var SlugService */
-    protected $slugService;
+    protected SlugService $slugService;
 
     /**
      * @param SlugService $slugService

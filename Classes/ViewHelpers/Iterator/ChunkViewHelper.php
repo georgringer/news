@@ -126,7 +126,7 @@ class ChunkViewHelper extends AbstractViewHelper
     /**
      * @param mixed $variable
      * @param string $as
-     * @param \TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface $renderingContext
+     * @param RenderingContextInterface $renderingContext
      * @param \Closure $renderChildrenClosure
      * @return mixed
      */

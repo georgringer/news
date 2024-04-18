@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
 use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
+use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -17,7 +18,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class SimplePrevNextViewHelperTest extends BaseTestCase
 {
-    /** @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
+    /** @var \PHPUnit_Framework_MockObject_MockObject|AccessibleObjectInterface */
     protected $viewHelper;
 
     public function setup(): void

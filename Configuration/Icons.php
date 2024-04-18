@@ -1,5 +1,7 @@
 <?php
 
+use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
+
 $iconList = [];
 foreach ([
     'apps-pagetree-folder-contains-news' => 'ext-news-folder-tree.svg',
@@ -26,7 +28,7 @@ foreach ([
     'ext-news-doublecheck' => 'double_check.svg',
 ] as $identifier => $path) {
     $iconList[$identifier] = [
-        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'provider' => SvgIconProvider::class,
         'source' => 'EXT:news/Resources/Public/Icons/' . $path,
     ];
 }

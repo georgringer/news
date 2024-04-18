@@ -11,6 +11,7 @@ namespace GeorgRinger\News\Hooks;
 
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -19,8 +20,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ItemsProcFunc
 {
-    /** @var TemplateLayout $templateLayoutsUtility */
-    protected $templateLayoutsUtility;
+    protected TemplateLayout $templateLayoutsUtility;
 
     /**
      * @param TemplateLayout $templateLayout
@@ -262,9 +262,9 @@ class ItemsProcFunc
     /**
      * Returns LanguageService
      *
-     * @return \TYPO3\CMS\Core\Localization\LanguageService
+     * @return LanguageService
      */
-    protected function getLanguageService(): \TYPO3\CMS\Core\Localization\LanguageService
+    protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }

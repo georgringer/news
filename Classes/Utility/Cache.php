@@ -15,6 +15,7 @@ use GeorgRinger\News\Event\ModifyCacheTagsFromDemandEvent;
 use GeorgRinger\News\Event\ModifyCacheTagsFromNewsEvent;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -32,7 +33,7 @@ class Cache
     /**
      * Marks as cObj as processed.
      *
-     * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
+     * @param ContentObjectRenderer $cObj
      */
     public function markContentRecordAsProcessed(ContentObjectRenderer $cObj): void
     {
@@ -43,7 +44,7 @@ class Cache
     /**
      * Checks if a cObj has already added cache tags.
      *
-     * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
+     * @param ContentObjectRenderer $cObj
      * @return bool
      */
     public function isContentRecordAlreadyProcessed(ContentObjectRenderer $cObj): bool
@@ -58,7 +59,7 @@ class Cache
      * Following cache tags will be added to tsfe:
      * "tx_news_uid_[news:uid]"
      *
-     * @param News[]|\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $newsRecords with news records
+     * @param News[]|QueryResult $newsRecords with news records
      */
     public static function addCacheTagsByNewsRecords($newsRecords): void
     {
@@ -84,7 +85,7 @@ class Cache
      * Adds page cache tags by used storagePages.
      * This adds tags with the scheme tx_news_pid_[news:pid]
      *
-     * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
+     * @param NewsDemand $demand
      */
     public static function addPageCacheTagsByDemandObject(NewsDemand $demand): void
     {

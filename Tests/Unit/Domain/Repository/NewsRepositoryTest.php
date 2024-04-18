@@ -19,6 +19,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Qom\LogicalOr;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\PropertyValue;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\Statement;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 use UnexpectedValueException;
 
@@ -27,7 +28,7 @@ use UnexpectedValueException;
  */
 class NewsRepositoryTest extends BaseTestCase
 {
-    /** @var \GeorgRinger\News\Domain\Repository\NewsRepository|\PHPUnit_Framework_MockObject_MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
+    /** @var NewsRepository|\PHPUnit_Framework_MockObject_MockObject|AccessibleObjectInterface */
     protected $mockedNewsRepository;
 
     public function setup(): void

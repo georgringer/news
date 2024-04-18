@@ -2,30 +2,38 @@
 
 declare(strict_types=1);
 
+use GeorgRinger\News\Domain\Model\Category;
+use GeorgRinger\News\Domain\Model\FileReference;
+use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\Domain\Model\NewsDefault;
+use GeorgRinger\News\Domain\Model\NewsExternal;
+use GeorgRinger\News\Domain\Model\NewsInternal;
+use GeorgRinger\News\Domain\Model\TtContent;
+
 return [
-    \GeorgRinger\News\Domain\Model\News::class => [
+    News::class => [
         'subclasses' => [
-            0 => \GeorgRinger\News\Domain\Model\NewsDefault::class,
-            1 => \GeorgRinger\News\Domain\Model\NewsInternal::class,
-            2 => \GeorgRinger\News\Domain\Model\NewsExternal::class,
+            0 => NewsDefault::class,
+            1 => NewsInternal::class,
+            2 => NewsExternal::class,
         ],
     ],
-    \GeorgRinger\News\Domain\Model\NewsDefault::class => [
+    NewsDefault::class => [
         'tableName' => 'tx_news_domain_model_news',
         'recordType' => 0,
     ],
-    \GeorgRinger\News\Domain\Model\NewsInternal::class => [
+    NewsInternal::class => [
         'tableName' => 'tx_news_domain_model_news',
         'recordType' => 1,
     ],
-    \GeorgRinger\News\Domain\Model\NewsExternal::class => [
+    NewsExternal::class => [
         'tableName' => 'tx_news_domain_model_news',
         'recordType' => 2,
     ],
-    \GeorgRinger\News\Domain\Model\FileReference::class => [
+    FileReference::class => [
         'tableName' => 'sys_file_reference',
     ],
-    \GeorgRinger\News\Domain\Model\TtContent::class => [
+    TtContent::class => [
         'tableName' => 'tt_content',
         'properties' => [
             'altText' => [
@@ -42,7 +50,7 @@ return [
             ],
         ],
     ],
-    \GeorgRinger\News\Domain\Model\Category::class => [
+    Category::class => [
         'tableName' => 'sys_category',
         'properties' => [
             'parentcategory' => [

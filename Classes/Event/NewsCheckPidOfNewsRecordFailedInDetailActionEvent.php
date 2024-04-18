@@ -15,11 +15,11 @@ use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class NewsCheckPidOfNewsRecordFailedInDetailActionEvent
 {
-    private \GeorgRinger\News\Controller\NewsController $newsController;
+    private NewsController $newsController;
 
-    private \GeorgRinger\News\Domain\Model\News $news;
+    private News $news;
 
-    private \TYPO3\CMS\Extbase\Mvc\Request $request;
+    private Request $request;
 
     public function __construct(NewsController $newsController, News $news, Request $request)
     {

@@ -40,12 +40,8 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
      * Flexform information
      */
     public array $flexformData = [];
-
-    /** @var IconFactory */
-    protected $iconFactory;
-
-    /** @var TemplateLayout $templateLayoutsUtility */
-    protected $templateLayoutsUtility;
+    protected IconFactory $iconFactory;
+    protected TemplateLayout $templateLayoutsUtility;
     private int $pageId = 0;
 
     public function __construct()

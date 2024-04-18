@@ -24,7 +24,7 @@ class RecordListQueryHook
 {
     protected static $count = 0;
 
-    protected \GeorgRinger\News\Backend\RecordList\RecordListConstraint $recordListConstraint;
+    protected RecordListConstraint $recordListConstraint;
 
     /**
      * @param RecordListConstraint $recordListConstraint

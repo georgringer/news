@@ -15,7 +15,7 @@ use GeorgRinger\News\Domain\Service\NewsImportService;
 
 final class NewsPreImportEvent
 {
-    private \GeorgRinger\News\Domain\Service\NewsImportService $newsImportService;
+    private NewsImportService $newsImportService;
 
     private array $importData;
 

@@ -1,6 +1,9 @@
 <?php
 
-$config = \TYPO3\CodingStandards\CsFixerConfig::create();
+use PhpCsFixer\Finder;
+use TYPO3\CodingStandards\CsFixerConfig;
+
+$config = CsFixerConfig::create();
 $config->setHeader(
     'This file is part of the "news" Extension for TYPO3 CMS.
 
@@ -9,7 +12,7 @@ LICENSE.txt file that was distributed with this source code.',
     true
 );
 $config->setFinder(
-    (new PhpCsFixer\Finder())
+    (new Finder())
         ->in(realpath(__DIR__ . '/../../'))
         ->ignoreVCSIgnored(true)
         ->notPath('/^.Build\//')

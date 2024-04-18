@@ -14,7 +14,7 @@ use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class NewsDetailActionEvent
 {
-    private \GeorgRinger\News\Controller\NewsController $newsController;
+    private NewsController $newsController;
 
     private array $assignedValues;
 

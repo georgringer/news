@@ -82,7 +82,7 @@ class LinkViewHelperTest extends BaseTestCase
     public function humanReadAbleDateIsAddedToConfiguration(): void
     {
         $dateTime = new \DateTime('2014-05-16');
-        $newsItem = new \GeorgRinger\News\Domain\Model\News();
+        $newsItem = new News();
         $newsItem->_setProperty('uid', 123);
         $newsItem->setDatetime($dateTime);
 
@@ -110,7 +110,7 @@ class LinkViewHelperTest extends BaseTestCase
     {
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, null);
 
-        $newsItem = new \GeorgRinger\News\Domain\Model\News();
+        $newsItem = new News();
 
         $categories = new ObjectStorage();
         $category1 = new Category();

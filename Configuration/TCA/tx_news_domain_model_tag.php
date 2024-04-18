@@ -1,9 +1,12 @@
 <?php
 
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 defined('TYPO3') or die;
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
-$configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
+$configuration = GeneralUtility::makeInstance(EmConfiguration::class);
 
 return [
     'ctrl' => [

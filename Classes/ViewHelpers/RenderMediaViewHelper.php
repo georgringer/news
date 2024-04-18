@@ -9,9 +9,11 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\ImageService;
@@ -54,10 +56,10 @@ class RenderMediaViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param \TYPO3\CMS\Core\Resource\FileInterface $image
+     * @param FileInterface $image
      * @return string
      */
-    private function renderImage(\TYPO3\CMS\Core\Resource\FileInterface $image): string
+    private function renderImage(FileInterface $image): string
     {
         $imageService = GeneralUtility::makeInstance(ImageService::class);
 
@@ -118,7 +120,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $fileIndex = $this->arguments['fileIndex'];
         preg_match_all($this->mediaTag, $content, $matches);
         foreach ($matches[0] as $_) {
-            /** @var \GeorgRinger\News\Domain\Model\FileReference $file */
+            /** @var FileReference $file */
             $file = null;
             /** @var \TYPO3\CMS\Core\Resource\FileReference $media */
             $media = null;

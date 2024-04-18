@@ -18,8 +18,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class SlugService
 {
-    /** @var SlugHelper */
-    protected $slugService;
+    protected SlugHelper $slugService;
 
     public function __construct()
     {

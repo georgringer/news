@@ -1,13 +1,18 @@
 <?php
 
+use GeorgRinger\News\Hooks\PluginPreviewRenderer;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
 defined('TYPO3') or die;
 
 $pluginConfig = ['pi1', 'news_list_sticky', 'news_detail', 'news_selected_list', 'news_date_menu', 'category_list', 'news_search_form', 'news_search_result', 'tag_list'];
 foreach ($pluginConfig as $pluginName) {
     $pluginNameForLabel = $pluginName === 'pi1' ? 'news_list' : $pluginName;
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    ExtensionUtility::registerPlugin(
         'news',
-        \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($pluginName),
+        GeneralUtility::underscoredToUpperCamelCase($pluginName),
         'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.' . $pluginNameForLabel . '.title',
         'ext-news-plugin-' . str_replace('_', '-', $pluginNameForLabel),
         'news',
@@ -17,14 +22,14 @@ foreach ($pluginConfig as $pluginName) {
     $contentTypeName = 'news_' . str_replace('_', '', $pluginName);
     $flexformFileName = in_array($pluginNameForLabel, ['news_search_result', 'news_list_sticky'], true) ? 'news_list' : $pluginNameForLabel;
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+    ExtensionManagementUtility::addPiFlexFormValue(
         '*',
         'FILE:EXT:news/Configuration/FlexForms/flexform_' . $flexformFileName . '.xml',
         $contentTypeName
     );
     $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentTypeName] = 'ext-news-plugin-' . str_replace('_', '-', $pluginNameForLabel);
 
-    $GLOBALS['TCA']['tt_content']['types'][$contentTypeName]['previewRenderer'] = \GeorgRinger\News\Hooks\PluginPreviewRenderer::class;
+    $GLOBALS['TCA']['tt_content']['types'][$contentTypeName]['previewRenderer'] = PluginPreviewRenderer::class;
     $GLOBALS['TCA']['tt_content']['types'][$contentTypeName]['showitem'] = '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,
@@ -47,7 +52,7 @@ foreach ($pluginConfig as $pluginName) {
     ';
 }
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_news_domain_model_news');
+ExtensionManagementUtility::addToInsertRecords('tx_news_domain_model_news');
 
 foreach (['crdate', 'tstamp'] as $fakeField) {
     if (!isset($GLOBALS['TCA']['tt_content']['columns'][$fakeField])) {
@@ -68,4 +73,4 @@ $newFields = [
         ],
     ],
 ];
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $newFields);
+ExtensionManagementUtility::addTCAcolumns('tt_content', $newFields);

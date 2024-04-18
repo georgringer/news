@@ -14,11 +14,11 @@ use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class NewsSearchFormActionEvent
 {
-    private \GeorgRinger\News\Controller\NewsController $newsController;
+    private NewsController $newsController;
 
     private array $assignedValues;
 
-    private \TYPO3\CMS\Extbase\Mvc\Request $request;
+    private Request $request;
 
     public function __construct(NewsController $newsController, array $assignedValues, Request $request)
     {

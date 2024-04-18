@@ -1,8 +1,12 @@
 <?php
 
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 defined('TYPO3') or die;
 
-$emConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
+$emConfiguration = GeneralUtility::makeInstance(EmConfiguration::class);
 if ($emConfiguration->isAdvancedMediaPreview()) {
     $fieldConfig = [
         'type' => 'select',
@@ -29,5 +33,5 @@ $newSysFileReferenceColumns = [
     ],
 ];
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_file_reference', $newSysFileReferenceColumns);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'newsPalette', 'showinpreview');
+ExtensionManagementUtility::addTCAcolumns('sys_file_reference', $newSysFileReferenceColumns);
+ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'newsPalette', 'showinpreview');

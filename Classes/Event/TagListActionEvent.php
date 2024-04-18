@@ -14,11 +14,11 @@ use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class TagListActionEvent
 {
-    private \GeorgRinger\News\Controller\TagController $tagController;
+    private TagController $tagController;
 
     private array $assignedValues;
 
-    private \TYPO3\CMS\Extbase\Mvc\Request $request;
+    private Request $request;
 
     public function __construct(TagController $tagController, array $assignedValues, Request $request)
     {

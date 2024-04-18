@@ -253,7 +253,7 @@ class NewsRepositoryTest extends FunctionalTestCase
     }
 
     /**
-     * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList
+     * @param QueryResultInterface $newsList
      * @return string
      */
     protected function getIdListOfNews(QueryResultInterface $newsList): string

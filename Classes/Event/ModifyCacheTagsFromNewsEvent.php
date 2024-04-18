@@ -17,7 +17,7 @@ final class ModifyCacheTagsFromNewsEvent
 {
     private array $cacheTags;
 
-    private \GeorgRinger\News\Domain\Model\News $news;
+    private News $news;
 
     public function __construct(array $cacheTags, News $news)
     {

@@ -16,14 +16,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ClassLoader implements SingletonInterface
 {
-    /** @var PhpFrontend */
-    protected $classCache;
-
-    /** @var ClassCacheManager */
-    protected $classCacheManager;
-
-    /** @var bool */
-    protected $isValidInstance = false;
+    protected PhpFrontend $classCache;
+    protected object $classCacheManager;
+    protected bool $isValidInstance = false;
 
     /**
      * @param PhpFrontend $classCache

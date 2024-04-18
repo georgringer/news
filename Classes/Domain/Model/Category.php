@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
@@ -50,13 +51,13 @@ class Category extends AbstractEntity
 
     /**
      * @var \GeorgRinger\News\Domain\Model\Category
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @Lazy
      */
     protected $parentcategory;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<FileReference>
+     * @Lazy
      */
     protected $images;
 
@@ -219,7 +220,7 @@ class Category extends AbstractEntity
         return $this->images;
     }
 
-    public function setImages(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $images): void
+    public function setImages(ObjectStorage $images): void
     {
         $this->images = $images;
     }

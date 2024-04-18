@@ -17,7 +17,7 @@ final class ModifyCacheTagsFromDemandEvent
 {
     private array $cacheTags;
 
-    private \GeorgRinger\News\Domain\Model\DemandInterface $demand;
+    private DemandInterface $demand;
 
     public function __construct(array $cacheTags, DemandInterface $demand)
     {

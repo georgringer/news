@@ -67,7 +67,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     /**
      * Inject the DataMapper
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper
+     * @param DataMapper $dataMapper
      */
     public function injectDataMapper(DataMapper $dataMapper): void
     {

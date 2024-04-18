@@ -13,6 +13,7 @@ namespace GeorgRinger\News\Seo;
 
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\WorkspaceAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -281,7 +282,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
     /**
      * @return int
-     * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
+     * @throws AspectNotFoundException
      */
     protected function getLanguageId(): int
     {

@@ -45,14 +45,11 @@ use TYPO3\CMS\Fluid\View\TemplateView;
  */
 class NewsController extends NewsBaseController
 {
-    /** @var \GeorgRinger\News\Domain\Repository\NewsRepository */
-    protected $newsRepository;
+    protected NewsRepository $newsRepository;
 
-    /** @var \GeorgRinger\News\Domain\Repository\CategoryRepository */
-    protected $categoryRepository;
+    protected CategoryRepository $categoryRepository;
 
-    /** @var \GeorgRinger\News\Domain\Repository\TagRepository */
-    protected $tagRepository;
+    protected TagRepository $tagRepository;
 
     /** @var array */
     protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed', 'selectedList'];
@@ -108,12 +105,12 @@ class NewsController extends NewsBaseController
      *
      * @param array $settings
      * @param string $class optional class which must be an instance of \GeorgRinger\News\Domain\Model\Dto\NewsDemand
-     * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+     * @return NewsDemand
      */
     protected function createDemandObjectFromSettings(
         array $settings,
         $class = NewsDemand::class
-    ): \GeorgRinger\News\Domain\Model\Dto\NewsDemand {
+    ): NewsDemand {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
         /* @var $demand NewsDemand */
@@ -177,11 +174,11 @@ class NewsController extends NewsBaseController
     /**
      * Overwrites a given demand object by an propertyName =>  $propertyValue array
      *
-     * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
+     * @param NewsDemand $demand
      * @param array $overwriteDemand
-     * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+     * @return NewsDemand
      */
-    protected function overwriteDemandObject(NewsDemand $demand, array $overwriteDemand): \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+    protected function overwriteDemandObject(NewsDemand $demand, array $overwriteDemand): NewsDemand
     {
         foreach ($this->ignoredSettingsForOverride as $property) {
             unset($overwriteDemand[$property]);
@@ -418,10 +415,10 @@ class NewsController extends NewsBaseController
      * Checks if the news pid could be found in the startingpoint settings of the detail plugin and
      * if the pid could not be found it return NULL instead of the news object.
      *
-     * @param \GeorgRinger\News\Domain\Model\News $news
-     * @return \GeorgRinger\News\Domain\Model\News|null
+     * @param News $news
+     * @return News|null
      */
-    protected function checkPidOfNewsRecord(News $news): ?\GeorgRinger\News\Domain\Model\News
+    protected function checkPidOfNewsRecord(News $news): ?News
     {
         $allowedStoragePages = GeneralUtility::trimExplode(
             ',',
@@ -670,7 +667,7 @@ class NewsController extends NewsBaseController
      * Injects a view.
      * This function is for testing purposes only.
      *
-     * @param \TYPO3\CMS\Fluid\View\TemplateView $view the view to inject
+     * @param TemplateView $view the view to inject
      */
     public function setView(TemplateView $view): void
     {

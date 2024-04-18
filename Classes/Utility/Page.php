@@ -12,6 +12,7 @@ namespace GeorgRinger\News\Utility;
 use GeorgRinger\News\Database\QueryGenerator;
 use TYPO3\CMS\Backend\Tree\View\PageTreeView;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Log\LogManager;
@@ -131,9 +132,9 @@ class Page
     /**
      * Get backend user
      *
-     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+     * @return BackendUserAuthentication
      */
-    protected static function getBackendUser(): \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+    protected static function getBackendUser(): BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }

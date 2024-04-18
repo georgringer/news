@@ -14,11 +14,11 @@ use GeorgRinger\News\Domain\Service\NewsImportService;
 
 final class NewsImportPostHydrateEvent
 {
-    private \GeorgRinger\News\Domain\Service\NewsImportService $newsImportService;
+    private NewsImportService $newsImportService;
 
     private array $importItem;
 
-    private \GeorgRinger\News\Domain\Model\News $news;
+    private News $news;
 
     public function __construct(NewsImportService $newsImportService, array $importItem, News $news)
     {

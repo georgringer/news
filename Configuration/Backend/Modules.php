@@ -2,8 +2,12 @@
 
 declare(strict_types=1);
 
-$configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-    \GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class
+use GeorgRinger\News\Controller\AdministrationController;
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+$configuration = GeneralUtility::makeInstance(
+    EmConfiguration::class
 );
 
 if ($configuration->getShowAdministrationModule()) {
@@ -17,7 +21,7 @@ if ($configuration->getShowAdministrationModule()) {
             'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
             'extensionName' => 'News',
             'controllerActions' => [
-                \GeorgRinger\News\Controller\AdministrationController::class => [
+                AdministrationController::class => [
                     'index',
                     'newNews',
                     'newCategory',

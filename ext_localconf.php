@@ -1,105 +1,127 @@
 <?php
 
+use GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew;
+use GeorgRinger\News\Controller\CategoryController;
+use GeorgRinger\News\Controller\NewsController;
+use GeorgRinger\News\Controller\TagController;
+use GeorgRinger\News\Hooks\Backend\RecordListQueryHook;
+use GeorgRinger\News\Hooks\DataHandlerHook;
+use GeorgRinger\News\Routing\NewsCategoryMapper;
+use GeorgRinger\News\Routing\NewsTagMapper;
+use GeorgRinger\News\Routing\NewsTitleMapper;
+use GeorgRinger\News\Utility\ClassCacheManager;
+use GeorgRinger\News\Utility\ClassLoader;
+use GeorgRinger\News\Xclass\ExtensionServiceXclassed;
+use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew;
+use TYPO3\CMS\Core\Cache\Backend\FileBackend;
+use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
+use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Service\ExtensionService;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+use TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList;
+
 defined('TYPO3') or die;
 
 $boot = static function (): void {
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'News',
         'Pi1',
         [
-            \GeorgRinger\News\Controller\NewsController::class => 'list,detail',
+            NewsController::class => 'list,detail',
         ],
         [],
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'News',
         'NewsListSticky',
         [
-            \GeorgRinger\News\Controller\NewsController::class => 'list',
+            NewsController::class => 'list',
         ],
         [],
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'News',
         'NewsDetail',
         [
-            \GeorgRinger\News\Controller\NewsController::class => 'detail',
+            NewsController::class => 'detail',
         ],
         [],
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'News',
         'NewsSelectedList',
         [
-            \GeorgRinger\News\Controller\NewsController::class => 'selectedList',
+            NewsController::class => 'selectedList',
         ],
         [],
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'News',
         'NewsDateMenu',
         [
-            \GeorgRinger\News\Controller\NewsController::class => 'dateMenu',
+            NewsController::class => 'dateMenu',
         ],
         [],
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'News',
         'NewsSearchForm',
         [
-            \GeorgRinger\News\Controller\NewsController::class => 'searchForm',
+            NewsController::class => 'searchForm',
         ],
         [
-            \GeorgRinger\News\Controller\NewsController::class => 'searchForm',
+            NewsController::class => 'searchForm',
         ],
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'News',
         'NewsSearchResult',
         [
-            \GeorgRinger\News\Controller\NewsController::class => 'searchResult',
+            NewsController::class => 'searchResult',
         ],
         [
-            \GeorgRinger\News\Controller\NewsController::class => 'searchResult',
+            NewsController::class => 'searchResult',
         ],
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
 
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'News',
         'CategoryList',
         [
-            \GeorgRinger\News\Controller\CategoryController::class => 'list',
+            CategoryController::class => 'list',
         ],
         [],
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'News',
         'TagList',
         [
-            \GeorgRinger\News\Controller\TagController::class => 'list',
+            TagController::class => 'list',
         ],
         [],
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['news_clearcache'] =
-        \GeorgRinger\News\Hooks\DataHandlerHook::class . '->clearCachePostProc';
+        DataHandlerHook::class . '->clearCachePostProc';
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['moveRecordClass']['news_clearcache'] =
-        \GeorgRinger\News\Hooks\DataHandlerHook::class;
+        DataHandlerHook::class;
 
     // Edit restriction for news records
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['news'] =
-        \GeorgRinger\News\Hooks\DataHandlerHook::class;
+        DataHandlerHook::class;
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news'] =
-        \GeorgRinger\News\Hooks\DataHandlerHook::class;
+        DataHandlerHook::class;
 
     //    // Modify flexform fields since core 8.5 via formEngine: Inject a data provider between TcaFlexPrepare and TcaFlexProcess
     //    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation::class] = [
@@ -112,8 +134,8 @@ $boot = static function (): void {
     //    ];
 
     // Hide content elements in list module & filter in administration module
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery']['ext:news']
-        = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][DatabaseRecordList::class]['modifyQuery']['ext:news']
+        = RecordListQueryHook::class;
 
     /* ===========================================================================
         Custom cache, done with the caching framework
@@ -124,25 +146,25 @@ $boot = static function (): void {
     // Define string frontend as default frontend, this must be set with TYPO3 4.5 and below
     // and overrides the default variable frontend of 4.6
     if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news_category']['frontend'])) {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news_category']['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news_category']['frontend'] = VariableFrontend::class;
     }
 
     /* ===========================================================================
         Add TSconfig
     =========================================================================== */
     // For linkvalidator
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('linkvalidator')) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Page/mod.linkvalidator.tsconfig\'');
+    if (ExtensionManagementUtility::isLoaded('linkvalidator')) {
+        ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Page/mod.linkvalidator.tsconfig\'');
     }
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('guide')) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Tours/AdministrationModule.tsconfig\'');
-    }
-
-    if ((new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() < 13) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/ContentElementWizard.tsconfig\'');
+    if (ExtensionManagementUtility::isLoaded('guide')) {
+        ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Tours/AdministrationModule.tsconfig\'');
     }
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
+    if ((new Typo3Version())->getMajorVersion() < 13) {
+        ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/ContentElementWizard.tsconfig\'');
+    }
+
+    ExtensionManagementUtility::addPageTSConfig('
         @import \'EXT:news/Configuration/TSconfig/Administration.tsconfig\'
     ');
 
@@ -151,8 +173,8 @@ $boot = static function (): void {
     =========================================================================== */
     // Register cache frontend for proxy class generation
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news'] = [
-        'frontend' => \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend::class,
-        'backend' => \TYPO3\CMS\Core\Cache\Backend\FileBackend::class,
+        'frontend' => PhpFrontend::class,
+        'backend' => FileBackend::class,
         'groups' => [
             'all',
             'system',
@@ -162,19 +184,19 @@ $boot = static function (): void {
         ],
     ];
 
-    if (class_exists(\GeorgRinger\News\Utility\ClassLoader::class)) {
-        \GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
+    if (class_exists(ClassLoader::class)) {
+        ClassLoader::registerAutoloader();
     }
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['ext:news'] =
-        \GeorgRinger\News\Utility\ClassCacheManager::class . '->reBuild';
+        ClassCacheManager::class . '->reBuild';
 
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew::class] = [
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][NewsRowInitializeNew::class] = [
         'depends' => [
-            \TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew::class,
+            DatabaseRowInitializeNew::class,
         ],
     ];
 
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
+    ExtensionManagementUtility::addTypoScriptSetup(trim('
     plugin {
         tx_news_newsliststicky.view.pluginNamespace = tx_news_pi1
         tx_news_newsdetail.view.pluginNamespace = tx_news_pi1
@@ -193,7 +215,7 @@ $boot = static function (): void {
     }
 '));
 
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('seo')) {
+    if (ExtensionManagementUtility::isLoaded('seo')) {
         $GLOBALS['TYPO3_CONF_VARS']['FE']['additionalCanonicalizedUrlParameters'] = array_merge(
             $GLOBALS['TYPO3_CONF_VARS']['FE']['additionalCanonicalizedUrlParameters'] ?? [],
             [
@@ -209,14 +231,14 @@ $boot = static function (): void {
         );
     }
 
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Extbase\Service\ExtensionService::class] = [
-        'className' => \GeorgRinger\News\Xclass\ExtensionServiceXclassed::class,
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][ExtensionService::class] = [
+        'className' => ExtensionServiceXclassed::class,
     ];
 
     // Add routing features
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsCategory'] = \GeorgRinger\News\Routing\NewsCategoryMapper::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsTag'] = \GeorgRinger\News\Routing\NewsTagMapper::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsTitle'] = \GeorgRinger\News\Routing\NewsTitleMapper::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsCategory'] = NewsCategoryMapper::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsTag'] = NewsTagMapper::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsTitle'] = NewsTitleMapper::class;
 };
 
 $boot();

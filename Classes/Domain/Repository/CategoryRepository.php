@@ -17,6 +17,7 @@ use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
  * Category repository with all callable functionality
@@ -68,7 +69,7 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @param int $pid pid
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface<Category>
+     * @return QueryResultInterface<Category>
      */
     public function findParentCategoriesByPid($pid)
     {
@@ -137,7 +138,7 @@ class CategoryRepository extends AbstractDemandedRepository
      * @param array $ordering ordering
      * @param string|null $startingPoint
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface<Category>
+     * @return QueryResultInterface<Category>
      */
     public function findByIdList(array $idList, array $ordering = [], ?string $startingPoint = null)
     {
@@ -170,7 +171,7 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @param int $parent parent
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface<Category>
+     * @return QueryResultInterface<Category>
      */
     public function findChildren($parent)
     {
