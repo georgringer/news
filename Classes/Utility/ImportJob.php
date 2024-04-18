@@ -14,9 +14,7 @@ namespace GeorgRinger\News\Utility;
  */
 class ImportJob
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected static $registeredJobs = [];
 
     /**

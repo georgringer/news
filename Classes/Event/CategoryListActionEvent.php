@@ -14,14 +14,10 @@ use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class CategoryListActionEvent
 {
-    /**
-     * @var CategoryController
-     */
+    /** @var CategoryController */
     private $categoryController;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $assignedValues;
 
     /** @var Request */

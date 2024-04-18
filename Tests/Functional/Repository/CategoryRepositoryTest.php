@@ -39,6 +39,6 @@ class CategoryRepositoryTest extends FunctionalTestCase
     {
         $category = $this->categoryRepository->findOneByImportSourceAndImportId('functional_test', '2');
 
-        self::assertEquals($category->getTitle(), 'findRecordByImportSource');
+        self::assertEquals('findRecordByImportSource', $category->getTitle());
     }
 }

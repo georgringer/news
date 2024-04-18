@@ -23,7 +23,6 @@ class ItemsProcFunc
     protected $templateLayoutsUtility;
 
     /**
-     * ItemsProcFunc constructor.
      * @param TemplateLayout $templateLayout
      */
     public function __construct(

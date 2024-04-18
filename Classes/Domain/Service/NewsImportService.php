@@ -34,27 +34,18 @@ class NewsImportService extends AbstractImportService
 {
     public const ACTION_IMPORT_L10N_OVERLAY = 1;
 
-    /**
-     * @var NewsRepository
-     */
+    /** @var NewsRepository */
     protected $newsRepository;
 
-    /**
-     * @var TtContentRepository
-     */
+    /** @var TtContentRepository */
     protected $ttContentRepository;
 
     /** @var SlugHelper */
     protected $slugHelper;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $settings = [];
 
-    /**
-     * NewsImportService constructor.
-     */
     public function __construct(
         PersistenceManager $persistenceManager,
         CategoryRepository $categoryRepository,

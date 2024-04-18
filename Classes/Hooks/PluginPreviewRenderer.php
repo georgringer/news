@@ -41,9 +41,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
      */
     public array $flexformData = [];
 
-    /**
-     * @var IconFactory
-     */
+    /** @var IconFactory */
     protected $iconFactory;
 
     /** @var TemplateLayout $templateLayoutsUtility */

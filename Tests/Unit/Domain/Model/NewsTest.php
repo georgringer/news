@@ -24,9 +24,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class NewsTest extends BaseTestCase
 {
-    /**
-     * @var News
-     */
+    /** @var News */
     protected $newsDomainModelInstance;
 
     /**
@@ -354,10 +352,10 @@ class NewsTest extends BaseTestCase
         $mediaItem4->_setProperty('originalResource', $mockedElement4);
         $news->addFalMedia($mediaItem4);
 
-        self::assertEquals(3, count($news->getMediaPreviews()));
-        self::assertEquals(3, count($news->getMediaNonPreviews()));
+        self::assertCount(3, $news->getMediaPreviews());
+        self::assertCount(3, $news->getMediaNonPreviews());
 
-        self::assertEquals(4, count($news->getFalMedia()));
-        self::assertEquals(4, count($news->getMedia()));
+        self::assertCount(4, $news->getFalMedia());
+        self::assertCount(4, $news->getMedia());
     }
 }

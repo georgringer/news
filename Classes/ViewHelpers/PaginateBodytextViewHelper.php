@@ -61,9 +61,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class PaginateBodytextViewHelper extends AbstractViewHelper
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $escapeOutput = false;
 
     /**

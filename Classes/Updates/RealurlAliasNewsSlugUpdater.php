@@ -48,7 +48,6 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
     protected $slugService;
 
     /**
-     * RealurlAliasNewsSlugUpdater constructor.
      * @param SlugService $slugService
      */
     public function __construct(
@@ -86,8 +85,6 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
     public function getTitle(): string
@@ -96,8 +93,6 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
     }
 
     /**
-     * Get description
-     *
      * @return string Longer description of this updater
      */
     public function getDescription(): string

@@ -45,7 +45,7 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getArchiveSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
     /**
@@ -58,7 +58,7 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getDetailPidSetting');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
     /**
@@ -71,7 +71,7 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getTagRestrictionSetting');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
     /**
@@ -84,7 +84,7 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getListPidSetting');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
     /**
@@ -97,7 +97,7 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOrderSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
     /**
@@ -108,11 +108,11 @@ class PluginPreviewRendererTest extends BaseTestCase
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.orderDirection', 'asc');
 
-        self::assertEquals($this->pageLayoutView->_call('getOrderDirectionSetting'), '');
+        self::assertEquals('', $this->pageLayoutView->_call('getOrderDirectionSetting'));
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $out = $this->pageLayoutView->_call('getOrderDirectionSetting');
-        self::assertEquals(strlen($out) > 1, true);
+        self::assertTrue(strlen($out) > 1);
     }
 
     /**
@@ -123,11 +123,11 @@ class PluginPreviewRendererTest extends BaseTestCase
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.topNewsFirst', '1', 'additional');
 
-        self::assertEquals($this->pageLayoutView->_call('getTopNewsFirstSetting'), '');
+        self::assertEquals('', $this->pageLayoutView->_call('getTopNewsFirstSetting'));
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $out = $this->pageLayoutView->_call('getTopNewsFirstSetting');
-        self::assertEquals(strlen($out) > 1, true);
+        self::assertTrue(strlen($out) > 1);
     }
 
     /**
@@ -139,22 +139,22 @@ class PluginPreviewRendererTest extends BaseTestCase
         $this->addContentToFlexform($flexform, 'settings.offset', '1', 'additional');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOffsetLimitSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
 
         $this->addContentToFlexform($flexform, 'settings.limit', '1', 'additional');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOffsetLimitSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 2);
+        self::assertCount(2, $this->pageLayoutView->_get('tableData'));
 
         $this->addContentToFlexform($flexform, 'settings.hidePagination', '0', 'additional');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOffsetLimitSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 2);
+        self::assertCount(2, $this->pageLayoutView->_get('tableData'));
 
         $this->addContentToFlexform($flexform, 'settings.hidePagination', '1', 'additional');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOffsetLimitSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 3);
+        self::assertCount(3, $this->pageLayoutView->_get('tableData'));
     }
 
     /**
@@ -166,7 +166,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         $this->addContentToFlexform($flexform, 'settings.dateField', 'field');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getDateMenuSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
     /**
@@ -178,12 +178,12 @@ class PluginPreviewRendererTest extends BaseTestCase
         $this->addContentToFlexform($flexform, 'settings.timeRestriction', 'fo');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getTimeRestrictionSetting');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
 
         $this->addContentToFlexform($flexform, 'settings.timeRestrictionHigh', 'bar');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getTimeRestrictionSetting');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 2);
+        self::assertCount(2, $this->pageLayoutView->_get('tableData'));
     }
 
     /**
@@ -201,7 +201,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         $this->pageLayoutView->_set('templateLayoutsUtility', $mockedTemplateLayout);
 
         $this->pageLayoutView->_call('getTemplateLayoutSettings', 1);
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
     /**

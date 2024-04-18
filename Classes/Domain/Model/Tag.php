@@ -16,39 +16,25 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
  */
 class Tag extends AbstractValueObject
 {
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $crdate;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $tstamp;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $title = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoTitle = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoDescription = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoHeadline = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoText = '';
 
     /** @var string */
@@ -62,8 +48,6 @@ class Tag extends AbstractValueObject
     public function __construct() {}
 
     /**
-     * Get crdate
-     *
      * @return \DateTime|null
      */
     public function getCrdate(): ?\DateTime
@@ -72,8 +56,6 @@ class Tag extends AbstractValueObject
     }
 
     /**
-     * Set crdate
-     *
      * @param \DateTime $crdate crdate
      */
     public function setCrdate($crdate): void
@@ -82,8 +64,6 @@ class Tag extends AbstractValueObject
     }
 
     /**
-     * Get Tstamp
-     *
      * @return \DateTime|null
      */
     public function getTstamp(): ?\DateTime
@@ -92,8 +72,6 @@ class Tag extends AbstractValueObject
     }
 
     /**
-     * Set tstamp
-     *
      * @param \DateTime $tstamp tstamp
      */
     public function setTstamp($tstamp): void
@@ -102,8 +80,6 @@ class Tag extends AbstractValueObject
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
     public function getTitle(): string
@@ -112,8 +88,6 @@ class Tag extends AbstractValueObject
     }
 
     /**
-     * Set title
-     *
      * @param string $title title
      */
     public function setTitle($title): void

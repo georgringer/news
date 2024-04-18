@@ -15,9 +15,6 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- * Class ClassCacheManager
- */
 class ClassCacheManager
 {
     /**
@@ -27,9 +24,7 @@ class ClassCacheManager
      */
     protected $classCache;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $constructorLines = [];
 
     /**

@@ -125,7 +125,7 @@ class NewsRepositoryTest extends BaseTestCase
         $demand->setSearch($search);
 
         $result = $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-        self::assertEquals(1, count($result));
+        self::assertCount(1, $result);
     }
 
     /**
@@ -143,18 +143,18 @@ class NewsRepositoryTest extends BaseTestCase
         $demand->setSearch($search);
 
         $result = $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-        self::assertEquals(1, count($result));
+        self::assertCount(1, $result);
 
         $search->setMaximumDate('2015-01-01');
         $demand->setSearch($search);
 
         $result = $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-        self::assertEquals(2, count($result));
+        self::assertCount(2, $result);
 
         $search->setMaximumDate('xyz');
         $demand->setSearch($search);
 
         $result = $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-        self::assertEquals(1, count($result));
+        self::assertCount(1, $result);
     }
 }

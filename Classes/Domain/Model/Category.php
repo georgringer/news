@@ -18,54 +18,34 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Category extends AbstractEntity
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $sorting = 0;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $crdate;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $tstamp;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $starttime;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $endtime;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $hidden = false;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $sysLanguageUid = 0;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $l10nParent = 0;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $title = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $description = '';
 
     /**
@@ -80,24 +60,16 @@ class Category extends AbstractEntity
      */
     protected $images;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $shortcut = 0;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $singlePid = 0;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $importId = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $importSource = '';
 
     /**
@@ -106,29 +78,19 @@ class Category extends AbstractEntity
      */
     protected $feGroup = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoTitle = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoDescription = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoHeadline = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoText = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $slug = '';
 
     public function __construct()

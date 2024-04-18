@@ -11,9 +11,6 @@ namespace GeorgRinger\News\Utility;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- * Validation
- */
 class Validation
 {
     /**

@@ -17,9 +17,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class TagTest extends BaseTestCase
 {
-    /**
-     * @var Tag
-     */
+    /** @var Tag */
     protected $tagDomainModelInstance;
 
     /**

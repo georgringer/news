@@ -18,34 +18,22 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class News extends AbstractEntity
 {
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $crdate;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $tstamp;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $sysLanguageUid = 0;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $l10nParent = 0;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $starttime;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $endtime;
 
     /**
@@ -55,54 +43,34 @@ class News extends AbstractEntity
      */
     protected $feGroup = '';
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $hidden = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $deleted = false;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $title = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $alternativeTitle = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $teaser = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $bodytext = '';
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $datetime;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $archive;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $author = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $authorEmail = '';
 
     /**
@@ -137,24 +105,16 @@ class News extends AbstractEntity
      */
     protected $relatedLinks;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $sortingForeign;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $type = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $keywords = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $description = '';
 
     /**
@@ -181,19 +141,13 @@ class News extends AbstractEntity
      */
     protected $falMediaNonPreviews;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $internalurl = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $externalurl = '';
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $istopnews = false;
 
     /**
@@ -208,29 +162,19 @@ class News extends AbstractEntity
      */
     protected $tags;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $pathSegment = '';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $editlock = 0;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $importId = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $importSource = '';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $sorting = 0;
 
     /** @var string */
@@ -250,8 +194,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
     public function getTitle(): string
@@ -260,8 +202,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Set title
-     *
      * @param string $title title
      */
     public function setTitle($title): void
@@ -310,8 +250,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get bodytext
-     *
      * @return string
      */
     public function getBodytext(): string
@@ -320,8 +258,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Set bodytext
-     *
      * @param string $bodytext main content
      */
     public function setBodytext($bodytext): void
@@ -330,8 +266,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get datetime
-     *
      * @return DateTime|null
      */
     public function getDatetime(): ?DateTime
@@ -439,8 +373,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get author
-     *
      * @return string
      */
     public function getAuthor(): string
@@ -449,8 +381,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Set author
-     *
      * @param string $author author
      */
     public function setAuthor($author): void
@@ -479,8 +409,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get categories
-     *
      * @return ObjectStorage<\GeorgRinger\News\Domain\Model\Category>|null
      */
     public function getCategories(): ?ObjectStorage
@@ -504,8 +432,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Set categories
-     *
      * @param  ObjectStorage<\GeorgRinger\News\Domain\Model\Category> $categories
      */
     public function setCategories($categories): void
@@ -708,8 +634,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get keywords
-     *
      * @return string
      */
     public function getKeywords(): string
@@ -718,8 +642,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Set keywords
-     *
      * @param string $keywords keywords
      */
     public function setKeywords($keywords): void
@@ -728,8 +650,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get description
-     *
      * @return string
      */
     public function getDescription(): string
@@ -738,8 +658,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Set description
-     *
      * @param string $description description
      */
     public function setDescription($description): void
@@ -1064,8 +982,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get Tags
-     *
      * @return ObjectStorage<\GeorgRinger\News\Domain\Model\Tag>|null
      */
     public function getTags(): ?ObjectStorage
@@ -1074,8 +990,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Set Tags
-     *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Tag> $tags tags
      */
     public function setTags($tags): void
@@ -1174,8 +1088,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get timestamp
-     *
      * @return DateTime
      */
     public function getTstamp(): DateTime
@@ -1383,8 +1295,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get endtime
-     *
      * @return DateTime|null
      */
     public function getEndtime(): ?DateTime
@@ -1482,8 +1392,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get sorting
-     *
      * @return int
      */
     public function getSorting(): int
@@ -1492,8 +1400,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Set sorting
-     *
      * @param int $sorting sorting
      */
     public function setSorting($sorting): void
@@ -1502,8 +1408,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Set importSource
-     *
      * @param string $importSource
      */
     public function setImportSource($importSource): void
@@ -1512,8 +1416,6 @@ class News extends AbstractEntity
     }
 
     /**
-     * Get importSource
-     *
      * @return string
      */
     public function getImportSource(): string

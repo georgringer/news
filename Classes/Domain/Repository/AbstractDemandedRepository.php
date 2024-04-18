@@ -21,9 +21,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 abstract class AbstractDemandedRepository extends Repository implements DemandedRepositoryInterface
 {
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface
-     */
+    /** @var \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface */
     protected $storageBackend;
 
     /**

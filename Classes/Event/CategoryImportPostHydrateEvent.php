@@ -14,19 +14,13 @@ use GeorgRinger\News\Domain\Service\CategoryImportService;
 
 final class CategoryImportPostHydrateEvent
 {
-    /**
-     * @var CategoryImportService
-     */
+    /** @var CategoryImportService */
     private $categoryImportService;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $importItem;
 
-    /**
-     * @var Category
-     */
+    /** @var Category */
     private $category;
 
     public function __construct(CategoryImportService $categoryImportService, array $importItem, Category $category)

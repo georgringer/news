@@ -17,37 +17,25 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class NewsDemand extends AbstractEntity implements DemandInterface
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $categories = [];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $categoryConjunction = '';
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $includeSubCategories = false;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $author = '';
 
     /** @var string */
     protected $tags = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $archiveRestriction = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $timeRestriction = '';
 
     /** @var string */
@@ -207,8 +195,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Set author
-     *
      * @param string $author
      * @return NewsDemand
      */
@@ -219,8 +205,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Get author
-     *
      * @return string
      */
     public function getAuthor(): string
@@ -229,8 +213,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Get Tags
-     *
      * @return string
      */
     public function getTags(): string
@@ -239,8 +221,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Set Tags
-     *
      * @param string $tags tags
      * @return NewsDemand
      */
@@ -295,8 +275,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Set order
-     *
      * @param string $order order
      * @return NewsDemand
      */
@@ -307,8 +285,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Get order
-     *
      * @return string
      */
     public function getOrder(): string
@@ -494,8 +470,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Set limit
-     *
      * @param int $limit limit
      * @return NewsDemand
      */
@@ -506,8 +480,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Get limit
-     *
      * @return int
      */
     public function getLimit(): int
@@ -516,8 +488,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Set offset
-     *
      * @param int $offset offset
      * @return NewsDemand
      */
@@ -528,8 +498,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Get offset
-     *
      * @return int
      */
     public function getOffset(): int

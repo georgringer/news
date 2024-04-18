@@ -78,7 +78,7 @@ class DataHandlerHook implements SingletonInterface
      * @param int $id
      * @param $parentObject DataHandler
      */
-    public function processDatamap_preProcessFieldArray(&$fieldArray, $table, $id, $parentObject): void
+    public function processDatamap_preProcessFieldArray(array &$fieldArray, $table, $id, $parentObject): void
     {
         if ($table === 'tx_news_domain_model_news') {
             // check permissions of assigned categories
@@ -125,7 +125,7 @@ class DataHandlerHook implements SingletonInterface
      * @param string $value
      * @param $parentObject DataHandler
      */
-    public function processCmdmap_preProcess($command, &$table, $id, $value, $parentObject): void
+    public function processCmdmap_preProcess(string $command, &$table, $id, $value, $parentObject): void
     {
         if ($table === 'tx_news_domain_model_news' && !$this->getBackendUser()->isAdmin() && is_int($id) && $command !== 'undelete') {
             $newsRecord = BackendUtilityCore::getRecord($table, $id);
@@ -158,7 +158,7 @@ class DataHandlerHook implements SingletonInterface
      * @param bool $recordWasMoved
      * @param DataHandler $dataHandler
      */
-    public function moveRecord($table, $uid, $destPid, $propArr, $moveRec, $resolvedPid, $recordWasMoved, DataHandler $dataHandler)
+    public function moveRecord($table, $uid, $destPid, $propArr, array $moveRec, $resolvedPid, $recordWasMoved, DataHandler $dataHandler): void
     {
         if ($table === 'tx_news_domain_model_news') {
             $this->cacheTagsToFlush[] = 'tx_news_pid_' . $moveRec['pid'];

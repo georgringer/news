@@ -20,9 +20,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class CategoryTest extends BaseTestCase
 {
-    /**
-     * @var Category
-     */
+    /** @var Category */
     protected $instance;
 
     protected function setUp(): void

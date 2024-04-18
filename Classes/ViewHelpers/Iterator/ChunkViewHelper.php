@@ -25,17 +25,13 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
  */
 class ChunkViewHelper extends AbstractViewHelper
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $escapeChildren = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $escapeOutput = false;
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('subject', 'mixed', 'The subject Traversable/Array instance to shift');
         $this->registerArgument('count', 'integer', 'Number of items/chunk or if fixed then number of chunks', true);

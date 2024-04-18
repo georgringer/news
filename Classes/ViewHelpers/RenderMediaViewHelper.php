@@ -23,26 +23,18 @@ class RenderMediaViewHelper extends AbstractViewHelper
 
     protected $escapingInterceptorEnabled = false;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $mediaTag = '/\\[media\\]/';
 
     protected $replaceMediaTag = '/(?:<p>\s*)?\\[media\\](?:\s*<\/p>)?/';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $imgClass = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $videoClass = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $audioClass = '';
 
     /**
@@ -111,7 +103,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
             $description = '<figcaption>' . htmlspecialchars($description) . '</figcaption>';
         }
 
-        return '<figure>' . '<img ' . $imageAttributes . ' />' . $description . '</figure>';
+        return '<figure><img ' . $imageAttributes . ' />' . $description . '</figure>';
     }
 
     /**

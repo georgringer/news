@@ -19,9 +19,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class TtContentTest extends BaseTestCase
 {
-    /**
-     * @var TtContent
-     */
+    /** @var TtContent */
     protected $ttContentDomainModelInstance;
 
     /**

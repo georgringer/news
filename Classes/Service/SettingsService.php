@@ -26,14 +26,10 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  */
 class SettingsService
 {
-    /**
-     * @var mixed
-     */
+    /** @var mixed */
     protected $settings;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
-     */
+    /** @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface */
     protected $configurationManager;
 
     /**

@@ -44,6 +44,6 @@ class TagControllerTest extends UnitTestCase
         $fixture->listAction();
 
         // datetime must be removed
-        self::assertEquals($fixture->_get('settings'), ['list' => 'foo']);
+        self::assertEquals(['list' => 'foo'], $fixture->_get('settings'));
     }
 }

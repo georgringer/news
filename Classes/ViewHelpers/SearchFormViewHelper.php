@@ -21,24 +21,16 @@ use TYPO3\CMS\Fluid\ViewHelpers\Form\CheckboxViewHelper;
 
 class SearchFormViewHelper extends AbstractFormViewHelper
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $tagName = 'form';
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Security\Cryptography\HashService
-     */
+    /** @var \TYPO3\CMS\Extbase\Security\Cryptography\HashService */
     protected $hashService;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService
-     */
+    /** @var \TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService */
     protected $mvcPropertyMappingConfigurationService;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Service\ExtensionService
-     */
+    /** @var \TYPO3\CMS\Extbase\Service\ExtensionService */
     protected $extensionService;
 
     /**

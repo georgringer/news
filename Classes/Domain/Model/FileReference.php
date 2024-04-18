@@ -25,29 +25,19 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
     protected ?int $uidLocal = null;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $title = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $description = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $alternative = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $link = '';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $showinpreview = 0;
 
     /**
@@ -62,7 +52,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @param int $fileUid
      */
-    public function setFileUid($fileUid): void
+    public function setFileUid(?int $fileUid): void
     {
         $this->uidLocal = $fileUid;
     }
@@ -78,8 +68,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Set alternative
-     *
      * @param string $alternative
      */
     public function setAlternative($alternative): void
@@ -88,8 +76,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Get alternative
-     *
      * @return string
      */
     public function getAlternative(): string
@@ -98,8 +84,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Set description
-     *
      * @param string $description
      */
     public function setDescription($description): void
@@ -108,8 +92,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Get description
-     *
      * @return string
      */
     public function getDescription(): string
@@ -118,8 +100,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Set link
-     *
      * @param string $link
      */
     public function setLink($link): void
@@ -128,8 +108,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Get link
-     *
      * @return mixed
      */
     public function getLink(): string
@@ -138,8 +116,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Set title
-     *
      * @param string $title
      */
     public function setTitle($title): void
@@ -148,8 +124,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
     public function getTitle(): string
@@ -158,8 +132,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Set showinpreview
-     *
      * @param int $showinpreview
      */
     public function setShowinpreview($showinpreview): void
@@ -168,8 +140,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Get showinpreview
-     *
      * @return int
      */
     public function getShowinpreview(): int

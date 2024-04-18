@@ -287,9 +287,9 @@ class NewsRepository extends AbstractDemandedRepository
                 $orderField = $orderSplit[0];
                 $ascDesc = $orderSplit[1] ?? '';
                 if ($ascDesc) {
-                    $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
+                    $orderings[$orderField] = (strtolower($ascDesc) === 'desc') ?
                         QueryInterface::ORDER_DESCENDING :
-                        QueryInterface::ORDER_ASCENDING);
+                        QueryInterface::ORDER_ASCENDING;
                 } else {
                     $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
                 }

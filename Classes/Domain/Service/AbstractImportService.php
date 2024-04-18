@@ -29,37 +29,24 @@ class AbstractImportService implements LoggerAwareInterface
 
     public const UPLOAD_PATH = 'uploads/tx_news/';
 
-    /**
-     * @var PersistenceManager
-     */
+    /** @var PersistenceManager */
     protected $persistenceManager;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $postPersistQueue = [];
 
-    /**
-     * @var EmConfiguration
-     */
+    /** @var EmConfiguration */
     protected $emSettings;
 
-    /**
-     * @var Folder
-     */
+    /** @var Folder */
     protected $importFolder;
 
-    /**
-     * @var EventDispatcherInterface
-     */
+    /** @var EventDispatcherInterface */
     protected $eventDispatcher;
 
-    /**
-     * @var CategoryRepository
-     */
+    /** @var CategoryRepository */
     protected $categoryRepository;
     /**
-     * AbstractImportService constructor.
      * @param PersistenceManager $persistenceManager
      * @param EmConfiguration $emSettings
      * @param CategoryRepository $categoryRepository

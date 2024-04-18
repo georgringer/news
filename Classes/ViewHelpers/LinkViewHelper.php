@@ -50,19 +50,13 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
  */
 class LinkViewHelper extends AbstractTagBasedViewHelper
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $tagName = 'a';
 
-    /**
-     * @var \GeorgRinger\News\Service\SettingsService
-     */
+    /** @var \GeorgRinger\News\Service\SettingsService */
     protected $pluginSettingsService;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $detailPidDeterminationCallbacks = [
         'flexform' => 'getDetailPidFromFlexform',
         'categories' => 'getDetailPidFromCategories',

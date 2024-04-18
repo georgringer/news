@@ -12,9 +12,6 @@ namespace GeorgRinger\News\ViewHelpers;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
-/**
- * Class ExtensionLoadedViewHelper
- */
 class ExtensionLoadedViewHelper extends AbstractConditionViewHelper
 {
     /**

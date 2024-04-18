@@ -26,7 +26,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  */
 class IfIsActiveViewHelper extends AbstractConditionViewHelper implements ViewHelperInterface
 {
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('newsItem', 'object', 'News item', false);
         parent::initializeArguments();

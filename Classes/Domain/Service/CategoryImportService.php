@@ -26,9 +26,6 @@ class CategoryImportService extends AbstractImportService
     public const ACTION_SET_PARENT_CATEGORY = 1;
     public const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
 
-    /**
-     * CategoryImportService constructor.
-     */
     public function __construct(
         PersistenceManager $persistenceManager,
         CategoryRepository $categoryRepository,

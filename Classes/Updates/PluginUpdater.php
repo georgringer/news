@@ -73,9 +73,7 @@ class PluginUpdater implements UpgradeWizardInterface
     /** @var FlexFormService */
     protected $flexFormService;
 
-    /**
-     * @var FlexFormTools
-     */
+    /** @var FlexFormTools */
     protected $flexFormTools;
 
     protected EventDispatcherInterface $eventDispatcher;

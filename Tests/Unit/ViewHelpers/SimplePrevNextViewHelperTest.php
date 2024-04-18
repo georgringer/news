@@ -33,7 +33,7 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
         $this->viewHelper->expects(self::any())->method('getRawRecord')->withAnyParameters()->willReturn(null);
 
         $out = $this->viewHelper->_call('getObject', 0);
-        self::assertEquals($out, null);
+        self::assertNull($out);
     }
 
     /**

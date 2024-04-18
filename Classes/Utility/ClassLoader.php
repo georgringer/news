@@ -14,14 +14,9 @@ use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- * Class ClassLoader
- */
 class ClassLoader implements SingletonInterface
 {
-    /**
-     * @var PhpFrontend
-     */
+    /** @var PhpFrontend */
     protected $classCache;
 
     /** @var ClassCacheManager */
@@ -31,8 +26,6 @@ class ClassLoader implements SingletonInterface
     protected $isValidInstance = false;
 
     /**
-     * ClassLoader constructor.
-     *
      * @param PhpFrontend $classCache
      */
     public function __construct(PhpFrontend $classCache = null, ClassCacheManager $classCacheManager = null)

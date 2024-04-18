@@ -15,14 +15,10 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 final class QueryResultPaginator extends CustomAbstractPaginator
 {
-    /**
-     * @var QueryResultInterface
-     */
+    /** @var QueryResultInterface */
     private $queryResult;
 
-    /**
-     * @var QueryResultInterface
-     */
+    /** @var QueryResultInterface */
     private $paginatedQueryResult;
 
     public function __construct(

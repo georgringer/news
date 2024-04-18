@@ -15,14 +15,10 @@ use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 
 class AdministrationController extends NewsController
 {
-    /**
-     * @var \GeorgRinger\News\Domain\Repository\AdministrationRepository
-     */
+    /** @var \GeorgRinger\News\Domain\Repository\AdministrationRepository */
     protected $administrationRepository;
 
-    /**
-     * @var \TYPO3\CMS\Backend\Template\ModuleTemplateFactory
-     */
+    /** @var \TYPO3\CMS\Backend\Template\ModuleTemplateFactory */
     protected $moduleTemplateFactory;
 
     public function injectAdministrationRepository(AdministrationRepository $administrationRepository)

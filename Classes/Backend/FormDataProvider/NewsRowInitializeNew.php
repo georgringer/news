@@ -20,7 +20,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class NewsRowInitializeNew implements FormDataProviderInterface
 {
     /** @var  EmConfiguration */
-    protected $emConfiguration;
+    protected object $emConfiguration;
 
     public function __construct()
     {

@@ -14,24 +14,16 @@ namespace GeorgRinger\News\Jobs;
  */
 abstract class AbstractImportJob implements ImportJobInterface
 {
-    /**
-     * @var \GeorgRinger\News\Service\Import\DataProviderServiceInterface
-     */
+    /** @var \GeorgRinger\News\Service\Import\DataProviderServiceInterface */
     protected $importDataProviderService;
 
-    /**
-     * @var \TYPO3\CMS\Core\SingletonInterface
-     */
+    /** @var \TYPO3\CMS\Core\SingletonInterface */
     protected $importService;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $importServiceSettings = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $importItemOverwrite = [];
 
     /*
@@ -39,9 +31,7 @@ abstract class AbstractImportJob implements ImportJobInterface
      */
     protected $numberOfRecordsPerRun;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $increaseOffsetPerRunBy;
 
     /**

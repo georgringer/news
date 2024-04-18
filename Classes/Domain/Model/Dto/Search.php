@@ -66,8 +66,6 @@ class Search extends AbstractEntity
     }
 
     /**
-     * Set subject
-     *
      * @param string $subject
      */
     public function setSubject(string $subject): void
@@ -76,8 +74,6 @@ class Search extends AbstractEntity
     }
 
     /**
-     * Get fields
-     *
      * @return string
      */
     public function getFields(): string
@@ -86,8 +82,6 @@ class Search extends AbstractEntity
     }
 
     /**
-     * Set fields
-     *
      * @param string $fields
      */
     public function setFields(string $fields): void

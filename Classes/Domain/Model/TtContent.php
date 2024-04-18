@@ -20,39 +20,25 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class TtContent extends AbstractEntity
 {
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $crdate;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $tstamp;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $CType = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $header = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $headerPosition = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $bodytext = '';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $colPos = 0;
 
     /**
@@ -61,29 +47,19 @@ class TtContent extends AbstractEntity
      */
     protected $image;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $imagewidth = 0;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $imageorient = 0;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $imagecaption = '';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $imagecols = 0;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $imageborder = 0;
 
     /**
@@ -92,59 +68,37 @@ class TtContent extends AbstractEntity
      */
     protected $media;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $layout = '';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $cols = 0;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $subheader = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $headerLink = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $imageLink = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $imageZoom = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $altText = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $titleText = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $headerLayout = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $listType = '';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $txContainerParent = 0;
 
     public function __construct()
@@ -265,8 +219,6 @@ class TtContent extends AbstractEntity
     }
 
     /**
-     * Set colpos
-     *
      * @param int $colPos
      */
     public function setColPos($colPos): void

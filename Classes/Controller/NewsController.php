@@ -45,19 +45,13 @@ use TYPO3\CMS\Fluid\View\TemplateView;
  */
 class NewsController extends NewsBaseController
 {
-    /**
-     * @var \GeorgRinger\News\Domain\Repository\NewsRepository
-     */
+    /** @var \GeorgRinger\News\Domain\Repository\NewsRepository */
     protected $newsRepository;
 
-    /**
-     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
-     */
+    /** @var \GeorgRinger\News\Domain\Repository\CategoryRepository */
     protected $categoryRepository;
 
-    /**
-     * @var \GeorgRinger\News\Domain\Repository\TagRepository
-     */
+    /** @var \GeorgRinger\News\Domain\Repository\TagRepository */
     protected $tagRepository;
 
     /** @var array */
@@ -71,7 +65,6 @@ class NewsController extends NewsBaseController
     protected $originalSettings = [];
 
     /**
-     * NewsController constructor.
      * @param NewsRepository $newsRepository
      * @param CategoryRepository $categoryRepository
      * @param TagRepository $tagRepository

@@ -52,7 +52,7 @@ class NewsRepositoryTest extends FunctionalTestCase
     {
         $news = $this->newsRepository->findByUid(1);
 
-        self::assertEquals($news->getTitle(), 'findRecordsByUid');
+        self::assertEquals('findRecordsByUid', $news->getTitle());
     }
 
     /**
@@ -64,7 +64,7 @@ class NewsRepositoryTest extends FunctionalTestCase
     {
         $news = $this->newsRepository->findOneByImportSourceAndImportId('functional_test', '2');
 
-        self::assertEquals($news->getTitle(), 'findRecordsByImportSource');
+        self::assertEquals('findRecordsByImportSource', $news->getTitle());
     }
 
     /**
@@ -79,15 +79,15 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         // no matter about top news
         $demand->setTopNewsRestriction(0);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
+        self::assertEquals(5, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // Only Top news
         $demand->setTopNewsRestriction(1);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
+        self::assertEquals(3, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // Only non Top news
         $demand->setTopNewsRestriction(2);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
+        self::assertEquals(2, (int)$this->newsRepository->findDemanded($demand)->count());
     }
 
     /**
@@ -101,15 +101,15 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         // simple starting point
         $demand->setStoragePage(3);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
+        self::assertEquals(2, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // multiple starting points
         $demand->setStoragePage('4,5');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
+        self::assertEquals(5, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // multiple starting points, including invalid values and commas
         $demand->setStoragePage('5 ,  x ,3');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
+        self::assertEquals(3, (int)$this->newsRepository->findDemanded($demand)->count());
     }
 
     /**
@@ -129,15 +129,15 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         // Archived means: archive date must be lower than current time AND != 0
         $demand->setArchiveRestriction('archived');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
+        self::assertEquals(3, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // Active means: archive date must be in future or no archive date
         $demand->setArchiveRestriction('active');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
+        self::assertEquals(2, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // no value means: give all
         $demand->setArchiveRestriction('');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
+        self::assertEquals(5, (int)$this->newsRepository->findDemanded($demand)->count());
     }
 
     /**
@@ -153,7 +153,7 @@ class NewsRepositoryTest extends FunctionalTestCase
         $demand->setDateField('datetime');
         $demand->setMonth('4');
         $demand->setYear('2011');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 1);
+        self::assertEquals(1, (int)$this->newsRepository->findDemanded($demand)->count());
     }
 
     /**
@@ -173,11 +173,11 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         // get all news maximum 6 days old
         $demand->setTimeRestriction(6 * 86400);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 4);
+        self::assertEquals(4, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // no restriction should get you all
         $demand->setTimeRestriction(0);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 6);
+        self::assertEquals(6, (int)$this->newsRepository->findDemanded($demand)->count());
     }
 
     /**
