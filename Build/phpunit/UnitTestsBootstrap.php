@@ -26,7 +26,7 @@
  * according script within TYPO3 core's Build/Scripts directory and
  * adapt to extensions needs.
  */
-(static function () {
+(static function (): void {
     $testbase = new \TYPO3\TestingFramework\Core\Testbase();
 
     // These if's are for core testing (package typo3/cms) only. cms-composer-installer does

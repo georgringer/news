@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use TYPO3\CMS\Core\DependencyInjection;
 
-return function (ContainerConfigurator $container, ContainerBuilder $containerBuilder) {
+return function (ContainerConfigurator $container, ContainerBuilder $containerBuilder): void {
     $containerBuilder->registerForAutoconfiguration(RecordListQueryHook::class)->addTag('news.RecordListQueryHook');
     $containerBuilder->registerForAutoconfiguration(ItemsProcFunc::class)->addTag('news.ItemsProcFunc');
     $containerBuilder->registerForAutoconfiguration(PluginPreviewRenderer::class)->addTag('news.PageLayoutView');
