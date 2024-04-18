@@ -90,7 +90,7 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @return QueryInterface|array
      */
-    public function findTree(array $rootIdList, ?string $startingPoint = null)
+    public function findTree(array $rootIdList, ?string $startingPoint = null): array
     {
         $subCategories = CategoryService::getChildrenCategories(implode(',', $rootIdList));
 

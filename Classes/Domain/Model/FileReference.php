@@ -132,7 +132,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @return mixed
      */
-    public function getLink()
+    public function getLink(): string
     {
         return (string)($this->link !== '' ? $this->link : $this->getOriginalResource()->getLink());
     }

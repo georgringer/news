@@ -95,7 +95,7 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
         return $allArguments;
     }
 
-    private static function rmFromList($element, $list)
+    private static function rmFromList($element, $list): string
     {
         $items = explode(',', $list);
         foreach ($items as $k => $v) {

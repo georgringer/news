@@ -101,7 +101,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
 
         $imageAttributes = array_reduce(
             array_keys($imageAttributes),
-            function ($carry, $key) use ($imageAttributes) {
+            function ($carry, $key) use ($imageAttributes): string {
                 return $carry . ' ' . $key . '="' . htmlspecialchars($imageAttributes[$key]) . '"';
             },
             ''

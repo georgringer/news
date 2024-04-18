@@ -256,7 +256,7 @@ class NewsRepositoryTest extends FunctionalTestCase
      * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList
      * @return string
      */
-    protected function getIdListOfNews(QueryResultInterface $newsList)
+    protected function getIdListOfNews(QueryResultInterface $newsList): string
     {
         $idList = [];
         foreach ($newsList as $news) {
