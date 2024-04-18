@@ -246,7 +246,7 @@ class CategoryImportService extends AbstractImportService
 
             $l10nChildrenCategory->setTitle($title);
             $l10nChildrenCategory->setL10nParent((int)$category->getUid());
-            $l10nChildrenCategory->setSysLanguageUid((int)$sysLanguageUid);
+            $l10nChildrenCategory->setSysLanguageUid($sysLanguageUid);
         }
     }
 }

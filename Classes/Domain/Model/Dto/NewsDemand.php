@@ -445,7 +445,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      */
     public function setDay(int $day): NewsDemand
     {
-        $this->day = (int)$day;
+        $this->day = $day;
         return $this;
     }
 
@@ -467,7 +467,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      */
     public function setMonth(int $month): NewsDemand
     {
-        $this->month = (int)$month;
+        $this->month = $month;
         return $this;
     }
 
@@ -489,7 +489,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      */
     public function setYear(int $year): NewsDemand
     {
-        $this->year = (int)$year;
+        $this->year = $year;
         return $this;
     }
 
