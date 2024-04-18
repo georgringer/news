@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
@@ -75,10 +74,7 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
      */
     protected function getNewsRecord(): array
     {
-        /** @var PageArguments $routing */
-        $routing = $GLOBALS['TYPO3_REQUEST']->getAttribute('routing');
-        $newsId = (int)($routing->getArguments()['tx_news_pi1']['news'] ?? 0);
-
+        $newsId = 0;
         $vars = GeneralUtility::_GET('tx_news_pi1');
         if (isset($vars['news'])) {
             $newsId = (int)$vars['news'];
