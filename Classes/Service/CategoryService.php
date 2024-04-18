@@ -61,7 +61,6 @@ class CategoryService
      *
      * @param string $result string comma separated list
      * @param $toBeRemoved string comma separated list
-     * @return string
      */
     public static function removeValuesFromString($result, string $toBeRemoved): string
     {
@@ -118,7 +117,6 @@ class CategoryService
      *
      * @param string $default default label
      * @param array $row category record
-     * @return string
      */
     public static function translateCategoryRecord($default, array $row = []): string
     {
@@ -157,7 +155,6 @@ class CategoryService
      * Clean list of integers
      *
      * @param string $list
-     * @return string
      */
     private static function cleanIntList($list): string
     {

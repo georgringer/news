@@ -41,12 +41,6 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
         $this->registerArgument('categoryUid', 'int', 'Uid of the category', true);
     }
 
-    /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     * @return int
-     */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,

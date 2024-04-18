@@ -38,8 +38,6 @@ class CategoryRepositoryTest extends BaseTestCase
 
     /**
      * Data provider
-     *
-     * @return array
      */
     public function categoryIdsAreCorrectlyReplacedDataProvider(): array
     {

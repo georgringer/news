@@ -35,8 +35,6 @@ class ImportJob
 
     /**
      * Get all registered import jobs
-     *
-     * @return array
      */
     public static function getRegisteredJobs(): array
     {

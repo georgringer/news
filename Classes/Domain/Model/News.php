@@ -195,9 +195,6 @@ class News extends AbstractEntity
         $this->tags = new ObjectStorage();
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
@@ -213,8 +210,6 @@ class News extends AbstractEntity
 
     /**
      * Get alternative title
-     *
-     * @return string
      */
     public function getAlternativeTitle(): string
     {
@@ -233,8 +228,6 @@ class News extends AbstractEntity
 
     /**
      * Get Teaser text
-     *
-     * @return string
      */
     public function getTeaser(): string
     {
@@ -251,9 +244,6 @@ class News extends AbstractEntity
         $this->teaser = $teaser;
     }
 
-    /**
-     * @return string
-     */
     public function getBodytext(): string
     {
         return $this->bodytext;
@@ -267,9 +257,6 @@ class News extends AbstractEntity
         $this->bodytext = $bodytext;
     }
 
-    /**
-     * @return DateTime|null
-     */
     public function getDatetime(): ?DateTime
     {
         return $this->datetime;
@@ -307,8 +294,6 @@ class News extends AbstractEntity
 
     /**
      * Get day of datetime
-     *
-     * @return int
      */
     public function getDayOfDatetime(): int
     {
@@ -317,8 +302,6 @@ class News extends AbstractEntity
 
     /**
      * Get archive date
-     *
-     * @return DateTime|null
      */
     public function getArchive(): ?DateTime
     {
@@ -337,8 +320,6 @@ class News extends AbstractEntity
 
     /**
      * Get year of archive date
-     *
-     * @return int
      */
     public function getYearOfArchive(): int
     {
@@ -350,8 +331,6 @@ class News extends AbstractEntity
 
     /**
      * Get Month or archive date
-     *
-     * @return int
      */
     public function getMonthOfArchive(): int
     {
@@ -363,8 +342,6 @@ class News extends AbstractEntity
 
     /**
      * Get day of archive date
-     *
-     * @return int
      */
     public function getDayOfArchive(): int
     {
@@ -374,9 +351,6 @@ class News extends AbstractEntity
         return 0;
     }
 
-    /**
-     * @return string
-     */
     public function getAuthor(): string
     {
         return $this->author;
@@ -392,8 +366,6 @@ class News extends AbstractEntity
 
     /**
      * Get author's email
-     *
-     * @return string
      */
     public function getAuthorEmail(): string
     {
@@ -420,8 +392,6 @@ class News extends AbstractEntity
 
     /**
      * Get first category
-     *
-     * @return Category|null
      */
     public function getFirstCategory(): ?Category
     {
@@ -443,8 +413,6 @@ class News extends AbstractEntity
 
     /**
      * Adds a category to this categories.
-     *
-     * @param Category $category
      */
     public function addCategory(Category $category): void
     {
@@ -483,8 +451,6 @@ class News extends AbstractEntity
 
     /**
      * Return related from items sorted by datetime
-     *
-     * @return array
      */
     public function getRelatedFromSorted(): array
     {
@@ -500,8 +466,6 @@ class News extends AbstractEntity
 
     /**
      * Return related from items sorted by datetime
-     *
-     * @return array
      */
     public function getAllRelatedSorted(): array
     {
@@ -527,8 +491,6 @@ class News extends AbstractEntity
 
     /**
      * Return related items sorted by datetime
-     *
-     * @return array
      */
     public function getRelatedSorted(): array
     {
@@ -594,8 +556,6 @@ class News extends AbstractEntity
 
     /**
      * Adds a file to this files.
-     *
-     * @param FileReference $file
      */
     public function addFalRelatedFile(FileReference $file): void
     {
@@ -617,8 +577,6 @@ class News extends AbstractEntity
 
     /**
      * Get type of news
-     *
-     * @return string
      */
     public function getType(): string
     {
@@ -635,9 +593,6 @@ class News extends AbstractEntity
         $this->type = $type;
     }
 
-    /**
-     * @return string
-     */
     public function getKeywords(): string
     {
         return $this->keywords;
@@ -651,9 +606,6 @@ class News extends AbstractEntity
         $this->keywords = $keywords;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
@@ -669,8 +621,6 @@ class News extends AbstractEntity
 
     /**
      * Adds a related link.
-     *
-     * @param Link $relatedLink
      */
     public function addRelatedLink(Link $relatedLink): void
     {
@@ -712,8 +662,6 @@ class News extends AbstractEntity
 
     /**
      * Add a Fal media file reference
-     *
-     * @param FileReference $falMedia
      */
     public function addFalMedia(FileReference $falMedia): void
     {
@@ -725,8 +673,6 @@ class News extends AbstractEntity
 
     /**
      * Get the Fal media items
-     *
-     * @return array
      */
     public function getMediaPreviews(): array
     {
@@ -736,8 +682,6 @@ class News extends AbstractEntity
 
     /**
      * Get all media elements which are allowed for detail views
-     *
-     * @return array
      */
     public function getMediaNonPreviews(): array
     {
@@ -747,8 +691,6 @@ class News extends AbstractEntity
 
     /**
      * Get all media elements which are only for list views
-     *
-     * @return array
      */
     public function getMediaListOnly(): array
     {
@@ -758,8 +700,6 @@ class News extends AbstractEntity
 
     /**
      * Get all media elements which are only for detail views
-     *
-     * @return array
      */
     public function getMediaDetailOnly(): array
     {
@@ -769,8 +709,6 @@ class News extends AbstractEntity
 
     /**
      * Get first preview
-     *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
      */
     public function getFirstPreview(): ?\TYPO3\CMS\Extbase\Domain\Model\FileReference
     {
@@ -782,8 +720,6 @@ class News extends AbstractEntity
 
     /**
      * Get first non preview
-     *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
      */
     public function getFirstNonePreview(): ?\TYPO3\CMS\Extbase\Domain\Model\FileReference
     {
@@ -793,10 +729,6 @@ class News extends AbstractEntity
         return null;
     }
 
-    /**
-     * @param array $list
-     * @return array
-     */
     protected function getMediaItemsByConfiguration(array $list): array
     {
         $items = [];
@@ -814,8 +746,6 @@ class News extends AbstractEntity
 
     /**
      * Get internal url
-     *
-     * @return string
      */
     public function getInternalurl(): string
     {
@@ -834,8 +764,6 @@ class News extends AbstractEntity
 
     /**
      * Get external url
-     *
-     * @return string
      */
     public function getExternalurl(): string
     {
@@ -854,8 +782,6 @@ class News extends AbstractEntity
 
     /**
      * Get top news flag
-     *
-     * @return bool
      */
     public function getIstopnews(): bool
     {
@@ -894,8 +820,6 @@ class News extends AbstractEntity
 
     /**
      * Adds a content element to the record
-     *
-     * @param TtContent $contentElement
      */
     public function addContentElement(TtContent $contentElement): void
     {
@@ -907,8 +831,6 @@ class News extends AbstractEntity
 
     /**
      * Get id list of content elements
-     *
-     * @return string
      */
     public function getContentElementIdList(): string
     {
@@ -917,8 +839,6 @@ class News extends AbstractEntity
 
     /**
      * Get translated id list of content elements
-     *
-     * @return string
      */
     public function getTranslatedContentElementIdList(): string
     {
@@ -945,7 +865,6 @@ class News extends AbstractEntity
      * Collect id list
      *
      * @param bool $original
-     * @return string
      */
     protected function getIdOfContentElements($original = true): string
     {
@@ -966,7 +885,6 @@ class News extends AbstractEntity
      * Currently only supports container elements of EXT:container
      *
      * @param bool $original
-     * @return string
      */
     protected function getIdOfNonNestedContentElements($original = true): string
     {
@@ -1001,8 +919,6 @@ class News extends AbstractEntity
 
     /**
      * Adds a tag
-     *
-     * @param Tag $tag
      */
     public function addTag(Tag $tag): void
     {
@@ -1011,8 +927,6 @@ class News extends AbstractEntity
 
     /**
      * Removes a tag
-     *
-     * @param Tag $tag
      */
     public function removeTag(Tag $tag): void
     {
@@ -1021,8 +935,6 @@ class News extends AbstractEntity
 
     /**
      * Get path segment
-     *
-     * @return string
      */
     public function getPathSegment(): string
     {
@@ -1041,8 +953,6 @@ class News extends AbstractEntity
 
     /**
      * Get creation date
-     *
-     * @return DateTime
      */
     public function getCrdate(): DateTime
     {
@@ -1081,17 +991,12 @@ class News extends AbstractEntity
 
     /**
      * Get day of crdate
-     *
-     * @return int
      */
     public function getDayOfCrdate(): int
     {
         return (int)$this->crdate->format('d');
     }
 
-    /**
-     * @return DateTime
-     */
     public function getTstamp(): DateTime
     {
         return $this->tstamp;
@@ -1119,8 +1024,6 @@ class News extends AbstractEntity
 
     /**
      * Get sys language
-     *
-     * @return int
      */
     public function getSysLanguageUid(): int
     {
@@ -1139,8 +1042,6 @@ class News extends AbstractEntity
 
     /**
      * Get l10n parent
-     *
-     * @return int
      */
     public function getL10nParent(): int
     {
@@ -1169,8 +1070,6 @@ class News extends AbstractEntity
 
     /**
      * Get day of tstamp
-     *
-     * @return int
      */
     public function getDayOfTimestamp(): int
     {
@@ -1179,8 +1078,6 @@ class News extends AbstractEntity
 
     /**
      * Get editlock flag
-     *
-     * @return int
      */
     public function getEditlock(): int
     {
@@ -1199,8 +1096,6 @@ class News extends AbstractEntity
 
     /**
      * Get hidden flag
-     *
-     * @return bool
      */
     public function getHidden(): bool
     {
@@ -1219,8 +1114,6 @@ class News extends AbstractEntity
 
     /**
      * Get deleted flag
-     *
-     * @return bool
      */
     public function getDeleted(): bool
     {
@@ -1239,8 +1132,6 @@ class News extends AbstractEntity
 
     /**
      * Get start time
-     *
-     * @return DateTime|null
      */
     public function getStarttime(): ?DateTime
     {
@@ -1259,8 +1150,6 @@ class News extends AbstractEntity
 
     /**
      * Get year of starttime
-     *
-     * @return int
      */
     public function getYearOfStarttime(): int
     {
@@ -1272,8 +1161,6 @@ class News extends AbstractEntity
 
     /**
      * Get month of starttime
-     *
-     * @return int
      */
     public function getMonthOfStarttime(): int
     {
@@ -1285,8 +1172,6 @@ class News extends AbstractEntity
 
     /**
      * Get day of starttime
-     *
-     * @return int
      */
     public function getDayOfStarttime(): int
     {
@@ -1296,9 +1181,6 @@ class News extends AbstractEntity
         return 0;
     }
 
-    /**
-     * @return DateTime|null
-     */
     public function getEndtime(): ?DateTime
     {
         return $this->endtime;
@@ -1316,8 +1198,6 @@ class News extends AbstractEntity
 
     /**
      * Get year of endtime
-     *
-     * @return int
      */
     public function getYearOfEndtime(): int
     {
@@ -1329,8 +1209,6 @@ class News extends AbstractEntity
 
     /**
      * Get month of endtime
-     *
-     * @return int
      */
     public function getMonthOfEndtime(): int
     {
@@ -1342,8 +1220,6 @@ class News extends AbstractEntity
 
     /**
      * Get day of endtime
-     *
-     * @return int
      */
     public function getDayOfEndtime(): int
     {
@@ -1355,8 +1231,6 @@ class News extends AbstractEntity
 
     /**
      * Get fe groups
-     *
-     * @return string
      */
     public function getFeGroup(): string
     {
@@ -1375,8 +1249,6 @@ class News extends AbstractEntity
 
     /**
      * Get import id
-     *
-     * @return string
      */
     public function getImportId(): string
     {
@@ -1393,9 +1265,6 @@ class News extends AbstractEntity
         $this->importId = $importId;
     }
 
-    /**
-     * @return int
-     */
     public function getSorting(): int
     {
         return $this->sorting;
@@ -1417,33 +1286,21 @@ class News extends AbstractEntity
         $this->importSource = $importSource;
     }
 
-    /**
-     * @return string
-     */
     public function getImportSource(): string
     {
         return $this->importSource;
     }
 
-    /**
-     * @return string
-     */
     public function getNotes(): string
     {
         return $this->notes;
     }
 
-    /**
-     * @param string $notes
-     */
     public function setNotes(string $notes): void
     {
         $this->notes = $notes;
     }
 
-    /**
-     * @return array
-     */
     public function getFalMediaPreviews(): array
     {
         return $this->getMediaPreviews();

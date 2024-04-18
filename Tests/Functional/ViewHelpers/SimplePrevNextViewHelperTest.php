@@ -95,9 +95,6 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         $this->news->_setProperty('datetime', $date);
     }
 
-    /**
-     * @param int $id
-     */
     protected function getRow(int $id)
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)

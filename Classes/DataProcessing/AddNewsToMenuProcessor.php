@@ -29,13 +29,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class AddNewsToMenuProcessor implements DataProcessorInterface
 {
-    /**
-     * @param ContentObjectRenderer $cObj
-     * @param array $contentObjectConfiguration
-     * @param array $processorConfiguration
-     * @param array $processedData
-     * @return array
-     */
     public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData): array
     {
         if (isset($processorConfiguration['if.']) && !$cObj->checkIf($processorConfiguration['if.'])) {
@@ -59,9 +52,6 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
 
     /**
      * Add the news record to the menu items
-     *
-     * @param array $newsRecord
-     * @param array $menu
      */
     protected function addNewsRecordToMenu(array $newsRecord, array &$menu): void
     {
@@ -81,8 +71,6 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
 
     /**
      * Get the news record including possible translations
-     *
-     * @return array
      */
     protected function getNewsRecord(): array
     {
@@ -116,8 +104,6 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
 
     /**
      * Get current language
-     *
-     * @return int
      */
     protected function getCurrentLanguage(): int
     {
@@ -137,9 +123,6 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
         return GeneralUtility::makeInstance(Context::class)->getAspect('language');
     }
 
-    /**
-     * @return TypoScriptFrontendController
-     */
     protected function getTsfe(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];

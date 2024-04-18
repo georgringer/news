@@ -23,10 +23,6 @@ class NewsTitleProvider extends AbstractPageTitleProvider
     private const DEFAULT_PROPERTIES = 'title';
     private const DEFAULT_GLUE = '" "';
 
-    /**
-     * @param News $news
-     * @param array $configuration
-     */
     public function setTitleByNews(News $news, array $configuration = []): void
     {
         $title = '';

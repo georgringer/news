@@ -53,9 +53,6 @@ class ChunkViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
      * @return array|mixed
      */
     public static function renderStatic(
@@ -102,7 +99,6 @@ class ChunkViewHelper extends AbstractViewHelper
      * @param mixed $candidate
      * @param bool $useKeys
      *
-     * @return array
      * @throws Exception
      */
     protected static function arrayFromArrayOrTraversableOrCSVStatic($candidate, $useKeys = true): array
@@ -126,8 +122,6 @@ class ChunkViewHelper extends AbstractViewHelper
     /**
      * @param mixed $variable
      * @param string $as
-     * @param RenderingContextInterface $renderingContext
-     * @param \Closure $renderChildrenClosure
      * @return mixed
      */
     protected static function renderChildrenWithVariableOrReturnInputStatic(
@@ -155,7 +149,6 @@ class ChunkViewHelper extends AbstractViewHelper
      * of each existing variable, restoring it after rendering.
      * Returns the output of the renderChildren() method on $viewHelper.
      *
-     * @param array $variables
      * @param VariableProviderInterface $templateVariableContainer
      * @param \Closure $renderChildrenClosure
      * @return mixed
@@ -172,9 +165,7 @@ class ChunkViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $variables
      * @param VariableProviderInterface $templateVariableContainer
-     * @return array
      */
     private static function backupVariables(array $variables, $templateVariableContainer): array
     {
@@ -190,8 +181,6 @@ class ChunkViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $variables
-     * @param array $backups
      * @param VariableProviderInterface $templateVariableContainer
      */
     private static function restoreVariables(array $variables, array $backups, $templateVariableContainer): void

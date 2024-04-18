@@ -66,8 +66,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
 
     /**
      * Inject the DataMapper
-     *
-     * @param DataMapper $dataMapper
      */
     public function injectDataMapper(DataMapper $dataMapper): void
     {
@@ -88,9 +86,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         $this->registerArgument('includeExternalType', 'bool', 'Include external news types', false, false);
     }
 
-    /**
-     * @return string
-     */
     public function render(): string
     {
         $neighbours = $this->getNeighbours($this->arguments['news'], $this->arguments['pidList'], $this->arguments['sortField']);
@@ -106,9 +101,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
 
     /**
      * Map the array from DB to an understandable output
-     *
-     * @param array $result
-     * @return array
      */
     protected function mapResultToObjects(array $result): array
     {
@@ -157,12 +149,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         return $record;
     }
 
-    /**
-     * @param News $news
-     * @param string $pidList
-     * @param string $sortField
-     * @return array
-     */
     protected function getNeighbours(News $news, string $pidList, string $sortField): array
     {
         $data = [];
@@ -217,9 +203,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         return $data;
     }
 
-    /**
-     * @return QueryBuilder
-     */
     protected function getQueryBuilder(): QueryBuilder
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)
@@ -227,7 +210,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param int $id
      * @return array
      */
     protected function getRawRecord(int $id): ?array

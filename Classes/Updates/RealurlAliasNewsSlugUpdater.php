@@ -46,9 +46,6 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
 
     protected SlugService $slugService;
 
-    /**
-     * @param SlugService $slugService
-     */
     public function __construct(
         SlugService $slugService
     ) {
@@ -83,9 +80,6 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
         ];
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return '[Optional] Migrate realurl alias to slug field "path_segment" of EXT:news records';

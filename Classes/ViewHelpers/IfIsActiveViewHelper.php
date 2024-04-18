@@ -34,7 +34,6 @@ class IfIsActiveViewHelper extends AbstractConditionViewHelper implements ViewHe
 
     /**
      * @param array|null $arguments
-     * @return bool
      */
     protected static function evaluateCondition($arguments = null): bool
     {

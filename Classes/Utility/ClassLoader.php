@@ -20,9 +20,6 @@ class ClassLoader implements SingletonInterface
     protected object $classCacheManager;
     protected bool $isValidInstance = false;
 
-    /**
-     * @param PhpFrontend $classCache
-     */
     public function __construct(PhpFrontend $classCache = null, ClassCacheManager $classCacheManager = null)
     {
         $this->classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
@@ -47,7 +44,6 @@ class ClassLoader implements SingletonInterface
      * classes directory of an extension.
      *
      * @param string $className Name of the class/interface to load
-     * @return bool
      */
     public function loadClass($className): bool
     {
@@ -74,8 +70,6 @@ class ClassLoader implements SingletonInterface
      * Get extension key from namespaced classname
      *
      * @param string $className
-     *
-     * @return string|null
      */
     protected function getExtensionKey($className): ?string
     {
@@ -99,7 +93,6 @@ class ClassLoader implements SingletonInterface
      * Find out if a class name is valid
      *
      * @param string $className
-     * @return bool
      */
     protected function isValidClassName($className): bool
     {

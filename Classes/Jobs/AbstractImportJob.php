@@ -39,8 +39,6 @@ abstract class AbstractImportJob implements ImportJobInterface
 
     /**
      * Get number of runs
-     *
-     * @return int
      */
     public function getNumberOfRecordsPerRun(): int
     {
@@ -54,8 +52,6 @@ abstract class AbstractImportJob implements ImportJobInterface
     /**
      * Checks if this job is enabled. Do perform some checks her if you need to.
      * E.g. check if a certain extension is loaded or similar.
-     *
-     * @return bool
      */
     public function isEnabled(): bool
     {
@@ -64,8 +60,6 @@ abstract class AbstractImportJob implements ImportJobInterface
 
     /**
      * Get job info.
-     *
-     * @return array
      */
     public function getInfo(): array
     {

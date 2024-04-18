@@ -25,7 +25,6 @@ class NewsDatabaseRecordList extends DatabaseRecordList
      *
      * @param string $alternativeId Alternative id value. Enter blank string for the current id ($this->id)
      * @param string $excludeList Comma separated list of fields NOT to include ("sortField" or "sortRev")
-     * @return string
      */
     public function listURL($alternativeId = '', $table = '-1', $excludeList = ''): string
     {

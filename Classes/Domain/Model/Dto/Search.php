@@ -57,33 +57,22 @@ class Search extends AbstractEntity
 
     /**
      * Get the subject
-     *
-     * @return string
      */
     public function getSubject(): string
     {
         return $this->subject;
     }
 
-    /**
-     * @param string $subject
-     */
     public function setSubject(string $subject): void
     {
         $this->subject = $subject;
     }
 
-    /**
-     * @return string
-     */
     public function getFields(): string
     {
         return $this->fields;
     }
 
-    /**
-     * @param string $fields
-     */
     public function setFields(string $fields): void
     {
         $this->fields = $fields;
@@ -97,25 +86,16 @@ class Search extends AbstractEntity
         $this->maximumDate = $maximumDate;
     }
 
-    /**
-     * @return string
-     */
     public function getMaximumDate(): string
     {
         return $this->maximumDate;
     }
 
-    /**
-     * @param string $minimumDate
-     */
     public function setMinimumDate(string $minimumDate): void
     {
         $this->minimumDate = $minimumDate;
     }
 
-    /**
-     * @return string
-     */
     public function getMinimumDate(): string
     {
         return $this->minimumDate;
@@ -129,17 +109,11 @@ class Search extends AbstractEntity
         $this->dateField = $dateField;
     }
 
-    /**
-     * @return string
-     */
     public function getDateField(): string
     {
         return $this->dateField;
     }
 
-    /**
-     * @return bool
-     */
     public function isSplitSubjectWords(): bool
     {
         return $this->splitSubjectWords;

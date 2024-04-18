@@ -27,9 +27,6 @@ class ClassCacheManager
     /** @var array */
     protected $constructorLines = [];
 
-    /**
-     * @param PhpFrontend $classCache
-     */
     public function __construct(PhpFrontend $classCache = null)
     {
         if ($classCache === null) {
@@ -198,7 +195,6 @@ class ClassCacheManager
 
     /**
      * @param string $filePath
-     * @return string
      */
     protected function getPartialInfo($filePath): string
     {
@@ -211,7 +207,6 @@ class ClassCacheManager
 
     /**
      * @param string $code
-     * @return string
      */
     protected function closeClassDefinition($code): string
     {

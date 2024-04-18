@@ -38,11 +38,9 @@ class NewsRepository extends AbstractDemandedRepository
      * Returns a category constraint created by
      * a given list of categories and a junction string
      *
-     * @param QueryInterface $query
      * @param  array $categories
      * @param  string $conjunction
      * @param  bool $includeSubCategories
-     * @return ConstraintInterface|null
      */
     protected function createCategoryConstraint(
         QueryInterface $query,
@@ -104,8 +102,6 @@ class NewsRepository extends AbstractDemandedRepository
     /**
      * Returns an array of constraints created from a given demand object.
      *
-     * @param QueryInterface $query
-     * @param DemandInterface $demand
      *
      * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
@@ -271,10 +267,8 @@ class NewsRepository extends AbstractDemandedRepository
     /**
      * Returns an array of orderings created from a given demand object.
      *
-     * @param DemandInterface $demand
      *
      * @return string[]
-     *
      * @psalm-return array<string, string>
      */
     protected function createOrderingsFromDemand(DemandInterface $demand): array
@@ -341,7 +335,6 @@ class NewsRepository extends AbstractDemandedRepository
      *
      * @param int $uid id of record
      * @param bool $respectEnableFields if set to false, hidden records are shown
-     * @return News|null
      */
     public function findByUid($uid, $respectEnableFields = true): ?News
     {
@@ -365,9 +358,6 @@ class NewsRepository extends AbstractDemandedRepository
     /**
      * Get the count of news records by month/year and
      * returns the result compiled as array
-     *
-     * @param DemandInterface $demand
-     * @return array
      */
     public function countByDate(DemandInterface $demand): array
     {
@@ -439,9 +429,6 @@ from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
     /**
      * Get the search constraints
      *
-     * @param QueryInterface $query
-     * @param DemandInterface $demand
-     * @return array
      * @throws \UnexpectedValueException
      */
     protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand): array
@@ -510,7 +497,6 @@ from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
     /**
      * @param string $table table name
-     * @return QueryBuilder
      */
     protected function getQueryBuilder(string $table): QueryBuilder
     {
@@ -519,9 +505,6 @@ from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
     /**
      * Return stripped order sql
-     *
-     * @param string $str
-     * @return string
      */
     private function stripOrderBy(string $str): string
     {

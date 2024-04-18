@@ -28,8 +28,6 @@ class RecordListConstraint
 
     /**
      * Check if current module is the news administration module
-     *
-     * @return bool
      */
     public function isInAdministrationModule(): bool
     {
@@ -220,7 +218,6 @@ class RecordListConstraint
 
     /**
      * @param int $categoryId
-     * @return array
      */
     protected function getNewsIdsOfCategory($categoryId): array
     {

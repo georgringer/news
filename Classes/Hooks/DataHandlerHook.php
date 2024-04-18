@@ -27,8 +27,6 @@ class DataHandlerHook implements SingletonInterface
     /**
      * Flushes the cache if a news record was edited.
      * This happens on two levels: by UID and by PID.
-     *
-     * @param array $params
      */
     public function clearCachePostProc(array $params): void
     {
@@ -73,7 +71,6 @@ class DataHandlerHook implements SingletonInterface
     /**
      * Prevent saving of a news record if the editor doesn't have access to all categories of the news record
      *
-     * @param array $fieldArray
      * @param string $table
      * @param int $id
      * @param $parentObject DataHandler
@@ -119,7 +116,6 @@ class DataHandlerHook implements SingletonInterface
     /**
      * Prevent deleting/moving of a news record if the editor doesn't have access to all categories of the news record
      *
-     * @param string $command
      * @param string $table
      * @param int $id
      * @param string $value
@@ -153,10 +149,8 @@ class DataHandlerHook implements SingletonInterface
      * @param int $uid
      * @param int $destPid
      * @param array $propArr
-     * @param array $moveRec
      * @param int $resolvedPid
      * @param bool $recordWasMoved
-     * @param DataHandler $dataHandler
      */
     public function moveRecord($table, $uid, $destPid, $propArr, array $moveRec, $resolvedPid, $recordWasMoved, DataHandler $dataHandler): void
     {

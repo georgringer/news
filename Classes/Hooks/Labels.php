@@ -19,8 +19,6 @@ class Labels
     /**
      * Generate additional label for category records
      * including the title of the parent category
-     *
-     * @param array $params
      */
     public function getUserLabelCategory(array &$params): void
     {

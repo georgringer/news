@@ -22,9 +22,6 @@ class ItemsProcFunc
 {
     protected TemplateLayout $templateLayoutsUtility;
 
-    /**
-     * @param TemplateLayout $templateLayout
-     */
     public function __construct(
         TemplateLayout $templateLayout
     ) {
@@ -65,7 +62,6 @@ class ItemsProcFunc
      *
      * @param array $templateLayouts
      * @param int $currentColPos
-     * @return array
      */
     protected function reduceTemplateLayouts($templateLayouts, $currentColPos): array
     {
@@ -210,8 +206,6 @@ class ItemsProcFunc
 
     /**
      * Get all languages
-     *
-     * @return array
      */
     protected function getAllLanguages(): array
     {
@@ -233,8 +227,6 @@ class ItemsProcFunc
      * Get tt_content record
      *
      * @param int $uid
-     *
-     * @return array|null
      */
     protected function getContentElementRow($uid): ?array
     {
@@ -245,7 +237,6 @@ class ItemsProcFunc
      * Get page id, if negative, then it is a "after record"
      *
      * @param int $pid
-     * @return int
      */
     protected function getPageId($pid): int
     {
@@ -261,8 +252,6 @@ class ItemsProcFunc
 
     /**
      * Returns LanguageService
-     *
-     * @return LanguageService
      */
     protected function getLanguageService(): LanguageService
     {

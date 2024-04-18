@@ -66,9 +66,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     /** @var ContentObjectRenderer */
     protected $cObj;
 
-    /**
-     * @param SettingsService $pluginSettingsService
-     */
     public function injectSettingsService(SettingsService $pluginSettingsService): void
     {
         $this->pluginSettingsService = $pluginSettingsService;
@@ -174,10 +171,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     /**
      * Generate the link configuration for the link to the news item
      *
-     * @param News $newsItem
      * @param array $tsSettings
-     * @param array $configuration
-     * @return array
      */
     protected function getLinkToNewsItem(
         News $newsItem,
@@ -234,10 +228,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         return $configuration;
     }
 
-    /**
-     * @param News $newsItem
-     * @return int
-     */
     protected function getNewsId(News $newsItem): int
     {
         $uid = $newsItem->getUid();
@@ -255,10 +245,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         return $uid;
     }
 
-    /**
-     * @param array $configuration
-     * @return string
-     */
     protected function getTargetConfiguration(array $configuration): string
     {
         $configuration['returnLast'] = 'target';
@@ -271,7 +257,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      *
      * @param array $settings
      * @param News $newsItem
-     * @return int
      */
     protected function getDetailPidFromCategories($settings, $newsItem): int
     {
@@ -291,7 +276,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      *
      * @param array $settings
      * @param News $newsItem
-     * @return int
      */
     protected function getDetailPidFromDefaultDetailPid($settings, $newsItem): int
     {
@@ -303,7 +287,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      *
      * @param array $settings
      * @param News $newsItem
-     * @return int
      */
     protected function getDetailPidFromFlexform($settings, $newsItem): int
     {

@@ -37,10 +37,7 @@ class AbstractImportService implements LoggerAwareInterface
     protected CategoryRepository $categoryRepository;
 
     /**
-     * @param PersistenceManager $persistenceManager
      * @param EmConfiguration $emSettings
-     * @param CategoryRepository $categoryRepository
-     * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         PersistenceManager $persistenceManager,
@@ -58,7 +55,6 @@ class AbstractImportService implements LoggerAwareInterface
      *
      * @param string $file1 Absolute path and filename to file1
      * @param string $file2 Absolute path and filename to file2
-     * @return bool
      */
     protected function filesAreEqual($file1, $file2): bool
     {
@@ -100,8 +96,6 @@ class AbstractImportService implements LoggerAwareInterface
      * Get import Folder
      *
      * TODO: catch exception when storage/folder does not exist and return readable message to the user
-     *
-     * @return Folder
      */
     protected function getImportFolder(): Folder
     {

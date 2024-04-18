@@ -63,9 +63,6 @@ final class NewsListSelectedActionEvent
         return $this;
     }
 
-    /**
-     * @return Request
-     */
     public function getRequest(): Request
     {
         return $this->request;

@@ -22,7 +22,6 @@ class ConstraintHelper
 {
     /**
      * @param string|int $timeInput
-     * @return int
      * @throws Exception
      */
     public static function getTimeRestrictionLow($timeInput): int
@@ -52,7 +51,6 @@ class ConstraintHelper
 
     /**
      * @param string|int $timeInput
-     * @return int
      * @throws Exception
      */
     public static function getTimeRestrictionHigh($timeInput): int

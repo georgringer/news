@@ -47,9 +47,6 @@ class Tag extends AbstractValueObject
      */
     public function __construct() {}
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCrdate(): ?\DateTime
     {
         return $this->crdate;
@@ -63,9 +60,6 @@ class Tag extends AbstractValueObject
         $this->crdate = $crdate;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getTstamp(): ?\DateTime
     {
         return $this->tstamp;
@@ -79,9 +73,6 @@ class Tag extends AbstractValueObject
         $this->tstamp = $tstamp;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
@@ -95,9 +86,6 @@ class Tag extends AbstractValueObject
         $this->title = $title;
     }
 
-    /**
-     * @return string
-     */
     public function getSeoTitle(): string
     {
         return $this->seoTitle;
@@ -111,9 +99,6 @@ class Tag extends AbstractValueObject
         $this->seoTitle = $seoTitle;
     }
 
-    /**
-     * @return string
-     */
     public function getSeoDescription(): string
     {
         return $this->seoDescription;
@@ -127,9 +112,6 @@ class Tag extends AbstractValueObject
         $this->seoDescription = $seoDescription;
     }
 
-    /**
-     * @return string
-     */
     public function getSeoHeadline(): string
     {
         return $this->seoHeadline;
@@ -143,9 +125,6 @@ class Tag extends AbstractValueObject
         $this->seoHeadline = $seoHeadline;
     }
 
-    /**
-     * @return string
-     */
     public function getSeoText(): string
     {
         return $this->seoText;
@@ -159,9 +138,6 @@ class Tag extends AbstractValueObject
         $this->seoText = $seoText;
     }
 
-    /**
-     * @return string
-     */
     public function getSlug(): string
     {
         return $this->slug;

@@ -16,11 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class TypoScript
 {
-    /**
-     * @param array $base
-     * @param array $overload
-     * @return array
-     */
     public function override(array $base, array $overload): array
     {
         $configuration = $overload['settings']['overrideFlexformSettingsIfEmpty'] ?? '';
@@ -80,12 +75,8 @@ class TypoScript
     /**
      * Set value in array by path
      *
-     * @param array $array
-     * @param array $path
      * @param mixed $value
      * @param string[] $path
-     *
-     * @return array
      */
     protected function setValue(array $array, array $path, $value): array
     {
@@ -98,8 +89,6 @@ class TypoScript
     /**
      * Set value by reference
      *
-     * @param array $array
-     * @param array $path
      * @param $value
      */
     private function setValueByReference(array &$array, array $path, $value): void

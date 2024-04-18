@@ -25,9 +25,6 @@ class AccessControlService
 {
     /**
      * Check if a user has access to all categories of a news record
-     *
-     * @param array $newsRecord
-     * @return bool
      */
     public static function userHasCategoryPermissionsForRecord(array $newsRecord): bool
     {
@@ -51,9 +48,6 @@ class AccessControlService
 
     /**
      * Get an array with the uid and title of all categories the user doesn't have access to
-     *
-     * @param array $newsRecord
-     * @return array
      */
     public static function getAccessDeniedCategories(array $newsRecord): array
     {
@@ -90,7 +84,6 @@ class AccessControlService
      * Get all categories for a news record respecting l10n_mode
      *
      * @param array $newsRecord
-     * @return array
      */
     public static function getCategoriesForNewsRecord($newsRecord): array
     {
@@ -161,8 +154,6 @@ class AccessControlService
 
     /**
      * Returns the current BE user.
-     *
-     * @return BackendUserAuthentication
      */
     protected static function getBackendUser(): BackendUserAuthentication
     {

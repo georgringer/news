@@ -42,25 +42,16 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      */
     protected $formActionUriArguments;
 
-    /**
-     * @param HashService $hashService
-     */
     public function injectHashService(HashService $hashService)
     {
         $this->hashService = $hashService;
     }
 
-    /**
-     * @param MvcPropertyMappingConfigurationService $mvcPropertyMappingConfigurationService
-     */
     public function injectMvcPropertyMappingConfigurationService(MvcPropertyMappingConfigurationService $mvcPropertyMappingConfigurationService)
     {
         $this->mvcPropertyMappingConfigurationService = $mvcPropertyMappingConfigurationService;
     }
 
-    /**
-     * @param ExtensionService $extensionService
-     */
     public function injectExtensionService(ExtensionService $extensionService)
     {
         $this->extensionService = $extensionService;

@@ -35,11 +35,6 @@ class HeaderDataViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
 
-    /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,

@@ -35,9 +35,6 @@ final class QueryResultPaginator extends CustomAbstractPaginator
         $this->updateInternalState();
     }
 
-    /**
-     * @return iterable|QueryResultInterface
-     */
     public function getPaginatedItems(): iterable
     {
         return $this->paginatedQueryResult;

@@ -87,7 +87,6 @@ class CategoryRepository extends AbstractDemandedRepository
      * Find category tree
      *
      * @param array $rootIdList list of ids
-     * @param string|null $startingPoint
      *
      * @return QueryInterface|array
      */
@@ -136,7 +135,6 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @param array $idList list of ids
      * @param array $ordering ordering
-     * @param string|null $startingPoint
      *
      * @return QueryResultInterface<Category>
      */
@@ -215,8 +213,6 @@ class CategoryRepository extends AbstractDemandedRepository
 
     /**
      * Get the current sys language uid
-     *
-     * @return int
      */
     protected function getSysLanguageUid(): int
     {
@@ -233,10 +229,6 @@ class CategoryRepository extends AbstractDemandedRepository
 
     /**
      * Replace ids in array by the given ones
-     *
-     * @param array $idList
-     * @param array $rows
-     * @return array
      */
     protected function replaceCategoryIds(array $idList, array $rows): array
     {

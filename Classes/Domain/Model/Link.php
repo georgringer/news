@@ -43,8 +43,6 @@ class Link extends AbstractValueObject
 
     /**
      * Get creation date
-     *
-     * @return \DateTime|null
      */
     public function getCrdate(): ?\DateTime
     {
@@ -61,9 +59,6 @@ class Link extends AbstractValueObject
         $this->crdate = $crdate;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getTstamp(): ?\DateTime
     {
         return $this->tstamp;
@@ -77,9 +72,6 @@ class Link extends AbstractValueObject
         $this->tstamp = $tstamp;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
@@ -93,9 +85,6 @@ class Link extends AbstractValueObject
         $this->title = $title;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
@@ -109,9 +98,6 @@ class Link extends AbstractValueObject
         $this->description = $description;
     }
 
-    /**
-     * @return string
-     */
     public function getUri(): string
     {
         return $this->uri;
@@ -137,8 +123,6 @@ class Link extends AbstractValueObject
 
     /**
      * Get sys language
-     *
-     * @return int
      */
     public function getSysLanguageUid(): int
     {
@@ -157,8 +141,6 @@ class Link extends AbstractValueObject
 
     /**
      * Get l10n parent
-     *
-     * @return int
      */
     public function getL10nParent(): int
     {

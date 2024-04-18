@@ -68,10 +68,6 @@ class SlugPrefix
 
     /**
      * Render the prefix for the input field.
-     *
-     * @param SiteInterface $site
-     * @param int $languageId
-     * @return string
      */
     protected function getPrefixForSite(SiteInterface $site, int $languageId): string
     {

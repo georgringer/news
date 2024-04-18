@@ -157,7 +157,6 @@ class PopulateTagSlugs implements UpgradeWizardInterface
     /**
      * Check if there are record within database table with an empty "slug" field.
      *
-     * @return bool
      * @throws \InvalidArgumentException
      */
     protected function checkIfWizardIsRequired(): bool

@@ -26,9 +26,6 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     /** @var BackendInterface */
     protected $storageBackend;
 
-    /**
-     * @param BackendInterface $storageBackend
-     */
     public function injectStorageBackend(
         BackendInterface $storageBackend
     ): void {
@@ -38,8 +35,6 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     /**
      * Returns an array of constraints created from a given demand object.
      *
-     * @param QueryInterface $query
-     * @param DemandInterface $demand
      * @return ConstraintInterface[]
      * @abstract
      */
@@ -51,7 +46,6 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     /**
      * Returns an array of orderings created from a given demand object.
      *
-     * @param DemandInterface $demand
      * @return ConstraintInterface[]
      * @abstract
      */
@@ -60,10 +54,8 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     /**
      * Returns the objects of this repository matching the demand.
      *
-     * @param DemandInterface $demand
      * @param bool $respectEnableFields
      * @param bool $disableLanguageOverlayMode
-     *
      * @return QueryResultInterface
      */
     public function findDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
@@ -76,10 +68,8 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     /**
      * Returns the database query to get the matching result
      *
-     * @param DemandInterface $demand
      * @param bool $respectEnableFields
      * @param bool $disableLanguageOverlayMode
-     * @return string
      */
     public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): string
     {
@@ -100,10 +90,8 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     }
 
     /**
-     * @param DemandInterface $demand
      * @param bool $respectEnableFields
      * @param bool $disableLanguageOverlayMode
-     * @return QueryInterface
      */
     protected function generateQuery(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): QueryInterface
     {
@@ -164,9 +152,6 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
     /**
      * Returns the total number objects of this repository matching the demand.
-     *
-     * @param DemandInterface $demand
-     * @return int
      */
     public function countDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): int
     {

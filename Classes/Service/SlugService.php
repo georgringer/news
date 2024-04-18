@@ -101,11 +101,6 @@ class SlugService
         return $newSlug ?? $slug;
     }
 
-    /**
-     * @param int $uid
-     * @param int $languageId
-     * @param string $slug
-     */
     protected function getUniqueCountStatement(int $uid, int $languageId, string $slug)
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');

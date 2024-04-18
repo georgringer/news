@@ -55,10 +55,6 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $this->registerArgument('cropVariant', 'string', 'select a cropping variant, in case multiple croppings have been specified or stored in FileReference', false, 'default');
     }
 
-    /**
-     * @param FileInterface $image
-     * @return string
-     */
     private function renderImage(FileInterface $image): string
     {
         $imageService = GeneralUtility::makeInstance(ImageService::class);
@@ -112,8 +108,6 @@ class RenderMediaViewHelper extends AbstractViewHelper
      * Replace the [media] tags with the output of the according media render output
      *
      * @param string $content
-     * @param array $files
-     * @return string
      */
     private function renderMedia($content, array $files): string
     {
@@ -166,9 +160,6 @@ class RenderMediaViewHelper extends AbstractViewHelper
         return $content;
     }
 
-    /**
-     * @return string
-     */
     public function render(): string
     {
         /** @var News $news */

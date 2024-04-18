@@ -29,7 +29,6 @@ class PageAvailableInLanguageViewHelper extends AbstractConditionViewHelper
 
     /**
      * @param array|null $arguments
-     * @return bool
      */
     protected static function evaluateCondition($arguments = null): bool
     {

@@ -45,8 +45,6 @@ class SettingsService
 
     /**
      * Returns all settings.
-     *
-     * @return array
      */
     public function getSettings(): array
     {

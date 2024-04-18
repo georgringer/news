@@ -61,11 +61,6 @@ class NewsController extends NewsBaseController
      */
     protected $originalSettings = [];
 
-    /**
-     * @param NewsRepository $newsRepository
-     * @param CategoryRepository $categoryRepository
-     * @param TagRepository $tagRepository
-     */
     public function __construct(
         NewsRepository $newsRepository,
         CategoryRepository $categoryRepository,
@@ -103,9 +98,7 @@ class NewsController extends NewsBaseController
     /**
      * Create the demand object which define which records will get shown
      *
-     * @param array $settings
      * @param string $class optional class which must be an instance of \GeorgRinger\News\Domain\Model\Dto\NewsDemand
-     * @return NewsDemand
      */
     protected function createDemandObjectFromSettings(
         array $settings,
@@ -173,10 +166,6 @@ class NewsController extends NewsBaseController
 
     /**
      * Overwrites a given demand object by an propertyName =>  $propertyValue array
-     *
-     * @param NewsDemand $demand
-     * @param array $overwriteDemand
-     * @return NewsDemand
      */
     protected function overwriteDemandObject(NewsDemand $demand, array $overwriteDemand): NewsDemand
     {
@@ -289,9 +278,6 @@ class NewsController extends NewsBaseController
 
     /**
      * Checks whether an action is enabled in switchableControllerActions configuration
-     *
-     * @param string $action
-     * @return bool
      */
     protected function isActionAllowed(string $action): bool
     {
@@ -414,9 +400,6 @@ class NewsController extends NewsBaseController
     /**
      * Checks if the news pid could be found in the startingpoint settings of the detail plugin and
      * if the pid could not be found it return NULL instead of the news object.
-     *
-     * @param News $news
-     * @return News|null
      */
     protected function checkPidOfNewsRecord(News $news): ?News
     {
@@ -437,8 +420,6 @@ class NewsController extends NewsBaseController
 
     /**
      * Checks if preview is enabled either in TS or FlexForm
-     *
-     * @return bool
      */
     protected function isPreviewOfHiddenRecordsEnabled(): bool
     {
@@ -676,7 +657,6 @@ class NewsController extends NewsBaseController
 
     /**
      * @param $paginationClass
-     * @param int $maximumNumberOfLinks
      * @param $paginator
      * @return \GeorgRinger\News\Controller\NewsController.getPagination.0|NumberedPagination|mixed|\Psr\Log\LoggerAwareInterface|string|SimplePagination|\TYPO3\CMS\Core\SingletonInterface
      */

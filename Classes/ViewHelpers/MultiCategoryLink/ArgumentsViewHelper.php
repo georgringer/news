@@ -52,13 +52,6 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
         parent::initializeArguments();
     }
 
-    /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     *
-     * @return array
-     */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,

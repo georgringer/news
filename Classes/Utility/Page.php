@@ -98,7 +98,6 @@ class Page
      *
      * @param int $pageUid page to start with
      * @param int $treeLevel count of levels
-     * @return PageTreeView
      * @throws \Exception
      * @deprecated not in use
      */
@@ -131,8 +130,6 @@ class Page
 
     /**
      * Get backend user
-     *
-     * @return BackendUserAuthentication
      */
     protected static function getBackendUser(): BackendUserAuthentication
     {

@@ -32,8 +32,6 @@ class Cache
 
     /**
      * Marks as cObj as processed.
-     *
-     * @param ContentObjectRenderer $cObj
      */
     public function markContentRecordAsProcessed(ContentObjectRenderer $cObj): void
     {
@@ -43,9 +41,6 @@ class Cache
 
     /**
      * Checks if a cObj has already added cache tags.
-     *
-     * @param ContentObjectRenderer $cObj
-     * @return bool
      */
     public function isContentRecordAlreadyProcessed(ContentObjectRenderer $cObj): bool
     {
@@ -84,8 +79,6 @@ class Cache
     /**
      * Adds page cache tags by used storagePages.
      * This adds tags with the scheme tx_news_pid_[news:pid]
-     *
-     * @param NewsDemand $demand
      */
     public static function addPageCacheTagsByDemandObject(NewsDemand $demand): void
     {

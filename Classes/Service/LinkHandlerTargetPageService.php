@@ -44,9 +44,6 @@ class LinkHandlerTargetPageService
 
     /**
      * Obtains a pid for the single view from the category.
-     *
-     * @param int $newsId
-     * @return int
      */
     protected function getSinglePidFromCategory(int $newsId): int
     {

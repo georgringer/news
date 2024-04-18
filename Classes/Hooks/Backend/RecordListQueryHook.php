@@ -26,9 +26,6 @@ class RecordListQueryHook
 
     protected RecordListConstraint $recordListConstraint;
 
-    /**
-     * @param RecordListConstraint $recordListConstraint
-     */
     public function __construct(
         RecordListConstraint $recordListConstraint
     ) {
@@ -88,9 +85,6 @@ class RecordListQueryHook
         $defaultFlashMessageQueue->enqueue($message);
     }
 
-    /**
-     * @return LanguageService
-     */
     protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];

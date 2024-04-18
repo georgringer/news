@@ -59,8 +59,6 @@ class TagRepository extends AbstractDemandedRepository
     /**
      * Returns an array of constraints created from a given demand object.
      *
-     * @param QueryInterface $query
-     * @param DemandInterface $demand
      * @return ConstraintInterface[]
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
@@ -92,10 +90,8 @@ class TagRepository extends AbstractDemandedRepository
     /**
      * Returns an array of orderings created from a given demand object.
      *
-     * @param DemandInterface $demand
      *
      * @return string[]
-     *
      * @psalm-return array<string, string>
      */
     protected function createOrderingsFromDemand(DemandInterface $demand): array

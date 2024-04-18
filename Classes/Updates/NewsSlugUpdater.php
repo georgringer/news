@@ -26,9 +26,6 @@ class NewsSlugUpdater implements UpgradeWizardInterface
 
     protected SlugService $slugService;
 
-    /**
-     * @param SlugService $slugService
-     */
     public function __construct(
         SlugService $slugService
     ) {
@@ -55,9 +52,6 @@ class NewsSlugUpdater implements UpgradeWizardInterface
         ];
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return 'Updates slug field "path_segment" of EXT:news records';

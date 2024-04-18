@@ -252,10 +252,6 @@ class NewsRepositoryTest extends FunctionalTestCase
         self::assertEquals(6, $count);
     }
 
-    /**
-     * @param QueryResultInterface $newsList
-     * @return string
-     */
     protected function getIdListOfNews(QueryResultInterface $newsList): string
     {
         $idList = [];
