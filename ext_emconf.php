@@ -7,7 +7,6 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Georg Ringer',
     'author_email' => 'mail@ringer.it',
     'state' => 'stable',
-    'clearCacheOnLoad' => true,
     'version' => '12.4.0',
     'constraints' => [
         'depends' => [
