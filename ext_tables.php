@@ -18,7 +18,6 @@ $boot = static function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['news'] = 'tx_news_domain_model_news';
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['newstag'] = 'tx_news_domain_model_tag';
 
-
     /* ===========================================================================
         Default configuration
     =========================================================================== */
