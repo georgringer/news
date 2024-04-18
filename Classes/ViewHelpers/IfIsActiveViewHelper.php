@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 /*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -9,9 +10,9 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Routing\PageArguments;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to check if the current news item is rendered as single view on the same page
@@ -24,7 +25,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  * Renders the string "active" if the current news item is active
  * </output>
  */
-class IfIsActiveViewHelper extends AbstractConditionViewHelper implements ViewHelperInterface
+class IfIsActiveViewHelper extends AbstractConditionViewHelper
 {
     public function initializeArguments(): void
     {
@@ -32,23 +33,10 @@ class IfIsActiveViewHelper extends AbstractConditionViewHelper implements ViewHe
         parent::initializeArguments();
     }
 
-    /**
-     * @param array|null $arguments
-     */
-    protected static function evaluateCondition($arguments = null): bool
+    public static function verdict(array $arguments, RenderingContextInterface $renderingContext)
     {
-        $vars = GeneralUtility::_GET('tx_news_pi1');
-        return isset($vars['news']) && isset($arguments['newsItem']) && (int)$arguments['newsItem']->getUid() === (int)$vars['news'];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function render()
-    {
-        if (static::evaluateCondition($this->arguments)) {
-            return $this->renderThenChild();
-        }
-        return $this->renderElseChild();
+        /** @var PageArguments $routing */
+        $routing = $renderingContext->getRequest()?->getAttribute('routing');
+        return $routing && (int)($routing->getArguments()['tx_news_pi1']['news'] ?? 0) === $arguments['newsItem']->getUid();
     }
 }
