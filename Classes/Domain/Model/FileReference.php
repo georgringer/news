@@ -18,13 +18,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     public const VIEW_LIST_AND_DETAIL = 1;
     public const VIEW_LIST_ONLY = 2;
 
-    /**
-     * Obsolete when foreign_selector is supported by ExtBase persistence layer
-     *
-     * @var int
-     */
-    protected ?int $uidLocal = null;
-
     /** @var string */
     protected $title = '';
 
