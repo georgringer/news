@@ -138,9 +138,12 @@ $boot = static function (): void {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Tours/AdministrationModule.tsconfig\'');
     }
 
+    if ((new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() < 13) {
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/ContentElementWizard.tsconfig\'');
+    }
+
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
-    @import \'EXT:news/Configuration/TSconfig/ContentElementWizard.tsconfig\'
-    @import \'EXT:news/Configuration/TSconfig/Administration.tsconfig\'
+        @import \'EXT:news/Configuration/TSconfig/Administration.tsconfig\'
     ');
 
     /* ===========================================================================

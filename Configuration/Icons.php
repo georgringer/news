@@ -1,12 +1,13 @@
 <?php
 
 $iconList = [];
-foreach (['apps-pagetree-folder-contains-news' => 'ext-news-folder-tree.svg',
+foreach ([
+             'apps-pagetree-folder-contains-news' => 'ext-news-folder-tree.svg',
              'apps-pagetree-page-contains-news' => 'ext-news-page-tree.svg',
              'ext-news-wizard-icon' => 'plugin-list-with-detail.svg',
              'ext-news-plugin-news-list' => 'plugin-list-with-detail.svg',
              'ext-news-plugin-news-list-sticky' => 'plugin-list.svg',
-             'ext-news-plugin-detail' => 'plugin-detail.svg',
+             'ext-news-plugin-news-detail' => 'plugin-detail.svg',
              'ext-news-plugin-news-date-menu' => 'plugin-date-menu.svg',
              'ext-news-plugin-news-search-form' => 'plugin-search-form.svg',
              'ext-news-plugin-news-search-result' => 'plugin-search-results.svg',

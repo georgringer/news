@@ -2,15 +2,16 @@
 
 defined('TYPO3') or die;
 
-$pluginConfig = ['pi1', 'news_list_sticky', 'news_detail', 'news_date_menu', 'news_search_form', 'news_search_result', 'news_selected_list', 'category_list', 'tag_list'];
+$pluginConfig = ['pi1', 'news_list_sticky', 'news_detail', 'news_selected_list', 'news_date_menu', 'category_list', 'news_search_form', 'news_search_result', 'tag_list'];
 foreach ($pluginConfig as $pluginName) {
     $pluginNameForLabel = $pluginName === 'pi1' ? 'news_list' : $pluginName;
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'news',
         \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($pluginName),
         'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.' . $pluginNameForLabel . '.title',
-        null,
-        'news'
+        'ext-news-plugin-' . str_replace('_', '-', $pluginNameForLabel),
+        'news',
+        'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.' . $pluginNameForLabel . '.description',
     );
 
     $contentTypeName = 'news_' . str_replace('_', '', $pluginName);
