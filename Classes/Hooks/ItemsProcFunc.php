@@ -83,11 +83,9 @@ class ItemsProcFunc
                 $allLayouts[$key] = $layout;
             }
         }
-        if (!empty($restrictions)) {
-            foreach ($restrictions as $restrictedIdentifier => $restrictedColPosList) {
-                if (!in_array($currentColPos, $restrictedColPosList, true)) {
-                    unset($allLayouts[$restrictedIdentifier]);
-                }
+        foreach ($restrictions as $restrictedIdentifier => $restrictedColPosList) {
+            if (!in_array($currentColPos, $restrictedColPosList, true)) {
+                unset($allLayouts[$restrictedIdentifier]);
             }
         }
 

@@ -64,10 +64,8 @@ class NewsRepository extends AbstractDemandedRepository
                 );
                 $subCategoryConstraint = [];
                 $subCategoryConstraint[] = $query->contains('categories', $category);
-                if (count($subCategories) > 0) {
-                    foreach ($subCategories as $subCategory) {
-                        $subCategoryConstraint[] = $query->contains('categories', $subCategory);
-                    }
+                foreach ($subCategories as $subCategory) {
+                    $subCategoryConstraint[] = $query->contains('categories', $subCategory);
                 }
                 if ($subCategoryConstraint) {
                     $categoryConstraints[] = $query->logicalOr(...$subCategoryConstraint);
@@ -283,19 +281,17 @@ class NewsRepository extends AbstractDemandedRepository
         if (Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
             $orderList = GeneralUtility::trimExplode(',', $demand->getOrder(), true);
 
-            if (!empty($orderList)) {
-                // go through every order statement
-                foreach ($orderList as $orderItem) {
-                    $orderSplit = GeneralUtility::trimExplode(' ', $orderItem, true);
-                    $orderField = $orderSplit[0];
-                    $ascDesc = $orderSplit[1] ?? '';
-                    if ($ascDesc) {
-                        $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
-                            QueryInterface::ORDER_DESCENDING :
-                            QueryInterface::ORDER_ASCENDING);
-                    } else {
-                        $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
-                    }
+            // go through every order statement
+            foreach ($orderList as $orderItem) {
+                $orderSplit = GeneralUtility::trimExplode(' ', $orderItem, true);
+                $orderField = $orderSplit[0];
+                $ascDesc = $orderSplit[1] ?? '';
+                if ($ascDesc) {
+                    $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
+                        QueryInterface::ORDER_DESCENDING :
+                        QueryInterface::ORDER_ASCENDING);
+                } else {
+                    $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
                 }
             }
         }
