@@ -711,7 +711,6 @@ $tx_news_domain_model_news = [
 // category restriction based on settings in extension manager
 $categoryRestrictionSetting = $configuration->getCategoryRestriction();
 if ($categoryRestrictionSetting) {
-    $categoryRestriction = '';
     $categoryRestriction = match ($categoryRestrictionSetting) {
         'current_pid' => ' AND sys_category.pid=###CURRENT_PID### ',
         'siteroot' => ' AND sys_category.pid IN (###SITEROOT###) ',
