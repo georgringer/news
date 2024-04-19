@@ -17,7 +17,7 @@ final class ModifyCacheTagsFromDemandEvent
 {
     private array $cacheTags;
 
-    private DemandInterface $demand;
+    private readonly DemandInterface $demand;
 
     public function __construct(array $cacheTags, DemandInterface $demand)
     {

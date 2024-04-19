@@ -18,7 +18,7 @@ final class TagListActionEvent
 
     private array $assignedValues;
 
-    private Request $request;
+    private readonly Request $request;
 
     public function __construct(TagController $tagController, array $assignedValues, Request $request)
     {

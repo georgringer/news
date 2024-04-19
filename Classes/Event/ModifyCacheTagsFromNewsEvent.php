@@ -17,7 +17,7 @@ final class ModifyCacheTagsFromNewsEvent
 {
     private array $cacheTags;
 
-    private News $news;
+    private readonly News $news;
 
     public function __construct(array $cacheTags, News $news)
     {

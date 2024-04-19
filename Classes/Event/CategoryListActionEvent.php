@@ -18,7 +18,7 @@ final class CategoryListActionEvent
 
     private array $assignedValues;
 
-    private Request $request;
+    private readonly Request $request;
 
     public function __construct(CategoryController $categoryController, array $assignedValues, Request $request)
     {

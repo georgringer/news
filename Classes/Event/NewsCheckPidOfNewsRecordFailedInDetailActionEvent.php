@@ -19,7 +19,7 @@ final class NewsCheckPidOfNewsRecordFailedInDetailActionEvent
 
     private News $news;
 
-    private Request $request;
+    private readonly Request $request;
 
     public function __construct(NewsController $newsController, News $news, Request $request)
     {

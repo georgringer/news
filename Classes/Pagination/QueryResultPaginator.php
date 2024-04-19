@@ -15,7 +15,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 final class QueryResultPaginator extends CustomAbstractPaginator
 {
-    private QueryResultInterface $queryResult;
+    private readonly QueryResultInterface $queryResult;
 
     /** @var QueryResultInterface */
     private $paginatedQueryResult;

@@ -18,7 +18,7 @@ final class NewsSearchFormActionEvent
 
     private array $assignedValues;
 
-    private Request $request;
+    private readonly Request $request;
 
     public function __construct(NewsController $newsController, array $assignedValues, Request $request)
     {
