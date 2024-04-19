@@ -181,7 +181,7 @@ class NewsImportService extends AbstractImportService
                 // get fileobject by given identifier (file UID, combined identifier or path/filename)
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($mediaItem['image']);
-                } catch (ResourceDoesNotExistException $exception) {
+                } catch (ResourceDoesNotExistException) {
                     $file = null;
                 }
 
@@ -226,7 +226,7 @@ class NewsImportService extends AbstractImportService
                 // get fileObject by given identifier (file UID, combined identifier or path/filename)
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($fileItem['file']);
-                } catch (ResourceDoesNotExistException $exception) {
+                } catch (ResourceDoesNotExistException) {
                     $file = null;
                 }
 

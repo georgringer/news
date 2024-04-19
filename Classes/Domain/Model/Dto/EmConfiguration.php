@@ -28,7 +28,7 @@ class EmConfiguration
             try {
                 $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
                 $configuration = $extensionConfiguration->get('news');
-            } catch (\Exception $exception) {
+            } catch (\Exception) {
                 // do nothing
             }
         }

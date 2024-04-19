@@ -114,7 +114,7 @@ class RecordListConstraint
                 $limit = ConstraintHelper::getTimeRestrictionLow($arguments['timeRestriction']);
                 $parameters['where'][] = 'datetime >=' . $limit;
                 $parameters['whereDoctrine'][] = $expressionBuilder->gte('datetime', $limit);
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 // @todo add flash message
             }
         }
@@ -125,7 +125,7 @@ class RecordListConstraint
                 $limit = ConstraintHelper::getTimeRestrictionHigh($arguments['timeRestrictionHigh']);
                 $parameters['where'][] = 'datetime <=' . $limit;
                 $parameters['whereDoctrine'][] = $expressionBuilder->lte('datetime', $limit);
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 // @todo add flash message
             }
         }

@@ -53,7 +53,7 @@ class HrefLangEvent
                     if (!$check) {
                         unset($allHrefLangs[$hreflangKey]);
                     }
-                } catch (\UnexpectedValueException $e) {
+                } catch (\UnexpectedValueException) {
                     $errorTriggered = true;
                 }
             }

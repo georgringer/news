@@ -155,7 +155,7 @@ class CategoryImportService extends AbstractImportService
         // get fileObject by given identifier (file UID, combined identifier or path/filename)
         try {
             $newImage = $this->getResourceFactory()->retrieveFileOrFolderObject($image);
-        } catch (ResourceDoesNotExistException $exception) {
+        } catch (ResourceDoesNotExistException) {
             $newImage = false;
         }
 

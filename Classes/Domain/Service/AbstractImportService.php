@@ -130,7 +130,7 @@ class AbstractImportService implements LoggerAwareInterface
 
         try {
             return new \DateTime(date('c', $timestamp));
-        } catch (\Exception $exception) {
+        } catch (\Exception) {
             return null;
         }
     }

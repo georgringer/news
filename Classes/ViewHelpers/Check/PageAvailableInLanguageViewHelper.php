@@ -35,7 +35,7 @@ class PageAvailableInLanguageViewHelper extends AbstractConditionViewHelper
         try {
             $newsAvailabilityChecker = GeneralUtility::makeInstance(NewsAvailability::class);
             return $newsAvailabilityChecker->check((int)$arguments['language']);
-        } catch (\UnexpectedValueException $e) {
+        } catch (\UnexpectedValueException) {
             return true;
         }
     }

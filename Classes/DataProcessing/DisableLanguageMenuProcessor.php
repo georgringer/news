@@ -62,7 +62,7 @@ class DisableLanguageMenuProcessor implements DataProcessorInterface
                     $item['available'] = false;
                     $item['availableReason'] = 'news';
                 }
-            } catch (\Exception $e) {
+            } catch (\Exception) {
             }
         }
     }

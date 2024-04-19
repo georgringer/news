@@ -78,7 +78,7 @@ class SlugPrefix
             if ($prefix !== '' && empty($base->getScheme()) && $base->getHost() !== '') {
                 $prefix = 'http:' . $prefix;
             }
-        } catch (\InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException) {
             // No site found
             $prefix = '';
         }

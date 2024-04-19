@@ -110,7 +110,7 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
         $context = GeneralUtility::makeInstance(Context::class);
         try {
             $languageId = $context->getPropertyFromAspect('language', 'contentId');
-        } catch (AspectNotFoundException $e) {
+        } catch (AspectNotFoundException) {
             // do nothing
         }
 
