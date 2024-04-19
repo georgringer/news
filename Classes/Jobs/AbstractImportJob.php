@@ -64,13 +64,12 @@ abstract class AbstractImportJob implements ImportJobInterface
     public function getInfo(): array
     {
         $totalRecordCount = (int)$this->importDataProviderService->getTotalRecordCount();
-        $info = [
+
+        return [
             'totalRecordCount' => $totalRecordCount,
             'runsToComplete' => $totalRecordCount > 0 ? (ceil($totalRecordCount / $this->getNumberOfRecordsPerRun())) : 0,
             'increaseOffsetPerRunBy' => $this->getNumberOfRecordsPerRun(),
         ];
-
-        return $info;
     }
 
     /**

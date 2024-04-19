@@ -47,7 +47,7 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
 
-        $count = $queryBuilder
+        return $queryBuilder
             ->count('tx_news_domain_model_news.title')
             ->from('tx_news_domain_model_news')
             ->rightJoin(
@@ -66,7 +66,5 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
                 $queryBuilder->expr()->eq('tx_news_domain_model_tag.uid', $queryBuilder->createNamedParameter($arguments['tagUid'], Connection::PARAM_INT))
             )
             ->executeQuery()->fetchOne();
-
-        return $count;
     }
 }

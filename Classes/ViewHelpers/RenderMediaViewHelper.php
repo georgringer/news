@@ -172,7 +172,6 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $mediaFiles = (array)$news->getMediaNonPreviews();
 
         $content = $this->renderChildren();
-        $content = $this->renderMedia($content, $mediaFiles);
-        return $content;
+        return $this->renderMedia($content, $mediaFiles);
     }
 }

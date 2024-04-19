@@ -30,8 +30,7 @@ class PluginPermissionUpdater implements UpgradeWizardInterface
     public function getDescription(): string
     {
         $description = 'This update wizard updates all permissions and allows **all** news plugins instead of the previous single plugin.';
-        $description .= ' Count of affected groups: ' . count($this->getMigrationRecords());
-        return $description;
+        return $description . (' Count of affected groups: ' . count($this->getMigrationRecords()));
     }
 
     public function getPrerequisites(): array

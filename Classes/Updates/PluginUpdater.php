@@ -91,8 +91,7 @@ class PluginUpdater implements UpgradeWizardInterface
     {
         $description = 'The old plugin using switchableControllerActions has been split into separate plugins. ';
         $description .= 'This update wizard migrates all existing plugin settings and changes the plugin';
-        $description .= 'to use the new plugins available. Count of plugins: ' . count($this->getMigrationRecords());
-        return $description;
+        return $description . ('to use the new plugins available. Count of plugins: ' . count($this->getMigrationRecords()));
     }
 
     public function getPrerequisites(): array
@@ -237,7 +236,6 @@ class PluginUpdater implements UpgradeWizardInterface
         ];
         $spaceInd = 4;
         $output = GeneralUtility::array2xml($input, '', 0, 'T3FlexForms', $spaceInd, $options);
-        $output = '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>' . LF . $output;
-        return $output;
+        return '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>' . LF . $output;
     }
 }

@@ -78,9 +78,7 @@ class TypoScript
     protected function setValue(array $array, array $path, mixed $value): array
     {
         $this->setValueByReference($array, $path, $value);
-
-        $final = array_merge_recursive([], $array);
-        return $final;
+        return array_merge_recursive([], $array);
     }
 
     /**

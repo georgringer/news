@@ -52,7 +52,7 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
         $categoryUid = $arguments['categoryUid'];
         $languageUid = GeneralUtility::makeInstance(Context::class)->getAspect('language')->getId();
 
-        $count = $queryBuilder
+        return $queryBuilder
             ->count('tx_news_domain_model_news.title')
             ->from('tx_news_domain_model_news')
             ->rightJoin(
@@ -88,7 +88,5 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
                 )
             )
             ->executeQuery()->fetchOne();
-
-        return $count;
     }
 }

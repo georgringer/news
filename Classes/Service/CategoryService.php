@@ -66,9 +66,7 @@ class CategoryService
     {
         $resultAsArray = GeneralUtility::trimExplode(',', $result, true);
         $idListAsArray = GeneralUtility::trimExplode(',', $toBeRemoved, true);
-
-        $result = implode(',', array_diff($resultAsArray, $idListAsArray));
-        return $result;
+        return implode(',', array_diff($resultAsArray, $idListAsArray));
     }
 
     /**
@@ -107,9 +105,7 @@ class CategoryService
             $subcategories = self::getChildrenCategoriesRecursive($row['uid'], $counter);
             $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
         }
-
-        $result = implode(',', $result);
-        return $result;
+        return implode(',', $result);
     }
 
     /**
@@ -146,9 +142,7 @@ class CategoryService
             }
         }
 
-        $title = $title ?: $default ?: '';
-
-        return $title;
+        return $title ?: $default ?: '';
     }
 
     /**

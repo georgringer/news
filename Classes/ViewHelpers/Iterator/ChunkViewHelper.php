@@ -131,13 +131,12 @@ class ChunkViewHelper extends AbstractViewHelper
             return $variable;
         }
         $variables = [$as => $variable];
-        $content = static::renderChildrenWithVariablesStatic(
+
+        return static::renderChildrenWithVariablesStatic(
             $variables,
             $renderingContext->getVariableProvider(),
             $renderChildrenClosure
         );
-
-        return $content;
     }
 
     /**

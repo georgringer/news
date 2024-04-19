@@ -215,7 +215,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     protected function getRawRecord(int $id): ?array
     {
         $queryBuilder = $this->getQueryBuilder();
-        $rawRecord = $queryBuilder
+        return $queryBuilder
             ->select('*')
             ->from('tx_news_domain_model_news')
             ->where(
@@ -223,6 +223,5 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
             )
             ->setMaxResults(1)
             ->executeQuery()->fetchAssociative();
-        return $rawRecord;
     }
 }

@@ -24,8 +24,7 @@ class TargetLinkViewHelperTest extends BaseTestCase
      */
     protected function getPreparedInstance()
     {
-        $instance = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(null)->getMock();
-        return $instance;
+        return $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(null)->getMock();
     }
 
     /**
