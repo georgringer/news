@@ -31,7 +31,7 @@ class RecordListConstraint
      */
     public function isInAdministrationModule(): bool
     {
-        $vars = GeneralUtility::_GET('route');
+        $vars = $GLOBALS['TYPO3_REQUEST']->getQueryParams()['route'];
         return str_contains($vars, '/module/web/NewsAdministration');
     }
 

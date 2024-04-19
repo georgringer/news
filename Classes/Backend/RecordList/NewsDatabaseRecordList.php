@@ -74,7 +74,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
             $urlParameters['show'] = (int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['show'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['show'] ?? null);
         }
 
-        $demand = GeneralUtility::_GET('tx_newsadministration_web_newsadministrationadministration');
+        $demand = $GLOBALS['TYPO3_REQUEST']->getQueryParams()['tx_newsadministration_web_newsadministrationadministration'];
         if (isset($demand['demand']) && is_array($demand['demand'])) {
             $urlParameters['tx_newsadministration_web_newsadministrationadministration']['demand'] = $demand['demand'];
         }
