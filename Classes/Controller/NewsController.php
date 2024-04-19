@@ -464,7 +464,7 @@ class NewsController extends NewsBaseController
         $statistics = $this->newsRepository->countByDate($demand);
 
         $assignedValues = [
-            'listPid' => ($this->settings['listPid'] ? $this->settings['listPid'] : $GLOBALS['TSFE']->id),
+            'listPid' => ($this->settings['listPid'] ?: $GLOBALS['TSFE']->id),
             'dateField' => $dateField,
             'data' => $statistics,
             'news' => $newsRecords,
