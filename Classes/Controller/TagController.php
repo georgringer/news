@@ -25,7 +25,7 @@ class TagController extends NewsController
         }
 
         $demand = $this->createDemandObjectFromSettings($this->settings);
-        $demand->setActionAndClass(__METHOD__, __CLASS__);
+        $demand->setActionAndClass(__METHOD__, self::class);
 
         if ($overwriteDemand !== null && $this->settings['disableOverrideDemand'] != 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);

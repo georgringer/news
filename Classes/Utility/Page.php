@@ -80,7 +80,7 @@ class Page
                         }
                         $register[$key] = $value;
                     } catch (\Exception $e) {
-                        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+                        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(self::class);
                         $logger->warning($e->getMessage());
                     }
                 }

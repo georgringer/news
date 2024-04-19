@@ -202,7 +202,7 @@ class NewsController extends NewsBaseController
         }
 
         $demand = $this->createDemandObjectFromSettings($this->settings);
-        $demand->setActionAndClass(__METHOD__, __CLASS__);
+        $demand->setActionAndClass(__METHOD__, self::class);
 
         if ((int)($this->settings['disableOverrideDemand'] ?? 1) !== 1 && $overwriteDemand !== null) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
@@ -296,7 +296,7 @@ class NewsController extends NewsBaseController
         $newsRecords = [];
 
         $demand = $this->createDemandObjectFromSettings($this->settings);
-        $demand->setActionAndClass(__METHOD__, __CLASS__);
+        $demand->setActionAndClass(__METHOD__, self::class);
 
         if (empty($this->originalSettings['orderBy'] ?? '')) {
             $idList = GeneralUtility::trimExplode(',', $this->settings['selectedList'], true);
@@ -355,7 +355,7 @@ class NewsController extends NewsBaseController
         }
 
         $demand = $this->createDemandObjectFromSettings($this->settings);
-        $demand->setActionAndClass(__METHOD__, __CLASS__);
+        $demand->setActionAndClass(__METHOD__, self::class);
 
         $assignedValues = [
             'newsItem' => $news,
@@ -437,7 +437,7 @@ class NewsController extends NewsBaseController
     public function dateMenuAction(array $overwriteDemand = null): ResponseInterface
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
-        $demand->setActionAndClass(__METHOD__, __CLASS__);
+        $demand->setActionAndClass(__METHOD__, self::class);
 
         if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
             $overwriteDemandTemp = $overwriteDemand;
@@ -487,7 +487,7 @@ class NewsController extends NewsBaseController
         array $overwriteDemand = []
     ): ResponseInterface {
         $demand = $this->createDemandObjectFromSettings($this->settings);
-        $demand->setActionAndClass(__METHOD__, __CLASS__);
+        $demand->setActionAndClass(__METHOD__, self::class);
 
         if ((bool)($this->settings['disableOverrideDemand'] ?? false) && $overwriteDemand !== null) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
@@ -519,7 +519,7 @@ class NewsController extends NewsBaseController
         array $overwriteDemand = []
     ): ResponseInterface {
         $demand = $this->createDemandObjectFromSettings($this->settings);
-        $demand->setActionAndClass(__METHOD__, __CLASS__);
+        $demand->setActionAndClass(__METHOD__, self::class);
 
         if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
