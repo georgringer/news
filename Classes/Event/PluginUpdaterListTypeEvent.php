@@ -11,9 +11,9 @@ namespace GeorgRinger\News\Event;
 
 final class PluginUpdaterListTypeEvent
 {
-    protected array $flexforms;
-    protected array $row;
-    protected string $listType;
+    private array $flexforms;
+    private array $row;
+    private string $listType;
 
     public function __construct(array $flexforms, array $row, string $listType)
     {
