@@ -208,9 +208,7 @@ class NewsRepository extends AbstractDemandedRepository
             foreach ($tagList as $singleTag) {
                 $subConstraints[] = $query->contains('tags', $singleTag);
             }
-            if (count($subConstraints) > 0) {
-                $constraints['tags'] = $query->logicalOr(...$subConstraints);
-            }
+            $constraints['tags'] = $query->logicalOr(...$subConstraints);
         }
 
         // Search
@@ -457,9 +455,7 @@ from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
                 foreach ($searchFields as $field) {
                     $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
                 }
-                if (count($searchConstraints) > 0) {
-                    $constraints[] = $query->logicalOr(...$searchConstraints);
-                }
+                $constraints[] = $query->logicalOr(...$searchConstraints);
             }
         }
 

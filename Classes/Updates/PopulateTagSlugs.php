@@ -121,21 +121,18 @@ class PopulateTagSlugs implements UpgradeWizardInterface
             $languageId = (int)$record['sys_language_uid'];
             $recordInDefaultLanguage = $languageId > 0 ? (int)$record['l10n_parent'] : $recordId;
             $slug = $suggestedSlugs[$recordInDefaultLanguage][$languageId] ?? '';
-
-            if (empty($slug)) {
-                if ($pid === -1) {
-                    $queryBuilder = $connection->createQueryBuilder();
-                    $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
-                    $liveVersion = $queryBuilder
-                        ->select('pid')
-                        ->from($this->table)
-                        ->where(
-                            $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($record['t3ver_oid'], Connection::PARAM_INT))
-                        )->executeQuery()->fetchAssociative();
-                    $pid = (int)$liveVersion['pid'];
-                }
-                $slug = $slugHelper->generate($record, $pid);
+            if ($pid === -1) {
+                $queryBuilder = $connection->createQueryBuilder();
+                $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
+                $liveVersion = $queryBuilder
+                    ->select('pid')
+                    ->from($this->table)
+                    ->where(
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($record['t3ver_oid'], Connection::PARAM_INT))
+                    )->executeQuery()->fetchAssociative();
+                $pid = (int)$liveVersion['pid'];
             }
+            $slug = $slugHelper->generate($record, $pid);
 
             $state = RecordStateFactory::forName($this->table)
                 ->fromArray($record, $pid, $recordId);

@@ -311,7 +311,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
                     $categoryMode = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categoryConjunction.' . $categoryModeSelection);
                 }
 
-                if (count($categories) > 0 && empty($categoryModeSelection)) {
+                if (empty($categoryModeSelection)) {
                     $categoryMode = $this->generateCallout($categoryMode);
                 } else {
                     $categoryMode = htmlspecialchars($categoryMode);

@@ -217,22 +217,17 @@ class NewsController extends NewsBaseController
             'tags' => null,
             'settings' => $this->settings,
         ];
-
-        if ($demand->getCategories() !== '') {
-            $categoriesList = $demand->getCategories();
-            if (is_string($categoriesList)) {
-                $categoriesList = GeneralUtility::trimExplode(',', $categoriesList);
-            }
-            if (!empty($categoriesList)) {
-                $assignedValues['categories'] = $this->categoryRepository->findByIdList($categoriesList);
-            }
+        $categoriesList = $demand->getCategories();
+        if (is_string($categoriesList)) {
+            $categoriesList = GeneralUtility::trimExplode(',', $categoriesList);
+        }
+        if (!empty($categoriesList)) {
+            $assignedValues['categories'] = $this->categoryRepository->findByIdList($categoriesList);
         }
 
         if ($demand->getTags() !== '') {
             $tagList = $demand->getTags();
-            if (!is_array($tagList)) {
-                $tagList = GeneralUtility::trimExplode(',', $tagList);
-            }
+            $tagList = GeneralUtility::trimExplode(',', $tagList);
             if (!empty($tagList)) {
                 $assignedValues['tags'] = $this->tagRepository->findByIdList($tagList);
             }
