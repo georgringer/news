@@ -586,7 +586,7 @@ class NewsController extends NewsBaseController
         if ($this->arguments->hasArgument('search')) {
             $propertyMappingConfiguration = $this->arguments['search']->getPropertyMappingConfiguration();
             $propertyMappingConfiguration->allowAllProperties();
-            $propertyMappingConfiguration->setTypeConverterOption('TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter', PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+            $propertyMappingConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
         }
     }
 
