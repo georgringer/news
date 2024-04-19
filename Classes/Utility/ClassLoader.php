@@ -20,7 +20,7 @@ class ClassLoader implements SingletonInterface
     protected object $classCacheManager;
     protected bool $isValidInstance = false;
 
-    public function __construct(PhpFrontend $classCache = null, ClassCacheManager $classCacheManager = null)
+    public function __construct(PhpFrontend $classCache = null)
     {
         $this->classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
 
