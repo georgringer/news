@@ -51,14 +51,14 @@ class Category extends AbstractEntity
 
     /**
      * @var \GeorgRinger\News\Domain\Model\Category
-     * @Lazy
      */
+    #[Lazy]
     protected $parentcategory;
 
     /**
      * @var ObjectStorage<FileReference>
-     * @Lazy
      */
+    #[Lazy]
     protected $images;
 
     /** @var int */

@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Hooks\Backend;
 
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use GeorgRinger\News\Backend\RecordList\RecordListConstraint;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -78,7 +79,7 @@ class RecordListQueryHook
             FlashMessage::class,
             $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:hiddenContentElements.description'),
             '',
-            FlashMessage::INFO
+            ContextualFeedbackSeverity::INFO
         );
         $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
         $defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();

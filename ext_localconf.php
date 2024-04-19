@@ -1,5 +1,6 @@
 <?php
 
+use TYPO3\CMS\Backend\RecordList\DatabaseRecordList;
 use GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew;
 use GeorgRinger\News\Controller\CategoryController;
 use GeorgRinger\News\Controller\NewsController;
@@ -20,7 +21,6 @@ use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Service\ExtensionService;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
-use TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList;
 
 defined('TYPO3') or die;
 

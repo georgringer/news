@@ -28,7 +28,7 @@ class NewsRowInitializeNewTest extends BaseTestCase
 
         $provider->_set('emConfiguration', $mockedEmConfiguration);
 
-        $GLOBALS['EXEC_TIME'] = time();
+        GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp') = time();
 
         $result = [
             'command' => 'new',
@@ -75,7 +75,7 @@ class NewsRowInitializeNewTest extends BaseTestCase
 
         $provider->_set('emConfiguration', $mockedEmConfiguration);
 
-        $GLOBALS['EXEC_TIME'] = time();
+        GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp') = time();
 
         $result = [
             'command' => 'new',

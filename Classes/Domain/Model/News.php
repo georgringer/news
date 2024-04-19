@@ -77,34 +77,34 @@ class News extends AbstractEntity
 
     /**
      * @var ObjectStorage<Category>
-     * @Lazy
      */
+    #[Lazy]
     protected ObjectStorage $categories;
 
     /**
      * @var ObjectStorage<\GeorgRinger\News\Domain\Model\News>
-     * @Lazy
      */
+    #[Lazy]
     protected $related;
 
     /**
      * @var ObjectStorage<\GeorgRinger\News\Domain\Model\News>
-     * @Lazy
      */
+    #[Lazy]
     protected $relatedFrom;
 
     /**
      * Fal related files
      *
      * @var ObjectStorage<FileReference>
-     * @Lazy
      */
+    #[Lazy]
     protected ObjectStorage $falRelatedFiles;
 
     /**
      * @var ObjectStorage<Link>
-     * @Lazy
      */
+    #[Lazy]
     protected ObjectStorage $relatedLinks;
 
     /** @var array */
@@ -123,24 +123,24 @@ class News extends AbstractEntity
      * Fal media items
      *
      * @var ObjectStorage<FileReference>
-     * @Lazy
      */
+    #[Lazy]
     protected $falMedia;
 
     /**
      * Fal media items with showinpreview set
      *
      * @var array
-     * @Transient
      */
+    #[Transient]
     protected $falMediaPreviews;
 
     /**
      * Fal media items with showinpreview not set
      *
      * @var array
-     * @Transient
      */
+    #[Transient]
     protected $falMediaNonPreviews;
 
     /** @var string */
@@ -154,14 +154,14 @@ class News extends AbstractEntity
 
     /**
      * @var ObjectStorage<TtContent>
-     * @Lazy
      */
+    #[Lazy]
     protected ObjectStorage $contentElements;
 
     /**
      * @var ObjectStorage<Tag>
-     * @Lazy
      */
+    #[Lazy]
     protected ObjectStorage $tags;
 
     /** @var string */
