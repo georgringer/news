@@ -105,7 +105,6 @@ class NewsRepository extends AbstractDemandedRepository
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
-        /** @var NewsDemand $demand */
         $constraints = [];
 
         if ($demand->getCategories() && $demand->getCategories() !== '0') {
