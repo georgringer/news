@@ -56,10 +56,7 @@ class CategoryRepository extends AbstractDemandedRepository
             )
         )->execute($asArray);
         if ($asArray) {
-            if (isset($result[0])) {
-                return $result[0];
-            }
-            return [];
+            return $result[0] ?? [];
         }
         return $result->getFirst();
     }
