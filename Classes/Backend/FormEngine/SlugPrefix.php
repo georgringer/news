@@ -41,7 +41,7 @@ class SlugPrefix
 
     protected function stripNewsSegment(string $url, string $slug): string
     {
-        if (strpos($url, '?tx_news_pi1%5Ba') !== false) {
+        if (str_contains($url, '?tx_news_pi1%5Ba')) {
             $url = substr($url, 0, strpos($url, '?tx_news_pi1%5Ba')) . '/[no mapping]';
         } else {
             $url = str_replace($slug, '', $url);

@@ -75,12 +75,12 @@ class ClassLoader implements SingletonInterface
     {
         $extensionKey = null;
 
-        if (strpos($className, '\\') !== false) {
+        if (str_contains($className, '\\')) {
             $namespaceParts = GeneralUtility::trimExplode(
                 '\\',
                 $className,
                 0,
-                substr($className, 0, 9) === 'TYPO3\\CMS' ? 4 : 3
+                str_starts_with($className, 'TYPO3\\CMS') ? 4 : 3
             );
             array_pop($namespaceParts);
             $extensionKey = GeneralUtility::camelCaseToLowerCaseUnderscored(array_pop($namespaceParts));
@@ -107,7 +107,7 @@ class ClassLoader implements SingletonInterface
 
     protected function isFirstPartOfStr(string $str, string $partStr): bool
     {
-        return $partStr !== '' && strpos($str, $partStr) === 0;
+        return $partStr !== '' && str_starts_with($str, $partStr);
     }
 
     protected function changeClassName(string $className): string

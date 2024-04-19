@@ -96,7 +96,7 @@ class DataHandlerHook implements SingletonInterface
                     $fieldArray = [];
                 } else {
                     // If the category relation has been modified, no | is found anymore
-                    if (isset($fieldArray['categories']) && strpos($fieldArray['categories'], '|') === false) {
+                    if (isset($fieldArray['categories']) && !str_contains($fieldArray['categories'], '|')) {
                         $deniedCategories = AccessControlService::getAccessDeniedCategories($newsRecord);
                         if (is_array($deniedCategories)) {
                             foreach ($deniedCategories as $deniedCategory) {

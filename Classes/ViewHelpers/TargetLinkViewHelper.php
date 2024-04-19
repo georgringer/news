@@ -49,7 +49,7 @@ class TargetLinkViewHelper extends AbstractViewHelper
         $params = explode(' ', $arguments['link']);
 
         // The target is on the 2nd place and must start with a '_'
-        if (count($params) >= 2 && substr($params[1], 0, 1) === '_') {
+        if (count($params) >= 2 && str_starts_with($params[1], '_')) {
             return $params[1];
         }
 
