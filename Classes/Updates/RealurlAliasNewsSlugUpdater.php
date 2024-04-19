@@ -55,7 +55,7 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
     public function executeUpdate(): bool
     {
         // user decided to migrate, migrate and mark wizard as done
-        $queries = $this->slugService->performRealurlAliasMigration();
+        $this->slugService->performRealurlAliasMigration();
 
         return true;
     }

@@ -150,10 +150,6 @@ class ClassCacheManager
             unset($innerPart[0]);
         }
 
-        $innerPartLine = function ($line) use ($offsetForInnerPart) {
-            return $line - $offsetForInnerPart;
-        };
-
         // unset the constructor and save it's lines
         if (isset($classParserInformation['functions']['__construct'])) {
             $constructorInfo = $classParserInformation['functions']['__construct'];
