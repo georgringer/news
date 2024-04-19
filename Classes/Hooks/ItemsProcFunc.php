@@ -154,22 +154,6 @@ class ItemsProcFunc
     }
 
     /**
-     * Remove given action from switchableControllerActions
-     *
-     * @param array $config available items
-     * @param string $action action to be removed
-     */
-    private function removeActionFromList(array &$config, $action): void
-    {
-        foreach ($config['items'] as $key => $item) {
-            if ($item[1] === $action) {
-                unset($config['items'][$key]);
-                continue;
-            }
-        }
-    }
-
-    /**
      * Generate a select box of languages to choose an overlay
      *
      * @return string select box
