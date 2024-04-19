@@ -11,7 +11,6 @@ namespace GeorgRinger\News\Domain\Repository;
 
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use GeorgRinger\News\Domain\Model\DemandInterface;
-use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;

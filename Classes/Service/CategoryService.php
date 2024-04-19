@@ -74,10 +74,9 @@ class CategoryService
      *
      * @param string $idList list of category ids to start
      * @param int $counter
-     * @param string $additionalWhere additional where clause
      * @return string comma separated list of category ids
      */
-    private static function getChildrenCategoriesRecursive($idList, $counter = 0, $additionalWhere = ''): string
+    private static function getChildrenCategoriesRecursive($idList, $counter = 0): string
     {
         $result = [];
 
