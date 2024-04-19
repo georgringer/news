@@ -96,12 +96,10 @@ class ChunkViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param mixed $candidate
      * @param bool $useKeys
-     *
      * @throws Exception
      */
-    protected static function arrayFromArrayOrTraversableOrCSVStatic($candidate, $useKeys = true): array
+    protected static function arrayFromArrayOrTraversableOrCSVStatic(mixed $candidate, $useKeys = true): array
     {
         if ($candidate instanceof \Traversable) {
             return iterator_to_array($candidate, $useKeys);
@@ -120,12 +118,11 @@ class ChunkViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param mixed $variable
      * @param string $as
      * @return mixed
      */
     protected static function renderChildrenWithVariableOrReturnInputStatic(
-        $variable,
+        mixed $variable,
         $as,
         RenderingContextInterface $renderingContext,
         \Closure $renderChildrenClosure

@@ -48,11 +48,9 @@ class TypoScript
     /**
      * Get value from array by path
      *
-     * @param mixed $data
-     * @param mixed $path
      * @return mixed
      */
-    protected function getValue($data, $path)
+    protected function getValue(mixed $data, mixed $path)
     {
         $found = true;
 
@@ -75,10 +73,9 @@ class TypoScript
     /**
      * Set value in array by path
      *
-     * @param mixed $value
      * @param string[] $path
      */
-    protected function setValue(array $array, array $path, $value): array
+    protected function setValue(array $array, array $path, mixed $value): array
     {
         $this->setValueByReference($array, $path, $value);
 

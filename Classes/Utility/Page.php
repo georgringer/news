@@ -62,7 +62,7 @@ class Page
      * @param mixed $object object or array to get the properties
      * @param string $prefix optional prefix
      */
-    public static function setRegisterProperties($properties, $object, $prefix = 'news'): void
+    public static function setRegisterProperties($properties, mixed $object, $prefix = 'news'): void
     {
         if (!empty($properties) && $object !== null) {
             $cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
