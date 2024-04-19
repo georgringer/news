@@ -712,19 +712,12 @@ $tx_news_domain_model_news = [
 $categoryRestrictionSetting = $configuration->getCategoryRestriction();
 if ($categoryRestrictionSetting) {
     $categoryRestriction = '';
-    switch ($categoryRestrictionSetting) {
-        case 'current_pid':
-            $categoryRestriction = ' AND sys_category.pid=###CURRENT_PID### ';
-            break;
-        case 'siteroot':
-            $categoryRestriction = ' AND sys_category.pid IN (###SITEROOT###) ';
-            break;
-        case 'page_tsconfig':
-            $categoryRestriction = ' AND sys_category.pid IN (###PAGE_TSCONFIG_IDLIST###) ';
-            break;
-        default:
-            $categoryRestriction = '';
-    }
+    $categoryRestriction = match ($categoryRestrictionSetting) {
+        'current_pid' => ' AND sys_category.pid=###CURRENT_PID### ',
+        'siteroot' => ' AND sys_category.pid IN (###SITEROOT###) ',
+        'page_tsconfig' => ' AND sys_category.pid IN (###PAGE_TSCONFIG_IDLIST###) ',
+        default => '',
+    };
 
     // prepend category restriction at the beginning of foreign_table_where
     if (!empty($categoryRestriction)) {
