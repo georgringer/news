@@ -217,8 +217,8 @@ class CategoryRepository extends AbstractDemandedRepository
 
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
             $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'contentId');
-        } elseif ((int)GeneralUtility::_GP('L')) {
-            $sysLanguage = (int)GeneralUtility::_GP('L');
+        } elseif ((int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['L'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['L'] ?? null)) {
+            $sysLanguage = (int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['L'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['L'] ?? null);
         }
 
         return $sysLanguage;

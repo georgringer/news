@@ -67,11 +67,11 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         ) {
             $urlParameters['sortRev'] = $this->sortRev;
         }
-        if (GeneralUtility::_GP('SET')) {
-            $urlParameters['SET'] = GeneralUtility::_GP('SET');
+        if ($GLOBALS['TYPO3_REQUEST']->getParsedBody()['SET'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['SET'] ?? null) {
+            $urlParameters['SET'] = $GLOBALS['TYPO3_REQUEST']->getParsedBody()['SET'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['SET'] ?? null;
         }
-        if (GeneralUtility::_GP('show')) {
-            $urlParameters['show'] = (int)GeneralUtility::_GP('show');
+        if ($GLOBALS['TYPO3_REQUEST']->getParsedBody()['show'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['show'] ?? null) {
+            $urlParameters['show'] = (int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['show'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['show'] ?? null);
         }
 
         $demand = GeneralUtility::_GET('tx_newsadministration_web_newsadministrationadministration');
