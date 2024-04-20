@@ -75,21 +75,15 @@ class News extends AbstractEntity
     /** @var string */
     protected $authorEmail = '';
 
-    /**
-     * @var ObjectStorage<Category>
-     */
+    /** @var ObjectStorage<Category> */
     #[Lazy]
     protected ObjectStorage $categories;
 
-    /**
-     * @var ObjectStorage<\GeorgRinger\News\Domain\Model\News>
-     */
+    /** @var ObjectStorage<\GeorgRinger\News\Domain\Model\News> */
     #[Lazy]
     protected $related;
 
-    /**
-     * @var ObjectStorage<\GeorgRinger\News\Domain\Model\News>
-     */
+    /** @var ObjectStorage<\GeorgRinger\News\Domain\Model\News> */
     #[Lazy]
     protected $relatedFrom;
 
@@ -101,9 +95,7 @@ class News extends AbstractEntity
     #[Lazy]
     protected ObjectStorage $falRelatedFiles;
 
-    /**
-     * @var ObjectStorage<Link>
-     */
+    /** @var ObjectStorage<Link> */
     #[Lazy]
     protected ObjectStorage $relatedLinks;
 
@@ -152,15 +144,11 @@ class News extends AbstractEntity
     /** @var bool */
     protected $istopnews = false;
 
-    /**
-     * @var ObjectStorage<TtContent>
-     */
+    /** @var ObjectStorage<TtContent> */
     #[Lazy]
     protected ObjectStorage $contentElements;
 
-    /**
-     * @var ObjectStorage<Tag>
-     */
+    /** @var ObjectStorage<Tag> */
     #[Lazy]
     protected ObjectStorage $tags;
 

@@ -49,15 +49,11 @@ class Category extends AbstractEntity
     /** @var string */
     protected $description = '';
 
-    /**
-     * @var \GeorgRinger\News\Domain\Model\Category
-     */
+    /** @var \GeorgRinger\News\Domain\Model\Category */
     #[Lazy]
     protected $parentcategory;
 
-    /**
-     * @var ObjectStorage<FileReference>
-     */
+    /** @var ObjectStorage<FileReference> */
     #[Lazy]
     protected $images;
 

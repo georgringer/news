@@ -41,9 +41,7 @@ class TtContent extends AbstractEntity
     /** @var int */
     protected $colPos = 0;
 
-    /**
-     * @var ObjectStorage<FileReference>
-     */
+    /** @var ObjectStorage<FileReference> */
     #[Lazy]
     protected $image;
 
@@ -62,9 +60,7 @@ class TtContent extends AbstractEntity
     /** @var int */
     protected $imageborder = 0;
 
-    /**
-     * @var ObjectStorage<FileReference>
-     */
+    /** @var ObjectStorage<FileReference> */
     #[Lazy]
     protected $media;
 
