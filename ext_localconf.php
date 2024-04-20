@@ -1,6 +1,5 @@
 <?php
 
-use TYPO3\CMS\Backend\RecordList\DatabaseRecordList;
 use GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew;
 use GeorgRinger\News\Controller\CategoryController;
 use GeorgRinger\News\Controller\NewsController;
@@ -14,6 +13,7 @@ use GeorgRinger\News\Utility\ClassCacheManager;
 use GeorgRinger\News\Utility\ClassLoader;
 use GeorgRinger\News\Xclass\ExtensionServiceXclassed;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew;
+use TYPO3\CMS\Backend\RecordList\DatabaseRecordList;
 use TYPO3\CMS\Core\Cache\Backend\FileBackend;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
