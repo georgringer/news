@@ -28,8 +28,7 @@ class NewsRowInitializeNewTest extends BaseTestCase
 
         $provider->_set('emConfiguration', $mockedEmConfiguration);
 
-        GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp') = time();
-
+        $GLOBALS['EXEC_TIME'] = time();
         $result = [
             'command' => 'new',
             'tableName' => 'tx_news_domain_model_news',
