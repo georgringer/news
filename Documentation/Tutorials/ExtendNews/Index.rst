@@ -4,105 +4,46 @@
 Extend News
 ===========
 
-.. container:: row m-0 p-0
+.. card-grid::
+   :columns: 1
+   :columns-md: 2
+   :gap: 4
+   :class: pb-4
+   :card-height: 100
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+   .. card:: :ref:`Custom extension <ext-based-on-news>`
 
-      .. container:: card px-0 h-100
+      All changes listed on this page should be done in a custom
+      extension that extends EXT:news. Learn how to set it up.
 
-         .. rst-class:: card-header h3
+   .. card:: :ref:`Extend FlexForms <extendFlexforms>`
 
-            .. rubric:: :ref:`Custom extension <ext-based-on-news>`
+      Influence the fields available in the plugins backend FlexForm.
 
-         .. container:: card-body
+   .. card:: :ref:`Events <eventsTutorial>`
 
-            All changes listed on this page should be done in a custom
-            extension that extends EXT:news. Learn how to set it up.
+      Extend the code of EXT:news by using PSR-14 Events.
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+   .. card:: :ref:`Hooks <hooks>`
 
-      .. container:: card px-0 h-100
+      If there is no PSR-14 Event, try using a hook instead.
 
-         .. rst-class:: card-header h3
+   .. card:: :ref:`Demands <demands>`
 
-            .. rubric:: :ref:`Extend FlexForms <extendFlexforms>`
+      Learn how to filter and sort the displayed news using demands.
 
-         .. container:: card-body
+   .. card:: :ref:`Data processing <dataProcessing>`
 
-            Influence the fields available in the plugins backend FlexForm.
+      Display news in menus using data processing
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+   .. card:: :ref:`Add custom fields <proxyClassGenerator>`
 
-      .. container:: card px-0 h-100
+      Learn how to add custom fields to news records and extend the
+      :php:`News` model using the ProxyClassGenerator
 
-         .. rst-class:: card-header h3
+   .. card:: :ref:`Custom news types <addCustomType>`
 
-            .. rubric:: :ref:`Events <eventsTutorial>`
-
-         .. container:: card-body
-
-            Extend the code of EXT:news by using PSR-14 Events.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Hooks <hooks>`
-
-         .. container:: card-body
-
-            If there is no PSR-14 Event, try using a hook instead.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Demands <demands>`
-
-         .. container:: card-body
-
-            Learn how to filter and sort the displayed news using demands.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Data processing <dataProcessing>`
-
-         .. container:: card-body
-
-            Display news in menus using data processing
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Add custom fields <proxyClassGenerator>`
-
-         .. container:: card-body
-
-            Learn how to add custom fields to news records and extend the
-            :php:`News` model using the ProxyClassGenerator
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Custom news types <addCustomType>`
-
-         .. container:: card-body
-
-            Add additional custom news types
+      Add additional custom news types
 
 .. toctree::
    :maxdepth: 5

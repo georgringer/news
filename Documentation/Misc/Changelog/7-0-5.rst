@@ -1,9 +1,7 @@
 7.0.5 - 2018/16/05
 ==================
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 

@@ -5,9 +5,7 @@ This is the first release of the extension that supports TYPO3 12 and 11.
 This also means that the **active** support for TYPO3 10 (EXT:news v9) has been stopped.
 
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 

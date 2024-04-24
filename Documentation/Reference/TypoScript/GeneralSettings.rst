@@ -8,9 +8,7 @@ General settings
 Any setting needs to be prefixed with  :typoscript:`plugin.tx_news.settings.`.
 
 
-.. only:: html
-
-   .. contents:: Properties
+.. contents:: Properties
       :depth: 1
       :local:
 

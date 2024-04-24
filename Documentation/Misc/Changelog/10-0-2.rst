@@ -1,9 +1,7 @@
 10.0.2 - 27th October 2022
 ==========================
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 

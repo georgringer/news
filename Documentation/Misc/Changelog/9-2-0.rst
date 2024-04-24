@@ -1,9 +1,7 @@
 9.2.2 - 25th January 2022
 =========================
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 
