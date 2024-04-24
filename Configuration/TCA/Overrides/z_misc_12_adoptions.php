@@ -45,7 +45,7 @@ call_user_func(static function () {
         foreach (['tx_news_domain_model_link' => ['uri'], 'tx_news_domain_model_news' => ['title', 'externalurl'], 'tx_news_domain_model_tag' => ['title']] as $table => $fields) {
             foreach ($fields as $field) {
                 $GLOBALS['TCA'][$table]['columns'][$field]['config']['required'] = true;
-                $GLOBALS['TCA'][$table]['columns'][$field]['config']['eval'] = str_replace('required', '', $GLOBALS['TCA'][$table]['columns'][$field]['config']['required']);
+                $GLOBALS['TCA'][$table]['columns'][$field]['config']['eval'] = str_replace('required', '', $GLOBALS['TCA'][$table]['columns'][$field]['config']['eval']);
             }
         }
     }
