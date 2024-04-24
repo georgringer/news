@@ -6,9 +6,7 @@ Assorted snippets
 
 This section contains snippets making EXT:news more awesome which might be useful for your projects as well.
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 1
 

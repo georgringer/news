@@ -23,9 +23,7 @@ Take a look at the following 2 working examples:
 
 The files are saved by using the Caching Framework in the directory :file:`typo3temp/Cache/Code/news`.
 
-.. only:: html
-
-   .. contents::
+.. contents::
       :local:
       :depth: 1
 

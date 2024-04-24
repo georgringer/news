@@ -59,11 +59,9 @@ the type :guilabel:`External page` and enter the external link in the field
 :guilabel:`Link to External URL`.
 
 
-.. only:: html
-
-   .. contents::
-        :local:
-        :depth: 2
+..  contents::
+    :local:
+    :depth: 2
 
 News record
 ===========
@@ -182,9 +180,7 @@ The visible fields depend on
 Relations
 ^^^^^^^^^
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 2
 

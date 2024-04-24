@@ -1,9 +1,7 @@
 8.1.1 - 4th May 2020
 =======================
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 

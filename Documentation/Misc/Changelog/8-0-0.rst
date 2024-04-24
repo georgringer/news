@@ -1,9 +1,7 @@
 8.0.0 - 2020/21/04
 ==================
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 
