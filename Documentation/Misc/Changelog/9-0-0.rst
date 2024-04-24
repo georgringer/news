@@ -1,9 +1,7 @@
 9.0.0 - 23th October 2021
 =========================
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 
