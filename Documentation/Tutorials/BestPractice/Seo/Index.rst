@@ -296,6 +296,6 @@ Solution: You can use the following TypoScript condition to allow search engines
    [request && traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
        page.meta.robots = index,follow
        page.meta.robots.replace = 1
-   [global]
+   [END]
 
 An important part is the `replace` option. The MetaTag API of TYPO3 will then replace tags which were set before.
