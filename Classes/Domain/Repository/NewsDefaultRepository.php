@@ -12,4 +12,6 @@ namespace GeorgRinger\News\Domain\Repository;
 /**
  * News repository with all the callable functionality
  */
-class NewsDefaultRepository extends NewsRepository {}
+class NewsDefaultRepository extends NewsRepository
+{
+}
