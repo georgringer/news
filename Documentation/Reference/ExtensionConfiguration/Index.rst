@@ -11,9 +11,7 @@ Some general settings can be configured in the Extension Configuration.
 
 The settings are divided into several tabs and described here in detail:
 
-.. only:: html
-
-   .. contents:: Properties
+.. contents:: Properties
         :local:
         :depth: 2
 
@@ -53,22 +51,22 @@ Enable a RTE for the teaser field `rteForTeaser`
 Define pid of tag records `tagPid`
 ----------------------------------
 
-.. confval:: tagPid
+..  confval:: tagPid
+    :name: extensionConfigurationTagPid
+    :type: int
+    :Default: 0
 
-   :type: int
-   :Default: 0
 
+    New tags can be saved directly inside the news record. The given ID is used
+    as page on which the tag records will be saved.
 
-   New tags can be saved directly inside the news record. The given ID is used
-   as page on which the tag records will be saved.
+    This setting can also be done with TSconfig, see :ref:`tagPid <tsconfigTagPid>`
 
-   This setting can also be done with TSconfig, see :ref:`tagPid <tsconfigTagPid>`
+    If you want to use TsConfig to define the page, set the tagPid to 0 and use
+    the following syntax in TsConfig: ::
 
-   If you want to use TsConfig to define the page, set the tagPid to 0 and use
-   the following syntax in TsConfig: ::
-
-      # Save tags on page with UID 123
-      tx_news.tagPid = 123
+        # Save tags on page with UID 123
+        tx_news.tagPid = 123
 
 .. _extensionConfigurationPrependAtCopy:
 

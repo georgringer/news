@@ -1,9 +1,7 @@
 6.1.1 - 2017/09/06
 ==================
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 

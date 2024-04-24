@@ -6,9 +6,7 @@ Events
 
 Several events can be used to modify the behaviour of EXT:news.
 
-.. only:: html
-
-   .. contents::
+.. contents::
       :local:
       :depth: 1
 
