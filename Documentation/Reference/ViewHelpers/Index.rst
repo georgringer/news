@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. highlight:: html
 
 .. _viewHelpersReference:
@@ -37,10 +35,9 @@ All ViewHelpers
    MediaFactoryViewHelper
    MetaTagViewHelper
    PaginateBodytextViewHelper
+   RenderMediaViewHelper
    TargetLinkViewHelper
    TitleTagViewHelper
 
    Format/NothingViewHelper
-
-   Widget/PaginateViewHelper
 

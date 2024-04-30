@@ -24,7 +24,7 @@ class TargetLinkViewHelperTest extends BaseTestCase
      */
     protected function getPreparedInstance()
     {
-        $instance = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(['dummy'])->getMock();
+        $instance = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(null)->getMock();
         return $instance;
     }
 
@@ -46,7 +46,7 @@ class TargetLinkViewHelperTest extends BaseTestCase
      */
     public function correctTargetIsReturned($link, $expectedResult): void
     {
-        $viewHelper = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(['dummy'])->getMock();
+        $viewHelper = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(null)->getMock();
         $viewHelper->setRenderingContext($this->getMockBuilder(RenderingContextInterface::class)->getMock());
         $viewHelper->setArguments([
             'link' => $link,

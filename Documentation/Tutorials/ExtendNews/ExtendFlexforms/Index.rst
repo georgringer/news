@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _extendFlexforms:
 
 ================
@@ -10,9 +8,7 @@ Following fields of the plugin configuration can be extended without
 overriding the complete FlexForm configuration.
 
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 1
 
@@ -33,7 +29,7 @@ your own selections by adding those to
 
 .. code-block:: php
 
-   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']['myext'] = array('My Title', 'my value');
+   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']['myext'] = ['My Title', 'my value'];
 
 You can then access the variable in your template with
 :code:`{settings.templateLayout}` and use it for a condition or whatever.
@@ -42,64 +38,72 @@ Extend FlexForms with custom fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you need additional fields in the FlexForm configuration, this can be done by using a hook in the Core.
 
-**Register the hook**
+.. important::
 
-Add this to the ``ext_localconf.php`` of your extension:
+  Using such event is *not* restricted to the news extension. It can be used for any extension.
+  One working example can be found in `FlexFormHook` of EXT:eventnews.
 
-.. code-block:: php
+**Register the Event**
 
-   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing'][]
-      = \Vendor\ExtKey\Hooks\FlexFormHook::class;
+Add this to ``Services.yaml`` of your extension:
+
+.. code-block:: yaml
+
+   services:
+       Vendor\ExtKey\EventListener\ModifyFlexformEvent:
+           tags:
+               - name: event.listener
+                 identifier: 'flexParsing'
+                 event: TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent
 
 **Add the hook**
 
-Create the class ``FlexFormHook`` in your extension in ``Classes/Hooks/FlexFormHook.php`` and add the path to an additional
+Create the class ``ModifyFlexformEvent`` in your extension in ``Classes/EventListener/ModifyFlexformEvent.php`` and add the path to an additional
 FlexForm file.
 
 .. code-block:: php
 
    <?php
 
-   namespace Vendor\ExtKey\Hooks;
+   namespace Vendor\ExtKey\EventListener;
 
-   use TYPO3\CMS\Core\Core\Environment;
+   use TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent;
+   use TYPO3\CMS\Core\Utility\ArrayUtility;
    use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-   class FlexFormHook
+   class ModifyFlexformEvent
    {
-      /**
-      * @param array $dataStructure
-      * @param array $identifier
-      * @return array
-      */
-      public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier): array
-      {
-        if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
-            $file = Environment::getPublicPath() . '/typo3conf/ext/extKey/Configuration/Example.xml';
-            $content = file_get_contents($file);
-            if ($content) {
-                $dataStructure['sheets']['extraEntry'] = GeneralUtility::xml2array($content);
-            }
-        }
-        return $dataStructure;
-      }
+       public function __invoke(AfterFlexFormDataStructureParsedEvent $event): void
+       {
+           $dataStructure = $event->getDataStructure();
+           $identifier = $event->getIdentifier();
+
+           // $identifier['dataStructureKey'] depends on the selected plugin!
+           if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === '*,news_pi1') {
+               $file = GeneralUtility::getFileAbsFileName('EXT:extKey/Configuration/Example.xml');
+               $content = file_get_contents($file);
+               if ($content) {
+                   ArrayUtility::mergeRecursiveWithOverrule($dataStructure['sheets'], GeneralUtility::xml2array($content));
+               }
+           }
+
+           $event->setDataStructure($dataStructure);
+       }
    }
 
 **Create the FlexForm file**
 
-Create the FlexForm file you just referenced in the hook. This can look like that.
+Create the FlexForm file you just referenced in the hook. This can look like that. (Syntax for TYPO3 12 LTS+)
 
 .. code-block:: html
 
-    <extra>
-        <ROOT>
-            <TCEforms>
+    <sheets>
+        <extra>
+            <ROOT>
                 <sheetTitle>Fo</sheetTitle>
-            </TCEforms>
-            <type>array</type>
-            <el>
-                <settings.postsPerPage>
-                    <TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.postsPerPage>
                         <label>Max. number of posts to display per page</label>
                         <config>
                             <type>input</type>
@@ -107,9 +111,8 @@ Create the FlexForm file you just referenced in the hook. This can look like tha
                             <eval>int</eval>
                             <default>3</default>
                         </config>
-                    </TCEforms>
-                </settings.postsPerPage>
-            </el>
-        </ROOT>
-    </extra>
-
+                    </settings.postsPerPage>
+                </el>
+            </ROOT>
+        </extra>
+    </sheets>

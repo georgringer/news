@@ -12,6 +12,7 @@ namespace GeorgRinger\News\Tests\Functional\ViewHelpers;
 use DateTime;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -33,7 +34,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->mockedViewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['dummy'], [], '', true, true, false);
+        $this->mockedViewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, null, [], '', true, true, false);
 
         $this->news = new News();
         $this->news->_setProperty('uid', 123);
@@ -106,7 +107,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
             ->select('*')
             ->from('tx_news_domain_model_news')
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, Connection::PARAM_INT))
             )
             ->setMaxResults(1)
             ->executeQuery()->fetchAssociative();

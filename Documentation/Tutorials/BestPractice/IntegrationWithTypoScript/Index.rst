@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. highlight:: typoscript
 
 .. _integrationTypoScript:
@@ -10,11 +8,9 @@ Integrations with TypoScript
 
 This page gives you same examples which you can use for integrating EXT:news into a website.
 
-.. only:: html
-
-    .. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :local:
+    :depth: 1
 
 
 Add news by TypoScript
@@ -30,12 +26,6 @@ If EXT:news should be integrated by using TypoScript only, you can use this code
      extensionName = News
      pluginName = Pi1
      vendorName = GeorgRinger
-
-     switchableControllerActions {
-      News {
-        1 = list
-      }
-     }
 
      settings < plugin.tx_news.settings
      settings {
@@ -75,13 +65,12 @@ Configure list and detail actions:
 
    lib.news_list < lib.news
    lib.news_list {
-         action = list
-         switchableControllerActions.News.1 = list
+         # Use the line below to sue the sticky list
+         # pluginName = NewsListSticky
    }
    lib.news_detail < lib.news
    lib.news_detail {
-         action = detail
-         switchableControllerActions.News.1 = detail
+         pluginName = NewsDetail
    }
 
 Insert configured objects to wherever you want to use them, depending on the GET parameter of detail view:
@@ -115,12 +104,8 @@ You could use a code like the following one to render e.g. the title of a news a
 
 .. code-block:: typoscript
 
-    [globalVar = TSFE:id = NEWS-DETAIL-PAGE-ID]
-
-    config.noPageTitle = 2
-
-    temp.newsTitle = RECORDS
-    temp.newsTitle {
+    lib.newsTitle = RECORDS
+    lib.newsTitle {
       dontCheckPid = 1
             tables = tx_news_domain_model_news
             source.data = GP:tx_news_pi1|news
@@ -130,12 +115,8 @@ You could use a code like the following one to render e.g. the title of a news a
                 field = title
                 htmlSpecialChars = 1
             }
-            wrap = <title>|</title>
+            wrap = <h3>|</h3>
     }
-    page.headerData.1 >
-    page.headerData.1 < temp.newsTitle
-
-    [global]
 
 If you want to show the categories of a news record, you can use the following code:
 
@@ -226,13 +207,11 @@ Add this to the ``Detail.html`` which will pass the first category uid to the Ty
     lib.tx_news.relatedByFirstCategory {
         userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
         extensionName = News
-        pluginName = Pi1
+        pluginName = NewsListSticky
         vendorName = GeorgRinger
 
-        switchableControllerActions {
-            News {
-                1 = list
-            }
+        mvc {
+            callDefaultActionIfActionCantBeResolved = 1
         }
 
         settings < plugin.tx_news.settings
@@ -263,12 +242,11 @@ Similar to the example above it is also possible to render news records with the
    lib.tx_news.relatedByTags {
        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
        extensionName = News
-       pluginName = Pi1
+       pluginName = NewsListSticky
        vendorName = GeorgRinger
-       switchableControllerActions {
-           News {
-               1 = list
-           }
+
+       mvc {
+           callDefaultActionIfActionCantBeResolved = 1
        }
 
        settings < plugin.tx_news.settings
@@ -308,15 +286,8 @@ Show Category Menu with Typoscript
    lib.categoryMenu {
       userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
       extensionName = News
-      pluginName = Pi1
+      pluginName = CategoryList
       vendorName = GeorgRinger
-
-      action = category
-      switchableControllerActions {
-         Category {
-            1 = list
-         }
-      }
 
       settings < plugin.tx_news.settings
       settings {

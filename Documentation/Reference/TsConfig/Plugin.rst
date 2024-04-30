@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _tsconfigPlugin:
 
 ====================
@@ -8,33 +6,17 @@ Plugin configuration
 
 This section covers settings which influence the news plugin.
 
-switchableControllerAction
-==========================
+Example: Remove the setting of flexforms
+----------------------------------------
 
-.. confval:: switchableControllerAction
-
-   :type: array
-   :Path: TCEFORM > tt_content > pi_flexform > news_pi1.sDEF
-   :Default:
-      - News->list
-      - News->detail
-      - News->dateMenu
-      - News->searchForm
-      - News->searchResult
-      - Category->list
-      - Tag->list
-
-   To remove a specific action from the News Plugin selectbox, use
-   this snippet.
-
-Example: Remove the action Tag->list
-------------------------------------
+The following examples removes the field `recursive` from the plugin "Tag List".
 
 .. code-block:: typoscript
 
    # Example:
-   TCEFORM.tt_content.pi_flexform.news_pi1.sDEF {
-      switchableControllerActions.removeItems = Tag->list
+   TCEFORM.tt_content.pi_flexform.news_taglist.sDEF {
+      # As the dot is part of the fieldname, it needs to be escaped
+      settings\.recursive.disabled = 1
    }
 
 

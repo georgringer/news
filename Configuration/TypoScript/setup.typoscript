@@ -19,8 +19,6 @@ plugin.tx_news {
 			0 = EXT:news/Resources/Private/Layouts/
 			1 = {$plugin.tx_news.view.layoutRootPath}
 		}
-
-		widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/
 	}
 
 	# Modify the translation
@@ -135,7 +133,7 @@ plugin.tx_news {
 			pageTitle = 1
 			pageTitle {
 				provider = GeorgRinger\News\Seo\NewsTitleProvider
-				properties = title,teaser
+				properties = alternativeTitle,title
 			}
 		}
 
@@ -172,6 +170,7 @@ plugin.tx_news {
 					generator = {$plugin.tx_news.rss.channel.generator}
 					link = {$plugin.tx_news.rss.channel.link}
 					typeNum = {$plugin.tx_news.rss.channel.typeNum}
+					ttl = {$plugin.tx_news.rss.channel.ttl}
 				}
 			}
 		}
@@ -221,13 +220,8 @@ tt_content.shortcut.20.conf.tx_news_domain_model_news = USER
 tt_content.shortcut.20.conf.tx_news_domain_model_news {
 	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
 	extensionName = News
-	pluginName = Pi1
+	pluginName = NewsDetail
 	vendorName = GeorgRinger
-	switchableControllerActions {
-		News {
-			1 = detail
-		}
-	}
 
 	settings =< plugin.tx_news.settings
 	settings {

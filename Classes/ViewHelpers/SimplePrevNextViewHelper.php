@@ -177,27 +177,27 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
             $queryBuilder = $connection->createQueryBuilder();
 
             $extraWhere = [
-                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), \PDO::PARAM_INT)),
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), Connection::PARAM_INT)),
             ];
             if ((bool)($this->arguments['includeInternalType'] ?? false) === false) {
-                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));
+                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, Connection::PARAM_INT));
             }
             if ((bool)($this->arguments['includeExternalType'] ?? false) === false) {
-                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, \PDO::PARAM_INT));
+                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, Connection::PARAM_INT));
             }
 
             $getter = 'get' . ucfirst($sortField) . '';
             if ($news->$getter() instanceof \DateTime) {
                 if ($label === 'prev') {
-                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($news->$getter()->getTimestamp(), \PDO::PARAM_INT));
+                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($news->$getter()->getTimestamp(), Connection::PARAM_INT));
                 } else {
-                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($news->$getter()->getTimestamp(), \PDO::PARAM_INT));
+                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($news->$getter()->getTimestamp(), Connection::PARAM_INT));
                 }
             } else {
                 if ($label === 'prev') {
-                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($news->$getter(), \PDO::PARAM_STR));
+                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($news->$getter(), Connection::PARAM_STR));
                 } else {
-                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($news->$getter(), \PDO::PARAM_STR));
+                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($news->$getter(), Connection::PARAM_STR));
                 }
             }
 
@@ -205,12 +205,12 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
                 ->select('*')
                 ->from('tx_news_domain_model_news')
                 ->where(
-                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
                     $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter(explode(',', $pidList), Connection::PARAM_INT_ARRAY))
                 )
                 ->andWhere(...$extraWhere)
                 ->setMaxResults(1)
-                ->orderBy($sortField, ($label === 'prev' ? 'desc' : 'asc'))
+                ->orderBy($sortField, $label === 'prev' ? 'desc' : 'asc')
                 ->executeQuery()->fetchAssociative();
             if (is_array($row)) {
                 $data[$label] = $row;
@@ -239,7 +239,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
             ->select('*')
             ->from('tx_news_domain_model_news')
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, Connection::PARAM_INT))
             )
             ->setMaxResults(1)
             ->executeQuery()->fetchAssociative();

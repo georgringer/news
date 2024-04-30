@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3') or die();
+defined('TYPO3') or die;
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
@@ -91,7 +91,7 @@ if ($versionInformation->getMajorVersion() > 11) {
         'appearance' => $imageSettingsFalMedia['appearance'],
         'behaviour' => $imageSettingsFalMedia['behaviour'],
         'overrideChildTca' => $imageSettingsFalMedia['overrideChildTca'],
-        'allowed' => 'common-image-types',
+        'allowed' => 'common-media-types',
     ];
     $imageConfigurationFalRelatedFiles = [
         'type' => 'file',
@@ -105,7 +105,7 @@ if ($versionInformation->getMajorVersion() > 11) {
     $imageConfigurationFalMedia = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
         'fal_media',
         $imageSettingsFalMedia,
-        $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
     );
     /** @noinspection PhpDeprecationInspection */
     // @extensionScannerIgnoreLine
@@ -140,7 +140,7 @@ $tx_news_domain_model_news = [
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'translationSource' => 'l10n_source',
-        'default_sortby' => 'ORDER BY datetime DESC',
+        'default_sortby' => 'datetime DESC',
         'sortby' => ($configuration->getManualSorting() ? 'sorting' : ''),
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -168,7 +168,6 @@ $tx_news_domain_model_news = [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'tx_news_domain_model_news',
                 'size' => 1,
                 'maxitems' => 1,
@@ -194,11 +193,13 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => [
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
                     [
                         0 => '',
                         1 => '',
                     ],
+                ] : [
+                    ['label' => '', 'value' => ''],
                 ],
             ],
         ],
@@ -272,19 +273,14 @@ $tx_news_domain_model_news = [
                 'renderType' => 'selectMultipleSideBySide',
                 'size' => 5,
                 'maxitems' => 20,
-                'items' => [
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
-                        -1,
-                    ],
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
-                        -2,
-                    ],
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
-                        '--div--',
-                    ],
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login', -1],
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login', -2],
+                    ['LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups', '--div--'],
+                ] : [
+                    ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login', 'value' => -1],
+                    ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.any_login', 'value' => -2],
+                    ['label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.usergroups', 'value' => '--div--'],
                 ],
                 'exclusiveKeys' => '-1,-2',
                 'foreign_table' => 'fe_groups',
@@ -382,7 +378,6 @@ $tx_news_domain_model_news = [
                 'type' => 'select',
                 'renderType' => 'selectTree',
                 'treeConfig' => [
-//                    'dataProvider' => \GeorgRinger\News\TreeProvider\DatabaseTreeDataProvider::class,
                     'parentField' => 'parent',
                     'appearance' => [
                         'showHeader' => true,
@@ -398,7 +393,7 @@ $tx_news_domain_model_news = [
                 'MM_opposite_field' => 'items',
                 'foreign_table' => 'sys_category',
                 'foreign_table_where' => ' AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting',
-                'size' => 10,
+                'size' => 30,
                 'minitems' => 0,
                 'maxitems' => 99,
                 'behaviour' => [
@@ -411,7 +406,6 @@ $tx_news_domain_model_news = [
             'label' => $ll . 'tx_news_domain_model_news.related',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'tx_news_domain_model_news',
                 'foreign_table' => 'tx_news_domain_model_news',
                 'MM_opposite_field' => 'related_from',
@@ -435,7 +429,6 @@ $tx_news_domain_model_news = [
             'label' => $ll . 'tx_news_domain_model_news.related_from',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'foreign_table' => 'tx_news_domain_model_news',
                 'allowed' => 'tx_news_domain_model_news',
                 'size' => 5,
@@ -479,10 +472,14 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => [
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
                     [$ll . 'tx_news_domain_model_news.type.I.0', 0, 'ext-news-type-default'],
                     [$ll . 'tx_news_domain_model_news.type.I.1', 1, 'ext-news-type-internal'],
                     [$ll . 'tx_news_domain_model_news.type.I.2', 2, 'ext-news-type-external'],
+                ] : [
+                    ['label' => $ll . 'tx_news_domain_model_news.type.I.0', 'value' => 0, 'icon' => 'ext-news-type-default'],
+                    ['label' => $ll . 'tx_news_domain_model_news.type.I.1', 'value' => 1, 'icon' => 'ext-news-type-internal'],
+                    ['label' => $ll . 'tx_news_domain_model_news.type.I.2', 'value' => 2, 'icon' => 'ext-news-type-external'],
                 ],
                 'fieldWizard' => [
                     'selectIcons' => [
@@ -547,11 +544,10 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => [
-                    [
-                        0 => '',
-                        1 => '',
-                    ],
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
+                    ['', ''],
+                ] : [
+                    ['label' => '', 'value' => ''],
                 ],
             ],
         ],
@@ -562,11 +558,10 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => [
-                    [
-                        0 => '',
-                        1 => '',
-                    ],
+                'items' => $versionInformation->getMajorVersion() < 12 ? [
+                    ['', ''],
+                ] : [
+                    ['label' => '', 'value' => ''],
                 ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,

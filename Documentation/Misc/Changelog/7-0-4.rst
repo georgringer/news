@@ -1,11 +1,7 @@
-.. include:: /Includes.rst.txt
-
 7.0.4 - 2018/16/05
 ==================
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 

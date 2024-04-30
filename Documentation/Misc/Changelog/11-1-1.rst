@@ -1,0 +1,19 @@
+11.1.1 - 26th June 2023
+=======================
+
+
+.. contents::
+        :local:
+        :depth: 3
+
+Breaking changes
+----------------
+No breaking changes!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2023-06-26 [BUGFIX] Properly handle ObjectStorage in tt_content domain model (#2132) (Commit 8a282b8a by Eric Chavaillaz)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

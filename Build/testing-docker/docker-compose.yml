@@ -29,7 +29,7 @@ services:
   # composer related services
   #---------------------------------------------------------------------------------------------------------------------
   composer:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -47,7 +47,7 @@ services:
       "
 
   composer_install:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -67,13 +67,13 @@ services:
         fi
         if [ ${TYPO3_VERSION} -eq 12 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^12.2
+            typo3/cms-core:^12.4.2
         fi
         composer install --no-progress;
       "
 
   composer_install_lowest:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -93,14 +93,14 @@ services:
         fi
         if [ ${TYPO3_VERSION} -eq 12 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^12.0
+            typo3/cms-core:^12.4.2
         fi
         composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest;
         composer show;
       "
 
   composer_install_highest:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -119,7 +119,7 @@ services:
         fi
         if [ ${TYPO3_VERSION} -eq 12 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^12.2
+            typo3/cms-core:^12.4.2
         fi
         composer update --no-progress --no-interaction;
         composer show;
@@ -129,7 +129,7 @@ services:
   # unit tests
   #---------------------------------------------------------------------------------------------------------------------
   unit:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -157,7 +157,7 @@ services:
       "
 
   lint:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -175,7 +175,7 @@ services:
   # functional tests against different dbms
   #---------------------------------------------------------------------------------------------------------------------
   functional_sqlite:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -196,17 +196,17 @@ services:
         php -v | grep '^PHP';
         if [ ${PHP_XDEBUG_ON} -eq 0 ]; then
           XDEBUG_MODE=\"off\" \
-          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-sqlite ${TEST_FILE};
+          .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-sqlite ${TEST_FILE};
         else
           XDEBUG_MODE=\"${USED_XDEBUG_MODES}\" \
           XDEBUG_TRIGGER=\"foo\" \
           XDEBUG_CONFIG=\"client_port=${PHP_XDEBUG_PORT} client_host=host.docker.internal\" \
-          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-sqlite ${TEST_FILE};
+          .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-sqlite ${TEST_FILE};
         fi
       "
 
   functional_postgres:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     links:
       - postgres
@@ -236,17 +236,17 @@ services:
         php -v | grep '^PHP';
         if [ ${PHP_XDEBUG_ON} -eq 0 ]; then
           XDEBUG_MODE=\"off\" \
-          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-postgres ${TEST_FILE};
+          .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-postgres ${TEST_FILE};
         else
           XDEBUG_MODE=\"${USED_XDEBUG_MODES}\" \
           XDEBUG_TRIGGER=\"foo\" \
           XDEBUG_CONFIG=\"client_port=${PHP_XDEBUG_PORT} client_host=host.docker.internal\" \
-          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-postgres ${TEST_FILE};
+          .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-postgres ${TEST_FILE};
         fi
       "
 
   functional_mysql:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     links:
       - mysql
@@ -276,17 +276,17 @@ services:
         php -v | grep '^PHP';
         if [ ${PHP_XDEBUG_ON} -eq 0 ]; then
           XDEBUG_MODE=\"off\" \
-          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
+          .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
         else
           XDEBUG_MODE=\"${USED_XDEBUG_MODES}\" \
           XDEBUG_TRIGGER=\"foo\" \
           XDEBUG_CONFIG=\"client_port=${PHP_XDEBUG_PORT} client_host=host.docker.internal\" \
-          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
+          .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
         fi
       "
 
   functional_mariadb:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     links:
       - mariadb
@@ -316,12 +316,12 @@ services:
         php -v | grep '^PHP';
         if [ ${PHP_XDEBUG_ON} -eq 0 ]; then
           XDEBUG_MODE=\"off\" \
-          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
+          .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
         else
           XDEBUG_MODE=\"${USED_XDEBUG_MODES}\" \
           XDEBUG_TRIGGER=\"foo\" \
           XDEBUG_CONFIG=\"client_port=${PHP_XDEBUG_PORT} client_host=host.docker.internal\" \
-          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
+          .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
         fi
       "
 
@@ -329,7 +329,7 @@ services:
   # code quality tools
   #---------------------------------------------------------------------------------------------------------------------
   cgl:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -366,7 +366,7 @@ services:
       "
 
   coveralls:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -387,7 +387,7 @@ services:
       "
 
   phpstan:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -407,7 +407,7 @@ services:
       "
 
   phpstan_generate_baseline:
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: "${HOST_UID}"
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}

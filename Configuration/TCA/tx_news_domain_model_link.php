@@ -1,8 +1,9 @@
 <?php
 
-defined('TYPO3') or die();
+defined('TYPO3') or die;
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
+$typo3Version = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class)->getMajorVersion();
 
 return [
     'ctrl' => [
@@ -20,7 +21,6 @@ return [
         'translationSource' => 'l10n_source',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
-        'default_sortby' => 'ORDER BY sorting',
         'sortby' => 'sorting',
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -70,8 +70,10 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => [
+                'items' => $typo3Version < 12 ? [
                     ['', 0],
+                ] : [
+                    ['label' => '', 'value' => 0],
                 ],
                 'foreign_table' => 'tx_news_domain_model_link',
                 'foreign_table_where' => 'AND tx_news_domain_model_link.pid=###CURRENT_PID### AND tx_news_domain_model_link.sys_language_uid IN (-1,0)',

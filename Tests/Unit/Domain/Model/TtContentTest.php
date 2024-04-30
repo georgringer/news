@@ -10,6 +10,8 @@
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
 use GeorgRinger\News\Domain\Model\TtContent;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -105,9 +107,26 @@ class TtContentTest extends BaseTestCase
      */
     public function imageCanBeSet(): void
     {
-        $fieldValue = 'fo123';
-        $this->ttContentDomainModelInstance->setImage($fieldValue);
-        self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getImage());
+        $imageItem = new FileReference();
+
+        $image = new ObjectStorage();
+        $image->attach($imageItem);
+
+        $this->ttContentDomainModelInstance->setImage($image);
+        self::assertEquals($image, $this->ttContentDomainModelInstance->getImage());
+    }
+
+    /**
+     * @test
+     */
+    public function imageCanBeAdded(): void
+    {
+        $imageItem = new FileReference();
+
+        $ttContent = new TtContent();
+        $ttContent->addImage($imageItem);
+
+        self::assertEquals($ttContent->getImage()->current(), $imageItem);
     }
 
     /**
@@ -165,9 +184,26 @@ class TtContentTest extends BaseTestCase
      */
     public function mediaCanBeSet(): void
     {
-        $fieldValue = 'Test 123';
-        $this->ttContentDomainModelInstance->setMedia($fieldValue);
-        self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getMedia());
+        $mediaItem = new FileReference();
+
+        $media = new ObjectStorage();
+        $media->attach($mediaItem);
+
+        $this->ttContentDomainModelInstance->setMedia($media);
+        self::assertEquals($media, $this->ttContentDomainModelInstance->getMedia());
+    }
+
+    /**
+     * @test
+     */
+    public function mediaCanBeAdded(): void
+    {
+        $mediaItem = new FileReference();
+
+        $ttContent = new TtContent();
+        $ttContent->addMedia($mediaItem);
+
+        self::assertEquals($ttContent->getMedia()->current(), $mediaItem);
     }
 
     /**

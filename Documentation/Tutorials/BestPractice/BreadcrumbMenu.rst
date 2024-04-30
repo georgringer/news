@@ -1,6 +1,3 @@
-FlexForm
-.. include:: /Includes.rst.txt
-
 .. _breadcrumb:
 
 ===============
@@ -87,18 +84,18 @@ You can use code like the following in your sites Fluid template.
 .. code-block:: html
 
    <div class="container">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-            <f:for each="{breadcrumbMenu}" as="item" iteration="iterator">
-                <li class="breadcrumb-item ">
-                    <a href="{item.link}" title="{item.title}">
-                        <f:if condition="{item.isNews}"><i class="fas fa-newspaper"></i></f:if>
-                        {item.title}
-                    </a>
-                </li>
-            </f:for>
-            </ol>
-        </nav>
+       <nav aria-label="breadcrumb">
+           <ol class="breadcrumb">
+               <f:for each="{breadcrumbMenu}" as="item" iteration="iterator">
+                   <li class="breadcrumb-item ">
+                       <a href="{item.link}" title="{item.title}">
+                           <f:if condition="{item.isNews}"><i class="fas fa-newspaper"></i></f:if>
+                           {item.title}
+                       </a>
+                   </li>
+               </f:for>
+           </ol>
+       </nav>
    </div>
 
 The result (using Bootstrap 5 and Fontawesome 5 Free) could use like this:
@@ -164,11 +161,11 @@ you can continue to use it and add the news record to it.
             source.intval = 1
             conf.tx_news_domain_model_news = TEXT
             conf.tx_news_domain_model_news {
-                  field = title
+                field = title
                 htmlSpecialChars = 1
             }
-         stdWrap.wrap = <li>|</li>
-         stdWrap.required = 1
+            stdWrap.wrap = <li>|</li>
+            stdWrap.required = 1
         }
     }
 

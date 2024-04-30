@@ -13,6 +13,7 @@ namespace GeorgRinger\News\Event\Listener;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForContentEvent;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
@@ -42,7 +43,7 @@ final class ModifyDatabaseQueryForContentEventListener
                 // Only hide elements which are inline, allowing for standard
                 // elements to show
                 $event->getQueryBuilder()->andWhere(
-                    $event->getQueryBuilder()->expr()->eq('tx_news_related_news', $event->getQueryBuilder()->createNamedParameter(0, \PDO::PARAM_INT))
+                    $event->getQueryBuilder()->expr()->eq('tx_news_related_news', $event->getQueryBuilder()->createNamedParameter(0, Connection::PARAM_INT))
                 );
 
                 if (self::$count === 0) {

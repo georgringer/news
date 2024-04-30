@@ -1,0 +1,47 @@
+plugin.tx_seo {
+	## enable next line to generate a Google News sitemap
+	# view.templateRootPaths.191 = EXT:news/Resources/Private/Templates/News/
+
+	config {
+		xmlSitemap {
+			sitemaps {
+				news {
+					provider = GeorgRinger\News\Seo\NewsXmlSitemapDataProvider
+					config {
+						# exclude internal & external news
+						excludedTypes = 1,2
+						additionalWhere =
+						## enable these two lines to generate a Google News sitemap
+						# template = GoogleNews
+						# googleNews = 1
+
+						sortField = datetime
+						lastModifiedField = tstamp
+						pid = {$plugin.tx_news.settings.sitemap.startingpoint}
+						recursive = {$plugin.tx_news.settings.sitemap.recursive}
+						url {
+							pageId = {$plugin.tx_news.settings.sitemap.detailPid}
+
+							## enable to use date in url
+							# hrDate = 0
+							# hrDate {
+							# 	day = j
+							# 	month = n
+							# 	year = Y
+							# }
+
+							fieldToParameterMap {
+								uid = tx_news_pi1[news]
+							}
+
+							additionalGetParameters {
+								tx_news_pi1.controller = News
+								tx_news_pi1.action = detail
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

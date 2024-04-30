@@ -31,6 +31,7 @@ use GeorgRinger\News\Utility\TypoScript;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
+use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -88,7 +89,7 @@ class NewsController extends NewsBaseController
     /**
      * Initializes the current action
      */
-    public function initializeAction()
+    protected function initializeAction()
     {
         GeneralUtility::makeInstance(ClassCacheManager::class)->reBuildSimple();
         $this->buildSettings();
@@ -199,7 +200,9 @@ class NewsController extends NewsBaseController
             }
             if ($propertyValue !== '' || $this->settings['allowEmptyStringsForOverwriteDemand']) {
                 if (in_array($propertyName, ['categories'], true)) {
-                    $propertyValue = GeneralUtility::trimExplode(',', $propertyValue, true);
+                    if (!is_array($propertyValue)) {
+                        $propertyValue = GeneralUtility::trimExplode(',', $propertyValue, true);
+                    }
                 }
                 ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
             }
@@ -644,7 +647,7 @@ class NewsController extends NewsBaseController
             $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
             $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
             foreach ($stdWrapProperties as $key) {
-                if (is_array($typoScriptArray[$key . '.'])) {
+                if (is_array($typoScriptArray[$key . '.'] ?? null)) {
                     $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
                         $typoScriptArray[$key] ?? '',
                         $typoScriptArray[$key . '.']
@@ -685,12 +688,14 @@ class NewsController extends NewsBaseController
      * @param $paginationClass
      * @param int $maximumNumberOfLinks
      * @param $paginator
-     * @return \#o#Э#A#M#C\GeorgRinger\News\Controller\NewsController.getPagination.0|NumberedPagination|mixed|\Psr\Log\LoggerAwareInterface|string|SimplePagination|\TYPO3\CMS\Core\SingletonInterface
+     * @return \GeorgRinger\News\Controller\NewsController.getPagination.0|NumberedPagination|mixed|\Psr\Log\LoggerAwareInterface|string|SimplePagination|\TYPO3\CMS\Core\SingletonInterface
      */
     protected function getPagination($paginationClass, int $maximumNumberOfLinks, $paginator)
     {
         if (class_exists(NumberedPagination::class) && $paginationClass === NumberedPagination::class && $maximumNumberOfLinks) {
             $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
+        } elseif (class_exists(SlidingWindowPagination::class) && $paginationClass === SlidingWindowPagination::class && $maximumNumberOfLinks) {
+            $pagination = GeneralUtility::makeInstance(SlidingWindowPagination::class, $paginator, $maximumNumberOfLinks);
         } elseif (class_exists($paginationClass)) {
             $pagination = GeneralUtility::makeInstance($paginationClass, $paginator);
         } else {

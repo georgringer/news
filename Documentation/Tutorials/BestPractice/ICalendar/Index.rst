@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _icalendar:
 
 ==============
@@ -31,7 +29,7 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
 
 .. code-block:: typoscript
 
-    [globalVar = TSFE:type = 9819]
+    [getTSFE() && getTSFE().type == 9819]
     config {
        disableAllHeaderCode = 1
        xhtml_cleaning = none
@@ -47,13 +45,8 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
     pageNewsICalendar = PAGE
     pageNewsICalendar {
        typeNum = 9819
-       10 < tt_content.list.20.news_pi1
+       10 < tt_content.news_pi1.20
        10 {
-          switchableControllerActions {
-             News {
-                1 = list
-             }
-          }
           settings < plugin.tx_news.settings
           settings {
              categories = 9
@@ -67,7 +60,7 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
           }
        }
     }
-    [global]
+    [END]
 
 This example will show all news records which don't have the category with the uid 9 assigned and are saved on the page with uid 24.
 
@@ -128,7 +121,7 @@ The TypoScript code looks like this.
 
 .. code-block:: typoscript
 
-    [globalVar = TSFE:type = 9819]
+    [getTSFE() && getTSFE().type == 9819]
        lib.stdheader >
        tt_content.stdWrap.innerWrap >
        tt_content.stdWrap.wrap >
@@ -138,7 +131,7 @@ The TypoScript code looks like this.
        pageNewsICalendar = PAGE
        pageNewsICalendar.typeNum = 9819
        pageNewsICalendar.10 < styles.content.get
-       pageNewsICalendar.10.select.where = colPos=0 AND list_type = "news_pi1"
+       pageNewsICalendar.10.select.where = colPos=0 AND CType = "news_pi1"
        pageNewsICalendar.10.select {
           orderBy = sorting ASC
           max = 1
@@ -167,7 +160,7 @@ The TypoScript code looks like this.
 
         # delete content wrap
         tt_content.stdWrap >
-    [global]
+    [END]
 
 **Some explanations**
 The page object ``pageNewsICalendar`` will render only those content elements which are in colPos 0 and are a news plugin. Therefore all other content elements won't be rendered in the iCalendar feed.
@@ -186,6 +179,14 @@ To be able to render a link in the header section of the normal page which point
         <link rel="alternate" type="text/calendar" title="iCalendar 2.0" href="{f:uri.page(additionalParams:{type:9819})}" />
     </n:headerData>
 
+Add a link in fluid
+"""""""""""""""""""
+
+Use the following snippet to create a link to the detail view
+
+.. code-block:: html
+
+   <n:link newsItem="{newsItem}" configuration="{additionalParams:'&type=9819'}">ical</n:link>
 
 Change the iCalendar feed link with routing
 """""""""""""""""""""""""""""""""""""""""""
@@ -197,10 +198,10 @@ about :ref:`rewriting URLs for news <routing>`.
 
    routeEnhancers:
      News:
-       PageTypeSuffix:
-         type: PageType
-         map:
-           'feed.xml': 9818
-           'calendar.ical': 9819
+     PageTypeSuffix:
+       type: PageType
+       map:
+         'feed.xml': 9818
+         'calendar.ical': 9819
 
 This will change the URL to :code:`/calendar.ical`.

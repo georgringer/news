@@ -111,7 +111,7 @@ class LinkViewHelperTest extends BaseTestCase
      */
     public function getDetailPidFromCategoriesReturnsCorrectValue(): void
     {
-        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
+        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, null);
 
         $newsItem = new \GeorgRinger\News\Domain\Model\News();
 
@@ -140,14 +140,14 @@ class LinkViewHelperTest extends BaseTestCase
      */
     public function getDetailPidFromDefaultDetailPidReturnsCorrectValue($settings, $expected): void
     {
-        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
+        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, null);
 
         $result = $viewHelper->_call('getDetailPidFromDefaultDetailPid', $settings, null);
         self::assertEquals($expected, $result);
     }
 
     /**
-     * @return (int|null|string[])[][]
+     * @return (int|string[]|null)[][]
      *
      * @psalm-return array{0: array{0: null, 1: int}, 1: array{0: array<empty, empty>, 1: int}, 2: array{0: array{defaultDetailPid: string}, 1: int}, 3: array{0: array{defaultDetailPid: string}, 1: int}}
      */
@@ -168,7 +168,7 @@ class LinkViewHelperTest extends BaseTestCase
      */
     public function getDetailPidFromFlexformReturnsCorrectValue($settings, $expected): void
     {
-        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
+        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, null);
 
         $result = $viewHelper->_call('getDetailPidFromFlexform', $settings, null);
         self::assertEquals($expected, $result);
@@ -189,8 +189,8 @@ class LinkViewHelperTest extends BaseTestCase
      */
     public function noNewsReturnsChildren(): void
     {
-        $settingService = $this->getAccessibleMock(SettingsService::class, ['getConfiguration', 'getSettings']);
-        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['renderChildren', 'getSettings']);
+        $settingService = $this->getAccessibleMock(SettingsService::class);
+        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['renderChildren']);
         $viewHelper->_set('pluginSettingsService', $settingService);
         $viewHelper->setArguments([
             'newsItem' => null,

@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _general_tsconfig_examples:
 
 ======================
@@ -77,7 +75,7 @@ To do this, add the following code to your TsConfig:
       CType {
          # Remove all CTypes from allowed additional news content field 'content_elements'
          removeItems = *
-      
+
          # allow
          keepItems = mask_news_text, mask_news_video
       }

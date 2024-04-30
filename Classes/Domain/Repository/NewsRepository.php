@@ -194,7 +194,7 @@ class NewsRepository extends AbstractDemandedRepository
                     $end = mktime(23, 59, 59, $demand->getMonth(), $demand->getDay(), $demand->getYear());
                 } else {
                     $begin = mktime(0, 0, 0, $demand->getMonth(), 1, $demand->getYear());
-                    $end = mktime(23, 59, 59, ($demand->getMonth() + 1), 0, $demand->getYear());
+                    $end = mktime(23, 59, 59, $demand->getMonth() + 1, 0, $demand->getYear());
                 }
             } else {
                 $begin = mktime(0, 0, 0, 1, 1, $demand->getYear());
@@ -307,7 +307,7 @@ class NewsRepository extends AbstractDemandedRepository
      * Find first news by import and source id
      *
      * @param string $importSource import source
-     * @param int $importId import id
+     * @param string $importId import id
      * @param bool $asArray return result as array
      * @return \GeorgRinger\News\Domain\Model\News|array
      */
@@ -423,14 +423,12 @@ from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
             }
         }
         // Add totals
-        if (is_array($data['single'])) {
-            foreach ($data['single'] as $year => $months) {
-                $countOfYear = 0;
-                foreach ($months as $month) {
-                    $countOfYear += $month;
-                }
-                $data['total'][$year] = $countOfYear;
+        foreach ($data['single'] ?? [] as $year => $months) {
+            $countOfYear = 0;
+            foreach ($months as $month) {
+                $countOfYear += $month;
             }
+            $data['total'][$year] = $countOfYear;
         }
 
         return $data;

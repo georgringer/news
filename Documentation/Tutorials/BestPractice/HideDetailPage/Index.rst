@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _hideDetailPage:
 
 =======================
@@ -36,14 +34,8 @@ The following TypoScript will make this possible:
         lib.dynamicContent {
             userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
             extensionName = News
-            pluginName = Pi1
+            pluginName = NewsDetail
             vendorName = GeorgRinger
-
-            switchableControllerActions {
-                News {
-                    1 = detail
-                }
-            }
 
             settings < plugin.tx_news.settings
             settings {

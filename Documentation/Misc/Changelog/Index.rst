@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. the changelog is displayed in the pagetree in Reference/Changelog
 .. there are external links to the github files however.
 
@@ -19,6 +17,13 @@ List of versions
    :titlesonly:
    :glob:
 
+   11-4-1
+   11-4-0
+   11-3-0
+   11-2-0
+   11-1-2
+   11-1-1
+   11-1-0
    11-0-0
    10-0-3
    10-0-2

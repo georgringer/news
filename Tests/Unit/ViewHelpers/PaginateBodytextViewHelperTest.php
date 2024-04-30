@@ -26,7 +26,7 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      */
     public function givenTagIsAClosingTag($tag, $expectedResult): void
     {
-        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
+        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, null);
         $result = $mockTemplateParser->_call('isClosingTag', $tag);
         self::assertEquals($expectedResult, $result);
     }
@@ -57,7 +57,7 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      */
     public function givenTagIsSelfClosingTag($tag, $expectedResult): void
     {
-        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
+        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, null);
         $result = $mockTemplateParser->_call('isSelfClosingTag', $tag);
         self::assertEquals($expectedResult, $result);
     }
@@ -88,7 +88,7 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      */
     public function givenTagIsAnOpeningTag($tag, $expectedResult): void
     {
-        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
+        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, null);
         $result = $mockTemplateParser->_call('isOpeningTag', $tag);
         self::assertEquals($expectedResult, $result);
     }
@@ -117,7 +117,7 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      */
     public function extractTagReturnsCorrectOne($tag, $expectedResult): void
     {
-        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
+        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, null);
         $result = $mockTemplateParser->_call('extractTag', $tag);
         self::assertEquals($expectedResult, $result, sprintf('"%s" (%s) : "%s" (%s)', $tag, strlen($tag), $expectedResult, strlen($expectedResult)));
     }

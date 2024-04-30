@@ -34,7 +34,7 @@ class NewsRepositoryTest extends BaseTestCase
     {
         $this->mockedNewsRepository = $this->getAccessibleMock(NewsRepository::class, ['getQueryBuilder'], [], '', false);
 
-        $mockedQueryBuilder = $this->getAccessibleMock(QueryBuilder::class, ['escapeStrForLike', 'createNamedParameter'], [], '', false);
+        $mockedQueryBuilder = $this->getAccessibleMock(QueryBuilder::class, ['createNamedParameter'], [], '', false);
         $this->mockedNewsRepository->expects(self::any())->method('getQueryBuilder')->withAnyParameters()->willReturn($mockedQueryBuilder);
     }
 
@@ -54,7 +54,7 @@ class NewsRepositoryTest extends BaseTestCase
 
         $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
-//
+    //
     /**
      * @test
      */
@@ -71,7 +71,7 @@ class NewsRepositoryTest extends BaseTestCase
 
         $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
-//
+    //
     /**
      * @test
      */
@@ -89,7 +89,7 @@ class NewsRepositoryTest extends BaseTestCase
 
         $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
-//
+    //
     /**
      * @test
      */

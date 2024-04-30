@@ -51,6 +51,13 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     protected $showinpreview = 0;
 
     /**
+     * This empty constructor is necessary so class is fully
+     * extensible by other extensions that might want to define
+     * an own __construct() method
+     */
+    public function __construct() {}
+
+    /**
      * Set File uid
      *
      * @param int $fileUid

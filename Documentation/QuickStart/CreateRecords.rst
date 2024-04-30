@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _quickContent:
 .. _howToStart:
 
@@ -51,11 +49,12 @@ created.
 
 .. include:: /Images/AutomaticScreenshots/AddNewsInAdminModule.rst.txt
 
-#. Go to the module :guilabel:`Web > News administration`
+#. Go to the module :guilabel:`Web > List`
 
 #. Go to the "News Storage" Folder that you created in the first step.
 
-#. Use the icon in the topbar :guilabel:`Create new news record`.
+#. Use the icon in the topbar :guilabel:`Create new record` and select the
+   entry :guilabel:`News`.
 
 #. Fill out all desired fields and click :guilabel:`Save`.
 
@@ -63,6 +62,9 @@ More information about the records can be found here:
 :ref:`news record <recordNews>`, :ref:`category record <recordCategory>`,
 :ref:`tag record <recordTag>`.
 
+.. tip::
+
+   The extension :ref:`News Administration <newsAdministration>` can used as alternative to create and administrate news records but is associated with a small fee.
 
 .. _howToStartAddPlugin:
 

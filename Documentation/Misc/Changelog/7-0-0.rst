@@ -1,11 +1,7 @@
-.. include:: /Includes.rst.txt
-
 7.0.0 - 2018/26/04
 ==================
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 
@@ -33,7 +29,10 @@ Since a long time, there has been a field called `path_segment` which has been w
 
 **Now** this field has been moved right below the title and is automatically filled by the title. If the title changes, the slug field will stay the same to keep the URL in the frontend.
 
-|img-release700-slug-field|
+.. image:: /Images/HistoricScreenshots/Changelog/7-0-0/slug-field.png
+   :border: 0
+   :align: left
+   :name: Slug field
 
 .. Important::
 
@@ -99,13 +98,19 @@ The well known checkbox `Show in list views` inside every FAL relation is change
 
     This feature must be activated inside the extension manager settings: `records.advancedMediaPreview`.
 
-|img-release700-filereference-select|
+.. image:: /Images/HistoricScreenshots/Changelog/7-0-0/filereference-select.png
+   :border: 0
+   :align: left
+   :name: Improved sysfile reference select
 
 Donation module
 ^^^^^^^^^^^^^^^
 A new view has been added to the administration module to show how you can support the further development of this extension.
 
-|img-donation-module|
+.. image:: /Images/HistoricScreenshots/Changelog/7-0-0/donation-module.png
+   :border: 0
+   :align: left
+   :name: Donation module
 
 .. tip::
 

@@ -9,7 +9,7 @@
 -->
 <phpunit
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
     backupGlobals="true"
     bootstrap="FunctionalTestsBootstrap.php"
     cacheResult="false"
@@ -30,10 +30,6 @@
 >
     <testsuites>
         <testsuite name="Functional tests">
-            <!--
-                This path either needs an adaption in extensions, or an extension's
-                test location path needs to be given to phpunit.
-            -->
             <directory>../../Tests/Functional/</directory>
         </testsuite>
     </testsuites>

@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _templatesMultipleCats:
 
 ==================================
@@ -22,8 +20,6 @@ The default category template `Category/List` allows only filtering by a single 
     <f:section name="content">
         <f:if condition="{categories}">
             <f:then>
-
-
                 <f:render section="categoryTree" arguments="{categories:categories,overwriteDemand:overwriteDemand}" />
             </f:then>
             <f:else>
@@ -37,7 +33,7 @@ The default category template `Category/List` allows only filtering by a single 
             <f:for each="{categories}" as="category">
                 <f:variable name="categoryUid">{category.item.uid}</f:variable>
                 <f:if condition="{category.item.sysLanguageUid} > 0">
-                    <f:variable name="categoryUid"{category.item.l10nParent}</f:variable>
+                    <f:variable name="categoryUid">{category.item.l10nParent}</f:variable>
                 </f:if>
                 <li>
                     <n:multiCategoryLink.isCategoryActive list="{overwriteDemand.categories}" item="{categoryUid}">
