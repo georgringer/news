@@ -35,6 +35,21 @@ PageTsConfig is used to configure the link browser in the backend.
    }
 
 
+Configuration for redirects module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To display the button for selecting the news entries in the redirects module, the entry for the ``allowedTypes`` must be extended in TCA.
+This can be done, for example, in ``TCA/Overrides`` with the following code:
+
+.. code-block:: php
+    :caption: EXT:my_sitepackage/Configuration/TCA/Overrides/sys_redirects.php
+
+    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('redirects') && !in_array('tx_news', $GLOBALS['TCA']['sys_redirect']['columns']['target']['config']['allowedTypes'])) {
+        $GLOBALS['TCA']['sys_redirect']['columns']['target']['config']['allowedTypes'][] = 'tx_news';
+    }
+
+
+
 Configuration for the frontend
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
