@@ -16,12 +16,14 @@ Configuration for the backend
 
 PageTsConfig is used to configure the link browser in the backend.
 
+Also have a look at TYPO3 documentation about the ``RecordLinkHandler`` at https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/ApiOverview/LinkHandling/Linkhandler/RecordLinkHandler.html#recordlinkhandler
+
 .. code-block:: typoscript
    :caption: EXT:my_sitepackage/Configuration/page.tsconfig
 
    # tx_news is an identifier, don't change it after links have been created
    TCEMAIN.linkHandler.tx_news {
-      handler = TYPO3\CMS\Recordlist\LinkHandler\RecordLinkHandler
+      handler = TYPO3\CMS\Backend\LinkHandler\RecordLinkHandler
       # A translatable label can be used with LLL:EXT:theme/locallang.xml:label
       label = News
       configuration {
