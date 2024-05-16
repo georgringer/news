@@ -62,9 +62,9 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
         }
 
         $allArguments = (array)$arguments['additionalParams'];
-        $categoryId = $arguments['item'];
+        $categoryId = $arguments['item'] ?? 0;
 
-        $categoryList = $arguments['list'];
+        $categoryList = $arguments['list'] ?? '';
         if ($arguments['mode'] === 'add') {
             if (!GeneralUtility::inList($categoryList, $categoryId)) {
                 $categoryList .= ',' . $categoryId;
