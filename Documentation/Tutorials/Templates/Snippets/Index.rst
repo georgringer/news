@@ -56,6 +56,36 @@ Besides the ViewHelper :html:`<n:link />` you can also use the ViewHelpers of Fl
    <f:link.page pageUid="13" additionalParams="{tx_news_pi1: {controller: 'News',action: 'detail', news:newsItem.uid}}">{newsItem.title}</f:link.page>
    <a href="{f:uri.page(pageUid:13,additionalParams:'{tx_news_pi1:{controller:\'News\',action:\'detail\',news:newsItem.uid}}')}">{newsItem.title}</a>
 
+Creating links in PHP
+^^^^^^^^^^^^^^^^^^^^^
+If you want to create links within PHP you can usw the following snippet as inspiration:
+
+.. code-block:: php
+
+    public function createLink(int $pageId, array $arguments = [], bool $absolute = false): string
+    {
+        $site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($pageUid);
+        return (string)$site->getRouter()->generateUri(
+            (string)$pageUid,
+            $arguments,
+            '',
+            ($absolute ? RouterInterface::ABSOLUTE_URL : RouterInterface::ABSOLUTE_PATH)
+        );
+    }
+
+
+    $pageId = 123;          // news detail page uid
+    $newsRecordUid = 1234;  // news record uid
+    $absolute = true;       // full url or relative url
+    $arguments = [
+        'tx_news_pi1' => [
+            'action' => 'detail',
+            'controller' => 'News',
+            'news' => $newsRecordId,
+        ],
+    ];
+    $newsDetailPageUrlForNews = createLink($pageId, $arguments, true);
+
 Set n:link target page in Fluid
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If the detail page should not be set in the plugin or by a category, it can also be set within the template:
