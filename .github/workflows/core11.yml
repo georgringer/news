@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Validate composer.json and composer.lock
-        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s composer -e 'validate'
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s composer -- validate --no-check-lock
 
       - name: Install testing system
         run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s ${{ matrix.composerInstall }}
