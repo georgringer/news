@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
+use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\ExcludeDisplayedNewsViewHelper;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
@@ -19,9 +20,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class ExcludeDisplayedNewsViewHelperTest extends BaseTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function newsIsAddedToExcludedList(): void
     {
         $viewHelper = new ExcludeDisplayedNewsViewHelper();

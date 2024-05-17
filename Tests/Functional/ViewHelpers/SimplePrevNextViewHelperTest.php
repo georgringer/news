@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Tests\Functional\ViewHelpers;
 
+use PHPUnit\Framework\Attributes\Test;
 use DateTime;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
@@ -42,9 +43,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.csv');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function allNeighboursCanBeFound(): void
     {
         $this->setDate(1396035186);
@@ -57,9 +56,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         self::assertEquals($exp, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function nextNeighbourCanBeFound(): void
     {
         $this->setDate(1395516730);
@@ -72,9 +69,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         self::assertEquals($exp, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function previousNeighbourCanBeFound(): void
     {
         $this->setDate(1396640035);

@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\Backend\FormDataProvider;
 
+use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Core\Context\Context;
@@ -17,9 +18,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class NewsRowInitializeNewTest extends BaseTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function dateTimeIsFilled(): void
     {
         $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, null, [], '', false);
@@ -45,9 +44,7 @@ class NewsRowInitializeNewTest extends BaseTestCase
         self::assertEquals($expected, $provider->addData($result));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function dateTimeIsNotFilledIfSetInExtensionManagerConfiguration(): void
     {
         $mockedProvider = $this->getAccessibleMock(NewsRowInitializeNew::class, null, [], '', false);
@@ -63,9 +60,7 @@ class NewsRowInitializeNewTest extends BaseTestCase
         self::assertSame($result, $mockedProvider->addData($result));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function archiveTimeIsFilled(): void
     {
         $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, null, [], '', false);

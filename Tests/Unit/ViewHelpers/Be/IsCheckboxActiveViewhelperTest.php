@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Be;
 
+use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\ViewHelpers\Be\IsCheckboxActiveViewHelper;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -19,9 +20,7 @@ class IsCheckboxActiveViewhelperTest extends BaseTestCase
 {
     public const OK_RESULT = 'checked="checked"';
 
-    /**
-     * @test
-     */
+    #[Test]
     public function activeCheckboxReturnsCorrectValue(): void
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
@@ -34,9 +33,7 @@ class IsCheckboxActiveViewhelperTest extends BaseTestCase
         self::assertEquals(self::OK_RESULT, $actualResult);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function nonActiveCheckboxReturnsNothing(): void
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
@@ -49,9 +46,7 @@ class IsCheckboxActiveViewhelperTest extends BaseTestCase
         self::assertEquals('', $actualResult);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function noCategoriesReturnNothing(): void
     {
         $viewHelper = new IsCheckboxActiveViewHelper();

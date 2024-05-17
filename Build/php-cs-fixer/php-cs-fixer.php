@@ -68,6 +68,9 @@ $config->setFinder(
         'phpdoc_trim' => true,
         'phpdoc_types' => true,
         'phpdoc_types_order' => ['null_adjustment' => 'always_last', 'sort_algorithm' => 'none'],
+        'php_unit_data_provider_static' => [
+            'force' => true,
+        ],
         'return_type_declaration' => ['space_before' => 'none'],
         'single_quote' => true,
         'single_line_comment_style' => ['comment_types' => ['hash']],

@@ -9,6 +9,8 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
+use PHPUnit\Framework\Attributes\Test;
+use DateTime;
 use GeorgRinger\News\Domain\Model\Tag;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -30,9 +32,8 @@ class TagTest extends BaseTestCase
 
     /**
      * Test if title can be set
-     *
-     * @test
      */
+    #[Test]
     public function titleCanBeSet(): void
     {
         $title = 'Tag title';
@@ -42,24 +43,22 @@ class TagTest extends BaseTestCase
 
     /**
      * Test if crdate can be set
-     *
-     * @test
      */
+    #[Test]
     public function crdateCanBeSet(): void
     {
-        $time = new \DateTime('now');
+        $time = new DateTime('now');
         $this->tagDomainModelInstance->setCrdate($time);
         self::assertEquals($time, $this->tagDomainModelInstance->getCrdate());
     }
 
     /**
      * Test if tstamp can be set
-     *
-     * @test
      */
+    #[Test]
     public function tstampCanBeSet(): void
     {
-        $time = new \DateTime('now');
+        $time = new DateTime('now');
         $this->tagDomainModelInstance->setTstamp($time);
         self::assertEquals($time, $this->tagDomainModelInstance->getTstamp());
     }

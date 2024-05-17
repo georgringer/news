@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
 
+use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\ViewHelpers\Format\NothingViewHelper;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -19,9 +20,8 @@ class NothingViewHelperTest extends BaseTestCase
 {
     /**
      * Test of nothing viewHelper
-     *
-     * @test
      */
+    #[Test]
     public function noResultExpected(): void
     {
         $viewHelper = $this->getAccessibleMock(NothingViewHelper::class, ['renderChildren']);

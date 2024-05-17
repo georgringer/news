@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\Controller;
 
+use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\Controller\TagController;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\TagRepository;
@@ -20,14 +21,16 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 class TagControllerTest extends UnitTestCase
 {
+    public $tagRepository;
+
     /**
-     * @test
      * @todo Eventually migrate this to a functional test instead, remove it or get it working again.
      */
     public function listActionFindsDemandedTagsByDemandFromSettings(): void
     {
         self::markTestSkipped('May not be relevant anymore. Reason: failing because of using DI');
         $tagRepositoryMock = $this->getMockBuilder(TagRepository::class)->disableOriginalConstructor()->getMock();
+
         $demand = new NewsDemand();
         $settings = ['list' => 'foo', 'orderBy' => 'datetime'];
 

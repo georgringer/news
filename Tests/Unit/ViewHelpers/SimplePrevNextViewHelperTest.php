@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
+use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -26,9 +27,7 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
         $this->viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getRawRecord']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function wrongIdWillReturnNullForObject(): void
     {
         $this->viewHelper->expects(self::any())->method('getRawRecord')->withAnyParameters()->willReturn(null);
@@ -37,9 +36,7 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
         self::assertNull($out);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function queryResultWillReturnCorrectOutputForAllLinks(): void
     {
         $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
@@ -54,9 +51,7 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
         self::assertEquals($out, $exp);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function queryResultWillReturnCorrectOutputFor2Links(): void
     {
         $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
@@ -70,9 +65,7 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
         self::assertEquals($out, $exp);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function queryResultWillReturnCorrectOutputFor1Link(): void
     {
         $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);

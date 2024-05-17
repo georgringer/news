@@ -9,6 +9,8 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -22,11 +24,9 @@ class CategoryRepositoryTest extends BaseTestCase
      *
      * @param array $expectedResult
      * @param array $given
-     *
-     * @test
-     *
-     * @dataProvider categoryIdsAreCorrectlyReplacedDataProvider
      */
+    #[DataProvider('categoryIdsAreCorrectlyReplacedDataProvider')]
+    #[Test]
     public function categoryIdsAreCorrectlyReplaced($expectedResult, $given): void
     {
         $mockTemplateParser = $this->getAccessibleMock(CategoryRepository::class, null, [], '', false);
@@ -39,7 +39,7 @@ class CategoryRepositoryTest extends BaseTestCase
     /**
      * Data provider
      */
-    public function categoryIdsAreCorrectlyReplacedDataProvider(): array
+    public static function categoryIdsAreCorrectlyReplacedDataProvider(): array
     {
         return [
             'emptyRows' => [

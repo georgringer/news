@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\Hooks;
 
+use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\Hooks\PluginPreviewRenderer;
 use GeorgRinger\News\Utility\TemplateLayout;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -34,12 +35,10 @@ class PluginPreviewRendererTest extends BaseTestCase
         $GLOBALS['LANG'] = $languageService;
 
         $this->pageLayoutView = $this->getAccessibleMock(PluginPreviewRenderer::class, null, [], '', false);
-        $this->pageLayoutView->_set('databaseConnection', $this->getMockBuilder('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection')->setMethods(['exec_SELECTquery', 'exec_SELECTgetRows'])->getMock());
+        $this->pageLayoutView->_set('databaseConnection', $this->getMockBuilder('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection')->getMock());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getArchiveSettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -50,9 +49,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDetailPidSettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -63,9 +60,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTagRestrictionSettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -76,9 +71,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getListPidSettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -89,9 +82,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOrderBySettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -102,9 +93,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOrderDirectionSettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -117,9 +106,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         self::assertTrue(strlen($out) > 1);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTopNewsFirstSettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -132,9 +119,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         self::assertTrue(strlen($out) > 1);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOffsetLimitSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -159,9 +144,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         self::assertCount(3, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDateMenuSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -171,9 +154,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTimeRestrictionSettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -188,9 +169,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         self::assertCount(2, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTemplateLayoutSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -206,9 +185,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOverrideDemandSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
