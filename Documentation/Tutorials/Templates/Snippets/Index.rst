@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _templatesSnippets:
 
 =================
@@ -8,9 +6,7 @@ Assorted snippets
 
 This section contains snippets making EXT:news more awesome which might be useful for your projects as well.
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 1
 
@@ -43,9 +39,9 @@ A nice solution would be to use this JavaScript jQuery snippet:
 .. code-block:: javascript
 
    if ($(".news-backlink-wrap a").length > 0) {
-      if(document.referrer.indexOf(window.location.hostname) != -1) {
-         $(".news-backlink-wrap a").attr("href","javascript:history.back();");
-      }
+       if(document.referrer.indexOf(window.location.hostname) != -1) {
+           $(".news-backlink-wrap a").attr("href","javascript:history.back();");
+       }
    }
 
 Creating links with Fluid
@@ -78,9 +74,9 @@ If you want to show not only the title of a single category which is related to 
 .. code-block:: html
 
    <f:if condition="{category:newsItem.firstCategory}">
-      <ul class="category-breadcrumb">
-         <f:render section="categoryBreadcrumb" arguments="{category:newsItem.firstCategory}" />
-      </ul>
+       <ul class="category-breadcrumb">
+           <f:render section="categoryBreadcrumb" arguments="{category:newsItem.firstCategory}" />
+       </ul>
    </f:if>
 
 and
@@ -88,12 +84,12 @@ and
 .. code-block:: html
 
    <f:section name="categoryBreadcrumb">
-      <f:if condition="{category}">
-         <f:if condition="{category.parentCategory}">
-            <f:render section="categoryBreadcrumb" arguments="{category:category.parentCategory}" />
-         </f:if>
-         <li>{category.title}</li>
-      </f:if>
+       <f:if condition="{category}">
+           <f:if condition="{category.parentCategory}">
+               <f:render section="categoryBreadcrumb" arguments="{category:category.parentCategory}" />
+           </f:if>
+           <li>{category.title}</li>
+       </f:if>
    </f:section>
 
 Use current content element in the template
@@ -111,9 +107,9 @@ If you want to sort the tags of a news item, you can use a custom ViewHelper or 
 .. code-block:: html
 
    <ul>
-      <f:for each="{newsItem.tags->v:iterator.sort(order: 'ASC', sortBy: 'title')}" as="tag">
-         <li>{tag.title}</li>
-      </f:for>
+       <f:for each="{newsItem.tags->v:iterator.sort(order: 'ASC', sortBy: 'title')}" as="tag">
+           <li>{tag.title}</li>
+       </f:for>
    </ul>
 
 
@@ -127,12 +123,37 @@ The provided example will wrap 3 items into a div with the class "row".
 .. code-block:: html
 
    <f:for each="{news -> n:iterator.chunk(count: 3)}" as="col" iteration="cycle">
-      <div class="row">
-         <f:for each="{col}" as="newsItem">
-            <div class="col-md-4">
-               <f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings}"/>
-            </div>
-         </f:for>
-      </div>
+       <div class="row">
+           <f:for each="{col}" as="newsItem">
+               <div class="col-md-4">
+                   <f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings}"/>
+               </div>
+           </f:for>
+       </div>
    </f:for>
 
+Override pagination labels
+--------------------------
+To override the labels used in the pagination, you can use the following TypoScript snippet:
+
+.. code-block:: typoscript
+
+   plugin.tx_fluid {
+       _LOCAL_LANG {
+           // default for default = english language
+           default {
+               widget.pagination.next = my custom next
+           }
+           de {
+               widget.pagination.next = nächste Seite
+           }
+       }
+   }
+
+As an alternative it is also possible to adopt the partial `List/Pagination.html` and use XLF files of your own extension.
+
+.. code-block:: html
+
+   <a href="...">
+      {f:translate(key:'widget.pagination.next', extensionName: 'yourSitePackage')}
+   </a>

@@ -1,0 +1,11 @@
+{namespace n=GeorgRinger\News\ViewHelpers}BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//TYPO3/NONSGML News system (news)//EN
+<f:if condition="{newsItem}">BEGIN:VEVENT
+UID:news-{newsItem.uid}@{settings.domain}
+DTSTAMP:<f:format.date format="%Y%m%dT%H%M%SZ"><f:variable name="tzoffset">{f:format.date(date: newsItem.tstamp, format: 'Z')}</f:variable>{newsItem.tstamp.timestamp - tzoffset}</f:format.date>
+DTSTART:<f:format.date format="%Y%m%dT%H%M%S%z">{newsItem.datetime}</f:format.date>
+DTEND:<f:format.date format="%Y%m%dT%H%M%S%z"><f:if condition="{newsItem.archive}"><f:then>{newsItem.archive}</f:then><f:else>{newsItem.datetime}</f:else></f:if></f:format.date>
+SUMMARY:{newsItem.title -> f:format.htmlspecialchars()}
+END:VEVENT
+</f:if>END:VCALENDAR

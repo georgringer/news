@@ -41,18 +41,11 @@ call_user_func(static function () {
             ],
         ];
 
-        // internal type
-        foreach (['sys_category' => ['single_pid', 'shortcut'], 'tx_news_domain_model_news' => ['l10n_parent', 'related_from', 'related']] as $table => $fields) {
-            foreach ($fields as $field) {
-                unset($GLOBALS['TCA'][$table]['columns'][$field]['config']['internal_type']);
-            }
-        }
-
         // required fields
         foreach (['tx_news_domain_model_link' => ['uri'], 'tx_news_domain_model_news' => ['title', 'externalurl'], 'tx_news_domain_model_tag' => ['title']] as $table => $fields) {
             foreach ($fields as $field) {
                 $GLOBALS['TCA'][$table]['columns'][$field]['config']['required'] = true;
-                $GLOBALS['TCA'][$table]['columns'][$field]['config']['eval'] = str_replace('required', '', $GLOBALS['TCA'][$table]['columns'][$field]['config']['required']);
+                $GLOBALS['TCA'][$table]['columns'][$field]['config']['eval'] = str_replace('required', '', $GLOBALS['TCA'][$table]['columns'][$field]['config']['eval'] ?? '');
             }
         }
     }

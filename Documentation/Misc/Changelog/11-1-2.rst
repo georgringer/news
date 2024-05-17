@@ -1,0 +1,24 @@
+11.1.2 - 14th July 2023
+=======================
+
+
+.. contents::
+        :local:
+        :depth: 3
+
+Breaking changes
+----------------
+No breaking changes!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2023-07-09 [TASK] Hide again content elements in list module (#2140) (Commit ec05e72a by Georg Ringer)
+   2023-07-09 [TASK] Avoid usage of GU::_GET() (Commit 58a70b08 by Georg Ringer)
+   2023-07-08 [TASK] Remove constructor's return type (Commit 9706e0d8 by Georg Ringer)
+   2023-07-08 [BUGFIX] RSS example: News Plugins now use the "Generic" template (#2137) (Commit 18fc36a8 by ghermens)
+   2023-07-07 [FEATURE] Add custom static language mapper (Commit ccf922f3 by Georg Ringer)
+   2023-06-27 [Bugfix] Allow media files for news again (#2133) (Commit b4978880 by Timo Webler)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

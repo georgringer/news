@@ -1,11 +1,7 @@
-.. include:: /Includes.rst.txt
-
 9.1.1 - 20th December 2021
 ==========================
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 

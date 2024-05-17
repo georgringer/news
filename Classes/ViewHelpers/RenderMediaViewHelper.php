@@ -149,7 +149,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
                 $media_tag = $fileRenderer->render($media, 0, 0);
 
                 // check if media tag needs to be wrapped in div, depends on type of media file
-                $wrapClass= '';
+                $wrapClass = '';
                 if ($media->getType() === File::FILETYPE_VIDEO) {
                     $wrapClass = $this->videoClass;
                 } elseif ($media->getType() === File::FILETYPE_AUDIO) {

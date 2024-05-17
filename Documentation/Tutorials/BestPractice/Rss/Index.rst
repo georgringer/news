@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _rss:
 
 ========
@@ -126,7 +124,7 @@ The TypoScript code looks like this.
 
 .. code-block:: typoscript
 
-   [globalVar = TSFE:type = {$plugin.tx_news.rss.channel.typeNum}]
+   [getTSFE() && getTSFE().type == {$plugin.tx_news.rss.channel.typeNum}]
       lib.stdheader >
       tt_content.stdWrap.innerWrap >
       tt_content.stdWrap.wrap >
@@ -166,7 +164,7 @@ The TypoScript code looks like this.
 
       # set the format
       plugin.tx_news.settings.format = xml
-   [global]
+   [END]
 
 **Some explanations**
 The page object pageNewsRSS will render only those content elements which are in colPos 0 and are a news plugin. Therefore all other content elements won't be rendered in the RSS feed.
@@ -192,6 +190,7 @@ Don't forget to configure the RSS feed properly as the sample template won't ful
       copyright = TYPO3 News
       category =
       generator = TYPO3 EXT:news
+      ttl =
    }
 
 

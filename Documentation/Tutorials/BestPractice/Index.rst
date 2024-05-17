@@ -1,184 +1,75 @@
-.. include:: /Includes.rst.txt
-
 .. _tutorialsBestPractice:
 
 =============
 Best practice
 =============
 
-.. container:: row m-0 p-0
+.. card-grid::
+   :columns: 1
+   :columns-md: 2
+   :gap: 4
+   :class: pb-4
+   :card-height: 100
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+   .. card:: :ref:`SEO <seo>`
 
-      .. container:: card px-0 h-100
+      Optimize EXT:news for display in search engines.
 
-         .. rst-class:: card-header h3
+   .. card:: :ref:`View Button <viewButton>`
 
-            .. rubric:: :ref:`SEO <seo>`
+      Display a :guilabel:`View` button on top of news records in the
+      backend.
 
-         .. container:: card-body
+   .. card:: :ref:`TSconfig code snippets <general_tsconfig_examples>`
 
-            Optimize EXT:news for display in search engines.
+      Code snippets to influence the behaviour of news record editing
+      in the backend and the news administration module.
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+   .. card:: :ref:`Routing <routing>`
 
-      .. container:: card px-0 h-100
+      Use routing to generate user readable urls to news, categories,
+      tags, paginized results etc
 
-         .. rst-class:: card-header h3
+   .. card:: :ref:`Breadcrumb menu <breadcrumb>`
 
-            .. rubric:: :ref:`View Button <viewButton>`
+      Display the current news title in the breadcrumb
 
-         .. container:: card-body
+   .. card:: :ref:`RSS <rss>`
 
-            Display a :guilabel:`View` button on top of news records in the
-            backend.
+      Provide a RSS feed promoting your news
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+   .. card:: :ref:`ICalendar feed <icalendar>`
 
-      .. container:: card px-0 h-100
+      Provide an iCalendar feed
 
-         .. rst-class:: card-header h3
+   .. card:: :ref:`LinkHandler <linkhandler>`
 
-            .. rubric:: :ref:`TSconfig code snippets <general_tsconfig_examples>`
+      Enable your editors to link to specific news from anywhere.
 
-         .. container:: card-body
+   .. card:: :ref:`Limit content elements <limitCE>`
 
-            Code snippets to influence the behaviour of news record editing
-            in the backend and the news administration module.
+      Configure available content element types in news records.
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+   .. card:: :ref:`Integrations with TypoScript <integrationTypoScript>`
 
-      .. container:: card px-0 h-100
+      Configure available content element types in news records.
 
-         .. rst-class:: card-header h3
+   .. card:: :ref:`Cache clearing <cacheClearing>`
 
-            .. rubric:: :ref:`Routing <routing>`
+      Automatic cache clearing
 
-         .. container:: card-body
+   .. card:: :ref:`Predefine values <predefineValues>`
 
-            Use routing to generate user readable urls to news, categories,
-            tags, paginized results etc
+      Learn how to set default values, influence the choices of select
+      fields etc.
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+   .. card:: :ref:`Hide detail page <hideDetailPage>`
 
-      .. container:: card px-0 h-100
+      Avoid the detail page in the url and reuse the list page.
 
-         .. rst-class:: card-header h3
+   .. card:: :ref:`Infinite scroll <infiniteScroll>`
 
-            .. rubric:: :ref:`Breadcrumb menu <breadcrumb>`
-
-         .. container:: card-body
-
-            Display the current news title in the breadcrumb
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`RSS <rss>`
-
-         .. container:: card-body
-
-            Provide a RSS feed promoting your news
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`ICalendar feed <icalendar>`
-
-         .. container:: card-body
-
-            Provide an iCalendar feed
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`LinkHandler <linkhandler>`
-
-         .. container:: card-body
-
-            Enable your editors to link to specific news from anywhere.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Limit content elements <limitCE>`
-
-         .. container:: card-body
-
-            Configure available content element types in news records.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Integrations with TypoScript <integrationTypoScript>`
-
-         .. container:: card-body
-
-            Configure available content element types in news records.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Cache clearing <cacheClearing>`
-
-         .. container:: card-body
-
-            Automatic cache clearing
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Predefine values <predefineValues>`
-
-         .. container:: card-body
-
-            Learn how to set default values, influence the choices of select
-            fields etc.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Hide detail page <hideDetailPage>`
-
-         .. container:: card-body
-
-            Avoid the detail page in the url and reuse the list page.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Infinite scroll <infiniteScroll>`
-
-         .. container:: card-body
-
-            Ajax based pagination, also known as infinite and endless scrolling
+      Ajax based pagination, also known as infinite and endless scrolling
 
 
 .. toctree::

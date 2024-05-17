@@ -17,12 +17,12 @@
                     {n:tag.count(tagUid:tag.uid) -> f:variable(name: 'tagUsageCount')}
                     <f:if condition="{tag.uid} == {overwriteDemand.tags}">
                         <f:then>
-                            <f:link.page title="{tag.title}" class="active btn btn-primary mb-1 me-1 " addQueryStringMethod="GET" addQueryString="1" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{tags: tag}}}">
+                            <f:link.page title="{tag.title}" class="active btn btn-primary mb-1 me-1 " addQueryString="1" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{tags: tag}}}">
                                 <i class="fas fa-tags me-1"></i> {tag.title} <span class="badge badge-light"><f:if condition="{tagUsageCount}">({tagUsageCount})</f:if></span>
                             </f:link.page>
                         </f:then>
                         <f:else>
-                            <f:link.page title="{tag.title}" class=" btn btn-primary mb-1 me-1 " addQueryStringMethod="GET" addQueryString="1" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{tags: tag}}}">
+                            <f:link.page title="{tag.title}" class=" btn btn-primary mb-1 me-1 " addQueryString="1" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{tags: tag}}}">
                                 <i class="fas fa-tags me-1"></i> {tag.title} <span class="badge badge-light"><f:if condition="{tagUsageCount}">({tagUsageCount})</f:if></span>
                             </f:link.page>
                         </f:else>

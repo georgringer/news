@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _viewHelpersTutorial:
 
 ===========
@@ -24,9 +22,9 @@ declaration at the beginning of the template. The namespace declaration for the 
 .. code-block:: html
 
    <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-        xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
-        xmlns:x="http://typo3.org/ns/Vendor/Someextension/ViewHelper"
-        data-namespace-typo3-fluid="true">
+       xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+       xmlns:x="http://typo3.org/ns/Vendor/Someextension/ViewHelper"
+       data-namespace-typo3-fluid="true">
    ...
    </html>
 

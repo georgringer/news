@@ -1,0 +1,71 @@
+11.1.0 - 23rd June 2023
+=======================
+
+
+.. contents::
+        :local:
+        :depth: 3
+
+Breaking changes
+----------------
+No breaking changes!
+
+Important features
+------------------
+
+Support of SlidingWindowPagination
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`SlidingWindowPagination` is a pagination implementation since TYPO3 v12 which is identical to the pagination brought to you by https://packagist.org/packages/georgringer/numbered-pagination.
+
+The new pagination is now also supported within EXT:news
+
+Support if in dataprocessors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For more flexibility (and avoidance of overhead/errors), the `if` property allows limiting DataProcessors to specific situations (e.g. the presence of a newId via `if.isTrue.data = GP:tx_news_pi1|news`).
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2023-06-23 [TASK] Enrich updated wizard for EXT:eventnews (Commit 9ecc702b by Georg Ringer)
+   2023-06-20 [CLEANUP] Fix code style issues (#2129) (Commit adf3e73f by Oliver Klee)
+   2023-06-20 [BUGFIX] Create proper canonical URLs for the single view (#2128) (Commit aacad5ca by Oliver Klee)
+   2023-06-16 [TASK] Improve hook of PluginPreviewRenderer (Commit 4a46f2b6 by Georg Ringer)
+   2023-06-01 [BUGFIX] Use splat-operator on logicalAnd() within TagRepository (#2121) (Commit 0c1d094c by Matthias Vossen)
+   2023-05-17 [TASK] Change TtContent Image and Media to lazy ObjectStorage (#2115) (Commit 875fa6ee by Thomas Lüder)
+   2023-05-15 Apply fixes from StyleCI (#2114) (Commit 9ad9ea75 by Georg Ringer)
+   2023-05-15 Spelling Fix (#2113) (Commit a8cbb27b by Moritz Hacker)
+   2023-05-10 [FEATURE] Support SlidingWindowPagination #2101 (Commit 18f633cc by Georg Ringer)
+   2023-05-10 [DOC] Improve extend flexform snippet (Commit eece3183 by Georg Ringer)
+   2023-05-10 [BUGFIX] sys_category -> images column TCA configs fixed (#2104) (Commit 406701a1 by Mohsin Khan)
+   2023-05-09 Update Index.rst (#2102) (Commit f6a93cb2 by Alexander Obert)
+   2023-05-09 [TASK] Ensure working `runTests.sh` and CI (#2105) (Commit 66d2a936 by Stefan Bürk)
+   2023-04-21 [DOC] Add missing closing bracket in example (#2091) (Commit 9c4ab109 by Myrmod)
+   2023-04-19 [BUGFIX] Split NewsAliasMapper into dedicated classes (#2088) (Commit 644326a0 by Markus Klein)
+   2023-04-18 [FEATURE] Support `if` in dataprocessors (#2075) (Commit c299bb8a by Julian Hofmann)
+   2023-04-18 [TASK] Fix CGL (#2079) (Commit 10a464e1 by Sybille Peters)
+   2023-04-17 [TASK] Use current standard for web-dir (#2078) (Commit 11a3634c by Sybille Peters)
+   2023-04-16 [TASK] Use core-testing-* images from ghcr.io (#2081) (Commit 26053a58 by Stefan Bürk)
+   2023-04-13 [BUGFIX] Show news detail in insert record ce (#2063) (Commit 071fc9df by buepro)
+   2023-04-13 [DOC] Change FlexForm tutorial to work with TYPO3 v12 (#2065) (Commit f3fe1995 by Tim Dreier)
+   2023-04-11 Use `if` with DisableLanguageMenuProcessor (#2066) (Commit 96269184 by Julian Hofmann)
+   2023-04-11 [BUGFIX] Fix wrong mockings in tests (Commit c25f9485 by Georg Ringer)
+   2023-03-29 [BUGFIX] Fix typeerror for slugprefix #2056 (Commit b0f0dd0a by Georg Ringer)
+   2023-03-29 [DOC] Fix example of ts inclusion #2054 (Commit b1ab7867 by Georg Ringer)
+   2023-03-28 Remove requirements from route path (#2041) (Commit 7b63e98d by Stefan Frömken)
+   2023-03-28 Fix Warning: Undefined array key "switchableControllerActions" (#2047) (Commit b11bfd57 by Dennis Metz)
+   2023-03-28 [TASK] Support new TCA select format (#2049) (Commit 8ec0282f by Georg Ringer)
+   2023-03-28 [TASK] Use correct type in test (Commit 593c659d by Georg Ringer)
+   2023-03-19 [FEATURE] Add attribute  to MetaTagVh (#2043) (Commit aa4c97bd by Georg Ringer)
+   2023-03-15 [DOC] Change example of news by TS rendering (Commit 43fbc213 by Georg Ringer)
+   2023-03-15 [DOC] Replace usage of switchablecontrolleractions from docs (Commit 271a3f65 by Georg Ringer)
+   2023-03-15 [BUGFIX] Avoid cycle in ContentElementWizard (Commit 3f35963f by Georg Ringer)
+   2023-03-14 The order of SEO page title (#2036) (Commit cc4806ad by Zellwerker)
+   2023-03-14 [BUGFIX] Fix notice in CategoryImportService (Commit 028bceb0 by Georg Ringer)
+   2023-03-13 [BUGFIX] skip incomplete news plugins in plugin updater (#2030) (Commit 1c40a0a8 by Andreas Kießling)
+   2023-03-09 [BUGFIX] Fix uribuilder in SearchFormViewHelper #2023 (Commit 6cf1c422 by Georg Ringer)
+   2023-03-09 [BUGFIX] Fix PHP8 notice (Commit 2d0171e6 by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

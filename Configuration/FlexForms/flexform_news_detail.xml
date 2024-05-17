@@ -19,7 +19,6 @@
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.singleNews</label>
 							<config>
 								<type>group</type>
-								<internal_type>db</internal_type>
 								<allowed>tx_news_domain_model_news</allowed>
 								<size>1</size>
 								<maxitems>1</maxitems>
@@ -61,7 +60,6 @@
 							<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
 							<config>
 								<type>group</type>
-								<internal_type>db</internal_type>
 								<allowed>pages</allowed>
 								<size>3</size>
 								<maxitems>50</maxitems>
@@ -133,7 +131,6 @@
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.detailPid</label>
 							<config>
 								<type>group</type>
-								<internal_type>db</internal_type>
 								<allowed>pages</allowed>
 								<size>1</size>
 								<maxitems>1</maxitems>
@@ -148,7 +145,6 @@
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.backPid</label>
 							<config>
 								<type>group</type>
-								<internal_type>db</internal_type>
 								<allowed>pages</allowed>
 								<size>1</size>
 								<maxitems>1</maxitems>

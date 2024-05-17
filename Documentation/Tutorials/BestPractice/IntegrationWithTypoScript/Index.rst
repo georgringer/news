@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. highlight:: typoscript
 
 .. _integrationTypoScript:
@@ -10,11 +8,9 @@ Integrations with TypoScript
 
 This page gives you same examples which you can use for integrating EXT:news into a website.
 
-.. only:: html
-
-    .. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :local:
+    :depth: 1
 
 
 Add news by TypoScript
@@ -211,8 +207,12 @@ Add this to the ``Detail.html`` which will pass the first category uid to the Ty
     lib.tx_news.relatedByFirstCategory {
         userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
         extensionName = News
-        pluginName = Pi1
+        pluginName = NewsListSticky
         vendorName = GeorgRinger
+
+        mvc {
+            callDefaultActionIfActionCantBeResolved = 1
+        }
 
         settings < plugin.tx_news.settings
         settings {
@@ -242,8 +242,12 @@ Similar to the example above it is also possible to render news records with the
    lib.tx_news.relatedByTags {
        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
        extensionName = News
-       pluginName = Pi1
+       pluginName = NewsListSticky
        vendorName = GeorgRinger
+
+       mvc {
+           callDefaultActionIfActionCantBeResolved = 1
+       }
 
        settings < plugin.tx_news.settings
        settings {

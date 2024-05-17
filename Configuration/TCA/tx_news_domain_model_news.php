@@ -91,7 +91,7 @@ if ($versionInformation->getMajorVersion() > 11) {
         'appearance' => $imageSettingsFalMedia['appearance'],
         'behaviour' => $imageSettingsFalMedia['behaviour'],
         'overrideChildTca' => $imageSettingsFalMedia['overrideChildTca'],
-        'allowed' => 'common-image-types',
+        'allowed' => 'common-media-types',
     ];
     $imageConfigurationFalRelatedFiles = [
         'type' => 'file',
@@ -105,7 +105,7 @@ if ($versionInformation->getMajorVersion() > 11) {
     $imageConfigurationFalMedia = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
         'fal_media',
         $imageSettingsFalMedia,
-        $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
     );
     /** @noinspection PhpDeprecationInspection */
     // @extensionScannerIgnoreLine
@@ -140,7 +140,7 @@ $tx_news_domain_model_news = [
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'translationSource' => 'l10n_source',
-        'default_sortby' => 'ORDER BY datetime DESC',
+        'default_sortby' => 'datetime DESC',
         'sortby' => ($configuration->getManualSorting() ? 'sorting' : ''),
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -168,7 +168,6 @@ $tx_news_domain_model_news = [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'tx_news_domain_model_news',
                 'size' => 1,
                 'maxitems' => 1,
@@ -379,7 +378,6 @@ $tx_news_domain_model_news = [
                 'type' => 'select',
                 'renderType' => 'selectTree',
                 'treeConfig' => [
-//                    'dataProvider' => \GeorgRinger\News\TreeProvider\DatabaseTreeDataProvider::class,
                     'parentField' => 'parent',
                     'appearance' => [
                         'showHeader' => true,
@@ -395,7 +393,7 @@ $tx_news_domain_model_news = [
                 'MM_opposite_field' => 'items',
                 'foreign_table' => 'sys_category',
                 'foreign_table_where' => ' AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting',
-                'size' => 10,
+                'size' => 30,
                 'minitems' => 0,
                 'maxitems' => 99,
                 'behaviour' => [
@@ -408,7 +406,6 @@ $tx_news_domain_model_news = [
             'label' => $ll . 'tx_news_domain_model_news.related',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'allowed' => 'tx_news_domain_model_news',
                 'foreign_table' => 'tx_news_domain_model_news',
                 'MM_opposite_field' => 'related_from',
@@ -432,7 +429,6 @@ $tx_news_domain_model_news = [
             'label' => $ll . 'tx_news_domain_model_news.related_from',
             'config' => [
                 'type' => 'group',
-                'internal_type' => 'db',
                 'foreign_table' => 'tx_news_domain_model_news',
                 'allowed' => 'tx_news_domain_model_news',
                 'size' => 5,

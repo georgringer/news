@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _seo:
 
 ===
@@ -94,6 +92,30 @@ The Core ships a basic sitemap configuration which can also be used for news rec
            }
        }
    }
+
+This sitemap can be added in the site config so it has a nice url:
+
+.. code-block:: yaml
+   :caption: config/mysite/config.yaml
+   :emphasize-lines: 10
+
+   routeEnhancers:
+     Sitemap:
+       type: Simple
+       routePath: 'sitemap/{sitemap}'
+       aspects:
+         sitemap:
+           type: StaticValueMapper
+           map:
+             pages: pages
+             news: news
+     PageTypeSuffix:
+       type: PageType
+       default: '/'
+       index: ''
+       map:
+         '/': 0
+         sitemap.xml: 1533906435
 
 
 Extended sitemap
@@ -237,7 +259,7 @@ If using languages with the language mode `strict`, the hreflang tag must only b
 
 .. note::
    This feature is only supported by TYPO3 10 and up, described
-   in :ref:`TYPO3 Explained, ModifyHrefLangTagsEvent<t3coreapi:ModifyHrefLangTagsEvent>`.
+   in :ref:`TYPO3 Explained, ModifyHrefLangTagsEvent <t3coreapi:ModifyHrefLangTagsEvent>`.
 
 EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
 
@@ -271,9 +293,9 @@ Solution: You can use the following TypoScript condition to allow search engines
 
 .. code-block:: typoscript
 
-   [traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
+   [request && traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
        page.meta.robots = index,follow
        page.meta.robots.replace = 1
-   [global]
+   [END]
 
 An important part is the `replace` option. The MetaTag API of TYPO3 will then replace tags which were set before.

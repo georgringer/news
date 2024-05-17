@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. highlight:: typoscript
 .. _typoscriptPlugin:
 
@@ -16,9 +14,7 @@ the chosen view (The setting :confval:`orderBy` is for example not needed in the
    yourself about the setting :confval:`overrideFlexformSettingsIfEmpty`.
 
 
-.. only:: html
-
-   .. contents:: Properties
+.. contents:: Properties
       :depth: 1
       :local:
 

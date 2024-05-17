@@ -147,7 +147,7 @@ class LinkViewHelperTest extends BaseTestCase
     }
 
     /**
-     * @return (int|null|string[])[][]
+     * @return (int|string[]|null)[][]
      *
      * @psalm-return array{0: array{0: null, 1: int}, 1: array{0: array<empty, empty>, 1: int}, 2: array{0: array{defaultDetailPid: string}, 1: int}, 3: array{0: array{defaultDetailPid: string}, 1: int}}
      */

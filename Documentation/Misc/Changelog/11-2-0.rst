@@ -1,0 +1,44 @@
+11.2.0 - 30th August 2023
+=========================
+
+
+.. contents::
+        :local:
+        :depth: 3
+
+Breaking changes
+----------------
+No breaking changes!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2023-08-28 [BUGFIX] Fix undefined array key "single" in NewsRepository (#2181) (Commit 4376c5da by Nikita Hovratov)
+   2023-08-22 [BUGFIX] Fix notice in InlineElementHook (Commit 87b4bee5 by Georg Ringer)
+   2023-08-21 [DOC] Fix links and code examples in contribution guidelines (#2174) (Commit 595095af by Elias Häußler)
+   2023-08-21 [BUGFIX] Improve label check #2175 (Commit f141a796 by Georg Ringer)
+   2023-08-21 [TASK] Fix cgl (Commit 1a0eb2dc by Georg Ringer)
+   2023-08-21 [TASK] Fix error in fixtures (Commit d0aab632 by Georg Ringer)
+   2023-08-18 [BUGFIX] fix undefined array key warning (#2170) (Commit 0cc224cc by DaRealFreak)
+   2023-08-05 [TASK] Remove not needed TCA config internal_type (#2169) (Commit a8139806 by Gerrit Mohrmann)
+   2023-08-05 [BUGFIX] Protect sitemap against missing category record (#2095) (Commit 60487e8e by Jakub Zgirski)
+   2023-08-04 [TASK] Add support for TYPO3 v12 ES6 modules (#2168) (Commit 6b6d7662 by Benjamin Franzke)
+   2023-08-02 [DOC] Update example using TS #2156 (Commit 52a5e40c by Georg Ringer)
+   2023-08-02 [FEATURE] Ical detail view (Commit 5eba25f1 by Georg Ringer)
+   2023-08-02 [FEATURE] Deprecate Legacy sitemap and provide new solution (#2118) (Commit 0a16288f by Lina Wolf)
+   2023-07-28 [BUGFIX] Improve slug generation during imports (Commit 1acf0662 by Georg Ringer)
+   2023-07-24 [BUGFIX] Avoid undefined array key findCategoriesByImportSource (#2166) (Commit 28860d69 by Gerrit Mohrmann)
+   2023-07-24 [TASK] Remove TYPO3 defined check (Commit 73bca170 by Georg Ringer)
+   2023-07-24 Apply fixes from StyleCI (#2164) (Commit 46b74fc6 by Georg Ringer)
+   2023-07-24 [Task] Improved ObjectStorage return type with generic type parameter (#2096) (Commit 43866683 by Michael Krohn)
+   2023-07-24 [TASK] Fix CGL (Commit dca2b71f by Georg Ringer)
+   2023-07-24 [DOCS] How to create a Route Enhancer for the news sitemap (#2119) (Commit 2740eb31 by Lina Wolf)
+   2023-07-23 [TASK] Remove addQueryStringMethod usage in templates (#2160) (Commit 77fa563e by Torben Hansen)
+   2023-07-21 [BUGFIX] Avoid another notice (Commit 2c2417e2 by Georg Ringer)
+   2023-07-21 [BUGFIX] Fix possible notice (Commit b29aae1d by Georg Ringer)
+   2023-07-14 Update docs about 404 redirects (#2144) (Commit 2d8c41c7 by Torben Hansen)
+   2023-07-14 [BUGFIX] Remove non-existent FlexformHook from Services.php (#2145) (Commit 870ab589 by Markus Klein)
+   2023-07-14 [DOC] Load different partial in Template selector example (#2147) (Commit 85a274b0 by Stefan Melmuk)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

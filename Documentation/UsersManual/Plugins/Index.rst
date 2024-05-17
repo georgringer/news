@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _plugin:
 
 ======
@@ -13,13 +11,11 @@ It can be added to create a content element with the type
 
 .. TODO: screenshot
 
-.. only:: html
 
-   The available actions are:
 
-   .. contents::
-        :local:
-        :depth: 1
+.. contents:: The available actions are:
+    :local:
+    :depth: 1
 
 .. _plugin-list:
 

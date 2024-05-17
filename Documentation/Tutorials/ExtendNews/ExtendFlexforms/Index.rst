@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _extendFlexforms:
 
 ================
@@ -10,9 +8,7 @@ Following fields of the plugin configuration can be extended without
 overriding the complete FlexForm configuration.
 
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 1
 
@@ -33,7 +29,7 @@ your own selections by adding those to
 
 .. code-block:: php
 
-   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']['myext'] = array('My Title', 'my value');
+   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']['myext'] = ['My Title', 'my value'];
 
 You can then access the variable in your template with
 :code:`{settings.templateLayout}` and use it for a condition or whatever.
@@ -71,7 +67,8 @@ FlexForm file.
 
    namespace Vendor\ExtKey\EventListener;
 
-   use TYPO3\CMS\Core\Core\Environment;
+   use TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent;
+   use TYPO3\CMS\Core\Utility\ArrayUtility;
    use TYPO3\CMS\Core\Utility\GeneralUtility;
 
    class ModifyFlexformEvent
@@ -86,7 +83,7 @@ FlexForm file.
                $file = GeneralUtility::getFileAbsFileName('EXT:extKey/Configuration/Example.xml');
                $content = file_get_contents($file);
                if ($content) {
-                   ArrayUtility::mergeRecursiveWithOverrule($dataStructure, GeneralUtility::xml2array($content));
+                   ArrayUtility::mergeRecursiveWithOverrule($dataStructure['sheets'], GeneralUtility::xml2array($content));
                }
            }
 
@@ -96,25 +93,26 @@ FlexForm file.
 
 **Create the FlexForm file**
 
-Create the FlexForm file you just referenced in the hook. This can look like that.
+Create the FlexForm file you just referenced in the hook. This can look like that. (Syntax for TYPO3 12 LTS+)
 
 .. code-block:: html
 
-    <extra>
-        <ROOT>
-             <sheetTitle>Fo</sheetTitle>
-            <type>array</type>
-            <el>
-                <settings.postsPerPage>
-                    <label>Max. number of posts to display per page</label>
-                    <config>
-                        <type>input</type>
-                        <size>2</size>
-                        <eval>int</eval>
-                        <default>3</default>
-                    </config>
-                </settings.postsPerPage>
-            </el>
-        </ROOT>
-    </extra>
-
+    <sheets>
+        <extra>
+            <ROOT>
+                <sheetTitle>Fo</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.postsPerPage>
+                        <label>Max. number of posts to display per page</label>
+                        <config>
+                            <type>input</type>
+                            <size>2</size>
+                            <eval>int</eval>
+                            <default>3</default>
+                        </config>
+                    </settings.postsPerPage>
+                </el>
+            </ROOT>
+        </extra>
+    </sheets>

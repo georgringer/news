@@ -11,7 +11,7 @@ jobs:
       # rest matrix jobs be executed anyway.
       fail-fast: false
       matrix:
-        php: [ '7.4', '8.0', '8.1', '8.2' ]
+        php: [ '7.4', '8.0', '8.1', '8.2', '8.3' ]
         composerInstall: [ 'composerInstallLowest', 'composerInstallHighest' ]
     steps:
       - name: Checkout
@@ -27,7 +27,7 @@ jobs:
         run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s lint
 
       - name: Validate code against CGL
-        run: PHP_CS_FIXER_IGNORE_ENV=1 Build/Scripts/runTests.sh -t 11 -p 8.1 -s cgl -n
+        run: PHP_CS_FIXER_IGNORE_ENV=1 Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s cgl -n
 
       - name: Unit Tests
         run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s unit

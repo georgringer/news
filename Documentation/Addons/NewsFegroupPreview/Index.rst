@@ -1,6 +1,4 @@
-    .. include:: /Includes.rst.txt
-
-.. _newsFegroupPreview:
+    .. _newsFegroupPreview:
 
 ========================
 EXT:news_fegroup_preview
@@ -18,6 +16,7 @@ Pricing
 **Included**: Bugfix & feature releases, composer support
 
 Contact: Please write an email to extension@ringer.it with the version you need and your invoice address + VAT ID.
+Additionally please add your GitHub username to get access to the repository to be able to download latest updates.
 
 Usage
 -----

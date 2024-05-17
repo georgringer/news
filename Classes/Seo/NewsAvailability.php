@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace GeorgRinger\News\Seo;
 
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\Entity\SiteInterface;
@@ -82,26 +83,26 @@ class NewsAvailability
         if ($language === 0) {
             $where = [
                 $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT)),
-                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(-1, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, Connection::PARAM_INT)),
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(-1, Connection::PARAM_INT))
                 ),
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, Connection::PARAM_INT)),
             ];
         } else {
             $where = [
                 $queryBuilder->expr()->or(
                     $queryBuilder->expr()->and(
-                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(-1, \PDO::PARAM_INT)),
-                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
+                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(-1, Connection::PARAM_INT)),
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, Connection::PARAM_INT))
                     ),
                     $queryBuilder->expr()->and(
-                        $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT)),
-                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT))
+                        $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($newsId, Connection::PARAM_INT)),
+                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, Connection::PARAM_INT))
                     ),
                     $queryBuilder->expr()->and(
-                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT)),
-                        $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
-                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT))
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, Connection::PARAM_INT)),
+                        $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
+                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, Connection::PARAM_INT))
                     )
                 ),
             ];
