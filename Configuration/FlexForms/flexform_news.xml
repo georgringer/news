@@ -10,63 +10,6 @@
 				<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings</sheetTitle>
 				<type>array</type>
 				<el>
-					<!-- View -->
-					<switchableControllerActions>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode</label>
-							<onChange>reload</onChange>
-							<config>
-								<type>select</type>
-								<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_switchableControllerActions</itemsProcFunc>
-								<renderType>selectSingle</renderType>
-								<items>
-									<numIndex index="1">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_list</numIndex>
-										<numIndex index="1">News->list;News->detail</numIndex>
-									</numIndex>
-									<numIndex index="2">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_listOnly</numIndex>
-										<numIndex index="1">News->list</numIndex>
-									</numIndex>
-									<numIndex index="3">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_selectedlist</numIndex>
-										<numIndex index="1">News->selectedList</numIndex>
-									</numIndex>
-									<numIndex index="8">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_detail</numIndex>
-										<numIndex index="1">News->detail</numIndex>
-									</numIndex>
-									<numIndex index="10">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_datemenu</numIndex>
-										<numIndex index="1">News->dateMenu</numIndex>
-									</numIndex>
-									<numIndex index="14">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.optgroup_search</numIndex>
-										<numIndex index="1">--div--</numIndex>
-									</numIndex>
-									<numIndex index="15">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_searchform</numIndex>
-										<numIndex index="1">News->searchForm</numIndex>
-									</numIndex>
-									<numIndex index="16">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_searchresult</numIndex>
-										<numIndex index="1">News->searchResult</numIndex>
-									</numIndex>
-									<numIndex index="20">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.optgroup_others</numIndex>
-										<numIndex index="1">--div--</numIndex>
-									</numIndex>
-									<numIndex index="7">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.category_list</numIndex>
-										<numIndex index="1">Category->list</numIndex>
-									</numIndex>
-									<numIndex index="21">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.tag_list</numIndex>
-										<numIndex index="1">Tag->list</numIndex>
-									</numIndex>
-								</items>
-							</config>
-					</switchableControllerActions>
-
 					<!-- order -->
 					<settings.orderBy>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy</label>
