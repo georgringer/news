@@ -9,9 +9,9 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
+use GeorgRinger\News\ViewHelpers\PaginateBodytextViewHelper;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use GeorgRinger\News\ViewHelpers\PaginateBodytextViewHelper;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**

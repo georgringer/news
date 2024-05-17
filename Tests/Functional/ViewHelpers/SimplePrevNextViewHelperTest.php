@@ -9,10 +9,10 @@
 
 namespace GeorgRinger\News\Tests\Functional\ViewHelpers;
 
-use PHPUnit\Framework\Attributes\Test;
 use DateTime;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;

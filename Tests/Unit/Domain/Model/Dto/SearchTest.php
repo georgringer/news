@@ -9,8 +9,8 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
 
-use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\Domain\Model\Dto\Search;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**

@@ -9,8 +9,8 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Be;
 
-use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\ViewHelpers\Be\IsCheckboxActiveViewHelper;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**

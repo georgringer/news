@@ -9,10 +9,10 @@
 
 namespace GeorgRinger\News\Tests\Functional\Repository;
 
-use PHPUnit\Framework\Attributes\Test;
 use DateTimeImmutable;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\DateTimeAspect;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;

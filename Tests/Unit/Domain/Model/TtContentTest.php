@@ -9,9 +9,9 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
-use PHPUnit\Framework\Attributes\Test;
 use DateTime;
 use GeorgRinger\News\Domain\Model\TtContent;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\BaseTestCase;

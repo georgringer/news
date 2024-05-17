@@ -9,11 +9,11 @@
 
 namespace GeorgRinger\News\Tests\Functional\Pagination;
 
-use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\Attributes\DataProvider;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Pagination\QueryResultPaginator;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class QueryResultPaginatorTest extends FunctionalTestCase

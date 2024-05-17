@@ -9,8 +9,8 @@
 
 namespace GeorgRinger\News\Tests\Functional\Repository;
 
-use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**

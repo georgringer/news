@@ -9,8 +9,8 @@
 
 namespace GeorgRinger\News\Tests\Unit\Utility;
 
-use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\Utility\TemplateLayout;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**

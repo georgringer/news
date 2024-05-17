@@ -9,9 +9,9 @@
 
 namespace GeorgRinger\News\Tests\Unit\Utility;
 
+use GeorgRinger\News\Utility\TypoScript;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use GeorgRinger\News\Utility\TypoScript;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**

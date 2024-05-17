@@ -9,8 +9,8 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
-use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 

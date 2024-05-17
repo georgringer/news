@@ -9,9 +9,9 @@
 
 namespace GeorgRinger\News\Tests\Unit\Hooks;
 
-use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\Hooks\PluginPreviewRenderer;
 use GeorgRinger\News\Utility\TemplateLayout;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;

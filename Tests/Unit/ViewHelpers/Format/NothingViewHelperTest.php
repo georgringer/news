@@ -9,8 +9,8 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
 
-use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\ViewHelpers\Format\NothingViewHelper;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**

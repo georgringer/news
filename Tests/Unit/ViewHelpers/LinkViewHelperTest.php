@@ -9,13 +9,13 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
-use PHPUnit\Framework\Attributes\Test;
 use DateTime;
-use PHPUnit\Framework\Attributes\DataProvider;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Service\SettingsService;
 use GeorgRinger\News\ViewHelpers\LinkViewHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\TestingFramework\Core\BaseTestCase;

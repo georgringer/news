@@ -9,9 +9,9 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
 
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**

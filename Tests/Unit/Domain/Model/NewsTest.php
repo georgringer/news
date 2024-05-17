@@ -9,15 +9,15 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
-use PHPUnit\Framework\Attributes\Test;
 use DateTime;
-use SplObjectStorage;
 use GeorgRinger\News\Domain\Model\Category;
-
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
+
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Model\Tag;
+use PHPUnit\Framework\Attributes\Test;
+use SplObjectStorage;
 use TYPO3\CMS\Core\Resource\FileReference as FileReferenceCore;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\BaseTestCase;

@@ -9,10 +9,10 @@
 
 namespace GeorgRinger\News\Tests\Unit\Controller;
 
-use PHPUnit\Framework\Attributes\Test;
 use GeorgRinger\News\Controller\TagController;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\TagRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 

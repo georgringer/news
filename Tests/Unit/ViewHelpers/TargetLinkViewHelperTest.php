@@ -9,9 +9,9 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
-use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\Attributes\DataProvider;
 use GeorgRinger\News\ViewHelpers\TargetLinkViewHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
