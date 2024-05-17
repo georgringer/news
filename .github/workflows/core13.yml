@@ -5,7 +5,7 @@ on: [ push, pull_request ]
 jobs:
   tests:
     name: v13
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       # This prevents cancellation of matrix job runs, if one/two already failed and let the
       # rest matrix jobs be executed anyway.
