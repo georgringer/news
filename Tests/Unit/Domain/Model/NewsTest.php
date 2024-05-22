@@ -291,10 +291,8 @@ class NewsTest extends BaseTestCase
     {
         $news = new News();
 
-        $mockedElement1 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
-        $mockedElement1->_set('uid', 1);
-        $mockedElement1->_set('showinpreview', 1);
-        $mockedElement1->expects(self::any())->method('getProperty')->willReturn(1);
+        $mockedElement1 = $this->getAccessibleMock(FileReferenceCore::class, null, [], '', false);
+        $mockedElement1->_set('mergedProperties', ['uid' => 1, 'showinpreview' => 1]);
 
         $mediaItem1 = new FileReference();
         $mediaItem1->_setProperty('originalResource', $mockedElement1);
@@ -302,29 +300,23 @@ class NewsTest extends BaseTestCase
         $news->addFalMedia($mediaItem1);
 
         $mockedElement2 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
-        $mockedElement2->_set('uid', 2);
-        $mockedElement2->_set('showinpreview', 0);
-        $mockedElement2->expects(self::any())->method('getProperty')->willReturn(0);
+        $mockedElement2->_set('mergedProperties', ['uid' => 2, 'showinpreview' => 0]);
 
         $mediaItem2 = new FileReference();
         $mediaItem2->_setProperty('originalResource', $mockedElement2);
         $mediaItem2->_setProperty('uid', 2);
         $news->addFalMedia($mediaItem2);
 
-        $mockedElement3 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
-        $mockedElement3->_set('uid', 3);
-        $mockedElement3->_set('showinpreview', 1);
-        $mockedElement3->expects(self::any())->method('getProperty')->willReturn(1);
+        $mockedElement3 = $this->getAccessibleMock(FileReferenceCore::class, null, [], '', false);
+        $mockedElement3->_set('mergedProperties', ['uid' => 3, 'showinpreview' => 1]);
 
         $mediaItem3 = new FileReference();
         $mediaItem3->_setProperty('uid', 3);
         $mediaItem3->_setProperty('originalResource', $mockedElement3);
         $news->addFalMedia($mediaItem3);
 
-        $mockedElement4 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
-        $mockedElement4->_set('uid', 4);
-        $mockedElement4->_set('showinpreview', 2);
-        $mockedElement4->expects(self::any())->method('getProperty')->willReturn(2);
+        $mockedElement4 = $this->getAccessibleMock(FileReferenceCore::class, null, [], '', false);
+        $mockedElement4->_set('mergedProperties', ['uid' => 4, 'showinpreview' => 2]);
 
         $mediaItem4 = new FileReference();
         $mediaItem4->_setProperty('uid', 4);

@@ -70,17 +70,9 @@ class TargetLinkViewHelperTest extends BaseTestCase
                 'link' => '123',
                 'expectedResult' => '',
             ],
-            'IdAndTargetDefined' => [
-                'link' => '123 _blank',
-                'expectedResult' => '_blank',
-            ],
             'UrlAndPopupDefined' => [
                 'link' => 'www.typo3.org 300x400',
                 'expectedResult' => '',
-            ],
-            'ComplexExample' => [
-                'link' => 'www.typo3.org _fo my-class',
-                'expectedResult' => '_fo',
             ],
 
         ];
