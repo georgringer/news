@@ -7,12 +7,11 @@ General settings
 
 Any setting needs to be prefixed with  :typoscript:`plugin.tx_news.settings.`.
 
-
-.. only:: html
-
-   .. contents:: Properties
-      :depth: 1
-      :local:
+..  confval-menu::
+    :name: typoscript-general
+    :caption: Properties
+    :display: table
+    :type:
 
 .. _tsCssFile:
 
@@ -20,7 +19,6 @@ cssFile
 =======
 
 .. confval:: cssFile
-
    :type: string
    :Default: Depends on the chosen layout
    :Path: plugin.tx_news.settings
@@ -33,7 +31,6 @@ format
 ======
 
 .. confval:: format
-
    :type: string
    :Default: html
    :Path: plugin.tx_news.settings
@@ -44,7 +41,6 @@ useStdWrap
 ==========
 
 .. confval:: useStdWrap
-
    :type: string
    :Default: singleNews
    :Path: plugin.tx_news.settings
@@ -71,7 +67,6 @@ overrideFlexformSettingsIfEmpty
 
 
 .. confval:: overrideFlexformSettingsIfEmpty
-
    :type: string
    :Path: plugin.tx_news.settings
    :Default: cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,
@@ -93,7 +88,6 @@ displayDummyIfNoMedia
 
 
 .. confval:: displayDummyIfNoMedia
-
    :type: boolean
    :Path: plugin.tx_news.settings
    :Default: 1
@@ -102,7 +96,6 @@ displayDummyIfNoMedia
    image defined via :confval:`list.media.dummyImage` is shown.
 
 .. confval:: list.media.dummyImage
-
    :type: string
    :Default: typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png
 
@@ -136,7 +129,6 @@ detailPidDetermination
 ======================
 
 .. confval:: detailPidDetermination
-
    :type: string, comma separated list of keywords
    :Default: "flexform, categories, default"
    :Path: plugin.tx_news.settings
@@ -168,7 +160,6 @@ defaultDetailPid
 ================
 
 .. confval:: defaultDetailPid
-
    :type: int
    :Default: 0
    :Path: plugin.tx_news.settings
@@ -182,7 +173,6 @@ hideIdList
 ==========
 
 .. confval:: hideIdList
-
    :type: string
    :Default: (none)
    :Path: plugin.tx_news.settings
@@ -212,7 +202,6 @@ orderByAllowed
 ==============
 
 .. confval:: orderByAllowed
-
    :type: string
    :Default: sorting,author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title
    :Path: plugin.tx_news.settings
@@ -227,7 +216,6 @@ analytics.social
 ================
 
 .. confval:: analytics.social
-
    :type: array
 
    Use additional code for google analytics tracking of the social
@@ -247,7 +235,6 @@ demandClass
 ===========
 
 .. confval:: demandClass
-
    :type: string
    :Path: plugin.tx_news.settings
 
@@ -260,7 +247,6 @@ link.hrDate
 ===========
 
 .. confval:: link.hrDate
-
    :type: boolean / array
    :Default: 0
    :Path: plugin.tx_news.settings
@@ -298,7 +284,6 @@ link.typesOpeningInNewWindow
 ============================
 
 .. confval:: link.typesOpeningInNewWindow
-
    :type: string
    :Default: 2
    :Path: plugin.tx_news.settings
@@ -315,7 +300,6 @@ facebookLocale
 ==============
 
 .. confval:: facebookLocale
-
    :type: string
    :Default: en\_US
    :Path: plugin.tx_news.settings
@@ -331,7 +315,6 @@ opengraph
 =========
 
 .. confval:: opengraph
-
    :type: array
    :Path: plugin.tx_news.settings
 
@@ -378,7 +361,6 @@ detail.media
 ============
 
 .. confval:: detail.media
-
    :type: array
    :Path: plugin.tx_news.settings
 
@@ -426,7 +408,6 @@ detail.errorHandling
 ====================
 
 .. confval:: detail.errorHandling
-
    :type: string
    :Path: plugin.tx_news.settings
    :Default: "showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404"
@@ -474,7 +455,6 @@ detail.checkPidOfNewsRecord
 ===========================
 
 .. confval:: detail.checkPidOfNewsRecord
-
    :type: boolean
    :Default: 0
 
@@ -490,7 +470,6 @@ detail.showMetaTags
 ===================
 
 .. confval:: detail.showMetaTags
-
    :type: boolean
    :Path: plugin.tx_news.settings
    :Default:  1
@@ -504,7 +483,6 @@ detail.showPrevNext
 ===================
 
 .. confval:: detail.showPrevNext
-
    :type: boolean
    :Default:  0
 
@@ -516,7 +494,6 @@ detail.registerProperties
 =========================
 
 .. confval:: detail.registerProperties
-
    :type: string
    :Path: plugin.tx_news.settings
    :Default: keywords,title
@@ -529,7 +506,6 @@ detail.showSocialShareButtons
 =============================
 
 .. confval:: detail.showSocialShareButtons
-
    :type: boolean
    :Default: 1
 
@@ -548,7 +524,6 @@ list.media
 ==========
 
 .. confval:: list.media
-
    :type: array
    :Path: plugin.tx_news.settings
 
@@ -573,7 +548,6 @@ list.paginate
 =============
 
 .. confval:: list.paginate
-
    :type: array
    :Path: plugin.tx_news.settings
 
@@ -619,7 +593,6 @@ list.rss
 
 
 .. confval:: list.rss
-
    :type: array
    :Path: plugin.tx_news.settings
 
@@ -646,7 +619,6 @@ search.fields
 =============
 
 .. confval:: search.fields
-
    :type: string
    :Path: plugin.tx_news.settings
    :Default: teaser,title,bodytext
@@ -665,7 +637,6 @@ search.splitSearchWord
 
 
 .. confval:: search.splitSearchWord
-
    :type: boolean
    :Path: plugin.tx_news.settings
    :Default: 0

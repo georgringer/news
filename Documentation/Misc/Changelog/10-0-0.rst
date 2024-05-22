@@ -1,11 +1,9 @@
 10.0.0 - 20th September 2022
 ============================
 
-.. only:: html
 
-   .. contents::
-        :local:
-        :depth: 3
+..  contents::
+    :depth: 3
 
 The big cleanup
 ---------------

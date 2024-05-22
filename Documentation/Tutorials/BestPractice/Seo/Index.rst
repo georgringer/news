@@ -11,12 +11,9 @@ regarding the news extension.
    All settings described require TYPO3 9 and the the system extension "seo" installed.
 
 
-.. only:: html
 
-.. contents::
-        :local:
-        :depth: 2
-
+..  contents::
+    :depth: 2
 Page title for single news
 --------------------------
 EXT:news implements a custom *pageTitleProvider* `\GeorgRinger\News\Seo\NewsTitleProvider` which is called through the controller.

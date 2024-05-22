@@ -1,11 +1,9 @@
 8.0.0 - 2020/21/04
 ==================
 
-.. only:: html
 
-   .. contents::
-        :local:
-        :depth: 3
+..  contents::
+    :depth: 3
 
 
 Support for TYPO3 9 & 10

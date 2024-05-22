@@ -1,12 +1,9 @@
 8.6.0 - 22th July 2021
 ========================
 
-.. only:: html
 
-.. contents::
-        :local:
-        :depth: 3
-
+..  contents::
+    :depth: 3
 
 Bugfix release
 --------------

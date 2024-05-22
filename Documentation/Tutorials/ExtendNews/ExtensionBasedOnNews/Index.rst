@@ -5,11 +5,9 @@ Extensions based on EXT:news
 
 If you are using news records but need custom configuration and custom settings, you should think of creating a separate extension. This is really simple, just take a look at the following example.
 
-.. only:: html
 
-   .. contents::
-      :local:
-      :depth: 1
+..  contents::
+    :depth: 31
 
 Setup of the extension
 ----------------------

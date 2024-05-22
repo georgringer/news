@@ -7,11 +7,9 @@ ICalendar feed
 Displaying an iCalendar feed is the same as a normal list view, just with a different template.
 Therefore you won't need any different configuration to e.g. excluded categories or configure the single view page.
 
-.. only:: html
 
-.. contents::
-       :local:
-       :depth: 3
+..  contents::
+    :depth: 3
 
 The template for the iCalendar feed can be found in the file Resources/Private/Templates/News/List.ical.
 The "magic" which uses the List.ical template instead of the List.html is the following configuration:

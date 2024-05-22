@@ -1,11 +1,8 @@
 4.2.1 - 2016/03/11
 ==================
 
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :depth: 1
 
 
 

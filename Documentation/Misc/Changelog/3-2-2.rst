@@ -3,22 +3,16 @@
 
 This release is followup release of 3.2.1.
 
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :depth: 1
 
 
 Important changes
 -----------------
 The following changes might change the expected behaviour in your installation.
 
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :depth: 1
 
 Change template configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
