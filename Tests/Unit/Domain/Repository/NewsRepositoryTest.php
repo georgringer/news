@@ -12,6 +12,7 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\Comparison;
@@ -39,9 +40,7 @@ class NewsRepositoryTest extends BaseTestCase
         $this->mockedNewsRepository->expects(self::any())->method('getQueryBuilder')->withAnyParameters()->willReturn($mockedQueryBuilder);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven(): void
     {
         $this->expectException(UnexpectedValueException::class);
@@ -56,9 +55,7 @@ class NewsRepositoryTest extends BaseTestCase
         $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
     //
-    /**
-     * @test
-     */
+    #[Test]
     public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven(): void
     {
         $this->expectException(UnexpectedValueException::class);
@@ -73,9 +70,7 @@ class NewsRepositoryTest extends BaseTestCase
         $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
     //
-    /**
-     * @test
-     */
+    #[Test]
     public function getSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven(): void
     {
         $this->expectException(UnexpectedValueException::class);
@@ -91,9 +86,7 @@ class NewsRepositoryTest extends BaseTestCase
         $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
     //
-    /**
-     * @test
-     */
+    #[Test]
     public function emptyConstraintIsReturnedForEmptySearchDemand(): void
     {
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
@@ -104,9 +97,7 @@ class NewsRepositoryTest extends BaseTestCase
         self::assertEmpty($result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function constraintsAreReturnedForSearchSubject(): void
     {
         $stmt1 = new Statement('');
@@ -129,9 +120,7 @@ class NewsRepositoryTest extends BaseTestCase
         self::assertCount(1, $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function constraintsAreReturnedForDateFields(): void
     {
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();

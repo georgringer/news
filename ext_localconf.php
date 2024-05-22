@@ -152,21 +152,14 @@ $boot = static function (): void {
     /* ===========================================================================
         Add TSconfig
     =========================================================================== */
-    // For linkvalidator
-    if (ExtensionManagementUtility::isLoaded('linkvalidator')) {
-        ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Page/mod.linkvalidator.tsconfig\'');
-    }
-    if (ExtensionManagementUtility::isLoaded('guide')) {
-        ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Tours/AdministrationModule.tsconfig\'');
-    }
-
     if ((new Typo3Version())->getMajorVersion() < 13) {
         ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/ContentElementWizard.tsconfig\'');
-    }
 
-    ExtensionManagementUtility::addPageTSConfig('
-        @import \'EXT:news/Configuration/TSconfig/Administration.tsconfig\'
-    ');
+        // For linkvalidator
+        if (ExtensionManagementUtility::isLoaded('linkvalidator')) {
+            ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Page/mod.linkvalidator.tsconfig\'');
+        }
+    }
 
     /* ===========================================================================
         Hooks

@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Tests\Functional\Repository;
 
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -32,9 +33,8 @@ class CategoryRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if by import source is done
-     *
-     * @test
      */
+    #[Test]
     public function findRecordByImportSource(): void
     {
         $category = $this->categoryRepository->findOneByImportSourceAndImportId('functional_test', '2');

@@ -9,8 +9,10 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
+use DateTime;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\FileReference;
+use PHPUnit\Framework\Attributes\Test;
 
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -35,9 +37,7 @@ class CategoryTest extends BaseTestCase
         parent::tearDown();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSortingInitiallyReturnsZero(): void
     {
         self::assertSame(
@@ -46,9 +46,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSortingWithStringConvertsValueToInt(): void
     {
         $this->instance->setSorting('123');
@@ -58,9 +56,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSortingWithIntSetsSorting(): void
     {
         $value = 123;
@@ -71,9 +67,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCrdateInitiallyReturnsNull(): void
     {
         self::assertNull(
@@ -81,12 +75,10 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setCrdateSetsCrdate(): void
     {
-        $date = new \DateTime('now');
+        $date = new DateTime('now');
         $this->instance->setCrdate($date);
         self::assertSame(
             $date,
@@ -94,9 +86,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTstampInitiallyReturnsNull(): void
     {
         self::assertNull(
@@ -104,12 +94,10 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setTstampSetsTstamp(): void
     {
-        $date = new \DateTime('now');
+        $date = new DateTime('now');
         $this->instance->setTstamp($date);
         self::assertSame(
             $date,
@@ -117,9 +105,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStarttimeInitiallyReturnsNull(): void
     {
         self::assertNull(
@@ -127,12 +113,10 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setStarttimeSetsStarttime(): void
     {
-        $date = new \DateTime('now');
+        $date = new DateTime('now');
         $this->instance->setStarttime($date);
         self::assertSame(
             $date,
@@ -140,9 +124,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getEndtimeInitiallyReturnsNull(): void
     {
         self::assertNull(
@@ -150,12 +132,10 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setEndtimeSetsEndtime(): void
     {
-        $date = new \DateTime('now');
+        $date = new DateTime('now');
         $this->instance->setEndtime($date);
         self::assertSame(
             $date,
@@ -163,9 +143,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getHiddenInitiallyReturnsFalse(): void
     {
         self::assertFalse(
@@ -173,9 +151,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setHiddenWithStringSetsHidden(): void
     {
         $this->instance->setHidden('1');
@@ -184,9 +160,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setHiddenWithIntSetsHidden(): void
     {
         $this->instance->setHidden(1);
@@ -195,9 +169,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setHiddenWithTrueSetsHidden(): void
     {
         $this->instance->setHidden(true);
@@ -206,9 +178,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setHiddenWithFalseSetsHidden(): void
     {
         $this->instance->setHidden(false);
@@ -217,9 +187,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSysLanguageUidInitiallyReturnsZero(): void
     {
         self::assertSame(
@@ -228,9 +196,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSysLanguageUidWithStringConvertsToInt(): void
     {
         $this->instance->setSysLanguageUid('2');
@@ -240,9 +206,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSysLanguageUidSetsSysLanguageUid(): void
     {
         $value = 3;
@@ -253,9 +217,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getL10nParentInitiallyReturnsZero(): void
     {
         self::assertSame(
@@ -264,9 +226,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setL10nParentWithStringConvertsToInt(): void
     {
         $this->instance->setL10nParent('2');
@@ -276,9 +236,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setL10nParentSetsL10nParent(): void
     {
         $value = 3;
@@ -289,9 +247,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTitleInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -300,9 +256,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setTitleWithIntConvertsToSting(): void
     {
         $this->instance->setTitle(123);
@@ -312,9 +266,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setTitleSetsTitle(): void
     {
         $value = 'Hello';
@@ -325,9 +277,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDescriptionInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -336,9 +286,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDescriptionWithIntConvertsToSting(): void
     {
         $this->instance->setDescription(123);
@@ -348,9 +296,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDescriptionSetsDescription(): void
     {
         $value = 'Hello';
@@ -361,9 +307,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getParentcategoryInitiallyReturnsNull(): void
     {
         self::assertNull(
@@ -371,9 +315,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setParentcategorySetsParentcategory(): void
     {
         $value = new Category();
@@ -385,9 +327,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getImagesInitiallyReturnsObjectStorage(): void
     {
         $value = new ObjectStorage();
@@ -397,9 +337,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setImagesSetsImages(): void
     {
         $value = new ObjectStorage();
@@ -410,9 +348,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addImageAddsImage(): void
     {
         $fileReference = new FileReference();
@@ -427,9 +363,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function removeImageRemovesImage(): void
     {
         $fileReference = new FileReference();
@@ -449,9 +383,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getFirstImageInitiallyReturnsNull(): void
     {
         self::assertNull(
@@ -459,9 +391,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getFirstImageReturnsFileReference(): void
     {
         $fileReference1 = new FileReference();
@@ -482,9 +412,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getShortcutInitiallyReturnsZero(): void
     {
         self::assertSame(
@@ -493,9 +421,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setShortcutWithStringConvertsToInt(): void
     {
         $this->instance->setShortcut('43');
@@ -505,9 +431,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setShortcutSetsShortcut(): void
     {
         $value = 23;
@@ -518,9 +442,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSinglePidInitiallyReturnsZero(): void
     {
         self::assertSame(
@@ -529,9 +451,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSinglePidWithStringConvertsToInt(): void
     {
         $this->instance->setSinglePid('43');
@@ -541,9 +461,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSinglePidSetsSinglePid(): void
     {
         $value = 23;
@@ -554,9 +472,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getImportIdInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -565,9 +481,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setImportIdWithIntConvertsToString(): void
     {
         $this->instance->setImportId(24);
@@ -577,9 +491,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setImportIdSetsImportId(): void
     {
         $value = '1324';
@@ -590,9 +502,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getImportSourceInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -601,9 +511,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setImportSourceWithIntConvertsToString(): void
     {
         $this->instance->setImportSource(24);
@@ -613,9 +521,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setImportSourceSetsImportSource(): void
     {
         $value = '1324';
@@ -626,9 +532,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getFeGroupInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -637,9 +541,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setFeGroupWithIntConvertsToString(): void
     {
         $this->instance->setFeGroup(24);
@@ -649,9 +551,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setFeGroupSetsFeGroup(): void
     {
         $value = '1324';
@@ -662,9 +562,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSeoTitleInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -673,9 +571,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSeoTitleWithIntConvertsToString(): void
     {
         $this->instance->setSeoTitle(24);
@@ -685,9 +581,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSeoTitleSetsSeoTitle(): void
     {
         $value = 'TYPO3';
@@ -698,9 +592,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSeoDescriptionInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -709,9 +601,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSeoDescriptionWithIntConvertsToString(): void
     {
         $this->instance->setSeoDescription(24);
@@ -721,9 +611,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSeoDescriptionSetsSeoDescription(): void
     {
         $value = 'TYPO3';
@@ -734,9 +622,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSeoHeadlineInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -745,9 +631,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSeoHeadlineWithIntConvertsToString(): void
     {
         $this->instance->setSeoHeadline(24);
@@ -757,9 +641,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSeoHeadlineSetsSeoHeadline(): void
     {
         $value = 'TYPO3';
@@ -770,9 +652,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSeoTextInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -781,9 +661,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSeoTextWithIntConvertsToString(): void
     {
         $this->instance->setSeoText(24);
@@ -793,9 +671,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSeoTextSetsSeoText(): void
     {
         $value = 'TYPO3';
@@ -806,9 +682,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSlugInitiallyReturnsEmptyString(): void
     {
         self::assertSame(
@@ -817,9 +691,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSlugWithIntConvertsToString(): void
     {
         $this->instance->setSlug(24);
@@ -829,9 +701,7 @@ class CategoryTest extends BaseTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setSlugSetsSlug(): void
     {
         $value = 'TYPO3';

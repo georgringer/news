@@ -9,8 +9,10 @@
 
 namespace GeorgRinger\News\Tests\Functional\Repository;
 
+use DateTimeImmutable;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\DateTimeAspect;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
@@ -45,9 +47,8 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if startingpoint is working
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByUid(): void
     {
         $news = $this->newsRepository->findByUid(1);
@@ -57,9 +58,8 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if by import source is done
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByImportSource(): void
     {
         $news = $this->newsRepository->findOneByImportSourceAndImportId('functional_test', '2');
@@ -69,9 +69,8 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if top news constraint works
-     *
-     * @test
      */
+    #[Test]
     public function findTopNewsRecords(): void
     {
         $demand = new NewsDemand();
@@ -92,9 +91,8 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if startingpoint is working
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByStartingpointRestriction(): void
     {
         $demand = new NewsDemand();
@@ -114,14 +112,13 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if record are found by archived/non archived flag
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByArchiveRestriction(): void
     {
         GeneralUtility::makeInstance(Context::class)->setAspect(
             'date',
-            new DateTimeAspect(new \DateTimeImmutable('@1396812099'))
+            new DateTimeAspect(new DateTimeImmutable('@1396812099'))
         );
 
         $demand = new NewsDemand();
@@ -142,9 +139,8 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if record by month/year constraint works
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByMonthAndYear(): void
     {
         $demand = new NewsDemand();
@@ -158,9 +154,8 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if latest limit constraint works
-     *
-     * @test
      */
+    #[Test]
     public function findLatestLimitRecords(): void
     {
         $demand = new NewsDemand();
@@ -168,7 +163,7 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         GeneralUtility::makeInstance(Context::class)->setAspect(
             'date',
-            new DateTimeAspect(new \DateTimeImmutable('@' . strtotime('2014-04-03')))
+            new DateTimeAspect(new DateTimeImmutable('@' . strtotime('2014-04-03')))
         );
 
         // get all news maximum 6 days old
@@ -182,9 +177,8 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if by import source is done
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByTags(): void
     {
         $demand = new NewsDemand();
@@ -208,9 +202,7 @@ class NewsRepositoryTest extends FunctionalTestCase
         self::assertEquals('130,131,133,134', $this->getIdListOfNews($news));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findRecordsForDateMenu(): void
     {
         $demand = new NewsDemand();
@@ -233,9 +225,8 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if records are found by type
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByType(): void
     {
         $demand = new NewsDemand();

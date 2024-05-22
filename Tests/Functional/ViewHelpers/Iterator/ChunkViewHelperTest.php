@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Tests\Functional\ViewHelpers\Iterator;
 
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -21,9 +22,7 @@ class ChunkViewHelperTest extends FunctionalTestCase
     protected array $testExtensionsToLoad = ['typo3conf/ext/news'];
     protected array $coreExtensionsToLoad = ['extbase', 'fluid'];
 
-    /**
-     * @test
-     */
+    #[Test]
     public function chunkIsProperlyCreated(): void
     {
         $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
@@ -40,10 +39,7 @@ class ChunkViewHelperTest extends FunctionalTestCase
             ['title' => 'el4'],
         ]);
 
-        $expected = '<div class="row">' .
-            '<div class="col">el1</div>' .
-            '<div class="col">el2</div>' .
-            '<div class="col">el3</div>' .
+        $expected = '<div class="row"><div class="col">el1</div><div class="col">el2</div><div class="col">el3</div>' .
             '</div>' .
             '<div class="row">' .
             '<div class="col">el4</div>' .
