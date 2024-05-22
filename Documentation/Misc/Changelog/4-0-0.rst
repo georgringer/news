@@ -2,11 +2,8 @@
 ==================
 
 
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :depth: 1
 
 
 Important changes

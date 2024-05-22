@@ -1,12 +1,9 @@
 8.5.0 - 20th October 2020
 =========================
 
-.. only:: html
 
-.. contents::
-        :local:
-        :depth: 3
-
+..  contents::
+    :depth: 3
 
 Important changes
 -----------------

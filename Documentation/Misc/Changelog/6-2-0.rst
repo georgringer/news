@@ -2,11 +2,9 @@
 ==================
 
 
-.. only:: html
 
-   .. contents::
-      :local:
-      :depth: 3
+..  contents::
+    :depth: 33
 
 
 

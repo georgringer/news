@@ -1,11 +1,9 @@
 6.0.0 - 2017/21/03
 ==================
 
-.. only:: html
 
-   .. contents::
-        :local:
-        :depth: 3
+..  contents::
+    :depth: 3
 
 
 Finally 6.0.0 has been released which supports both current LTS versions, 7.6 LTS and 8 LTS.

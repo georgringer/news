@@ -11,11 +11,9 @@ Some general settings can be configured in the Extension Configuration.
 
 The settings are divided into several tabs and described here in detail:
 
-.. only:: html
 
-   .. contents:: Properties
-        :local:
-        :depth: 2
+..  contents::
+    :depth: 2
 
 Records
 =======

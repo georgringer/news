@@ -11,13 +11,11 @@ It can be added to create a content element with the type
 
 .. TODO: screenshot
 
-.. only:: html
+The available actions are:
 
-   The available actions are:
-
-   .. contents::
-        :local:
-        :depth: 1
+.. contents::
+     :local:
+     :depth: 1
 
 .. _plugin-list:
 

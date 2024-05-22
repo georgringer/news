@@ -13,13 +13,11 @@ the chosen view (The setting :confval:`orderBy` is for example not needed in the
    Every setting can also be defined by TypoScript setup. However, please inform
    yourself about the setting :confval:`overrideFlexformSettingsIfEmpty`.
 
-
-.. only:: html
-
-   .. contents:: Properties
-      :depth: 1
-      :local:
-
+..  confval-menu::
+    :name: typoscript-plugin
+    :caption: Properties
+    :display: table
+    :type:
 
 Sheet general
 =============
@@ -30,7 +28,6 @@ Sort by `orderBy`
 -----------------
 
 .. confval:: orderBy
-
    :type: string
    :Default: 'datetime'
    :Path: plugin.tx_news.settings
@@ -46,7 +43,6 @@ Sort direction `orderDirection`
 -------------------------------
 
 .. confval:: orderDirection
-
    :type: string
    :Default: 'desc'
    :Path: plugin.tx_news.settings
@@ -65,7 +61,6 @@ Date field to use `dateField`
 -----------------------------
 
 .. confval:: dateField
-
    :type: string
    :Default: 'datetime'
    :Path: plugin.tx_news.settings
@@ -80,7 +75,6 @@ Category selection `categories`
 -------------------------------
 
 .. confval:: categories
-
    :type: string
    :Default: (none)
    :Path: plugin.tx_news.settings
@@ -103,7 +97,6 @@ Category mode `categoryConjunction`
 -----------------------------------
 
 .. confval:: categoryConjunction
-
    :type: int
    :Default: 0 (Don't care, show all)
    :Path: plugin.tx_news.settings
@@ -137,7 +130,6 @@ Include subcategories `includeSubCategories`
 --------------------------------------------
 
 .. confval:: includeSubCategories
-
    :type: boolean
    :Default: 0
    :Path: plugin.tx_news.settings
@@ -156,7 +148,6 @@ Archive `archiveRestriction`
 ----------------------------
 
 .. confval:: archiveRestriction
-
    :type: string
    :Default: (none)
    :Path: plugin.tx_news.settings
@@ -182,7 +173,6 @@ Time limit (LOW) `timeRestriction`
 ----------------------------------
 
 .. confval:: timeRestriction
-
    :type: string
    :Default: (none)
    :Path: plugin.tx_news.settings
@@ -222,7 +212,6 @@ Time limit (HIGH) `timeRestrictionHigh`
 ---------------------------------------
 
 .. confval:: timeRestrictionHigh
-
    :type: string
    :Default: (none)
    :Path: plugin.tx_news.settings
@@ -236,7 +225,6 @@ Top news `topNewsRestriction`
 -----------------------------
 
 .. confval:: topNewsRestriction
-
    :type: int
    :Default: 0
 
@@ -259,7 +247,6 @@ Show a single news record `singleNews`
 --------------------------------------
 
 .. confval:: singleNews
-
    :type: int
    :Default: 0
    :Path: plugin.tx_news.settings
@@ -277,7 +264,6 @@ Allow preview of hidden records `previewHiddenRecords`
 ------------------------------------------------------
 
 .. confval:: previewHiddenRecords
-
    :type: int
    :Default: 0
    :Path: plugin.tx_news.settings
@@ -304,7 +290,6 @@ Allow preview of hidden records `previewHiddenRecords`
 
 
 .. confval:: enablePreviewOfHiddenRecords
-
    :type: int
    :Default: 0
    :Path: plugin.tx_news.settings
@@ -324,7 +309,6 @@ Startingpoint `startingpoint`
 -----------------------------
 
 .. confval:: startingpoint
-
    :type: string
    :Default: (none)
    :Path: plugin.tx_news.settings
@@ -343,7 +327,6 @@ Recursive `recursive`
 ---------------------
 
 .. confval:: recursive
-
    :type: int
    :Default: 0 (No recursion)
    :Path: plugin.tx_news.settings
@@ -365,7 +348,6 @@ PageId for single news display `detailPid`
 ------------------------------------------
 
 .. confval:: detailPid
-
    :type: int
    :Default: 0 (none)
    :Path: plugin.tx_news.settings
@@ -388,7 +370,6 @@ PageId for list display `listPid`
 =================================
 
 .. confval:: listPid
-
    :type: int
    :Default: 0 (none)
    :Path: plugin.tx_news.settings
@@ -407,7 +388,6 @@ PageId to return to `backPid`
 -----------------------------
 
 .. confval:: backPid
-
    :type: int
    :Default: 0 (none)
    :Path: plugin.tx_news.settings
@@ -425,7 +405,6 @@ Max records displayed `limit`
 -----------------------------
 
 .. confval:: limit
-
    :type: int
    :Default: 0 (none)
    :Path: plugin.tx_news.settings
@@ -443,7 +422,6 @@ Starting with given news record `offset`
 ----------------------------------------
 
 .. confval:: offset
-
    :type: int
    :Default: (none)
    :Path: plugin.tx_news.settings
@@ -463,7 +441,6 @@ Tags `tags`
 -----------
 
 .. confval:: tags
-
    :type: string
    :Default: (none)
    :Path: plugin.tx_news.settings
@@ -477,7 +454,6 @@ Hide the pagination `hidePagination`
 ------------------------------------
 
 .. confval:: hidePagination
-
    :type: boolean
    :Default: 0 (do not hide)
    :Path: plugin.tx_news.settings
@@ -491,7 +467,6 @@ Items per Page `list.paginate.itemsPerPage`
 -------------------------------------------
 
 .. confval:: list.paginate.itemsPerPage
-
    :type: int
    :Default: 10
    :Path: plugin.tx_news.settings
@@ -505,7 +480,6 @@ Sort "Top news" before `topNewsFirst`
 -------------------------------------
 
 .. confval:: topNewsFirst
-
    :type: boolean
    :Default: 0 (Do not show top news first)
    :Path: plugin.tx_news.settings
@@ -524,7 +498,6 @@ Exclude already displayed news `excludeAlreadyDisplayedNews`
 -------------------------------------------------------------
 
 .. confval:: excludeAlreadyDisplayedNews
-
    :type: boolean
    :Default: 0 (Do not exclude)
    :Path: plugin.tx_news.settings
@@ -551,7 +524,6 @@ Disable override demand `disableOverrideDemand`
 -----------------------------------------------
 
 .. confval:: disableOverrideDemand
-
    :type: boolean
    :Default: 1 (Disable override)
    :Path: plugin.tx_news.settings
@@ -573,7 +545,6 @@ Max width for media elements `media.maxWidth`
 ---------------------------------------------
 
 .. confval:: media.maxWidth
-
    :type: int
    :Default: 0 (none)
    :Path: plugin.tx_news.settings
@@ -587,7 +558,6 @@ Max height for media elements `media.maxHeight`
 -----------------------------------------------
 
 .. confval:: media.maxHeight
-
    :type: int
    :Default: 0 (none)
    :Path: plugin.tx_news.settings
@@ -601,7 +571,6 @@ Length of teaser (in chars) `cropMaxCharacters`
 -----------------------------------------------
 
 .. confval:: cropMaxCharacters
-
    :type: int
    :Default: 0 (do not crop)
    :Path: plugin.tx_news.settings
@@ -619,7 +588,6 @@ Template Layout `templateLayout`
 --------------------------------
 
 .. confval:: templateLayout
-
    :type: string
    :Default: (none, use default)
    :Path: plugin.tx_news.settings
