@@ -69,10 +69,7 @@ class NewsRowInitializeNew implements FormDataProviderInterface
 
     protected function setTagListingId(array $result): array
     {
-        if (!isset($result['pageTsConfig']['tx_news.']['tagPid'])) {
-            return $result;
-        }
-        $tagPid = (int)$result['pageTsConfig']['tx_news.']['tagPid'];
+        $tagPid = (int)($result['pageTsConfig']['tx_news.']['tagPid'] ?? 0);
         if ($tagPid <= 0) {
             return $result;
         }
