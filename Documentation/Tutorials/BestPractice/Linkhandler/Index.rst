@@ -21,7 +21,7 @@ PageTsConfig is used to configure the link browser in the backend.
 
    # tx_news is an identifier, don't change it after links have been created
    TCEMAIN.linkHandler.tx_news {
-      handler = TYPO3\CMS\Recordlist\LinkHandler\RecordLinkHandler
+      handler = TYPO3\CMS\Backend\LinkHandler\RecordLinkHandler
       # A translatable label can be used with LLL:EXT:theme/locallang.xml:label
       label = News
       configuration {
