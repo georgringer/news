@@ -72,7 +72,7 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
         $categoryId = (int)$arguments['item'];
 
         // All IDs are numeric. Hence, split and type cast.
-        $categoryList = GeneralUtility::intExplode(',', $arguments['list'] ?? '', true);
+        $categoryList = GeneralUtility::intExplode(',', (string)$arguments['list'], true);
         if ($arguments['mode'] === 'add') {
             $categoryList[] = $categoryId;
         } else {
