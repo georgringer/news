@@ -15,6 +15,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class SlugService
@@ -135,7 +136,12 @@ class SlugService
         // Check if table 'tx_realurl_uniqalias' exists
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_realurl_uniqalias');
-        $schemaManager = $queryBuilder->getConnection()->getSchemaManager();
+
+        if ((new(Typo3Version::class))->getVersion() >= 13) {
+            $schemaManager = $queryBuilder->getConnection()->createSchemaManager();
+        } else {
+            $schemaManager = $queryBuilder->getConnection()->getSchemaManager();
+        }
         if ($schemaManager && $schemaManager->tablesExist(['tx_realurl_uniqalias']) === true) {
             // Count valid aliases for news
             $queryBuilder->getRestrictions()->removeAll();
@@ -194,7 +200,11 @@ class SlugService
         // Check if table 'tx_realurl_uniqalias' exists
         $queryBuilderForRealurl = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_realurl_uniqalias');
-        $schemaManager = $queryBuilderForRealurl->getConnection()->getSchemaManager();
+        if ((new(Typo3Version::class))->getVersion() >= 13) {
+            $schemaManager = $queryBuilderForRealurl->getConnection()->createSchemaManager();
+        } else {
+            $schemaManager = $queryBuilderForRealurl->getConnection()->getSchemaManager();
+        }
         if ($schemaManager && $schemaManager->tablesExist(['tx_realurl_uniqalias']) === true) {
             /** @var Connection $connection */
             $connection = GeneralUtility::makeInstance(ConnectionPool::class)
