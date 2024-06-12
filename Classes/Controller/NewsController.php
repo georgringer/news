@@ -263,20 +263,22 @@ class NewsController extends NewsBaseController
         $this->view->assignMultiple($event->getAssignedValues());
 
         // pagination
-        $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
-        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
-        $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
+        if ((int)($this->settings['hidePagination'] ?? 0) === 0) {
+            $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
+            $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
+            $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
 
-        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
-        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $event->getAssignedValues()['news'], $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
-        $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
-        $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
+            $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
+            $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $event->getAssignedValues()['news'], $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
+            $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
+            $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
 
-        $this->view->assign('pagination', [
-            'currentPage' => $currentPage,
-            'paginator' => $paginator,
-            'pagination' => $pagination,
-        ]);
+            $this->view->assign('pagination', [
+                'currentPage' => $currentPage,
+                'paginator' => $paginator,
+                'pagination' => $pagination,
+            ]);
+        }
 
         Cache::addPageCacheTagsByDemandObject($demand);
         return $this->htmlResponse();
