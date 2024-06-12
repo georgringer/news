@@ -89,7 +89,7 @@ class NewsController extends NewsBaseController
     /**
      * Initializes the current action
      */
-    public function initializeAction()
+    protected function initializeAction()
     {
         GeneralUtility::makeInstance(ClassCacheManager::class)->reBuildSimple();
         $this->buildSettings();
@@ -200,7 +200,9 @@ class NewsController extends NewsBaseController
             }
             if ($propertyValue !== '' || $this->settings['allowEmptyStringsForOverwriteDemand']) {
                 if (in_array($propertyName, ['categories'], true)) {
-                    $propertyValue = GeneralUtility::trimExplode(',', $propertyValue, true);
+                    if (!is_array($propertyValue)) {
+                        $propertyValue = GeneralUtility::trimExplode(',', $propertyValue, true);
+                    }
                 }
                 ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
             }
@@ -686,7 +688,7 @@ class NewsController extends NewsBaseController
      * @param $paginationClass
      * @param int $maximumNumberOfLinks
      * @param $paginator
-     * @return \#o#Э#A#M#C\GeorgRinger\News\Controller\NewsController.getPagination.0|NumberedPagination|mixed|\Psr\Log\LoggerAwareInterface|string|SimplePagination|\TYPO3\CMS\Core\SingletonInterface
+     * @return \GeorgRinger\News\Controller\NewsController.getPagination.0|NumberedPagination|mixed|\Psr\Log\LoggerAwareInterface|string|SimplePagination|\TYPO3\CMS\Core\SingletonInterface
      */
     protected function getPagination($paginationClass, int $maximumNumberOfLinks, $paginator)
     {

@@ -1,6 +1,3 @@
-.. include:: /Includes.rst.txt
-
-
 Migration from tt_news to news
 ------------------------------
 This tutorial will help you to migrate data from tt_news to news.

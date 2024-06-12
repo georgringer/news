@@ -41,7 +41,10 @@ class ItemsProcFunc
     {
         $pageId = 0;
 
-        $currentColPos = $config['flexParentDatabaseRow']['colPos'];
+        $currentColPos = $config['flexParentDatabaseRow']['colPos'] ?? null;
+        if ($currentColPos === null) {
+            return;
+        }
         $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
 
         if ($pageId > 0) {

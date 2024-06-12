@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _routing:
 
 ===========================
@@ -12,6 +10,57 @@ This section will show you how you can rewrite the URLs for news using
 if you are not familiar with the concept yet. You will no
 longer need third party extensions like RealURL or CoolUri to rewrite and
 beautify your URLs.
+
+..  _routing_quickstart:
+
+Quick start
+===========
+
+This section explains in short how to rewrite the URLs for the detail page in a
+project where there is only one detail view page on the whole site and where
+rewriting of things like pagination is not desired or needed.
+
+Open the configuration of the site. You should find it at
+:file:`/config/sites/<your_identifier>/config.yaml`.
+
+At the bottom of the file include the following:
+
+.. code-block:: yaml
+   :caption: /config/sites/<your_identifier>/config.yaml
+
+   routeEnhancers:
+     News:
+       type: Extbase
+       limitToPages:
+         - <uid of single page>
+       extension: News
+       plugin: Pi1
+       routes:
+         - routePath: '/{news-title}'
+           _controller: 'News::detail'
+           _arguments:
+             news-title: news
+       aspects:
+         news-title:
+           type: NewsTitle
+
+Save the file, delete all caches and try it out
+
+Troubleshooting
+---------------
+
+*   Did you save the site configuration file?
+*   Did you delete all caches?
+*   In the format YAML indentation matters. The code above **must** be indentated exactly
+    as shown, the keyword `routeEnhancers` **must not** be indeted.
+*   The configuration above is limited to only one page containing a single view of news.
+    Did you put the correct pid of page containing the news plugin displaying single news?
+
+
+..  _routing_detailed:
+
+Detailed explaination and advanced use cases
+============================================
 
 .. _how_to_rewrite_urls:
 
@@ -245,6 +294,12 @@ filter news records, their titles (slugs) are used.
        map:
          'feed.xml': 9818
          'calendar.ical': 9819
+
+.. tip::
+   If you are using the routing for pagination,
+   be sure it is in the code before the configuration
+   for the detail view! Otherwise you can run into trouble on pages
+   with plugin view "List articles with detail view".
 
 Localized pagination
 ~~~~~~~~~~~~~~~~~~~~

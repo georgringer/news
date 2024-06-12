@@ -1,62 +1,32 @@
-﻿.. include:: /Includes.rst.txt
-
-.. _tutorials:
+﻿.. _tutorials:
 
 =========
 Tutorials
 =========
 
+.. card-grid::
+   :columns: 1
+   :columns-md: 2
+   :gap: 4
+   :class: pb-4
+   :card-height: 100
 
-.. container:: row m-0 p-0
+   .. card:: :ref:`Best practice <tutorialsBestPractice>`
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+      Assorted small tutorials of how to achieve goals around EXT:news.
 
-      .. container:: card px-0 h-100
+   .. card:: :ref:`Templates <templatingExamples>`
 
-         .. rst-class:: card-header h3
+      Tutorials with examples on how to use customized Fluid templates.
 
-            .. rubric:: :ref:`Best practice <tutorialsBestPractice>`
+   .. card:: :ref:`Extend News <tutorialExtendNews>`
 
-         .. container:: card-body
+      In-depth tutorials for developers, who want to extend EXT:news
+      with their own custom extensions.
 
-            Assorted small tutorials of how to achieve goals around EXT:news.
+   .. card:: :ref:`External tutorials <tutorialsExternal>`
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Templates <templatingExamples>`
-
-         .. container:: card-body
-
-            Tutorials with examples on how to use customized Fluid templates.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Extend News <tutorialExtendNews>`
-
-         .. container:: card-body
-
-            In-depth tutorials for developers, who want to extend EXT:news
-            with their own custom extensions.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`External tutorials <tutorialsExternal>`
-
-         .. container:: card-body
-
-            A list of recommended external tutorials, some of them in German.
+      A list of recommended external tutorials, some of them in German.
 
 .. toctree::
    :maxdepth: 5

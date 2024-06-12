@@ -13,7 +13,10 @@ namespace GeorgRinger\News\DataProcessing;
 
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
+use TYPO3\CMS\Core\Context\LanguageAspect;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
@@ -97,13 +100,17 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
                 ->select('*')
                 ->from('tx_news_domain_model_news')
                 ->where(
-                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, Connection::PARAM_INT))
                 )
                 ->executeQuery()->fetchAssociative();
 
             if ($row) {
-                // @extensionScannerIgnoreLine
-                $row = $this->getTsfe()->sys_page->getRecordOverlay('tx_news_domain_model_news', $row, $this->getCurrentLanguage());
+                if ((new Typo3Version())->getMajorVersion() >= 12) {
+                    $row = $this->getTsfe()->sys_page->getLanguageOverlay('tx_news_domain_model_news', $row, $this->getCurrentLanguageAspect());
+                } else {
+                    // @extensionScannerIgnoreLine
+                    $row = $this->getTsfe()->sys_page->getRecordOverlay('tx_news_domain_model_news', $row, $this->getCurrentLanguage());
+                }
             }
 
             if (is_array($row) && !empty($row)) {
@@ -129,6 +136,11 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
         }
 
         return (int)$languageId;
+    }
+
+    protected function getCurrentLanguageAspect(): LanguageAspect
+    {
+        return GeneralUtility::makeInstance(Context::class)->getAspect('language');
     }
 
     /**

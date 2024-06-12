@@ -1,0 +1,62 @@
+11.3.0 - 20th December 2023
+===========================
+
+
+.. contents::
+        :local:
+        :depth: 3
+
+Breaking changes
+----------------
+No breaking changes!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2023-12-06 [DOC] FIx doc for tag record #2284 (Commit d6eb4e9f by Georg Ringer)
+   2023-12-06 [TASK] Remove outdated widget code #2289 (Commit 11787630 by Georg Ringer)
+   2023-12-04 [TASK] Update locallang_db.xlf (#2285) (Commit 3f8a4475 by Georg Ringer)
+   2023-12-02 [DOC] Change section of quickstart regarding record creation (Commit 37d03dbb by Georg Ringer)
+   2023-12-02 [DOC] Imorove addon doc (Commit 93c3b941 by Georg Ringer)
+   2023-11-27 [DOCS] Make file and position for Linkhandler more clear (#2277) (Commit 01691444 by Lina Wolf)
+   2023-11-26 [BUGFIX] Make sure all model classes are extensible (#2272) (#2274) (Commit d67c56f3 by Philipp Kitzberger)
+   2023-11-23 [FEATURE] Allow to set a ttl for the rss feed (#2271) (Commit a4ee01d5 by Michael Krohn)
+   2023-11-21 [DOCS] Update link to TYPO3 core LinkHandler feature changelog (#2267) (Commit 162b9874 by Josef Glatz)
+   2023-11-17 [FEATURE] Allow configuring RSS fields in the constant editor (#2261) (Commit 64fcff3d by Michael Krohn)
+   2023-11-17 [TASK] Rename plugin names (and descriptions) (#2258) (Commit b7b9e9aa by Philipp Kitzberger)
+   2023-11-17 [DOCS] add a quick start section to the routing chapter (#2260) (Commit 7ef16f20 by Lina Wolf)
+   2023-11-17 [TASK] Add generic types (#2262) (Commit e04ea0d0 by Michael Krohn)
+   2023-11-06 [DOCS] Add tip for pagination routing (#2256) (Commit 53ee78ea by Karsten Nowak)
+   2023-11-01 [TASK] Make MariaDB the default for functional tests in `runTests.sh` (#2248) (Commit d6049634 by Oliver Klee)
+   2023-11-01 Check request object in conditions (#2252) (Commit 9f99a082 by Daniel Corn)
+   2023-10-25 [BUGFIX] Fix AddNewsToMenuProcessor for 12 #2236 (Commit 92788340 by Georg Ringer)
+   2023-10-25 [DOC] Add more examples to improve search #2240 (Commit 521ae056 by Georg Ringer)
+   2023-10-24 [CLEANUP] Add missing parameter signatures (#2237) (Commit 405acd9a by Philipp Kitzberger)
+   2023-10-23 [BUGFIX] Avoid nested content element get rendered twice (#2202) (Commit 0099d5b7 by Daniel)
+   2023-10-23 [BUGFIX] Fix CGL (#2232) (Commit 88e86c10 by Georg Ringer)
+   2023-10-19 [DOC] Update Index.rst / change use classes (#2229) (Commit 5e70c3e8 by wrock)
+   2023-10-15 [FEATURE] New plugin update eventlistener (Commit 5cff1fe7 by Georg Ringer)
+   2023-10-14 [TASK] Check if $GLOBALS['TYPO3_REQUEST'] exists in hook (Commit 6f75da95 by Georg Ringer)
+   2023-10-14 [TASK] Set correct return type (#2222) (Commit 5d52a73d by Michael Krohn)
+   2023-10-14 [TASK] Remove duplicated entry in test data set (#2214) (#2223) (Commit cc9effb3 by Michael Krohn)
+   2023-10-12 [DOC] Fix flexform example (#2219) (Commit b4b50f82 by Seb Red)
+   2023-10-10 [TASK] Only allow LTS core versions (#2215) (Commit 1c3d17df by Oliver Klee)
+   2023-10-09 [TASK] Bump the development dependencies (#2210) (Commit eaec7dd0 by Oliver Klee)
+   2023-10-09 [CLEANUP] Autoformat the code with the latest PHP-CS-Fixer version (#2209) (Commit 5b5b860a by Oliver Klee)
+   2023-10-09 [BUGFIX] Make a flaky test not timing-sensitive anymore (#2211) (Commit 38f5efc4 by Oliver Klee)
+   2023-10-09 [TASK] Add index for parent relation in link table (#2207) (Commit 6141a044 by Christoph Lehmann)
+   2023-10-05 [BUGFIX] Add setter function (#2205) (Commit 2b831173 by nlehmkuhl)
+   2023-09-18 [BUGFIX] Correctly create LanguageService in UpgradeWizard (#2199) (Commit 430acf6f by Nicole Cordes)
+   2023-09-18 [BUGFIX] Ensure only valid plugins are migrated in UpgradeWizard (#2200) (Commit 0ee60553 by Nicole Cordes)
+   2023-09-18 [DOCS] Clarify target core version for FlexForm syntax (#2198) (Commit a0490b29 by Markus Klein)
+   2023-09-18 [BUGFIX] Ensure correct context for ext:form flexform hook (#2197) (Commit db86a9c7 by Markus Klein)
+   2023-09-17 [BUGFIX] Allow orderDirection again for DateMenu plugin (#2196) (Commit e8d91834 by Markus Klein)
+   2023-09-17 [BUGFIX] Use FlexFormTools to clean up flexforms in plugin updater (#2173) (Commit aba80684 by Elias Häußler)
+   2023-09-15 [BUGFIX] Overwrite via tx_news_pi1[overwriteDemand][categories][] broken (#2194) (Commit 9c768c88 by Philipp Kitzberger)
+   2023-09-15 [TASK] Remove weird characters (#2193) (Commit e4154f1e by Philipp Kitzberger)
+   2023-09-07 [TASK] Remove redundant ORDER BY clause in default_sortby (#2189) (Commit d71e20ed by Nikita Hovratov)
+   2023-09-04 [DOC] Example how to override labels of pagination #2179 (Commit 0d181e85 by Georg Ringer)
+   2023-09-02 [TASK] Adopt license (Commit 342da4b8 by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

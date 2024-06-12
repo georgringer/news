@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _dataProcessing_AddNewsToMenuProcessor:
 
 ======================
@@ -21,9 +19,9 @@ Usage
 
    10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
    10 {
-      as = breadcrumbMenu
-      special = rootline
-      # [...] further configuration
+       as = breadcrumbMenu
+       special = rootline
+       # [...] further configuration
    }
    20 = GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor
    20.menus = breadcrumbMenu,specialMenu

@@ -64,7 +64,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @param bool $respectEnableFields
      * @param bool $disableLanguageOverlayMode
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
     public function findDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
     {

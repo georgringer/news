@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. highlight:: typoscript
 
 .. _integrationTypoScript:
@@ -10,11 +8,9 @@ Integrations with TypoScript
 
 This page gives you same examples which you can use for integrating EXT:news into a website.
 
-.. only:: html
-
-    .. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :local:
+    :depth: 1
 
 
 Add news by TypoScript

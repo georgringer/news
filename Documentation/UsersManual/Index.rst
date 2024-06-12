@@ -1,59 +1,30 @@
-﻿.. include:: /Includes.rst.txt
-
-.. _userManual:
+﻿.. _userManual:
 
 Editors manual
 ==============
 
-.. container:: row m-0 p-0
+..  card-grid::
+    :columns: 1
+    :columns-md: 2
+    :gap: 4
+    :class: pb-4
+    :card-height: 100
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+   ..  card:: :ref:`News administration module <newsAdminModule>`
 
-      .. container:: card px-0 h-100
+      Use this module to create or edit news records, tags and categories.
 
-         .. rst-class:: card-header h3
+   ..  card:: :ref:`List module <listModule>`
 
-            .. rubric:: :ref:`News administration module <newsAdminModule>`
+      Advanced news editing, download, mass editing etc.
 
-         .. container:: card-body
+   ..  card:: :ref:`Plugin <tutorialsBestPractice>`
 
-            Use this module to create or edit news records, tags and categories.
+      Describes the plugins and how to configure them
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+   ..  card:: :ref:`Records <templatingExamples>`
 
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`List module <listModule>`
-
-         .. container:: card-body
-
-            Advanced news editing, download, mass editing etc.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Plugin <tutorialsBestPractice>`
-
-         .. container:: card-body
-
-            Describes the plugins and how to configure them
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Records <templatingExamples>`
-
-         .. container:: card-body
-
-            Lists all the fields of the various records
+      Lists all the fields of the various records
 
 .. toctree::
    :maxdepth: 5

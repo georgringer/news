@@ -128,7 +128,8 @@ CREATE TABLE tx_news_domain_model_link (
 	uri text,
 
 	PRIMARY KEY (uid),
-	KEY parent (pid)
+	KEY parent (pid),
+	KEY news (parent)
 );
 
 #

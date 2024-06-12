@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _tsconfig:
 
 ========
@@ -18,44 +16,25 @@ Every TSconfig configuration of extension news starts with :typoscript:`tx_news.
    inside the backend!
 
 
-.. container:: row m-0 p-0
+.. card-grid::
+   :columns: 1
+   :columns-md: 2
+   :gap: 4
+   :class: pb-4
+   :card-height: 100
 
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+   ..  card:: :ref:`General TSconfig <tsconfigGeneral>`
 
-      .. container:: card px-0 h-100
+      The general configuration covers options available during
+      the creation and editing of news records.
 
-         .. rst-class:: card-header h3
+   ..  card:: :ref:`Administration module <tsconfigAdministration>`
 
-            .. rubric:: :ref:`General TSconfig <tsconfigGeneral>`
+      Configuration of the :guilabel:`Web > News Administration` module
 
-         .. container:: card-body
+   ..  card:: :ref:`Plugin configuration <tsconfigPlugin>`
 
-            The general configuration covers options available during
-            the creation and editing of news records.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Administration module <tsconfigAdministration>`
-
-         .. container:: card-body
-
-            Configuration of the :guilabel:`Web > News Administration` module
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
-            .. rubric:: :ref:`Plugin configuration <tsconfigPlugin>`
-
-         .. container:: card-body
-
-            This section covers settings which influence the news plugin
+      This section covers settings which influence the news plugin
 
 .. toctree::
    :maxdepth: 3

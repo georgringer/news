@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _templatesSelector:
 
 =================
@@ -24,27 +22,27 @@ Now it is possible to use a condition in the template to change the layouts, and
 .. code-block:: html
 
    <f:if condition="{news}">
-      <f:then>
-         <f:if condition="{settings.templateLayout} == 99">
-            <f:then>
-               <div class="news well news-special">
-                  <f:for each="{news}" as="newsItem">
-                     <f:render partial="List/Item-special" arguments="{newsItem: newsItem, settings:settings}"/>
-                  </f:for>
-               </div>
-            </f:then>
-            <f:else>
-               <div class="news news-list-view">
-                  <f:for each="{news}" as="newsItem">
-                     <f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings}"/>
-                  </f:for>
-               </div>
-            </f:else>
-         </f:if>
-      </f:then>
-      <f:else>
-         <div class="no-news-found"><f:translate key="list_nonewsfound" /></div>
-      </f:else>
+       <f:then>
+           <f:if condition="{settings.templateLayout} == 99">
+               <f:then>
+                   <div class="news well news-special">
+                       <f:for each="{news}" as="newsItem">
+                           <f:render partial="List/Item-special" arguments="{newsItem: newsItem, settings:settings}"/>
+                       </f:for>
+                   </div>
+               </f:then>
+               <f:else>
+                   <div class="news news-list-view">
+                       <f:for each="{news}" as="newsItem">
+                           <f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings}"/>
+                       </f:for>
+                   </div>
+               </f:else>
+           </f:if>
+       </f:then>
+       <f:else>
+          <div class="no-news-found"><f:translate key="list_nonewsfound" /></div>
+       </f:else>
    </f:if>
 
 As you can see in this example a different partial is loaded if the layout 99 is used.
@@ -60,9 +58,9 @@ The TypoScript could look like:
 .. code-block:: typoscript
 
    plugin.tx_news {
-      settings {
-         isLatest = 1
-      }
+       settings {
+           isLatest = 1
+       }
    }
 
 And then you can use a condition like this:
@@ -70,12 +68,12 @@ And then you can use a condition like this:
 .. code-block:: html
 
    <f:if condition="{settings.isLatest}">
-      <f:then>
-         do something if it is set
-      </f:then>
-      <f:else>
-         do something if it is not set
-      </f:else>
+       <f:then>
+           do something if it is set
+       </f:then>
+       <f:else>
+           do something if it is not set
+       </f:else>
    </f:if>
 
 

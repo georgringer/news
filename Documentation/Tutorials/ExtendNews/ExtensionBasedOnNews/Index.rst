@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _ext-based-on-news:
 
 Extensions based on EXT:news
@@ -7,9 +5,7 @@ Extensions based on EXT:news
 
 If you are using news records but need custom configuration and custom settings, you should think of creating a separate extension. This is really simple, just take a look at the following example.
 
-.. only:: html
-
-   .. contents::
+.. contents::
       :local:
       :depth: 1
 
@@ -21,7 +17,7 @@ As a demonstration, a new extension with the extension key ``news_filter`` will 
 ext_emconf.php
 ^^^^^^^^^^^^^^
 
-This file containts the basic information about its extension like name, version, author...
+This file contains the basic information about its extension like name, version, author...
 
 .. code-block:: php
 
@@ -33,18 +29,10 @@ This file containts the basic information about its extension like name, version
       'category' => 'fe',
       'author' => 'John Doe',
       'author_email' => 'john@doe.net',
-      'shy' => '',
-      'dependencies' => '',
-      'conflicts' => '',
-      'priority' => '',
-      'module' => '',
-      'state' => 'stable',
-      'internal' => '',
-      'uploadfolder' => 0,
-      'modify_tables' => '',
-      'clearCacheOnLoad' => 1,
-      'lockType' => '',
       'author_company' => '',
+      'state' => 'stable',
+      'uploadfolder' => 0,
+      'clearCacheOnLoad' => 1,
       'version' => '1.0.0',
       'constraints' => [
          'depends' => [
@@ -53,7 +41,6 @@ This file containts the basic information about its extension like name, version
          'conflicts' => [],
          'suggests' => [],
       ],
-      'suggests' => [],
    ];
 
 ext_localconf.php
@@ -67,13 +54,13 @@ Create a basic plugin with one action called ``list``.
    defined('TYPO3') or die();
 
    $boot = function () {
-      \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-         'GeorgRinger.news_filter',
-         'Filter',
-         [
-            'Filter' => 'list',
-         ]
-      );
+       \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+           'NewsFilter',
+           'Filter',
+           [
+               \GeorgRinger\NewsFilter\Controller\FilterController::class => 'list',
+           ]
+       );
    };
 
    $boot();
@@ -93,7 +80,7 @@ Register the plugin:
     * Plugin
     */
    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-      'news_filter',
+      'NewsFilter',
       'Filter',
       'Some demo'
    );
@@ -112,35 +99,33 @@ Create a basic controller with the mentioned action.
    namespace GeorgRinger\NewsFilter\Controller;
 
    use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+   use GeorgRinger\News\Domain\Repository\NewsRepository;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
    class FilterController extends ActionController
    {
+       protected NewsRepository $newsRepository;
 
-      public function listAction()
-      {
-         $demand = $this->createDemandObject();
-         $this->view->assignMultiple([
-            'news' => $this->newsRepository->findDemanded($demand)
-         ]);
-      }
+       public function __construct(NewsRepository $newsRepository)
+       {
+           $this->newsRepository = $newsRepository;
+       }
 
-      /**
-       * @return NewsDemand
-       */
-      protected function createDemandObject()
-      {
-         $demand = new NewsDemand();
-         $demand->setLimit(10);
+       public function listAction()
+       {
+           $demand = $this->createDemandObject();
+           $this->view->assignMultiple([
+               'news' => $this->newsRepository->findDemanded($demand)
+           ]);
+       }
 
-         return $demand;
-      }
+       protected function createDemandObject(): NewsDemand
+       {
+           $demand = new NewsDemand();
+           $demand->setLimit(10);
 
-      /**
-       * @var \GeorgRinger\News\Domain\Repository\NewsRepository
-       * @inject
-       */
-      protected $newsRepository;
+           return $demand;
+       }
    }
 
 Resources/Private/Templates/Filter/List.html
@@ -178,7 +163,7 @@ After enabling the extension in the Extension Manager and creating a plugin "Fil
 
       "autoload": {
          "psr-4": {
-            "GeorgRinger\\NewsFilter\\": "typo3conf/ext/news_filter/Classes/"
+            "GeorgRinger\\NewsFilter\\": "path/to/news_filter/Classes/"
          }
       }
 
@@ -198,10 +183,7 @@ By modifying the controller with the following code, you will change the output 
 
 .. code-block:: php
 
-    /**
-     * @return NewsDemand
-     */
-    protected function createDemandObject()
+    protected function createDemandObject(): NewsDemand
     {
         $demand = new NewsDemand();
         $demand->setStoragePage('123');
@@ -214,7 +196,7 @@ By modifying the controller with the following code, you will change the output 
 Use FlexForms
 ^^^^^^^^^^^^^
 
-Flexforms are a powerful tool to let editors configure plugins.
+FlexForms are a powerful tool to let editors configure plugins.
 
 Configuration/TCA/Overrides/tt_content.php
 """"""""""""""""""""""""""""""""""""""""""
@@ -251,32 +233,27 @@ The syntax of ``FlexForms`` is identical to the one of ``TCA`` with the only dif
       <sheets>
          <sDEF>
             <ROOT>
-               <TCEforms>
-                  <sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings
-                  </sheetTitle>
-               </TCEforms>
+               <sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings</sheetTitle>
                <type>array</type>
                <el>
-                  <settings.startingpoint>
-                     <TCEforms>
-                        <label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
-                        <config>
-                           <type>group</type>
-                           <allowed>pages</allowed>
-                           <size>3</size>
-                           <maxitems>50</maxitems>
-                           <minitems>0</minitems>
-                           <wizards>
-                              <suggest>
-                                 <type>suggest</type>
-                                 <default>
-                                    <searchWholePhrase>1</searchWholePhrase>
-                                 </default>
-                              </suggest>
-                           </wizards>
-                        </config>
-                     </TCEforms>
-                  </settings.startingpoint>
+                  <settings.startingPoint>
+                     <label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingPoint</label>
+                     <config>
+                        <type>group</type>
+                        <allowed>pages</allowed>
+                        <size>3</size>
+                        <maxitems>50</maxitems>
+                        <minitems>0</minitems>
+                        <wizards>
+                           <suggest>
+                              <type>suggest</type>
+                              <default>
+                                 <searchWholePhrase>1</searchWholePhrase>
+                              </default>
+                           </suggest>
+                        </wizards>
+                     </config>
+                  </settings.startingPoint>
                </el>
             </ROOT>
          </sDEF>
@@ -297,14 +274,11 @@ Adopt the controller to use the settings instead of the hardcoded ones.
 
 .. code-block:: php
 
-    /**
-     * @return NewsDemand
-     */
-    protected function createDemandObject()
+    protected function createDemandObject(): NewsDemand
     {
         $demand = new NewsDemand();
-        // Because of the naming "<settings.startingpoint>", you can use $this->settings['startingpoint']
-        $demand->setStoragePage($this->settings['startingpoint']);
+        // Because of the naming "<settings.startingPoint>", you can use $this->settings['startingPoint']
+        $demand->setStoragePage($this->settings['startingPoint']);
         $demand->setLimit(10);
 
         return $demand;

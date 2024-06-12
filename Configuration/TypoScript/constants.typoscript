@@ -1,13 +1,25 @@
+# customsubcategory=rss=RSS
+
 plugin.tx_news {
     rss.channel {
+        # cat=plugin.tx_news/rss; type=string; label=Title
         title = Dummy Title
+        # cat=plugin.tx_news/rss; type=string; label=Description
         description =
+        # cat=plugin.tx_news/rss; type=string; label=Link
         link = http://example.com
+        # cat=plugin.tx_news/rss; type=string; label=Language
         language = en-gb
+        # cat=plugin.tx_news/rss; type=string; label=Copyright
         copyright = TYPO3 News
+        # cat=plugin.tx_news/rss; type=string; label=Category
         category =
+        # cat=plugin.tx_news/rss; type=string; label=Cenerator
         generator = TYPO3 EXT:news
+        # cat=plugin.tx_news/rss; type=int+; label=Page Type Number
         typeNum = 9818
+        # cat=plugin.tx_news/rss; type=int+; label=Number of minutes the feed can stay cached
+        ttl = 
     }
 
     opengraph {

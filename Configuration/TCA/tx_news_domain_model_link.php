@@ -21,7 +21,6 @@ return [
         'translationSource' => 'l10n_source',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
-        'default_sortby' => 'ORDER BY sorting',
         'sortby' => 'sorting',
         'delete' => 'deleted',
         'enablecolumns' => [

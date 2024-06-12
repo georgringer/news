@@ -25,23 +25,30 @@
         "GPL-2.0-or-later"
     ],
     "require": {
-        "typo3/cms-core": "^11.5.24 || ^12.3",
-        "php": ">= 7.4 < 8.3"
-    },
-    "conflict": {
-        "symfony/finder": "2.7.44 || 2.8.37 || 3.4.7 || 4.0.7"
+        "php": ">= 7.4 < 8.4",
+        "symfony/console": "^5.4 || ^6.4 || ^7.0",
+        "typo3/cms-backend": "^11.5.24 || ^12.4.2",
+        "typo3/cms-core": "^11.5.24 || ^12.4.2",
+        "typo3/cms-extbase": "^11.5.24 || ^12.4.2",
+        "typo3/cms-frontend": "^11.5.24 || ^12.4.2",
+        "typo3/cms-fluid": "^11.5.24 || ^12.4.2"
     },
     "suggest": {
         "reelworx/rx-shariff": "GDPR compliant social sharing",
         "georgringer/news-tagsuggest": "On the fly creation of tag records within a news record",
-        "georgringer/numbered-pagination": "Improved pagination API"
+        "georgringer/numbered-pagination": "Improved pagination API",
+        "typo3/cms-install": "Upgrade wizards",
+        "typo3/cms-scheduler": "XML and ICS import",
+        "typo3/cms-seo": "Sitemaps"
     },
     "require-dev": {
         "typo3/cms-composer-installers": "^3.1.3 || 4.0.0-RC1 || ^5.0",
-        "typo3/testing-framework": "^7.0.1",
-        "phpunit/phpunit": "^9",
-        "typo3/coding-standards": "^0.5.3",
-        "friendsofphp/php-cs-fixer": "^3.13.0",
+        "typo3/cms-install": "^11.5.24 || ^12.4.2",
+        "typo3/cms-seo": "^11.5.24 || ^12.4.2",
+        "typo3/testing-framework": "^7.0.4",
+        "phpunit/phpunit": "^9.6.15",
+        "typo3/coding-standards": "^0.5.5",
+        "friendsofphp/php-cs-fixer": "^3.47.1",
         "webmozart/assert": "^1.11.0"
     },
     "autoload": {
@@ -60,6 +67,7 @@
     "config": {
         "vendor-dir": ".Build/vendor",
         "bin-dir": ".Build/bin",
+        "lock": false,
         "allow-plugins": {
             "typo3/class-alias-loader": true,
             "typo3/cms-composer-installers": true,

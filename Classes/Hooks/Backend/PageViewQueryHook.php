@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Hooks\Backend;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
@@ -57,7 +58,7 @@ class PageViewQueryHook
                 // Only hide elements which are inline, allowing for standard
                 // elements to show
                 $queryBuilder->andWhere(
-                    $queryBuilder->expr()->eq('tx_news_related_news', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('tx_news_related_news', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT))
                 );
 
                 if (self::$count === 0) {

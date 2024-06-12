@@ -1,6 +1,7 @@
 [![Latest Stable Version](https://poser.pugx.org/georgringer/news/v/stable)](https://extensions.typo3.org/extension/news/)
 [![TYPO3 11](https://img.shields.io/badge/TYPO3-11-orange.svg)](https://get.typo3.org/version/11)
 [![TYPO3 12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
+[![TYPO3 13](https://img.shields.io/badge/TYPO3-13-orange.svg)](https://get.typo3.org/version/13)
 [![Total Downloads](https://poser.pugx.org/georgringer/news/d/total)](https://packagist.org/packages/georgringer/news)
 [![Monthly Downloads](https://poser.pugx.org/georgringer/news/d/monthly)](https://packagist.org/packages/georgringer/news)
 ![Build v11](https://github.com/georgringer/news/actions/workflows/core12.yml/badge.svg)
@@ -18,7 +19,7 @@ It includes these features:
 * Support for editors and authors by
 
    * well-structured plugins with good preview functionality
-   * a backend module with filter & search (Availlable as payed add-on [EXT:news_administration](https://docs.typo3.org/p/georgringer/news/main/en-us/Addons/NewsAdministration/Index.html))
+   * a backend module with filter & search (Available as paid add-on [EXT:news_administration](https://docs.typo3.org/p/georgringer/news/main/en-us/Addons/NewsAdministration/Index.html))
    * frontend template variant based on Twitter Bootstrap v5.
 
 * Use of as many elements from the system core as possible, e.g. FAL and system
@@ -42,8 +43,9 @@ It includes these features:
 
 | News     | TYPO3     | PHP       | Support / Development                |
 |----------|-----------|-----------|--------------------------------------|
-| dev-main | 11 - 12   | 7.4 - 8.2 | unstable development branch          |
-| 11       | 11 - 12   | 7.4 - 8.2 | features, bugfixes, security updates |
+| dev-12-13| 12 - 13   | 8.2 - 8.3 | unstable development branch          |
+| dev-main | 11 - 12   | 7.4 - 8.3 | unstable development branch          |
+| 11       | 11 - 12   | 7.4 - 8.3 | features, bugfixes, security updates |
 | 10       | 10 - 11   | 7.4 - 8.1 | none                                 |
 | 9        | 10 - 11   | 7.4 - 8.1 | none                                 |
 | 8        | 9.5 - 10  | 7.2 - 7.4 | none                                 |

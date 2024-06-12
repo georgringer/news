@@ -24,7 +24,7 @@ class Labels
      */
     public function getUserLabelCategory(array &$params): void
     {
-        if (!isset($params['row'], $params['row']['title'])) {
+        if (!isset($GLOBALS['TYPO3_REQUEST'], $params['row'], $params['row']['title'])) {
             return;
         }
 

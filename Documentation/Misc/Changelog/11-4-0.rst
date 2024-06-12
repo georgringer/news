@@ -1,0 +1,42 @@
+
+11.4.0 - 8th February 2024
+==========================
+
+
+.. contents::
+        :local:
+        :depth: 3
+
+Features
+--------
+Official support for PHP 8.3
+
+Breaking changes
+----------------
+No breaking changes!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2024-02-07 [TASK] Prevent generation of `composer.lock` (#2348) (Commit 147838ca by Oliver Klee)
+   2024-01-29 [DOCS] Add RenderMedia ViewHelper to docs (#2343) (Commit 2c2af8b5 by Karsten Nowak)
+   2024-01-26 [BUGFIX] Make `symfony/console` an explicit dependency (#2315) (Commit 00550a8f by Oliver Klee)
+   2024-01-24 Revert "Apply fixes from StyleCI (#2335)" (Commit f9c43767 by Georg Ringer)
+   2024-01-23 [DOCS] Add start anchor to the index page (#2301) (Commit fc4fccea by Lina Wolf)
+   2024-01-23 [TASK] Categories tree select is to small (#2311) (Commit 0b40172a by Stephan Bauer)
+   2024-01-23 Apply fixes from StyleCI (#2335) (Commit a8c51ca2 by Georg Ringer)
+   2024-01-23 [BUGFIX] Uncaught TYPO3 Exception: #1476045117 (#2336) (Commit 04d0e993 by bugskarl)
+   2024-01-22 [TASK] Streamline the PHPUnit configuration files (#2327) (Commit 999e5918 by Oliver Klee)
+   2024-01-21 [DOC] Resolve documentation warnings (#2309) (Commit 018a6ca6 by Lina Wolf)
+   2024-01-21 [TASK] Properly define dependencies on system extensions (#2328) (Commit b5da14af by Oliver Klee)
+   2024-01-18 [BUGFIX] Raise the minimum 12LTS version (#2329) (Commit a8c2f4ba by Oliver Klee)
+   2024-01-18 Set correct variable type of `$importId` in method signatures (#2330) (Commit 5c21a126 by Albrecht Köhnlein)
+   2024-01-16 [FEATURE] Add support for PHP 8.3 (#2316) (Commit fd31533e by Oliver Klee)
+   2024-01-16 [TASK] Drop obsolete Composer conflicts (#2317) (Commit 4f2dd669 by Oliver Klee)
+   2024-01-16 [BUGFIX] Bump the development dependencies (#2322) (Commit e378b357 by Oliver Klee)
+   2024-01-16 [BUGFIX] Migrate usages of the PDO param type constants (#2318) (Commit 57007e49 by Oliver Klee)
+   2024-01-16 [BUGFIX] Use the PHP version from the CI matrix for the CGL checks (#2320) (Commit 58e648c1 by Oliver Klee)
+   2024-01-16 [BUGFIX] Ensure command compat with Symfony >= 7.x (#2313) (Commit 990150d7 by Andreas Kienast)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
