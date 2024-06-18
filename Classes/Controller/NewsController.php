@@ -203,6 +203,7 @@ class NewsController extends NewsBaseController
                     if (!is_array($propertyValue)) {
                         $propertyValue = GeneralUtility::trimExplode(',', $propertyValue, true);
                     }
+                    $propertyValue = is_array($propertyValue) ? GeneralUtility::intExplode(',', implode(',', $propertyValue), true) : $propertyValue;
                 }
                 ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
             }
