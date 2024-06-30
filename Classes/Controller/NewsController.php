@@ -215,7 +215,7 @@ class NewsController extends NewsBaseController
      *
      * @param array|null $overwriteDemand
      */
-    public function listAction(array $overwriteDemand = null): ResponseInterface
+    public function listAction(?array $overwriteDemand = null): ResponseInterface
     {
         $possibleRedirect = $this->forwardToDetailActionWhenRequested();
         if ($possibleRedirect) {
@@ -356,7 +356,7 @@ class NewsController extends NewsBaseController
      * @param News $news news item
      * @param int $currentPage current page for optional pagination
      */
-    public function detailAction(News $news = null, $currentPage = 1): ResponseInterface
+    public function detailAction(?News $news = null, $currentPage = 1): ResponseInterface
     {
         if ($news === null || ($this->settings['isShortcut'] ?? false)) {
             $previewNewsId = (int)($this->settings['singleNews'] ?? 0);
@@ -463,7 +463,7 @@ class NewsController extends NewsBaseController
     /**
      * Render a menu by dates, e.g. years, months or dates
      */
-    public function dateMenuAction(array $overwriteDemand = null): ResponseInterface
+    public function dateMenuAction(?array $overwriteDemand = null): ResponseInterface
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -512,7 +512,7 @@ class NewsController extends NewsBaseController
      * Display the search form
      */
     public function searchFormAction(
-        Search $search = null,
+        ?Search $search = null,
         array $overwriteDemand = []
     ): ResponseInterface {
         $demand = $this->createDemandObjectFromSettings($this->settings);
@@ -544,7 +544,7 @@ class NewsController extends NewsBaseController
      * Displays the search result
      */
     public function searchResultAction(
-        Search $search = null,
+        ?Search $search = null,
         array $overwriteDemand = []
     ): ResponseInterface {
         $demand = $this->createDemandObjectFromSettings($this->settings);
