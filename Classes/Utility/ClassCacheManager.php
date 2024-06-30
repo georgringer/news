@@ -27,7 +27,7 @@ class ClassCacheManager
     /** @var array */
     protected $constructorLines = [];
 
-    public function __construct(PhpFrontend $classCache = null)
+    public function __construct(?PhpFrontend $classCache = null)
     {
         if ($classCache === null) {
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
