@@ -474,7 +474,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @param Search|null $search search object
      */
-    public function setSearch(Search $search = null): NewsDemand
+    public function setSearch(?Search $search = null): NewsDemand
     {
         $this->search = $search;
         return $this;

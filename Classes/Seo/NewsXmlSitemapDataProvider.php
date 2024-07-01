@@ -39,7 +39,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      * @param ContentObjectRenderer|null $cObj
      * @throws MissingConfigurationException
      */
-    public function __construct(ServerRequestInterface $request, string $key, array $config = [], ContentObjectRenderer $cObj = null)
+    public function __construct(ServerRequestInterface $request, string $key, array $config = [], ?ContentObjectRenderer $cObj = null)
     {
         parent::__construct($request, $key, $config, $cObj);
 
