@@ -13,7 +13,6 @@ namespace GeorgRinger\News\Event\Listener;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Form\Event\ModifyFileReferenceControlsEvent;
-use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Information\Typo3Version;
