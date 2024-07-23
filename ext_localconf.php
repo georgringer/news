@@ -133,10 +133,6 @@ $boot = static function (): void {
     //        ],
     //    ];
 
-    // Hide content elements in list module & filter in administration module
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][DatabaseRecordList::class]['modifyQuery']['ext:news']
-        = RecordListQueryHook::class;
-
     /* ===========================================================================
         Custom cache, done with the caching framework
     =========================================================================== */

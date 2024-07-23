@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-use GeorgRinger\News\Hooks\Backend\RecordListQueryHook;
 
 use GeorgRinger\News\Hooks\ItemsProcFunc;
 use GeorgRinger\News\Hooks\PluginPreviewRenderer;
@@ -12,7 +11,6 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use TYPO3\CMS\Core\DependencyInjection\SingletonPass;
 
 return function (ContainerConfigurator $container, ContainerBuilder $containerBuilder): void {
-    $containerBuilder->registerForAutoconfiguration(RecordListQueryHook::class)->addTag('news.RecordListQueryHook');
     $containerBuilder->registerForAutoconfiguration(ItemsProcFunc::class)->addTag('news.ItemsProcFunc');
     $containerBuilder->registerForAutoconfiguration(PluginPreviewRenderer::class)->addTag('news.PageLayoutView');
     $containerBuilder->registerForAutoconfiguration(NewsSlugUpdater::class)->addTag('news.NewsSlugUpdater');
