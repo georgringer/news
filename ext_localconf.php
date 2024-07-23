@@ -153,10 +153,12 @@ $boot = static function (): void {
         Add TSconfig
     =========================================================================== */
     if ((new Typo3Version())->getMajorVersion() < 13) {
+        // @extensionScannerIgnoreLine
         ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/ContentElementWizard.tsconfig\'');
 
         // For linkvalidator
         if (ExtensionManagementUtility::isLoaded('linkvalidator')) {
+            // @extensionScannerIgnoreLine
             ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Page/mod.linkvalidator.tsconfig\'');
         }
     }
