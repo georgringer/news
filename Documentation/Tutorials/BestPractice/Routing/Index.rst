@@ -211,7 +211,7 @@ The following example will only provide routing for the detail view:
            _arguments:
              news-title: news
        aspects:
-         news-title:
+         news:
            type: NewsTitle
 
 Please note the placeholder :code:`{news-title}`:
@@ -279,7 +279,7 @@ filter news records, their titles (slugs) are used.
        defaults:
          page: '0'
        aspects:
-         news-title:
+         news:
            type: NewsTitle
          page:
            type: StaticRangeMapper
@@ -426,7 +426,7 @@ by date. Also includes configuration for the pagination.
          date-year: '\d+'
          page: '\d+'
        aspects:
-         news-title:
+         news:
            type: NewsTitle
          page:
            type: StaticRangeMapper
