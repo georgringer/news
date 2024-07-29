@@ -8,14 +8,11 @@ This chapters covers all configurations which are relevant for search engine opt
 regarding the news extension.
 
 .. note::
-   All settings described require TYPO3 9 and the the system extension "seo" installed.
+   All settings described require system extension :composer:`typo3/cms-seo` installed.
 
-
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 2
+..  contents::
+    :local:
+    :depth: 2
 
 Page title for single news
 --------------------------
