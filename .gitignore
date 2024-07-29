@@ -2,6 +2,7 @@
 /Build/testing-docker/.env
 .cache
 /composer.lock
+/composer.json.orig
 /composer.json.testing
 /.php_cs.cache
 /.php-cs-fixer.cache

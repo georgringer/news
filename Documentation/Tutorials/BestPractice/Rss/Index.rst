@@ -205,6 +205,26 @@ To be able to render a link in the header section of the normal page which point
         <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{f:uri.page(pageType: settings.list.rss.channel.typeNum)}" />
     </n:headerData>
 
+RSS feed site configuration
+"""""""""""""""""""""""""""
+
+Don't forget to add the typeNum 9818 mapping to the PageType enhancer in the
+sites configuration. We prefer using `feed.xml`:
+
+.. code-block:: yaml
+
+   routeEnhancers:
+     PageTypeSuffix:
+       type: PageType
+       default: .html
+       map:
+         calendar.ical: 9819
+         feed.xml: 9818
+         sitemap.xml: 1533906435
+
+Please also have a look at our :ref:`Routing <routing>` section, where you
+will find a section for a default configuration that takes this into account.
+
 Troubleshooting
 ^^^^^^^^^^^^^^^
 
