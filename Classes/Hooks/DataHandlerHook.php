@@ -44,6 +44,7 @@ class DataHandlerHook implements SingletonInterface
             foreach (array_unique($this->cacheTagsToFlush) as $cacheTag) {
                 $cacheManager->flushCachesInGroupByTag('pages', $cacheTag);
             }
+            $this->cacheTagsToFlush = [];
         }
     }
 
