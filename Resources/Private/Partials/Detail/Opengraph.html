@@ -9,8 +9,18 @@
 <n:metaTag property="og:type" content="{settings.opengraph.type}" />
 <n:metaTag property="og:url" content="" useCurrentDomain="1" />
 <n:metaTag property="og:site_name" content="{settings.opengraph.site_name}" />
+
 <f:if condition="{newsItem.firstPreview}">
-    <f:variable name="ogImagePath" value="{f:uri.image(src:'{newsItem.firstPreview.uid}', treatIdAsReference:1, maxWidth:'1200')}" />
+	<f:then>
+		<f:variable name="ogImage" value="{newsItem.firstPreview}" />
+	</f:then>
+	<f:else if="{newsItem.falMedia}">
+		<f:variable name="ogImage" value="{newsItem.falMedia.0}" />
+	</f:else>
+</f:if>
+
+<f:if condition="ogImage">
+	<f:variable name="ogImagePath" value="{f:uri.image(src:'{ogImage.uid}', treatIdAsReference:1, maxWidth:'1200')}" />
 	<n:metaTag
 		property="og:image"
 		content="{ogImagePath}"
