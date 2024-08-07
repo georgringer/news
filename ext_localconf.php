@@ -202,7 +202,7 @@ $boot = static function (): void {
     config.pageTitleProviders {
         news {
             provider = GeorgRinger\News\Seo\NewsTitleProvider
-            before = altPageTitle,record,seo
+            before = record,seo
         }
     }
 '));
