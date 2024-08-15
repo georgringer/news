@@ -1,0 +1,5 @@
+name: georgringer/news-seo-sitemap
+label: News Sitemap (tx_seo)
+dependencies:
+  - georgringer/news
+  - typo3/seo-sitemap

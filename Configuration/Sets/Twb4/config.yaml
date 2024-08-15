@@ -1,0 +1,4 @@
+name: georgringer/news-twb4
+label: News Styles Twitter Bootstrap 4
+dependencies:
+  - georgringer/news
