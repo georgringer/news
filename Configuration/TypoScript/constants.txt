@@ -1,2 +1,0 @@
-# Important: This file is deprecated and will removed with EXT:news 10.x
-@import 'EXT:news/Configuration/TypoScript/constants.typoscript'
