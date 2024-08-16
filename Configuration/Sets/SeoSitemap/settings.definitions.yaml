@@ -1,0 +1,14 @@
+settings:
+  news.seo.sitemap.startingpoint:
+    label: 'Sitemap startingpoint'
+    type: int
+    description: ''
+  news.seo.sitemap.detailPid:
+    label: 'Detail view page UID for sitemap'
+    type: int
+    description: ''
+  news.seo.sitemap.recursive:
+    default: 0
+    label: 'Recursion level of startingpoint for sitemap'
+    type: int
+    description: ''

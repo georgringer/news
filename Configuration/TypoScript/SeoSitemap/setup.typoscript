@@ -17,10 +17,10 @@ plugin.tx_seo {
 
 						sortField = datetime
 						lastModifiedField = tstamp
-						pid = {$plugin.tx_news.settings.sitemap.startingpoint}
-						recursive = {$plugin.tx_news.settings.sitemap.recursive}
+						pid = {$plugin.tx_news.settings.sitemap.startingpoint ?? $news.seo.sitemap.startingpoint}
+						recursive = {$plugin.tx_news.settings.sitemap.recursive ?? news.seo.sitemap.recursive}
 						url {
-							pageId = {$plugin.tx_news.settings.sitemap.detailPid}
+							pageId = {$plugin.tx_news.settings.sitemap.detailPid ?? news.seo.sitemap.detailPid}
 
 							## enable to use date in url
 							# hrDate = 0
