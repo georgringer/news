@@ -43,9 +43,29 @@ georgringer/news-twb4
 
 Templates optimized for Twitter Bootstrap 4.
 
+..  _site-set-georgringer-news-twb4-settings:
+
+Settings for the Bootstrap 4 templates
+--------------------------------------
+
+..  typo3:site-set-settings:: PROJECT:/Configuration/Sets/Twb4/settings.definitions.yaml
+    :name: twb4-settings
+    :type:
+    :Label: Settings of the site set `georgringer/news-twb4`
+
 ..  _site-set-georgringer-news-twb5:
 
 georgringer/news-twb5
 =====================
 
 Templates optimized for Twitter Bootstrap 5.
+
+..  _site-set-georgringer-news-twb5-settings:
+
+Settings for the Bootstrap 5 templates
+--------------------------------------
+
+..  typo3:site-set-settings:: PROJECT:/Configuration/Sets/Twb5/settings.definitions.yaml
+    :name: twb5-settings
+    :type:
+    :Label: Settings of the site set `georgringer/news-twb5`

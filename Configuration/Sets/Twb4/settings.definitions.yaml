@@ -1,0 +1,16 @@
+settings:
+  news.view.twb.templateRootPath:
+    label: 'Path to template root (FE)'
+    type: string
+    default: 'EXT:news/Resources/Private/Templates/Styles/Twb/Templates/'
+    description: ''
+  news.view.twb.partialRootPath:
+    label: 'Path to template partials (FE)'
+    type: string
+    default: 'EXT:news/Resources/Private/Templates/Styles/Twb/Partials/'
+    description: ''
+  news.view.twb.layoutRootPath:
+    label: 'Path to template layouts (FE)'
+    type: string
+    default: 'EXT:news/Resources/Private/Templates/Styles/Twb/Layouts/'
+    description: ''
