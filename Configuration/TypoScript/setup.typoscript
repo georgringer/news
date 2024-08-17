@@ -7,17 +7,17 @@ plugin.tx_news {
 	view {
 		templateRootPaths {
 			0 = EXT:news/Resources/Private/Templates/
-			1 = {$plugin.tx_news.view.templateRootPath}
+			1 = {$plugin.tx_news.view.templateRootPath ?? $news.view.templateRootPath}
 		}
 
 		partialRootPaths {
 			0 = EXT:news/Resources/Private/Partials/
-			1 = {$plugin.tx_news.view.partialRootPath}
+			1 = {$plugin.tx_news.view.partialRootPath ?? $news.view.partialRootPath}
 		}
 
 		layoutRootPaths {
 			0 = EXT:news/Resources/Private/Layouts/
-			1 = {$plugin.tx_news.view.layoutRootPath}
+			1 = {$plugin.tx_news.view.layoutRootPath ?? $news.view.layoutRootPath}
 		}
 	}
 
@@ -32,7 +32,7 @@ plugin.tx_news {
 	# Settings available inside Controller and View by accessing $this->settings or {settings.xyz}
 	# ====================================
 	settings {
-		cssFile = {$plugin.tx_news.settings.cssFile}
+		cssFile = {$plugin.tx_news.settings.cssFile ?? news.settings.cssFile}
 
 		#Displays a dummy image if the news have no media items
 		displayDummyIfNoMedia = 1
@@ -163,29 +163,29 @@ plugin.tx_news {
 
 			rss {
 				channel {
-					title = {$plugin.tx_news.rss.channel.title}
-					description = {$plugin.tx_news.rss.channel.description}
-					language = {$plugin.tx_news.rss.channel.language}
-					copyright = {$plugin.tx_news.rss.channel.copyright}
-					generator = {$plugin.tx_news.rss.channel.generator}
-					link = {$plugin.tx_news.rss.channel.link}
-					typeNum = {$plugin.tx_news.rss.channel.typeNum}
-					ttl = {$plugin.tx_news.rss.channel.ttl}
+					title = {$plugin.tx_news.rss.channel.title ?? news.rss.channel.title}
+					description = {$plugin.tx_news.rss.channel.description ?? news.rss.channel.description}
+					language = {$plugin.tx_news.rss.channel.language ?? news.rss.channel.language}
+					copyright = {$plugin.tx_news.rss.channel.copyright ?? news.rss.channel.copyright}
+					generator = {$plugin.tx_news.rss.channel.generator ?? news.rss.channel.generator}
+					link = {$plugin.tx_news.rss.channel.link ?? news.rss.channel.link}
+					typeNum = {$plugin.tx_news.rss.channel.typeNum ?? news.rss.channel.typeNum}
+					ttl = {$plugin.tx_news.rss.channel.ttl ?? news.rss.channel.ttl}
 				}
 			}
 		}
 
 		# Opengraph implementation
 		opengraph {
-			site_name = {$plugin.tx_news.opengraph.site_name}
+			site_name = {$plugin.tx_news.opengraph.site_name ?? news.opengraph.site_name}
 			type = article
 			admins =
 			locale =
 
 			twitter {
-				card = {$plugin.tx_news.opengraph.twitter.card}
-				site = {$plugin.tx_news.opengraph.twitter.site}
-				creator = {$plugin.tx_news.opengraph.twitter.creator}
+				card = {$plugin.tx_news.opengraph.twitter.card ?? news.opengraph.twitter.card}
+				site = {$plugin.tx_news.opengraph.twitter.site ?? news.opengraph.twitter.site}
+				creator = {$plugin.tx_news.opengraph.twitter.creator ?? news.opengraph.twitter.creator}
 			}
 		}
 	}

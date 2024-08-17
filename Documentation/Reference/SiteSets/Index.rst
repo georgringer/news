@@ -16,7 +16,18 @@ This extension comes with the following site sets. Read also how to
 georgringer/news
 ================
 
-All basic configuration you need to use news.
+All basic configuration you need to use news. This site set offers the
+following settings:
+
+..  _site-set-georgringer-news-settings:
+
+Settings for the News site set
+------------------------------
+
+..  typo3:site-set-settings:: PROJECT:/Configuration/Sets/News/settings.definitions.yaml
+    :name: news-settings
+    :type:
+    :Label: Settings of the site set `georgringer/news`
 
 ..  _site-set-georgringer-news-seo-sitemap:
 
@@ -41,7 +52,8 @@ Settings for the SEO Sitemap
 georgringer/news-twb4
 =====================
 
-Templates optimized for Twitter Bootstrap 4.
+Templates optimized for Twitter Bootstrap 4. This site set offers the following
+settings:
 
 ..  _site-set-georgringer-news-twb4-settings:
 
@@ -58,7 +70,8 @@ Settings for the Bootstrap 4 templates
 georgringer/news-twb5
 =====================
 
-Templates optimized for Twitter Bootstrap 5.
+Templates optimized for Twitter Bootstrap 5. This site set offers the following
+settings:
 
 ..  _site-set-georgringer-news-twb5-settings:
 
