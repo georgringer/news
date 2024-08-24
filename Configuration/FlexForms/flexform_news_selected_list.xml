@@ -31,24 +31,24 @@
 								<renderType>selectSingle</renderType>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
-										<numIndex index="1"></numIndex>
+										<numIndex index="label"></numIndex>
+										<numIndex index="value"></numIndex>
 									</numIndex>
-									<numIndex index="1">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.tstamp</numIndex>
-										<numIndex index="1">tstamp</numIndex>
+									<numIndex index="value">
+										<numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.tstamp</numIndex>
+										<numIndex index="value">tstamp</numIndex>
 									</numIndex>
 									<numIndex index="2">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.datetime</numIndex>
-										<numIndex index="1">datetime</numIndex>
+										<numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.datetime</numIndex>
+										<numIndex index="value">datetime</numIndex>
 									</numIndex>
 									<numIndex index="3">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.crdate</numIndex>
-										<numIndex index="1">crdate</numIndex>
+										<numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.crdate</numIndex>
+										<numIndex index="value">crdate</numIndex>
 									</numIndex>
 									<numIndex index="4">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.title</numIndex>
-										<numIndex index="1">title</numIndex>
+										<numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.title</numIndex>
+										<numIndex index="value">title</numIndex>
 									</numIndex>
 								</items>
 							</config>
@@ -62,16 +62,16 @@
 								<renderType>selectSingle</renderType>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
-										<numIndex index="1"></numIndex>
+										<numIndex index="label"></numIndex>
+										<numIndex index="value"></numIndex>
 									</numIndex>
-									<numIndex index="1">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.asc</numIndex>
-										<numIndex index="1">asc</numIndex>
+									<numIndex index="value">
+										<numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.asc</numIndex>
+										<numIndex index="value">asc</numIndex>
 									</numIndex>
 									<numIndex index="2">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.desc</numIndex>
-										<numIndex index="1">desc</numIndex>
+										<numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.desc</numIndex>
+										<numIndex index="value">desc</numIndex>
 									</numIndex>
 								</items>
 							</config>
@@ -255,8 +255,8 @@
 								<renderType>selectSingle</renderType>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
-										<numIndex index="1"></numIndex>
+										<numIndex index="label"></numIndex>
+										<numIndex index="value"></numIndex>
 									</numIndex>
 								</items>
 							</config>
