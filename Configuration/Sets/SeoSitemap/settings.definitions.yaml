@@ -3,9 +3,11 @@ settings:
     label: 'Sitemap startingpoint'
     type: int
     description: ''
+    default: 0
   news.seo.sitemap.detailPid:
     label: 'Detail view page UID for sitemap'
     type: int
+    default: 0
     description: ''
   news.seo.sitemap.recursive:
     default: 0

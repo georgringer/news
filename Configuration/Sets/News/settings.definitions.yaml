@@ -3,11 +3,11 @@ settings:
     label: 'Rss Channel title'
     type: string
     default: 'Dummy Title'
-    description: ''
   news.rss.channel.description:
     label: 'Rss Channel description'
     type: string
     description: ''
+    default: ''
   news.rss.channel.link:
     label: 'Rss Channel link'
     type: string
@@ -27,6 +27,7 @@ settings:
     label: 'Rss Channel category'
     type: string
     description: ''
+    default: ''
   news.rss.channel.generator:
     label: 'Rss Channel generator'
     type: string
@@ -40,10 +41,12 @@ settings:
   news.rss.channel.ttl:
     label: 'Rss Channel ttl'
     type: int
+    default: 0
     description: 'Number of minutes the feed can stay cached'
   news.opengraph.site_name:
     label: 'Open Graph site name'
     type: string
+    default: ''
     description: ''
   news.opengraph.twitter.card:
     label: 'Open Graph twitter card'
@@ -60,10 +63,12 @@ settings:
     description: ''
   news.opengraph.twitter.site:
     label: 'Open Graph twitter site'
+    default: ''
     type: string
     description: ''
   news.opengraph.twitter.creator:
     label: 'Open Graph twitter creator'
+    default: ''
     type: string
     description: ''
   news.view.templateRootPath:
