@@ -137,7 +137,7 @@ class SlugService
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_realurl_uniqalias');
 
-        if ((new(Typo3Version::class))->getVersion() >= 13) {
+        if ((new (Typo3Version::class))->getVersion() >= 13) {
             $schemaManager = $queryBuilder->getConnection()->createSchemaManager();
         } else {
             $schemaManager = $queryBuilder->getConnection()->getSchemaManager();
@@ -200,7 +200,7 @@ class SlugService
         // Check if table 'tx_realurl_uniqalias' exists
         $queryBuilderForRealurl = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_realurl_uniqalias');
-        if ((new(Typo3Version::class))->getVersion() >= 13) {
+        if ((new (Typo3Version::class))->getVersion() >= 13) {
             $schemaManager = $queryBuilderForRealurl->getConnection()->createSchemaManager();
         } else {
             $schemaManager = $queryBuilderForRealurl->getConnection()->getSchemaManager();
