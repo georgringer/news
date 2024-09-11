@@ -13,6 +13,7 @@ use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
@@ -22,8 +23,15 @@ class NewsBaseController extends ActionController
 {
     protected function initializeView($view)
     {
-        // @extensionScannerIgnoreLine
-        $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
+        if (
+            VersionNumberUtility::convertVersionNumberToInteger(VersionNumberUtility::getCurrentTypo3Version()) >=
+            VersionNumberUtility::convertVersionNumberToInteger('12.4.0')
+        ) {
+            $contentObject = $this->request->getAttribute('currentContentObject');
+        } else {
+            // @extensionScannerIgnoreLine
+            $contentObject = $this->configurationManager->getContentObject();
+        }
         $view->assign('emConfiguration', GeneralUtility::makeInstance(EmConfiguration::class));
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
             $view->assign('pageData', $GLOBALS['TSFE']->page);
