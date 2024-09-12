@@ -16,6 +16,8 @@ Configuration for the backend
 
 PageTsConfig is used to configure the link browser in the backend.
 
+Also have a look at TYPO3 documentation about the ``RecordLinkHandler`` at https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/ApiOverview/LinkHandling/Linkhandler/RecordLinkHandler.html#recordlinkhandler
+
 .. code-block:: typoscript
    :caption: EXT:my_sitepackage/Configuration/page.tsconfig
 

@@ -64,12 +64,9 @@ class NewsBaseController extends ActionController
                 $url = $this->uriBuilder->build();
 
                 if (isset($options[2])) {
-                    $this->redirectToUri($url, 0, (int)$options[2]);
-                } else {
-                    $this->redirectToUri($url);
+                    return $this->responseFactory->createResponse((int)$options[2])->withHeader('Location', $url);
                 }
-
-                break;
+                return $this->responseFactory->createResponse()->withHeader('Location', $url);
             case 'pageNotFoundHandler':
                 $message = 'No news entry found!';
                 $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(

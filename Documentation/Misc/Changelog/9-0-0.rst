@@ -1,9 +1,9 @@
 9.0.0 - 23th October 2021
 =========================
 
-
-..  contents::
-    :depth: 3
+.. contents::
+        :local:
+        :depth: 3
 
 
 Support for TYPO3 10 && 11

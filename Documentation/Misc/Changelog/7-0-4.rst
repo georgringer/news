@@ -1,9 +1,9 @@
 7.0.4 - 2018/16/05
 ==================
 
-
-..  contents::
-    :depth: 3
+.. contents::
+        :local:
+        :depth: 3
 
 
 All Changes

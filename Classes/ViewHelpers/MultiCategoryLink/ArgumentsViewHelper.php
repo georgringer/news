@@ -64,17 +64,21 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
         $allArguments = (array)$arguments['additionalParams'];
         $categoryId = $arguments['item'] ?? 0;
 
-        $categoryList = $arguments['list'] ?? '';
+        // All IDs are numeric. Hence, split and type cast.
+        $categoryList = GeneralUtility::intExplode(',', $arguments['list'] ?? '', true);
         if ($arguments['mode'] === 'add') {
-            if (!GeneralUtility::inList($categoryList, $categoryId)) {
-                $categoryList .= ',' . $categoryId;
-            }
+            $categoryList[] = $categoryId;
         } else {
-            $categoryList = self::rmFromList($categoryId, $categoryList);
+            // array_diff has the advantage, that it does not care how often the searched value occurs.
+            $categoryList = array_diff($categoryList, [$categoryId]);
         }
+        // Ensure each ID to only occur once
+        $categoryList = array_unique($categoryList);
+        // Sort IDs, so lists are more uniform and less duplicate caches are generated
+        sort($categoryList);
 
         if (!empty($categoryList)) {
-            $categoryList = trim($categoryList, ',');
+            $categoryList = implode(',', $categoryList);
             $categoryArray = [
                 'tx_news_pi1' => [
                     'overwriteDemand' => [
@@ -86,16 +90,5 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
         }
 
         return $allArguments;
-    }
-
-    private static function rmFromList($element, $list): string
-    {
-        $items = explode(',', $list);
-        foreach ($items as $k => $v) {
-            if ($v == $element) {
-                unset($items[$k]);
-            }
-        }
-        return implode(',', $items);
     }
 }

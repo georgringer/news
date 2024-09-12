@@ -1,9 +1,9 @@
 9.3.0 - 14th March 2022
 =======================
 
-
-..  contents::
-    :depth: 3
+.. contents::
+        :local:
+        :depth: 3
 
 Important features
 ------------------

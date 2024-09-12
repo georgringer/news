@@ -162,8 +162,8 @@ class ClassCacheManager
                     $this->constructorLines['doc'],
                     -1,
                     0,
-                    array_filter(explode("\n", $constructorInfo['doc'] ?? ''), function ($value): bool {
-                        return str_contains($value, '@param');
+                    array_filter(explode("\n", $constructorInfo['doc'] ?? ''), function ($value) {
+                        return strpos($value, '@param') !== false;
                     })
                 );
             }
@@ -191,6 +191,7 @@ class ClassCacheManager
 
     /**
      * @param string $filePath
+     * @return string
      */
     protected function getPartialInfo($filePath): string
     {
@@ -203,6 +204,7 @@ class ClassCacheManager
 
     /**
      * @param string $code
+     * @return string
      */
     protected function closeClassDefinition($code): string
     {

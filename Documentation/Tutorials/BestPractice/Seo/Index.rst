@@ -8,12 +8,12 @@ This chapters covers all configurations which are relevant for search engine opt
 regarding the news extension.
 
 .. note::
-   All settings described require TYPO3 9 and the the system extension "seo" installed.
-
-
+   All settings described require system extension :composer:`typo3/cms-seo` installed.
 
 ..  contents::
+    :local:
     :depth: 2
+
 Page title for single news
 --------------------------
 EXT:news implements a custom *pageTitleProvider* `\GeorgRinger\News\Seo\NewsTitleProvider` which is called through the controller.
@@ -293,6 +293,6 @@ Solution: You can use the following TypoScript condition to allow search engines
    [request && traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
        page.meta.robots = index,follow
        page.meta.robots.replace = 1
-   [global]
+   [END]
 
 An important part is the `replace` option. The MetaTag API of TYPO3 will then replace tags which were set before.

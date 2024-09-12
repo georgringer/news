@@ -1,9 +1,9 @@
 8.1.1 - 4th May 2020
 =======================
 
-
-..  contents::
-    :depth: 3
+.. contents::
+        :local:
+        :depth: 3
 
 
 Important changes

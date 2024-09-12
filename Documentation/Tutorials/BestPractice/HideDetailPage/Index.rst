@@ -13,7 +13,7 @@ This tutorials covers the use case of having the following page structure:
        ├── Home
        └── Blog <= news
 
-The URL of a news record should howeverb be `domain.tld/blog/news-record`.
+The URL of a news record should however be `domain.tld/blog/news-record`.
 
 The page *Blog* typically contains not only the news plugin with the list view
 but also additional regular content elements which must **not** be rendered in the detail view.

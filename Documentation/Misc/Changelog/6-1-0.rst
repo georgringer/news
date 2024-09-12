@@ -1,9 +1,9 @@
 6.1.0 - 2017/08/31
 ==================
 
-
-..  contents::
-    :depth: 3
+.. contents::
+        :local:
+        :depth: 3
 
 
 After a far too long time I managed to get a release out again. 6.1. is compatible with 7.6 LTS and 8 LTS and also supports the development version of 9 as long as the extension **typo3db_legacy** is installed.

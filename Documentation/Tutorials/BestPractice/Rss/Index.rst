@@ -121,7 +121,7 @@ The TypoScript code looks like this.
 
 .. code-block:: typoscript
 
-   [globalVar = TSFE:type = {$plugin.tx_news.rss.channel.typeNum}]
+   [getTSFE() && getTSFE().type == {$plugin.tx_news.rss.channel.typeNum}]
       lib.stdheader >
       tt_content.stdWrap.innerWrap >
       tt_content.stdWrap.wrap >
@@ -161,7 +161,7 @@ The TypoScript code looks like this.
 
       # set the format
       plugin.tx_news.settings.format = xml
-   [global]
+   [END]
 
 **Some explanations**
 The page object pageNewsRSS will render only those content elements which are in colPos 0 and are a news plugin. Therefore all other content elements won't be rendered in the RSS feed.
@@ -201,6 +201,26 @@ To be able to render a link in the header section of the normal page which point
     <n:headerData>
         <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{f:uri.page(pageType: settings.list.rss.channel.typeNum)}" />
     </n:headerData>
+
+RSS feed site configuration
+"""""""""""""""""""""""""""
+
+Don't forget to add the typeNum 9818 mapping to the PageType enhancer in the
+sites configuration. We prefer using `feed.xml`:
+
+.. code-block:: yaml
+
+   routeEnhancers:
+     PageTypeSuffix:
+       type: PageType
+       default: .html
+       map:
+         calendar.ical: 9819
+         feed.xml: 9818
+         sitemap.xml: 1533906435
+
+Please also have a look at our :ref:`Routing <routing>` section, where you
+will find a section for a default configuration that takes this into account.
 
 Troubleshooting
 ^^^^^^^^^^^^^^^

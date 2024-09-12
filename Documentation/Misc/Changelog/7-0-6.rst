@@ -1,9 +1,9 @@
 7.0.6 - 2018/08/10
 ==================
 
-
-..  contents::
-    :depth: 3
+.. contents::
+        :local:
+        :depth: 3
 
 This release supports 9.5 LTS
 

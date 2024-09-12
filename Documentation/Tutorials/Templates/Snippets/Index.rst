@@ -6,9 +6,9 @@ Assorted snippets
 
 This section contains snippets making EXT:news more awesome which might be useful for your projects as well.
 
-
-..  contents::
-    :depth: 1
+.. contents::
+        :local:
+        :depth: 1
 
 Show FAL properties in fluid
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

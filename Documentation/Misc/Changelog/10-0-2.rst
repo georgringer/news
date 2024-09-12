@@ -1,9 +1,9 @@
 10.0.2 - 27th October 2022
 ==========================
 
-
-..  contents::
-    :depth: 3
+.. contents::
+        :local:
+        :depth: 3
 
 Bugfix release
 --------------

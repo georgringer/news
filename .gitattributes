@@ -8,3 +8,5 @@
 /.scrutinizer export-ignore
 /.styleci.yml export-ignore
 /.travis.yml export-ignore
+/composer.json.orig export-ignore
+/composer.json.testing export-ignore

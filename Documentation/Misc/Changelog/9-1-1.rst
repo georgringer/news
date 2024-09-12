@@ -1,9 +1,9 @@
 9.1.1 - 20th December 2021
 ==========================
 
-
-..  contents::
-    :depth: 3
+.. contents::
+        :local:
+        :depth: 3
 
 Christmas release
 -----------------

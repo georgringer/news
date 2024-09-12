@@ -6,9 +6,9 @@ Events
 
 Several events can be used to modify the behaviour of EXT:news.
 
-
-..  contents::
-    :depth: 31
+.. contents::
+      :local:
+      :depth: 1
 
 Connect to Event
 ----------------

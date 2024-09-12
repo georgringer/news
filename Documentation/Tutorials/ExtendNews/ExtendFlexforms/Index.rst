@@ -8,9 +8,9 @@ Following fields of the plugin configuration can be extended without
 overriding the complete FlexForm configuration.
 
 
-
-..  contents::
-    :depth: 1
+.. contents::
+        :local:
+        :depth: 1
 
 Selectbox "Sort by"
 ^^^^^^^^^^^^^^^^^^^

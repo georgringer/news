@@ -1,9 +1,9 @@
 7.2.0 - 2019/04/15
 ==================
 
-
-..  contents::
-    :depth: 3
+.. contents::
+        :local:
+        :depth: 3
 
 Important changes
 -----------------

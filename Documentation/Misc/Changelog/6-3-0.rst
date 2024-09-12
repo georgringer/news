@@ -2,9 +2,9 @@
 ==================
 
 
-
-..  contents::
-    :depth: 33
+.. contents::
+      :local:
+      :depth: 3
 
 
 

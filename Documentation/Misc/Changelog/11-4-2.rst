@@ -1,0 +1,46 @@
+
+11.4.2 - 14th May 2024
+======================
+
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+
+Important changes
+-----------------
+This commit fixes an issue which came up with the latest release of TYPO3 core 11.5.37 & 12.4.15
+
+Breaking changes
+----------------
+No breaking changes!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2024-05-14 [BUGFIX] 5th argument BU::wrapClickMenuOnIcon() must be an array (#2477) (Commit 1955dfb0 by Christoph Lehmann)
+    2024-05-01 Fix typo in docs Index.rst (#2471) (Commit b3278fed by Tobias Gaertner)
+    2024-05-01 Docs mention wrong linkHandler (#2473) (Commit 01e81f7f by Stefan)
+    2024-04-24 [BUGFIX] Return correct response in handleNoNewsFoundError (#2470) (Commit 8b62835d by Georg Ringer)
+    2024-04-24 [BUGFIX] Reduce the number of possible combinations of categorys  (#2378) (Commit 24d5d7ca by Oliver Eglseder)
+    2024-04-24 [DOCS] Modernize outdated conditions still using globalVar (#2469) (Commit e59cb08c by Eric Harrer)
+    2024-04-24 [TASK] Make CS right (Commit dac45973 by Georg Ringer)
+    2024-04-24 [DOCS] Switch to using the new cards directive (#2464) (Commit 96c44ced by Lina Wolf)
+    2024-04-24 [BUGFIX] Check if variable exists (Commit 7f7b0eaa by Georg Ringer)
+    2024-04-24 [BUGFIX] Use eval as source for eval (#2412) (Commit 30b7e05d by André Buchmann)
+    2024-04-24 [BUGFIX] Resolve rendering warnings (#2461) (Commit 1f7d30e3 by Lina Wolf)
+    2024-04-15 [DOC] Add v13 badge (Commit 2b318c40 by Georg Ringer)
+    2024-04-15 [DOC] Add v13 to readme (Commit d261e221 by Georg Ringer)
+    2024-03-07 [DOCS] Format documentation and fix a few bugs (#2360) (Commit 80ced4c3 by Simon Schaufelberger)
+    2024-03-07 [BUGFIX] Make inherited method visibility same as parent (#2365) (Commit f0e965fb by Sascha Nowak)
+    2024-03-06 Slash missing (#1990) (Commit 5e66db89 by Stephan Bauer)
+    2024-03-05 [BUGFIX] Fix notice (Commit 4c41691f by Georg Ringer)
+    2024-02-27 [BUGFIX] Fix more notices (Commit 244ecd13 by Georg Ringer)
+    2024-02-27 [BUGFIX] Fix notice in CategoryController (Commit 968328ab by Georg Ringer)
+    2024-02-19 [DOCS] Switch documentation rendering to PHP-based rendering (#2356) (Commit 1f6f2b32 by Lina Wolf)
+    2024-02-12 [DOC] Update dependencies of news_content_elements (Commit edb24bb9 by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

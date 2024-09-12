@@ -8,8 +8,8 @@ Integrations with TypoScript
 
 This page gives you same examples which you can use for integrating EXT:news into a website.
 
-
 ..  contents::
+    :local:
     :depth: 1
 
 

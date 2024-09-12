@@ -27,7 +27,7 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
 
 .. code-block:: typoscript
 
-    [globalVar = TSFE:type = 9819]
+    [getTSFE() && getTSFE().type == 9819]
     config {
        disableAllHeaderCode = 1
        xhtml_cleaning = none
@@ -58,7 +58,7 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
           }
        }
     }
-    [global]
+    [END]
 
 This example will show all news records which don't have the category with the uid 9 assigned and are saved on the page with uid 24.
 
@@ -119,7 +119,7 @@ The TypoScript code looks like this.
 
 .. code-block:: typoscript
 
-    [globalVar = TSFE:type = 9819]
+    [getTSFE() && getTSFE().type == 9819]
        lib.stdheader >
        tt_content.stdWrap.innerWrap >
        tt_content.stdWrap.wrap >
@@ -158,7 +158,7 @@ The TypoScript code looks like this.
 
         # delete content wrap
         tt_content.stdWrap >
-    [global]
+    [END]
 
 **Some explanations**
 The page object ``pageNewsICalendar`` will render only those content elements which are in colPos 0 and are a news plugin. Therefore all other content elements won't be rendered in the iCalendar feed.
