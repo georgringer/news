@@ -15,22 +15,19 @@ use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 /**
  * Migrate default value of related links
  */
+#[UpgradeWizard('txNewsRelatedLinkIntegerDefault')]
 final class RelatedLinkIntegerDefault implements UpgradeWizardInterface
 {
     private const TABLE_NEWS = 'tx_news_domain_model_news';
     private const FIELD_UID = 'uid';
     private const FIELD_RELATED_LINKS = 'related_links';
     private const RELATED_LINKS_DEFAULT_VALUE = '0';
-
-    public function getIdentifier(): string
-    {
-        return 'txNewsRelatedLinkIntegerDefault';
-    }
 
     public function getTitle(): string
     {

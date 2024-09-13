@@ -25,17 +25,13 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
  */
 class ChunkViewHelper extends AbstractViewHelper
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $escapeChildren = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $escapeOutput = false;
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('subject', 'mixed', 'The subject Traversable/Array instance to shift');
         $this->registerArgument('count', 'integer', 'Number of items/chunk or if fixed then number of chunks', true);
@@ -57,9 +53,6 @@ class ChunkViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
      * @return array|mixed
      */
     public static function renderStatic(
@@ -103,13 +96,10 @@ class ChunkViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param mixed $candidate
      * @param bool $useKeys
-     *
-     * @return array
      * @throws Exception
      */
-    protected static function arrayFromArrayOrTraversableOrCSVStatic($candidate, $useKeys = true): array
+    protected static function arrayFromArrayOrTraversableOrCSVStatic(mixed $candidate, $useKeys = true): array
     {
         if ($candidate instanceof \Traversable) {
             return iterator_to_array($candidate, $useKeys);
@@ -128,14 +118,11 @@ class ChunkViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param mixed $variable
      * @param string $as
-     * @param \TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface $renderingContext
-     * @param \Closure $renderChildrenClosure
      * @return mixed
      */
     protected static function renderChildrenWithVariableOrReturnInputStatic(
-        $variable,
+        mixed $variable,
         $as,
         RenderingContextInterface $renderingContext,
         \Closure $renderChildrenClosure
@@ -144,13 +131,12 @@ class ChunkViewHelper extends AbstractViewHelper
             return $variable;
         }
         $variables = [$as => $variable];
-        $content = static::renderChildrenWithVariablesStatic(
+
+        return static::renderChildrenWithVariablesStatic(
             $variables,
             $renderingContext->getVariableProvider(),
             $renderChildrenClosure
         );
-
-        return $content;
     }
 
     /**
@@ -159,7 +145,6 @@ class ChunkViewHelper extends AbstractViewHelper
      * of each existing variable, restoring it after rendering.
      * Returns the output of the renderChildren() method on $viewHelper.
      *
-     * @param array $variables
      * @param VariableProviderInterface $templateVariableContainer
      * @param \Closure $renderChildrenClosure
      * @return mixed
@@ -176,9 +161,7 @@ class ChunkViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $variables
      * @param VariableProviderInterface $templateVariableContainer
-     * @return array
      */
     private static function backupVariables(array $variables, $templateVariableContainer): array
     {
@@ -194,8 +177,6 @@ class ChunkViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array $variables
-     * @param array $backups
      * @param VariableProviderInterface $templateVariableContainer
      */
     private static function restoreVariables(array $variables, array $backups, $templateVariableContainer): void

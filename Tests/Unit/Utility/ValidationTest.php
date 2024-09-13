@@ -10,6 +10,8 @@
 namespace GeorgRinger\News\Tests\Unit\Utility;
 
 use GeorgRinger\News\Utility\Validation;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -21,11 +23,9 @@ class ValidationTest extends BaseTestCase
 
     /**
      * Test if default file format works
-     *
-     * @test
-     *
-     * @dataProvider orderDataProvider
      */
+    #[DataProvider('orderDataProvider')]
+    #[Test]
     public function testForValidOrdering($expectedFields, $expected): void
     {
         $validation = Validation::isValidOrdering($expectedFields, self::ALLOWED_FIELDS);
@@ -37,7 +37,7 @@ class ValidationTest extends BaseTestCase
      *
      * @psalm-return array{allowedOrdering: array{0: string, 1: true}, allowedOrderingWithSorting: array{0: string, 1: true}, allowedOrderingWithSorting2: array{0: string, 1: true}, allowedOrderingWithSorting3: array{0: string, 1: true}, allowedOrderingWithDotsAndSorting: array{0: string, 1: true}, nonAllowedField: array{0: string, 1: false}, nonAllowedSorting: array{0: string, 1: false}, nonAllowedDoubleSorting: array{0: string, 1: false}, nonAllowedDoubleFields: array{0: string, 1: false}, emptySorting: array{0: string, 1: true}, emptySorting2: array{0: string, 1: true}}
      */
-    public function orderDataProvider(): array
+    public static function orderDataProvider(): array
     {
         return [
             'allowedOrdering' => [

@@ -28,13 +28,11 @@ class RecordListConstraint
 
     /**
      * Check if current module is the news administration module
-     *
-     * @return bool
      */
     public function isInAdministrationModule(): bool
     {
-        $vars = GeneralUtility::_GET('route');
-        return strpos($vars, '/module/web/NewsAdministration') !== false;
+        $vars = $GLOBALS['TYPO3_REQUEST']->getQueryParams()['route'];
+        return str_contains($vars, '/module/web/NewsAdministration');
     }
 
     public function extendQuery(array &$parameters, array $arguments): void
@@ -116,7 +114,7 @@ class RecordListConstraint
                 $limit = ConstraintHelper::getTimeRestrictionLow($arguments['timeRestriction']);
                 $parameters['where'][] = 'datetime >=' . $limit;
                 $parameters['whereDoctrine'][] = $expressionBuilder->gte('datetime', $limit);
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 // @todo add flash message
             }
         }
@@ -127,7 +125,7 @@ class RecordListConstraint
                 $limit = ConstraintHelper::getTimeRestrictionHigh($arguments['timeRestrictionHigh']);
                 $parameters['where'][] = 'datetime <=' . $limit;
                 $parameters['whereDoctrine'][] = $expressionBuilder->lte('datetime', $limit);
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 // @todo add flash message
             }
         }
@@ -220,7 +218,6 @@ class RecordListConstraint
 
     /**
      * @param int $categoryId
-     * @return array
      */
     protected function getNewsIdsOfCategory($categoryId): array
     {

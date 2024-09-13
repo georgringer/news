@@ -10,6 +10,8 @@
 namespace GeorgRinger\News\Tests\Unit\Service;
 
 use GeorgRinger\News\Service\CategoryService;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -17,11 +19,8 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class CategoryServiceTest extends BaseTestCase
 {
-    /**
-     * @test
-     *
-     * @dataProvider removeValuesFromStringDataProvider
-     */
+    #[DataProvider('removeValuesFromStringDataProvider')]
+    #[Test]
     public function removeValuesFromString($expected, $given): void
     {
         $result = CategoryService::removeValuesFromString($given[0], $given[1]);
@@ -33,7 +32,7 @@ class CategoryServiceTest extends BaseTestCase
      *
      * @return array
      */
-    public function removeValuesFromStringDataProvider()
+    public static function removeValuesFromStringDataProvider()
     {
         return [
             'simpleExampleWithRemovalAtEnd' => [

@@ -52,13 +52,6 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
         parent::initializeArguments();
     }
 
-    /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     *
-     * @return array
-     */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
@@ -69,7 +62,7 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
         }
 
         $allArguments = (array)$arguments['additionalParams'];
-        $categoryId = (int)$arguments['item'];
+        $categoryId = $arguments['item'] ?? 0;
 
         // All IDs are numeric. Hence, split and type cast.
         $categoryList = GeneralUtility::intExplode(',', $arguments['list'] ?? '', true);

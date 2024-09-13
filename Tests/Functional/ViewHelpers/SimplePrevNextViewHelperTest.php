@@ -12,17 +12,17 @@ namespace GeorgRinger\News\Tests\Functional\ViewHelpers;
 use DateTime;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-/**
- * Class SimplePrevNextViewHelperTest
- */
 class SimplePrevNextViewHelperTest extends FunctionalTestCase
 {
-    /** @var \GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper|\PHPUnit\Framework\MockObject\MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
+    /** @var SimplePrevNextViewHelper|MockObject|AccessibleObjectInterface */
     protected $mockedViewHelper;
 
     /** @var News */
@@ -43,9 +43,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.csv');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function allNeighboursCanBeFound(): void
     {
         $this->setDate(1396035186);
@@ -58,9 +56,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         self::assertEquals($exp, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function nextNeighbourCanBeFound(): void
     {
         $this->setDate(1395516730);
@@ -73,9 +69,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         self::assertEquals($exp, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function previousNeighbourCanBeFound(): void
     {
         $this->setDate(1396640035);
@@ -96,9 +90,6 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         $this->news->_setProperty('datetime', $date);
     }
 
-    /**
-     * @param int $id
-     */
     protected function getRow(int $id)
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)

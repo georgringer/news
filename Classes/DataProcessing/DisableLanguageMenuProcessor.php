@@ -27,13 +27,6 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 class DisableLanguageMenuProcessor implements DataProcessorInterface
 {
-    /**
-     * @param ContentObjectRenderer $cObj
-     * @param array $contentObjectConfiguration
-     * @param array $processorConfiguration
-     * @param array $processedData
-     * @return array
-     */
     public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData): array
     {
         if (isset($processorConfiguration['if.']) && !$cObj->checkIf($processorConfiguration['if.'])) {
@@ -56,10 +49,6 @@ class DisableLanguageMenuProcessor implements DataProcessorInterface
         return $processedData;
     }
 
-    /**
-     * @param int $newsId
-     * @param array $menu
-     */
     protected function handleMenu(int $newsId, array &$menu): void
     {
         $newsAvailability = GeneralUtility::makeInstance(NewsAvailability::class);
@@ -73,14 +62,11 @@ class DisableLanguageMenuProcessor implements DataProcessorInterface
                     $item['available'] = false;
                     $item['availableReason'] = 'news';
                 }
-            } catch (\Exception $e) {
+            } catch (\Exception) {
             }
         }
     }
 
-    /**
-     * @return int
-     */
     protected function getNewsId(): int
     {
         $newsId = 0;
@@ -95,9 +81,6 @@ class DisableLanguageMenuProcessor implements DataProcessorInterface
         return $newsId;
     }
 
-    /**
-     * @return ServerRequestInterface
-     */
     protected function getRequest(): ServerRequestInterface
     {
         return $GLOBALS['TYPO3_REQUEST'];

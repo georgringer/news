@@ -13,6 +13,7 @@ namespace GeorgRinger\News\Seo;
 
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\WorkspaceAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -35,9 +36,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
     protected $itemCount = 0;
 
     /**
-     * @param ServerRequestInterface $request
-     * @param string $key
-     * @param array $config
      * @param ContentObjectRenderer|null $cObj
      * @throws MissingConfigurationException
      */
@@ -148,8 +146,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
     /**
      * Get the current items
-     *
-     * @return array
      */
     public function getItems(): array
     {
@@ -158,18 +154,12 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
     /**
      * Get the number of pages
-     *
-     * @return int
      */
     public function getNumberOfPages(): int
     {
         return (int)ceil($this->itemCount / $this->numberOfItemsPerPage);
     }
 
-    /**
-     * @param array $data
-     * @return array
-     */
     protected function defineUrl(array $data): array
     {
         // @extensionScannerIgnoreLine
@@ -217,9 +207,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
     /**
      * Obtains a pid for the single view from the category.
-     *
-     * @param int $newsId
-     * @return int
      */
     protected function getSinglePidFromCategory(int $newsId): int
     {
@@ -244,11 +231,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         return (int)($categoryRecord['single_pid'] ?? 0);
     }
 
-    /**
-     * @param array $additionalParams
-     * @param array $data
-     * @return array
-     */
     protected function getUrlFieldParameterMap(array $additionalParams, array $data): array
     {
         if (!empty($this->config['url']['fieldToParameterMap']) &&
@@ -261,10 +243,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         return $additionalParams;
     }
 
-    /**
-     * @param array $additionalParams
-     * @return array
-     */
     protected function getUrlAdditionalParams(array $additionalParams): array
     {
         if (!empty($this->config['url']['additionalGetParameters']) &&
@@ -280,8 +258,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
     }
 
     /**
-     * @return int
-     * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
+     * @throws AspectNotFoundException
      */
     protected function getLanguageId(): int
     {
@@ -289,9 +266,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         return (int)$context->getPropertyFromAspect('language', 'id');
     }
 
-    /**
-     * @return WorkspaceAspect
-     */
     protected function getCurrentWorkspaceAspect(): WorkspaceAspect
     {
         return GeneralUtility::makeInstance(Context::class)->getAspect('workspace');

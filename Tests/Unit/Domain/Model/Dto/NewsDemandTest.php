@@ -11,6 +11,7 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
 
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -26,9 +27,7 @@ class NewsDemandTest extends BaseTestCase
         $this->instance = new NewsDemand();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function categoriesCanBeSet(): void
     {
         $value = ['Test 123'];
@@ -36,9 +35,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getCategories());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function categoryConjunctionCanBeSet(): void
     {
         $value = 'AND';
@@ -46,9 +43,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getCategoryConjunction());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function includeSubCategoriesCanBeSet(): void
     {
         $value = true;
@@ -56,9 +51,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getIncludeSubCategories());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function authorCanBeSet(): void
     {
         $value = '7elix';
@@ -66,9 +59,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getAuthor());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function tagsCanBeSet(): void
     {
         $value = '1,2,3';
@@ -76,9 +67,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getTags());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function archiveRestrictionCanBeSet(): void
     {
         $value = 'archive';
@@ -86,9 +75,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getArchiveRestriction());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function timeRestrictionCanBeSet(): void
     {
         $value = '2014-04-01';
@@ -96,9 +83,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getTimeRestriction());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function timeRestrictionHighCanBeSet(): void
     {
         $value = '2014-05-01';
@@ -106,9 +91,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getTimeRestrictionHigh());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function topNewsRestrictionCanBeSet(): void
     {
         $value = 1;
@@ -116,9 +99,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getTopNewsRestriction());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function dateFieldCanBeSet(): void
     {
         $value = 'datetime';
@@ -134,9 +115,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals('', $this->instance->getDateField());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function monthCanBeSet(): void
     {
         $value = 4;
@@ -144,9 +123,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getMonth());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function yearCanBeSet(): void
     {
         $value = 2014;
@@ -154,9 +131,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getYear());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function dayCanBeSet(): void
     {
         $value = 1;
@@ -164,9 +139,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getDay());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function searchFieldsCanBeSet(): void
     {
         $value = 'field1,field2';
@@ -174,9 +147,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getSearchFields());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function searchCanBeSet(): void
     {
         $value = new Search();
@@ -185,9 +156,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getSearch());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function orderCanBeSet(): void
     {
         $value = 'order';
@@ -195,9 +164,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getOrder());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function orderByAllowedCanBeSet(): void
     {
         $value = 'order,order2';
@@ -205,9 +172,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getOrderByAllowed());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function topNewsFirstCanBeSet(): void
     {
         $value = true;
@@ -215,9 +180,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getTopNewsFirst());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function storagePageCanBeSet(): void
     {
         $value = 456;
@@ -225,9 +188,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getStoragePage());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function limitCanBeSet(): void
     {
         $value = 10;
@@ -235,9 +196,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getLimit());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function offsetCanBeSet(): void
     {
         $value = 20;
@@ -245,9 +204,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getOffset());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function excludeAlreadyDisplayedNewsCanBeSet(): void
     {
         $value = true;
@@ -255,9 +212,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getExcludeAlreadyDisplayedNews());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hideIdListCanBeSet(): void
     {
         $value = '123,456';
@@ -265,9 +220,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getHideIdList());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function actionCanBeSet(): void
     {
         $value = 'anAction';
@@ -275,9 +228,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getAction());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function classCanBeSet(): void
     {
         $value = 'FooBar';
@@ -285,9 +236,7 @@ class NewsDemandTest extends BaseTestCase
         self::assertEquals($value, $this->instance->getClass());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function typesCanBeSet(): void
     {
         $value = ['12', '34'];

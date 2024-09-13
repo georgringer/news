@@ -1,27 +1,18 @@
 <?php
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
 defined('TYPO3') or die;
 
 $boot = static function (): void {
-    $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
-
     // Add seo sitemap fields
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('seo')) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
+    if (ExtensionManagementUtility::isLoaded('seo')) {
+        ExtensionManagementUtility::addTCAcolumns(
             'tx_news_domain_model_news',
             [
                 'sitemap_changefreq' => [
                     'config' => [
-                        'items' => $versionInformation->getMajorVersion() < 12 ? [
-                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.none', ''],
-                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.always', 'always'],
-                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.hourly', 'hourly'],
-                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.daily', 'daily'],
-                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.weekly', 'weekly'],
-                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.monthly', 'monthly'],
-                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.yearly', 'yearly'],
-                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.never', 'never'],
-                        ] : [
+                        'items' => [
                             ['label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.none', 'value' => ''],
                             ['label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.always', 'value' => 'always'],
                             ['label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.hourly', 'value' => 'hourly'],
@@ -39,19 +30,7 @@ $boot = static function (): void {
                 ],
                 'sitemap_priority' => [
                     'config' => [
-                        'items' => $versionInformation->getMajorVersion() < 12 ? [
-                            ['0.0', '0.0'],
-                            ['0.1', '0.1'],
-                            ['0.2', '0.2'],
-                            ['0.3', '0.3'],
-                            ['0.4', '0.4'],
-                            ['0.5', '0.5'],
-                            ['0.6', '0.6'],
-                            ['0.7', '0.7'],
-                            ['0.8', '0.8'],
-                            ['0.9', '0.9'],
-                            ['1.0', '1.0'],
-                        ] : [
+                        'items' => [
                             ['label' => '0.0', 'value' => '0.0'],
                             ['label' => '0.1', 'value' => '0.1'],
                             ['label' => '0.2', 'value' => '0.2'],
@@ -79,7 +58,7 @@ $boot = static function (): void {
             'showitem' => 'sitemap_changefreq,sitemap_priority',
         ];
 
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+        ExtensionManagementUtility::addToAllTCAtypes(
             'tx_news_domain_model_news',
             '--palette--;;sitemap',
             '',

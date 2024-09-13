@@ -38,13 +38,11 @@ class LargeStaticRangeMapper extends StaticRangeMapper
         }
     }
 
-    protected function getCountOfRecords(string $table, int $perPage)
+    protected function getCountOfRecords(string $table, int $perPage): int
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
         $count = $queryBuilder
-            ->count('*')
-            ->from($table)
-            ->execute()
+            ->count('*')->from($table)->executeQuery()
             ->fetchFirstColumn()[0];
 
         return (int)ceil($count / $perPage ?: 10);

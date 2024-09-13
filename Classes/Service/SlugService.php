@@ -9,17 +9,18 @@
 
 namespace GeorgRinger\News\Service;
 
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class SlugService
 {
-    /** @var SlugHelper */
-    protected $slugService;
+    protected SlugHelper $slugService;
 
     public function __construct()
     {
@@ -102,11 +103,6 @@ class SlugService
         return $newSlug ?? $slug;
     }
 
-    /**
-     * @param int $uid
-     * @param int $languageId
-     * @param string $slug
-     */
     protected function getUniqueCountStatement(int $uid, int $languageId, string $slug)
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
@@ -140,7 +136,12 @@ class SlugService
         // Check if table 'tx_realurl_uniqalias' exists
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_realurl_uniqalias');
-        $schemaManager = $queryBuilder->getConnection()->getSchemaManager();
+
+        if ((new(Typo3Version::class))->getVersion() >= 13) {
+            $schemaManager = $queryBuilder->getConnection()->createSchemaManager();
+        } else {
+            $schemaManager = $queryBuilder->getConnection()->getSchemaManager();
+        }
         if ($schemaManager && $schemaManager->tablesExist(['tx_realurl_uniqalias']) === true) {
             // Count valid aliases for news
             $queryBuilder->getRestrictions()->removeAll();
@@ -179,7 +180,7 @@ class SlugService
                             ),
                             $queryBuilder->expr()->gte(
                                 'tx_realurl_uniqalias.expire',
-                                $queryBuilder->createNamedParameter($GLOBALS['ACCESS_TIME'], Connection::PARAM_INT)
+                                $queryBuilder->createNamedParameter(GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp'), Connection::PARAM_INT)
                             )
                         )
                     )
@@ -199,7 +200,11 @@ class SlugService
         // Check if table 'tx_realurl_uniqalias' exists
         $queryBuilderForRealurl = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_realurl_uniqalias');
-        $schemaManager = $queryBuilderForRealurl->getConnection()->getSchemaManager();
+        if ((new(Typo3Version::class))->getVersion() >= 13) {
+            $schemaManager = $queryBuilderForRealurl->getConnection()->createSchemaManager();
+        } else {
+            $schemaManager = $queryBuilderForRealurl->getConnection()->getSchemaManager();
+        }
         if ($schemaManager && $schemaManager->tablesExist(['tx_realurl_uniqalias']) === true) {
             /** @var Connection $connection */
             $connection = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -257,7 +262,7 @@ class SlugService
                             ),
                             $queryBuilder->expr()->gte(
                                 'tx_realurl_uniqalias.expire',
-                                $queryBuilder->createNamedParameter($GLOBALS['ACCESS_TIME'], Connection::PARAM_INT)
+                                $queryBuilder->createNamedParameter(GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp'), Connection::PARAM_INT)
                             )
                         )
                     )

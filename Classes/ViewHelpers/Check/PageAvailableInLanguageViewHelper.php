@@ -29,14 +29,13 @@ class PageAvailableInLanguageViewHelper extends AbstractConditionViewHelper
 
     /**
      * @param array|null $arguments
-     * @return bool
      */
     protected static function evaluateCondition($arguments = null): bool
     {
         try {
             $newsAvailabilityChecker = GeneralUtility::makeInstance(NewsAvailability::class);
             return $newsAvailabilityChecker->check((int)$arguments['language']);
-        } catch (\UnexpectedValueException $e) {
+        } catch (\UnexpectedValueException) {
             return true;
         }
     }

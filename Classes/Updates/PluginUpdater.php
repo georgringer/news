@@ -20,9 +20,11 @@ use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
+#[UpgradeWizard('txNewsPluginUpdater')]
 class PluginUpdater implements UpgradeWizardInterface
 {
     private const MIGRATION_SETTINGS = [
@@ -68,13 +70,8 @@ class PluginUpdater implements UpgradeWizardInterface
         ],
     ];
 
-    /** @var FlexFormService */
-    protected $flexFormService;
-
-    /**
-     * @var FlexFormTools
-     */
-    protected $flexFormTools;
+    protected FlexFormService $flexFormService;
+    protected FlexFormTools $flexFormTools;
 
     protected EventDispatcherInterface $eventDispatcher;
 
@@ -83,11 +80,6 @@ class PluginUpdater implements UpgradeWizardInterface
         $this->flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
         $this->flexFormTools = GeneralUtility::makeInstance(FlexFormTools::class);
         $this->eventDispatcher = GeneralUtility::makeInstance(EventDispatcherInterface::class);
-    }
-
-    public function getIdentifier(): string
-    {
-        return 'txNewsPluginUpdater';
     }
 
     public function getTitle(): string
@@ -99,8 +91,7 @@ class PluginUpdater implements UpgradeWizardInterface
     {
         $description = 'The old plugin using switchableControllerActions has been split into separate plugins. ';
         $description .= 'This update wizard migrates all existing plugin settings and changes the plugin';
-        $description .= 'to use the new plugins available. Count of plugins: ' . count($this->getMigrationRecords());
-        return $description;
+        return $description . ('to use the new plugins available. Count of plugins: ' . count($this->getMigrationRecords()));
     }
 
     public function getPrerequisites(): array
@@ -208,10 +199,6 @@ class PluginUpdater implements UpgradeWizardInterface
 
     /**
      * Updates list_type and pi_flexform of the given content element UID
-     *
-     * @param int $uid
-     * @param string $newCtype
-     * @param string $flexform
      */
     protected function updateContentElement(int $uid, string $newCtype, string $flexform): void
     {
@@ -231,9 +218,6 @@ class PluginUpdater implements UpgradeWizardInterface
 
     /**
      * Transforms the given array to FlexForm XML
-     *
-     * @param array $input
-     * @return string
      */
     protected function array2xml(array $input = []): string
     {
@@ -252,7 +236,6 @@ class PluginUpdater implements UpgradeWizardInterface
         ];
         $spaceInd = 4;
         $output = GeneralUtility::array2xml($input, '', 0, 'T3FlexForms', $spaceInd, $options);
-        $output = '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>' . LF . $output;
-        return $output;
+        return '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>' . LF . $output;
     }
 }

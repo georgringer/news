@@ -28,12 +28,12 @@ class EmConfiguration
             try {
                 $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
                 $configuration = $extensionConfiguration->get('news');
-            } catch (\Exception $exception) {
+            } catch (\Exception) {
                 // do nothing
             }
         }
         foreach ($configuration as $key => $value) {
-            if (property_exists(__CLASS__, $key)) {
+            if (property_exists(self::class, $key)) {
                 $this->$key = $value;
             }
         }

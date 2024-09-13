@@ -11,7 +11,10 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
 
 use GeorgRinger\News\Hooks\PluginPreviewRenderer;
 use GeorgRinger\News\Utility\TemplateLayout;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -19,7 +22,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class PluginPreviewRendererTest extends BaseTestCase
 {
-    /** @var PluginPreviewRenderer|\PHPUnit\Framework\MockObject\MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
+    /** @var PluginPreviewRenderer|MockObject|AccessibleObjectInterface */
     protected $pageLayoutView;
 
     public function setup(): void
@@ -32,12 +35,9 @@ class PluginPreviewRendererTest extends BaseTestCase
         $GLOBALS['LANG'] = $languageService;
 
         $this->pageLayoutView = $this->getAccessibleMock(PluginPreviewRenderer::class, null, [], '', false);
-        $this->pageLayoutView->_set('databaseConnection', $this->getMockBuilder('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection')->setMethods(['exec_SELECTquery', 'exec_SELECTgetRows'])->getMock());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getArchiveSettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -45,12 +45,10 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getArchiveSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDetailPidSettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -58,12 +56,10 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getDetailPidSetting');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTagRestrictionSettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -71,12 +67,10 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getTagRestrictionSetting');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getListPidSettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -84,12 +78,10 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getListPidSetting');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOrderBySettingAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -97,98 +89,86 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOrderSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOrderDirectionSettingAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.orderDirection', 'asc');
 
-        self::assertEquals($this->pageLayoutView->_call('getOrderDirectionSetting'), '');
+        self::assertEquals('', $this->pageLayoutView->_call('getOrderDirectionSetting'));
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $out = $this->pageLayoutView->_call('getOrderDirectionSetting');
-        self::assertEquals(strlen($out) > 1, true);
+        self::assertTrue(strlen($out) > 1);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTopNewsFirstSettingAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.topNewsFirst', '1', 'additional');
 
-        self::assertEquals($this->pageLayoutView->_call('getTopNewsFirstSetting'), '');
+        self::assertEquals('', $this->pageLayoutView->_call('getTopNewsFirstSetting'));
 
         $this->pageLayoutView->_set('flexformData', $flexform);
         $out = $this->pageLayoutView->_call('getTopNewsFirstSetting');
-        self::assertEquals(strlen($out) > 1, true);
+        self::assertTrue(strlen($out) > 1);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOffsetLimitSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.offset', '1', 'additional');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOffsetLimitSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
 
         $this->addContentToFlexform($flexform, 'settings.limit', '1', 'additional');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOffsetLimitSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 2);
+        self::assertCount(2, $this->pageLayoutView->_get('tableData'));
 
         $this->addContentToFlexform($flexform, 'settings.hidePagination', '0', 'additional');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOffsetLimitSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 2);
+        self::assertCount(2, $this->pageLayoutView->_get('tableData'));
 
         $this->addContentToFlexform($flexform, 'settings.hidePagination', '1', 'additional');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOffsetLimitSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 3);
+        self::assertCount(3, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDateMenuSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.dateField', 'field');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getDateMenuSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTimeRestrictionSettingAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.timeRestriction', 'fo');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getTimeRestrictionSetting');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
 
         $this->addContentToFlexform($flexform, 'settings.timeRestrictionHigh', 'bar');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getTimeRestrictionSetting');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 2);
+        self::assertCount(2, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTemplateLayoutSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
@@ -201,19 +181,17 @@ class PluginPreviewRendererTest extends BaseTestCase
         $this->pageLayoutView->_set('templateLayoutsUtility', $mockedTemplateLayout);
 
         $this->pageLayoutView->_call('getTemplateLayoutSettings', 1);
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOverrideDemandSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.disableOverrideDemand', '1', 'additional');
         $this->pageLayoutView->_set('flexformData', $flexform);
         $this->pageLayoutView->_call('getOverrideDemandSettings');
-        self::assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
+        self::assertCount(1, $this->pageLayoutView->_get('tableData'));
     }
 
     /**

@@ -21,7 +21,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
         }
 
         news_detail {
-            iconIdentifier = ext-news-plugin-detail
+            iconIdentifier = ext-news-plugin-news-detail
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_detail.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_detail.description
             tt_content_defValues {

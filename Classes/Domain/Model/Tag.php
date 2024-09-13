@@ -16,39 +16,25 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
  */
 class Tag extends AbstractValueObject
 {
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $crdate;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $tstamp;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $title = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoTitle = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoDescription = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoHeadline = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $seoText = '';
 
     /** @var string */
@@ -61,19 +47,12 @@ class Tag extends AbstractValueObject
      */
     public function __construct() {}
 
-    /**
-     * Get crdate
-     *
-     * @return \DateTime|null
-     */
     public function getCrdate(): ?\DateTime
     {
         return $this->crdate;
     }
 
     /**
-     * Set crdate
-     *
      * @param \DateTime $crdate crdate
      */
     public function setCrdate($crdate): void
@@ -81,19 +60,12 @@ class Tag extends AbstractValueObject
         $this->crdate = $crdate;
     }
 
-    /**
-     * Get Tstamp
-     *
-     * @return \DateTime|null
-     */
     public function getTstamp(): ?\DateTime
     {
         return $this->tstamp;
     }
 
     /**
-     * Set tstamp
-     *
      * @param \DateTime $tstamp tstamp
      */
     public function setTstamp($tstamp): void
@@ -101,19 +73,12 @@ class Tag extends AbstractValueObject
         $this->tstamp = $tstamp;
     }
 
-    /**
-     * Get title
-     *
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * Set title
-     *
      * @param string $title title
      */
     public function setTitle($title): void
@@ -121,9 +86,6 @@ class Tag extends AbstractValueObject
         $this->title = $title;
     }
 
-    /**
-     * @return string
-     */
     public function getSeoTitle(): string
     {
         return $this->seoTitle;
@@ -137,9 +99,6 @@ class Tag extends AbstractValueObject
         $this->seoTitle = $seoTitle;
     }
 
-    /**
-     * @return string
-     */
     public function getSeoDescription(): string
     {
         return $this->seoDescription;
@@ -153,9 +112,6 @@ class Tag extends AbstractValueObject
         $this->seoDescription = $seoDescription;
     }
 
-    /**
-     * @return string
-     */
     public function getSeoHeadline(): string
     {
         return $this->seoHeadline;
@@ -169,9 +125,6 @@ class Tag extends AbstractValueObject
         $this->seoHeadline = $seoHeadline;
     }
 
-    /**
-     * @return string
-     */
     public function getSeoText(): string
     {
         return $this->seoText;
@@ -185,9 +138,6 @@ class Tag extends AbstractValueObject
         $this->seoText = $seoText;
     }
 
-    /**
-     * @return string
-     */
     public function getSlug(): string
     {
         return $this->slug;

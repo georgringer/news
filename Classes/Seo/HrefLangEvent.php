@@ -22,10 +22,9 @@ use TYPO3\CMS\Frontend\Event\ModifyHrefLangTagsEvent;
 class HrefLangEvent
 {
     /** @var ContentObjectRenderer */
-    public $cObj;
+    protected $cObj;
 
-    /** @var LanguageMenuProcessor */
-    protected $languageMenuProcessor;
+    protected LanguageMenuProcessor $languageMenuProcessor;
 
     public function __construct(ContentObjectRenderer $cObj, LanguageMenuProcessor $languageMenuProcessor)
     {
@@ -54,7 +53,7 @@ class HrefLangEvent
                     if (!$check) {
                         unset($allHrefLangs[$hreflangKey]);
                     }
-                } catch (\UnexpectedValueException $e) {
+                } catch (\UnexpectedValueException) {
                     $errorTriggered = true;
                 }
             }
@@ -66,5 +65,10 @@ class HrefLangEvent
                 $event->setHrefLangs($allHrefLangs);
             }
         }
+    }
+
+    public function setContentObjectRenderer(ContentObjectRenderer $cObj): void
+    {
+        $this->cObj = $cObj;
     }
 }

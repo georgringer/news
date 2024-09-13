@@ -1,54 +1,14 @@
 <?php
 
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use GeorgRinger\News\Hooks\Labels;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 defined('TYPO3') or die;
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
-$configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
-
-$imageSettings = [
-    'behaviour' => [
-        'allowLanguageSynchronization' => true,
-    ],
-    'overrideChildTca' => [
-        'types' => [
-            '0' => [
-                'showitem' => '--palette--;;imageoverlayPalette, --palette--;;filePalette',
-            ],
-            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                'showitem' => '--palette--;;imageoverlayPalette, --palette--;;filePalette',
-            ],
-        ],
-    ],
-    'appearance' => [
-        'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
-        'showPossibleLocalizationRecords' => true,
-        'showAllLocalizationLink' => true,
-        'showSynchronizationLink' => true,
-    ],
-    'foreign_match_fields' => [
-        'fieldname' => 'images',
-        'tablenames' => 'sys_category',
-        'table_local' => 'sys_file',
-    ],
-];
-
-$versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
-if ($versionInformation->getMajorVersion() > 11) {
-    $imageConfiguration = [
-        'type' => 'file',
-        'appearance' => $imageSettings['appearance'],
-        'behaviour' => $imageSettings['behaviour'],
-        'allowed' => 'common-image-types',
-    ];
-} else {
-    /** @noinspection PhpDeprecationInspection */
-    // @extensionScannerIgnoreLine
-    $imageConfiguration = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-        'image',
-        $imageSettings,
-        $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-    );
-}
+$configuration = GeneralUtility::makeInstance(EmConfiguration::class);
 
 /**
  * Add extra fields to the sys_category record
@@ -81,7 +41,19 @@ $newSysCategoryColumns = [
     'images' => [
         'exclude' => true,
         'label' => $ll . 'tx_news_domain_model_category.image',
-        'config' => $imageConfiguration,
+        'config' => [
+            'type' => 'file',
+            'appearance' => [
+                'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                'showPossibleLocalizationRecords' => true,
+                'showAllLocalizationLink' => true,
+                'showSynchronizationLink' => true,
+            ],
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
+            'allowed' => 'common-image-types',
+        ],
     ],
     'single_pid' => [
         'exclude' => true,
@@ -182,32 +154,32 @@ $newSysCategoryColumns = [
     ],
 ];
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_category', $newSysCategoryColumns);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+ExtensionManagementUtility::addTCAcolumns('sys_category', $newSysCategoryColumns);
+ExtensionManagementUtility::addToAllTCAtypes(
     'sys_category',
     '--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options, images',
     '',
     'before:description'
 );
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+ExtensionManagementUtility::addToAllTCAtypes(
     'sys_category',
     'single_pid',
     '',
     'after:description'
 );
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+ExtensionManagementUtility::addToAllTCAtypes(
     'sys_category',
     'shortcut',
     '',
     'after:single_pid'
 );
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+ExtensionManagementUtility::addToAllTCAtypes(
     'sys_category',
     '--div--;' . $ll . 'tx_news_domain_model_category.tabs.seo, seo_title, seo_description, seo_headline, seo_text',
     '',
     'after:endtime'
 );
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+ExtensionManagementUtility::addToAllTCAtypes(
     'sys_category',
     'slug',
     '',
@@ -218,4 +190,4 @@ $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage'
     = [0 => 'categories'];
 
 $GLOBALS['TCA']['sys_category']['ctrl']['label_userFunc'] =
-    \GeorgRinger\News\Hooks\Labels::class . '->getUserLabelCategory';
+    Labels::class . '->getUserLabelCategory';

@@ -14,18 +14,11 @@ use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class CategoryListActionEvent
 {
-    /**
-     * @var CategoryController
-     */
-    private $categoryController;
+    private CategoryController $categoryController;
 
-    /**
-     * @var array
-     */
-    private $assignedValues;
+    private array $assignedValues;
 
-    /** @var Request */
-    private $request;
+    private readonly Request $request;
 
     public function __construct(CategoryController $categoryController, array $assignedValues, Request $request)
     {

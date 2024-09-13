@@ -41,12 +41,6 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
         $this->registerArgument('categoryUid', 'int', 'Uid of the category', true);
     }
 
-    /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     * @return int
-     */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
@@ -58,7 +52,7 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
         $categoryUid = $arguments['categoryUid'];
         $languageUid = GeneralUtility::makeInstance(Context::class)->getAspect('language')->getId();
 
-        $count = $queryBuilder
+        return $queryBuilder
             ->count('tx_news_domain_model_news.title')
             ->from('tx_news_domain_model_news')
             ->rightJoin(
@@ -94,7 +88,5 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
                 )
             )
             ->executeQuery()->fetchOne();
-
-        return $count;
     }
 }

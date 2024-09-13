@@ -61,9 +61,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class PaginateBodytextViewHelper extends AbstractViewHelper
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $escapeOutput = false;
 
     /**
@@ -80,8 +78,6 @@ class PaginateBodytextViewHelper extends AbstractViewHelper
 
     /**
      * Render everything
-     *
-     * @return string
      */
     public function render(): string
     {
@@ -165,7 +161,6 @@ class PaginateBodytextViewHelper extends AbstractViewHelper
      * Extracts the first html tag for a given html string
      *
      * @param string $html
-     * @return string
      */
     protected function extractTag($html): string
     {
@@ -185,7 +180,6 @@ class PaginateBodytextViewHelper extends AbstractViewHelper
      * Checks whether a given tag is self closing
      *
      * @param string $tag
-     * @return bool
      */
     protected function isSelfClosingTag($tag): bool
     {
@@ -196,7 +190,6 @@ class PaginateBodytextViewHelper extends AbstractViewHelper
      * Checks whether a given tag is closing tag
      *
      * @param string $tag
-     * @return bool
      */
     protected function isClosingTag($tag): bool
     {
@@ -207,7 +200,6 @@ class PaginateBodytextViewHelper extends AbstractViewHelper
      * Checks whether a given Tag is a an opening tag
      *
      * @param string $tag
-     * @return bool
      */
     protected function isOpeningTag($tag): bool
     {
@@ -218,7 +210,6 @@ class PaginateBodytextViewHelper extends AbstractViewHelper
      * Gets a closing tag from a given opening tag
      *
      * @param string $openingTag
-     * @return string
      */
     protected function getClosingTagByOpeningTag($openingTag): string
     {

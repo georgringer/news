@@ -22,7 +22,6 @@ class ConstraintHelper
 {
     /**
      * @param string|int $timeInput
-     * @return int
      * @throws Exception
      */
     public static function getTimeRestrictionLow($timeInput): int
@@ -52,7 +51,6 @@ class ConstraintHelper
 
     /**
      * @param string|int $timeInput
-     * @return int
      * @throws Exception
      */
     public static function getTimeRestrictionHigh($timeInput): int
@@ -61,15 +59,13 @@ class ConstraintHelper
         // integer = timestamp
         if (MathUtility::canBeInterpretedAsInteger($timeInput)) {
             $currentTimestamp = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
-            $timeLimit = (int)$currentTimestamp + $timeInput;
-            return $timeLimit;
+            return (int)$currentTimestamp + $timeInput;
         }
         // try to check strtotime
         $timeFromStringHigh = strtotime($timeInput);
 
         if ($timeFromStringHigh) {
-            $timeLimit = $timeFromStringHigh;
-            return $timeLimit;
+            return $timeFromStringHigh;
         }
         throw new Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
     }

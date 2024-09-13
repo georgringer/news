@@ -15,9 +15,6 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- * Class ClassCacheManager
- */
 class ClassCacheManager
 {
     /**
@@ -27,14 +24,9 @@ class ClassCacheManager
      */
     protected $classCache;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $constructorLines = [];
 
-    /**
-     * @param PhpFrontend $classCache
-     */
     public function __construct(?PhpFrontend $classCache = null)
     {
         if ($classCache === null) {
@@ -157,10 +149,6 @@ class ClassCacheManager
         if (trim($innerPart[0]) === '{') {
             unset($innerPart[0]);
         }
-
-        $innerPartLine = function ($line) use ($offsetForInnerPart) {
-            return $line - $offsetForInnerPart;
-        };
 
         // unset the constructor and save it's lines
         if (isset($classParserInformation['functions']['__construct'])) {

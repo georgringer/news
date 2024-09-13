@@ -61,15 +61,11 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
     protected $dataMapper;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $escapeOutput = false;
 
     /**
      * Inject the DataMapper
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper
      */
     public function injectDataMapper(DataMapper $dataMapper): void
     {
@@ -90,9 +86,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         $this->registerArgument('includeExternalType', 'bool', 'Include external news types', false, false);
     }
 
-    /**
-     * @return string
-     */
     public function render(): string
     {
         $neighbours = $this->getNeighbours($this->arguments['news'], $this->arguments['pidList'], $this->arguments['sortField']);
@@ -108,9 +101,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
 
     /**
      * Map the array from DB to an understandable output
-     *
-     * @param array $result
-     * @return array
      */
     protected function mapResultToObjects(array $result): array
     {
@@ -159,12 +149,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         return $record;
     }
 
-    /**
-     * @param News $news
-     * @param string $pidList
-     * @param string $sortField
-     * @return array
-     */
     protected function getNeighbours(News $news, string $pidList, string $sortField): array
     {
         $data = [];
@@ -219,9 +203,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         return $data;
     }
 
-    /**
-     * @return QueryBuilder
-     */
     protected function getQueryBuilder(): QueryBuilder
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)
@@ -229,13 +210,12 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param int $id
      * @return array
      */
     protected function getRawRecord(int $id): ?array
     {
         $queryBuilder = $this->getQueryBuilder();
-        $rawRecord = $queryBuilder
+        return $queryBuilder
             ->select('*')
             ->from('tx_news_domain_model_news')
             ->where(
@@ -243,6 +223,5 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
             )
             ->setMaxResults(1)
             ->executeQuery()->fetchAssociative();
-        return $rawRecord;
     }
 }

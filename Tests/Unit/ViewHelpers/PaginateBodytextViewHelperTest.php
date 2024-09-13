@@ -10,6 +10,8 @@
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
 use GeorgRinger\News\ViewHelpers\PaginateBodytextViewHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -19,11 +21,9 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
 {
     /**
      * Test if given tag is a closing tag
-     *
-     * @test
-     *
-     * @dataProvider givenTagIsAClosingTagDataProvider
      */
+    #[DataProvider('givenTagIsAClosingTagDataProvider')]
+    #[Test]
     public function givenTagIsAClosingTag($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, null);
@@ -36,7 +36,7 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      *
      * @psalm-return array{'working example 1': array{0: string, 1: true}, 'working example 2': array{0: string, 1: false}}
      */
-    public function givenTagIsAClosingTagDataProvider(): array
+    public static function givenTagIsAClosingTagDataProvider(): array
     {
         return [
             'working example 1' => [
@@ -50,11 +50,9 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
 
     /**
      * Test if given tag is a self closing tag
-     *
-     * @test
-     *
-     * @dataProvider givenTagIsSelfClosingTagDataProvider
      */
+    #[DataProvider('givenTagIsSelfClosingTagDataProvider')]
+    #[Test]
     public function givenTagIsSelfClosingTag($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, null);
@@ -67,7 +65,7 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      *
      * @psalm-return array{'working example 1': array{0: string, 1: true}, 'working example 2': array{0: string, 1: false}}
      */
-    public function givenTagIsSelfClosingTagDataProvider(): array
+    public static function givenTagIsSelfClosingTagDataProvider(): array
     {
         return [
             'working example 1' => [
@@ -81,11 +79,9 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
 
     /**
      * Test if given tag is an opening tag
-     *
-     * @test
-     *
-     * @dataProvider givenTagIsAnOpeningTagDataProvider
      */
+    #[DataProvider('givenTagIsAnOpeningTagDataProvider')]
+    #[Test]
     public function givenTagIsAnOpeningTag($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, null);
@@ -98,7 +94,7 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      *
      * @psalm-return array{0: array{0: string, 1: true}, 1: array{0: string, 1: false}, 2: array{0: string, 1: false}, 3: array{0: string, 1: false}}
      */
-    public function givenTagIsAnOpeningTagDataProvider(): array
+    public static function givenTagIsAnOpeningTagDataProvider(): array
     {
         return [
             ['<div>', true],
@@ -110,11 +106,9 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
 
     /**
      * Test if given tag is an opening tag
-     *
-     * @test
-     *
-     * @dataProvider extractTagReturnsCorrectOneDataProvider
      */
+    #[DataProvider('extractTagReturnsCorrectOneDataProvider')]
+    #[Test]
     public function extractTagReturnsCorrectOne($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, null);
@@ -127,7 +121,7 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      *
      * @psalm-return array{0: array{0: string, 1: string}, 1: array{0: string, 1: string}, 2: array{0: string, 1: string}, 3: array{0: string, 1: string}}
      */
-    public function extractTagReturnsCorrectOneDataProvider(): array
+    public static function extractTagReturnsCorrectOneDataProvider(): array
     {
         return [
             ['this <strong>is</strong> a <div>real</div>test', 'this <strong>'],

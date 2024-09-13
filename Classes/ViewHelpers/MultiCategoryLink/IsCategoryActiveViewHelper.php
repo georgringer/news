@@ -42,7 +42,6 @@ class IsCategoryActiveViewHelper extends AbstractConditionViewHelper implements 
 
     /**
      * @param array|null $arguments
-     * @return bool
      */
     protected static function evaluateCondition($arguments = null): bool
     {

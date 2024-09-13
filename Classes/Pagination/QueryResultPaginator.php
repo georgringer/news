@@ -15,14 +15,9 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 final class QueryResultPaginator extends CustomAbstractPaginator
 {
-    /**
-     * @var QueryResultInterface
-     */
-    private $queryResult;
+    private readonly QueryResultInterface $queryResult;
 
-    /**
-     * @var QueryResultInterface
-     */
+    /** @var QueryResultInterface */
     private $paginatedQueryResult;
 
     public function __construct(
@@ -40,9 +35,6 @@ final class QueryResultPaginator extends CustomAbstractPaginator
         $this->updateInternalState();
     }
 
-    /**
-     * @return iterable|QueryResultInterface
-     */
     public function getPaginatedItems(): iterable
     {
         return $this->paginatedQueryResult;

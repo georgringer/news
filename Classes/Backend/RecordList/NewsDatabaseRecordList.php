@@ -9,9 +9,9 @@
 
 namespace GeorgRinger\News\Backend\RecordList;
 
+use TYPO3\CMS\Backend\RecordList\DatabaseRecordList;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList;
 
 /**
  * Class for the list rendering of administration module
@@ -25,7 +25,6 @@ class NewsDatabaseRecordList extends DatabaseRecordList
      *
      * @param string $alternativeId Alternative id value. Enter blank string for the current id ($this->id)
      * @param string $excludeList Comma separated list of fields NOT to include ("sortField" or "sortRev")
-     * @return string
      */
     public function listURL($alternativeId = '', $table = '-1', $excludeList = ''): string
     {
@@ -68,14 +67,14 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         ) {
             $urlParameters['sortRev'] = $this->sortRev;
         }
-        if (GeneralUtility::_GP('SET')) {
-            $urlParameters['SET'] = GeneralUtility::_GP('SET');
+        if ($GLOBALS['TYPO3_REQUEST']->getParsedBody()['SET'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['SET'] ?? null) {
+            $urlParameters['SET'] = $GLOBALS['TYPO3_REQUEST']->getParsedBody()['SET'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['SET'] ?? null;
         }
-        if (GeneralUtility::_GP('show')) {
-            $urlParameters['show'] = (int)GeneralUtility::_GP('show');
+        if ($GLOBALS['TYPO3_REQUEST']->getParsedBody()['show'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['show'] ?? null) {
+            $urlParameters['show'] = (int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['show'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['show'] ?? null);
         }
 
-        $demand = GeneralUtility::_GET('tx_newsadministration_web_newsadministrationadministration');
+        $demand = $GLOBALS['TYPO3_REQUEST']->getQueryParams()['tx_newsadministration_web_newsadministrationadministration'];
         if (isset($demand['demand']) && is_array($demand['demand'])) {
             $urlParameters['tx_newsadministration_web_newsadministrationadministration']['demand'] = $demand['demand'];
         }

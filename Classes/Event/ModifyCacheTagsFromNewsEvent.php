@@ -15,15 +15,9 @@ use GeorgRinger\News\Domain\Model\News;
 
 final class ModifyCacheTagsFromNewsEvent
 {
-    /**
-     * @var array
-     */
-    private $cacheTags;
+    private array $cacheTags;
 
-    /**
-     * @var News
-     */
-    private $news;
+    private readonly News $news;
 
     public function __construct(array $cacheTags, News $news)
     {

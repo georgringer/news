@@ -22,8 +22,8 @@ class NewsBaseController extends ActionController
 {
     protected function initializeView($view)
     {
-        // @extensionScannerIgnoreLine
-        $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
+        $contentObjectData = $this->request->getAttribute('currentContentObject');
+        $view->assign('contentObjectData', $contentObjectData ? $contentObjectData->data : null);
         $view->assign('emConfiguration', GeneralUtility::makeInstance(EmConfiguration::class));
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
             $view->assign('pageData', $GLOBALS['TSFE']->page);

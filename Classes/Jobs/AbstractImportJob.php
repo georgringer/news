@@ -9,29 +9,24 @@
 
 namespace GeorgRinger\News\Jobs;
 
+use GeorgRinger\News\Service\Import\DataProviderServiceInterface;
+use TYPO3\CMS\Core\SingletonInterface;
+
 /**
  * Abstract Import job
  */
 abstract class AbstractImportJob implements ImportJobInterface
 {
-    /**
-     * @var \GeorgRinger\News\Service\Import\DataProviderServiceInterface
-     */
+    /** @var DataProviderServiceInterface */
     protected $importDataProviderService;
 
-    /**
-     * @var \TYPO3\CMS\Core\SingletonInterface
-     */
+    /** @var SingletonInterface */
     protected $importService;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $importServiceSettings = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $importItemOverwrite = [];
 
     /*
@@ -39,15 +34,11 @@ abstract class AbstractImportJob implements ImportJobInterface
      */
     protected $numberOfRecordsPerRun;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $increaseOffsetPerRunBy;
 
     /**
      * Get number of runs
-     *
-     * @return int
      */
     public function getNumberOfRecordsPerRun(): int
     {
@@ -61,8 +52,6 @@ abstract class AbstractImportJob implements ImportJobInterface
     /**
      * Checks if this job is enabled. Do perform some checks her if you need to.
      * E.g. check if a certain extension is loaded or similar.
-     *
-     * @return bool
      */
     public function isEnabled(): bool
     {
@@ -71,19 +60,16 @@ abstract class AbstractImportJob implements ImportJobInterface
 
     /**
      * Get job info.
-     *
-     * @return array
      */
     public function getInfo(): array
     {
         $totalRecordCount = (int)$this->importDataProviderService->getTotalRecordCount();
-        $info = [
+
+        return [
             'totalRecordCount' => $totalRecordCount,
             'runsToComplete' => $totalRecordCount > 0 ? (ceil($totalRecordCount / $this->getNumberOfRecordsPerRun())) : 0,
             'increaseOffsetPerRunBy' => $this->getNumberOfRecordsPerRun(),
         ];
-
-        return $info;
     }
 
     /**

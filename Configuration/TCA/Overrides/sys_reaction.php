@@ -1,7 +1,9 @@
 <?php
 
-if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('reactions')) {
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+if (ExtensionManagementUtility::isLoaded('reactions')) {
+    ExtensionManagementUtility::addTcaSelectItem(
         'sys_reaction',
         'table_name',
         [

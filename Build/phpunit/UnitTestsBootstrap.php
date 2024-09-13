@@ -45,9 +45,18 @@
 
     $testbase->defineSitePath();
 
+    // We can use the "typo3/cms-composer-installers" constant "TYPO3_COMPOSER_MODE" to determine composer mode.
+    // This should be always true except for TYPO3 mono repository.
     $composerMode = defined('TYPO3_COMPOSER_MODE') && TYPO3_COMPOSER_MODE === true;
-    $requestType = \TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_BE | \TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_CLI;
-    \TYPO3\TestingFramework\Core\SystemEnvironmentBuilder::run(0, $requestType, $composerMode);
+
+    // @todo: Remove else branch when dropping support for v12
+    $hasConsolidatedHttpEntryPoint = class_exists(CoreHttpApplication::class);
+    if ($hasConsolidatedHttpEntryPoint) {
+        \TYPO3\TestingFramework\Core\SystemEnvironmentBuilder::run(0, \TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_CLI, $composerMode);
+    } else {
+        $requestType = \TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_BE | \TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_CLI;
+        \TYPO3\TestingFramework\Core\SystemEnvironmentBuilder::run(0, $requestType, $composerMode);
+    }
 
     $testbase->createDirectory(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext');
     $testbase->createDirectory(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3temp/assets');
@@ -66,15 +75,10 @@
         'core',
         new \TYPO3\CMS\Core\Cache\Backend\NullBackend('production', [])
     );
-
-    // Set all packages to active
-    if (interface_exists(\TYPO3\CMS\Core\Package\Cache\PackageCacheInterface::class)) {
-        $packageManager = \TYPO3\CMS\Core\Core\Bootstrap::createPackageManager(\TYPO3\CMS\Core\Package\UnitTestPackageManager::class, \TYPO3\CMS\Core\Core\Bootstrap::createPackageCache($cache));
-    } else {
-        // v10 compatibility layer
-        // @deprecated Will be removed when v10 compat is dropped from testing-framework
-        $packageManager = \TYPO3\CMS\Core\Core\Bootstrap::createPackageManager(\TYPO3\CMS\Core\Package\UnitTestPackageManager::class, $cache);
-    }
+    $packageManager = \TYPO3\CMS\Core\Core\Bootstrap::createPackageManager(
+        \TYPO3\CMS\Core\Package\UnitTestPackageManager::class,
+        \TYPO3\CMS\Core\Core\Bootstrap::createPackageCache($cache)
+    );
 
     \TYPO3\CMS\Core\Utility\GeneralUtility::setSingletonInstance(\TYPO3\CMS\Core\Package\PackageManager::class, $packageManager);
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::setPackageManager($packageManager);

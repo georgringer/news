@@ -16,18 +16,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class TypoScript
 {
-    /**
-     * @param array $base
-     * @param array $overload
-     * @return array
-     */
     public function override(array $base, array $overload): array
     {
         $configuration = $overload['settings']['overrideFlexformSettingsIfEmpty'] ?? '';
         $validFields = GeneralUtility::trimExplode(',', $configuration, true);
         foreach ($validFields as $fieldName) {
             // Multilevel field
-            if (strpos($fieldName, '.') !== false) {
+            if (str_contains($fieldName, '.')) {
                 $keyAsArray = explode('.', $fieldName);
 
                 $foundInCurrentTs = $this->getValue($base, $keyAsArray);
@@ -53,11 +48,9 @@ class TypoScript
     /**
      * Get value from array by path
      *
-     * @param mixed $data
-     * @param mixed $path
      * @return mixed
      */
-    protected function getValue($data, $path)
+    protected function getValue(mixed $data, mixed $path)
     {
         $found = true;
 
@@ -80,26 +73,17 @@ class TypoScript
     /**
      * Set value in array by path
      *
-     * @param array $array
-     * @param array $path
-     * @param mixed $value
      * @param string[] $path
-     *
-     * @return array
      */
-    protected function setValue(array $array, array $path, $value): array
+    protected function setValue(array $array, array $path, mixed $value): array
     {
         $this->setValueByReference($array, $path, $value);
-
-        $final = array_merge_recursive([], $array);
-        return $final;
+        return array_merge_recursive([], $array);
     }
 
     /**
      * Set value by reference
      *
-     * @param array $array
-     * @param array $path
      * @param $value
      */
     private function setValueByReference(array &$array, array $path, $value): void

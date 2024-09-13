@@ -2,11 +2,8 @@
 ==================
 
 
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :depth: 1
 
 
 Important changes
@@ -16,11 +13,8 @@ To avoid entries in the deprecation log and code duplications, EXT:news for 6.2 
 
 A separate release for 7.x will follow, in the meantime, just use the master branch!
 
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :depth: 1
 
 Deprecation of n:format.striptags
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
+use GeorgRinger\News\Domain\Model\TtContent;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -16,5 +17,5 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 class TtContentRepository extends Repository
 {
-    protected $objectType = '\GeorgRinger\News\Domain\Model\Ttcontent';
+    protected $objectType = TtContent::class;
 }

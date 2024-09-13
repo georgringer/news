@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Tests\Unit\Utility;
 
 use GeorgRinger\News\Utility\ImportJob;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -17,9 +18,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class ImportJobTest extends BaseTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function classCanBeRegistered(): void
     {
         $importJobInstance = new ImportJob();

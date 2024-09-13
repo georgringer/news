@@ -25,6 +25,7 @@ namespace GeorgRinger\News\Updates;
  */
 
 use GeorgRinger\News\Service\SlugService;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
@@ -38,17 +39,13 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
  * Will only appear if missing slugs found between realurl and news, respecting language and expire date from realurl
  * Copies values from 'tx_realurl_uniqalias.value_alias' to 'tx_news_domain_model_news.path_segment'
  */
+#[UpgradeWizard('realurlAliasNewsSlug')]
 class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
 {
     public const TABLE = 'tx_news_domain_model_news';
 
-    /** @var SlugService */
-    protected $slugService;
+    protected SlugService $slugService;
 
-    /**
-     * RealurlAliasNewsSlugUpdater constructor.
-     * @param SlugService $slugService
-     */
     public function __construct(
         SlugService $slugService
     ) {
@@ -58,7 +55,7 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
     public function executeUpdate(): bool
     {
         // user decided to migrate, migrate and mark wizard as done
-        $queries = $this->slugService->performRealurlAliasMigration();
+        $this->slugService->performRealurlAliasMigration();
 
         return true;
     }
@@ -83,32 +80,17 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
         ];
     }
 
-    /**
-     * Get title
-     *
-     * @return string
-     */
     public function getTitle(): string
     {
         return '[Optional] Migrate realurl alias to slug field "path_segment" of EXT:news records';
     }
 
     /**
-     * Get description
-     *
      * @return string Longer description of this updater
      */
     public function getDescription(): string
     {
         return 'Migrates EXT:realurl unique alias values into empty slug field "path_segment" of EXT:news records.';
-    }
-
-    /**
-     * @return string Unique identifier of this updater
-     */
-    public function getIdentifier(): string
-    {
-        return 'realurlAliasNewsSlug';
     }
 
     /**

@@ -45,8 +45,8 @@ handleDbmsOptions() {
                 echo "Use \".Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
                 exit 1
             fi
-            [ -z "${DBMS_VERSION}" ] && DBMS_VERSION="10.2"
-            if ! [[ ${DBMS_VERSION} =~ ^(10.2|10.3|10.4|10.5|10.6|10.7|10.8|10.9|10.10|10.11|11.0|11.1)$ ]]; then
+            [ -z "${DBMS_VERSION}" ] && DBMS_VERSION="10.3"
+            if ! [[ ${DBMS_VERSION} =~ ^(10.3|10.4|10.5|10.6|10.7|10.8|10.9|10.10|10.11|11.0|11.1)$ ]]; then
                 echo "Invalid combination -d ${DBMS} -i ${DBMS_VERSION}" >&2
                 echo >&2
                 echo "Use \".Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
@@ -61,8 +61,8 @@ handleDbmsOptions() {
                 echo "Use \".Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
                 exit 1
             fi
-            [ -z "${DBMS_VERSION}" ] && DBMS_VERSION="5.5"
-            if ! [[ ${DBMS_VERSION} =~ ^(5.5|5.6|5.7|8.0)$ ]]; then
+            [ -z "${DBMS_VERSION}" ] && DBMS_VERSION="8.0"
+            if ! [[ ${DBMS_VERSION} =~ ^(8.0)$ ]]; then
                 echo "Invalid combination -d ${DBMS} -i ${DBMS_VERSION}" >&2
                 echo >&2
                 echo "Use \".Build/Scripts/runTests.sh -h\" to display help and valid options" >&2
@@ -200,8 +200,7 @@ Options:
     -i version
         Specify a specific database version
         With "-d mariadb":
-            - 10.2   short-term, maintained until 2023-05-25 (default)
-            - 10.3   short-term, maintained until 2023-05-25
+            - 10.3   short-term, maintained until 2023-05-25 (default)
             - 10.4   short-term, maintained until 2024-06-18
             - 10.5   short-term, maintained until 2025-06-24
             - 10.6   long-term, maintained until 2026-06
@@ -213,10 +212,7 @@ Options:
             - 11.0   development series
             - 11.1   short-term development series
         With "-d mysql":
-            - 5.5   unmaintained since 2018-12 (default)
-            - 5.6   unmaintained since 2021-02
-            - 5.7   maintained until 2023-10
-            - 8.0   maintained until 2026-04
+            - 8.0   maintained until 2026-04 (default)
         With "-d postgres":
             - 10    unmaintained since 2022-11-10 (default)
             - 11    unmaintained since 2023-11-09
@@ -226,16 +222,15 @@ Options:
             - 15    maintained until 2027-11-11
             - 16    maintained until 2028-11-09
 
-    -t <11|12>
+    -t <12|13>
         Only with -s composerInstall|composerInstallMin|composerInstallMax
         Specifies the TYPO3 CORE Version to be used
-            - 11.5: use TYPO3 v11 (default)
-            - 12.4: use TYPO3 v12
+            - 12: use TYPO3 v12 (default)
+            - 13: use TYPO3 v13
 
-    -p <7.4|8.0|8.1|8.2|8.3>
+    -p <8.0|8.1|8.2|8.3>
         Specifies the PHP minor version to be used
-            - 7.4: use PHP 7.4 (default)
-            - 8.0: use PHP 8.0
+            - 8.0: use PHP 8.0 (default)
             - 8.1: use PHP 8.1
             - 8.2: use PHP 8.2
             - 8.3: use PHP 8.3
@@ -311,23 +306,23 @@ ROOT_DIR="${PWD}"
 
 # Option defaults
 TEST_SUITE=""
-TYPO3_VERSION="11"
+TYPO3_VERSION="12"
 DBMS="sqlite"
 DBMS_VERSION=""
-PHP_VERSION="7.4"
+PHP_VERSION="8.1"
 PHP_XDEBUG_ON=0
 PHP_XDEBUG_PORT=9003
 EXTRA_TEST_OPTIONS=""
 CGLCHECK_DRY_RUN=0
 DATABASE_DRIVER=""
 CONTAINER_BIN=""
-COMPOSER_ROOT_VERSION="11.4.3-dev"
+COMPOSER_ROOT_VERSION="12.0.0-dev"
 CONTAINER_INTERACTIVE="-it --init"
 HOST_UID=$(id -u)
 HOST_PID=$(id -g)
 USERSET=""
 SUFFIX=$(echo $RANDOM)
-NETWORK="friendsoftypo3-tea-${SUFFIX}"
+NETWORK="georgringer-news-${SUFFIX}"
 CI_PARAMS="${CI_PARAMS:-}"
 CONTAINER_HOST="host.docker.internal"
 PHPSTAN_CONFIG_FILE="phpstan.neon"
@@ -361,7 +356,7 @@ while getopts "a:b:s:d:i:p:e:t:xy:nhu" OPT; do
             ;;
         p)
             PHP_VERSION=${OPTARG}
-            if ! [[ ${PHP_VERSION} =~ ^(7.4|8.0|8.1|8.2|8.3)$ ]]; then
+            if ! [[ ${PHP_VERSION} =~ ^(8.1|8.2|8.3)$ ]]; then
                 INVALID_OPTIONS+=("-p ${OPTARG}")
             fi
             ;;
@@ -370,7 +365,7 @@ while getopts "a:b:s:d:i:p:e:t:xy:nhu" OPT; do
             ;;
         t)
             TYPO3_VERSION=${OPTARG}
-            if ! [[ ${TYPO3_VERSION} =~ ^(11|12)$ ]]; then
+            if ! [[ ${TYPO3_VERSION} =~ ^(12|13)$ ]]; then
                 INVALID_OPTIONS+=("-t ${OPTARG}")
             fi
             ;;
@@ -508,13 +503,13 @@ case ${TEST_SUITE} in
         cleanComposer
         stashComposerFiles
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-install-highest-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/bash -c "
-            if [ ${TYPO3_VERSION} -eq 11 ]; then
-              composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:^11.5.24 || exit 1
-            fi
             if [ ${TYPO3_VERSION} -eq 12 ]; then
               composer require --no-ansi --no-interaction --no-progress --no-install \
                 typo3/cms-core:^12.4.2 || exit 1
+            fi
+            if [ ${TYPO3_VERSION} -eq 13 ]; then
+              composer require --no-ansi --no-interaction --no-progress --no-install \
+                typo3/cms-core:^13.1 || exit 1
             fi
             composer update --no-progress --no-interaction  || exit 1
             composer show || exit 1
@@ -526,13 +521,13 @@ case ${TEST_SUITE} in
         cleanComposer
         stashComposerFiles
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-install-lowest-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/bash -c "
-            if [ ${TYPO3_VERSION} -eq 11 ]; then
-              composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:^11.5.24 || exit 1
-            fi
             if [ ${TYPO3_VERSION} -eq 12 ]; then
               composer require --no-ansi --no-interaction --no-progress --no-install \
                 typo3/cms-core:^12.4.2 || exit 1
+            fi
+            if [ ${TYPO3_VERSION} -eq 13 ]; then
+              composer require --no-ansi --no-interaction --no-progress --no-install \
+                typo3/cms-core:^13.1 || exit 1
             fi
             composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest || exit 1
             composer show || exit 1

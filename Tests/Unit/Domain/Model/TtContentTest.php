@@ -9,7 +9,9 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
+use DateTime;
 use GeorgRinger\News\Domain\Model\TtContent;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -19,9 +21,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class TtContentTest extends BaseTestCase
 {
-    /**
-     * @var TtContent
-     */
+    /** @var TtContent */
     protected $ttContentDomainModelInstance;
 
     /**
@@ -32,29 +32,23 @@ class TtContentTest extends BaseTestCase
         $this->ttContentDomainModelInstance = new TtContent();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function crdateCanBeSet(): void
     {
-        $fieldValue = new \DateTime();
+        $fieldValue = new DateTime();
         $this->ttContentDomainModelInstance->setCrdate($fieldValue);
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getCrdate());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function tstampCanBeSet(): void
     {
-        $fieldValue = new \DateTime();
+        $fieldValue = new DateTime();
         $this->ttContentDomainModelInstance->setTstamp($fieldValue);
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getTstamp());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cTypeCanBeSet(): void
     {
         $fieldValue = 'fo123';
@@ -62,9 +56,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getCType());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function headerCanBeSet(): void
     {
         $fieldValue = 'fo123';
@@ -72,9 +64,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getHeader());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function headerPositionCanBeSet(): void
     {
         $fieldValue = 'fo123';
@@ -82,9 +72,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getHeaderPosition());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function bodytextCanBeSet(): void
     {
         $fieldValue = 'fo123';
@@ -92,9 +80,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getBodytext());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function colPosCanBeSet(): void
     {
         $fieldValue = 1;
@@ -102,9 +88,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getColPos());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function imageCanBeSet(): void
     {
         $imageItem = new FileReference();
@@ -116,9 +100,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($image, $this->ttContentDomainModelInstance->getImage());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function imageCanBeAdded(): void
     {
         $imageItem = new FileReference();
@@ -129,9 +111,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($ttContent->getImage()->current(), $imageItem);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function imageWidthCanBeSet(): void
     {
         $fieldValue = 123;
@@ -139,9 +119,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getImagewidth());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function imageOrientCanBeSet(): void
     {
         $fieldValue = 3;
@@ -149,9 +127,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getImageorient());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function imageCaptionCanBeSet(): void
     {
         $fieldValue = 'Test123';
@@ -159,9 +135,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getImagecaption());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function imageColsCanBeSet(): void
     {
         $fieldValue = 123;
@@ -169,9 +143,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getImagecols());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function imageBorderCanBeSet(): void
     {
         $fieldValue = 123;
@@ -179,9 +151,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getImageborder());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mediaCanBeSet(): void
     {
         $mediaItem = new FileReference();
@@ -193,9 +163,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($media, $this->ttContentDomainModelInstance->getMedia());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mediaCanBeAdded(): void
     {
         $mediaItem = new FileReference();
@@ -206,9 +174,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($ttContent->getMedia()->current(), $mediaItem);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function layoutCanBeSet(): void
     {
         $fieldValue = 'Test 123';
@@ -216,9 +182,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getLayout());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function colsCanBeSet(): void
     {
         $fieldValue = 123;
@@ -226,9 +190,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getCols());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function subheaderCanBeSet(): void
     {
         $fieldValue = 'Test 123';
@@ -236,9 +198,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getSubheader());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function headerLinkCanBeSet(): void
     {
         $fieldValue = 'Test 123';
@@ -246,9 +206,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getHeaderLink());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function imageLinkCanBeSet(): void
     {
         $fieldValue = 'Test 123';
@@ -256,9 +214,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getImageLink());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function imageZoomCanBeSet(): void
     {
         $fieldValue = 'Test 123';
@@ -266,9 +222,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getImageZoom());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function altTextCanBeSet(): void
     {
         $fieldValue = 'Test 123';
@@ -276,9 +230,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getAltText());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function titleTextCanBeSet(): void
     {
         $fieldValue = 'Test 123';
@@ -286,9 +238,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getTitleText());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function headerLayoutCanBeSet(): void
     {
         $fieldValue = 'Test 123';
@@ -296,9 +246,7 @@ class TtContentTest extends BaseTestCase
         self::assertEquals($fieldValue, $this->ttContentDomainModelInstance->getHeaderLayout());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function listTypeCanBeSet(): void
     {
         $fieldValue = 'Test 123';

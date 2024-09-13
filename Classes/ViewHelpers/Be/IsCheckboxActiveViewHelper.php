@@ -16,9 +16,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class IsCheckboxActiveViewHelper extends AbstractViewHelper
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $escapeOutput = false;
 
     /**
@@ -31,9 +29,6 @@ class IsCheckboxActiveViewHelper extends AbstractViewHelper
         $this->registerArgument('categories', 'array', 'List of categories', false, []);
     }
 
-    /**
-     * @return string
-     */
     public function render(): string
     {
         return (isset($this->arguments['categories']) && is_array($this->arguments['categories']) && in_array($this->arguments['id'], $this->arguments['categories'])) ? 'checked="checked"' : '';

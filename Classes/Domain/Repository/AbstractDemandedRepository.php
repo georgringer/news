@@ -11,9 +11,11 @@ namespace GeorgRinger\News\Domain\Repository;
 
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -21,14 +23,9 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 abstract class AbstractDemandedRepository extends Repository implements DemandedRepositoryInterface
 {
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface
-     */
+    /** @var BackendInterface */
     protected $storageBackend;
 
-    /**
-     * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
-     */
     public function injectStorageBackend(
         BackendInterface $storageBackend
     ): void {
@@ -38,9 +35,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     /**
      * Returns an array of constraints created from a given demand object.
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-     * @param DemandInterface $demand
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
+     * @return ConstraintInterface[]
      * @abstract
      */
     abstract protected function createConstraintsFromDemand(
@@ -51,8 +46,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     /**
      * Returns an array of orderings created from a given demand object.
      *
-     * @param DemandInterface $demand
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
+     * @return ConstraintInterface[]
      * @abstract
      */
     abstract protected function createOrderingsFromDemand(DemandInterface $demand): array;
@@ -60,11 +54,9 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     /**
      * Returns the objects of this repository matching the demand.
      *
-     * @param DemandInterface $demand
      * @param bool $respectEnableFields
      * @param bool $disableLanguageOverlayMode
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return QueryResultInterface
      */
     public function findDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
     {
@@ -76,10 +68,8 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     /**
      * Returns the database query to get the matching result
      *
-     * @param DemandInterface $demand
      * @param bool $respectEnableFields
      * @param bool $disableLanguageOverlayMode
-     * @return string
      */
     public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): string
     {
@@ -100,12 +90,10 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     }
 
     /**
-     * @param DemandInterface $demand
      * @param bool $respectEnableFields
      * @param bool $disableLanguageOverlayMode
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
      */
-    protected function generateQuery(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): \TYPO3\CMS\Extbase\Persistence\QueryInterface
+    protected function generateQuery(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): QueryInterface
     {
         $query = $this->createQuery();
 
@@ -164,9 +152,6 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
     /**
      * Returns the total number objects of this repository matching the demand.
-     *
-     * @param DemandInterface $demand
-     * @return int
      */
     public function countDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): int
     {
@@ -174,7 +159,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
         if ($constraints = $this->createConstraintsFromDemand($query, $demand)) {
             $query->matching(
-                $query->logicalAnd($constraints)
+                $query->logicalAnd(...$constraints)
             );
         }
 

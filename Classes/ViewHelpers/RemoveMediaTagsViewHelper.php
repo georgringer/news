@@ -19,9 +19,7 @@ class RemoveMediaTagsViewHelper extends AbstractViewHelper
 
     protected $escapeChildren = false;
 
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     protected $tags = ['[media]'];
 
     /**

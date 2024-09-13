@@ -24,11 +24,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class NewsAvailability
 {
-    /**
-     * @param int $languageId
-     * @param int $newsId
-     * @return bool
-     */
     public function check(int $languageId, int $newsId = 0): bool
     {
         // get it from current request
@@ -65,7 +60,6 @@ class NewsAvailability
 
     /**
      * @param SiteLanguage[] $allLanguages
-     * @param int $languageId
      */
     protected function getLanguageFromAllLanguages(array $allLanguages, int $languageId): ?SiteLanguage
     {
@@ -117,9 +111,6 @@ class NewsAvailability
         return $row ?: null;
     }
 
-    /**
-     * @return ServerRequestInterface
-     */
     protected function getRequest(): ServerRequestInterface
     {
         return $GLOBALS['TYPO3_REQUEST'];

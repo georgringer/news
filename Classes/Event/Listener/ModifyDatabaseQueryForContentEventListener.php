@@ -25,7 +25,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class ModifyDatabaseQueryForContentEventListener
 {
-    protected static int $count = 0;
+    private static int $count = 0;
 
     public function modify(ModifyDatabaseQueryForContentEvent $event): void
     {
@@ -60,7 +60,7 @@ final class ModifyDatabaseQueryForContentEventListener
      * that no elements belonging to news articles
      * are rendered in the page module
      */
-    protected function addFlashMessage(): void
+    private function addFlashMessage(): void
     {
         $message = GeneralUtility::makeInstance(
             FlashMessage::class,
@@ -73,7 +73,7 @@ final class ModifyDatabaseQueryForContentEventListener
         $defaultFlashMessageQueue->enqueue($message);
     }
 
-    protected function getLanguageService(): LanguageService
+    private function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }

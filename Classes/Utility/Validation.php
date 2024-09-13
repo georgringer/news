@@ -11,9 +11,6 @@ namespace GeorgRinger\News\Utility;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- * Validation
- */
 class Validation
 {
     /**
@@ -21,7 +18,6 @@ class Validation
      *
      * @param string $fieldToCheck
      * @param string $allowedSettings
-     * @return bool
      */
     public static function isValidOrdering($fieldToCheck, $allowedSettings): bool
     {

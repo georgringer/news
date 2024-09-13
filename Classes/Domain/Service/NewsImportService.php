@@ -34,27 +34,11 @@ class NewsImportService extends AbstractImportService
 {
     public const ACTION_IMPORT_L10N_OVERLAY = 1;
 
-    /**
-     * @var NewsRepository
-     */
-    protected $newsRepository;
+    protected NewsRepository $newsRepository;
+    protected TtContentRepository $ttContentRepository;
+    protected SlugHelper $slugHelper;
+    protected array $settings = [];
 
-    /**
-     * @var TtContentRepository
-     */
-    protected $ttContentRepository;
-
-    /** @var SlugHelper */
-    protected $slugHelper;
-
-    /**
-     * @var array
-     */
-    protected $settings = [];
-
-    /**
-     * NewsImportService constructor.
-     */
     public function __construct(
         PersistenceManager $persistenceManager,
         CategoryRepository $categoryRepository,
@@ -197,7 +181,7 @@ class NewsImportService extends AbstractImportService
                 // get fileobject by given identifier (file UID, combined identifier or path/filename)
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($mediaItem['image']);
-                } catch (ResourceDoesNotExistException $exception) {
+                } catch (ResourceDoesNotExistException) {
                     $file = null;
                 }
 
@@ -242,7 +226,7 @@ class NewsImportService extends AbstractImportService
                 // get fileObject by given identifier (file UID, combined identifier or path/filename)
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($fileItem['file']);
-                } catch (ResourceDoesNotExistException $exception) {
+                } catch (ResourceDoesNotExistException) {
                     $file = null;
                 }
 

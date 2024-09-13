@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Service;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
@@ -24,9 +25,6 @@ class AccessControlService
 {
     /**
      * Check if a user has access to all categories of a news record
-     *
-     * @param array $newsRecord
-     * @return bool
      */
     public static function userHasCategoryPermissionsForRecord(array $newsRecord): bool
     {
@@ -50,9 +48,6 @@ class AccessControlService
 
     /**
      * Get an array with the uid and title of all categories the user doesn't have access to
-     *
-     * @param array $newsRecord
-     * @return array
      */
     public static function getAccessDeniedCategories(array $newsRecord): array
     {
@@ -89,7 +84,6 @@ class AccessControlService
      * Get all categories for a news record respecting l10n_mode
      *
      * @param array $newsRecord
-     * @return array
      */
     public static function getCategoriesForNewsRecord($newsRecord): array
     {
@@ -160,10 +154,8 @@ class AccessControlService
 
     /**
      * Returns the current BE user.
-     *
-     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
      */
-    protected static function getBackendUser(): \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+    protected static function getBackendUser(): BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }

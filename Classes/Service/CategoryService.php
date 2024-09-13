@@ -61,15 +61,12 @@ class CategoryService
      *
      * @param string $result string comma separated list
      * @param $toBeRemoved string comma separated list
-     * @return string
      */
     public static function removeValuesFromString($result, string $toBeRemoved): string
     {
         $resultAsArray = GeneralUtility::trimExplode(',', $result, true);
         $idListAsArray = GeneralUtility::trimExplode(',', $toBeRemoved, true);
-
-        $result = implode(',', array_diff($resultAsArray, $idListAsArray));
-        return $result;
+        return implode(',', array_diff($resultAsArray, $idListAsArray));
     }
 
     /**
@@ -77,10 +74,9 @@ class CategoryService
      *
      * @param string $idList list of category ids to start
      * @param int $counter
-     * @param string $additionalWhere additional where clause
      * @return string comma separated list of category ids
      */
-    private static function getChildrenCategoriesRecursive($idList, $counter = 0, $additionalWhere = ''): string
+    private static function getChildrenCategoriesRecursive($idList, $counter = 0): string
     {
         $result = [];
 
@@ -108,9 +104,7 @@ class CategoryService
             $subcategories = self::getChildrenCategoriesRecursive($row['uid'], $counter);
             $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
         }
-
-        $result = implode(',', $result);
-        return $result;
+        return implode(',', $result);
     }
 
     /**
@@ -118,7 +112,6 @@ class CategoryService
      *
      * @param string $default default label
      * @param array $row category record
-     * @return string
      */
     public static function translateCategoryRecord($default, array $row = []): string
     {
@@ -148,16 +141,13 @@ class CategoryService
             }
         }
 
-        $title = $title ?: $default ?: '';
-
-        return $title;
+        return $title ?: $default ?: '';
     }
 
     /**
      * Clean list of integers
      *
      * @param string $list
-     * @return string
      */
     private static function cleanIntList($list): string
     {

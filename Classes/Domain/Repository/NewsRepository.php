@@ -11,7 +11,7 @@ namespace GeorgRinger\News\Domain\Repository;
 
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use GeorgRinger\News\Domain\Model\DemandInterface;
-use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
 use GeorgRinger\News\Utility\Validation;
@@ -21,6 +21,11 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
@@ -32,18 +37,16 @@ class NewsRepository extends AbstractDemandedRepository
      * Returns a category constraint created by
      * a given list of categories and a junction string
      *
-     * @param QueryInterface $query
      * @param  array $categories
      * @param  string $conjunction
      * @param  bool $includeSubCategories
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
      */
     protected function createCategoryConstraint(
         QueryInterface $query,
         $categories,
         $conjunction,
         $includeSubCategories = false
-    ): ?\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface {
+    ): ?ConstraintInterface {
         $constraint = null;
         $categoryConstraints = [];
 
@@ -64,10 +67,8 @@ class NewsRepository extends AbstractDemandedRepository
                 );
                 $subCategoryConstraint = [];
                 $subCategoryConstraint[] = $query->contains('categories', $category);
-                if (count($subCategories) > 0) {
-                    foreach ($subCategories as $subCategory) {
-                        $subCategoryConstraint[] = $query->contains('categories', $subCategory);
-                    }
+                foreach ($subCategories as $subCategory) {
+                    $subCategoryConstraint[] = $query->contains('categories', $subCategory);
                 }
                 if ($subCategoryConstraint) {
                     $categoryConstraints[] = $query->logicalOr(...$subCategoryConstraint);
@@ -78,20 +79,12 @@ class NewsRepository extends AbstractDemandedRepository
         }
 
         if ($categoryConstraints) {
-            switch (strtolower($conjunction)) {
-                case 'or':
-                    $constraint = $query->logicalOr(...$categoryConstraints);
-                    break;
-                case 'notor':
-                    $constraint = $query->logicalNot($query->logicalOr(...$categoryConstraints));
-                    break;
-                case 'notand':
-                    $constraint = $query->logicalNot($query->logicalAnd(...$categoryConstraints));
-                    break;
-                case 'and':
-                default:
-                    $constraint = $query->logicalAnd(...$categoryConstraints);
-            }
+            $constraint = match (strtolower($conjunction)) {
+                'or' => $query->logicalOr(...$categoryConstraints),
+                'notor' => $query->logicalNot($query->logicalOr(...$categoryConstraints)),
+                'notand' => $query->logicalNot($query->logicalAnd(...$categoryConstraints)),
+                default => $query->logicalAnd(...$categoryConstraints),
+            };
         }
 
         return $constraint;
@@ -100,20 +93,17 @@ class NewsRepository extends AbstractDemandedRepository
     /**
      * Returns an array of constraints created from a given demand object.
      *
-     * @param QueryInterface $query
-     * @param DemandInterface $demand
      *
      * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
      * @throws \Exception
      *
-     * @return (\TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface|null)[]
+     * @return (AndInterface|ComparisonInterface|ConstraintInterface|NotInterface|OrInterface|null)[]
      *
-     * @psalm-return array<string, \TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface|null>
+     * @psalm-return array<string, (AndInterface | ComparisonInterface | ConstraintInterface | NotInterface | OrInterface | null)>
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
-        /** @var NewsDemand $demand */
         $constraints = [];
 
         if ($demand->getCategories() && $demand->getCategories() !== '0') {
@@ -216,9 +206,7 @@ class NewsRepository extends AbstractDemandedRepository
             foreach ($tagList as $singleTag) {
                 $subConstraints[] = $query->contains('tags', $singleTag);
             }
-            if (count($subConstraints) > 0) {
-                $constraints['tags'] = $query->logicalOr(...$subConstraints);
-            }
+            $constraints['tags'] = $query->logicalOr(...$subConstraints);
         }
 
         // Search
@@ -267,10 +255,8 @@ class NewsRepository extends AbstractDemandedRepository
     /**
      * Returns an array of orderings created from a given demand object.
      *
-     * @param DemandInterface $demand
      *
      * @return string[]
-     *
      * @psalm-return array<string, string>
      */
     protected function createOrderingsFromDemand(DemandInterface $demand): array
@@ -283,19 +269,17 @@ class NewsRepository extends AbstractDemandedRepository
         if (Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
             $orderList = GeneralUtility::trimExplode(',', $demand->getOrder(), true);
 
-            if (!empty($orderList)) {
-                // go through every order statement
-                foreach ($orderList as $orderItem) {
-                    $orderSplit = GeneralUtility::trimExplode(' ', $orderItem, true);
-                    $orderField = $orderSplit[0];
-                    $ascDesc = $orderSplit[1] ?? '';
-                    if ($ascDesc) {
-                        $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
-                            QueryInterface::ORDER_DESCENDING :
-                            QueryInterface::ORDER_ASCENDING);
-                    } else {
-                        $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
-                    }
+            // go through every order statement
+            foreach ($orderList as $orderItem) {
+                $orderSplit = GeneralUtility::trimExplode(' ', $orderItem, true);
+                $orderField = $orderSplit[0];
+                $ascDesc = $orderSplit[1] ?? '';
+                if ($ascDesc) {
+                    $orderings[$orderField] = (strtolower($ascDesc) === 'desc') ?
+                        QueryInterface::ORDER_DESCENDING :
+                        QueryInterface::ORDER_ASCENDING;
+                } else {
+                    $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
                 }
             }
         }
@@ -309,7 +293,7 @@ class NewsRepository extends AbstractDemandedRepository
      * @param string $importSource import source
      * @param string $importId import id
      * @param bool $asArray return result as array
-     * @return \GeorgRinger\News\Domain\Model\News|array
+     * @return News|array
      */
     public function findOneByImportSourceAndImportId($importSource, $importId, $asArray = false)
     {
@@ -325,10 +309,7 @@ class NewsRepository extends AbstractDemandedRepository
             )
         )->execute($asArray);
         if ($asArray) {
-            if (isset($result[0])) {
-                return $result[0];
-            }
-            return [];
+            return $result[0] ?? [];
         }
         return $result->getFirst();
     }
@@ -339,9 +320,8 @@ class NewsRepository extends AbstractDemandedRepository
      *
      * @param int $uid id of record
      * @param bool $respectEnableFields if set to false, hidden records are shown
-     * @return \GeorgRinger\News\Domain\Model\News|null
      */
-    public function findByUid($uid, $respectEnableFields = true): ?\GeorgRinger\News\Domain\Model\News
+    public function findByUid($uid, $respectEnableFields = true): ?News
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -363,9 +343,6 @@ class NewsRepository extends AbstractDemandedRepository
     /**
      * Get the count of news records by month/year and
      * returns the result compiled as array
-     *
-     * @param DemandInterface $demand
-     * @return array
      */
     public function countByDate(DemandInterface $demand): array
     {
@@ -437,9 +414,6 @@ from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
     /**
      * Get the search constraints
      *
-     * @param QueryInterface $query
-     * @param DemandInterface $demand
-     * @return array
      * @throws \UnexpectedValueException
      */
     protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand): array
@@ -479,9 +453,7 @@ from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
                 foreach ($searchFields as $field) {
                     $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
                 }
-                if (count($searchConstraints) > 0) {
-                    $constraints[] = $query->logicalOr(...$searchConstraints);
-                }
+                $constraints[] = $query->logicalOr(...$searchConstraints);
             }
         }
 
@@ -508,7 +480,6 @@ from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
     /**
      * @param string $table table name
-     * @return QueryBuilder
      */
     protected function getQueryBuilder(string $table): QueryBuilder
     {
@@ -517,9 +488,6 @@ from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
     /**
      * Return stripped order sql
-     *
-     * @param string $str
-     * @return string
      */
     private function stripOrderBy(string $str): string
     {
