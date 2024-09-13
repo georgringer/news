@@ -22,7 +22,6 @@ class ClassLoader implements SingletonInterface
 {
     protected PhpFrontend $classCache;
     protected object $classCacheManager;
-    protected bool $isValidInstance = false;
 
     public function __construct(?PhpFrontend $classCache = null)
     {
@@ -51,10 +50,6 @@ class ClassLoader implements SingletonInterface
      */
     public function loadClass($className): bool
     {
-        if (!$this->isValidInstance) {
-            return false;
-        }
-
         $className = ltrim($className, '\\');
 
         if (!$this->isValidClassName($className)) {
