@@ -36,7 +36,7 @@ class ClassLoader implements SingletonInterface
      *
      * @param PhpFrontend $classCache
      */
-    public function __construct(PhpFrontend $classCache = null, ClassCacheManager $classCacheManager = null)
+    public function __construct(?PhpFrontend $classCache = null, ?ClassCacheManager $classCacheManager = null)
     {
         $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
         if ($versionInformation->getMajorVersion() === 10) {

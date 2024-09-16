@@ -60,8 +60,6 @@ With the change `b8e2b3ea` the routing configuration has been simplified.
         type: PersistedAliasMapper
         tableName: tx_news_domain_model_news
         routeFieldName: path_segment
-        type: NewsTitle
-
 
    # now
    aspects:
