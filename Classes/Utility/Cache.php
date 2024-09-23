@@ -13,6 +13,7 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Event\ModifyCacheTagsFromDemandEvent;
 use GeorgRinger\News\Event\ModifyCacheTagsFromNewsEvent;
+use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
@@ -59,6 +60,7 @@ class Cache
     public static function addCacheTagsByNewsRecords($newsRecords): void
     {
         $cacheTags = [];
+        $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
         foreach ($newsRecords as $news) {
             // cache tag for each news record
             $cacheTagsOfNews = ['tx_news_uid_' . $news->getUid()];
@@ -68,11 +70,8 @@ class Cache
             $event = new ModifyCacheTagsFromNewsEvent($cacheTagsOfNews, $news);
             GeneralUtility::makeInstance(EventDispatcher::class)->dispatch($event);
             foreach ($event->getCacheTags() as $cacheTag) {
-                $cacheTags[] = $cacheTag;
+                $cacheDataCollector->addCacheTags(new CacheTag($cacheTag));
             }
-        }
-        if (count($cacheTags) > 0) {
-            $GLOBALS['TSFE']->addCacheTags($cacheTags);
         }
     }
 
@@ -83,6 +82,7 @@ class Cache
     public static function addPageCacheTagsByDemandObject(NewsDemand $demand): void
     {
         $cacheTags = [];
+        $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
         if ($demand->getStoragePage()) {
             // Add cache tags for each storage page
             foreach (GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
@@ -93,9 +93,8 @@ class Cache
         }
         $event = new ModifyCacheTagsFromDemandEvent($cacheTags, $demand);
         GeneralUtility::makeInstance(EventDispatcher::class)->dispatch($event);
-        $cacheTags = $event->getCacheTags();
-        if (count($cacheTags) > 0) {
-            $GLOBALS['TSFE']->addCacheTags($cacheTags);
+        foreach ($event->getCacheTags() as $cacheTag) {
+            $cacheDataCollector->addCacheTags(new CacheTag($cacheTag));
         }
     }
 }

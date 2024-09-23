@@ -30,6 +30,7 @@ use GeorgRinger\News\Utility\Page;
 use GeorgRinger\News\Utility\TypoScript;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -86,10 +87,8 @@ class NewsController extends NewsBaseController
             // We only want to set the tag once in one request, so we have to cache that statically if it has been done
             static $cacheTagsSet = false;
 
-            /** @var $typoScriptFrontendController \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
-            $typoScriptFrontendController = $GLOBALS['TSFE'];
             if (!$cacheTagsSet) {
-                $typoScriptFrontendController->addCacheTags(['tx_news']);
+                $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_news'));
                 $cacheTagsSet = true;
             }
         }
