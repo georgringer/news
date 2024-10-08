@@ -240,12 +240,18 @@ separate pages.
 If you use the :guilabel:`Category Menu` or :guilabel:`Tag List` plugins to
 filter news records, their titles (slugs) are used.
 
+The order of the config does matter!
+If you want to have  categories+pagination, that configuration has to stand before the part for categpries alone
+
+
 **Result:**
 
 * Detail view: ``https://www.example.com/news/detail/the-news-title``
 * Pagination: ``https://www.example.com/news/page-2``
 * Category filter: ``https://www.example.com/news/my-category``
+* Category filter + pagination: ``https://www.example.com/news/my-category/page-2``
 * Tag filter: ``https://www.example.com/news/my-tag``
+* Tag filter + pagination: ``https://www.example.com/news/my-tag/page-2``
 
 .. code-block:: yaml
    :caption: :file:`/config/sites/<your_identifier>/config.yaml`
@@ -259,22 +265,38 @@ filter news records, their titles (slugs) are used.
        routes:
          - routePath: '/'
            _controller: 'News::list'
+         # Pagination
          - routePath: '/page-{page}'
            _controller: 'News::list'
            _arguments:
              page: 'currentPage'
-         - routePath: '/{news-title}'
-           _controller: 'News::detail'
+        # Category + pagination:
+        - routePath: '/{category-name}/page-{page}'
+           _controller: 'News::list'
            _arguments:
-             news-title: news
+             category-name: overwriteDemand/categories
+             page: 'currentPage'
+         # Category
          - routePath: '/{category-name}'
            _controller: 'News::list'
            _arguments:
              category-name: overwriteDemand/categories
+         # Tagname + pagination
+         - routePath: '/{tag-name}/page-2'
+           _controller: 'News::list'
+           _arguments:
+             tag-name: overwriteDemand/tags
+             page: 'currentPage'
+         # Tagname
          - routePath: '/{tag-name}'
            _controller: 'News::list'
            _arguments:
              tag-name: overwriteDemand/tags
+         # Detail
+         - routePath: '/{news-title}'
+           _controller: 'News::detail'
+           _arguments:
+             news-title: news
        defaultController: 'News::list'
        defaults:
          page: '0'
@@ -378,19 +400,15 @@ by date. Also includes configuration for the pagination.
        extension: News
        plugin: Pi1
        routes:
-         # Pagination:
-         - routePath: '/'
-           _controller: 'News::list'
-         - routePath: '/page-{page}'
+          # Date year/month + pagination:
+         - routePath: '/{date-year}/{date-month}/page-{page}'
            _controller: 'News::list'
            _arguments:
+             date-month: 'overwriteDemand/month'
+             date-year: 'overwriteDemand/year'
              page: 'currentPage'
-         - routePath: '/{news-title}'
-           _controller: 'News::detail'
-           _arguments:
-             news-title: news
-         # Date year:
-         - routePath: '/{date-year}'
+         # Date year/month:
+         - routePath: '/{date-year}/{date-month}'
            _controller: 'News::list'
            _arguments:
              date-month: 'overwriteDemand/month'
@@ -402,20 +420,24 @@ by date. Also includes configuration for the pagination.
            _arguments:
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-         # Date year/month:
-         - routePath: '/{date-year}/{date-month}'
+         # Date year:
+         - routePath: '/{date-year}'
            _controller: 'News::list'
            _arguments:
              date-month: 'overwriteDemand/month'
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-          # Date year/month + pagination:
-         - routePath: '/{date-year}/{date-month}/page-{page}'
+         # Pagination:
+         - routePath: '/'
+           _controller: 'News::list'
+         - routePath: '/page-{page}'
            _controller: 'News::list'
            _arguments:
-             date-month: 'overwriteDemand/month'
-             date-year: 'overwriteDemand/year'
              page: 'currentPage'
+         - routePath: '/{news-title}'
+           _controller: 'News::detail'
+           _arguments:
+             news-title: news
        defaultController: 'News::list'
        defaults:
          page: '0'
