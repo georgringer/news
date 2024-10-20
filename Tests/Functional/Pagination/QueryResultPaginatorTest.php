@@ -14,18 +14,28 @@ use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Pagination\QueryResultPaginator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
+use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\TypoScript\AST\Node\RootNode;
+use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class QueryResultPaginatorTest extends FunctionalTestCase
 {
-    /** @var NewsRepository */
-    protected $newsRepository;
+    protected NewsRepository $newsRepository;
 
     protected array $testExtensionsToLoad = ['typo3conf/ext/news'];
 
     protected function setUp(): void
     {
         parent::setUp();
+
+        $frontendTypoScript = new FrontendTypoScript(new RootNode(), [], [], []);
+        $frontendTypoScript->setSetupArray([]);
+        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())
+            ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE)
+            ->withAttribute('frontend.typoscript', $frontendTypoScript);
+
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/news_pagination.csv');
         $this->newsRepository = $this->getContainer()->get(NewsRepository::class);
     }
