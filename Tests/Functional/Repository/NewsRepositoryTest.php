@@ -12,6 +12,7 @@ namespace GeorgRinger\News\Tests\Functional\Repository;
 use DateTimeImmutable;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\DateTimeAspect;
@@ -49,6 +50,7 @@ class NewsRepositoryTest extends FunctionalTestCase
      * Test if startingpoint is working
      */
     #[Test]
+    #[IgnoreDeprecations]
     public function findRecordsByUid(): void
     {
         $news = $this->newsRepository->findByUid(1);

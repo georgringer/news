@@ -12,6 +12,7 @@ namespace GeorgRinger\News\Tests\Functional\ViewHelpers;
 use DateTime;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Database\Connection;
@@ -44,6 +45,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
     }
 
     #[Test]
+    #[IgnoreDeprecations]
     public function allNeighboursCanBeFound(): void
     {
         $this->setDate(1396035186);

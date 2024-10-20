@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\Tests\Functional\ViewHelpers\Iterator;
 
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -23,6 +24,7 @@ class ChunkViewHelperTest extends FunctionalTestCase
     protected array $coreExtensionsToLoad = ['extbase', 'fluid'];
 
     #[Test]
+    #[IgnoreDeprecations]
     public function chunkIsProperlyCreated(): void
     {
         $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);

@@ -13,6 +13,7 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Pagination\QueryResultPaginator;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Http\ServerRequest;
@@ -44,6 +45,7 @@ class QueryResultPaginatorTest extends FunctionalTestCase
      * A short integration test to check that the fixtures are as expected
      */
     #[Test]
+    #[IgnoreDeprecations]
     public function integration(): void
     {
         $queryResult = $this->newsRepository->findAll();
