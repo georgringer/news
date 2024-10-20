@@ -41,19 +41,18 @@ It includes these features:
 
 ## Compatibility
 
-| News     | TYPO3     | PHP       | Support / Development                |
-|----------|-----------|-----------|--------------------------------------|
-| dev-12-13| 12 - 13   | 8.2 - 8.3 | unstable development branch          |
-| dev-main | 11 - 12   | 7.4 - 8.3 | unstable development branch          |
-| 11       | 11 - 12   | 7.4 - 8.3 | features, bugfixes, security updates |
-| 10       | 10 - 11   | 7.4 - 8.1 | none                                 |
-| 9        | 10 - 11   | 7.4 - 8.1 | none                                 |
-| 8        | 9.5 - 10  | 7.2 - 7.4 | none                                 |
-| 7.x      | 8.7 - 9.x | 7.0 - 7.2 | none                                 |
-| 6.x      | 7.6 - 8.7 | 5.6 - 7.2 | none                                 |
-| 5.x      | 7.6 - 8.7 | 5.6 - 7.2 | none                                 |
-| 4.x      | 7.6       | 5.5 - 5.6 | none                                 |
-| 3.x      | 6.2       | 5.5 - 5.6 | none                                 |
+| News | TYPO3     | PHP       | Support / Development                |
+|------|-----------|-----------|--------------------------------------|
+| 12   | 12 - 13   | 8.1 - 8.3 | unstable development branch          |
+| 11   | 11 - 12   | 7.4 - 8.3 | features, bugfixes, security updates |
+| 10   | 10 - 11   | 7.4 - 8.1 | none                                 |
+| 9    | 10 - 11   | 7.4 - 8.1 | none                                 |
+| 8    | 9.5 - 10  | 7.2 - 7.4 | none                                 |
+| 7.x  | 8.7 - 9.x | 7.0 - 7.2 | none                                 |
+| 6.x  | 7.6 - 8.7 | 5.6 - 7.2 | none                                 |
+| 5.x  | 7.6 - 8.7 | 5.6 - 7.2 | none                                 |
+| 4.x  | 7.6       | 5.5 - 5.6 | none                                 |
+| 3.x  | 6.2       | 5.5 - 5.6 | none                                 |
 
 [Contribute](https://docs.typo3.org/p/georgringer/news/main/en-us/Introduction/Contribution/Index.html)
 to this project to let your skills flow into its present and future architecture.
