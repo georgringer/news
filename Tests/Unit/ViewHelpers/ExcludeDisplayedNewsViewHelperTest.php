@@ -11,6 +11,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\ExcludeDisplayedNewsViewHelper;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -21,6 +22,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 class ExcludeDisplayedNewsViewHelperTest extends BaseTestCase
 {
     #[Test]
+    #[IgnoreDeprecations]
     public function newsIsAddedToExcludedList(): void
     {
         $viewHelper = new ExcludeDisplayedNewsViewHelper();
