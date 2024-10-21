@@ -1,0 +1,4 @@
+name: georgringer/news-twb5
+label: News
+dependencies:
+  - georgringer/news
