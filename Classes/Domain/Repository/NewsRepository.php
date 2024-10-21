@@ -175,7 +175,7 @@ class NewsRepository extends AbstractDemandedRepository
 
         // month & year OR year only
         if ($demand->getYear() > 0) {
-            if ($demand->getDateField() === null) {
+            if (!$demand->getDateField()) {
                 throw new \InvalidArgumentException('No Datefield is set, therefore no Datemenu is possible!');
             }
             if ($demand->getMonth() > 0) {
