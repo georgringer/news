@@ -126,6 +126,10 @@ This will speed up performance for building page routes of all other pages.
        plugin: Pi1
        # routes and aspects will follow here
 
+.. warning::
+
+   Not setting the `limitToPages` parameter may lead to unwanted side effects, e. g. not working error handling!
+
 Multiple routeEnhancers for news
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
