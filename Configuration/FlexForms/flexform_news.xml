@@ -226,6 +226,7 @@
 							<config>
 								<type>group</type>
 								<allowed>tx_news_domain_model_news</allowed>
+								<relationship>manyToOne</relationship>
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
@@ -339,6 +340,7 @@
 							<config>
 								<type>group</type>
 								<allowed>pages</allowed>
+								<relationship>manyToOne</relationship>
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
@@ -351,6 +353,7 @@
 							<config>
 								<type>group</type>
 								<allowed>pages</allowed>
+								<relationship>manyToOne</relationship>
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
@@ -363,6 +366,7 @@
 							<config>
 								<type>group</type>
 								<allowed>pages</allowed>
+								<relationship>manyToOne</relationship>
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
