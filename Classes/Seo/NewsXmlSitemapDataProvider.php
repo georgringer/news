@@ -18,6 +18,7 @@ use TYPO3\CMS\Core\Context\WorkspaceAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Seo\XmlSitemap\AbstractXmlSitemapDataProvider;
@@ -34,6 +35,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      * @var int
      */
     protected $itemCount = 0;
+    protected PageRepository $pageRepository;
 
     /**
      * @param ContentObjectRenderer|null $cObj
@@ -42,6 +44,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
     public function __construct(ServerRequestInterface $request, string $key, array $config = [], ?ContentObjectRenderer $cObj = null)
     {
         parent::__construct($request, $key, $config, $cObj);
+        $this->pageRepository = GeneralUtility::makeInstance(PageRepository::class);
 
         $this->generateItems();
     }
@@ -74,19 +77,10 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         }
 
         if (!empty($pids)) {
-            $recursiveLevel = isset($this->config['recursive']) ? (int)$this->config['recursive'] : 0;
-            if ($recursiveLevel) {
-                $newList = [];
-                foreach ($pids as $pid) {
-                    $list = $this->cObj->getTreeList($pid, $recursiveLevel);
-                    if ($list) {
-                        $newList = array_merge($newList, explode(',', $list));
-                    }
-                }
-                $pids = array_merge($pids, $newList);
-            }
+            $recursiveLevel = (int)($this->config['recursive'] ?? 0);
+            $pids = $this->pageRepository->getPageIdsRecursive($pids, $recursiveLevel);
 
-            $constraints[] = $queryBuilder->expr()->in('pid', $pids);
+            $constraints[] = $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter($pids, Connection::PARAM_INT_ARRAY));
         }
 
         if ($forGoogleNews) {
