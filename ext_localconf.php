@@ -230,6 +230,8 @@ $boot = static function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsCategory'] = NewsCategoryMapper::class;
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsTag'] = NewsTagMapper::class;
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['NewsTitle'] = NewsTitleMapper::class;
+
+    $GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['news'] = 'EXT:news/Resources/Public/Css/Backend/RecordList.css';
 };
 
 $boot();
