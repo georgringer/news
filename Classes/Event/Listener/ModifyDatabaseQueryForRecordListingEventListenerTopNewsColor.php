@@ -20,7 +20,6 @@ use TYPO3\CMS\Core\Database\Connection;
 )]
 final class ModifyDatabaseQueryForRecordListingEventListenerTopNewsColor
 {
-
     public function __invoke(ModifyDatabaseQueryForRecordListingEvent $event): void
     {
         if ($event->getTable() !== 'tx_news_domain_model_news') {
@@ -39,5 +38,4 @@ final class ModifyDatabaseQueryForRecordListingEventListenerTopNewsColor
 
         $event->setQueryBuilder($queryBuilder);
     }
-
 }
