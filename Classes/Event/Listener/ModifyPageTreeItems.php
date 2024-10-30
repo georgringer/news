@@ -23,7 +23,7 @@ use TYPO3\CMS\Core\Attribute\AsEventListener;
 #[AsEventListener(
     identifier: 'ext-news/backend/modify-page-tree-items',
 )]
-final readonly class ModifyPageTreeItems
+final class ModifyPageTreeItems
 {
 
     private const NEWS_TYPES = [
