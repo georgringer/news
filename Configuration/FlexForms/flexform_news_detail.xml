@@ -124,6 +124,11 @@
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
+								<suggestOptions>
+									<default>
+										<addWhere>AND pages.doktype NOT in (6,199,254)</addWhere>
+									</default>
+								</suggestOptions>
 							</config>
 					</settings.detailPid>
 
@@ -137,6 +142,11 @@
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
+								<suggestOptions>
+									<default>
+										<addWhere>AND pages.doktype NOT in (6,199,254)</addWhere>
+									</default>
+								</suggestOptions>
 							</config>
 					</settings.backPid>
 
