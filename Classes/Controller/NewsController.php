@@ -30,6 +30,8 @@ use GeorgRinger\News\Utility\Page;
 use GeorgRinger\News\Utility\TypoScript;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Cache\CacheTag;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -89,7 +91,12 @@ class NewsController extends NewsBaseController
             /** @var $typoScriptFrontendController \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
             $typoScriptFrontendController = $GLOBALS['TSFE'];
             if (!$cacheTagsSet) {
-                $typoScriptFrontendController->addCacheTags(['tx_news']);
+                if ((new Typo3Version())->getMajorVersion() >= 13) {
+                    $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_news'));
+                } else {
+                    $typoScriptFrontendController->addCacheTags(['tx_news']);
+
+                }
                 $cacheTagsSet = true;
             }
         }

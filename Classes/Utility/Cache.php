@@ -13,7 +13,9 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Event\ModifyCacheTagsFromDemandEvent;
 use GeorgRinger\News\Event\ModifyCacheTagsFromNewsEvent;
+use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 
@@ -72,7 +74,14 @@ class Cache
             }
         }
         if (count($cacheTags) > 0) {
-            $GLOBALS['TSFE']->addCacheTags($cacheTags);
+            if ((new Typo3Version())->getMajorVersion() >= 13) {
+                $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
+                foreach ($cacheTags as $cacheTag) {
+                    $cacheDataCollector->addCacheTags(new CacheTag($cacheTag));
+                }
+            } else {
+                $GLOBALS['TSFE']->addCacheTags($cacheTags);
+            }
         }
     }
 
@@ -83,6 +92,7 @@ class Cache
     public static function addPageCacheTagsByDemandObject(NewsDemand $demand): void
     {
         $cacheTags = [];
+
         if ($demand->getStoragePage()) {
             // Add cache tags for each storage page
             foreach (GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
@@ -95,7 +105,14 @@ class Cache
         GeneralUtility::makeInstance(EventDispatcher::class)->dispatch($event);
         $cacheTags = $event->getCacheTags();
         if (count($cacheTags) > 0) {
-            $GLOBALS['TSFE']->addCacheTags($cacheTags);
+            if ((new Typo3Version())->getMajorVersion() >= 13) {
+                $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
+                foreach ($cacheTags as $cacheTag) {
+                    $cacheDataCollector->addCacheTags(new CacheTag($cacheTag));
+                }
+            } else {
+                $GLOBALS['TSFE']->addCacheTags($cacheTags);
+            }
         }
     }
 }
