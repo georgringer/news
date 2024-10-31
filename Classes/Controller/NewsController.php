@@ -95,7 +95,6 @@ class NewsController extends NewsBaseController
                     $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_news'));
                 } else {
                     $typoScriptFrontendController->addCacheTags(['tx_news']);
-
                 }
                 $cacheTagsSet = true;
             }
