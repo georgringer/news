@@ -32,7 +32,7 @@
                 </f:then>
                 <f:else>
                     <li>
-                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: page},addQueryString:1)}">{page}</a>
+                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: page},addQueryString:'untrusted')}">{page}</a>
                     </li>
                 </f:else>
             </f:if>
