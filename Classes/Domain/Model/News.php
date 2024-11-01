@@ -285,7 +285,7 @@ class News extends AbstractEntity
      */
     public function getDayOfDatetime(): int
     {
-        return (int)$this->datetime->format('d');
+        return (int)$this->getDatetime()->format('d');
     }
 
     /**
