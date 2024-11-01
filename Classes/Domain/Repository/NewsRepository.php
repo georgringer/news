@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Domain\Repository;
 
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
+use Doctrine\DBAL\Platforms\SQLitePlatform;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Service\CategoryService;
@@ -359,14 +360,21 @@ class NewsRepository extends AbstractDemandedRepository
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getConnectionForTable('tx_news_domain_model_news');
         $isPostgres = $connection->getDatabasePlatform() instanceof PostgreSQLPlatform;
+        $isSqlite = $connection->getDatabasePlatform() instanceof SQLitePlatform;
         if ($isPostgres) {
             $sql = 'SELECT count(*), date_trunc(\'year\', to_timestamp(' . $field . '/1)::date) as _year, date_trunc(\'month\', to_timestamp(' . $field . '/1)::date)  as _MONTH 
 from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
+        } elseif ($isSqlite) {
+            $sql = 'SELECT strftime(\'%m\', ' . $field . ', \'unixepoch\') AS "_month",' .
+                ' strftime(\'%Y\', ' . $field . ', \'unixepoch\') AS "_year", ' .
+                ' count(strftime(\'%m\', ' . $field . ', \'unixepoch\')) as count_month,' .
+                ' count(strftime(\'%Y\', ' . $field . ', \'unixepoch\')) as count_year' .
+                ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
         } else {
-            $sql = 'SELECT MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND ) AS "_month",' .
-                ' YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND) AS "_year" ,' .
-                ' count(MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND )) as count_month,' .
-                ' count(YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND)) as count_year' .
+            $sql = 'SELECT MONTH(FROM_UNIXTIME(' . $field . ')) AS "_month",' .
+                ' YEAR(FROM_UNIXTIME(' . $field . ')) AS "_year", ' .
+                ' count(MONTH(FROM_UNIXTIME(' . $field . '))) as count_month,' .
+                ' count(YEAR(FROM_UNIXTIME(' . $field . '))) as count_year' .
                 ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
         }
 
