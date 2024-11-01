@@ -44,6 +44,5 @@ jobs:
       - name: Functional Tests with postgres
         run: Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -d postgres -s functional
 
-      # @todo disabled, due cross dbmns issues in code. Should be fixed first
-      # - name: Functional Tests with sqlite
-      #   run: Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -d sqlite -s functional
+      - name: Functional Tests with sqlite
+        run: Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -d sqlite -s functional
