@@ -589,8 +589,8 @@ $tx_news_domain_model_news = [
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     --palette--;;paletteDate,
                     bodytext,
-                --div--;' . $ll . 'tx_news_domain_model_news.content_elements,
-                    content_elements,
+                ' . ($configuration->getContentElementRelation() ? ('--div--;' . $ll . 'tx_news_domain_model_news.content_elements,
+                    content_elements,') : '') . '
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
                     fal_media,fal_related_files,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
@@ -723,10 +723,6 @@ if ($categoryRestrictionSetting) {
         $tx_news_domain_model_news['columns']['categories']['config']['foreign_table_where'] = $categoryRestriction .
             $tx_news_domain_model_news['columns']['categories']['config']['foreign_table_where'];
     }
-}
-
-if (!$configuration->getContentElementRelation()) {
-    unset($tx_news_domain_model_news['columns']['content_elements']);
 }
 
 return $tx_news_domain_model_news;
