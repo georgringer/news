@@ -1,1 +1,1 @@
-@import 'EXT:news/Configuration/TypoScript/Twb/setup.typoscript'
+@import 'EXT:news/Configuration/TypoScript/Styles/Twb5/setup.typoscript'
