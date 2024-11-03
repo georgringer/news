@@ -52,6 +52,8 @@ foreach ($pluginConfig as $pluginName) {
     ';
 }
 
+$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['news'] = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title';
+
 ExtensionManagementUtility::addToInsertRecords('tx_news_domain_model_news');
 
 foreach (['crdate', 'tstamp'] as $fakeField) {
