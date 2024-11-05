@@ -35,7 +35,7 @@ class News extends AbstractEntity
     /** @var \DateTime */
     protected $starttime;
 
-    /** @var \DateTime */
+    /** @var ?\DateTime */
     protected $endtime;
 
     /**
@@ -1179,7 +1179,7 @@ class News extends AbstractEntity
      *
      * @param DateTime $endtime end time
      */
-    public function setEndtime(DateTime $endtime): void
+    public function setEndtime($endtime): void
     {
         $this->endtime = $endtime;
     }
