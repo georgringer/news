@@ -442,7 +442,7 @@ class NewsController extends NewsBaseController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, self::class);
 
-        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+        if ((int)($this->settings['disableOverrideDemand'] ?? 1) !== 1 && $overwriteDemand !== null) {
             $overwriteDemandTemp = $overwriteDemand;
             unset($overwriteDemandTemp['year']);
             unset($overwriteDemandTemp['month']);
@@ -492,7 +492,7 @@ class NewsController extends NewsBaseController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, self::class);
 
-        if ((bool)($this->settings['disableOverrideDemand'] ?? false) && $overwriteDemand !== null) {
+        if ((int)($this->settings['disableOverrideDemand'] ?? 1) !== 1 && $overwriteDemand !== null) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
@@ -524,7 +524,7 @@ class NewsController extends NewsBaseController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, self::class);
 
-        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+        if ((int)($this->settings['disableOverrideDemand'] ?? 1) !== 1 && $overwriteDemand !== null) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
