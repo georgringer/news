@@ -76,7 +76,7 @@
 										<numIndex index="label"></numIndex>
 										<numIndex index="value"></numIndex>
 									</numIndex>
-									<numIndex index="value">
+									<numIndex index="1">
 										<numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.dateField.datetime</numIndex>
 										<numIndex index="value">datetime</numIndex>
 									</numIndex>
@@ -99,7 +99,7 @@
 										<numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.all</numIndex>
 										<numIndex index="value"></numIndex>
 									</numIndex>
-									<numIndex index="value">
+									<numIndex index="1">
 										<numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.or</numIndex>
 										<numIndex index="value">or</numIndex>
 									</numIndex>

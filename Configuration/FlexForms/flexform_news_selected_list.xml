@@ -34,7 +34,7 @@
 										<numIndex index="label"></numIndex>
 										<numIndex index="value"></numIndex>
 									</numIndex>
-									<numIndex index="value">
+									<numIndex index="1">
 										<numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.tstamp</numIndex>
 										<numIndex index="value">tstamp</numIndex>
 									</numIndex>
@@ -65,7 +65,7 @@
 										<numIndex index="label"></numIndex>
 										<numIndex index="value"></numIndex>
 									</numIndex>
-									<numIndex index="value">
+									<numIndex index="1">
 										<numIndex index="label">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.asc</numIndex>
 										<numIndex index="value">asc</numIndex>
 									</numIndex>
