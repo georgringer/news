@@ -274,8 +274,8 @@ If you want to have  categories+pagination, that configuration has to stand befo
            _controller: 'News::list'
            _arguments:
              page: 'currentPage'
-        # Category + pagination:
-        - routePath: '/{category-name}/page-{page}'
+         # Category + pagination:
+         - routePath: '/{category-name}/page-{page}'
            _controller: 'News::list'
            _arguments:
              category-name: overwriteDemand/categories
