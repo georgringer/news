@@ -64,5 +64,11 @@ services:
         method: 'modify'
         event: TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForRecordListingEvent
 
+  GeorgRinger\News\Event\Listener\ModifyResultItemInLiveSearchEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'ext-news/modify-result-item-in-live-search'
+        event: TYPO3\CMS\Backend\Search\Event\ModifyResultItemInLiveSearchEvent
+
   GeorgRinger\News\Domain\Service\NewsImportService:
     public: true
