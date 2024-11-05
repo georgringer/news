@@ -84,6 +84,9 @@ class EmConfiguration
     /** @var string */
     protected $slugBehaviour = 'unique';
 
+    /** @var bool */
+    protected $pageTreePluginPreview = true;
+
     public function getTagPid(): int
     {
         return (int)$this->tagPid;
@@ -168,4 +171,10 @@ class EmConfiguration
     {
         return $this->slugBehaviour;
     }
+
+    public function getPageTreePluginPreview(): bool
+    {
+        return (bool)$this->pageTreePluginPreview;
+    }
+
 }

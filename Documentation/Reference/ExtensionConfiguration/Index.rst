@@ -212,6 +212,20 @@ Slug behaviour `slugBehaviour`
    unique
       The same news title in different sites will lead to different slug names.
 
+.. _extensionConfigurationPageTreePluginPreview:
+
+Page Tree Plugin Preview
+------------------------
+
+.. confval:: pageTreePluginPreview
+
+   :type: bool
+   :Default: 1
+
+   If set, pages which contain a news plugin will show an additional icon right to the title in the page tree. This makes it easier to identify pages which are related to EXT:news.
+
+   This setting is only relevant since TYPO3 13!
+
 Backend Module
 ==============
 

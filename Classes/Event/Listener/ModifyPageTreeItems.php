@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Event\Listener;
 
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Controller\Event\AfterPageTreeItemsPreparedEvent;
 use TYPO3\CMS\Backend\Dto\Tree\Status\StatusInformation;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
@@ -25,6 +26,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 )]
 final class ModifyPageTreeItems
 {
+    private EmConfiguration $emConfiguration;
     private const NEWS_TYPES = [
         'news_pi1' => 'ext-news-plugin-news-list',
         'news_newsliststicky' => 'ext-news-plugin-news-list-sticky',
@@ -37,8 +39,16 @@ final class ModifyPageTreeItems
         'news_taglist' => 'ext-news-plugin-tag-list',
     ];
 
+    public function __construct()
+    {
+        $this->emConfiguration = GeneralUtility::makeInstance(EmConfiguration::class);
+    }
+
     public function __invoke(AfterPageTreeItemsPreparedEvent $event): void
     {
+        if (!$this->emConfiguration->getPageTreePluginPreview()) {
+            return;
+        }
         $items = $event->getItems();
         foreach ($items as &$item) {
             $ctype = $this->getFirstFoundNewsType($item['_page']['uid']);
