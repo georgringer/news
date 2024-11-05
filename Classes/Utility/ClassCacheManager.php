@@ -158,6 +158,9 @@ class ClassCacheManager
             if ($baseClass) {
                 $this->constructorLines['doc'] = explode("\n", $constructorInfo['doc'] ?? '');
             } else {
+                if (!isset($this->constructorLines['doc'])) {
+                    $this->constructorLines['doc'] = [];
+                }
                 array_splice(
                     $this->constructorLines['doc'],
                     -1,
