@@ -21,7 +21,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 /**
  * Disable language item on a detail page if the news is not translated
  *
- * 20 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
+ * 20 = disable-language-menu
  * 20.if.isTrue.data = GP:tx_news_pi1|news
  * 20.menus = languageMenu
  */
