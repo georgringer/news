@@ -33,12 +33,12 @@ here that your main :typoscript:`FLUIDTEMPLATE` can be found in
        # [...] template settings
        dataProcessing {
            # [...] Other data processors
-           50 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+           50 = menu
            50 {
                as = breadcrumbMenu
                special = rootline
            }
-           60 = GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor
+           60 = add-news-to-menu
            60.menus = breadcrumbMenu
        }
    }

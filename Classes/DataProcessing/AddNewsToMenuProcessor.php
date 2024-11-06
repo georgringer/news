@@ -25,7 +25,7 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 /**
  * Add the current news record to any menu, e.g. breadcrumb
  *
- * 20 = GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor
+ * 20 = add-news-to-menu
  * 20.menus = breadcrumbMenu,specialMenu
  */
 class AddNewsToMenuProcessor implements DataProcessorInterface

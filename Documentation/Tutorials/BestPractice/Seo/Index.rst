@@ -238,13 +238,13 @@ If no translation exists, the property `available` is set to `false` - just as i
 
 .. code-block:: typoscript
 
-   10 = TYPO3\CMS\Frontend\DataProcessing\LanguageMenuProcessor
+   10 = language-menu
    10 {
       as = languageMenu
       addQueryString = 1
    }
 
-   11 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
+   11 = disable-language-menu
    # comma separated list of language menu names
    11.menus = languageMenu
 
