@@ -159,6 +159,23 @@ As the class :php:`Domain/Model/News` should be extended, create a file at the s
       }
    }
 
+3) Exclude the class from dependecy injection
+_________________________________________
+
+As the class you define will be added to a new generated class, the class needs to be excluded from dependency injection in Configuration/Services.yaml:
+
+.. code-block:: yaml
+
+    services:
+      _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+    
+      GeorgRinger\Eventnews\:
+        resource: '../Classes/*'
+        exclude: '../Classes/Domain/Model/*'
+
 .. hint::
 
    If you are using the extension :file:`extension_builder`, this class might have been created for you already.
