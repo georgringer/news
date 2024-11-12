@@ -97,7 +97,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $configuration = $this->arguments['configuration'] ?? [];
         $content = $this->arguments['content'] ?? '';
 
-        $tsSettings = (array)$this->pluginSettingsService->getSettings();
+        $tsSettings = $this->pluginSettingsService->getSettings();
         ArrayUtility::mergeRecursiveWithOverrule($tsSettings, (array)$settings);
         // Options with stdWrap enabled won't override $tsSettings as intended here: override them explicit.
         if (isset($settings['useStdWrap']) && $settings['useStdWrap']) {
@@ -263,7 +263,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $detailPid = 0;
         if ($newsItem->getCategories()) {
             foreach ($newsItem->getCategories() as $category) {
-                if ($detailPid = (int)$category->getSinglePid()) {
+                if ($detailPid = $category->getSinglePid()) {
                     break;
                 }
             }
