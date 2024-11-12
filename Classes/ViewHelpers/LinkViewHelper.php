@@ -210,7 +210,9 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $configuration['additionalParams'] .= '&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail';
 
         // Add date as human readable
-        if (isset($tsSettings['link']['hrDate']) && $tsSettings['link']['hrDate'] == 1 || isset($tsSettings['link']['hrDate']['_typoScriptNodeValue']) && $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
+        if ((isset($tsSettings['link']['hrDate']) && $tsSettings['link']['hrDate'] == 1)
+            || (isset($tsSettings['link']['hrDate']['_typoScriptNodeValue']) && $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1)
+        ) {
             $dateTime = $newsItem->getDatetime();
 
             if (!is_null($dateTime)) {
