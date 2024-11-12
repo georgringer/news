@@ -105,7 +105,6 @@ class ChunkViewHelper extends AbstractViewHelper
             return iterator_to_array($candidate, $useKeys);
         }
         if ($candidate instanceof QueryResultInterface) {
-            /** @var QueryResultInterface $candidate */
             return $candidate->toArray();
         }
         if (is_string($candidate)) {

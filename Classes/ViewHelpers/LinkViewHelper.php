@@ -90,7 +90,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      */
     public function render(): ?string
     {
-        /** @var News $newsItem */
+        /** @var News|null $newsItem */
         $newsItem = $this->arguments['newsItem'];
         $settings = $this->arguments['settings'] ?? [];
         $uriOnly = $this->arguments['uriOnly'] ?? false;
