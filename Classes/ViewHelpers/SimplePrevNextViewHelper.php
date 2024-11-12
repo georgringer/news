@@ -170,7 +170,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
                 $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, Connection::PARAM_INT));
             }
 
-            $getter = 'get' . ucfirst($sortField) . '';
+            $getter = 'get' . ucfirst($sortField);
             if ($news->$getter() instanceof \DateTime) {
                 if ($label === 'prev') {
                     $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($news->$getter()->getTimestamp(), Connection::PARAM_INT));
