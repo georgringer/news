@@ -193,7 +193,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
             foreach ($detailPidDeterminationMethods as $determinationMethod) {
                 if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
-                    if ($detailPid = call_user_func([$this, $callback], $tsSettings, $newsItem)) {
+                    if ($detailPid = $this->$callback($tsSettings, $newsItem)) {
                         break;
                     }
                 }
