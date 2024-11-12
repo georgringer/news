@@ -214,8 +214,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             || (isset($tsSettings['link']['hrDate']['_typoScriptNodeValue']) && $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1)
         ) {
             $dateTime = $newsItem->getDatetime();
-
-            if (!is_null($dateTime)) {
+            if ($dateTime !== null) {
                 if (!empty($tsSettings['link']['hrDate']['day'])) {
                     $configuration['additionalParams'] .= '&tx_news_pi1[day]=' . $dateTime->format($tsSettings['link']['hrDate']['day']);
                 }
