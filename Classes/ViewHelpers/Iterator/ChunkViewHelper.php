@@ -159,10 +159,7 @@ class ChunkViewHelper extends AbstractViewHelper
         return $content;
     }
 
-    /**
-     * @param VariableProviderInterface $templateVariableContainer
-     */
-    private static function backupVariables(array $variables, $templateVariableContainer): array
+    private static function backupVariables(array $variables, VariableProviderInterface $templateVariableContainer): array
     {
         $backups = [];
         foreach ($variables as $variableName => $variableValue) {
@@ -175,10 +172,7 @@ class ChunkViewHelper extends AbstractViewHelper
         return $backups;
     }
 
-    /**
-     * @param VariableProviderInterface $templateVariableContainer
-     */
-    private static function restoreVariables(array $variables, array $backups, $templateVariableContainer): void
+    private static function restoreVariables(array $variables, array $backups, VariableProviderInterface $templateVariableContainer): void
     {
         foreach ($variables as $variableName => $variableValue) {
             $templateVariableContainer->remove($variableName);
