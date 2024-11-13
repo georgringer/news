@@ -18,6 +18,7 @@ use GeorgRinger\News\Utility\ConstraintHelper;
 use GeorgRinger\News\Utility\Validation;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Http\ApplicationType;
@@ -330,7 +331,9 @@ class NewsRepository extends AbstractDemandedRepository
 
         if (!$respectEnableFields) {
             $query->getQuerySettings()->setIgnoreEnableFields(true);
-            $query->getQuerySettings()->setLanguageOverlayMode(false);
+            $languageAspect = $query->getQuerySettings()->getLanguageAspect();
+            $languageAspect = new LanguageAspect($languageAspect->getId(), $languageAspect->getContentId(), LanguageAspect::OVERLAYS_OFF, $languageAspect->getFallbackChain());
+            $query->getQuerySettings()->setLanguageAspect($languageAspect);
         }
 
         return $query->matching(
