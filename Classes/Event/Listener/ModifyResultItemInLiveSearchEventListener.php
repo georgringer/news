@@ -54,7 +54,7 @@ final class ModifyResultItemInLiveSearchEventListener
         }
 
         $table = $resultItem->getExtraData()['table'] ?? '';
-        if (!$table) {
+        if ($table !== 'tx_news_domain_model_news') {
             return;
         }
 
@@ -71,7 +71,7 @@ final class ModifyResultItemInLiveSearchEventListener
     protected function addFieldsToResult(ResultItem $resultItem, array $row): void
     {
         foreach ($this->configuration as $fieldName => $field) {
-            if (isset($GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$fieldName])) {
+            if (!isset($GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$fieldName])) {
                 continue;
             }
             $fieldValue = $row[$fieldName] ?? null;
