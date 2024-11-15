@@ -11,7 +11,7 @@
                project-issues="https://github.com/georgringer/news/issues"
                edit-on-github-branch="main"
                edit-on-github="georgringer/news"
-               typo3-core-preferred="11.5"
+               typo3-core-preferred="13.4"
                interlink-shortcode="georgringer/news"
     />
     <project title="News system" release="main (development)" version="main (development)"
