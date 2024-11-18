@@ -286,7 +286,7 @@ If you want to have  categories+pagination, that configuration has to stand befo
            _arguments:
              category-name: overwriteDemand/categories
          # Tagname + pagination
-         - routePath: '/{tag-name}/page-2'
+         - routePath: '/{tag-name}/page-{page}'
            _controller: 'News::list'
            _arguments:
              tag-name: overwriteDemand/tags
