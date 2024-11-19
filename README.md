@@ -43,8 +43,8 @@ It includes these features:
 
 | News | TYPO3     | PHP       | Support / Development                |
 |------|-----------|-----------|--------------------------------------|
-| 12   | 12 - 13   | 8.1 - 8.3 | unstable development branch          |
-| 11   | 11 - 12   | 7.4 - 8.3 | features, bugfixes, security updates |
+| 12   | 12 - 13   | 8.1 - 8.3 | features, bugfixes, security updates |
+| 11   | 11 - 12   | 7.4 - 8.3 | security updates                     |
 | 10   | 10 - 11   | 7.4 - 8.1 | none                                 |
 | 9    | 10 - 11   | 7.4 - 8.1 | none                                 |
 | 8    | 9.5 - 10  | 7.2 - 7.4 | none                                 |
