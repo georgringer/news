@@ -11,11 +11,14 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Hooks;
 
+use GeorgRinger\News\Event\PluginPreviewRendererEvent;
 use GeorgRinger\News\Utility\TemplateLayout;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Information\Typo3Version;
@@ -43,19 +46,21 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
     public array $flexformData = [];
     protected IconFactory $iconFactory;
     protected TemplateLayout $templateLayoutsUtility;
+    protected EventDispatcherInterface $eventDispatchter;
     private int $pageId = 0;
 
     public function __construct()
     {
         $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
         $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+        $this->eventDispatchter = GeneralUtility::makeInstance(EventDispatcher::class);
     }
 
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
         $this->pageId = $item->getContext()->getPageId();
         $row = $item->getRecord();
-        $actionTranslationKey = $result = '';
+        $result = '';
         $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
         $this->tableData = [];
         $flexforms = GeneralUtility::xml2array((string)$row['pi_flexform']);
@@ -112,13 +117,16 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
                     $this->getTemplateLayoutSettings($row['pid']);
             }
 
+            // @deprecated, use PluginPreviewRendererEvent instead
             if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news'][\GeorgRinger\News\Hooks\PluginPreviewRenderer::class]['extensionSummary'] ?? []) {
-                $params['action'] = $actionTranslationKey;
                 $params['item'] = $item;
                 foreach ($hooks as $reference) {
                     GeneralUtility::callUserFunction($reference, $params, $this);
                 }
             }
+
+            $event = new PluginPreviewRendererEvent($item, $this);
+            $this->eventDispatchter->dispatch($event);
 
             // for all views
             $this->getOverrideDemandSettings();

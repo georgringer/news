@@ -20,6 +20,7 @@ fired. For additional items see column "Access to" in the table below.
 .. csv-table:: Events
    :header: "Event class", "Fired in class", "Access to", "Old Signal"
 
+   "PluginPreviewRendererEvent", "PluginPreviewRenderer", "", ""
    "NewsCheckPidOfNewsRecordFailedInDetailActionEvent", "NewsController", "getNews()", "checkPidOfNewsRecordFailedInDetailAction"
    "NewsDateMenuActionEvent", "NewsController", "getAssignedValues()", "dateMenuAction (NewsController::SIGNAL_NEWS_DATEMENU_ACTION)"
    "NewsDetailActionEvent", "NewsController", "getAssignedValues()", "detailAction (NewsController::SIGNAL_NEWS_DETAIL_ACTION)"
