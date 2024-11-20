@@ -14,7 +14,7 @@ use GeorgRinger\News\Hooks\PluginPreviewRenderer;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Extbase\Mvc\Request;
 
-final class PluginPreviewRendererEvent
+final class PluginPreviewSummaryEvent
 {
 
     protected GridColumnItem $item;

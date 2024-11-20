@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Hooks;
 
-use GeorgRinger\News\Event\PluginPreviewRendererEvent;
+use GeorgRinger\News\Event\PluginPreviewSummaryEvent;
 use GeorgRinger\News\Utility\TemplateLayout;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
@@ -125,7 +125,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
                 }
             }
 
-            $event = new PluginPreviewRendererEvent($item, $this);
+            $event = new PluginPreviewSummaryEvent($item, $this);
             $this->eventDispatchter->dispatch($event);
 
             // for all views
