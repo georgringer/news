@@ -4,7 +4,7 @@
 Hooks
 =====
 
-Several hooks can be used to modify the behaviour of EXT:news.
+Several events can be used to modify the behaviour of EXT:news.
 
 .. contents::
       :local:
@@ -13,60 +13,48 @@ Several hooks can be used to modify the behaviour of EXT:news.
 Hooks
 -----
 
-.. _hooks_example_findDemanded:
+.. event_example_findDemanded:
 
-Domain/Repository/AbstractDemandedRepository.php findDemanded
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+\GeorgRinger\News\Event\ModifyDemandRepositoryEvent
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This hook is very powerful, as it allows to modify the query used to fetch the news records.
+This event is very powerful, as it allows to modify the query used to fetch the news records.
 
 Example
 """""""
 This examples modifies the query and adds a constraint that only news records are shown which contain the word *yeah*.
 
 
-First, register your implementation in the file ``ext_localconf.php``:
+First, register your implementation in the file `Configuration/Services.yaml`:
+
+.. code-block:: yaml
+
+  YourVendor\YourExtkey\EventListener\ModifyDemandRepositoryEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'eventnews-modifydemandrepository'
+        event: \GeorgRinger\News\Event\ModifyDemandRepositoryEvent
+
+Now create the file ``Classes/EventListener/ModifyDemandRepositoryEventListener.php``:
 
 .. code-block:: php
 
-   <?php
-   defined('TYPO3') or die();
+    <?php
 
-   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'][$_EXTKEY]
-      = \YourVendor\Extkey\Hooks\Repository::class . '->modify';
+    namespace YourVendor\YourExtkey\EventListener;
 
-Now create the file ``Classes/Hooks/Repository.php``:
+    use TYPO3\CMS\Core\Utility\GeneralUtility;
+    use GeorgRinger\News\Event\ModifyDemandRepositoryEvent
 
-.. code-block:: php
+    class ModifyDemandRepositoryEventListener
+    {
+        public function __invoke(ModifyDemandRepositoryEvent $event) {
+            $constraints = $event->getConstraints();
+            $constraints[] = $query->like('title', '%' . $subject . '%');
+            $event->setConstraints($constraints);
+        }
+    }
 
-   <?php
-
-   namespace YourVendor\Extkey\Hooks;
-
-   use TYPO3\CMS\Core\Utility\GeneralUtility;
-   use \GeorgRinger\News\Domain\Repository\NewsRepository;
-
-   class Repository
-   {
-       public function modify(array $params, NewsRepository $newsRepository)
-       {
-           $this->updateConstraints($params['demand'], $params['respectEnableFields'], $params['query'], $params['constraints']);
-       }
-
-       /**
-        * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
-        * @param bool $respectEnableFields
-        * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-        * @param array $constraints
-        */
-       protected function updateConstraints($demand, $respectEnableFields, \TYPO3\CMS\Extbase\Persistence\QueryInterface $query, array &$constraints)
-       {
-           $subject = 'yeah';
-           $constraints[] = $query->like('title', '%' . $subject . '%');
-       }
-   }
-
-.. hint:: Please change the vendor and extension key to your real life code.
 
 Controller/NewsController overrideSettings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

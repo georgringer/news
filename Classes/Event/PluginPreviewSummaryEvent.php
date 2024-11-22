@@ -9,14 +9,11 @@
 
 namespace GeorgRinger\News\Event;
 
-use GeorgRinger\News\Controller\CategoryController;
 use GeorgRinger\News\Hooks\PluginPreviewRenderer;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
-use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class PluginPreviewSummaryEvent
 {
-
     protected GridColumnItem $item;
     protected PluginPreviewRenderer $pluginPreviewRenderer;
 

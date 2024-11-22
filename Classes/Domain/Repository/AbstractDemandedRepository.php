@@ -10,6 +10,9 @@
 namespace GeorgRinger\News\Domain\Repository;
 
 use GeorgRinger\News\Domain\Model\DemandInterface;
+use GeorgRinger\News\Event\ModifyDemandRepositoryEvent;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface;
@@ -25,11 +28,18 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 {
     /** @var BackendInterface */
     protected $storageBackend;
+    protected EventDispatcherInterface $eventDispatcher;
 
     public function injectStorageBackend(
         BackendInterface $storageBackend
     ): void {
         $this->storageBackend = $storageBackend;
+    }
+
+    public function __construct()
+    {
+        $this->eventDispatcher = GeneralUtility::makeInstance(EventDispatcher::class);
+        parent::__construct();
     }
 
     /**
@@ -117,6 +127,11 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
                 GeneralUtility::callUserFunction($reference, $params, $this);
             }
         }
+
+        $event = new ModifyDemandRepositoryEvent($demand, $respectEnableFields, $query, $constraints);
+        $this->eventDispatcher->dispatch($event);
+        $respectEnableFields = $event->isRespectEnableFields();
+        $constraints = $event->getConstraints();
 
         if ($respectEnableFields === false) {
             $query->getQuerySettings()->setIgnoreEnableFields(true);
