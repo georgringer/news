@@ -51,7 +51,7 @@ class ClassCacheManager
         }
 
         $files = GeneralUtility::getFilesInDir(Environment::getVarPath() . '/cache/code/news/', 'php');
-        if (empty($files) && $forceRebuild) {
+        if (empty($files) || $forceRebuild) {
             $this->reBuild();
         }
     }
