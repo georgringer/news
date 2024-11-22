@@ -17,6 +17,7 @@ use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Domain\Repository\TagRepository;
 use GeorgRinger\News\Event\CreateDemandObjectFromSettingsEvent;
 use GeorgRinger\News\Event\NewsCheckPidOfNewsRecordFailedInDetailActionEvent;
+use GeorgRinger\News\Event\NewsControllerOverrideSettingsEvent;
 use GeorgRinger\News\Event\NewsDateMenuActionEvent;
 use GeorgRinger\News\Event\NewsDetailActionEvent;
 use GeorgRinger\News\Event\NewsListActionEvent;
@@ -649,6 +650,10 @@ class NewsController extends NewsBaseController
             ];
             $originalSettings = GeneralUtility::callUserFunction($_funcRef, $_params, $this);
         }
+
+        $event = new NewsControllerOverrideSettingsEvent($originalSettings, $tsSettings, $this);
+        $this->eventDispatcher->dispatch($event);
+        $originalSettings = $event->getSettings();
 
         $this->settings = $originalSettings;
     }
