@@ -53,7 +53,7 @@ performance issues when news records are edited often.
 
    The mentioned TCEMAIN settings are part of the TYPO3 Core and can be used
    therefore not only for the news extension. Read more about the
-   :ref:`clearCacheCmd in the TSconfig reference <t3tsconfig:pagetcemain-clearcachecmd>`.
+   :ref:`clearCacheCmd in the TSconfig reference <t3tsref:pagetcemain-clearcachecmd>`.
 
 
 .. _cacheClearing-publishing-date:

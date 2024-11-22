@@ -41,5 +41,5 @@ If a news plugin is placed on this page, the news article will be shown.
 .. hint::
    This TSconfig configuration can be used to display any record with with any
    kind of parameters. Read more about it in
-   :ref:`TSconfig Reference: TCEMAIN.preview <t3tsconfig:pagetcemain-preview>`.
+   :ref:`TSconfig Reference: TCEMAIN.preview <t3tsref:pagetcemain-preview>`.
 
