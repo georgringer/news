@@ -15,6 +15,7 @@ use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Domain\Repository\TagRepository;
+use GeorgRinger\News\Event\CreateDemandObjectFromSettingsEvent;
 use GeorgRinger\News\Event\NewsCheckPidOfNewsRecordFailedInDetailActionEvent;
 use GeorgRinger\News\Event\NewsDateMenuActionEvent;
 use GeorgRinger\News\Event\NewsDetailActionEvent;
@@ -167,6 +168,11 @@ class NewsController extends NewsBaseController
                 GeneralUtility::callUserFunction($reference, $params, $this);
             }
         }
+
+        $event = new CreateDemandObjectFromSettingsEvent($demand, $settings, $class);
+        $this->eventDispatcher->dispatch($event);
+        $demand = $event->getDemand();
+
         return $demand;
     }
 

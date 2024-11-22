@@ -1,8 +1,8 @@
-.. _hooks:
+.. _events:
 
-=====
-Hooks
-=====
+======
+Events
+======
 
 Several events can be used to modify the behaviour of EXT:news.
 
@@ -10,7 +10,7 @@ Several events can be used to modify the behaviour of EXT:news.
       :local:
       :depth: 1
 
-Hooks
+Events
 -----
 
 .. event_example_findDemanded:
@@ -58,7 +58,7 @@ Now create the file ``Classes/EventListener/ModifyDemandRepositoryEventListener.
 
 Controller/NewsController overrideSettings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Use this hook to change the final settings which are for building queries, for the template, ...
+Use this evebt to change the final settings which are for building queries, for the template, ...
 
 Example
 """""""
