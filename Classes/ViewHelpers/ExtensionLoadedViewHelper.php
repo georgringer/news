@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\ViewHelpers;
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
 class ExtensionLoadedViewHelper extends AbstractConditionViewHelper
@@ -23,10 +24,7 @@ class ExtensionLoadedViewHelper extends AbstractConditionViewHelper
         parent::initializeArguments();
     }
 
-    /**
-     * @param array|null $arguments
-     */
-    protected static function evaluateCondition($arguments = null): bool
+    public static function verdict(array $arguments, RenderingContextInterface $renderingContext)
     {
         return ExtensionManagementUtility::isLoaded($arguments['extensionKey']);
     }
