@@ -20,7 +20,6 @@ use TYPO3Fluid\Fluid\View\TemplateView;
 
 class ExtensionLoadedViewHelperTest extends FunctionalTestCase
 {
-
     public static function extensionLoadedDataProvider(): array
     {
         return [
