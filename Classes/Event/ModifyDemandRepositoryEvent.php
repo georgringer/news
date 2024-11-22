@@ -14,7 +14,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 final class ModifyDemandRepositoryEvent
 {
-
     private DemandInterface $demand;
     private bool $respectEnableFields;
     private QueryInterface $query;

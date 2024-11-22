@@ -33,7 +33,7 @@ First, register your implementation in the file `Configuration/Services.yaml`:
     tags:
       - name: event.listener
         identifier: 'eventnews-modifydemandrepository'
-        event: \GeorgRinger\News\Event\ModifyDemandRepositoryEvent
+        event: GeorgRinger\News\Event\ModifyDemandRepositoryEvent
 
 Now create the file ``Classes/EventListener/ModifyDemandRepositoryEventListener.php``:
 
