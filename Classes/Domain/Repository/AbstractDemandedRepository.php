@@ -117,6 +117,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
         // Call hook functions for additional constraints
         if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] ?? []) {
+            trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\'Domain/Repository/AbstractDemandedRepository.php\'][\'findDemanded\'] has been deprecated. Use the ModifyDemandRepositoryEvent instead.', E_USER_DEPRECATED);
             $params = [
                 'demand' => $demand,
                 'respectEnableFields' => &$respectEnableFields,
