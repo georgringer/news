@@ -42,6 +42,7 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Fluid\View\TemplateView;
 
 /**
@@ -545,7 +546,7 @@ class NewsController extends NewsBaseController
         $newsRecords = $this->newsRepository->findDemanded($demand);
 
         $paginationConfiguration = $this->settings['search']['paginate'] ?? [];
-        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
+        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? $this->settings['list']['paginate']['itemsPerPage'] ?? '') ?: 10);
         $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
 
         $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);

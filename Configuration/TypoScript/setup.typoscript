@@ -89,7 +89,8 @@ plugin.tx_news {
 
 			paginate {
 				class = GeorgRinger\NumberedPagination\NumberedPagination
-				itemsPerPage = 10
+				# Using itemsPerPage means this overrides the flexform settings!
+				# itemsPerPage = 10
 				insertAbove = 1
 				insertBelow = 1
 				maximumNumberOfLinks = 3
