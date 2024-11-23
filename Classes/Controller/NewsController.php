@@ -160,6 +160,7 @@ class NewsController extends NewsBaseController
         ));
 
         if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'] ?? []) {
+            trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\'Controller/NewsController.php\'][\'createDemandObjectFromSettings\'] has been deprecated, use event CreateDemandObjectFromSettingsEvent instead', E_USER_DEPRECATED);
             $params = [
                 'demand' => $demand,
                 'settings' => $settings,
@@ -644,6 +645,7 @@ class NewsController extends NewsBaseController
         }
 
         foreach ($hooks = ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'] ?? []) as $_funcRef) {
+            trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\'Controller/NewsController.php\'][\'overrideSettings\'] has been deprecated, use event NewsControllerOverrideSettingsEvent instead', E_USER_DEPRECATED);
             $_params = [
                 'originalSettings' => $originalSettings,
                 'tsSettings' => $tsSettings,
