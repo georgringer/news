@@ -445,7 +445,7 @@ from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
             if (count($searchFields) === 0) {
                 throw new \UnexpectedValueException('No search fields defined', 1318497755);
             }
-            $searchSubjectSplitted = str_getcsv($searchSubject, ' ');
+            $searchSubjectSplitted = str_getcsv($searchSubject, ' ', '"', '\\');
             if ($searchObject->isSplitSubjectWords()) {
                 foreach ($searchFields as $field) {
                     $subConstraints = [];
