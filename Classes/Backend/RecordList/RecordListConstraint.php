@@ -51,7 +51,7 @@ class RecordListConstraint
             $fieldParts = [];
             foreach ($fields as $field) {
                 $likeParts = [];
-                $nameParts = str_getcsv($arguments['searchWord'], ' ');
+                $nameParts = str_getcsv($arguments['searchWord'], ' ', '"', '\\');
                 foreach ($nameParts as $part) {
                     $part = trim($part);
                     if ($part !== '') {
