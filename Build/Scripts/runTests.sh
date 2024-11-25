@@ -473,7 +473,7 @@ case ${TEST_SUITE} in
         if [ "${CGLCHECK_DRY_RUN}" -eq 1 ]; then
             DRY_RUN_OPTIONS='--dry-run --diff'
         fi
-        COMMAND="php -dxdebug.mode=off PHP_CS_FIXER_IGNORE_ENV=1 .Build/bin/php-cs-fixer fix -v ${DRY_RUN_OPTIONS} --config=Build/php-cs-fixer/php-cs-fixer.php --using-cache=no"
+        COMMAND="php -dxdebug.mode=off .Build/bin/php-cs-fixer fix -v ${DRY_RUN_OPTIONS} --config=Build/php-cs-fixer/php-cs-fixer.php --using-cache=no"
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-command-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
         SUITE_EXIT_CODE=$?
         ;;
