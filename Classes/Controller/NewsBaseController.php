@@ -45,8 +45,7 @@ class NewsBaseController extends ActionController
 
         switch ($options[0]) {
             case 'redirectToListView':
-                $this->redirect('list');
-                break;
+                return $this->redirect('list');
             case 'redirectToPage':
                 if (count($options) === 1 || count($options) > 3) {
                     $msg = sprintf(
