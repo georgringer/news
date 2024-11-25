@@ -23,8 +23,8 @@ jobs:
       - name: Lint PHP
         run: Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -s lint
 
-      - name: Validate code against CGL
-        if: ${{ ! contains(matrix.php, '8.4') }}
+      - if: matrix.php == '8.3'
+        name: Validate code against CGL
         run: PHP_CS_FIXER_IGNORE_ENV=1 Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -s cgl -n
 
       - name: Unit Tests
