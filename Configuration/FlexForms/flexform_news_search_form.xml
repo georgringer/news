@@ -64,8 +64,8 @@
 								<renderType>selectSingle</renderType>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="label"></numIndex>
-										<numIndex index="value"></numIndex>
+										<label/>
+										<value/>
 									</numIndex>
 								</items>
 							</config>
