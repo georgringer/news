@@ -52,7 +52,7 @@ class NewsBaseController extends ActionController
                         'If error handling "%s" is used, either 2 or 3 arguments, split by "," must be used',
                         $options[0]
                     );
-                    throw new \InvalidArgumentException($msg);
+                    throw new \InvalidArgumentException($msg, 7238087293);
                 }
                 $this->uriBuilder->reset();
                 $this->uriBuilder->setTargetPageUid($options[1]);

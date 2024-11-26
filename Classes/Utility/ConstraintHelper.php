@@ -42,7 +42,7 @@ class ConstraintHelper
                 if ($timeFromString) {
                     $timeLimit = $timeFromString;
                 } else {
-                    throw new Exception('Time limit Low could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
+                    throw new Exception('Time limit Low could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit), 5535166030);
                 }
             }
         }
@@ -67,6 +67,6 @@ class ConstraintHelper
         if ($timeFromStringHigh) {
             return $timeFromStringHigh;
         }
-        throw new Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
+        throw new Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit), 8748470417);
     }
 }
