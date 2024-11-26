@@ -88,9 +88,6 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => [
-                    ['label' => '', 'value' => ''],
-                ],
             ],
         ],
 
@@ -395,9 +392,6 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => [
-                    ['label' => '', 'value' => ''],
-                ],
             ],
         ],
         'editlock' => [
@@ -407,9 +401,6 @@ $tx_news_domain_model_news = [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
-                'items' => [
-                    ['label' => '', 'value' => ''],
-                ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
