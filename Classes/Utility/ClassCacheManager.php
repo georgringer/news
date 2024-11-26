@@ -43,7 +43,7 @@ class ClassCacheManager
     public function reBuildSimple(bool $forceRebuild = false)
     {
         if (!function_exists('token_get_all')) {
-            throw new \Exception('The function token_get_all must exist. Please install the module PHP Module Tokenizer');
+            throw new \Exception('The function token_get_all must exist. Please install the module PHP Module Tokenizer', 4045351298);
         }
 
         if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'])) {
@@ -61,7 +61,7 @@ class ClassCacheManager
         $classPath = 'Classes/';
 
         if (!function_exists('token_get_all')) {
-            throw new \Exception('The function token_get_all must exist. Please install the module PHP Module Tokenizer');
+            throw new \Exception('The function token_get_all must exist. Please install the module PHP Module Tokenizer', 7052287505);
         }
 
         if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'])) {
@@ -74,7 +74,7 @@ class ClassCacheManager
 
             $path = ExtensionManagementUtility::extPath('news') . $classPath . $key . '.php';
             if (!is_file($path)) {
-                throw new \Exception('Given file "' . $path . '" does not exist');
+                throw new \Exception('Given file "' . $path . '" does not exist', 8496960795);
             }
             $code = $this->parseSingleFile($path, true);
 
@@ -99,7 +99,7 @@ class ClassCacheManager
                 try {
                     $this->classCache->set($cacheEntryIdentifier, $code);
                 } catch (\Exception $e) {
-                    throw new \Exception($e->getMessage());
+                    throw new \Exception($e->getMessage(), 2006286512);
                 }
             }
         }
@@ -119,7 +119,7 @@ class ClassCacheManager
     protected function parseSingleFile($filePath, $baseClass = false): string
     {
         if (!is_file($filePath)) {
-            throw new \InvalidArgumentException(sprintf('File "%s" could not be found', $filePath));
+            throw new \InvalidArgumentException(sprintf('File "%s" could not be found', $filePath), 3594518105);
         }
         $code = @file_get_contents($filePath);
 

@@ -38,7 +38,7 @@ class CategoryService
         $removeGivenIdListFromResult = false
     ): string {
         if ($additionalWhere !== '') {
-            throw new \UnexpectedValueException('The argument $additionalWhere is not supported anymore');
+            throw new \UnexpectedValueException('The argument $additionalWhere is not supported anymore', 1025758541);
         }
         $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('news_category');
         $cacheIdentifier = sha1('children' . $idList);
