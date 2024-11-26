@@ -28,7 +28,7 @@ foreach ($pluginConfig as $pluginName) {
         $pluginIdentifier
     );
     // Add the FlexForm to the show item list
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+    ExtensionManagementUtility::addToAllTCAtypes(
         'tt_content',
         '--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.plugin, pi_flexform',
         $pluginIdentifier,
