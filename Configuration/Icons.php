@@ -26,6 +26,7 @@ foreach ([
     'ext-news-patreon' => 'donation_patreon.svg',
     'ext-news-amazon' => 'donation_amazon.svg',
     'ext-news-doublecheck' => 'double_check.svg',
+    'ext-news-module-administration' => 'module_administration.svg',
 ] as $identifier => $path) {
     $iconList[$identifier] = [
         'provider' => SvgIconProvider::class,
