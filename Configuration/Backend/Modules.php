@@ -17,7 +17,7 @@ if ($configuration->getShowAdministrationModule()) {
             'position' => ['after' => '*'],
             'access' => 'user,group',
             'path' => '/module/web/NewsAdministration/',
-            'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
+            'iconIdentifier' => 'ext-news-module-administration',
             'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
             'extensionName' => 'News',
             'controllerActions' => [
