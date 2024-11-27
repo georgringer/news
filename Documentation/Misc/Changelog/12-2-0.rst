@@ -1,4 +1,4 @@
-12.2.0 - XXth XXXXXXXX 2024
+12.2.0 - 27th November 2024
 ===========================
 
 Regular release, please read the following notes carefully.
@@ -28,6 +28,10 @@ The following hooks have been deprecated and will be removed with the next major
 
 Calling any of the aforementioned hooks will trigger deprecation log entries.
 
+Support of PHP 8.4
+~~~~~~~~~~~~~~~~~~
+PHP 8.4 is now officially supported.
+
 Features
 --------
 
@@ -46,6 +50,16 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+    2024-11-27 [TASK] Use iconIdentifier in module registration (#2586) (Commit 67bb6ca7 by Seb Red)
+    2024-11-26 [TASK] Apply AddErrorCodeToExceptionRector (#2585) (Commit 87186afa by Simon Schaufelberger)
+    2024-11-26 [BUGFIX] Replace indexed array keys for items by label and value tags (#2584) (Commit 84e67600 by Seb Red)
+    2024-11-26 [BUGFIX] Apply ExtbaseActionsWithRedirectMustReturnResponseInterfaceRector (#2581) (Commit 35fd445a by Simon Schaufelberger)
+    2024-11-26 [TASK] Import fully qualified class names (#2582) (Commit 6138efb4 by Simon Schaufelberger)
+    2024-11-26 [TASK] Apply SimplifyCheckboxItemsTCARector (#2583) (Commit ac5efdc7 by Simon Schaufelberger)
+    2024-11-25 [DOC] Update Bug Template to contain current vesions (#2578) (Commit 1e4c5245 by Lina Wolf)
+    2024-11-25 [TASK] Support PHP 8.4 (#2576) (Commit 085ecbdd by Georg Ringer)
+    2024-11-23 [TASK] Trigger errors for old hook usages (#2575) (Commit 9eba8a8f by Georg Ringer)
+    2024-11-23 [TASK] Remove unused use statement (Commit 98df1eda by Georg Ringer)
     2024-11-23 [BUGFIX] Respect pagination itemsPerPage in search (Commit b7bb5547 by Georg Ringer)
     2024-11-22 [DOC] Fix links to TSconfig (#2574) (Commit b9c5ae13 by Lina Wolf)
     2024-11-22 [BUGFIX] fix proxy cache update required check in ClassCacheManager::reBuildSimple (#2570) (Commit 87bdbca2 by bahammes)
