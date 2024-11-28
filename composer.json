@@ -1,55 +1,56 @@
 {
     "name": "georgringer/news",
-    "type": "typo3-cms-extension",
     "description": "Versatile news system based on Extbase & Fluid and using the latest technologies provided by TYPO3 CMS.",
+    "license": "GPL-2.0-or-later",
+    "type": "typo3-cms-extension",
     "keywords": [
         "TYPO3",
         "extension",
         "article",
         "news"
     ],
-    "homepage": "https://extensions.typo3.org/extension/news",
-    "support": {
-        "source": "https://github.com/georgringer/news",
-        "issues": "https://github.com/georgringer/news/issues",
-        "docs": "https://docs.typo3.org/p/georgringer/news/main/en-us/"
-    },
     "authors": [
         {
             "name": "Georg Ringer",
-            "role": "Developer",
-            "homepage": "https://ringer.it"
+            "homepage": "https://ringer.it",
+            "role": "Developer"
         }
     ],
-    "license": [
-        "GPL-2.0-or-later"
-    ],
+    "homepage": "https://extensions.typo3.org/extension/news",
+    "support": {
+        "issues": "https://github.com/georgringer/news/issues",
+        "source": "https://github.com/georgringer/news",
+        "docs": "https://docs.typo3.org/p/georgringer/news/main/en-us/"
+    },
     "require": {
         "php": ">= 8.1 < 8.5",
         "symfony/console": "^5.4 || ^6.4 || ^7.0",
         "typo3/cms-backend": "^12.4.2 || ^13.1",
         "typo3/cms-core": "^12.4.2 || ^13.1",
         "typo3/cms-extbase": "^12.4.2 || ^13.1",
-        "typo3/cms-frontend": "^12.4.2 || ^13.1",
-        "typo3/cms-fluid": "^12.4.2 || ^13.1"
+        "typo3/cms-fluid": "^12.4.2 || ^13.1",
+        "typo3/cms-frontend": "^12.4.2 || ^13.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.47.1",
+        "phpstan/phpdoc-parser": "^1.12.10",
+        "phpunit/phpunit": "^10.5",
+        "typo3/cms-install": "^12.4.2 || ^13.1",
+        "typo3/cms-seo": "^12.4.2 || ^13.1",
+        "typo3/coding-standards": "^0.5.5",
+        "typo3/testing-framework": "^8.0.9",
+        "webmozart/assert": "^1.11.0"
+    },
+    "replace": {
+        "typo3-ter/news": "self.version"
     },
     "suggest": {
-        "reelworx/rx-shariff": "GDPR compliant social sharing",
         "georgringer/news-tagsuggest": "On the fly creation of tag records within a news record",
         "georgringer/numbered-pagination": "Improved pagination API",
+        "reelworx/rx-shariff": "GDPR compliant social sharing",
         "typo3/cms-install": "Upgrade wizards",
         "typo3/cms-scheduler": "XML and ICS import",
         "typo3/cms-seo": "Sitemaps"
-    },
-    "require-dev": {
-        "typo3/cms-install": "^12.4.2 || ^13.1",
-        "typo3/cms-seo": "^12.4.2 || ^13.1",
-        "typo3/testing-framework": "^8.0.9",
-        "phpunit/phpunit": "^10.5",
-        "typo3/coding-standards": "^0.5.5",
-        "friendsofphp/php-cs-fixer": "^3.47.1",
-        "phpstan/phpdoc-parser": "^1.12.10",
-        "webmozart/assert": "^1.11.0"
     },
     "autoload": {
         "psr-4": {
@@ -61,31 +62,29 @@
             "GeorgRinger\\News\\Tests\\": "Tests"
         }
     },
-    "replace": {
-        "typo3-ter/news": "self.version"
-    },
     "config": {
-        "vendor-dir": ".Build/vendor",
+        "allow-plugins": {
+            "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true,
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        },
         "bin-dir": ".Build/bin",
         "lock": false,
-        "allow-plugins": {
-            "typo3/class-alias-loader": true,
-            "typo3/cms-composer-installers": true,
-            "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true
-        }
-    },
-    "scripts": {
-        "cs": "php ./.Build/bin/php-cs-fixer fix  --dry-run -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
-        "csfix": "php ./.Build/bin/php-cs-fixer fix  -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
-        "post-autoload-dump": [
-            "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
-        ]
+        "sort-packages": true,
+        "vendor-dir": ".Build/vendor"
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "news",
             "app-dir": ".Build",
+            "extension-key": "news",
             "web-dir": ".Build/Web"
         }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
+        ],
+        "cs": "php ./.Build/bin/php-cs-fixer fix  --dry-run -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
+        "csfix": "php ./.Build/bin/php-cs-fixer fix  -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./"
     }
 }
