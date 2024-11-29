@@ -170,6 +170,7 @@ Options:
             - composerInstallHighest: "composer update", handy if host has no PHP
             - coveralls: Generate coverage
             - docsGenerate: Renders the extension ReST documentation.
+            - rector: Run rector
             - functional: functional tests
             - lint: PHP linting
             - unit: PHP unit tests
@@ -228,10 +229,9 @@ Options:
             - 12: use TYPO3 v12 (default)
             - 13: use TYPO3 v13
 
-    -p <8.0|8.1|8.2|8.3|8.4>
+    -p <8.1|8.2|8.3|8.4>
         Specifies the PHP minor version to be used
-            - 8.0: use PHP 8.0 (default)
-            - 8.1: use PHP 8.1
+            - 8.1: use PHP 8.1 (default)
             - 8.2: use PHP 8.2
             - 8.3: use PHP 8.3
             - 8.4: use PHP 8.4
@@ -271,7 +271,7 @@ Options:
         Show this help.
 
 Examples:
-    # Run all core unit tests using PHP 7.4
+    # Run all core unit tests
     ./Build/Scripts/runTests.sh -s unit
 
     # Run all core units tests and enable xdebug (have a PhpStorm listening on port 9003!)
@@ -314,7 +314,7 @@ PHP_VERSION="8.1"
 PHP_XDEBUG_ON=0
 PHP_XDEBUG_PORT=9003
 EXTRA_TEST_OPTIONS=""
-CGLCHECK_DRY_RUN=0
+DRY_RUN=0
 DATABASE_DRIVER=""
 CONTAINER_BIN=""
 COMPOSER_ROOT_VERSION="12.0.0-dev"
@@ -377,7 +377,7 @@ while getopts "a:b:s:d:i:p:e:t:xy:nhu" OPT; do
             PHP_XDEBUG_PORT=${OPTARG}
             ;;
         n)
-            CGLCHECK_DRY_RUN=1
+            DRY_RUN=1
             ;;
         h)
             loadHelp
@@ -470,7 +470,7 @@ fi
 case ${TEST_SUITE} in
     cgl)
         DRY_RUN_OPTIONS=''
-        if [ "${CGLCHECK_DRY_RUN}" -eq 1 ]; then
+        if [ "${DRY_RUN}" -eq 1 ]; then
             DRY_RUN_OPTIONS='--dry-run --diff'
         fi
         COMMAND="php -dxdebug.mode=off .Build/bin/php-cs-fixer fix -v ${DRY_RUN_OPTIONS} --config=Build/php-cs-fixer/php-cs-fixer.php --using-cache=no"
@@ -586,6 +586,15 @@ case ${TEST_SUITE} in
     lint)
         COMMAND="php -v | grep '^PHP'; find . -name '*.php' ! -path '*.Build/*' -print0 | xargs -0 -n1 -P4 php -dxdebug.mode=off -l >/dev/null"
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-command-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/bash -c "${COMMAND}"
+        SUITE_EXIT_CODE=$?
+        ;;
+    rector)
+        DRY_RUN_OPTIONS=''
+        if [ "${DRY_RUN}" -eq 1 ]; then
+            DRY_RUN_OPTIONS='--dry-run'
+        fi
+        COMMAND="php -dxdebug.mode=off .Build/bin/rector process ${DRY_RUN_OPTIONS} --config=Build/rector/rector.php --no-progress-bar --ansi"
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-command-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
         SUITE_EXIT_CODE=$?
         ;;
     unit)
