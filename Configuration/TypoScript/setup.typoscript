@@ -153,7 +153,7 @@ plugin.tx_news {
 
 			# Paginate configuration.
 			paginate {
-                class = GeorgRinger\NumberedPagination\NumberedPagination
+				class = GeorgRinger\NumberedPagination\NumberedPagination
 				itemsPerPage = 10
 				insertAbove = 1
 				insertBelow = 1
