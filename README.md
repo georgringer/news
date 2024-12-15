@@ -4,8 +4,8 @@
 [![TYPO3 13](https://img.shields.io/badge/TYPO3-13-orange.svg)](https://get.typo3.org/version/13)
 [![Total Downloads](https://poser.pugx.org/georgringer/news/d/total)](https://packagist.org/packages/georgringer/news)
 [![Monthly Downloads](https://poser.pugx.org/georgringer/news/d/monthly)](https://packagist.org/packages/georgringer/news)
-![Build v11](https://github.com/georgringer/news/actions/workflows/core12.yml/badge.svg)
 ![Build v12](https://github.com/georgringer/news/actions/workflows/core12.yml/badge.svg)
+![Build v13](https://github.com/georgringer/news/actions/workflows/core13.yml/badge.svg)
 [![Crowdin](https://badges.crowdin.net/typo3-extension-news/localized.svg)](https://crowdin.com/project/typo3-extension-news)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/GeorgRinger/25)
 
