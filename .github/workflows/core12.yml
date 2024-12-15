@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install testing system
-        run: Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }}  -s ${{ matrix.composerInstall }}
+        run: Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }} -s ${{ matrix.composerInstall }}
 
       - name: Lint PHP
         run: Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }} -s lint
@@ -26,6 +26,15 @@ jobs:
       - if: matrix.php == '8.3'
         name: Validate code against CGL
         run: PHP_CS_FIXER_IGNORE_ENV=1 Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }} -s cgl -n
+
+      # temporary composer require here until rector supports nikic/php-parser ^5.1.0 for TYPO3 13 compatibility
+      - if: matrix.php == '8.1' && matrix.composerInstall == 'composerInstallHighest'
+        name: Install Rector
+        run: composer require ssch/typo3-rector:^2.0 --dev
+
+      - if: matrix.php == '8.1' && matrix.composerInstall == 'composerInstallHighest'
+        name: Run Rector
+        run: Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }} -s rector -n
 
       - name: Unit Tests
         run: Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }} -s unit
