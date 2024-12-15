@@ -1,5 +1,4 @@
 [![Latest Stable Version](https://poser.pugx.org/georgringer/news/v/stable)](https://extensions.typo3.org/extension/news/)
-[![TYPO3 11](https://img.shields.io/badge/TYPO3-11-orange.svg)](https://get.typo3.org/version/11)
 [![TYPO3 12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
 [![TYPO3 13](https://img.shields.io/badge/TYPO3-13-orange.svg)](https://get.typo3.org/version/13)
 [![Total Downloads](https://poser.pugx.org/georgringer/news/d/total)](https://packagist.org/packages/georgringer/news)
