@@ -103,7 +103,6 @@ class PopulateTagSlugs implements UpgradeWizardInterface
             // Ensure that live workspace records are handled first
             ->addOrderBy('t3ver_wsid', 'asc')
             ->addOrderBy('pid', 'asc')
-            ->addOrderBy('sorting', 'asc')
             ->executeQuery();
 
         // Check for existing slugs from realurl
