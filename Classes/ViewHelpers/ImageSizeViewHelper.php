@@ -11,6 +11,8 @@ namespace GeorgRinger\News\ViewHelpers;
 
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Page\AssetCollector;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Type\File\ImageInfo;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
@@ -53,18 +55,37 @@ class ImageSizeViewHelper extends AbstractViewHelper
         $imagesOnPage = $assetCollector->getMedia();
 
         if (isset($imagesOnPage[$usedImage])) {
-            switch ($arguments['property']) {
-                case 'width':
-                    $value = $imagesOnPage[$usedImage][0];
-                    break;
-                case 'height':
-                    $value = $imagesOnPage[$usedImage][1];
-                    break;
-                case 'size':
-                    $file = Environment::getPublicPath() . '/' . ltrim(parse_url($usedImage, PHP_URL_PATH), '/');
-                    if (is_file($file)) {
-                        $value = @filesize($file);
+            if ($arguments['property'] == 'size') {
+                $file = Environment::getPublicPath() . '/' . ltrim(parse_url($usedImage, PHP_URL_PATH), '/');
+                if (is_file($file)) {
+                    return (int) @filesize($file);
+                }
+            } elseif (in_array($arguments['property'], ['width', 'height'])) {
+
+                // Get missing info if required
+                if (!array_key_exists(0, $imagesOnPage[$usedImage])
+                    || !array_key_exists(1, $imagesOnPage[$usedImage])
+                ) {
+                    $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+                    $fileObject = $resourceFactory->getFileObjectFromCombinedIdentifier($usedImage);
+                    if ($fileObject->isImage()
+                        && $fileObject->getStorage()->getDriverType() === 'Local'
+                    ) {
+                        $rawFileLocation = $fileObject->getForLocalProcessing();
+                        $imageInfo = GeneralUtility::makeInstance(ImageInfo::class, $rawFileLocation);
+                        $imagesOnPage[$usedImage][0] = $imageInfo->getWidth();
+                        $imagesOnPage[$usedImage][1] = $imageInfo->getHeight();
                     }
+                }
+
+                switch ($arguments['property']) {
+                    case 'width':
+                        $value = $imagesOnPage[$usedImage][0];
+                        break;
+                    case 'height':
+                        $value = $imagesOnPage[$usedImage][1];
+                        break;
+                }
             }
         }
 
