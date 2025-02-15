@@ -130,11 +130,10 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
 
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']) && $languageAspect->getContentId() > 0) {
             // @extensionScannerIgnoreLine
-            $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
+            $overlay = $GLOBALS['TSFE']->sys_page->getLanguageOverlay(
                 'tx_news_domain_model_news',
                 $rawRecord,
-                $languageAspect->getContentId(),
-                $languageAspect->getLegacyOverlayType()
+                $languageAspect
             );
             if (!is_null($overlay)) {
                 $rawRecord = $overlay;
