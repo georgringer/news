@@ -16,6 +16,8 @@ plugin.tx_seo {
 						# googleNews = 1
 
 						sortField = datetime
+						# set if you need another sort direction
+						# sortDirection = DESC
 						lastModifiedField = tstamp
 						pid = {$plugin.tx_news.settings.sitemap.startingpoint}
 						recursive = {$plugin.tx_news.settings.sitemap.recursive}

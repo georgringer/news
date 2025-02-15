@@ -126,6 +126,7 @@ The :php:`GeorgRinger\News\Seo\NewsXmlSitemapDataProvider` provides the same fea
 - If you are need urls containing day, month or year information
 - Setting :typoscript:`excludedTypes` to exclude certain news types from the sitemap
 - Setting :typoscript:`googleNews` to load the news differently as required for Google News (newest news first and limit to last two days)
+- Setting :typoscript:`sortDirection` to get news sorted to your needs (ASC or DESC)
 
 To enable the category detail page handling, checkout the setting :typoscript:`useCategorySinglePid = 1` in the following full example:
 
@@ -149,6 +150,7 @@ To enable the category detail page handling, checkout the setting :typoscript:`u
                            # googleNews = 1
 
                            sortField = datetime
+                           sortDirection = ASC
                            lastModifiedField = tstamp
                            pid = 218
                            recursive = 2
