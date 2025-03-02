@@ -19,7 +19,7 @@ plugin.tx_news {
         # cat=plugin.tx_news/rss; type=int+; label=Page Type Number
         typeNum = 9818
         # cat=plugin.tx_news/rss; type=int+; label=Number of minutes the feed can stay cached
-        ttl = 
+        ttl =
     }
 
     opengraph {

@@ -12,453 +12,449 @@
 				<el>
 					<!-- order -->
 					<settings.orderBy>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy</label>
-							<config>
-								<type>select</type>
-								<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_orderBy</itemsProcFunc>
-								<renderType>selectSingle</renderType>
-								<items>
-									<numIndex index="0" type="array">
-										<label/>
-										<value/>
-									</numIndex>
-									<numIndex index="1">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.tstamp</label>
-										<value>tstamp</value>
-									</numIndex>
-									<numIndex index="2">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.datetime</label>
-										<value>datetime</value>
-									</numIndex>
-									<numIndex index="3">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.crdate</label>
-										<value>crdate</value>
-									</numIndex>
-									<numIndex index="4">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.title</label>
-										<value>title</value>
-									</numIndex>
-								</items>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy</label>
+						<config>
+							<type>select</type>
+							<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_orderBy</itemsProcFunc>
+							<renderType>selectSingle</renderType>
+							<items>
+								<numIndex index="0" type="array">
+									<label/>
+									<value/>
+								</numIndex>
+								<numIndex index="1">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.tstamp</label>
+									<value>tstamp</value>
+								</numIndex>
+								<numIndex index="2">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.datetime</label>
+									<value>datetime</value>
+								</numIndex>
+								<numIndex index="3">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.crdate</label>
+									<value>crdate</value>
+								</numIndex>
+								<numIndex index="4">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.title</label>
+									<value>title</value>
+								</numIndex>
+							</items>
+						</config>
 					</settings.orderBy>
 
 					<!-- order direction  -->
 					<settings.orderDirection>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items>
-									<numIndex index="0" type="array">
-										<label/>
-										<value/>
-									</numIndex>
-									<numIndex index="1">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.asc</label>
-										<value>asc</value>
-									</numIndex>
-									<numIndex index="2">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.desc</label>
-										<value>desc</value>
-									</numIndex>
-								</items>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection</label>
+						<config>
+							<type>select</type>
+							<renderType>selectSingle</renderType>
+							<items>
+								<numIndex index="0" type="array">
+									<label/>
+									<value/>
+								</numIndex>
+								<numIndex index="1">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.asc</label>
+									<value>asc</value>
+								</numIndex>
+								<numIndex index="2">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.desc</label>
+									<value>desc</value>
+								</numIndex>
+							</items>
+						</config>
 					</settings.orderDirection>
 
 					<!-- datefield: select relevant file dateMenu  -->
 					<settings.dateField>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.dateField</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items>
-									<numIndex index="0" type="array">
-										<label/>
-										<value/>
-									</numIndex>
-									<numIndex index="1">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.dateField.datetime</label>
-										<value>datetime</value>
-									</numIndex>
-									<numIndex index="2">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.dateField.archive</label>
-										<value>archive</value>
-									</numIndex>
-								</items>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.dateField</label>
+						<config>
+							<type>select</type>
+							<renderType>selectSingle</renderType>
+							<items>
+								<numIndex index="0" type="array">
+									<label/>
+									<value/>
+								</numIndex>
+								<numIndex index="1">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.dateField.datetime</label>
+									<value>datetime</value>
+								</numIndex>
+								<numIndex index="2">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.dateField.archive</label>
+									<value>archive</value>
+								</numIndex>
+							</items>
+						</config>
 					</settings.dateField>
 
 					<!-- Category Mode -->
 					<settings.categoryConjunction>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items>
-									<numIndex index="0" type="array">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.all</label>
-										<value/>
-									</numIndex>
-									<numIndex index="1">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.or</label>
-										<value>or</value>
-									</numIndex>
-									<numIndex index="2">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.and</label>
-										<value>and</value>
-									</numIndex>
-									<numIndex index="3">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.notor</label>
-										<value>notor</value>
-									</numIndex>
-									<numIndex index="4">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.notand</label>
-										<value>notand</value>
-									</numIndex>
-								</items>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction</label>
+						<config>
+							<type>select</type>
+							<renderType>selectSingle</renderType>
+							<items>
+								<numIndex index="0" type="array">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.all</label>
+									<value/>
+								</numIndex>
+								<numIndex index="1">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.or</label>
+									<value>or</value>
+								</numIndex>
+								<numIndex index="2">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.and</label>
+									<value>and</value>
+								</numIndex>
+								<numIndex index="3">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.notor</label>
+									<value>notor</value>
+								</numIndex>
+								<numIndex index="4">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.notand</label>
+									<value>notand</value>
+								</numIndex>
+							</items>
+						</config>
 					</settings.categoryConjunction>
 
 					<!-- Category -->
 					<settings.categories>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categories</label>
-							<config>
-								<type>select</type>
-								<renderMode>tree</renderMode>
-								<renderType>selectTree</renderType>
-								<treeConfig>
-<!--									<dataProvider>GeorgRinger\News\TreeProvider\DatabaseTreeDataProvider</dataProvider>-->
-									<parentField>parent</parentField>
-									<appearance>
-										<maxLevels>99</maxLevels>
-										<expandAll>TRUE</expandAll>
-										<showHeader>TRUE</showHeader>
-									</appearance>
-								</treeConfig>
-								<foreign_table>sys_category</foreign_table>
-								<foreign_table_where>AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting</foreign_table_where>
-								<size>15</size>
-								<minitems>0</minitems>
-								<maxitems>99</maxitems>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categories</label>
+						<config>
+							<type>select</type>
+							<renderMode>tree</renderMode>
+							<renderType>selectTree</renderType>
+							<treeConfig>
+								<!--<dataProvider>GeorgRinger\News\TreeProvider\DatabaseTreeDataProvider</dataProvider>-->
+								<parentField>parent</parentField>
+								<appearance>
+									<maxLevels>99</maxLevels>
+									<expandAll>TRUE</expandAll>
+									<showHeader>TRUE</showHeader>
+								</appearance>
+							</treeConfig>
+							<foreign_table>sys_category</foreign_table>
+							<foreign_table_where>AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting</foreign_table_where>
+							<size>15</size>
+							<minitems>0</minitems>
+							<maxitems>99</maxitems>
+						</config>
 					</settings.categories>
 
 					<!-- Include sub categories -->
 					<settings.includeSubCategories>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.includeSubCategories</label>
-							<config>
-								<type>check</type>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.includeSubCategories</label>
+						<config>
+							<type>check</type>
+						</config>
 					</settings.includeSubCategories>
-
 
 					<!-- Archive -->
 					<settings.archiveRestriction>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items>
-									<numIndex index="0" type="array">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.no-constraint</label>
-										<value/>
-									</numIndex>
-									<numIndex index="1">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction.active</label>
-										<value>active</value>
-									</numIndex>
-									<numIndex index="2">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction.archived</label>
-										<value>archived</value>
-									</numIndex>
-								</items>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction</label>
+						<config>
+							<type>select</type>
+							<renderType>selectSingle</renderType>
+							<items>
+								<numIndex index="0" type="array">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.no-constraint</label>
+									<value/>
+								</numIndex>
+								<numIndex index="1">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction.active</label>
+									<value>active</value>
+								</numIndex>
+								<numIndex index="2">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction.archived</label>
+									<value>archived</value>
+								</numIndex>
+							</items>
+						</config>
 					</settings.archiveRestriction>
 
 					<!-- Time limit Low -->
 					<settings.timeRestriction>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.timeRestriction</label>
-							<config>
-								<checkbox>1</checkbox>
-								<default></default>
-								<type>input</type>
-								<size>15</size>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.timeRestriction</label>
+						<config>
+							<checkbox>1</checkbox>
+							<type>input</type>
+							<size>15</size>
+						</config>
 					</settings.timeRestriction>
 
 					<!-- Time limit High -->
 					<settings.timeRestrictionHigh>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.timeRestrictionHigh</label>
-							<config>
-								<checkbox>1</checkbox>
-								<default></default>
-								<type>input</type>
-								<size>15</size>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.timeRestrictionHigh</label>
+						<config>
+							<checkbox>1</checkbox>
+							<type>input</type>
+							<size>15</size>
+						</config>
 					</settings.timeRestrictionHigh>
 
 					<!-- Top News -->
 					<settings.topNewsRestriction>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.topNewsRestriction</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items>
-									<numIndex index="0" type="array">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.no-constraint</label>
-										<value/>
-									</numIndex>
-									<numIndex index="1">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.topNewsRestriction.1</label>
-										<value>1</value>
-									</numIndex>
-									<numIndex index="2">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.topNewsRestriction.2</label>
-										<value>2</value>
-									</numIndex>
-								</items>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.topNewsRestriction</label>
+						<config>
+							<type>select</type>
+							<renderType>selectSingle</renderType>
+							<items>
+								<numIndex index="0" type="array">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.no-constraint</label>
+									<value/>
+								</numIndex>
+								<numIndex index="1">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.topNewsRestriction.1</label>
+									<value>1</value>
+								</numIndex>
+								<numIndex index="2">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.topNewsRestriction.2</label>
+									<value>2</value>
+								</numIndex>
+							</items>
+						</config>
 					</settings.topNewsRestriction>
 
 					<!-- single news -->
 					<settings.singleNews>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.singleNews</label>
-							<config>
-								<type>group</type>
-								<allowed>tx_news_domain_model_news</allowed>
-								<relationship>manyToOne</relationship>
-								<size>1</size>
-								<maxitems>1</maxitems>
-								<minitems>0</minitems>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.singleNews</label>
+						<config>
+							<type>group</type>
+							<allowed>tx_news_domain_model_news</allowed>
+							<relationship>manyToOne</relationship>
+							<size>1</size>
+							<maxitems>1</maxitems>
+							<minitems>0</minitems>
+						</config>
 					</settings.singleNews>
 
 					<!-- settings.previewHiddenRecords -->
 					<settings.previewHiddenRecords>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.previewHiddenRecords</label>
-							<config type="array">
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.previewHiddenRecords.I.2</label>
-										<value>2</value>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.previewHiddenRecords.I.1</label>
-										<value>1</value>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.previewHiddenRecords.I.0</label>
-										<value>0</value>
-									</numIndex>
-								</items>
-								<size type="integer">1</size>
-								<maxitems type="integer">1</maxitems>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.previewHiddenRecords</label>
+						<config type="array">
+							<type>select</type>
+							<renderType>selectSingle</renderType>
+							<items type="array">
+								<numIndex index="0" type="array">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.previewHiddenRecords.I.2</label>
+									<value>2</value>
+								</numIndex>
+								<numIndex index="1" type="array">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.previewHiddenRecords.I.1</label>
+									<value>1</value>
+								</numIndex>
+								<numIndex index="2" type="array">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.previewHiddenRecords.I.0</label>
+									<value>0</value>
+								</numIndex>
+							</items>
+							<size type="integer">1</size>
+							<maxitems type="integer">1</maxitems>
+						</config>
 					</settings.previewHiddenRecords>
 
 					<!-- startingpoint -->
 					<settings.startingpoint>
-							<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
-							<config>
-								<type>group</type>
-								<allowed>pages</allowed>
-								<size>3</size>
-								<maxitems>50</maxitems>
-								<minitems>0</minitems>
-							</config>
+						<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
+						<config>
+							<type>group</type>
+							<allowed>pages</allowed>
+							<size>3</size>
+							<maxitems>50</maxitems>
+							<minitems>0</minitems>
+						</config>
 					</settings.startingpoint>
 
 					<!-- recursive -->
 					<settings.recursive>
-							<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.recursive</label>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items type="array">
-									<numIndex index="1" type="array">
-										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.recursive.I.inherit</label>
-										<value/>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.0</label>
-										<value>0</value>
-									</numIndex>
-									<numIndex index="3" type="array">
-										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.1</label>
-										<value>1</value>
-									</numIndex>
-									<numIndex index="4" type="array">
-										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.2</label>
-										<value>2</value>
-									</numIndex>
-									<numIndex index="5" type="array">
-										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.3</label>
-										<value>3</value>
-									</numIndex>
-									<numIndex index="6" type="array">
-										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.4</label>
-										<value>4</value>
-									</numIndex>
-									<numIndex index="7" type="array">
-										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.5</label>
-										<value>250</value>
-									</numIndex>
-								</items>
-							</config>
+						<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.recursive</label>
+						<config>
+							<type>select</type>
+							<renderType>selectSingle</renderType>
+							<items type="array">
+								<numIndex index="1" type="array">
+									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.recursive.I.inherit</label>
+									<value/>
+								</numIndex>
+								<numIndex index="2" type="array">
+									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.0</label>
+									<value>0</value>
+								</numIndex>
+								<numIndex index="3" type="array">
+									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.1</label>
+									<value>1</value>
+								</numIndex>
+								<numIndex index="4" type="array">
+									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.2</label>
+									<value>2</value>
+								</numIndex>
+								<numIndex index="5" type="array">
+									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.3</label>
+									<value>3</value>
+								</numIndex>
+								<numIndex index="6" type="array">
+									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.4</label>
+									<value>4</value>
+								</numIndex>
+								<numIndex index="7" type="array">
+									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.5</label>
+									<value>250</value>
+								</numIndex>
+							</items>
+						</config>
 					</settings.recursive>
 
 					<!-- selectedList -->
 					<settings.selectedList>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.selectedList</label>
-							<config>
-								<type>group</type>
-								<allowed>tx_news_domain_model_news</allowed>
-								<size>5</size>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.selectedList</label>
+						<config>
+							<type>group</type>
+							<allowed>tx_news_domain_model_news</allowed>
+							<size>5</size>
+						</config>
 					</settings.selectedList>
 
 				</el>
 			</ROOT>
 		</sDEF>
+
 		<!--
-					################################
-					  SHEET Additional
-					################################
-				-->
+			################################
+			  SHEET Additional
+			################################
+		-->
 		<additional>
 			<ROOT>
 				<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.additional</sheetTitle>
 				<type>array</type>
 				<el>
-
-
 					<!-- PID Detail Page -->
 					<settings.detailPid>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.detailPid</label>
-							<config>
-								<type>group</type>
-								<allowed>pages</allowed>
-								<relationship>manyToOne</relationship>
-								<size>1</size>
-								<maxitems>1</maxitems>
-								<minitems>0</minitems>
-								<suggestOptions>
-									<default>
-										<addWhere>AND pages.doktype NOT in (6,199,254)</addWhere>
-									</default>
-								</suggestOptions>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.detailPid</label>
+						<config>
+							<type>group</type>
+							<allowed>pages</allowed>
+							<relationship>manyToOne</relationship>
+							<size>1</size>
+							<maxitems>1</maxitems>
+							<minitems>0</minitems>
+							<suggestOptions>
+								<default>
+									<addWhere>AND pages.doktype NOT in (6,199,254)</addWhere>
+								</default>
+							</suggestOptions>
+						</config>
 					</settings.detailPid>
 
 					<!-- PID List Page -->
 					<settings.listPid>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.listPid</label>
-							<config>
-								<type>group</type>
-								<allowed>pages</allowed>
-								<relationship>manyToOne</relationship>
-								<size>1</size>
-								<maxitems>1</maxitems>
-								<minitems>0</minitems>
-								<suggestOptions>
-									<default>
-										<addWhere>AND pages.doktype NOT in (6,199,254)</addWhere>
-									</default>
-								</suggestOptions>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.listPid</label>
+						<config>
+							<type>group</type>
+							<allowed>pages</allowed>
+							<relationship>manyToOne</relationship>
+							<size>1</size>
+							<maxitems>1</maxitems>
+							<minitems>0</minitems>
+							<suggestOptions>
+								<default>
+									<addWhere>AND pages.doktype NOT in (6,199,254)</addWhere>
+								</default>
+							</suggestOptions>
+						</config>
 					</settings.listPid>
 
 					<!-- PID Back -->
 					<settings.backPid>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.backPid</label>
-							<config>
-								<type>group</type>
-								<allowed>pages</allowed>
-								<relationship>manyToOne</relationship>
-								<size>1</size>
-								<maxitems>1</maxitems>
-								<minitems>0</minitems>
-								<suggestOptions>
-									<default>
-										<addWhere>AND pages.doktype NOT in (6,199,254)</addWhere>
-									</default>
-								</suggestOptions>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.backPid</label>
+						<config>
+							<type>group</type>
+							<allowed>pages</allowed>
+							<relationship>manyToOne</relationship>
+							<size>1</size>
+							<maxitems>1</maxitems>
+							<minitems>0</minitems>
+							<suggestOptions>
+								<default>
+									<addWhere>AND pages.doktype NOT in (6,199,254)</addWhere>
+								</default>
+							</suggestOptions>
+						</config>
 					</settings.backPid>
 
 					<!-- Limit Start -->
 					<settings.limit>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit</label>
-							<config>
-								<type>input</type>
-								<size>5</size>
-								<eval>num</eval>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit</label>
+						<config>
+							<type>input</type>
+							<size>5</size>
+							<eval>num</eval>
+						</config>
 					</settings.limit>
 
 					<!-- Offset -->
 					<settings.offset>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.offset</label>
-							<config>
-								<type>input</type>
-								<size>5</size>
-								<eval>num</eval>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.offset</label>
+						<config>
+							<type>input</type>
+							<size>5</size>
+							<eval>num</eval>
+						</config>
 					</settings.offset>
 
 					<!-- Tags -->
 					<settings.tags>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.tags</label>
-							<config>
-								<type>group</type>
-								<allowed>tx_news_domain_model_tag</allowed>
-								<size>3</size>
-								<minitems>0</minitems>
-								<maxitems>99</maxitems>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.tags</label>
+						<config>
+							<type>group</type>
+							<allowed>tx_news_domain_model_tag</allowed>
+							<size>3</size>
+							<minitems>0</minitems>
+							<maxitems>99</maxitems>
+						</config>
 					</settings.tags>
 
 					<!-- Hide pagination -->
 					<settings.hidePagination>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.hidePagination</label>
-							<config>
-								<type>check</type>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.hidePagination</label>
+						<config>
+							<type>check</type>
+						</config>
 					</settings.hidePagination>
 
 					<settings.list.paginate.itemsPerPage>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.itemsPerPage</label>
-							<config>
-								<type>input</type>
-								<size>2</size>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.itemsPerPage</label>
+						<config>
+							<type>input</type>
+							<size>2</size>
+						</config>
 					</settings.list.paginate.itemsPerPage>
 
 					<!-- topNewsFirst -->
 					<settings.topNewsFirst>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.topNewsFirst</label>
-							<config>
-								<type>check</type>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.topNewsFirst</label>
+						<config>
+							<type>check</type>
+						</config>
 					</settings.topNewsFirst>
 
 					<!-- only not displayed news -->
 					<settings.excludeAlreadyDisplayedNews>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.excludeAlreadyDisplayedNews</label>
-							<config>
-								<type>check</type>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.excludeAlreadyDisplayedNews</label>
+						<config>
+							<type>check</type>
+						</config>
 					</settings.excludeAlreadyDisplayedNews>
 
 					<!-- disable overrideDemand -->
 					<settings.disableOverrideDemand>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.disableOverrideDemand</label>
-							<config>
-								<type>check</type>
-								<default>1</default>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.disableOverrideDemand</label>
+						<config>
+							<type>check</type>
+							<default>1</default>
+						</config>
 					</settings.disableOverrideDemand>
 				</el>
 			</ROOT>
@@ -474,51 +470,50 @@
 				<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.template</sheetTitle>
 				<type>array</type>
 				<el>
-
 					<!-- Image Width -->
 					<settings.media.maxWidth>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.mediaMaxWidth</label>
-							<config>
-								<type>input</type>
-								<size>5</size>
-								<eval>num</eval>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.mediaMaxWidth</label>
+						<config>
+							<type>input</type>
+							<size>5</size>
+							<eval>num</eval>
+						</config>
 					</settings.media.maxWidth>
 
 					<!-- Image Height -->
 					<settings.media.maxHeight>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.mediaMaxHeight</label>
-							<config>
-								<type>input</type>
-								<size>5</size>
-								<eval>num</eval>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.mediaMaxHeight</label>
+						<config>
+							<type>input</type>
+							<size>5</size>
+							<eval>num</eval>
+						</config>
 					</settings.media.maxHeight>
 
 					<!-- crop length Teaser -->
 					<settings.cropMaxCharacters>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.cropMaxCharacters</label>
-							<config>
-								<type>input</type>
-								<size>5</size>
-								<eval>num</eval>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.cropMaxCharacters</label>
+						<config>
+							<type>input</type>
+							<size>5</size>
+							<eval>num</eval>
+						</config>
 					</settings.cropMaxCharacters>
 
 					<!-- Template Layout -->
 					<settings.templateLayout>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout</label>
-							<config>
-								<type>select</type>
-								<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
-								<renderType>selectSingle</renderType>
-								<items>
-									<numIndex index="0" type="array">
-										<label/>
-										<value/>
-									</numIndex>
-								</items>
-							</config>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout</label>
+						<config>
+							<type>select</type>
+							<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
+							<renderType>selectSingle</renderType>
+							<items>
+								<numIndex index="0" type="array">
+									<label/>
+									<value/>
+								</numIndex>
+							</items>
+						</config>
 					</settings.templateLayout>
 				</el>
 			</ROOT>
