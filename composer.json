@@ -29,13 +29,13 @@
         "typo3/cms-core": "^12.4.2 || ^13.1",
         "typo3/cms-extbase": "^12.4.2 || ^13.1",
         "typo3/cms-fluid": "^12.4.2 || ^13.1",
-        "typo3/cms-frontend": "^12.4.2 || ^13.1"
+        "typo3/cms-frontend": "^12.4.2 || ^13.1",
+        "typo3/cms-install": "^12.4.2 || ^13.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.47.1",
         "phpstan/phpdoc-parser": "^1.12.10",
         "phpunit/phpunit": "^10.5",
-        "typo3/cms-install": "^12.4.2 || ^13.1",
         "typo3/cms-seo": "^12.4.2 || ^13.1",
         "typo3/coding-standards": "^0.5.5",
         "typo3/testing-framework": "^8.0.9",
@@ -48,7 +48,6 @@
         "georgringer/news-tagsuggest": "On the fly creation of tag records within a news record",
         "georgringer/numbered-pagination": "Improved pagination API",
         "reelworx/rx-shariff": "GDPR compliant social sharing",
-        "typo3/cms-install": "Upgrade wizards",
         "typo3/cms-scheduler": "XML and ICS import",
         "typo3/cms-seo": "Sitemaps"
     },
