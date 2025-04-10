@@ -307,21 +307,6 @@ link.typesOpeningInNewWindow
    This option is only applied if the build-in
    :ref:`LinkViewHelper <viewHelperLink>` is used.
 
-.. _tsFacebookLocale:
-
-facebookLocale
-==============
-
-.. confval:: facebookLocale
-
-   :type: string
-   :Default: en\_US
-   :Path: plugin.tx_news.settings
-
-    Facebook locale which is used to translate facebook texts.
-
-   Examples are de\_DE, fr\_FR, ...
-
 
 .. _tsOpengraph:
 
