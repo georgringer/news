@@ -13,10 +13,12 @@ namespace GeorgRinger\News\Seo;
 
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\WorkspaceAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Seo\XmlSitemap\AbstractXmlSitemapDataProvider;
@@ -33,17 +35,16 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      * @var int
      */
     protected $itemCount = 0;
+    protected PageRepository $pageRepository;
 
     /**
-     * @param ServerRequestInterface $request
-     * @param string $key
-     * @param array $config
      * @param ContentObjectRenderer|null $cObj
      * @throws MissingConfigurationException
      */
-    public function __construct(ServerRequestInterface $request, string $key, array $config = [], ContentObjectRenderer $cObj = null)
+    public function __construct(ServerRequestInterface $request, string $key, array $config = [], ?ContentObjectRenderer $cObj = null)
     {
         parent::__construct($request, $key, $config, $cObj);
+        $this->pageRepository = GeneralUtility::makeInstance(PageRepository::class);
 
         $this->generateItems();
     }
@@ -58,6 +59,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         $pids = !empty($this->config['pid']) ? GeneralUtility::intExplode(',', $this->config['pid']) : [];
         $lastModifiedField = $this->config['lastModifiedField'] ?? 'tstamp';
         $sortField = $this->config['sortField'] ?? 'datetime';
+        $sortDirection = $this->config['sortDirection'] ?? 'ASC';
         $forGoogleNews = $this->config['googleNews'] ?? false;
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -76,19 +78,10 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         }
 
         if (!empty($pids)) {
-            $recursiveLevel = isset($this->config['recursive']) ? (int)$this->config['recursive'] : 0;
-            if ($recursiveLevel) {
-                $newList = [];
-                foreach ($pids as $pid) {
-                    $list = $this->cObj->getTreeList($pid, $recursiveLevel);
-                    if ($list) {
-                        $newList = array_merge($newList, explode(',', $list));
-                    }
-                }
-                $pids = array_merge($pids, $newList);
-            }
+            $recursiveLevel = (int)($this->config['recursive'] ?? 0);
+            $pids = $this->pageRepository->getPageIdsRecursive($pids, $recursiveLevel);
 
-            $constraints[] = $queryBuilder->expr()->in('pid', $pids);
+            $constraints[] = $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter($pids, Connection::PARAM_INT_ARRAY));
         }
 
         if ($forGoogleNews) {
@@ -134,7 +127,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
             ->setFirstResult($page * $this->numberOfItemsPerPage)
             ->setMaxResults($this->numberOfItemsPerPage);
 
-        $rows = $queryBuilder->orderBy($sortField, $forGoogleNews ? 'DESC' : 'ASC')
+        $rows = $queryBuilder->orderBy($sortField, $forGoogleNews ? 'DESC' : $sortDirection)
             ->executeQuery()->fetchAllAssociative();
 
         foreach ($rows as $row) {
@@ -148,8 +141,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
     /**
      * Get the current items
-     *
-     * @return array
      */
     public function getItems(): array
     {
@@ -158,18 +149,12 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
     /**
      * Get the number of pages
-     *
-     * @return int
      */
     public function getNumberOfPages(): int
     {
         return (int)ceil($this->itemCount / $this->numberOfItemsPerPage);
     }
 
-    /**
-     * @param array $data
-     * @return array
-     */
     protected function defineUrl(array $data): array
     {
         // @extensionScannerIgnoreLine
@@ -217,9 +202,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
     /**
      * Obtains a pid for the single view from the category.
-     *
-     * @param int $newsId
-     * @return int
      */
     protected function getSinglePidFromCategory(int $newsId): int
     {
@@ -235,20 +217,15 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_local', $queryBuilder->quoteIdentifier('sys_category.uid'))
             )
             ->where(
-                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
-                $queryBuilder->expr()->gt('sys_category.single_pid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
-                $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', Connection::PARAM_STR)),
+                $queryBuilder->expr()->gt('sys_category.single_pid', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
+                $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsId, Connection::PARAM_INT))
             )
             ->setMaxResults(1)
             ->executeQuery()->fetchAssociative();
-        return (int)$categoryRecord['single_pid'];
+        return (int)($categoryRecord['single_pid'] ?? 0);
     }
 
-    /**
-     * @param array $additionalParams
-     * @param array $data
-     * @return array
-     */
     protected function getUrlFieldParameterMap(array $additionalParams, array $data): array
     {
         if (!empty($this->config['url']['fieldToParameterMap']) &&
@@ -261,10 +238,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         return $additionalParams;
     }
 
-    /**
-     * @param array $additionalParams
-     * @return array
-     */
     protected function getUrlAdditionalParams(array $additionalParams): array
     {
         if (!empty($this->config['url']['additionalGetParameters']) &&
@@ -280,8 +253,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
     }
 
     /**
-     * @return int
-     * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
+     * @throws AspectNotFoundException
      */
     protected function getLanguageId(): int
     {
@@ -289,9 +261,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         return (int)$context->getPropertyFromAspect('language', 'id');
     }
 
-    /**
-     * @return WorkspaceAspect
-     */
     protected function getCurrentWorkspaceAspect(): WorkspaceAspect
     {
         return GeneralUtility::makeInstance(Context::class)->getAspect('workspace');

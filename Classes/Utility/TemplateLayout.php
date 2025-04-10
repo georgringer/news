@@ -22,7 +22,6 @@ class TemplateLayout implements SingletonInterface
      * Get available template layouts for a certain page
      *
      * @param int $pageUid
-     * @return array
      */
     public function getAvailableTemplateLayouts($pageUid): array
     {
@@ -52,7 +51,6 @@ class TemplateLayout implements SingletonInterface
      * Get template layouts defined in TsConfig
      *
      * @param $pageUid
-     * @return array
      */
     protected function getTemplateLayoutsFromTsConfig(int $pageUid): array
     {

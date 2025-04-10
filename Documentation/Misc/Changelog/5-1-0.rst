@@ -1,15 +1,10 @@
-.. include:: /Includes.rst.txt
-
 5.1.0 - 2016/09/12
 ==================
 
 
-.. only:: html
 
-.. contents::
-        :local:
-        :depth: 3
-
+..  contents::
+    :depth: 3
 
 Thanks to
 ---------

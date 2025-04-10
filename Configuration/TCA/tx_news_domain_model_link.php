@@ -3,7 +3,6 @@
 defined('TYPO3') or die;
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
-$typo3Version = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class)->getMajorVersion();
 
 return [
     'ctrl' => [
@@ -14,14 +13,12 @@ return [
         'label_alt_force' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'translationSource' => 'l10n_source',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
-        'default_sortby' => 'ORDER BY sorting',
         'sortby' => 'sorting',
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -45,17 +42,13 @@ return [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime',
+                'type' => 'datetime',
             ],
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime',
+                'type' => 'datetime',
             ],
         ],
         'sys_language_uid' => [
@@ -71,9 +64,7 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => $typo3Version < 12 ? [
-                    ['', 0],
-                ] : [
+                'items' => [
                     ['label' => '', 'value' => 0],
                 ],
                 'foreign_table' => 'tx_news_domain_model_link',
@@ -127,11 +118,8 @@ return [
             'exclude' => false,
             'label' => $ll . 'tx_news_domain_model_link.uri',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputLink',
+                'type' => 'link',
                 'placeholder' => $ll . 'tx_news_domain_model_link.uri.placeholder',
-                'size' => 30,
-                'eval' => 'trim,required',
                 'softref' => 'typolink',
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,

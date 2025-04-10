@@ -65,7 +65,7 @@ class ClassParser
         $inFunction = false;
         $functionName = '';
         $lastLine = 0;
-        foreach ($tokens as $idx => &$token) {
+        foreach ($tokens as &$token) {
             if (is_array($token)) {
                 switch ($token[0]) {
                     case T_DOC_COMMENT:

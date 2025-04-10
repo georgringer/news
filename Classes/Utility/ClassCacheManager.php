@@ -15,9 +15,6 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- * Class ClassCacheManager
- */
 class ClassCacheManager
 {
     /**
@@ -27,15 +24,10 @@ class ClassCacheManager
      */
     protected $classCache;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $constructorLines = [];
 
-    /**
-     * @param PhpFrontend $classCache
-     */
-    public function __construct(PhpFrontend $classCache = null)
+    public function __construct(?PhpFrontend $classCache = null)
     {
         if ($classCache === null) {
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
@@ -51,7 +43,7 @@ class ClassCacheManager
     public function reBuildSimple(bool $forceRebuild = false)
     {
         if (!function_exists('token_get_all')) {
-            throw new \Exception('The function token_get_all must exist. Please install the module PHP Module Tokenizer');
+            throw new \Exception('The function token_get_all must exist. Please install the module PHP Module Tokenizer', 4045351298);
         }
 
         if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'])) {
@@ -59,7 +51,7 @@ class ClassCacheManager
         }
 
         $files = GeneralUtility::getFilesInDir(Environment::getVarPath() . '/cache/code/news/', 'php');
-        if (empty($files) && $forceRebuild) {
+        if (empty($files) || $forceRebuild) {
             $this->reBuild();
         }
     }
@@ -69,7 +61,7 @@ class ClassCacheManager
         $classPath = 'Classes/';
 
         if (!function_exists('token_get_all')) {
-            throw new \Exception('The function token_get_all must exist. Please install the module PHP Module Tokenizer');
+            throw new \Exception('The function token_get_all must exist. Please install the module PHP Module Tokenizer', 7052287505);
         }
 
         if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'])) {
@@ -82,7 +74,7 @@ class ClassCacheManager
 
             $path = ExtensionManagementUtility::extPath('news') . $classPath . $key . '.php';
             if (!is_file($path)) {
-                throw new \Exception('Given file "' . $path . '" does not exist');
+                throw new \Exception('Given file "' . $path . '" does not exist', 8496960795);
             }
             $code = $this->parseSingleFile($path, true);
 
@@ -107,7 +99,7 @@ class ClassCacheManager
                 try {
                     $this->classCache->set($cacheEntryIdentifier, $code);
                 } catch (\Exception $e) {
-                    throw new \Exception($e->getMessage());
+                    throw new \Exception($e->getMessage(), 2006286512);
                 }
             }
         }
@@ -127,7 +119,7 @@ class ClassCacheManager
     protected function parseSingleFile($filePath, $baseClass = false): string
     {
         if (!is_file($filePath)) {
-            throw new \InvalidArgumentException(sprintf('File "%s" could not be found', $filePath));
+            throw new \InvalidArgumentException(sprintf('File "%s" could not be found', $filePath), 3594518105);
         }
         $code = @file_get_contents($filePath);
 
@@ -158,10 +150,6 @@ class ClassCacheManager
             unset($innerPart[0]);
         }
 
-        $innerPartLine = function ($line) use ($offsetForInnerPart) {
-            return $line - $offsetForInnerPart;
-        };
-
         // unset the constructor and save it's lines
         if (isset($classParserInformation['functions']['__construct'])) {
             $constructorInfo = $classParserInformation['functions']['__construct'];
@@ -170,6 +158,9 @@ class ClassCacheManager
             if ($baseClass) {
                 $this->constructorLines['doc'] = explode("\n", $constructorInfo['doc'] ?? '');
             } else {
+                if (!isset($this->constructorLines['doc'])) {
+                    $this->constructorLines['doc'] = [];
+                }
                 array_splice(
                     $this->constructorLines['doc'],
                     -1,

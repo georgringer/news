@@ -11,13 +11,17 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Hooks;
 
+use GeorgRinger\News\Event\PluginPreviewSummaryEvent;
 use GeorgRinger\News\Utility\TemplateLayout;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
-use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Imaging\IconSize;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -40,29 +44,26 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
      * Flexform information
      */
     public array $flexformData = [];
-
-    /**
-     * @var IconFactory
-     */
-    protected $iconFactory;
-
-    /** @var TemplateLayout $templateLayoutsUtility */
-    protected $templateLayoutsUtility;
+    protected IconFactory $iconFactory;
+    protected TemplateLayout $templateLayoutsUtility;
+    protected EventDispatcherInterface $eventDispatchter;
+    private int $pageId = 0;
 
     public function __construct()
     {
         $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
         $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+        $this->eventDispatchter = GeneralUtility::makeInstance(EventDispatcher::class);
     }
 
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
+        $this->pageId = $item->getContext()->getPageId();
         $row = $item->getRecord();
-        $actionTranslationKey = $result = '';
+        $result = '';
         $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
-
         $this->tableData = [];
-        $flexforms = GeneralUtility::xml2array($row['pi_flexform']);
+        $flexforms = GeneralUtility::xml2array((string)$row['pi_flexform']);
         if (is_string($flexforms)) {
             return 'ERROR: ' . htmlspecialchars($flexforms);
         }
@@ -116,13 +117,17 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
                     $this->getTemplateLayoutSettings($row['pid']);
             }
 
-            if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PluginPreviewRenderer']['extensionSummary'] ?? []) {
-                $params['action'] = $actionTranslationKey;
+            // @deprecated, use PluginPreviewRendererEvent instead
+            if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news'][\GeorgRinger\News\Hooks\PluginPreviewRenderer::class]['extensionSummary'] ?? []) {
+                trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\GeorgRinger\News\Hooks\PluginPreviewRenderer::class][\'extensionSummary\'] has been deprecated, use event PluginPreviewSummaryEvent instead', E_USER_DEPRECATED);
                 $params['item'] = $item;
                 foreach ($hooks as $reference) {
                     GeneralUtility::callUserFunction($reference, $params, $this);
                 }
             }
+
+            $event = new PluginPreviewSummaryEvent($item, $this);
+            $this->eventDispatchter->dispatch($event);
 
             // for all views
             $this->getOverrideDemandSettings();
@@ -212,24 +217,23 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
         $record = BackendUtilityCore::getRecord($table, $id);
 
         if (is_array($record)) {
+            $iconSize = (new Typo3Version())->getMajorVersion() >= 13 ? IconSize::SMALL : 'small';
             $data = '<span data-toggle="tooltip" data-placement="top" data-title="id=' . $record['uid'] . '">'
-                . $this->iconFactory->getIconForRecord($table, $record, Icon::SIZE_SMALL)->render()
+                . $this->iconFactory->getIconForRecord($table, $record, $iconSize)->render()
                 . '</span> ';
             $content = BackendUtilityCore::wrapClickMenuOnIcon(
                 $data,
                 $table,
                 $record['uid'],
                 true,
-                '',
-                '+info,edit,history'
+                $record
             );
 
             $linkTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle($table, $record));
 
             if ($table === 'pages') {
                 $id = $record['uid'];
-                $currentPageId = (int)GeneralUtility::_GET('id');
-                $link = htmlspecialchars($this->getEditLink($record, $currentPageId));
+                $link = htmlspecialchars($this->getEditLink($record, $this->pageId));
                 $switchLabel = $this->getLanguageService()->sL(self::LLPATH . 'pagemodule.switchToPage');
                 $content .= ' <a href="#" data-toggle="tooltip" data-placement="top" data-title="' . $switchLabel . '" onclick=\'top.jump("' . $link . '", "web_layout", "web", ' . $id . ');return false\'>' . $linkTitle . '</a>';
             } else {
@@ -317,7 +321,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
                     $categoryMode = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categoryConjunction.' . $categoryModeSelection);
                 }
 
-                if (count($categories) > 0 && empty($categoryModeSelection)) {
+                if (empty($categoryModeSelection)) {
                     $categoryMode = $this->generateCallout($categoryMode);
                 } else {
                     $categoryMode = htmlspecialchars($categoryMode);
@@ -433,7 +437,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
         if (!empty($field)) {
             $layouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageUid);
             foreach ($layouts as $layout) {
-                if ((string)$layout[1] === (string)$field) {
+                if ((string)$layout[1] === $field) {
                     $title = $layout[0];
                 }
             }
@@ -521,7 +525,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
     protected function renderSettingsAsTable(string $header = '', int $recordUid = 0): string
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-        $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/PageLayout');
+        $pageRenderer->loadJavaScriptModule('@georgringer/news/page-layout.js');
         $pageRenderer->addCssFile('EXT:news/Resources/Public/Css/Backend/PageLayoutView.css');
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);

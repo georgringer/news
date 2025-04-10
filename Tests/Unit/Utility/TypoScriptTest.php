@@ -10,6 +10,8 @@
 namespace GeorgRinger\News\Tests\Unit\Utility;
 
 use GeorgRinger\News\Utility\TypoScript;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -17,11 +19,8 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class TypoScriptTest extends BaseTestCase
 {
-    /**
-     * @test
-     *
-     * @dataProvider overrideWorksDataProvider
-     */
+    #[DataProvider('overrideWorksDataProvider')]
+    #[Test]
     public function overrideWorks($base, $overload, $expected): void
     {
         $utility = new TypoScript();
@@ -35,7 +34,7 @@ class TypoScriptTest extends BaseTestCase
      *
      * @return array
      */
-    public function overrideWorksDataProvider()
+    public static function overrideWorksDataProvider()
     {
         return [
             'basic' => [
@@ -123,11 +122,8 @@ class TypoScriptTest extends BaseTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider correctValueIsReturnedDataProvider
-     */
+    #[DataProvider('correctValueIsReturnedDataProvider')]
+    #[Test]
     public function correctValueIsReturned($path, $expected): void
     {
         $mockedUtility = $this->getAccessibleMock(TypoScript::class, null);
@@ -153,7 +149,7 @@ class TypoScriptTest extends BaseTestCase
      *
      * @return array
      */
-    public function correctValueIsReturnedDataProvider()
+    public static function correctValueIsReturnedDataProvider()
     {
         return [
             'valueFoundInDeepLevel' => [
@@ -171,11 +167,8 @@ class TypoScriptTest extends BaseTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider correctValueIsSetDataProvider
-     */
+    #[DataProvider('correctValueIsSetDataProvider')]
+    #[Test]
     public function correctValueIsSet($path, $newValue, $expected): void
     {
         $mockedUtility = $this->getAccessibleMock(TypoScript::class, null, [], '', true, false);
@@ -201,7 +194,7 @@ class TypoScriptTest extends BaseTestCase
      *
      * @return array
      */
-    public function correctValueIsSetDataProvider()
+    public static function correctValueIsSetDataProvider()
     {
         return [
             'overrideValueLow' => [

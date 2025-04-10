@@ -20,19 +20,19 @@ class CategoryController extends NewsController
     /**
      * List categories
      */
-    public function listAction(array $overwriteDemand = null): ResponseInterface
+    public function listAction(?array $overwriteDemand = null): ResponseInterface
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
-        $demand->setActionAndClass(__METHOD__, __CLASS__);
+        $demand->setActionAndClass(__METHOD__, self::class);
 
-        if ($overwriteDemand !== null && $this->settings['disableOverrideDemand'] != 1) {
+        if ($overwriteDemand !== null && ($this->settings['disableOverrideDemand'] ?? 1) != 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
-        $idList = explode(',', $this->settings['categories']);
+        $idList = explode(',', $this->settings['categories'] ?? '');
 
         $startingPoint = null;
-        if (!empty($this->settings['startingpoint'])) {
+        if (!empty($this->settings['startingpoint'] ?? '')) {
             $startingPoint = $this->settings['startingpoint'];
         }
 

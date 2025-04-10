@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,6 +13,8 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\TestingFramework\Core\Testbase;
+
 /**
  * Boilerplate for a functional test phpunit boostrap file.
  *
@@ -23,7 +26,7 @@
  * before instantiating the test suites.
  */
 (static function () {
-    $testbase = new \TYPO3\TestingFramework\Core\Testbase();
+    $testbase = new Testbase();
     $testbase->defineOriginalRootPath();
     $testbase->createDirectory(ORIGINAL_ROOT . 'typo3temp/var/tests');
     $testbase->createDirectory(ORIGINAL_ROOT . 'typo3temp/var/transient');

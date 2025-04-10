@@ -1,14 +1,9 @@
-.. include:: /Includes.rst.txt
-
 3.2.6 - 2016/07/13
 ==================
 
 
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :depth: 1
 
 Bugfix release
 --------------

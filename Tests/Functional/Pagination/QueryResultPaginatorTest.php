@@ -12,38 +12,47 @@ namespace GeorgRinger\News\Tests\Functional\Pagination;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Pagination\QueryResultPaginator;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
+use PHPUnit\Framework\Attributes\Test;
+use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\TypoScript\AST\Node\RootNode;
+use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class QueryResultPaginatorTest extends FunctionalTestCase
 {
-    /**
-     * @var NewsRepository
-     */
-    protected $newsRepository;
+    protected NewsRepository $newsRepository;
 
     protected array $testExtensionsToLoad = ['typo3conf/ext/news'];
 
     protected function setUp(): void
     {
         parent::setUp();
+
+        $frontendTypoScript = new FrontendTypoScript(new RootNode(), [], [], []);
+        $frontendTypoScript->setSetupArray([]);
+        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())
+            ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE)
+            ->withAttribute('frontend.typoscript', $frontendTypoScript);
+
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/news_pagination.csv');
         $this->newsRepository = $this->getContainer()->get(NewsRepository::class);
     }
 
     /**
      * A short integration test to check that the fixtures are as expected
-     *
-     * @test
      */
+    #[Test]
+    #[IgnoreDeprecations]
     public function integration(): void
     {
         $queryResult = $this->newsRepository->findAll();
         self::assertCount(20, $queryResult);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function checkPaginatorWithDefaultConfiguration(): void
     {
         $paginator = new QueryResultPaginator($this->newsRepository->findAll());
@@ -54,9 +63,7 @@ class QueryResultPaginatorTest extends FunctionalTestCase
         self::assertCount(10, $paginator->getPaginatedItems());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function paginatorRespectsItemsPerPageConfiguration(): void
     {
         $paginator = new QueryResultPaginator(
@@ -71,9 +78,7 @@ class QueryResultPaginatorTest extends FunctionalTestCase
         self::assertCount(3, $paginator->getPaginatedItems());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function paginatorRespectsItemsPerPageConfigurationAndCurrentPage(): void
     {
         $paginator = new QueryResultPaginator(
@@ -88,9 +93,7 @@ class QueryResultPaginatorTest extends FunctionalTestCase
         self::assertCount(3, $paginator->getPaginatedItems());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function paginatorProperlyCalculatesLastPage(): void
     {
         $paginator = new QueryResultPaginator(
@@ -105,9 +108,7 @@ class QueryResultPaginatorTest extends FunctionalTestCase
         self::assertCount(2, $paginator->getPaginatedItems());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function withCurrentPageNumberThrowsInvalidArgumentExceptionIfCurrentPageIsLowerThanOne(): void
     {
         $this->expectExceptionCode(1573047338);
@@ -120,9 +121,7 @@ class QueryResultPaginatorTest extends FunctionalTestCase
         $paginator->withCurrentPageNumber(0);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function paginatorSetsCurrentPageToLastPageIfCurrentPageExceedsMaximum(): void
     {
         $paginator = new QueryResultPaginator(
@@ -136,9 +135,7 @@ class QueryResultPaginatorTest extends FunctionalTestCase
         self::assertCount(10, $paginator->getPaginatedItems()); // true?
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function paginatorProperlyCalculatesOnlyOnePage(): void
     {
         $paginator = new QueryResultPaginator(
@@ -153,10 +150,8 @@ class QueryResultPaginatorTest extends FunctionalTestCase
         self::assertCount(20, $paginator->getPaginatedItems());
     }
 
-    /**
-     * @test
-     * @dataProvider paginatorProperlyCalculatesWithLimitAndOffsetDataProvider
-     */
+    #[DataProvider('paginatorProperlyCalculatesWithLimitAndOffsetDataProvider')]
+    #[Test]
     public function paginatorProperlyCalculatesWithLimitAndOffset(array $given, array $expected): void
     {
         $demand = new NewsDemand();
@@ -177,7 +172,7 @@ class QueryResultPaginatorTest extends FunctionalTestCase
         self::assertSame($expected['numberOfPages'], $paginator->getNumberOfPages());
     }
 
-    public function paginatorProperlyCalculatesWithLimitAndOffsetDataProvider(): array
+    public static function paginatorProperlyCalculatesWithLimitAndOffsetDataProvider(): array
     {
         return [
             'with offset' => [

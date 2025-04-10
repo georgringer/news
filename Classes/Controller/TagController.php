@@ -17,7 +17,7 @@ use Psr\Http\Message\ResponseInterface;
  */
 class TagController extends NewsController
 {
-    public function listAction(array $overwriteDemand = null): ResponseInterface
+    public function listAction(?array $overwriteDemand = null): ResponseInterface
     {
         // Default value is wrong for tags
         if ($this->settings['orderBy'] === 'datetime') {
@@ -25,7 +25,7 @@ class TagController extends NewsController
         }
 
         $demand = $this->createDemandObjectFromSettings($this->settings);
-        $demand->setActionAndClass(__METHOD__, __CLASS__);
+        $demand->setActionAndClass(__METHOD__, self::class);
 
         if ($overwriteDemand !== null && $this->settings['disableOverrideDemand'] != 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);

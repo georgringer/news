@@ -15,18 +15,11 @@ use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class NewsCheckPidOfNewsRecordFailedInDetailActionEvent
 {
-    /**
-     * @var NewsController
-     */
-    private $newsController;
+    private NewsController $newsController;
 
-    /**
-     * @var News
-     */
-    private $news;
+    private News $news;
 
-    /** @var Request */
-    private $request;
+    private readonly Request $request;
 
     public function __construct(NewsController $newsController, News $news, Request $request)
     {
@@ -71,9 +64,6 @@ final class NewsCheckPidOfNewsRecordFailedInDetailActionEvent
         return $this;
     }
 
-    /**
-     * @return Request
-     */
     public function getRequest(): Request
     {
         return $this->request;

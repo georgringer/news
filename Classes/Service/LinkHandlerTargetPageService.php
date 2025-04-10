@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Service;
 
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -18,7 +19,15 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 class LinkHandlerTargetPageService
 {
     /** @var ContentObjectRenderer */
-    public $cObj;
+    protected $cObj;
+
+    /**
+     * called by ContentObjectRenderer->callUserFunction() to explicitly set an instance of the ContentObjectRenderer.
+     */
+    public function setContentObjectRenderer(ContentObjectRenderer $cObj)
+    {
+        $this->cObj = $cObj;
+    }
 
     public function process(string $content = '', array $configuration = []): int
     {
@@ -35,9 +44,6 @@ class LinkHandlerTargetPageService
 
     /**
      * Obtains a pid for the single view from the category.
-     *
-     * @param int $newsId
-     * @return int
      */
     protected function getSinglePidFromCategory(int $newsId): int
     {
@@ -53,9 +59,9 @@ class LinkHandlerTargetPageService
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_local', $queryBuilder->quoteIdentifier('sys_category.uid'))
             )
             ->where(
-                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
-                $queryBuilder->expr()->gt('sys_category.single_pid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
-                $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', Connection::PARAM_STR)),
+                $queryBuilder->expr()->gt('sys_category.single_pid', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
+                $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsId, Connection::PARAM_INT))
             )
             ->orderBy('sys_category_record_mm.sorting')
             ->setMaxResults(1)

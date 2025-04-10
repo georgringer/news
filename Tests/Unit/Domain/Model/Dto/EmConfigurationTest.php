@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -19,9 +20,8 @@ class EmConfigurationTest extends BaseTestCase
 {
     /**
      * Test if the settings can be read
-     *
-     * @test
      */
+    #[Test]
     public function settingsCanBeRead(): void
     {
         $configuration = [
@@ -52,9 +52,8 @@ class EmConfigurationTest extends BaseTestCase
 
     /**
      * Test if default settings can be read
-     *
-     * @test
      */
+    #[Test]
     public function defaultSettingsCanBeRead(): void
     {
         $configuration = [

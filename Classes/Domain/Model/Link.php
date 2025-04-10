@@ -16,40 +16,33 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
  */
 class Link extends AbstractValueObject
 {
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $crdate;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $tstamp;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $title = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $description = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $uri = '';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $l10nParent = 0;
 
     /**
+     * This empty constructor is necessary so class is fully
+     * extensible by other extensions that might want to define
+     * an own __construct() method
+     */
+    public function __construct() {}
+
+    /**
      * Get creation date
-     *
-     * @return \DateTime|null
      */
     public function getCrdate(): ?\DateTime
     {
@@ -66,19 +59,12 @@ class Link extends AbstractValueObject
         $this->crdate = $crdate;
     }
 
-    /**
-     * Get timestamp
-     *
-     * @return \DateTime|null
-     */
     public function getTstamp(): ?\DateTime
     {
         return $this->tstamp;
     }
 
     /**
-     * Set timestamp
-     *
      * @param \DateTime $tstamp timestamp
      */
     public function setTstamp($tstamp): void
@@ -86,19 +72,12 @@ class Link extends AbstractValueObject
         $this->tstamp = $tstamp;
     }
 
-    /**
-     * Get title
-     *
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * Set title
-     *
      * @param string $title title
      */
     public function setTitle($title): void
@@ -106,19 +85,12 @@ class Link extends AbstractValueObject
         $this->title = $title;
     }
 
-    /**
-     * Get description
-     *
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
     /**
-     * Set description
-     *
      * @param string $description description
      */
     public function setDescription($description): void
@@ -126,19 +98,12 @@ class Link extends AbstractValueObject
         $this->description = $description;
     }
 
-    /**
-     * Get uri
-     *
-     * @return string
-     */
     public function getUri(): string
     {
         return $this->uri;
     }
 
     /**
-     * Set uri
-     *
      * @param string $uri uri
      */
     public function setUri($uri): void
@@ -151,15 +116,13 @@ class Link extends AbstractValueObject
      *
      * @param int $sysLanguageUid
      */
-    public function setSysLanguageUid($sysLanguageUid): void
+    public function setSysLanguageUid(?int $sysLanguageUid): void
     {
         $this->_languageUid = $sysLanguageUid;
     }
 
     /**
      * Get sys language
-     *
-     * @return int
      */
     public function getSysLanguageUid(): int
     {
@@ -178,8 +141,6 @@ class Link extends AbstractValueObject
 
     /**
      * Get l10n parent
-     *
-     * @return int
      */
     public function getL10nParent(): int
     {

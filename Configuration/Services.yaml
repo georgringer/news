@@ -36,6 +36,14 @@ services:
   GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList:
     public: true
 
+  GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor:
+    tags:
+      - { name: 'data.processor', identifier: 'add-news-to-menu' }
+
+  GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor:
+    tags:
+      - { name: 'data.processor', identifier: 'disable-language-menu' }
+
   GeorgRinger\News\Command\ProxyClassRebuildCommand:
     tags:
       - name: 'console.command'
@@ -63,3 +71,12 @@ services:
         identifier: 'ext-news/modify-database-query-for-list'
         method: 'modify'
         event: TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForRecordListingEvent
+
+  GeorgRinger\News\Event\Listener\ModifyResultItemInLiveSearchEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'ext-news/modify-result-item-in-live-search'
+        event: TYPO3\CMS\Backend\Search\Event\ModifyResultItemInLiveSearchEvent
+
+  GeorgRinger\News\Domain\Service\NewsImportService:
+    public: true

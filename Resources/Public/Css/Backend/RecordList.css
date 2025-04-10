@@ -1,0 +1,4 @@
+#recordlist-tx_news_domain_model_news .news-istopnews td:first-child {
+    /*border-left:3px solid #d9534f;*/
+    border-inline-start:3px solid var(--token-color-blue-40) !important;
+}

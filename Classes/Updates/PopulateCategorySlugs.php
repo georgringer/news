@@ -11,30 +11,25 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Updates;
 
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 /**
  * Fills sys_category.slug with a proper value
  */
+#[UpgradeWizard('sysCategorySlugs')]
 class PopulateCategorySlugs implements UpgradeWizardInterface
 {
     protected $table = 'sys_category';
 
     protected $fieldName = 'slug';
-
-    /**
-     * @return string Unique identifier of this updater
-     */
-    public function getIdentifier(): string
-    {
-        return 'sysCategorySlugs';
-    }
 
     /**
      * @return string Title of this updater
@@ -126,21 +121,18 @@ class PopulateCategorySlugs implements UpgradeWizardInterface
             $languageId = (int)$record['sys_language_uid'];
             $recordInDefaultLanguage = $languageId > 0 ? (int)$record['l10n_parent'] : $recordId;
             $slug = $suggestedSlugs[$recordInDefaultLanguage][$languageId] ?? '';
-
-            if (empty($slug)) {
-                if ($pid === -1) {
-                    $queryBuilder = $connection->createQueryBuilder();
-                    $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
-                    $liveVersion = $queryBuilder
-                        ->select('pid')
-                        ->from($this->table)
-                        ->where(
-                            $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($record['t3ver_oid'], \PDO::PARAM_INT))
-                        )->executeQuery()->fetchAssociative();
-                    $pid = (int)$liveVersion['pid'];
-                }
-                $slug = $slugHelper->generate($record, $pid);
+            if ($pid === -1) {
+                $queryBuilder = $connection->createQueryBuilder();
+                $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
+                $liveVersion = $queryBuilder
+                    ->select('pid')
+                    ->from($this->table)
+                    ->where(
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($record['t3ver_oid'], Connection::PARAM_INT))
+                    )->executeQuery()->fetchAssociative();
+                $pid = (int)$liveVersion['pid'];
             }
+            $slug = $slugHelper->generate($record, $pid);
 
             $state = RecordStateFactory::forName($this->table)
                 ->fromArray($record, $pid, $recordId);

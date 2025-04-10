@@ -12,6 +12,4 @@ namespace GeorgRinger\News\Domain\Model;
 /**
  * News model for default news
  */
-class NewsDefault extends News
-{
-}
+class NewsDefault extends News {}

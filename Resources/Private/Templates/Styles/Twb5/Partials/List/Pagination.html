@@ -3,7 +3,7 @@
         <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
             <f:then>
                 <li class="previous page-item">
-                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber},addQueryString:1)}" class="page-link" title="{f:translate(key:'pagination.previous')}">
+                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber},addQueryString:'untrusted')}" class="page-link" title="{f:translate(key:'pagination.previous')}">
                         {f:translate(key:'widget.pagination.previous', extensionName: 'fluid')}
                     </a>
                 </li>
@@ -25,7 +25,7 @@
                 </f:then>
                 <f:else>
                     <li class="page-item">
-                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: page},addQueryString:1)}" class="page-link">{page}</a>
+                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: page},addQueryString:'untrusted')}" class="page-link">{page}</a>
                     </li>
                 </f:else>
             </f:if>
@@ -36,13 +36,13 @@
         <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
             <f:then>
                 <li class="page-item next">
-                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber},addQueryString:1)}" class="page-link" title="{f:translate(key:'pagination.next')}">
+                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber},addQueryString:'untrusted')}" class="page-link" title="{f:translate(key:'pagination.next')}">
                         {f:translate(key:'widget.pagination.next', extensionName: 'fluid')}
                     </a>
                 </li>
                 <f:comment>
                     <li class="page-item last">
-                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.lastPageNumber},addQueryString:1)}"  class="page-link"  title="{f:translate(key:'pagination.last')}">
+                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.lastPageNumber},addQueryString:'untrusted')}"  class="page-link"  title="{f:translate(key:'pagination.last')}">
                             last
                         </a>
                     </li>

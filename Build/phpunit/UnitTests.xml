@@ -1,33 +1,35 @@
+<?xml version="1.0"?>
 <!--
-    Unit test suite setup.
+    Boilerplate for a unit test suite setup.
 
-    Unit tests should extend \TYPO3\TestingFramework\Core\Tests\UnitTestCase,
+    This file is loosely maintained within TYPO3 testing-framework, extensions
+    are encouraged to not use it directly, but to copy it to an own place,
+    for instance Build/UnitTests.xml.
+    Note UnitTestsBootstrap.php should be copied along the way.
+
+    Functional tests should extend \TYPO3\TestingFramework\Core\Tests\FunctionalTestCase,
     take a look at this class for further documentation on how to run the suite.
 
-    TYPO3 CMS unit test suite also needs phpunit bootstrap code, the
-    file is located next to this .xml as UnitTestsBootstrap.php
+    TYPO3 CMS functional test suite also needs phpunit bootstrap code, the
+    file is located next to this .xml as FunctionalTestsBootstrap.php
 -->
-<phpunit
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
-    backupGlobals="true"
-    bootstrap="UnitTestsBootstrap.php"
-    cacheResult="false"
-    colors="true"
-    convertDeprecationsToExceptions="true"
-    convertErrorsToExceptions="true"
-    convertWarningsToExceptions="true"
-    convertNoticesToExceptions="true"
-    forceCoversAnnotation="false"
-    processIsolation="false"
-    stopOnError="false"
-    stopOnFailure="false"
-    stopOnIncomplete="false"
-    stopOnSkipped="false"
-    verbose="false"
-    beStrictAboutTestsThatDoNotTestAnything="true"
-    failOnWarning="true"
-    failOnRisky="true"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd"
+         backupGlobals="true"
+         beStrictAboutTestsThatDoNotTestAnything="false"
+         bootstrap="UnitTestsBootstrap.php"
+         cacheDirectory=".phpunit.cache"
+         cacheResult="false"
+         colors="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerErrors="true"
+         displayDetailsOnTestsThatTriggerNotices="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         failOnDeprecation="true"
+         failOnNotice="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         requireCoverageMetadata="false"
 >
     <testsuites>
         <testsuite name="Unit tests">
@@ -39,7 +41,7 @@
         </testsuite>
     </testsuites>
     <php>
-        <ini name="display_errors" value="1" />
-        <env name="TYPO3_CONTEXT" value="Testing" />
+        <ini name="display_errors" value="1"/>
+        <env name="TYPO3_CONTEXT" value="Testing"/>
     </php>
 </phpunit>

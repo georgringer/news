@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _support:
 
 Need Support?

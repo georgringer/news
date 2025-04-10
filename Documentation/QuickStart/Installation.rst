@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _quickInstallation:
 
 ==================
@@ -24,7 +22,7 @@ without composer, have a look at the
 Update the database scheme
 --------------------------
 
-Open your TYPO3 backend with :ref:`system maintainer <t3start:system-maintainer>`
+Open your TYPO3 backend with :ref:`system maintainer <t3coreapi:system-maintainer>`
 permissions.
 
 In the module menu to the left navigate to :guilabel:`Admin Tools > Maintanance`,

@@ -20,127 +20,82 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class TtContent extends AbstractEntity
 {
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $crdate;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $tstamp;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $CType = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $header = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $headerPosition = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $bodytext = '';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $colPos = 0;
 
-    /**
-     * @Lazy
-     * @var ObjectStorage<FileReference>
-     */
+    /** @var ObjectStorage<FileReference> */
+    #[Lazy]
     protected $image;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $imagewidth = 0;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $imageorient = 0;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $imagecaption = '';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $imagecols = 0;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $imageborder = 0;
 
-    /**
-     * @Lazy
-     * @var ObjectStorage<FileReference>
-     */
+    /** @var ObjectStorage<FileReference> */
+    #[Lazy]
     protected $media;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $layout = '';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $cols = 0;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $subheader = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $headerLink = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $imageLink = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $imageZoom = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $altText = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $titleText = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $headerLayout = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $listType = '';
+
+    /** @var int */
+    protected $txContainerParent = 0;
 
     public function __construct()
     {
@@ -153,9 +108,6 @@ class TtContent extends AbstractEntity
         $this->media = $this->media ?? new ObjectStorage();
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCrdate(): ?\DateTime
     {
         return $this->crdate;
@@ -169,9 +121,6 @@ class TtContent extends AbstractEntity
         $this->crdate = $crdate;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getTstamp(): ?\DateTime
     {
         return $this->tstamp;
@@ -185,9 +134,6 @@ class TtContent extends AbstractEntity
         $this->tstamp = $tstamp;
     }
 
-    /**
-     * @return string
-     */
     public function getCType(): string
     {
         return $this->CType;
@@ -201,9 +147,6 @@ class TtContent extends AbstractEntity
         $this->CType = $ctype;
     }
 
-    /**
-     * @return string
-     */
     public function getHeader(): string
     {
         return $this->header;
@@ -217,9 +160,6 @@ class TtContent extends AbstractEntity
         $this->header = $header;
     }
 
-    /**
-     * @return string
-     */
     public function getHeaderPosition(): string
     {
         return $this->headerPosition;
@@ -233,9 +173,6 @@ class TtContent extends AbstractEntity
         $this->headerPosition = $headerPosition;
     }
 
-    /**
-     * @return string
-     */
     public function getBodytext(): string
     {
         return $this->bodytext;
@@ -251,8 +188,6 @@ class TtContent extends AbstractEntity
 
     /**
      * Get the colpos
-     *
-     * @return int
      */
     public function getColPos(): int
     {
@@ -260,8 +195,6 @@ class TtContent extends AbstractEntity
     }
 
     /**
-     * Set colpos
-     *
      * @param int $colPos
      */
     public function setColPos($colPos): void
@@ -305,9 +238,6 @@ class TtContent extends AbstractEntity
         $this->image = $image;
     }
 
-    /**
-     * @return int
-     */
     public function getImagewidth(): int
     {
         return $this->imagewidth;
@@ -321,9 +251,6 @@ class TtContent extends AbstractEntity
         $this->imagewidth = $imagewidth;
     }
 
-    /**
-     * @return int
-     */
     public function getImageorient(): int
     {
         return $this->imageorient;
@@ -337,9 +264,6 @@ class TtContent extends AbstractEntity
         $this->imageorient = $imageorient;
     }
 
-    /**
-     * @return string
-     */
     public function getImagecaption(): string
     {
         return $this->imagecaption;
@@ -353,9 +277,6 @@ class TtContent extends AbstractEntity
         $this->imagecaption = $imagecaption;
     }
 
-    /**
-     * @return int
-     */
     public function getImagecols(): int
     {
         return $this->imagecols;
@@ -369,9 +290,6 @@ class TtContent extends AbstractEntity
         $this->imagecols = $imagecols;
     }
 
-    /**
-     * @return int
-     */
     public function getImageborder(): int
     {
         return $this->imageborder;
@@ -421,9 +339,6 @@ class TtContent extends AbstractEntity
         $this->media = $media;
     }
 
-    /**
-     * @return string
-     */
     public function getLayout(): string
     {
         return $this->layout;
@@ -437,9 +352,6 @@ class TtContent extends AbstractEntity
         $this->layout = $layout;
     }
 
-    /**
-     * @return int
-     */
     public function getCols(): int
     {
         return $this->cols;
@@ -453,9 +365,6 @@ class TtContent extends AbstractEntity
         $this->cols = $cols;
     }
 
-    /**
-     * @return string
-     */
     public function getSubheader(): string
     {
         return $this->subheader;
@@ -469,9 +378,6 @@ class TtContent extends AbstractEntity
         $this->subheader = $subheader;
     }
 
-    /**
-     * @return string
-     */
     public function getHeaderLink(): string
     {
         return $this->headerLink;
@@ -485,9 +391,6 @@ class TtContent extends AbstractEntity
         $this->headerLink = $headerLink;
     }
 
-    /**
-     * @return string
-     */
     public function getImageLink(): string
     {
         return $this->imageLink;
@@ -501,9 +404,6 @@ class TtContent extends AbstractEntity
         $this->imageLink = $imageLink;
     }
 
-    /**
-     * @return string
-     */
     public function getImageZoom(): string
     {
         return $this->imageZoom;
@@ -517,9 +417,6 @@ class TtContent extends AbstractEntity
         $this->imageZoom = $imageZoom;
     }
 
-    /**
-     * @return string
-     */
     public function getAltText(): string
     {
         return $this->altText;
@@ -533,9 +430,6 @@ class TtContent extends AbstractEntity
         $this->altText = $altText;
     }
 
-    /**
-     * @return string
-     */
     public function getTitleText(): string
     {
         return $this->titleText;
@@ -549,9 +443,6 @@ class TtContent extends AbstractEntity
         $this->titleText = $titleText;
     }
 
-    /**
-     * @return string
-     */
     public function getHeaderLayout(): string
     {
         return $this->headerLayout;
@@ -565,19 +456,23 @@ class TtContent extends AbstractEntity
         $this->headerLayout = $headerLayout;
     }
 
-    /**
-     * @return string
-     */
     public function getListType(): string
     {
         return $this->listType;
     }
 
-    /**
-     * @param string $listType
-     */
     public function setListType(string $listType): void
     {
         $this->listType = $listType;
+    }
+
+    public function getTxContainerParent(): int
+    {
+        return $this->txContainerParent;
+    }
+
+    public function setTxContainerParent(int $txContainerParent): void
+    {
+        $this->txContainerParent = $txContainerParent;
     }
 }

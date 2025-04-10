@@ -9,7 +9,6 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
@@ -19,27 +18,20 @@ use TYPO3\CMS\Extbase\Service\ExtensionService;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormViewHelper;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\CheckboxViewHelper;
+use TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper;
 
 class SearchFormViewHelper extends AbstractFormViewHelper
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $tagName = 'form';
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Security\Cryptography\HashService
-     */
+    /** @var HashService */
     protected $hashService;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService
-     */
+    /** @var MvcPropertyMappingConfigurationService */
     protected $mvcPropertyMappingConfigurationService;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Service\ExtensionService
-     */
+    /** @var ExtensionService */
     protected $extensionService;
 
     /**
@@ -50,25 +42,16 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      */
     protected $formActionUriArguments;
 
-    /**
-     * @param \TYPO3\CMS\Extbase\Security\Cryptography\HashService $hashService
-     */
     public function injectHashService(HashService $hashService)
     {
         $this->hashService = $hashService;
     }
 
-    /**
-     * @param \TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService $mvcPropertyMappingConfigurationService
-     */
     public function injectMvcPropertyMappingConfigurationService(MvcPropertyMappingConfigurationService $mvcPropertyMappingConfigurationService)
     {
         $this->mvcPropertyMappingConfigurationService = $mvcPropertyMappingConfigurationService;
     }
 
-    /**
-     * @param \TYPO3\CMS\Extbase\Service\ExtensionService $extensionService
-     */
     public function injectExtensionService(ExtensionService $extensionService)
     {
         $this->extensionService = $extensionService;
@@ -153,20 +136,15 @@ class SearchFormViewHelper extends AbstractFormViewHelper
                 trigger_error('Using the argument "addQueryStringMethod" in <f:form> ViewHelper has no effect anymore and will be removed in TYPO3 v12. Remove the argument in your fluid template, as it will result in a fatal error.', E_USER_DEPRECATED);
             }
 
-            $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-            if ($versionInformation->getMajorVersion() >= 12) {
-                /** @var RenderingContext $renderingContext */
-                $renderingContext = $this->renderingContext;
-                /** @var RequestInterface $request */
-                $request = $renderingContext->getRequest();
-                $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
-                $uriBuilder
-                    ->reset()
-                    ->setRequest($request);
-            } else {
-                $uriBuilder = $this->renderingContext->getUriBuilder();
-                $uriBuilder->reset();
-            }
+            /** @var RenderingContext $renderingContext */
+            $renderingContext = $this->renderingContext;
+            /** @var RequestInterface $request */
+            $request = $renderingContext->getRequest();
+            /** @var UriBuilder $uriBuilder */
+            $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+            $uriBuilder
+                ->reset()
+                ->setRequest($request);
             $uriBuilder
                 ->setTargetPageType($this->arguments['pageType'] ?? 0)
                 ->setNoCache($this->arguments['noCache'] ?? false)
@@ -202,7 +180,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     {
         $formObjectName = $this->getFormObjectName();
         if ($formObjectName !== null) {
-            $this->renderingContext->getViewHelperVariableContainer()->add(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'formObjectName', $formObjectName);
+            $this->renderingContext->getViewHelperVariableContainer()->add(FormViewHelper::class, 'formObjectName', $formObjectName);
         }
     }
 
@@ -213,7 +191,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     {
         $formObjectName = $this->getFormObjectName();
         if ($formObjectName !== null) {
-            $this->renderingContext->getViewHelperVariableContainer()->remove(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'formObjectName');
+            $this->renderingContext->getViewHelperVariableContainer()->remove(FormViewHelper::class, 'formObjectName');
         }
     }
 
@@ -242,8 +220,8 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     {
         if ($this->hasArgument('object')) {
             $viewHelperVariableContainer = $this->renderingContext->getViewHelperVariableContainer();
-            $viewHelperVariableContainer->add(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'formObject', $this->arguments['object']);
-            $viewHelperVariableContainer->add(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'additionalIdentityProperties', []);
+            $viewHelperVariableContainer->add(FormViewHelper::class, 'formObject', $this->arguments['object']);
+            $viewHelperVariableContainer->add(FormViewHelper::class, 'additionalIdentityProperties', []);
         }
     }
 
@@ -254,8 +232,8 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     {
         if ($this->hasArgument('object')) {
             $viewHelperVariableContainer = $this->renderingContext->getViewHelperVariableContainer();
-            $viewHelperVariableContainer->remove(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'formObject');
-            $viewHelperVariableContainer->remove(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'additionalIdentityProperties');
+            $viewHelperVariableContainer->remove(FormViewHelper::class, 'formObject');
+            $viewHelperVariableContainer->remove(FormViewHelper::class, 'additionalIdentityProperties');
         }
     }
 
@@ -265,7 +243,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     protected function addFieldNamePrefixToViewHelperVariableContainer()
     {
         $fieldNamePrefix = $this->getFieldNamePrefix();
-        $this->renderingContext->getViewHelperVariableContainer()->add(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'fieldNamePrefix', $fieldNamePrefix);
+        $this->renderingContext->getViewHelperVariableContainer()->add(FormViewHelper::class, 'fieldNamePrefix', $fieldNamePrefix);
     }
 
     /**
@@ -286,7 +264,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      */
     protected function removeFieldNamePrefixFromViewHelperVariableContainer()
     {
-        $this->renderingContext->getViewHelperVariableContainer()->remove(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'fieldNamePrefix');
+        $this->renderingContext->getViewHelperVariableContainer()->remove(FormViewHelper::class, 'fieldNamePrefix');
     }
 
     /**
@@ -294,7 +272,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      */
     protected function addFormFieldNamesToViewHelperVariableContainer()
     {
-        $this->renderingContext->getViewHelperVariableContainer()->add(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'formFieldNames', []);
+        $this->renderingContext->getViewHelperVariableContainer()->add(FormViewHelper::class, 'formFieldNames', []);
     }
 
     /**
@@ -303,9 +281,9 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     protected function removeFormFieldNamesFromViewHelperVariableContainer()
     {
         $viewHelperVariableContainer = $this->renderingContext->getViewHelperVariableContainer();
-        $viewHelperVariableContainer->remove(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'formFieldNames');
-        if ($viewHelperVariableContainer->exists(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'renderedHiddenFields')) {
-            $viewHelperVariableContainer->remove(\TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper::class, 'renderedHiddenFields');
+        $viewHelperVariableContainer->remove(FormViewHelper::class, 'formFieldNames');
+        if ($viewHelperVariableContainer->exists(FormViewHelper::class, 'renderedHiddenFields')) {
+            $viewHelperVariableContainer->remove(FormViewHelper::class, 'renderedHiddenFields');
         }
     }
 
@@ -338,13 +316,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      */
     protected function getDefaultFieldNamePrefix()
     {
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() >= 11) {
-            $request = $this->renderingContext->getRequest();
-        } else {
-            // @extensionScannerIgnoreLine
-            $request = $this->renderingContext->getControllerContext()->getRequest();
-        }
+        $request = $this->renderingContext->getRequest();
         if ($this->hasArgument('extensionName')) {
             $extensionName = $this->arguments['extensionName'];
         } else {

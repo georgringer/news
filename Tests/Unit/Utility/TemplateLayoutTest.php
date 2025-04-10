@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Tests\Unit\Utility;
 
 use GeorgRinger\News\Utility\TemplateLayout;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -17,9 +18,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class TemplateLayoutTest extends BaseTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function templatesFoundInTypo3ConfVars(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] = [
@@ -39,9 +38,7 @@ class TemplateLayoutTest extends BaseTestCase
         self::assertSame($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'], $templateLayouts);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function templatesFoundInPageTsConfig(): void
     {
         $tsConfigArray = [
@@ -68,9 +65,7 @@ class TemplateLayoutTest extends BaseTestCase
         self::assertSame($result, $templateLayouts);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function templatesFoundInCombinedResources(): void
     {
         $tsConfigArray = [

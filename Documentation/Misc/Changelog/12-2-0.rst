@@ -1,0 +1,87 @@
+12.2.0 - 27th November 2024
+===========================
+
+Regular release, please read the following notes carefully.
+
+.. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+
+Changed behavior for TS settings.search.paginate.itemsPerPage
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The TypoScript setting `settings.search.paginate.itemsPerPage` has been disabled in the default TypoScript setup.
+This makes it possible that the setting provied in the plugin configuration (FlexForms) is used.
+However, this uses the default backup of `settings.list.paginate.itemsPerPage`.
+
+Deprecated hooks
+~~~~~~~~~~~~~~~~
+
+The following hooks have been deprecated and will be removed with the next major version:
+
+- `$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded']`: use the event `\GeorgRinger\News\Event\ModifyDemandRepositoryEvent`
+- `$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings']`: use the event `\GeorgRinger\News\Event\NewsControllerOverrideSettingsEvent`
+- `$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings']`: use the event `\GeorgRinger\News\Event\CreateDemandObjectFromSettingsEvent`
+- `$GLOBALS['TYPO3_CONF_VARS']['EXT']['news'][\GeorgRinger\News\Hooks\PluginPreviewRenderer::class]['extensionSummary']`: use the event `\GeorgRinger\News\Event\PluginPreviewSummaryEvent`
+
+Calling any of the aforementioned hooks will trigger deprecation log entries.
+
+Support of PHP 8.4
+~~~~~~~~~~~~~~~~~~
+PHP 8.4 is now officially supported.
+
+Features
+--------
+
+New events
+~~~~~~~~~~
+
+Finally the last hooks of the extension are now available as event to follow the best practices of TYPO3 core.
+
+The most used is `$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded']` which is used to modify the query to fetch the news records. This is now available as `\GeorgRinger\News\Event\ModifyDemandRepositoryEvent`.
+
+See above for a full list of available events.
+
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2024-11-27 [TASK] Use iconIdentifier in module registration (#2586) (Commit 67bb6ca7 by Seb Red)
+    2024-11-26 [TASK] Apply AddErrorCodeToExceptionRector (#2585) (Commit 87186afa by Simon Schaufelberger)
+    2024-11-26 [BUGFIX] Replace indexed array keys for items by label and value tags (#2584) (Commit 84e67600 by Seb Red)
+    2024-11-26 [BUGFIX] Apply ExtbaseActionsWithRedirectMustReturnResponseInterfaceRector (#2581) (Commit 35fd445a by Simon Schaufelberger)
+    2024-11-26 [TASK] Import fully qualified class names (#2582) (Commit 6138efb4 by Simon Schaufelberger)
+    2024-11-26 [TASK] Apply SimplifyCheckboxItemsTCARector (#2583) (Commit ac5efdc7 by Simon Schaufelberger)
+    2024-11-25 [DOC] Update Bug Template to contain current vesions (#2578) (Commit 1e4c5245 by Lina Wolf)
+    2024-11-25 [TASK] Support PHP 8.4 (#2576) (Commit 085ecbdd by Georg Ringer)
+    2024-11-23 [TASK] Trigger errors for old hook usages (#2575) (Commit 9eba8a8f by Georg Ringer)
+    2024-11-23 [TASK] Remove unused use statement (Commit 98df1eda by Georg Ringer)
+    2024-11-23 [BUGFIX] Respect pagination itemsPerPage in search (Commit b7bb5547 by Georg Ringer)
+    2024-11-22 [DOC] Fix links to TSconfig (#2574) (Commit b9c5ae13 by Lina Wolf)
+    2024-11-22 [BUGFIX] fix proxy cache update required check in ClassCacheManager::reBuildSimple (#2570) (Commit 87bdbca2 by bahammes)
+    2024-11-22 [BUGFIX] Fix ExtensionLoaded VH #2572 (#2573) (Commit 1d16333c by Georg Ringer)
+    2024-11-22 [TASK] Add empty line (Commit f534ef92 by Georg Ringer)
+    2024-11-22 [FEATURE] Provide event NewsControllerOverrideSettingsEvent #2571 (Commit 44576967 by Georg Ringer)
+    2024-11-22 [FEATURE] Provide event CreateDemandObjectFromSettingsEvent #2567 (Commit c11b0155 by Georg Ringer)
+    2024-11-22 [TASK] Make csfixer happy (Commit 33cb657d by Georg Ringer)
+    2024-11-22 [FEATURE] Provide event ModifyDemandRepositoryEvent #2568 (Commit caf0de50 by Georg Ringer)
+    2024-11-20 [TASK] Rename event (Commit 01dfbdae by Georg Ringer)
+    2024-11-20 [FEATURE] Add event PluginPreviewSummaryEvent (Commit 362da131 by Georg Ringer)
+    2024-11-12 [TASK] Use direct callback function (speed improvement) (Commit dfdd02b5 by Simon Schaufelberger)
+    2024-11-12 [TASK] Use direct null comparison (Commit e751372c by Simon Schaufelberger)
+    2024-11-12 [TASK] Use brackets to clarify code execution (Commit 167bcc17 by Simon Schaufelberger)
+    2024-11-12 [TASK] Remove useless string concatenation (Commit 3f952201 by Simon Schaufelberger)
+    2024-11-12 [TASK] Use arrow function (Commit 1c936a9d by Simon Schaufelberger)
+    2024-11-12 [TASK] Remove casts as the method always return the expected type (Commit 0cbe3acb by Simon Schaufelberger)
+    2024-11-12 [TASK] Add non-breaking type annotations (Commit a3d10af0 by Simon Schaufelberger)
+    2024-11-12 [TASK] Improve doctype annotations (Commit 2cccd7be by Simon Schaufelberger)
+    2024-11-19 [TASK] Simplify TCA (Commit 6a418a68 by Georg Ringer)
+    2024-11-19 [DOC] Update readme (Commit 5aae7674 by Georg Ringer)
+    2024-11-18 [DOCS] Use page argument in routePath (Commit cff7ec14 by Simon Schaufelberger)
+    2024-11-17 [BUGFIX] Use distinct names for sets #2563 (Commit 625884a5 by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

@@ -19,8 +19,6 @@ plugin.tx_news {
 			0 = EXT:news/Resources/Private/Layouts/
 			1 = {$plugin.tx_news.view.layoutRootPath}
 		}
-
-		widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/
 	}
 
 	# Modify the translation
@@ -91,7 +89,8 @@ plugin.tx_news {
 
 			paginate {
 				class = GeorgRinger\NumberedPagination\NumberedPagination
-				itemsPerPage = 10
+				# Using itemsPerPage means this overrides the flexform settings!
+				# itemsPerPage = 10
 				insertAbove = 1
 				insertBelow = 1
 				maximumNumberOfLinks = 3
@@ -172,6 +171,7 @@ plugin.tx_news {
 					generator = {$plugin.tx_news.rss.channel.generator}
 					link = {$plugin.tx_news.rss.channel.link}
 					typeNum = {$plugin.tx_news.rss.channel.typeNum}
+					ttl = {$plugin.tx_news.rss.channel.ttl}
 				}
 			}
 		}

@@ -41,7 +41,7 @@ class SlugPrefix
 
     protected function stripNewsSegment(string $url, string $slug): string
     {
-        if (strpos($url, '?tx_news_pi1%5Ba') !== false) {
+        if (str_contains($url, '?tx_news_pi1%5Ba')) {
             $url = substr($url, 0, strpos($url, '?tx_news_pi1%5Ba')) . '/[no mapping]';
         } else {
             $url = str_replace($slug, '', $url);
@@ -68,10 +68,6 @@ class SlugPrefix
 
     /**
      * Render the prefix for the input field.
-     *
-     * @param SiteInterface $site
-     * @param int $languageId
-     * @return string
      */
     protected function getPrefixForSite(SiteInterface $site, int $languageId): string
     {
@@ -82,7 +78,7 @@ class SlugPrefix
             if ($prefix !== '' && empty($base->getScheme()) && $base->getHost() !== '') {
                 $prefix = 'http:' . $prefix;
             }
-        } catch (\InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException) {
             // No site found
             $prefix = '';
         }

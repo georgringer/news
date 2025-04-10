@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _eventsTutorial:
 
 ======
@@ -8,14 +6,23 @@ Events
 
 Several events can be used to modify the behaviour of EXT:news.
 
-.. only:: html
-
-   .. contents::
+.. contents::
       :local:
-      :depth: 1
+      :depth: 2
 
-Connect to Event
+
+Available events
 ----------------
+
+Check out the :ref:`Events reference <referenceEvents>`.
+
+
+
+Examples
+--------
+
+Provide more variables to the view
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To connect to an event, you need to register an event listener in your custom
 extension. All what it needs is an entry in your
@@ -31,9 +38,6 @@ extension. All what it needs is an entry in your
            method: 'methodToConnectToEvent'
            event: GeorgRinger\News\Event\NewsListActionEvent
 
-Write your EventListener
-------------------------
-
 An example event listener can look like this:
 
 .. code-block:: php
@@ -46,9 +50,6 @@ An example event listener can look like this:
 
    use GeorgRinger\News\Event\NewsListActionEvent;
 
-   /**
-    * Use NewsListActionEvent from ext:news
-    */
    class YourListener
    {
        /**
@@ -64,7 +65,80 @@ An example event listener can look like this:
        }
    }
 
-Available events
-----------------
 
-Check out the :ref:`Events reference <referenceEvents>`.
+.. event_example_findDemanded:
+
+\GeorgRinger\News\Event\ModifyDemandRepositoryEvent
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This event is very powerful, as it allows to modify the query used to fetch the news records.
+
+This example modifies the query and adds a constraint that only news records are shown which contain the word *yeah*.
+
+
+First, register your implementation in the file `Configuration/Services.yaml`:
+
+.. code-block:: yaml
+
+  YourVendor\YourExtkey\EventListener\ModifyDemandRepositoryEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'eventnews-modifydemandrepository'
+        event: GeorgRinger\News\Event\ModifyDemandRepositoryEvent
+
+Now create the file ``Classes/EventListener/ModifyDemandRepositoryEventListener.php``:
+
+.. code-block:: php
+
+    <?php
+
+    namespace YourVendor\YourExtkey\EventListener;
+
+    use TYPO3\CMS\Core\Utility\GeneralUtility;
+    use GeorgRinger\News\Event\ModifyDemandRepositoryEvent
+
+    class ModifyDemandRepositoryEventListener
+    {
+        public function __invoke(ModifyDemandRepositoryEvent $event) {
+            $constraints = $event->getConstraints();
+            $constraints[] = $query->like('title', '%' . $subject . '%');
+            $event->setConstraints($constraints);
+        }
+    }
+
+
+Controller/NewsController overrideSettings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Use this event to change the final settings which are for building queries, for the template, ...
+
+
+This example modifies the settings by changing the category selection.
+
+First, register your implementation in the file `Services/yaml`:
+
+.. code-block:: yaml
+
+  YourVendor\YourExtkey\EventListener\NewsControllerOverrideSettingsEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'eventnews-modifysettings'
+        event: GeorgRinger\News\Event\NewsControllerOverrideSettingsEvent
+
+Now create the file ``Classes/EventListener/NewsControllerOverrideSettingsEvent.php``:
+
+.. code-block:: php
+
+   <?php
+
+   namespace YourVendor\Extkey\EventListener;
+
+   class NewsControllerOverrideSettingsEvent
+   {
+       public function __invoke(\GeorgRinger\News\Event\NewsControllerOverrideSettingsEvent $event): array
+       {
+           $settings = $event->getSettings();
+           $settings['categories'] = '2,3';
+
+           $event->setSettings($settings);
+       }
+   }

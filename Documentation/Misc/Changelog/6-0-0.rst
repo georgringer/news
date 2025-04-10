@@ -1,11 +1,7 @@
-.. include:: /Includes.rst.txt
-
 6.0.0 - 2017/21/03
 ==================
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 
@@ -82,7 +78,11 @@ The administration module recived again some more love!
 
 The link in the administration module to toggle the filter form has been moved to the toolbar.
 
-|img-admin-module-filter|
+
+.. image:: /Images/HistoricScreenshots/Changelog/6-0-0/admin-module-filter.png
+   :border: 0
+   :align: left
+   :name: Contentelement relation
 
 Furthermore the template has been improved to work on smaller screens.
 
@@ -128,13 +128,19 @@ Improved content element relations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To improve the usability of content elements added to a news item, the preview in the backend is enhanced by rendering the content elements as in the page module.
 
-|img-content-element-relation|
+.. image:: /Images/HistoricScreenshots/Changelog/6-0-0/news_contentelements.png
+   :border: 0
+   :align: left
+   :name: Contentelement relation
 
 Support for EXT:guide
 ^^^^^^^^^^^^^^^^^^^^^
 The extension guide shows guides to editors and makes it easy to explain features. A guide for the administration module has been added
 
-|img-admin-module-guide|
+.. image:: /Images/HistoricScreenshots/Changelog/6-0-0/admin-module-guide.png
+   :border: 0
+   :align: left
+   :name: Support of EXT:guide for the administration module
 
 Improved Import module
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -276,3 +282,4 @@ This is a list of all changes in this release: ::
 
 
 This list has been created by using `git log --since="2016/11/27" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
+

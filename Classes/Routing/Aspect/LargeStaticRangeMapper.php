@@ -29,7 +29,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class LargeStaticRangeMapper extends StaticRangeMapper
 {
-
     public function __construct(array $settings)
     {
         parent::__construct($settings);
@@ -39,16 +38,14 @@ class LargeStaticRangeMapper extends StaticRangeMapper
         }
     }
 
-    protected function getCountOfRecords(string $table, int $perPage)
+    protected function getCountOfRecords(string $table, int $perPage): int
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
         $count = $queryBuilder
-            ->count('*')
-            ->from($table)
-            ->execute()
+            ->count('*')->from($table)->executeQuery()
             ->fetchFirstColumn()[0];
 
-        return (int)(ceil($count / $perPage ?: 10));
+        return (int)ceil($count / $perPage ?: 10);
     }
 
     protected function buildRange(): array

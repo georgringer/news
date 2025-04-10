@@ -9,8 +9,11 @@
 
 namespace GeorgRinger\News\Tests\Functional\Repository;
 
+use DateTimeImmutable;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\DateTimeAspect;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
@@ -45,33 +48,31 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if startingpoint is working
-     *
-     * @test
      */
+    #[Test]
+    #[IgnoreDeprecations]
     public function findRecordsByUid(): void
     {
         $news = $this->newsRepository->findByUid(1);
 
-        self::assertEquals($news->getTitle(), 'findRecordsByUid');
+        self::assertEquals('findRecordsByUid', $news->getTitle());
     }
 
     /**
      * Test if by import source is done
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByImportSource(): void
     {
         $news = $this->newsRepository->findOneByImportSourceAndImportId('functional_test', '2');
 
-        self::assertEquals($news->getTitle(), 'findRecordsByImportSource');
+        self::assertEquals('findRecordsByImportSource', $news->getTitle());
     }
 
     /**
      * Test if top news constraint works
-     *
-     * @test
      */
+    #[Test]
     public function findTopNewsRecords(): void
     {
         $demand = new NewsDemand();
@@ -79,49 +80,47 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         // no matter about top news
         $demand->setTopNewsRestriction(0);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
+        self::assertEquals(5, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // Only Top news
         $demand->setTopNewsRestriction(1);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
+        self::assertEquals(3, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // Only non Top news
         $demand->setTopNewsRestriction(2);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
+        self::assertEquals(2, (int)$this->newsRepository->findDemanded($demand)->count());
     }
 
     /**
      * Test if startingpoint is working
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByStartingpointRestriction(): void
     {
         $demand = new NewsDemand();
 
         // simple starting point
         $demand->setStoragePage(3);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
+        self::assertEquals(2, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // multiple starting points
         $demand->setStoragePage('4,5');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
+        self::assertEquals(5, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // multiple starting points, including invalid values and commas
         $demand->setStoragePage('5 ,  x ,3');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
+        self::assertEquals(3, (int)$this->newsRepository->findDemanded($demand)->count());
     }
 
     /**
      * Test if record are found by archived/non archived flag
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByArchiveRestriction(): void
     {
         GeneralUtility::makeInstance(Context::class)->setAspect(
             'date',
-            new DateTimeAspect(new \DateTimeImmutable('@1396812099'))
+            new DateTimeAspect(new DateTimeImmutable('@1396812099'))
         );
 
         $demand = new NewsDemand();
@@ -129,22 +128,21 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         // Archived means: archive date must be lower than current time AND != 0
         $demand->setArchiveRestriction('archived');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
+        self::assertEquals(3, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // Active means: archive date must be in future or no archive date
         $demand->setArchiveRestriction('active');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
+        self::assertEquals(2, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // no value means: give all
         $demand->setArchiveRestriction('');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
+        self::assertEquals(5, (int)$this->newsRepository->findDemanded($demand)->count());
     }
 
     /**
      * Test if record by month/year constraint works
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByMonthAndYear(): void
     {
         $demand = new NewsDemand();
@@ -153,14 +151,13 @@ class NewsRepositoryTest extends FunctionalTestCase
         $demand->setDateField('datetime');
         $demand->setMonth('4');
         $demand->setYear('2011');
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 1);
+        self::assertEquals(1, (int)$this->newsRepository->findDemanded($demand)->count());
     }
 
     /**
      * Test if latest limit constraint works
-     *
-     * @test
      */
+    #[Test]
     public function findLatestLimitRecords(): void
     {
         $demand = new NewsDemand();
@@ -168,23 +165,22 @@ class NewsRepositoryTest extends FunctionalTestCase
 
         GeneralUtility::makeInstance(Context::class)->setAspect(
             'date',
-            new DateTimeAspect(new \DateTimeImmutable('@' . strtotime('2014-04-03')))
+            new DateTimeAspect(new DateTimeImmutable('@' . strtotime('2014-04-03')))
         );
 
         // get all news maximum 6 days old
         $demand->setTimeRestriction(6 * 86400);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 4);
+        self::assertEquals(4, (int)$this->newsRepository->findDemanded($demand)->count());
 
         // no restriction should get you all
         $demand->setTimeRestriction(0);
-        self::assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 6);
+        self::assertEquals(6, (int)$this->newsRepository->findDemanded($demand)->count());
     }
 
     /**
      * Test if by import source is done
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByTags(): void
     {
         $demand = new NewsDemand();
@@ -208,9 +204,7 @@ class NewsRepositoryTest extends FunctionalTestCase
         self::assertEquals('130,131,133,134', $this->getIdListOfNews($news));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findRecordsForDateMenu(): void
     {
         $demand = new NewsDemand();
@@ -233,9 +227,8 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if records are found by type
-     *
-     * @test
      */
+    #[Test]
     public function findRecordsByType(): void
     {
         $demand = new NewsDemand();
@@ -252,11 +245,7 @@ class NewsRepositoryTest extends FunctionalTestCase
         self::assertEquals(6, $count);
     }
 
-    /**
-     * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList
-     * @return string
-     */
-    protected function getIdListOfNews(QueryResultInterface $newsList)
+    protected function getIdListOfNews(QueryResultInterface $newsList): string
     {
         $idList = [];
         foreach ($newsList as $news) {

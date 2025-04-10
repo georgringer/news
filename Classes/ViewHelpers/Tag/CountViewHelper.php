@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\ViewHelpers\Tag;
 
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
@@ -38,12 +39,6 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
         $this->registerArgument('tagUid', 'int', 'Uid of the tag', true);
     }
 
-    /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     * @return int
-     */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
@@ -52,7 +47,7 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
 
-        $count = $queryBuilder
+        return $queryBuilder
             ->count('tx_news_domain_model_news.title')
             ->from('tx_news_domain_model_news')
             ->rightJoin(
@@ -68,10 +63,8 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
                 $queryBuilder->expr()->eq('tx_news_domain_model_tag.uid', $queryBuilder->quoteIdentifier('tx_news_domain_model_news_tag_mm.uid_foreign'))
             )
             ->where(
-                $queryBuilder->expr()->eq('tx_news_domain_model_tag.uid', $queryBuilder->createNamedParameter($arguments['tagUid'], \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('tx_news_domain_model_tag.uid', $queryBuilder->createNamedParameter($arguments['tagUid'], Connection::PARAM_INT))
             )
             ->executeQuery()->fetchOne();
-
-        return $count;
     }
 }

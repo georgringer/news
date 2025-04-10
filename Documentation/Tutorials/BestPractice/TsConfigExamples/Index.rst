@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _general_tsconfig_examples:
 
 ======================
@@ -9,7 +7,7 @@ TSconfig code snippets
 Page TSconfig from can be used to influence display and behaviour of fields and
 forms in the backend. The following examples are for your convenience only, they
 are possible with any record type in TYPO3. Read more about what you can do with
-page TSconfig in the :doc:`TSconfig Reference <t3tsconfig:Index>`.
+page TSconfig in the :ref:`TSconfig Reference <t3tsref:typoscript-syntax-using-setting>`.
 
 You want to add your example here? Hit the "Edit on Github" button in the top
 right and make a pull request on Github.
@@ -61,7 +59,7 @@ records, you can set the following
 
    TCEFORM.tx_news_domain_model_news.categories.config.treeConfig.rootUid = 42
 
-See also :ref:`TSconfig Reference, treeConfig <t3tsconfig:pageTsConfigTceFormConfigTreeConfig>`.
+See also :ref:`TSconfig Reference, treeConfig <t3tsref:pageTsConfigTceFormConfigTreeConfig>`.
 
 
 Reduce allowed content elements inside news records
@@ -77,7 +75,7 @@ To do this, add the following code to your TsConfig:
       CType {
          # Remove all CTypes from allowed additional news content field 'content_elements'
          removeItems = *
-      
+
          # allow
          keepItems = mask_news_text, mask_news_video
       }

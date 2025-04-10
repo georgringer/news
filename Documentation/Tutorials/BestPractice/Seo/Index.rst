@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _seo:
 
 ===
@@ -10,14 +8,11 @@ This chapters covers all configurations which are relevant for search engine opt
 regarding the news extension.
 
 .. note::
-   All settings described require TYPO3 9 and the the system extension "seo" installed.
+   All settings described require system extension :composer:`typo3/cms-seo` installed.
 
-
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 2
+..  contents::
+    :local:
+    :depth: 2
 
 Page title for single news
 --------------------------
@@ -95,6 +90,30 @@ The Core ships a basic sitemap configuration which can also be used for news rec
        }
    }
 
+This sitemap can be added in the site config so it has a nice url:
+
+.. code-block:: yaml
+   :caption: config/mysite/config.yaml
+   :emphasize-lines: 10
+
+   routeEnhancers:
+     Sitemap:
+       type: Simple
+       routePath: 'sitemap/{sitemap}'
+       aspects:
+         sitemap:
+           type: StaticValueMapper
+           map:
+             pages: pages
+             news: news
+     PageTypeSuffix:
+       type: PageType
+       default: '/'
+       index: ''
+       map:
+         '/': 0
+         sitemap.xml: 1533906435
+
 
 Extended sitemap
 ~~~~~~~~~~~~~~~~
@@ -107,6 +126,7 @@ The :php:`GeorgRinger\News\Seo\NewsXmlSitemapDataProvider` provides the same fea
 - If you are need urls containing day, month or year information
 - Setting :typoscript:`excludedTypes` to exclude certain news types from the sitemap
 - Setting :typoscript:`googleNews` to load the news differently as required for Google News (newest news first and limit to last two days)
+- Setting :typoscript:`sortDirection` to get news sorted to your needs (ASC or DESC)
 
 To enable the category detail page handling, checkout the setting :typoscript:`useCategorySinglePid = 1` in the following full example:
 
@@ -130,6 +150,7 @@ To enable the category detail page handling, checkout the setting :typoscript:`u
                            # googleNews = 1
 
                            sortField = datetime
+                           sortDirection = ASC
                            lastModifiedField = tstamp
                            pid = 218
                            recursive = 2
@@ -219,13 +240,13 @@ If no translation exists, the property `available` is set to `false` - just as i
 
 .. code-block:: typoscript
 
-   10 = TYPO3\CMS\Frontend\DataProcessing\LanguageMenuProcessor
+   10 = language-menu
    10 {
       as = languageMenu
       addQueryString = 1
    }
 
-   11 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
+   11 = disable-language-menu
    # comma separated list of language menu names
    11.menus = languageMenu
 
@@ -237,7 +258,7 @@ If using languages with the language mode `strict`, the hreflang tag must only b
 
 .. note::
    This feature is only supported by TYPO3 10 and up, described
-   in :ref:`TYPO3 Explained, ModifyHrefLangTagsEvent<t3coreapi:ModifyHrefLangTagsEvent>`.
+   in :ref:`TYPO3 Explained, ModifyHrefLangTagsEvent <t3coreapi:ModifyHrefLangTagsEvent>`.
 
 EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
 
@@ -271,9 +292,9 @@ Solution: You can use the following TypoScript condition to allow search engines
 
 .. code-block:: typoscript
 
-   [traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
+   [request && traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
        page.meta.robots = index,follow
        page.meta.robots.replace = 1
-   [global]
+   [END]
 
 An important part is the `replace` option. The MetaTag API of TYPO3 will then replace tags which were set before.

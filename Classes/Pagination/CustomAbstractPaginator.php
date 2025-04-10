@@ -15,14 +15,10 @@ use TYPO3\CMS\Core\Pagination\AbstractPaginator;
 
 abstract class CustomAbstractPaginator extends AbstractPaginator
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $currentPageNumber = 1;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $itemsPerPage = 10;
 
     protected $initialOffset = 0;
@@ -36,7 +32,7 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
     {
         // offset
         if ($this->currentPageNumber > 1) {
-            $offset = ($this->itemsPerPage * ($this->currentPageNumber - 1));
+            $offset = $this->itemsPerPage * ($this->currentPageNumber - 1);
             $offset += $this->initialOffset;
         } elseif ($this->initialOffset > 0) {
             $offset = $this->initialOffset;
@@ -73,7 +69,7 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
 
         $isUpdated = false;
         if ($this->currentPageNumber === $this->numberOfPages && $this->initialLimit > 0) {
-            $difference = $this->initialLimit - ((int)($this->itemsPerPage * ($this->currentPageNumber - 1)));
+            $difference = $this->initialLimit - ($this->itemsPerPage * ($this->currentPageNumber - 1));
             if ($difference > 0) {
                 $this->updatePaginatedItems($difference, $offset);
                 $isUpdated = true;

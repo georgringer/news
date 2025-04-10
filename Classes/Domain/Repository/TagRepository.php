@@ -10,9 +10,12 @@
 namespace GeorgRinger\News\Domain\Repository;
 
 use GeorgRinger\News\Domain\Model\DemandInterface;
+use GeorgRinger\News\Domain\Model\Tag;
 use GeorgRinger\News\Utility\Validation;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
  * Repository for tag objects
@@ -26,7 +29,7 @@ class TagRepository extends AbstractDemandedRepository
      * @param array $ordering ordering
      * @param string $startingPoint starting point uid or comma separated list
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @return QueryResultInterface<Tag>
      */
     public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
     {
@@ -56,9 +59,7 @@ class TagRepository extends AbstractDemandedRepository
     /**
      * Returns an array of constraints created from a given demand object.
      *
-     * @param QueryInterface $query
-     * @param DemandInterface $demand
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
+     * @return ConstraintInterface[]
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
@@ -89,10 +90,8 @@ class TagRepository extends AbstractDemandedRepository
     /**
      * Returns an array of orderings created from a given demand object.
      *
-     * @param DemandInterface $demand
      *
      * @return string[]
-     *
      * @psalm-return array<string, string>
      */
     protected function createOrderingsFromDemand(DemandInterface $demand): array
@@ -102,18 +101,16 @@ class TagRepository extends AbstractDemandedRepository
         if (Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
             $orderList = GeneralUtility::trimExplode(',', $demand->getOrder(), true);
 
-            if (!empty($orderList)) {
-                // go through every order statement
-                foreach ($orderList as $orderItem) {
-                    list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
-                    // count == 1 means that no direction is given
-                    if ($ascDesc) {
-                        $orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
-                            QueryInterface::ORDER_DESCENDING :
-                            QueryInterface::ORDER_ASCENDING);
-                    } else {
-                        $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
-                    }
+            // go through every order statement
+            foreach ($orderList as $orderItem) {
+                list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
+                // count == 1 means that no direction is given
+                if ($ascDesc) {
+                    $orderings[$orderField] = (strtolower($ascDesc) == 'desc') ?
+                        QueryInterface::ORDER_DESCENDING :
+                        QueryInterface::ORDER_ASCENDING;
+                } else {
+                    $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
                 }
             }
         }

@@ -23,7 +23,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ProxyClassRebuildCommand extends Command
 {
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         GeneralUtility::makeInstance(ClassCacheManager::class)->reBuildSimple(true);
         $io = new SymfonyStyle($input, $output);

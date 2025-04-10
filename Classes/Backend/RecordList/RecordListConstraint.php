@@ -12,6 +12,7 @@ namespace GeorgRinger\News\Backend\RecordList;
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
@@ -27,13 +28,11 @@ class RecordListConstraint
 
     /**
      * Check if current module is the news administration module
-     *
-     * @return bool
      */
     public function isInAdministrationModule(): bool
     {
-        $vars = GeneralUtility::_GET('route');
-        return strpos($vars, '/module/web/NewsAdministration') !== false;
+        $vars = $GLOBALS['TYPO3_REQUEST']->getQueryParams()['route'];
+        return str_contains($vars, '/module/web/NewsAdministration');
     }
 
     public function extendQuery(array &$parameters, array $arguments): void
@@ -52,7 +51,7 @@ class RecordListConstraint
             $fieldParts = [];
             foreach ($fields as $field) {
                 $likeParts = [];
-                $nameParts = str_getcsv($arguments['searchWord'], ' ');
+                $nameParts = str_getcsv($arguments['searchWord'], ' ', '"', '\\');
                 foreach ($nameParts as $part) {
                     $part = trim($part);
                     if ($part !== '') {
@@ -115,7 +114,7 @@ class RecordListConstraint
                 $limit = ConstraintHelper::getTimeRestrictionLow($arguments['timeRestriction']);
                 $parameters['where'][] = 'datetime >=' . $limit;
                 $parameters['whereDoctrine'][] = $expressionBuilder->gte('datetime', $limit);
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 // @todo add flash message
             }
         }
@@ -126,7 +125,7 @@ class RecordListConstraint
                 $limit = ConstraintHelper::getTimeRestrictionHigh($arguments['timeRestrictionHigh']);
                 $parameters['where'][] = 'datetime <=' . $limit;
                 $parameters['whereDoctrine'][] = $expressionBuilder->lte('datetime', $limit);
-            } catch (\Exception $e) {
+            } catch (\Exception) {
                 // @todo add flash message
             }
         }
@@ -219,7 +218,6 @@ class RecordListConstraint
 
     /**
      * @param int $categoryId
-     * @return array
      */
     protected function getNewsIdsOfCategory($categoryId): array
     {
@@ -245,9 +243,9 @@ class RecordListConstraint
                 $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->quoteIdentifier('sys_category_record_mm.uid_local'))
             )
             ->where(
-                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
+                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', Connection::PARAM_STR)),
                 $queryBuilder->expr()->isNotNull('tx_news_domain_model_news.uid'),
-                $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->createNamedParameter($categoryId, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->createNamedParameter($categoryId, Connection::PARAM_INT))
             )
             ->executeQuery();
 

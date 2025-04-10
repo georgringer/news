@@ -9,10 +9,13 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
+use DateTime;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Service\SettingsService;
 use GeorgRinger\News\ViewHelpers\LinkViewHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -30,9 +33,6 @@ class LinkViewHelperTest extends BaseTestCase
     /** @var News */
     protected $newsItem;
 
-    /**
-     * Set up
-     */
     public function setup(): void
     {
         $this->newsItem = new News();
@@ -47,9 +47,7 @@ class LinkViewHelperTest extends BaseTestCase
         $this->mockedViewHelper->_set('arguments', ['newsItem' => $this->newsItem]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function internalPageIsUsed(): void
     {
         $url = '123';
@@ -63,9 +61,7 @@ class LinkViewHelperTest extends BaseTestCase
         $this->mockedViewHelper->render();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function externalUrlIsUsed(): void
     {
         $url = 'http://www.typo3.org';
@@ -79,13 +75,11 @@ class LinkViewHelperTest extends BaseTestCase
         $this->mockedViewHelper->render();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function humanReadAbleDateIsAddedToConfiguration(): void
     {
-        $dateTime = new \DateTime('2014-05-16');
-        $newsItem = new \GeorgRinger\News\Domain\Model\News();
+        $dateTime = new DateTime('2014-05-16');
+        $newsItem = new News();
         $newsItem->_setProperty('uid', 123);
         $newsItem->setDatetime($dateTime);
 
@@ -106,14 +100,12 @@ class LinkViewHelperTest extends BaseTestCase
         self::assertEquals($expected, $result['additionalParams']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDetailPidFromCategoriesReturnsCorrectValue(): void
     {
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, null);
 
-        $newsItem = new \GeorgRinger\News\Domain\Model\News();
+        $newsItem = new News();
 
         $categories = new ObjectStorage();
         $category1 = new Category();
@@ -133,11 +125,8 @@ class LinkViewHelperTest extends BaseTestCase
         self::assertEquals(123, $result);
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider
-     */
+    #[DataProvider('getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider')]
+    #[Test]
     public function getDetailPidFromDefaultDetailPidReturnsCorrectValue($settings, $expected): void
     {
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, null);
@@ -151,7 +140,7 @@ class LinkViewHelperTest extends BaseTestCase
      *
      * @psalm-return array{0: array{0: null, 1: int}, 1: array{0: array<empty, empty>, 1: int}, 2: array{0: array{defaultDetailPid: string}, 1: int}, 3: array{0: array{defaultDetailPid: string}, 1: int}}
      */
-    public function getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider(): array
+    public static function getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider(): array
     {
         return [
             [null, 0],
@@ -161,11 +150,8 @@ class LinkViewHelperTest extends BaseTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider getDetailPidFromFlexformReturnsCorrectValueDataProvider
-     */
+    #[DataProvider('getDetailPidFromFlexformReturnsCorrectValueDataProvider')]
+    #[Test]
     public function getDetailPidFromFlexformReturnsCorrectValue($settings, $expected): void
     {
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, null);
@@ -174,7 +160,7 @@ class LinkViewHelperTest extends BaseTestCase
         self::assertEquals($expected, $result);
     }
 
-    public function getDetailPidFromFlexformReturnsCorrectValueDataProvider(): array
+    public static function getDetailPidFromFlexformReturnsCorrectValueDataProvider(): array
     {
         return [
             [null, 0],
@@ -184,9 +170,7 @@ class LinkViewHelperTest extends BaseTestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function noNewsReturnsChildren(): void
     {
         $settingService = $this->getAccessibleMock(SettingsService::class);

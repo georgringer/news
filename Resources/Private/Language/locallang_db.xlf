@@ -93,7 +93,7 @@
 			<trans-unit id="tx_news_domain_model_tag.seo.seo_headline" xml:space="preserve">
 				<source>Headline (H1)</source>
 			</trans-unit>
-			<trans-unit id="tx_news_domain_model_tag.seo.composeo_text" xml:space="preserve">
+			<trans-unit id="tx_news_domain_model_tag.seo.seo_text" xml:space="preserve">
 				<source>SEO Text-Container</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve">

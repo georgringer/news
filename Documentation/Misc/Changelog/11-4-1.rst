@@ -1,0 +1,21 @@
+
+11.4.1 - 8th February 2024
+==========================
+
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Breaking changes
+----------------
+No breaking changes!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2024-02-08 [TASK] Remove recordlist constraint (Commit 72ec2b17 by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

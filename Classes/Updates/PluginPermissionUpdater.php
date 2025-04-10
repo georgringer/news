@@ -14,18 +14,14 @@ namespace GeorgRinger\News\Updates;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
+#[UpgradeWizard('txNewsPluginPermissionUpdater')]
 class PluginPermissionUpdater implements UpgradeWizardInterface
 {
-    public function getIdentifier(): string
-    {
-        return 'txNewsPluginPermissionUpdater';
-    }
-
     public function getTitle(): string
     {
         return 'EXT:news: Migrate plugin permissions';
@@ -34,8 +30,7 @@ class PluginPermissionUpdater implements UpgradeWizardInterface
     public function getDescription(): string
     {
         $description = 'This update wizard updates all permissions and allows **all** news plugins instead of the previous single plugin.';
-        $description .= ' Count of affected groups: ' . count($this->getMigrationRecords());
-        return $description;
+        return $description . (' Count of affected groups: ' . count($this->getMigrationRecords()));
     }
 
     public function getPrerequisites(): array
@@ -94,20 +89,11 @@ class PluginPermissionUpdater implements UpgradeWizardInterface
     {
         $default = 'tt_content:CType:news_pi1,tt_content:CType:news_newsliststicky,tt_content:CType:news_newsdetail,tt_content:CType:news_newsdatemenu,tt_content:CType:news_newssearchform,tt_content:CType:news_newssearchresult,tt_content:CType:news_newsselectedlist,tt_content:CType:news_categorylist,tt_content:CType:news_taglist';
 
-        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() >= 12) {
-            $searchReplace = [
-                'tt_content:list_type:news_pi1:ALLOW' => $default,
-                'tt_content:list_type:news_pi1:DENY' => '',
-                'tt_content:list_type:news_pi1' => $default,
-            ];
-        } else {
-            $default .= ',';
-            $default = str_replace(',', ':ALLOW,', $default);
-            $searchReplace = [
-                'tt_content:list_type:news_pi1:ALLOW' => $default,
-                'tt_content:list_type:news_pi1:DENY' => str_replace($default, 'ALLOW', 'DENY'),
-            ];
-        }
+        $searchReplace = [
+            'tt_content:list_type:news_pi1:ALLOW' => $default,
+            'tt_content:list_type:news_pi1:DENY' => '',
+            'tt_content:list_type:news_pi1' => $default,
+        ];
 
         $newList = str_replace(array_keys($searchReplace), array_values($searchReplace), $row['explicit_allowdeny']);
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_groups');

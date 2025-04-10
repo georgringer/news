@@ -14,18 +14,11 @@ use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class NewsListSelectedActionEvent
 {
-    /**
-     * @var NewsController
-     */
-    private $newsController;
+    private NewsController $newsController;
 
-    /**
-     * @var array
-     */
-    private $assignedValues;
+    private array $assignedValues;
 
-    /** @var Request */
-    private $request;
+    private readonly Request $request;
 
     public function __construct(NewsController $newsController, array $assignedValues, Request $request)
     {
@@ -70,9 +63,6 @@ final class NewsListSelectedActionEvent
         return $this;
     }
 
-    /**
-     * @return Request
-     */
     public function getRequest(): Request
     {
         return $this->request;

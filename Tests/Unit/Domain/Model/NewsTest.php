@@ -9,12 +9,15 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
+use DateTime;
 use GeorgRinger\News\Domain\Model\Category;
-
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
+
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Model\Tag;
+use PHPUnit\Framework\Attributes\Test;
+use SplObjectStorage;
 use TYPO3\CMS\Core\Resource\FileReference as FileReferenceCore;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -24,9 +27,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class NewsTest extends BaseTestCase
 {
-    /**
-     * @var News
-     */
+    /** @var News */
     protected $newsDomainModelInstance;
 
     /**
@@ -39,9 +40,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if title can be set
-     *
-     * @test
      */
+    #[Test]
     public function titleCanBeSet(): void
     {
         $title = 'News title';
@@ -51,9 +51,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if teaser can be set
-     *
-     * @test
      */
+    #[Test]
     public function teaserCanBeSet(): void
     {
         $teaser = 'News teaser';
@@ -63,9 +62,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if bodytext can be set
-     *
-     * @test
      */
+    #[Test]
     public function bodytextCanBeSet(): void
     {
         $bodytext = 'News bodytext';
@@ -75,33 +73,30 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if datetime can be set
-     *
-     * @test
      */
+    #[Test]
     public function datetimeCanBeSet(): void
     {
-        $datetime = new \DateTime();
+        $datetime = new DateTime();
         $this->newsDomainModelInstance->setDatetime($datetime);
         self::assertEquals($datetime, $this->newsDomainModelInstance->getDatetime());
     }
 
     /**
      * Test if archive can be set
-     *
-     * @test
      */
+    #[Test]
     public function archiveCanBeSet(): void
     {
-        $archive = new \DateTime();
+        $archive = new DateTime();
         $this->newsDomainModelInstance->setArchive($archive);
         self::assertEquals($archive, $this->newsDomainModelInstance->getArchive());
     }
 
     /**
      * Test if author can be set
-     *
-     * @test
      */
+    #[Test]
     public function authorCanBeSet(): void
     {
         $author = 'News author';
@@ -111,9 +106,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if emailadr can be set
-     *
-     * @test
      */
+    #[Test]
     public function authorEmailCanBeSet(): void
     {
         $authorEmail = 'author@news.org';
@@ -123,9 +117,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if type can be set
-     *
-     * @test
      */
+    #[Test]
     public function typeCanBeSet(): void
     {
         $type = 123;
@@ -135,9 +128,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if keyword can be set
-     *
-     * @test
      */
+    #[Test]
     public function keywordsCanBeSet(): void
     {
         $keywords = 'news1 keyword, news keyword';
@@ -147,9 +139,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if internalurl can be set
-     *
-     * @test
      */
+    #[Test]
     public function internalurlCanBeSet(): void
     {
         $internalurl = 'http://foo.org/';
@@ -159,9 +150,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if externalurl can be set
-     *
-     * @test
      */
+    #[Test]
     public function externalurlCanBeSet(): void
     {
         $externalurl = 'http://bar.org/';
@@ -171,9 +161,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if topnews can be set
-     *
-     * @test
      */
+    #[Test]
     public function isttopnewsCanBeSet(): void
     {
         $istopnews = true;
@@ -183,9 +172,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if editlock can be set
-     *
-     * @test
      */
+    #[Test]
     public function editlockCanBeSet(): void
     {
         $editlock = 2;
@@ -195,9 +183,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if importid can be set
-     *
-     * @test
      */
+    #[Test]
     public function importIdCanBeSet(): void
     {
         $importId = 2;
@@ -207,9 +194,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if importSource can be set
-     *
-     * @test
      */
+    #[Test]
     public function importSourceCanBeSet(): void
     {
         $importSource = 'test';
@@ -219,9 +205,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if sorting can be set
-     *
-     * @test
      */
+    #[Test]
     public function sortingCanBeSet(): void
     {
         $sorting = 2;
@@ -231,9 +216,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if tag can be set
-     *
-     * @test
      */
+    #[Test]
     public function tagsCanBeSet(): void
     {
         $tags = new ObjectStorage();
@@ -247,14 +231,13 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if content elements can be set
-     *
-     * @test
      */
+    #[Test]
     public function contentElementsCanBeSet(): void
     {
         $ce = new ObjectStorage();
 
-        $item = new \SplObjectStorage();
+        $item = new SplObjectStorage();
         $ce->attach($item);
 
         $this->newsDomainModelInstance->setContentElements($ce);
@@ -263,9 +246,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if category can be set
-     *
-     * @test
      */
+    #[Test]
     public function categoryCanBeSet(): void
     {
         $category = new Category();
@@ -278,9 +260,8 @@ class NewsTest extends BaseTestCase
 
     /**
      * Test if related links can be set
-     *
-     * @test
      */
+    #[Test]
     public function relatedLinksCanBeSet(): void
     {
         $link = new Link();
@@ -292,9 +273,7 @@ class NewsTest extends BaseTestCase
         self::assertEquals($related, $this->newsDomainModelInstance->getRelatedLinks());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function falMediaCanBeAdded(): void
     {
         $mediaItem = new FileReference();
@@ -307,17 +286,13 @@ class NewsTest extends BaseTestCase
         self::assertEquals($news->getMedia()->current(), $mediaItem);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function falMediaPreviewsAreReturned(): void
     {
         $news = new News();
 
-        $mockedElement1 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
-        $mockedElement1->_set('uid', 1);
-        $mockedElement1->_set('showinpreview', 1);
-        $mockedElement1->expects(self::any())->method('getProperty')->willReturn(1);
+        $mockedElement1 = $this->getAccessibleMock(FileReferenceCore::class, null, [], '', false);
+        $mockedElement1->_set('mergedProperties', ['uid' => 1, 'showinpreview' => 1]);
 
         $mediaItem1 = new FileReference();
         $mediaItem1->_setProperty('originalResource', $mockedElement1);
@@ -325,39 +300,33 @@ class NewsTest extends BaseTestCase
         $news->addFalMedia($mediaItem1);
 
         $mockedElement2 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
-        $mockedElement2->_set('uid', 2);
-        $mockedElement2->_set('showinpreview', 0);
-        $mockedElement2->expects(self::any())->method('getProperty')->willReturn(0);
+        $mockedElement2->_set('mergedProperties', ['uid' => 2, 'showinpreview' => 0]);
 
         $mediaItem2 = new FileReference();
         $mediaItem2->_setProperty('originalResource', $mockedElement2);
         $mediaItem2->_setProperty('uid', 2);
         $news->addFalMedia($mediaItem2);
 
-        $mockedElement3 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
-        $mockedElement3->_set('uid', 3);
-        $mockedElement3->_set('showinpreview', 1);
-        $mockedElement3->expects(self::any())->method('getProperty')->willReturn(1);
+        $mockedElement3 = $this->getAccessibleMock(FileReferenceCore::class, null, [], '', false);
+        $mockedElement3->_set('mergedProperties', ['uid' => 3, 'showinpreview' => 1]);
 
         $mediaItem3 = new FileReference();
         $mediaItem3->_setProperty('uid', 3);
         $mediaItem3->_setProperty('originalResource', $mockedElement3);
         $news->addFalMedia($mediaItem3);
 
-        $mockedElement4 = $this->getAccessibleMock(FileReferenceCore::class, ['getProperty'], [], '', false);
-        $mockedElement4->_set('uid', 4);
-        $mockedElement4->_set('showinpreview', 2);
-        $mockedElement4->expects(self::any())->method('getProperty')->willReturn(2);
+        $mockedElement4 = $this->getAccessibleMock(FileReferenceCore::class, null, [], '', false);
+        $mockedElement4->_set('mergedProperties', ['uid' => 4, 'showinpreview' => 2]);
 
         $mediaItem4 = new FileReference();
         $mediaItem4->_setProperty('uid', 4);
         $mediaItem4->_setProperty('originalResource', $mockedElement4);
         $news->addFalMedia($mediaItem4);
 
-        self::assertEquals(3, count($news->getMediaPreviews()));
-        self::assertEquals(3, count($news->getMediaNonPreviews()));
+        self::assertCount(3, $news->getMediaPreviews());
+        self::assertCount(3, $news->getMediaNonPreviews());
 
-        self::assertEquals(4, count($news->getFalMedia()));
-        self::assertEquals(4, count($news->getMedia()));
+        self::assertCount(4, $news->getFalMedia());
+        self::assertCount(4, $news->getMedia());
     }
 }

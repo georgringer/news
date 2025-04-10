@@ -14,15 +14,9 @@ use TYPO3\CMS\Extbase\Mvc\Request;
 
 final class NewsDetailActionEvent
 {
-    /**
-     * @var NewsController
-     */
-    private $newsController;
+    private NewsController $newsController;
 
-    /**
-     * @var array
-     */
-    private $assignedValues;
+    private array $assignedValues;
 
     /** @var Request */
     private $request;

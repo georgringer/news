@@ -1,0 +1,114 @@
+12.1.0 - 15th November 2024
+===========================
+
+This is the first release of the extension that supports TYPO3 12 and 13.
+This also means that the **active** support for TYPO3 11 has been stopped.
+
+
+.. contents::
+        :local:
+        :depth: 3
+
+Breaking changes
+-----------------
+
+No breaking changes known
+
+Features
+--------
+
+Provide additional information to result of Live Search
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The result of the live search now contains additional information from the fields:
+
+- Date
+- Teaser
+- Author
+- Slug
+
+This makes it easier to find the correct record.
+
+Improved suggest wizards in FlexForms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The suggest wizards in FlexForms now skip pages that are not reachable.
+The selection of a page for the detail view ignores doktypes like sysfolder.
+
+This makes the life of editors easier - especially on bigger instances.
+
+Tagged Data Processors
+~~~~~~~~~~~~~~~~~~~~~~
+The usage of the data processors has been simplified by using their tags.
+
+   .. code-block:: typoscript
+
+      # old
+      10 = GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor
+      20 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
+      new
+      10 = add-news-to-menu
+      20 = disable-language-menu
+
+
+Site Set Support
+~~~~~~~~~~~~~~~~
+The extension now supports site sets as drop in replacements for TypoScript includes.
+
+*TYPO3 13 only*
+
+Flag topnews records in backend list
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If a record is marked as topnews, it is now highlighted in the backend list
+with a small blue border on the left side.
+
+*TYPO3 13 only*
+
+
+Add StatusInformation to pages with news
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If a page contains a news plugin, a small icon is shown in the page tree to indicate this.
+
+This feature is *TYPO3 13 only* and can be disabled in the global extension settings.
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2024-11-13 [DOC] Release 11.4.3 (Commit da43144c by Georg Ringer)
+    2024-11-13 [BUGFIX] Fix functional tests (Commit 356c23fa by lina.wolf)
+    2024-11-13 [BUGFIX] Use language aspect in lieu of removed Typo3QuerySettings::setLanguageOverlayMode() (Commit 175e3e74 by lina.wolf)
+    2024-11-08 [DOC] ProxyClassGenerator - exclude class from dependency injection (Commit bf2658fc by Stig Nørgaard Færch)
+    2024-11-06 [FEATURE] Tag and alias for data processors (Commit 4be32601 by Eric Harrer)
+    2024-11-05 [FEATURE] Provide additional information to result of Live Search (Commit c34ea309 by Georg Ringer)
+    2024-11-05 [FEATURE] Make the page tree enhancement configurable (Commit eb739a69 by Georg Ringer)
+    2024-11-05 [TASK] Change highlight color of topnews in BE list (Commit 448ef5c8 by Georg Ringer)
+    2024-11-05 [BUGFIX] Fix potential notice #1776 (Commit d98a671d by Georg Ringer)
+    2024-11-05 [BUGFIX] Fix disableOverrideDemand checks for search actions (Commit ef840d3d by Georg Ringer)
+    2024-11-05 [DOC] Fix spaces in example (Commit 0099ca3e by Georg Ringer)
+    2024-11-05 [TASK] Make endtime setter handle null values (Commit b6da7a8b by Georg Ringer)
+    2024-11-05 [BUGFIX] Fix wrong values on flexform (Commit 317423d9 by Georg Ringer)
+    2024-11-05 [BUGFIX] Fix wrong values on flexform (Commit e4b7f4c5 by Georg Ringer)
+    2024-11-03 [BUGFIX] Change TCA behaviour for content_element relation (Commit 640dd340 by Georg Ringer)
+    2024-11-03 [TASK] Provide label for itemgroup (Commit a026acc1 by Georg Ringer)
+    2024-10-31 [FEATURE] Skip not reachable pages in suggest of fields in flexforms (Commit 38f9bde4 by Georg Ringer)
+    2024-11-03 [BUGFIX] Fix paths in sets #2549 (Commit e51faf3c by Georg Ringer)
+    2024-11-01 [TASK] Enable tests for v13 (Commit 4c8ce938 by Georg Ringer)
+    2024-11-01 [BUGFIX] Fix query for sqlite (Commit 783a59a1 by Georg Ringer)
+    2024-11-01 [TASK] Consistent behaviour of getDayOfDatetime (Commit 4497a3a9 by Georg Ringer)
+    2024-10-31 [BUGFIX] use addquerystring untrusted (Commit 4b3ca1f1 by Georg Ringer)
+    2024-10-31 [BUGFIX] Change search templates of TWB to get (Commit c1d85351 by Georg Ringer)
+    2024-10-31 [TASK] Fix cgl (Commit 95b22e7b by Georg Ringer)
+    2024-10-31 [BUGFIX] Handle deprecated cache tag management (Commit 516a0731 by Georg Ringer)
+    2024-06-07 Add hint on side effects when omitting limitToPages (Commit 0f322997 by Stefan)
+    2024-10-30 [TASK] Update csfixer rules (Commit 3b117bb9 by Georg Ringer)
+    2024-10-30 [TASK] Remove readonly from class (Commit 84612d26 by Georg Ringer)
+    2024-10-30 [FEATURE] Flag topnews records in backend list (Commit 30c4d6bf by Georg Ringer)
+    2024-10-30 [FEATURE] Add StatusInformation to pages with news (Commit 804c939b by Georg Ringer)
+    2024-10-30 [BUGFIX] Migrate cobj->getTreeList() in sitemap generation #2542 (Commit 2a8f7a5f by Georg Ringer)
+    2024-10-24 [TASK] Add relationship `manyToOne` for group fields with maxitems 1 (#2540) (Commit bb43d614 by Nikita Hovratov)
+    2024-10-21 [TASK] Check datefield field not only for not null (Commit 479287fa by Georg Ringer)
+    2024-10-21 [FEATURE] Add site sets as drop in replacements for TypoScript includes (#2536) (Commit b4075dba by Lina Wolf)
+    2024-10-21 [BUGFIX] Make the backend admin work #2534 (#2535) (Commit 031cb899 by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

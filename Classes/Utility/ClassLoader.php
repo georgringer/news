@@ -11,7 +11,6 @@ namespace GeorgRinger\News\Utility;
 
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -20,43 +19,17 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ClassLoader implements SingletonInterface
 {
-    /**
-     * @var PhpFrontend
-     */
-    protected $classCache;
+    protected PhpFrontend $classCache;
+    protected object $classCacheManager;
 
-    /** @var ClassCacheManager */
-    protected $classCacheManager;
-
-    /** @var bool */
-    protected $isValidInstance = false;
-
-    /**
-     * ClassLoader constructor.
-     *
-     * @param PhpFrontend $classCache
-     */
-    public function __construct(PhpFrontend $classCache = null, ClassCacheManager $classCacheManager = null)
+    public function __construct(?PhpFrontend $classCache = null)
     {
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() === 10) {
-            // Use DI
-            // something might fail, e.g loading checks in Install Tool
-            if ($classCacheManager !== null) {
-                $this->classCacheManager = $classCacheManager;
-                $this->isValidInstance = true;
-            }
-        } else {
-            $this->classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
-            $this->isValidInstance = true;
-        }
+        $this->classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
 
-        if ($this->isValidInstance) {
-            if ($classCache === null) {
-                $this->classCache = GeneralUtility::makeInstance(CacheManager::class)->getCache('news');
-            } else {
-                $this->classCache = $classCache;
-            }
+        if ($classCache === null) {
+            $this->classCache = GeneralUtility::makeInstance(CacheManager::class)->getCache('news');
+        } else {
+            $this->classCache = $classCache;
         }
     }
 
@@ -73,14 +46,9 @@ class ClassLoader implements SingletonInterface
      * classes directory of an extension.
      *
      * @param string $className Name of the class/interface to load
-     * @return bool
      */
     public function loadClass($className): bool
     {
-        if (!$this->isValidInstance) {
-            return false;
-        }
-
         $className = ltrim($className, '\\');
 
         if (!$this->isValidClassName($className)) {
@@ -100,19 +68,17 @@ class ClassLoader implements SingletonInterface
      * Get extension key from namespaced classname
      *
      * @param string $className
-     *
-     * @return string|null
      */
     protected function getExtensionKey($className): ?string
     {
         $extensionKey = null;
 
-        if (strpos($className, '\\') !== false) {
+        if (str_contains($className, '\\')) {
             $namespaceParts = GeneralUtility::trimExplode(
                 '\\',
                 $className,
                 0,
-                substr($className, 0, 9) === 'TYPO3\\CMS' ? 4 : 3
+                str_starts_with($className, 'TYPO3\\CMS') ? 4 : 3
             );
             array_pop($namespaceParts);
             $extensionKey = GeneralUtility::camelCaseToLowerCaseUnderscored(array_pop($namespaceParts));
@@ -125,7 +91,6 @@ class ClassLoader implements SingletonInterface
      * Find out if a class name is valid
      *
      * @param string $className
-     * @return bool
      */
     protected function isValidClassName($className): bool
     {
@@ -140,7 +105,7 @@ class ClassLoader implements SingletonInterface
 
     protected function isFirstPartOfStr(string $str, string $partStr): bool
     {
-        return $partStr !== '' && strpos($str, $partStr) === 0;
+        return $partStr !== '' && str_starts_with($str, $partStr);
     }
 
     protected function changeClassName(string $className): string

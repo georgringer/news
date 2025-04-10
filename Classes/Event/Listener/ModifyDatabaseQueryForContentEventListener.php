@@ -13,6 +13,7 @@ namespace GeorgRinger\News\Event\Listener;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForContentEvent;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
@@ -24,7 +25,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class ModifyDatabaseQueryForContentEventListener
 {
-    protected static int $count = 0;
+    private static int $count = 0;
 
     public function modify(ModifyDatabaseQueryForContentEvent $event): void
     {
@@ -42,7 +43,7 @@ final class ModifyDatabaseQueryForContentEventListener
                 // Only hide elements which are inline, allowing for standard
                 // elements to show
                 $event->getQueryBuilder()->andWhere(
-                    $event->getQueryBuilder()->expr()->eq('tx_news_related_news', $event->getQueryBuilder()->createNamedParameter(0, \PDO::PARAM_INT))
+                    $event->getQueryBuilder()->expr()->eq('tx_news_related_news', $event->getQueryBuilder()->createNamedParameter(0, Connection::PARAM_INT))
                 );
 
                 if (self::$count === 0) {
@@ -59,7 +60,7 @@ final class ModifyDatabaseQueryForContentEventListener
      * that no elements belonging to news articles
      * are rendered in the page module
      */
-    protected function addFlashMessage(): void
+    private function addFlashMessage(): void
     {
         $message = GeneralUtility::makeInstance(
             FlashMessage::class,
@@ -72,7 +73,7 @@ final class ModifyDatabaseQueryForContentEventListener
         $defaultFlashMessageQueue->enqueue($message);
     }
 
-    protected function getLanguageService(): LanguageService
+    private function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }

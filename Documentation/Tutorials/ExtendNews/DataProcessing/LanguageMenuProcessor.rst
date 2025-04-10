@@ -1,6 +1,3 @@
-.. include:: /Includes.rst.txt
-
-
 .. _dataProcessing_LanguageMenuProcessor:
 
 =====================
@@ -19,16 +16,16 @@ Usage
 
 .. code-block:: typoscript
 
-   10 = TYPO3\CMS\Frontend\DataProcessing\LanguageMenuProcessor
+   10 = language-menu
    10 {
-      as = languageMenu
-      addQueryString = 1
+       as = languageMenu
+       addQueryString = 1
    }
 
-   11 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
+   11 = disable-language-menu
    11 {
-     if.isTrue.data = GP:tx_news_pi1|news
-     menus = languageMenu
+       if.isTrue.data = GP:tx_news_pi1|news
+       menus = languageMenu
    }
 
 The property :typoscript:`menus` is a comma-separated list of

@@ -10,6 +10,8 @@
 namespace GeorgRinger\News\Service;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
@@ -23,9 +25,6 @@ class AccessControlService
 {
     /**
      * Check if a user has access to all categories of a news record
-     *
-     * @param array $newsRecord
-     * @return bool
      */
     public static function userHasCategoryPermissionsForRecord(array $newsRecord): bool
     {
@@ -49,9 +48,6 @@ class AccessControlService
 
     /**
      * Get an array with the uid and title of all categories the user doesn't have access to
-     *
-     * @param array $newsRecord
-     * @return array
      */
     public static function getAccessDeniedCategories(array $newsRecord): array
     {
@@ -88,7 +84,6 @@ class AccessControlService
      * Get all categories for a news record respecting l10n_mode
      *
      * @param array $newsRecord
-     * @return array
      */
     public static function getCategoriesForNewsRecord($newsRecord): array
     {
@@ -102,9 +97,9 @@ class AccessControlService
                 $newsRecordCategoriesCount = $queryBuilder->count('*')
                     ->from('sys_category_record_mm')
                     ->where(
-                        $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($newsRecord['uid'], \PDO::PARAM_INT)),
-                        $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
-                        $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR))
+                        $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($newsRecord['uid'], Connection::PARAM_INT)),
+                        $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', Connection::PARAM_STR)),
+                        $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter('categories', Connection::PARAM_STR))
                     )
                     ->executeQuery()->fetchOne();
                 if ($newsRecordCategoriesCount > 0) {
@@ -141,14 +136,14 @@ class AccessControlService
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_local', $queryBuilder->quoteIdentifier('sys_category.uid'))
             )
             ->where(
-                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
-                $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR)),
-                $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsRecordUid, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', Connection::PARAM_STR)),
+                $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', $queryBuilder->createNamedParameter('categories', Connection::PARAM_STR)),
+                $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsRecordUid, Connection::PARAM_INT))
             )
             ->executeQuery();
 
         $categories = [];
-        while ($row =$res->fetchAssociative()) {
+        while ($row = $res->fetchAssociative()) {
             $categories[] = [
                 'uid' => $row['uid_local'],
                 'title' => $row['title'],
@@ -159,10 +154,8 @@ class AccessControlService
 
     /**
      * Returns the current BE user.
-     *
-     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
      */
-    protected static function getBackendUser(): \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+    protected static function getBackendUser(): BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }

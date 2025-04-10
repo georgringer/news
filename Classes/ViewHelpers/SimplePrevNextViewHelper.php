@@ -58,18 +58,14 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class SimplePrevNextViewHelper extends AbstractViewHelper
 {
-    /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
+    /** @var DataMapper */
     protected $dataMapper;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $escapeOutput = false;
 
     /**
      * Inject the DataMapper
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper
      */
     public function injectDataMapper(DataMapper $dataMapper): void
     {
@@ -90,9 +86,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         $this->registerArgument('includeExternalType', 'bool', 'Include external news types', false, false);
     }
 
-    /**
-     * @return string
-     */
     public function render(): string
     {
         $neighbours = $this->getNeighbours($this->arguments['news'], $this->arguments['pidList'], $this->arguments['sortField']);
@@ -108,9 +101,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
 
     /**
      * Map the array from DB to an understandable output
-     *
-     * @param array $result
-     * @return array
      */
     protected function mapResultToObjects(array $result): array
     {
@@ -140,11 +130,10 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
 
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']) && $languageAspect->getContentId() > 0) {
             // @extensionScannerIgnoreLine
-            $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
+            $overlay = $GLOBALS['TSFE']->sys_page->getLanguageOverlay(
                 'tx_news_domain_model_news',
                 $rawRecord,
-                $languageAspect->getContentId(),
-                $languageAspect->getLegacyOverlayType()
+                $languageAspect
             );
             if (!is_null($overlay)) {
                 $rawRecord = $overlay;
@@ -159,12 +148,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         return $record;
     }
 
-    /**
-     * @param News $news
-     * @param string $pidList
-     * @param string $sortField
-     * @return array
-     */
     protected function getNeighbours(News $news, string $pidList, string $sortField): array
     {
         $data = [];
@@ -177,27 +160,27 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
             $queryBuilder = $connection->createQueryBuilder();
 
             $extraWhere = [
-                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), \PDO::PARAM_INT)),
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), Connection::PARAM_INT)),
             ];
             if ((bool)($this->arguments['includeInternalType'] ?? false) === false) {
-                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));
+                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, Connection::PARAM_INT));
             }
             if ((bool)($this->arguments['includeExternalType'] ?? false) === false) {
-                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, \PDO::PARAM_INT));
+                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, Connection::PARAM_INT));
             }
 
-            $getter = 'get' . ucfirst($sortField) . '';
+            $getter = 'get' . ucfirst($sortField);
             if ($news->$getter() instanceof \DateTime) {
                 if ($label === 'prev') {
-                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($news->$getter()->getTimestamp(), \PDO::PARAM_INT));
+                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($news->$getter()->getTimestamp(), Connection::PARAM_INT));
                 } else {
-                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($news->$getter()->getTimestamp(), \PDO::PARAM_INT));
+                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($news->$getter()->getTimestamp(), Connection::PARAM_INT));
                 }
             } else {
                 if ($label === 'prev') {
-                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($news->$getter(), \PDO::PARAM_STR));
+                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($news->$getter(), Connection::PARAM_STR));
                 } else {
-                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($news->$getter(), \PDO::PARAM_STR));
+                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($news->$getter(), Connection::PARAM_STR));
                 }
             }
 
@@ -205,7 +188,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
                 ->select('*')
                 ->from('tx_news_domain_model_news')
                 ->where(
-                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
                     $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter(explode(',', $pidList), Connection::PARAM_INT_ARRAY))
                 )
                 ->andWhere(...$extraWhere)
@@ -219,30 +202,22 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         return $data;
     }
 
-    /**
-     * @return QueryBuilder
-     */
     protected function getQueryBuilder(): QueryBuilder
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
     }
 
-    /**
-     * @param int $id
-     * @return array
-     */
     protected function getRawRecord(int $id): ?array
     {
         $queryBuilder = $this->getQueryBuilder();
-        $rawRecord = $queryBuilder
+        return $queryBuilder
             ->select('*')
             ->from('tx_news_domain_model_news')
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, Connection::PARAM_INT))
             )
             ->setMaxResults(1)
             ->executeQuery()->fetchAssociative();
-        return $rawRecord;
     }
 }

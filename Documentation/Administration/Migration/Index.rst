@@ -1,6 +1,3 @@
-.. include:: /Includes.rst.txt
-
-
 Migration
 ---------
 
@@ -11,4 +8,3 @@ EXT:news provides a powerful import module which can be used to add news and cat
    :titlesonly:
 
    MigrationFromTtNews/Index
-   MigrationFromRealurl/Index

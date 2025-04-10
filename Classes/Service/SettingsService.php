@@ -26,20 +26,16 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  */
 class SettingsService
 {
-    /**
-     * @var mixed
-     */
+    /** @var mixed */
     protected $settings;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
-     */
+    /** @var ConfigurationManagerInterface */
     protected $configurationManager;
 
     /**
      * Injects the Configuration Manager and loads the settings
      *
-     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
+     * @param ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
      */
     public function injectConfigurationManager(
         ConfigurationManagerInterface $configurationManager
@@ -49,8 +45,6 @@ class SettingsService
 
     /**
      * Returns all settings.
-     *
-     * @return array
      */
     public function getSettings(): array
     {

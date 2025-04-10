@@ -5,7 +5,7 @@ email, or any other method with the owners of this repository before making a ch
 
 ## Getting Started
 
-* Make sure you have a [GitHub account](https://github.com/signup/free)
+* Make sure you have a [GitHub account](https://github.com/join)
 * Submit a ticket for your [issue](https://github.com/georgringer/news/issues), assuming one does not already exist.
   * Clearly describe the issue including steps to reproduce when it is a bug.
 * Fork the repository on GitHub
@@ -20,30 +20,41 @@ email, or any other method with the owners of this repository before making a ch
     fix/main/my_contribution main`. Please avoid working directly on the
     `main` branch.
 * Make commits of logical units.
-* Use `./php-cs-fixer fix --config-file Build/.php_cs` to make sure the code is formatted correctly.
+* Use `composer csfix` to make sure the code is formatted correctly.
 * Make sure your commit messages are in the proper format. Use either `[TASK]`, `[FEATURE]`, `[BUGFIX]` or `[DOC]`
 
-````
-    [TASK] Make the example in CONTRIBUTING imperative and concrete
+  ```
+  [TASK] Make the example in CONTRIBUTING imperative and concrete
 
-    The first line is a real life imperative statement.
-    The body describes the behavior without the patch,
-    why this is a problem, and how the patch fixes the problem when applied.
+  The first line is a real life imperative statement.
+  The body describes the behavior without the patch,
+  why this is a problem, and how the patch fixes the problem when applied.
 
-    Resolves: #123
-````
+  Resolves: #123
+  ```
 
 * Make sure you have added the necessary tests for your changes.
-* Run _all_ the tests to assure nothing else was accidentally broken. However travis will do that for you as well.
+* Run _all_ the tests to assure nothing else was accidentally broken. However, GitHub Actions will do that for you as well.
 
 ## Making Trivial Changes
 
 For changes of a trivial nature, it is not always necessary to create a new issue.
 
+## Render the documentation locally
+
+To render the documentation locally you can use the following `make` command:
+
+```
+    make docs
+```
+
+If `make` is not available on your machine you can also call the commands provided
+in the file `Makefile` manually.
+
 ## Additional resources
 
-* [Rendered documentation](https://docs.typo3.org/typo3cms/extensions/news/)
-* [How to Write a Git Commit Message](http://chris.beams.io/posts/git-commit/)
+* [Rendered documentation](https://docs.typo3.org/p/georgringer/news/main/en-us/)
+* [How to Write a Git Commit Message](https://cbea.ms/git-commit/)
 
 
 ## Contributor Code of Conduct

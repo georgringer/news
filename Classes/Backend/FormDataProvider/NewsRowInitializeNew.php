@@ -19,18 +19,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class NewsRowInitializeNew implements FormDataProviderInterface
 {
-    /** @var  EmConfiguration */
-    protected $emConfiguration;
+    protected EmConfiguration $emConfiguration;
 
     public function __construct()
     {
         $this->emConfiguration = GeneralUtility::makeInstance(EmConfiguration::class);
     }
 
-    /**
-     * @param array $result
-     * @return array
-     */
     public function addData(array $result): array
     {
         if ($result['tableName'] !== 'tx_news_domain_model_news') {
@@ -46,10 +41,6 @@ class NewsRowInitializeNew implements FormDataProviderInterface
         return $result;
     }
 
-    /**
-     * @param array $result
-     * @return array
-     */
     protected function fillDateField(array $result): array
     {
         if ($this->emConfiguration->getDateTimeRequired()) {
@@ -76,16 +67,9 @@ class NewsRowInitializeNew implements FormDataProviderInterface
         return $result;
     }
 
-    /**
-     * @param array $result
-     * @return array
-     */
     protected function setTagListingId(array $result): array
     {
-        if (!isset($result['pageTsConfig']['tx_news.']['tagPid'])) {
-            return $result;
-        }
-        $tagPid = (int)$result['pageTsConfig']['tx_news.']['tagPid'];
+        $tagPid = (int)($result['pageTsConfig']['tx_news.']['tagPid'] ?? 0);
         if ($tagPid <= 0) {
             return $result;
         }

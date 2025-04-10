@@ -22,6 +22,8 @@ use GeorgRinger\News\Event\NewsImportPreHydrateEvent;
 use GeorgRinger\News\Event\NewsPostImportEvent;
 use GeorgRinger\News\Event\NewsPreImportEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
+use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -32,24 +34,11 @@ class NewsImportService extends AbstractImportService
 {
     public const ACTION_IMPORT_L10N_OVERLAY = 1;
 
-    /**
-     * @var NewsRepository
-     */
-    protected $newsRepository;
+    protected NewsRepository $newsRepository;
+    protected TtContentRepository $ttContentRepository;
+    protected SlugHelper $slugHelper;
+    protected array $settings = [];
 
-    /**
-     * @var TtContentRepository
-     */
-    protected $ttContentRepository;
-
-    /**
-     * @var array
-     */
-    protected $settings = [];
-
-    /**
-     * NewsImportService constructor.
-     */
     public function __construct(
         PersistenceManager $persistenceManager,
         CategoryRepository $categoryRepository,
@@ -61,6 +50,9 @@ class NewsImportService extends AbstractImportService
 
         $this->newsRepository = $newsRepository;
         $this->ttContentRepository = $ttContentRepository;
+
+        $fieldConfig = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['path_segment']['config'];
+        $this->slugHelper = GeneralUtility::makeInstance(SlugHelper::class, 'tx_news_domain_model_news', 'path_segment', $fieldConfig);
     }
 
     protected function initializeNewsRecord(array $importItem): News
@@ -158,11 +150,15 @@ class NewsImportService extends AbstractImportService
         $news->setImportId((string)($importItem['import_id'] ?? ''));
         $news->setImportSource((string)($importItem['import_source'] ?? ''));
 
-        $news->setPathSegment($importItem['path_segment'] ?? '');
+        if ($importItem['path_segment'] ?? false) {
+            $news->setPathSegment($importItem['path_segment']);
+        } elseif (($importItem['generate_path_segment'] ?? false) && !$news->getPathSegment()) {
+            $news->setPathSegment($this->generateSlug($importItem, $importItem['pid']));
+        }
 
         if (is_array($importItem['categories'] ?? false)) {
             foreach ($importItem['categories'] as $categoryUid) {
-                if ($this->settings['findCategoriesByImportSource']) {
+                if ($this->settings['findCategoriesByImportSource'] ?? false) {
                     $category = $this->categoryRepository->findOneByImportSourceAndImportId(
                         $this->settings['findCategoriesByImportSource'],
                         $categoryUid
@@ -185,7 +181,7 @@ class NewsImportService extends AbstractImportService
                 // get fileobject by given identifier (file UID, combined identifier or path/filename)
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($mediaItem['image']);
-                } catch (ResourceDoesNotExistException $exception) {
+                } catch (ResourceDoesNotExistException) {
                     $file = null;
                 }
 
@@ -230,7 +226,7 @@ class NewsImportService extends AbstractImportService
                 // get fileObject by given identifier (file UID, combined identifier or path/filename)
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($fileItem['file']);
-                } catch (ResourceDoesNotExistException $exception) {
+                } catch (ResourceDoesNotExistException) {
                     $file = null;
                 }
 
@@ -342,6 +338,27 @@ class NewsImportService extends AbstractImportService
             $news->setSysLanguageUid($importItem['sys_language_uid']);
             $news->setL10nParent($parentNews['uid']);
         }
+    }
+
+    protected function generateSlug(array $fullRecord, int $pid)
+    {
+        $value = $this->slugHelper->generate($fullRecord, $pid);
+
+        $state = RecordStateFactory::forName('tx_news_domain_model_news')
+            ->fromArray($fullRecord, $pid, 0);
+        $tcaFieldConf = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['path_segment']['config'];
+        $evalCodesArray = GeneralUtility::trimExplode(',', $tcaFieldConf['eval'], true);
+        if (in_array('unique', $evalCodesArray, true)) {
+            $value = $this->slugHelper->buildSlugForUniqueInTable($value, $state);
+        }
+        if (in_array('uniqueInSite', $evalCodesArray, true)) {
+            $value = $this->slugHelper->buildSlugForUniqueInSite($value, $state);
+        }
+        if (in_array('uniqueInPid', $evalCodesArray, true)) {
+            $value = $this->slugHelper->buildSlugForUniqueInPid($value, $state);
+        }
+
+        return $value;
     }
 
     /**

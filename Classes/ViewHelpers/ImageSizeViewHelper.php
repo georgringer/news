@@ -17,9 +17,6 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
-/**
- * Class ImageSizeViewHelper
- */
 class ImageSizeViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
@@ -27,19 +24,13 @@ class ImageSizeViewHelper extends AbstractViewHelper
     /**
      * Initialize arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('property', 'string', 'either width or height', true);
         $this->registerArgument('image', 'string', 'generated image', true);
     }
 
-    /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     * @return int
-     */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,

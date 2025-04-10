@@ -26,9 +26,6 @@ class CategoryImportService extends AbstractImportService
     public const ACTION_SET_PARENT_CATEGORY = 1;
     public const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
 
-    /**
-     * CategoryImportService constructor.
-     */
     public function __construct(
         PersistenceManager $persistenceManager,
         CategoryRepository $categoryRepository,
@@ -158,7 +155,7 @@ class CategoryImportService extends AbstractImportService
         // get fileObject by given identifier (file UID, combined identifier or path/filename)
         try {
             $newImage = $this->getResourceFactory()->retrieveFileOrFolderObject($image);
-        } catch (ResourceDoesNotExistException $exception) {
+        } catch (ResourceDoesNotExistException) {
             $newImage = false;
         }
 
@@ -246,7 +243,7 @@ class CategoryImportService extends AbstractImportService
 
             $l10nChildrenCategory->setTitle($title);
             $l10nChildrenCategory->setL10nParent((int)$category->getUid());
-            $l10nChildrenCategory->setSysLanguageUid((int)$sysLanguageUid);
+            $l10nChildrenCategory->setSysLanguageUid($sysLanguageUid);
         }
     }
 }

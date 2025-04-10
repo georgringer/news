@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _icalendar:
 
 ==============
@@ -9,11 +7,9 @@ ICalendar feed
 Displaying an iCalendar feed is the same as a normal list view, just with a different template.
 Therefore you won't need any different configuration to e.g. excluded categories or configure the single view page.
 
-.. only:: html
 
-.. contents::
-       :local:
-       :depth: 3
+..  contents::
+    :depth: 3
 
 The template for the iCalendar feed can be found in the file Resources/Private/Templates/News/List.ical.
 The "magic" which uses the List.ical template instead of the List.html is the following configuration:
@@ -31,7 +27,7 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
 
 .. code-block:: typoscript
 
-    [globalVar = TSFE:type = 9819]
+    [getTSFE() && getTSFE().type == 9819]
     config {
        disableAllHeaderCode = 1
        xhtml_cleaning = none
@@ -62,7 +58,7 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
           }
        }
     }
-    [global]
+    [END]
 
 This example will show all news records which don't have the category with the uid 9 assigned and are saved on the page with uid 24.
 
@@ -123,7 +119,7 @@ The TypoScript code looks like this.
 
 .. code-block:: typoscript
 
-    [globalVar = TSFE:type = 9819]
+    [getTSFE() && getTSFE().type == 9819]
        lib.stdheader >
        tt_content.stdWrap.innerWrap >
        tt_content.stdWrap.wrap >
@@ -162,7 +158,7 @@ The TypoScript code looks like this.
 
         # delete content wrap
         tt_content.stdWrap >
-    [global]
+    [END]
 
 **Some explanations**
 The page object ``pageNewsICalendar`` will render only those content elements which are in colPos 0 and are a news plugin. Therefore all other content elements won't be rendered in the iCalendar feed.
@@ -181,6 +177,14 @@ To be able to render a link in the header section of the normal page which point
         <link rel="alternate" type="text/calendar" title="iCalendar 2.0" href="{f:uri.page(additionalParams:{type:9819})}" />
     </n:headerData>
 
+Add a link in fluid
+"""""""""""""""""""
+
+Use the following snippet to create a link to the detail view
+
+.. code-block:: html
+
+   <n:link newsItem="{newsItem}" configuration="{additionalParams:'&type=9819'}">ical</n:link>
 
 Change the iCalendar feed link with routing
 """""""""""""""""""""""""""""""""""""""""""
@@ -192,10 +196,10 @@ about :ref:`rewriting URLs for news <routing>`.
 
    routeEnhancers:
      News:
-       PageTypeSuffix:
-         type: PageType
-         map:
-           'feed.xml': 9818
-           'calendar.ical': 9819
+     PageTypeSuffix:
+       type: PageType
+       map:
+         'feed.xml': 9818
+         'calendar.ical': 9819
 
 This will change the URL to :code:`/calendar.ical`.

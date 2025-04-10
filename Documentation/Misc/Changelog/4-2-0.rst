@@ -1,15 +1,8 @@
-.. include:: /Includes.rst.txt
-
-
-
 4.2.0 - 2016/03/02
 ==================
 
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :depth: 1
 
 
 Sponsors

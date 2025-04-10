@@ -12,6 +12,4 @@ namespace GeorgRinger\News\Domain\Model;
 /**
  * Demanded repository interface
  */
-interface DemandInterface
-{
-}
+interface DemandInterface {}

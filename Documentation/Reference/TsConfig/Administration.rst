@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _tsconfigAdministration:
 
 =====================
@@ -8,11 +6,11 @@ Administration module
 
 Configuration of the :guilabel:`Web > News Administration` module
 
-.. contents:: Properties
-   :backlinks: top
-   :class: compact-list
-   :depth: 1
-   :local:
+..  confval-menu::
+    :name: tsconfig-module
+    :caption: Properties
+    :display: table
+    :type:
 
 .. _tsconfigPreselect:
 
@@ -20,7 +18,6 @@ preselect
 =========
 
 .. confval:: preselect
-
    :type: array
    :Path: tx_news > module
 
@@ -50,7 +47,6 @@ columns
 =======
 
 .. confval:: columns
-
    :type: string
    :Path: tx_news > module
    :Default: teaser,istopnews,datetime,categories
@@ -72,7 +68,6 @@ defaultPid
 ==========
 
 .. confval:: defaultPid
-
    :type: int
    :Path: tx_news > module
 
@@ -95,7 +90,6 @@ localizationView
 ================
 
 .. confval:: localizationView
-
    :type: bool
    :Path: tx_news > module
    :Default: 1
@@ -113,7 +107,6 @@ controlPanels
 =============
 
 .. confval:: controlPanels
-
    :type: bool
    :Path: tx_news > module
    :Default: 0
@@ -132,7 +125,6 @@ allowedCategoryRootIds
 ======================
 
 .. confval:: allowedCategoryRootIds
-
    :type: string, comma separated list of integers
    :Path: tx_news > module
 
@@ -169,7 +161,6 @@ redirectToPageOnStart
 =====================
 
 .. confval:: redirectToPageOnStart
-
    :type: integer
    :Path: tx_news > module
 
@@ -191,7 +182,6 @@ allowedPage
 ===========
 
 .. confval:: allowedPage
-
    :type: integer
    :Path: tx_news > module
 
@@ -215,7 +205,6 @@ alwaysShowFilter
 ================
 
 .. confval:: alwaysShowFilter
-
    :type: bool
    :Path: tx_news > module
 
@@ -235,7 +224,6 @@ filters
 =======
 
 .. confval:: filters
-
    :type: array
    :Path: tx_news > module
 

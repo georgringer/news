@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 3.2.1 - 2015/07/11
 ==================
 
@@ -7,22 +5,16 @@ This release is a bugfix release to support TYPO3 CMS 7.3.
 
 Please read this document carefully **before** upgrading.
 
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :depth: 1
 
 
 Important changes
 -----------------
 The following changes might change the expected behaviour in your installation.
 
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 1
+..  contents::
+    :depth: 1
 
 Drop fe_group field in sys_category
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -9,9 +9,11 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\ImageService;
@@ -23,26 +25,18 @@ class RenderMediaViewHelper extends AbstractViewHelper
 
     protected $escapingInterceptorEnabled = false;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $mediaTag = '/\\[media\\]/';
 
     protected $replaceMediaTag = '/(?:<p>\s*)?\\[media\\](?:\s*<\/p>)?/';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $imgClass = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $videoClass = '';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $audioClass = '';
 
     /**
@@ -61,11 +55,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $this->registerArgument('cropVariant', 'string', 'select a cropping variant, in case multiple croppings have been specified or stored in FileReference', false, 'default');
     }
 
-    /**
-     * @param \TYPO3\CMS\Core\Resource\FileInterface $image
-     * @return string
-     */
-    private function renderImage(\TYPO3\CMS\Core\Resource\FileInterface $image): string
+    private function renderImage(FileInterface $image): string
     {
         $imageService = GeneralUtility::makeInstance(ImageService::class);
 
@@ -101,9 +91,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
 
         $imageAttributes = array_reduce(
             array_keys($imageAttributes),
-            function ($carry, $key) use ($imageAttributes) {
-                return $carry . ' ' . $key . '="' . htmlspecialchars($imageAttributes[$key]) . '"';
-            },
+            static fn(string $carry, string $key): string => $carry . ' ' . $key . '="' . htmlspecialchars($imageAttributes[$key]) . '"',
             ''
         );
 
@@ -111,22 +99,20 @@ class RenderMediaViewHelper extends AbstractViewHelper
             $description = '<figcaption>' . htmlspecialchars($description) . '</figcaption>';
         }
 
-        return '<figure>' . '<img ' . $imageAttributes . ' />' . $description . '</figure>';
+        return '<figure><img ' . $imageAttributes . ' />' . $description . '</figure>';
     }
 
     /**
      * Replace the [media] tags with the output of the according media render output
      *
      * @param string $content
-     * @param array $files
-     * @return string
      */
     private function renderMedia($content, array $files): string
     {
         $fileIndex = $this->arguments['fileIndex'];
         preg_match_all($this->mediaTag, $content, $matches);
         foreach ($matches[0] as $_) {
-            /** @var \GeorgRinger\News\Domain\Model\FileReference $file */
+            /** @var FileReference $file */
             $file = null;
             /** @var \TYPO3\CMS\Core\Resource\FileReference $media */
             $media = null;
@@ -149,7 +135,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
                 $media_tag = $fileRenderer->render($media, 0, 0);
 
                 // check if media tag needs to be wrapped in div, depends on type of media file
-                $wrapClass= '';
+                $wrapClass = '';
                 if ($media->getType() === File::FILETYPE_VIDEO) {
                     $wrapClass = $this->videoClass;
                 } elseif ($media->getType() === File::FILETYPE_AUDIO) {
@@ -172,9 +158,6 @@ class RenderMediaViewHelper extends AbstractViewHelper
         return $content;
     }
 
-    /**
-     * @return string
-     */
     public function render(): string
     {
         /** @var News $news */
@@ -184,10 +167,9 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $this->videoClass = htmlspecialchars($this->arguments['videoClass']);
         $this->audioClass = htmlspecialchars($this->arguments['audioClass']);
 
-        $mediaFiles = (array)$news->getMediaNonPreviews();
+        $mediaFiles = $news->getMediaNonPreviews();
 
         $content = $this->renderChildren();
-        $content = $this->renderMedia($content, $mediaFiles);
-        return $content;
+        return $this->renderMedia($content, $mediaFiles);
     }
 }

@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _dataProcessing_AddNewsToMenuProcessor:
 
 ======================
@@ -19,13 +17,13 @@ Usage
 
 .. code-block:: typoscript
 
-   10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+   10 = menu
    10 {
-      as = breadcrumbMenu
-      special = rootline
-      # [...] further configuration
+       as = breadcrumbMenu
+       special = rootline
+       # [...] further configuration
    }
-   20 = GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor
+   20 = add-news-to-menu
    20.menus = breadcrumbMenu,specialMenu
 
 The property :typoscript:`menus` is a comma-separated list of

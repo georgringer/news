@@ -28,12 +28,12 @@ class EmConfiguration
             try {
                 $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
                 $configuration = $extensionConfiguration->get('news');
-            } catch (\Exception $exception) {
+            } catch (\Exception) {
                 // do nothing
             }
         }
         foreach ($configuration as $key => $value) {
-            if (property_exists(__CLASS__, $key)) {
+            if (property_exists(self::class, $key)) {
                 $this->$key = $value;
             }
         }
@@ -83,6 +83,9 @@ class EmConfiguration
 
     /** @var string */
     protected $slugBehaviour = 'unique';
+
+    /** @var bool */
+    protected $pageTreePluginPreview = true;
 
     public function getTagPid(): int
     {
@@ -168,4 +171,10 @@ class EmConfiguration
     {
         return $this->slugBehaviour;
     }
+
+    public function getPageTreePluginPreview(): bool
+    {
+        return (bool)$this->pageTreePluginPreview;
+    }
+
 }

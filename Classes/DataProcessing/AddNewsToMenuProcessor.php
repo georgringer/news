@@ -13,7 +13,10 @@ namespace GeorgRinger\News\DataProcessing;
 
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
+use TYPO3\CMS\Core\Context\LanguageAspect;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
@@ -22,18 +25,11 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 /**
  * Add the current news record to any menu, e.g. breadcrumb
  *
- * 20 = GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor
+ * 20 = add-news-to-menu
  * 20.menus = breadcrumbMenu,specialMenu
  */
 class AddNewsToMenuProcessor implements DataProcessorInterface
 {
-    /**
-     * @param ContentObjectRenderer $cObj
-     * @param array $contentObjectConfiguration
-     * @param array $processorConfiguration
-     * @param array $processedData
-     * @return array
-     */
     public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData): array
     {
         if (isset($processorConfiguration['if.']) && !$cObj->checkIf($processorConfiguration['if.'])) {
@@ -57,9 +53,6 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
 
     /**
      * Add the news record to the menu items
-     *
-     * @param array $newsRecord
-     * @param array $menu
      */
     protected function addNewsRecordToMenu(array $newsRecord, array &$menu): void
     {
@@ -79,16 +72,12 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
 
     /**
      * Get the news record including possible translations
-     *
-     * @return array
      */
     protected function getNewsRecord(): array
     {
-        $newsId = 0;
-        $vars = GeneralUtility::_GET('tx_news_pi1');
-        if (isset($vars['news'])) {
-            $newsId = (int)$vars['news'];
-        }
+        /** @var PageArguments $routing */
+        $routing = $GLOBALS['TYPO3_REQUEST']->getAttribute('routing');
+        $newsId = (int)($routing->getArguments()['tx_news_pi1']['news'] ?? 0);
 
         if ($newsId) {
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -97,13 +86,12 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
                 ->select('*')
                 ->from('tx_news_domain_model_news')
                 ->where(
-                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, Connection::PARAM_INT))
                 )
                 ->executeQuery()->fetchAssociative();
 
             if ($row) {
-                // @extensionScannerIgnoreLine
-                $row = $this->getTsfe()->sys_page->getRecordOverlay('tx_news_domain_model_news', $row, $this->getCurrentLanguage());
+                $row = $this->getTsfe()->sys_page->getLanguageOverlay('tx_news_domain_model_news', $row, $this->getCurrentLanguageAspect());
             }
 
             if (is_array($row) && !empty($row)) {
@@ -115,8 +103,6 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
 
     /**
      * Get current language
-     *
-     * @return int
      */
     protected function getCurrentLanguage(): int
     {
@@ -124,16 +110,18 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
         $context = GeneralUtility::makeInstance(Context::class);
         try {
             $languageId = $context->getPropertyFromAspect('language', 'contentId');
-        } catch (AspectNotFoundException $e) {
+        } catch (AspectNotFoundException) {
             // do nothing
         }
 
         return (int)$languageId;
     }
 
-    /**
-     * @return TypoScriptFrontendController
-     */
+    protected function getCurrentLanguageAspect(): LanguageAspect
+    {
+        return GeneralUtility::makeInstance(Context::class)->getAspect('language');
+    }
+
     protected function getTsfe(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];

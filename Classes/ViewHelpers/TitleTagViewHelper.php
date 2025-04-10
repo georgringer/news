@@ -11,10 +11,10 @@ namespace GeorgRinger\News\ViewHelpers;
 
 use GeorgRinger\News\Seo\NewsTitleProvider;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to render the page title
@@ -28,33 +28,34 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  *    <title>TYPO3 is awesome</title>
  * </output>
  */
-class TitleTagViewHelper extends AbstractViewHelper implements ViewHelperInterface
+class TitleTagViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
 
-    /**
-     * @param array $arguments
-     * @param \Closure $renderChildrenClosure
-     * @param RenderingContextInterface $renderingContext
-     */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ): void {
         // Skip if current record is part of tt_content CType shortcut
-        if (!empty($GLOBALS['TSFE']->recordRegister)
-            && is_array($GLOBALS['TSFE']->recordRegister)
-            && strpos(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:') !== false
-            && !empty($GLOBALS['TSFE']->currentRecord)
-            && strpos($GLOBALS['TSFE']->currentRecord, 'tx_news_domain_model_news:') !== false
+        $tsfe = self::getTsfe();
+        if (!empty($tsfe->recordRegister)
+            && is_array($tsfe->recordRegister)
+            && str_contains(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:')
+            && !empty($tsfe->currentRecord)
+            && str_contains($tsfe->currentRecord, 'tx_news_domain_model_news:')
         ) {
             return;
         }
-
         $content = trim($renderChildrenClosure());
         if (!empty($content)) {
             GeneralUtility::makeInstance(NewsTitleProvider::class)->setTitle($content);
         }
+    }
+
+    protected static function getTsfe(): TypoScriptFrontendController
+    {
+        $request = $GLOBALS['TYPO3_REQUEST'];
+        return $request->getAttribute('frontend.controller', $GLOBALS['TSFE']);
     }
 }

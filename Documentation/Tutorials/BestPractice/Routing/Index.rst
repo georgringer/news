@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _routing:
 
 ===========================
@@ -12,6 +10,57 @@ This section will show you how you can rewrite the URLs for news using
 if you are not familiar with the concept yet. You will no
 longer need third party extensions like RealURL or CoolUri to rewrite and
 beautify your URLs.
+
+..  _routing_quickstart:
+
+Quick start
+===========
+
+This section explains in short how to rewrite the URLs for the detail page in a
+project where there is only one detail view page on the whole site and where
+rewriting of things like pagination is not desired or needed.
+
+Open the configuration of the site. You should find it at
+:file:`/config/sites/<your_identifier>/config.yaml`.
+
+At the bottom of the file include the following:
+
+.. code-block:: yaml
+   :caption: /config/sites/<your_identifier>/config.yaml
+
+   routeEnhancers:
+     News:
+       type: Extbase
+       limitToPages:
+         - <uid of single page>
+       extension: News
+       plugin: Pi1
+       routes:
+         - routePath: '/{news-title}'
+           _controller: 'News::detail'
+           _arguments:
+             news-title: news
+       aspects:
+         news-title:
+           type: NewsTitle
+
+Save the file, delete all caches and try it out
+
+Troubleshooting
+---------------
+
+*   Did you save the site configuration file?
+*   Did you delete all caches?
+*   In the format YAML indentation matters. The code above **must** be indentated exactly
+    as shown, the keyword `routeEnhancers` **must not** be indeted.
+*   The configuration above is limited to only one page containing a single view of news.
+    Did you put the correct pid of page containing the news plugin displaying single news?
+
+
+..  _routing_detailed:
+
+Detailed explaination and advanced use cases
+============================================
 
 .. _how_to_rewrite_urls:
 
@@ -76,6 +125,10 @@ This will speed up performance for building page routes of all other pages.
        extension: News
        plugin: Pi1
        # routes and aspects will follow here
+
+.. warning::
+
+   Not setting the `limitToPages` parameter may lead to unwanted side effects, e. g. not working error handling!
 
 Multiple routeEnhancers for news
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -162,7 +215,7 @@ The following example will only provide routing for the detail view:
            _arguments:
              news-title: news
        aspects:
-         news-title:
+         news:
            type: NewsTitle
 
 Please note the placeholder :code:`{news-title}`:
@@ -191,12 +244,18 @@ separate pages.
 If you use the :guilabel:`Category Menu` or :guilabel:`Tag List` plugins to
 filter news records, their titles (slugs) are used.
 
+The order of the config does matter!
+If you want to have  categories+pagination, that configuration has to stand before the part for categpries alone
+
+
 **Result:**
 
 * Detail view: ``https://www.example.com/news/detail/the-news-title``
 * Pagination: ``https://www.example.com/news/page-2``
 * Category filter: ``https://www.example.com/news/my-category``
+* Category filter + pagination: ``https://www.example.com/news/my-category/page-2``
 * Tag filter: ``https://www.example.com/news/my-tag``
+* Tag filter + pagination: ``https://www.example.com/news/my-tag/page-2``
 
 .. code-block:: yaml
    :caption: :file:`/config/sites/<your_identifier>/config.yaml`
@@ -210,27 +269,43 @@ filter news records, their titles (slugs) are used.
        routes:
          - routePath: '/'
            _controller: 'News::list'
+         # Pagination
          - routePath: '/page-{page}'
            _controller: 'News::list'
            _arguments:
              page: 'currentPage'
-         - routePath: '/{news-title}'
-           _controller: 'News::detail'
+         # Category + pagination:
+         - routePath: '/{category-name}/page-{page}'
+           _controller: 'News::list'
            _arguments:
-             news-title: news
+             category-name: overwriteDemand/categories
+             page: 'currentPage'
+         # Category
          - routePath: '/{category-name}'
            _controller: 'News::list'
            _arguments:
              category-name: overwriteDemand/categories
+         # Tagname + pagination
+         - routePath: '/{tag-name}/page-{page}'
+           _controller: 'News::list'
+           _arguments:
+             tag-name: overwriteDemand/tags
+             page: 'currentPage'
+         # Tagname
          - routePath: '/{tag-name}'
            _controller: 'News::list'
            _arguments:
              tag-name: overwriteDemand/tags
+         # Detail
+         - routePath: '/{news-title}'
+           _controller: 'News::detail'
+           _arguments:
+             news-title: news
        defaultController: 'News::list'
        defaults:
          page: '0'
        aspects:
-         news-title:
+         news:
            type: NewsTitle
          page:
            type: StaticRangeMapper
@@ -245,6 +320,12 @@ filter news records, their titles (slugs) are used.
        map:
          'feed.xml': 9818
          'calendar.ical': 9819
+
+.. tip::
+   If you are using the routing for pagination,
+   be sure it is in the code before the configuration
+   for the detail view! Otherwise you can run into trouble on pages
+   with plugin view "List articles with detail view".
 
 Localized pagination
 ~~~~~~~~~~~~~~~~~~~~
@@ -323,19 +404,15 @@ by date. Also includes configuration for the pagination.
        extension: News
        plugin: Pi1
        routes:
-         # Pagination:
-         - routePath: '/'
-           _controller: 'News::list'
-         - routePath: '/page-{page}'
+          # Date year/month + pagination:
+         - routePath: '/{date-year}/{date-month}/page-{page}'
            _controller: 'News::list'
            _arguments:
+             date-month: 'overwriteDemand/month'
+             date-year: 'overwriteDemand/year'
              page: 'currentPage'
-         - routePath: '/{news-title}'
-           _controller: 'News::detail'
-           _arguments:
-             news-title: news
-         # Date year:
-         - routePath: '/{date-year}'
+         # Date year/month:
+         - routePath: '/{date-year}/{date-month}'
            _controller: 'News::list'
            _arguments:
              date-month: 'overwriteDemand/month'
@@ -347,20 +424,24 @@ by date. Also includes configuration for the pagination.
            _arguments:
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-         # Date year/month:
-         - routePath: '/{date-year}/{date-month}'
+         # Date year:
+         - routePath: '/{date-year}'
            _controller: 'News::list'
            _arguments:
              date-month: 'overwriteDemand/month'
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-          # Date year/month + pagination:
-         - routePath: '/{date-year}/{date-month}/page-{page}'
+         # Pagination:
+         - routePath: '/'
+           _controller: 'News::list'
+         - routePath: '/page-{page}'
            _controller: 'News::list'
            _arguments:
-             date-month: 'overwriteDemand/month'
-             date-year: 'overwriteDemand/year'
              page: 'currentPage'
+         - routePath: '/{news-title}'
+           _controller: 'News::detail'
+           _arguments:
+             news-title: news
        defaultController: 'News::list'
        defaults:
          page: '0'
@@ -371,7 +452,7 @@ by date. Also includes configuration for the pagination.
          date-year: '\d+'
          page: '\d+'
        aspects:
-         news-title:
+         news:
            type: NewsTitle
          page:
            type: StaticRangeMapper

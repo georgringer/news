@@ -29,41 +29,15 @@ class AbstractImportService implements LoggerAwareInterface
 
     public const UPLOAD_PATH = 'uploads/tx_news/';
 
-    /**
-     * @var PersistenceManager
-     */
-    protected $persistenceManager;
+    protected PersistenceManager $persistenceManager;
+    protected array $postPersistQueue = [];
+    protected EmConfiguration $emSettings;
+    protected Folder $importFolder;
+    protected EventDispatcherInterface $eventDispatcher;
+    protected CategoryRepository $categoryRepository;
 
     /**
-     * @var array
-     */
-    protected $postPersistQueue = [];
-
-    /**
-     * @var EmConfiguration
-     */
-    protected $emSettings;
-
-    /**
-     * @var Folder
-     */
-    protected $importFolder;
-
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $eventDispatcher;
-
-    /**
-     * @var CategoryRepository
-     */
-    protected $categoryRepository;
-    /**
-     * AbstractImportService constructor.
-     * @param PersistenceManager $persistenceManager
      * @param EmConfiguration $emSettings
-     * @param CategoryRepository $categoryRepository
-     * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         PersistenceManager $persistenceManager,
@@ -81,7 +55,6 @@ class AbstractImportService implements LoggerAwareInterface
      *
      * @param string $file1 Absolute path and filename to file1
      * @param string $file2 Absolute path and filename to file2
-     * @return bool
      */
     protected function filesAreEqual($file1, $file2): bool
     {
@@ -123,8 +96,6 @@ class AbstractImportService implements LoggerAwareInterface
      * Get import Folder
      *
      * TODO: catch exception when storage/folder does not exist and return readable message to the user
-     *
-     * @return Folder
      */
     protected function getImportFolder(): Folder
     {
@@ -159,7 +130,7 @@ class AbstractImportService implements LoggerAwareInterface
 
         try {
             return new \DateTime(date('c', $timestamp));
-        } catch (\Exception $exception) {
+        } catch (\Exception) {
             return null;
         }
     }

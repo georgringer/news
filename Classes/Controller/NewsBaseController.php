@@ -22,8 +22,8 @@ class NewsBaseController extends ActionController
 {
     protected function initializeView($view)
     {
-        // @extensionScannerIgnoreLine
-        $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
+        $contentObjectData = $this->request->getAttribute('currentContentObject');
+        $view->assign('contentObjectData', $contentObjectData ? $contentObjectData->data : null);
         $view->assign('emConfiguration', GeneralUtility::makeInstance(EmConfiguration::class));
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
             $view->assign('pageData', $GLOBALS['TSFE']->page);
@@ -45,15 +45,14 @@ class NewsBaseController extends ActionController
 
         switch ($options[0]) {
             case 'redirectToListView':
-                $this->redirect('list');
-                break;
+                return $this->redirect('list');
             case 'redirectToPage':
                 if (count($options) === 1 || count($options) > 3) {
                     $msg = sprintf(
                         'If error handling "%s" is used, either 2 or 3 arguments, split by "," must be used',
                         $options[0]
                     );
-                    throw new \InvalidArgumentException($msg);
+                    throw new \InvalidArgumentException($msg, 7238087293);
                 }
                 $this->uriBuilder->reset();
                 $this->uriBuilder->setTargetPageUid($options[1]);
@@ -64,12 +63,9 @@ class NewsBaseController extends ActionController
                 $url = $this->uriBuilder->build();
 
                 if (isset($options[2])) {
-                    $this->redirectToUri($url, 0, (int)$options[2]);
-                } else {
-                    $this->redirectToUri($url);
+                    return $this->responseFactory->createResponse((int)$options[2])->withHeader('Location', $url);
                 }
-
-                break;
+                return $this->responseFactory->createResponse()->withHeader('Location', $url);
             case 'pageNotFoundHandler':
                 $message = 'No news entry found!';
                 $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(

@@ -10,7 +10,6 @@
 namespace GeorgRinger\News\Hooks;
 
 use GeorgRinger\News\Service\CategoryService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Userfunc to get alternative label
@@ -20,12 +19,10 @@ class Labels
     /**
      * Generate additional label for category records
      * including the title of the parent category
-     *
-     * @param array $params
      */
     public function getUserLabelCategory(array &$params): void
     {
-        if (!isset($params['row'])) {
+        if (!isset($GLOBALS['TYPO3_REQUEST'], $params['row'], $params['row']['title'])) {
             return;
         }
 

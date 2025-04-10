@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 11.0.0 - 9th March 2023
 =======================
 
@@ -7,9 +5,7 @@ This is the first release of the extension that supports TYPO3 12 and 11.
 This also means that the **active** support for TYPO3 10 (EXT:news v9) has been stopped.
 
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 
@@ -64,8 +60,6 @@ With the change `b8e2b3ea` the routing configuration has been simplified.
         type: PersistedAliasMapper
         tableName: tx_news_domain_model_news
         routeFieldName: path_segment
-        type: NewsTitle
-
 
    # now
    aspects:

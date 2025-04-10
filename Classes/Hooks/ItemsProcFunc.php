@@ -11,6 +11,7 @@ namespace GeorgRinger\News\Hooks;
 
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -19,13 +20,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ItemsProcFunc
 {
-    /** @var TemplateLayout $templateLayoutsUtility */
-    protected $templateLayoutsUtility;
+    protected TemplateLayout $templateLayoutsUtility;
 
-    /**
-     * ItemsProcFunc constructor.
-     * @param TemplateLayout $templateLayout
-     */
     public function __construct(
         TemplateLayout $templateLayout
     ) {
@@ -41,7 +37,10 @@ class ItemsProcFunc
     {
         $pageId = 0;
 
-        $currentColPos = $config['flexParentDatabaseRow']['colPos'];
+        $currentColPos = $config['flexParentDatabaseRow']['colPos'] ?? null;
+        if ($currentColPos === null) {
+            return;
+        }
         $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
 
         if ($pageId > 0) {
@@ -63,7 +62,6 @@ class ItemsProcFunc
      *
      * @param array $templateLayouts
      * @param int $currentColPos
-     * @return array
      */
     protected function reduceTemplateLayouts($templateLayouts, $currentColPos): array
     {
@@ -80,11 +78,9 @@ class ItemsProcFunc
                 $allLayouts[$key] = $layout;
             }
         }
-        if (!empty($restrictions)) {
-            foreach ($restrictions as $restrictedIdentifier => $restrictedColPosList) {
-                if (!in_array($currentColPos, $restrictedColPosList, true)) {
-                    unset($allLayouts[$restrictedIdentifier]);
-                }
+        foreach ($restrictions as $restrictedIdentifier => $restrictedColPosList) {
+            if (!in_array($currentColPos, $restrictedColPosList, true)) {
+                unset($allLayouts[$restrictedIdentifier]);
             }
         }
 
@@ -158,22 +154,6 @@ class ItemsProcFunc
     }
 
     /**
-     * Remove given action from switchableControllerActions
-     *
-     * @param array $config available items
-     * @param string $action action to be removed
-     */
-    private function removeActionFromList(array &$config, $action): void
-    {
-        foreach ($config['items'] as $key => $item) {
-            if ($item[1] === $action) {
-                unset($config['items'][$key]);
-                continue;
-            }
-        }
-    }
-
-    /**
      * Generate a select box of languages to choose an overlay
      *
      * @return string select box
@@ -210,8 +190,6 @@ class ItemsProcFunc
 
     /**
      * Get all languages
-     *
-     * @return array
      */
     protected function getAllLanguages(): array
     {
@@ -233,8 +211,6 @@ class ItemsProcFunc
      * Get tt_content record
      *
      * @param int $uid
-     *
-     * @return array|null
      */
     protected function getContentElementRow($uid): ?array
     {
@@ -245,7 +221,6 @@ class ItemsProcFunc
      * Get page id, if negative, then it is a "after record"
      *
      * @param int $pid
-     * @return int
      */
     protected function getPageId($pid): int
     {
@@ -261,10 +236,8 @@ class ItemsProcFunc
 
     /**
      * Returns LanguageService
-     *
-     * @return \TYPO3\CMS\Core\Localization\LanguageService
      */
-    protected function getLanguageService(): \TYPO3\CMS\Core\Localization\LanguageService
+    protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }

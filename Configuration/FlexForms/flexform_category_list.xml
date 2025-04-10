@@ -7,14 +7,11 @@
 		-->
 		<sDEF>
 			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings</sheetTitle>
-				</TCEforms>
+				<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings</sheetTitle>
 				<type>array</type>
 				<el>
 					<!-- Category -->
 					<settings.categories>
-						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categories</label>
 							<config>
 								<type>select</type>
@@ -35,73 +32,65 @@
 								<minitems>0</minitems>
 								<maxitems>99</maxitems>
 							</config>
-						</TCEforms>
 					</settings.categories>
 
 <!--					&lt;!&ndash; Include sub categories &ndash;&gt;-->
 <!--					<settings.includeSubCategories>-->
-<!--						<TCEforms>-->
 <!--							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.includeSubCategories</label>-->
 <!--							<config>-->
 <!--								<type>check</type>-->
 <!--							</config>-->
-<!--						</TCEforms>-->
 <!--					</settings.includeSubCategories>-->
 
 					<!-- startingpoint -->
 					<settings.startingpoint>
-						<TCEforms>
 							<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
 							<config>
 								<type>group</type>
-								<internal_type>db</internal_type>
 								<allowed>pages</allowed>
 								<size>3</size>
 								<maxitems>50</maxitems>
 								<minitems>0</minitems>
 							</config>
-						</TCEforms>
 					</settings.startingpoint>
 
 					<!-- recursive -->
 					<settings.recursive>
-						<TCEforms>
 							<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.recursive</label>
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.recursive.I.inherit</numIndex>
-										<numIndex index="1"></numIndex>
+										<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.recursive.I.inherit</label>
+										<value/>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.0</numIndex>
-										<numIndex index="1">0</numIndex>
+										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.0</label>
+										<value>0</value>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.1</numIndex>
-										<numIndex index="1">1</numIndex>
+										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.1</label>
+										<value>1</value>
 									</numIndex>
 									<numIndex index="4" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.2</numIndex>
-										<numIndex index="1">2</numIndex>
+										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.2</label>
+										<value>2</value>
 									</numIndex>
 									<numIndex index="5" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.3</numIndex>
-										<numIndex index="1">3</numIndex>
+										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.3</label>
+										<value>3</value>
 									</numIndex>
 									<numIndex index="6" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.4</numIndex>
-										<numIndex index="1">4</numIndex>
+										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.4</label>
+										<value>4</value>
 									</numIndex>
 									<numIndex index="7" type="array">
-										<numIndex index="0">LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.5</numIndex>
-										<numIndex index="1">250</numIndex>
+										<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.5</label>
+										<value>250</value>
 									</numIndex>
 								</items>
 							</config>
-						</TCEforms>
 					</settings.recursive>
 				</el>
 			</ROOT>
@@ -113,37 +102,36 @@
 				-->
 		<additional>
 			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.additional</sheetTitle>
-				</TCEforms>
+				<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.additional</sheetTitle>
 				<type>array</type>
 				<el>
 
 
 					<!-- PID List Page -->
 					<settings.listPid>
-						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.listPid</label>
 							<config>
 								<type>group</type>
-								<internal_type>db</internal_type>
 								<allowed>pages</allowed>
+								<relationship>manyToOne</relationship>
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
+								<suggestOptions>
+									<default>
+										<addWhere>AND pages.doktype NOT in (6,199,254)</addWhere>
+									</default>
+								</suggestOptions>
 							</config>
-						</TCEforms>
 					</settings.listPid>
 
 					<!-- disable overrideDemand -->
 					<settings.disableOverrideDemand>
-						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.disableOverrideDemand</label>
 							<config>
 								<type>check</type>
 								<default>1</default>
 							</config>
-						</TCEforms>
 					</settings.disableOverrideDemand>
 				</el>
 			</ROOT>
@@ -156,14 +144,11 @@
 		-->
 		<template>
 			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.template</sheetTitle>
-				</TCEforms>
+				<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.template</sheetTitle>
 				<type>array</type>
 				<el>
 					<!-- Template Layout -->
 					<settings.templateLayout>
-						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout</label>
 							<config>
 								<type>select</type>
@@ -171,12 +156,11 @@
 								<renderType>selectSingle</renderType>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
-										<numIndex index="1"></numIndex>
+										<label/>
+										<value/>
 									</numIndex>
 								</items>
 							</config>
-						</TCEforms>
 					</settings.templateLayout>
 				</el>
 			</ROOT>

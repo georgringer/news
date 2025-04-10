@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. highlight:: typoscript
 .. _typoscriptGeneral:
 
@@ -10,9 +8,7 @@ General settings
 Any setting needs to be prefixed with  :typoscript:`plugin.tx_news.settings.`.
 
 
-.. only:: html
-
-   .. contents:: Properties
+.. contents:: Properties
       :depth: 1
       :local:
 
@@ -657,7 +653,10 @@ search.fields
 
    .. hint::
       You can also search in relations, e.g. the category title by using
-      :code:`categories.title`
+      :code:`categories.title` or :code:`contentElements.header` to search in related content elements.
+
+      Be aware that searching in relations might create big queries and makes the search even slower.
+      Use ke_search or solr as alternatives!
 
 search.splitSearchWord
 ======================

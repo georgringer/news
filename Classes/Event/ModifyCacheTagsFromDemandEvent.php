@@ -15,15 +15,9 @@ use GeorgRinger\News\Domain\Model\DemandInterface;
 
 final class ModifyCacheTagsFromDemandEvent
 {
-    /**
-     * @var array
-     */
-    private $cacheTags;
+    private array $cacheTags;
 
-    /**
-     * @var DemandInterface
-     */
-    private $demand;
+    private readonly DemandInterface $demand;
 
     public function __construct(array $cacheTags, DemandInterface $demand)
     {

@@ -7,41 +7,39 @@
 				-->
 		<additional>
 			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.additional</sheetTitle>
-				</TCEforms>
+				<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.additional</sheetTitle>
 				<type>array</type>
 				<el>
 
 
 					<!-- PID List Page -->
 					<settings.listPid>
-						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.listPid</label>
 							<config>
 								<type>group</type>
-								<internal_type>db</internal_type>
 								<allowed>pages</allowed>
+								<relationship>manyToOne</relationship>
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
+								<suggestOptions>
+									<default>
+										<addWhere>AND pages.doktype NOT in (6,199,254)</addWhere>
+									</default>
+								</suggestOptions>
 							</config>
-						</TCEforms>
 					</settings.listPid>
 
 					<!-- Tags -->
 					<settings.tags>
-						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.tags</label>
 							<config>
 								<type>group</type>
-								<internal_type>db</internal_type>
 								<allowed>tx_news_domain_model_tag</allowed>
 								<size>3</size>
 								<minitems>0</minitems>
 								<maxitems>99</maxitems>
 							</config>
-						</TCEforms>
 					</settings.tags>
 				</el>
 			</ROOT>
@@ -54,14 +52,11 @@
 		-->
 		<template>
 			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.template</sheetTitle>
-				</TCEforms>
+				<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.template</sheetTitle>
 				<type>array</type>
 				<el>
 					<!-- Template Layout -->
 					<settings.templateLayout>
-						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout</label>
 							<config>
 								<type>select</type>
@@ -69,12 +64,11 @@
 								<renderType>selectSingle</renderType>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
-										<numIndex index="1"></numIndex>
+										<label/>
+										<value/>
 									</numIndex>
 								</items>
 							</config>
-						</TCEforms>
 					</settings.templateLayout>
 				</el>
 			</ROOT>

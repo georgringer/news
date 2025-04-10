@@ -1,12 +1,8 @@
-.. include:: /Includes.rst.txt
-
 11.1.2 - 14th July 2023
 =======================
 
 
-.. only:: html
-
-   .. contents::
+.. contents::
         :local:
         :depth: 3
 

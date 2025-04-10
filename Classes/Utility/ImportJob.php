@@ -14,9 +14,7 @@ namespace GeorgRinger\News\Utility;
  */
 class ImportJob
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected static $registeredJobs = [];
 
     /**
@@ -37,8 +35,6 @@ class ImportJob
 
     /**
      * Get all registered import jobs
-     *
-     * @return array
      */
     public static function getRegisteredJobs(): array
     {

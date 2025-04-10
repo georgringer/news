@@ -50,19 +50,13 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
  */
 class LinkViewHelper extends AbstractTagBasedViewHelper
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $tagName = 'a';
 
-    /**
-     * @var \GeorgRinger\News\Service\SettingsService
-     */
+    /** @var SettingsService */
     protected $pluginSettingsService;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $detailPidDeterminationCallbacks = [
         'flexform' => 'getDetailPidFromFlexform',
         'categories' => 'getDetailPidFromCategories',
@@ -72,9 +66,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     /** @var ContentObjectRenderer */
     protected $cObj;
 
-    /**
-     * @param \GeorgRinger\News\Service\SettingsService $pluginSettingsService
-     */
     public function injectSettingsService(SettingsService $pluginSettingsService): void
     {
         $this->pluginSettingsService = $pluginSettingsService;
@@ -99,14 +90,14 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      */
     public function render(): ?string
     {
-        /** @var News $newsItem */
+        /** @var News|null $newsItem */
         $newsItem = $this->arguments['newsItem'];
         $settings = $this->arguments['settings'] ?? [];
         $uriOnly = $this->arguments['uriOnly'] ?? false;
         $configuration = $this->arguments['configuration'] ?? [];
         $content = $this->arguments['content'] ?? '';
 
-        $tsSettings = (array)$this->pluginSettingsService->getSettings();
+        $tsSettings = $this->pluginSettingsService->getSettings();
         ArrayUtility::mergeRecursiveWithOverrule($tsSettings, (array)$settings);
         // Options with stdWrap enabled won't override $tsSettings as intended here: override them explicit.
         if (isset($settings['useStdWrap']) && $settings['useStdWrap']) {
@@ -180,10 +171,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     /**
      * Generate the link configuration for the link to the news item
      *
-     * @param News $newsItem
      * @param array $tsSettings
-     * @param array $configuration
-     * @return array
      */
     protected function getLinkToNewsItem(
         News $newsItem,
@@ -205,7 +193,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
             foreach ($detailPidDeterminationMethods as $determinationMethod) {
                 if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
-                    if ($detailPid = call_user_func([$this, $callback], $tsSettings, $newsItem)) {
+                    if ($detailPid = $this->$callback($tsSettings, $newsItem)) {
                         break;
                     }
                 }
@@ -218,14 +206,15 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             $configuration['parameter'] = $detailPid;
         }
 
-        $configuration['additionalParams'] = (isset($configuration['additionalParams']) ? $configuration['additionalParams'] : '') . '&tx_news_pi1[news]=' . $this->getNewsId($newsItem);
+        $configuration['additionalParams'] = ($configuration['additionalParams'] ?? '') . '&tx_news_pi1[news]=' . $this->getNewsId($newsItem);
         $configuration['additionalParams'] .= '&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail';
 
         // Add date as human readable
-        if (isset($tsSettings['link']['hrDate']) && $tsSettings['link']['hrDate'] == 1 || isset($tsSettings['link']['hrDate']['_typoScriptNodeValue']) && $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
+        if ((isset($tsSettings['link']['hrDate']) && $tsSettings['link']['hrDate'] == 1)
+            || (isset($tsSettings['link']['hrDate']['_typoScriptNodeValue']) && $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1)
+        ) {
             $dateTime = $newsItem->getDatetime();
-
-            if (!is_null($dateTime)) {
+            if ($dateTime !== null) {
                 if (!empty($tsSettings['link']['hrDate']['day'])) {
                     $configuration['additionalParams'] .= '&tx_news_pi1[day]=' . $dateTime->format($tsSettings['link']['hrDate']['day']);
                 }
@@ -240,10 +229,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         return $configuration;
     }
 
-    /**
-     * @param News $newsItem
-     * @return int
-     */
     protected function getNewsId(News $newsItem): int
     {
         $uid = $newsItem->getUid();
@@ -261,10 +246,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         return $uid;
     }
 
-    /**
-     * @param array $configuration
-     * @return string
-     */
     protected function getTargetConfiguration(array $configuration): string
     {
         $configuration['returnLast'] = 'target';
@@ -277,14 +258,13 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      *
      * @param array $settings
      * @param News $newsItem
-     * @return int
      */
     protected function getDetailPidFromCategories($settings, $newsItem): int
     {
         $detailPid = 0;
         if ($newsItem->getCategories()) {
             foreach ($newsItem->getCategories() as $category) {
-                if ($detailPid = (int)$category->getSinglePid()) {
+                if ($detailPid = $category->getSinglePid()) {
                     break;
                 }
             }
@@ -297,7 +277,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      *
      * @param array $settings
      * @param News $newsItem
-     * @return int
      */
     protected function getDetailPidFromDefaultDetailPid($settings, $newsItem): int
     {
@@ -309,7 +288,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      *
      * @param array $settings
      * @param News $newsItem
-     * @return int
      */
     protected function getDetailPidFromFlexform($settings, $newsItem): int
     {

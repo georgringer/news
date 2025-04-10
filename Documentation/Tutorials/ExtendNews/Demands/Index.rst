@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _demands:
 
 =======
@@ -57,33 +55,6 @@ The demand object can be used in a custom controller used in an extension
 extending EXT:news. Read more about using a demand object in a custom
 controller:
 :ref:`Extension based on EXT:news: FilterController.php <extension_custom_controller>`.
-
-Hooks
-=====
-
-Several hooks can be used to influence the demand object and its usage.
-
-Hook findDemanded
------------------
-
-The hook :code:`findDemanded` is very
-powerful. It allows to modify the query used to fetch the news records depending
-on values set in the demand object. You can find an example of how to use it in
-the chapter :ref:`Hooks: Example findDemanded <hooks_example_findDemanded>`.
-
-Hook createDemandObjectFromSettings
------------------------------------
-
-The hook :code:`createDemandObjectFromSettings`
-(:php:`$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings']`)
-can be used to influence the settings of the demand object as it is used in
-most standard actions in the :php:`NewsController`, such as the
-:php:`listAction()`, :php:`selectedListAction()` and :php:`detailAction()`.
-
-This hook can be used to insert settings from custom TypoScript or custom
-FlexForm configuration into the demand object. (See also
-:ref:`Extend FlexForms <extendFlexforms>`)
-
 
 Events
 ======

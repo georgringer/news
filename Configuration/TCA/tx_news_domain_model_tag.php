@@ -1,10 +1,12 @@
 <?php
 
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 defined('TYPO3') or die;
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
-$configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
-$versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+$configuration = GeneralUtility::makeInstance(EmConfiguration::class);
 
 return [
     'ctrl' => [
@@ -13,13 +15,12 @@ return [
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'versioningWS' => true,
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'translationSource' => 'l10n_source',
-        'default_sortby' => 'ORDER BY title',
+        'default_sortby' => 'title',
         'delete' => 'deleted',
         'enablecolumns' => [
             'disabled' => 'hidden',
@@ -46,9 +47,7 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => $versionInformation->getMajorVersion() < 12 ? [
-                    ['', ''],
-                ] : [
+                'items' => [
                     ['label' => '', 'value' => ''],
                 ],
                 'foreign_table' => 'tx_news_domain_model_tag',
@@ -81,17 +80,13 @@ return [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime',
+                'type' => 'datetime',
             ],
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime',
+                'type' => 'datetime',
             ],
         ],
         'hidden' => [
@@ -108,7 +103,8 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'required,unique,trim',
+                'required' => true,
+                'eval' => 'unique,trim',
             ],
         ],
         'slug' => [
@@ -183,9 +179,7 @@ return [
             'showitem' => 'hidden,',
         ],
         'paletteLanguage' => [
-            'showitem' => '
-                sys_language_uid;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:sys_language_uid_formlabel,l10n_parent, l10n_diffsource,
-            ',
+            'showitem' => 'sys_language_uid,l10n_parent,',
         ],
     ],
 ];

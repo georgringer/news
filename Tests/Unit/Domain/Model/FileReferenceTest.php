@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
 use GeorgRinger\News\Domain\Model\FileReference;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -19,9 +20,8 @@ class FileReferenceTest extends BaseTestCase
 {
     /**
      * Test if fileUid can be set
-     *
-     * @test
      */
+    #[Test]
     public function fileUidCanBeSet(): void
     {
         $domainModelInstance = new FileReference();
@@ -32,9 +32,8 @@ class FileReferenceTest extends BaseTestCase
 
     /**
      * Test if alternative can be set
-     *
-     * @test
      */
+    #[Test]
     public function alternativeBeSet(): void
     {
         $domainModelInstance = new FileReference();
@@ -45,9 +44,8 @@ class FileReferenceTest extends BaseTestCase
 
     /**
      * Test if description can be set
-     *
-     * @test
      */
+    #[Test]
     public function descriptionBeSet(): void
     {
         $domainModelInstance = new FileReference();
@@ -58,9 +56,8 @@ class FileReferenceTest extends BaseTestCase
 
     /**
      * Test if link can be set
-     *
-     * @test
      */
+    #[Test]
     public function linkBeSet(): void
     {
         $domainModelInstance = new FileReference();
@@ -71,9 +68,8 @@ class FileReferenceTest extends BaseTestCase
 
     /**
      * Test if title can be set
-     *
-     * @test
      */
+    #[Test]
     public function titleBeSet(): void
     {
         $domainModelInstance = new FileReference();
@@ -84,9 +80,8 @@ class FileReferenceTest extends BaseTestCase
 
     /**
      * Test if showInPreview can be set
-     *
-     * @test
      */
+    #[Test]
     public function showInPreviewBeSet(): void
     {
         $domainModelInstance = new FileReference();

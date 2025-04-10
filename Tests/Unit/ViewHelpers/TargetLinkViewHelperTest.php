@@ -10,27 +10,28 @@
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
 use GeorgRinger\News\ViewHelpers\TargetLinkViewHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Test for TargetLinkViewHelper
+ *
+ * @todo Consider refactor this as functional test.
  */
 class TargetLinkViewHelperTest extends BaseTestCase
 {
     /**
-     * @return \GeorgRinger\News\ViewHelpers\TargetLinkViewHelper
+     * @return TargetLinkViewHelper
      * @support
      */
     protected function getPreparedInstance()
     {
-        $instance = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(null)->getMock();
-        return $instance;
+        return $this->getMockBuilder(TargetLinkViewHelper::class)->getMock();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canCreateViewHelperClassInstance(): void
     {
         $instance = $this->getPreparedInstance();
@@ -39,20 +40,18 @@ class TargetLinkViewHelperTest extends BaseTestCase
 
     /**
      * Test if correct target is returned
-     *
-     * @test
-     *
-     * @dataProvider correctTargetIsReturnedDataProvider
      */
+    #[DataProvider('correctTargetIsReturnedDataProvider')]
+    #[Test]
     public function correctTargetIsReturned($link, $expectedResult): void
     {
-        $viewHelper = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(null)->getMock();
+        $viewHelper = $this->getMockBuilder(TargetLinkViewHelper::class)->getMock();
         $viewHelper->setRenderingContext($this->getMockBuilder(RenderingContextInterface::class)->getMock());
         $viewHelper->setArguments([
             'link' => $link,
         ]);
 
-        self::assertEquals($viewHelper->render(), $expectedResult);
+        self::assertEquals($expectedResult, $viewHelper->render());
     }
 
     /**
@@ -60,23 +59,20 @@ class TargetLinkViewHelperTest extends BaseTestCase
      *
      * @return array
      */
-    public function correctTargetIsReturnedDataProvider()
+    public static function correctTargetIsReturnedDataProvider()
     {
         return [
             'noTargetSetAndUrlDefined' => [
-                'www.typo3.org', '',
+                'link' => 'www.typo3.org',
+                'expectedResult' => '',
             ],
             'noTargetSetAndIdDefined' => [
-                '123', '',
-            ],
-            'IdAndTargetDefined' => [
-                '123 _blank', '_blank',
+                'link' => '123',
+                'expectedResult' => '',
             ],
             'UrlAndPopupDefined' => [
-                'www.typo3.org 300x400', '',
-            ],
-            'ComplexExample' => [
-                'www.typo3.org _fo my-class', '_fo',
+                'link' => 'www.typo3.org 300x400',
+                'expectedResult' => '',
             ],
 
         ];

@@ -9,15 +9,15 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
-use Doctrine\DBAL\Connection;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Service\CategoryService;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
  * Category repository with all callable functionality
@@ -38,8 +38,9 @@ class CategoryRepository extends AbstractDemandedRepository
      * Find category by import source and import id
      *
      * @param string $importSource import source
-     * @param int $importId import id
+     * @param string $importId import id
      * @param bool $asArray return result as array
+     *
      * @return Category|array
      */
     public function findOneByImportSourceAndImportId($importSource, $importId, $asArray = false)
@@ -55,10 +56,7 @@ class CategoryRepository extends AbstractDemandedRepository
             )
         )->execute($asArray);
         if ($asArray) {
-            if (isset($result[0])) {
-                return $result[0];
-            }
-            return [];
+            return $result[0] ?? [];
         }
         return $result->getFirst();
     }
@@ -68,7 +66,7 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @param int $pid pid
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @return QueryResultInterface<Category>
      */
     public function findParentCategoriesByPid($pid)
     {
@@ -85,10 +83,11 @@ class CategoryRepository extends AbstractDemandedRepository
     /**
      * Find category tree
      *
-     * @param array $rootIdList list of id s
+     * @param array $rootIdList list of ids
+     *
      * @return QueryInterface|array
      */
-    public function findTree(array $rootIdList, $startingPoint = null)
+    public function findTree(array $rootIdList, ?string $startingPoint = null): array
     {
         $subCategories = CategoryService::getChildrenCategories(implode(',', $rootIdList));
 
@@ -131,12 +130,12 @@ class CategoryRepository extends AbstractDemandedRepository
     /**
      * Find categories by a given pid
      *
-     * @param array $idList list of id s
+     * @param array $idList list of ids
      * @param array $ordering ordering
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @return QueryResultInterface<Category>
      */
-    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
+    public function findByIdList(array $idList, array $ordering = [], ?string $startingPoint = null)
     {
         if (empty($idList)) {
             throw new \InvalidArgumentException('The given id list is empty.', 1484823597);
@@ -167,7 +166,7 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @param int $parent parent
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @return QueryResultInterface<Category>
      */
     public function findChildren($parent)
     {
@@ -198,7 +197,7 @@ class CategoryRepository extends AbstractDemandedRepository
                     ->select('l10n_parent', 'uid', 'sys_language_uid')
                     ->from('sys_category')
                     ->where(
-                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT)),
+                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, Connection::PARAM_INT)),
                         $queryBuilder->expr()->in('l10n_parent', $queryBuilder->createNamedParameter($idList, Connection::PARAM_INT_ARRAY))
                     )
                     ->executeQuery()->fetchAllAssociative();
@@ -211,19 +210,15 @@ class CategoryRepository extends AbstractDemandedRepository
 
     /**
      * Get the current sys language uid
-     *
-     * @return int
      */
     protected function getSysLanguageUid(): int
     {
         $sysLanguage = 0;
 
-        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() === 10) {
-            $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
-        } elseif (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
             $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'contentId');
-        } elseif ((int)GeneralUtility::_GP('L')) {
-            $sysLanguage = (int)GeneralUtility::_GP('L');
+        } elseif ((int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['L'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['L'] ?? null)) {
+            $sysLanguage = (int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['L'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['L'] ?? null);
         }
 
         return $sysLanguage;
@@ -231,10 +226,6 @@ class CategoryRepository extends AbstractDemandedRepository
 
     /**
      * Replace ids in array by the given ones
-     *
-     * @param array $idList
-     * @param array $rows
-     * @return array
      */
     protected function replaceCategoryIds(array $idList, array $rows): array
     {

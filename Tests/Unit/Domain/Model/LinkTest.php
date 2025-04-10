@@ -9,7 +9,9 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
+use DateTime;
 use GeorgRinger\News\Domain\Model\Link;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -17,9 +19,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class LinkTest extends BaseTestCase
 {
-    /**
-     * @var Link
-     */
+    /** @var Link */
     protected $linkDomainModelInstance;
 
     /**
@@ -32,9 +32,8 @@ class LinkTest extends BaseTestCase
 
     /**
      * Test if title can be set
-     *
-     * @test
      */
+    #[Test]
     public function titleCanBeSet(): void
     {
         $title = 'File title';
@@ -44,33 +43,30 @@ class LinkTest extends BaseTestCase
 
     /**
      * Test if crdate can be set
-     *
-     * @test
      */
+    #[Test]
     public function crdateCanBeSet(): void
     {
-        $time = new \DateTime();
+        $time = new DateTime();
         $this->linkDomainModelInstance->setCrdate($time);
         self::assertEquals($time, $this->linkDomainModelInstance->getCrdate());
     }
 
     /**
      * Test if tstamp can be set
-     *
-     * @test
      */
+    #[Test]
     public function tstampCanBeSet(): void
     {
-        $time = new \DateTime();
+        $time = new DateTime();
         $this->linkDomainModelInstance->setTstamp($time);
         self::assertEquals($time, $this->linkDomainModelInstance->getTstamp());
     }
 
     /**
      * Test if description can be set
-     *
-     * @test
      */
+    #[Test]
     public function descriptionCanBeSet(): void
     {
         $description = 'This is a description';
@@ -80,9 +76,8 @@ class LinkTest extends BaseTestCase
 
     /**
      * Test if uri can be set
-     *
-     * @test
      */
+    #[Test]
     public function uriCanBeSet(): void
     {
         $uri = 'http://typo3.org';

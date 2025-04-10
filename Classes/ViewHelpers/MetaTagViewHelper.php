@@ -56,9 +56,9 @@ class MetaTagViewHelper extends AbstractViewHelper
         // Skip if current record is part of tt_content CType shortcut
         if (!empty($GLOBALS['TSFE']->recordRegister)
             && is_array($GLOBALS['TSFE']->recordRegister)
-            && strpos(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:') !== false
+            && str_contains(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:')
             && !empty($GLOBALS['TSFE']->currentRecord)
-            && strpos($GLOBALS['TSFE']->currentRecord, 'tx_news_domain_model_news:') !== false
+            && str_contains($GLOBALS['TSFE']->currentRecord, 'tx_news_domain_model_news:')
         ) {
             return;
         }

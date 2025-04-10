@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _tsconfigGeneral:
 
 =====================
@@ -9,11 +7,11 @@ General configuration
 The general configuration covers options available during the creation
 and editing of news records.
 
-.. contents:: Properties
-   :backlinks: top
-   :class: compact-list
-   :depth: 1
-   :local:
+..  confval-menu::
+    :name: tsconfig-general
+    :caption: Properties
+    :display: table
+    :type:
 
 .. _tsconfigTemplateLayouts:
 
@@ -21,7 +19,6 @@ templateLayouts
 ===============
 
 .. confval:: templateLayouts
-
    :type: array
    :Path: tx_news
 
@@ -70,7 +67,6 @@ slugPrefix
 ==========
 
 .. confval:: slugPrefix
-
    :type: string
    :Path: tx_news
 
@@ -98,7 +94,6 @@ archive
 =======
 
 .. confval:: archive
-
    :type: string
    :Path: tx_news
 
@@ -122,7 +117,7 @@ tagPid
 ======
 
 .. confval:: tagPid
-
+   :name: tx_news-tagPid
    :type: integer
    :Path: tx_news
 
@@ -149,7 +144,6 @@ categoryRestrictionForFlexForms
 ===============================
 
 .. confval:: categoryRestrictionForFlexForms
-
    :type: bool
    :Path: tx_news
 
@@ -170,7 +164,6 @@ showContentElementsInNewsSysFolder
 ==================================
 
 .. confval:: showContentElementsInNewsSysFolder
-
    :type: bool
    :Path: tx_news
 

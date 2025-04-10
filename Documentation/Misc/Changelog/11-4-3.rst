@@ -1,0 +1,21 @@
+
+11.4.3 - 13th November 2024
+===========================
+
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Breaking changes
+----------------
+No breaking changes!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2024-08-24 [BUGFIX] Correct count demand call #2217 (Commit 9ee31e9f by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

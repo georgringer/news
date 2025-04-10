@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
 
 use GeorgRinger\News\Domain\Model\Dto\Search;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -19,9 +20,8 @@ class SearchTest extends BaseTestCase
 {
     /**
      * Test if subject can be set
-     *
-     * @test
      */
+    #[Test]
     public function subjectCanBeSet(): void
     {
         $domainModelInstance = new Search();
@@ -32,9 +32,8 @@ class SearchTest extends BaseTestCase
 
     /**
      * Test if fields can be set
-     *
-     * @test
      */
+    #[Test]
     public function fieldsCanBeSet(): void
     {
         $domainModelInstance = new Search();
@@ -45,9 +44,8 @@ class SearchTest extends BaseTestCase
 
     /**
      * Test if minimumDate can be set
-     *
-     * @test
      */
+    #[Test]
     public function minimumDateCanBeSet(): void
     {
         $domainModelInstance = new Search();
@@ -58,9 +56,8 @@ class SearchTest extends BaseTestCase
 
     /**
      * Test if minimumDate can be set
-     *
-     * @test
      */
+    #[Test]
     public function maximumDateCanBeSet(): void
     {
         $domainModelInstance = new Search();
