@@ -160,7 +160,7 @@ As the class :php:`Domain/Model/News` should be extended, create a file at the s
    }
 
 3) Exclude the class from dependecy injection
-_________________________________________
+---------------------------------------------
 
 As the class you define will be added to a new generated class, the class needs to be excluded from dependency injection in Configuration/Services.yaml:
 
