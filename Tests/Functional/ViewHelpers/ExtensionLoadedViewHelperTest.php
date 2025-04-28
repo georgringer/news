@@ -42,6 +42,6 @@ class ExtensionLoadedViewHelperTest extends FunctionalTestCase
         $src = '<html xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers" data-namespace-typo3-fluid="true">' . $src . '</html>';
         $context = $this->get(RenderingContextFactory::class)->create();
         $context->getTemplatePaths()->setTemplateSource($src);
-        self::assertSame($expected, (new TemplateView($context))->render());
+        self::assertSame($expected, (string)(new TemplateView($context))->render());
     }
 }
