@@ -1,0 +1,28 @@
+12.3.0 - 5th March 2025
+=======================
+
+Regular release, please read the following notes carefully.
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2025-02-15 [BUGFIX] Migrate getRecordOverlay to getLanguageOverlay in SimplePrevNextViewHelper (#2596) (#2611) (Commit 976fe593 by Fabian Gruber)
+    2025-02-15 [FEATURE] Add listPid to FlexForm of detail plugin (#2619) (Commit 43a692ae by h-e-l-l-o-w-o-r-l-d)
+    2025-02-15 [FEATURE] Add config to sort news in seo sitemap (#2620) (Commit d2c107e7 by Karsten Nowak)
+    2025-02-12 [TASK] Remove RealURL migration (#2598) (#2602) (Commit 4230e9c1 by jokumer)
+    2025-02-12 [BUGFIX] PopulateTagSlugs wizard must not rely on sorting field of tag-table (#2614) (Commit 8c0bdffd by Markus Klein)
+    2025-01-24 [BUGFIX] Retain datetime and labels for tt_content crdate and tstamp fields (#2608) (Commit 5ffc5664 by Ulrich Mathes)
+    2024-12-15 [DOCS] Remove TYPO3 11 compatibility of main branch (#2594) (Commit 0f969a3f by Simon Schaufelberger)
+    2024-12-15 [BUGFIX] Change the minus/plus pro FA icon class to the free icon class (#2592) (Commit 7701717e by jonathanpel)
+    2024-12-15 [DOCS] Show correct badges from TYPO3 version workflows (#2595) (Commit 4417e69c by Simon Schaufelberger)
+    2024-12-15 [TASK] Add TYPO3 Rector (#2580) (Commit a5efced6 by Simon Schaufelberger)
+    2024-11-28 [TASK] Normalize composer.json (#2587) (Commit 121c1051 by Simon Schaufelberger)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

@@ -75,8 +75,6 @@ plugin.tx_news {
 		topNewsFirst = 0
 		orderByAllowed = sorting,author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title
 
-		facebookLocale = en_US
-
 		demandClass =
 
 
@@ -155,7 +153,7 @@ plugin.tx_news {
 
 			# Paginate configuration.
 			paginate {
-                class = GeorgRinger\NumberedPagination\NumberedPagination
+				class = GeorgRinger\NumberedPagination\NumberedPagination
 				itemsPerPage = 10
 				insertAbove = 1
 				insertBelow = 1
