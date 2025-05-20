@@ -329,9 +329,9 @@ $tx_news_domain_model_news = [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' =>  [
-                    ['label' => $ll . 'tx_news_domain_model_news.type.I.0', 'value' => 0, 'icon' => 'ext-news-type-default'],
-                    ['label' => $ll . 'tx_news_domain_model_news.type.I.1', 'value' => 1, 'icon' => 'ext-news-type-internal'],
-                    ['label' => $ll . 'tx_news_domain_model_news.type.I.2', 'value' => 2, 'icon' => 'ext-news-type-external'],
+                    ['label' => $ll . 'tx_news_domain_model_news.type.I.0', 'value' => 1, 'icon' => 'ext-news-type-default'],
+                    ['label' => $ll . 'tx_news_domain_model_news.type.I.1', 'value' => 2, 'icon' => 'ext-news-type-internal'],
+                    ['label' => $ll . 'tx_news_domain_model_news.type.I.2', 'value' => 3, 'icon' => 'ext-news-type-external'],
                 ],
                 'fieldWizard' => [
                     'selectIcons' => [
@@ -575,7 +575,7 @@ $tx_news_domain_model_news = [
     ],
     'types' => [
         // default news
-        '0' => [
+        '1' => [
             'showitem' => '
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     --palette--;;paletteDate,
@@ -603,7 +603,7 @@ $tx_news_domain_model_news = [
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,',
         ],
         // internal url
-        '1' => [
+        '2' => [
             'showitem' => '
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     internalurl,
@@ -629,7 +629,7 @@ $tx_news_domain_model_news = [
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,',
         ],
         // external url
-        '2' => [
+        '3' => [
             'showitem' => '
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     externalurl,
