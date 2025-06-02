@@ -666,7 +666,7 @@ class NewsController extends NewsBaseController
      *
      * @param TemplateView $view the view to inject
      */
-    public function setView(TemplateView $view): void
+    public function setView($view): void
     {
         $this->view = $view;
     }
