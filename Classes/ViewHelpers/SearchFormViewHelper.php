@@ -13,7 +13,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
-use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
 use TYPO3\CMS\Extbase\Service\ExtensionService;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormViewHelper;
@@ -24,9 +23,6 @@ class SearchFormViewHelper extends AbstractFormViewHelper
 {
     /** @var string */
     protected $tagName = 'form';
-
-    /** @var HashService */
-    protected $hashService;
 
     /** @var MvcPropertyMappingConfigurationService */
     protected $mvcPropertyMappingConfigurationService;
@@ -41,11 +37,6 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      * @var array
      */
     protected $formActionUriArguments;
-
-    public function injectHashService(HashService $hashService)
-    {
-        $this->hashService = $hashService;
-    }
 
     public function injectMvcPropertyMappingConfigurationService(MvcPropertyMappingConfigurationService $mvcPropertyMappingConfigurationService)
     {
