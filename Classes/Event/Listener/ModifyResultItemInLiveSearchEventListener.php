@@ -12,12 +12,15 @@ use TYPO3\CMS\Backend\Search\LiveSearch\ResultItemAction;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Imaging\IconSize;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 
 final class ModifyResultItemInLiveSearchEventListener
 {
     protected LanguageService $languageService;
+    protected bool $isV12 = false;
 
     private array $configuration = [
         'teaser' => [
@@ -44,6 +47,7 @@ final class ModifyResultItemInLiveSearchEventListener
         protected readonly UriBuilder $uriBuilder
     ) {
         $this->languageService = $this->languageServiceFactory->createFromUserPreferences($GLOBALS['BE_USER']);
+        $this->isV12 = (new Typo3Version())->getMajorVersion() === 12;
     }
 
     public function __invoke(ModifyResultItemInLiveSearchEvent $event): void
@@ -87,7 +91,7 @@ final class ModifyResultItemInLiveSearchEventListener
             }
             $action = (new ResultItemAction('tx_news_domain_model_news' . '_' . $fieldName))
                 ->setLabel($content)
-                ->setIcon($field['icon'] ? $this->iconFactory->getIcon($field['icon'], Icon::SIZE_SMALL) : null);
+                ->setIcon($field['icon'] ? $this->iconFactory->getIcon($field['icon'], $this->isV12 ? Icon::SIZE_SMALL : IconSize::SMALL) : null);
             $resultItem->addAction($action);
         }
     }
@@ -100,7 +104,7 @@ final class ModifyResultItemInLiveSearchEventListener
 
             $action = (new ResultItemAction('tx_news_domain_model_news' . '_descriptionColumn'))
                 ->setLabel($content)
-                ->setIcon($this->iconFactory->getIcon('actions-notebook', Icon::SIZE_SMALL));
+                ->setIcon($this->iconFactory->getIcon('actions-notebook', $this->isV12 ? Icon::SIZE_SMALL : IconSize::SMALL));
             $resultItem->addAction($action);
         }
     }
