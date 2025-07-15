@@ -10,7 +10,7 @@ $configuration = GeneralUtility::makeInstance(
     EmConfiguration::class
 );
 
-if ($configuration->getShowAdministrationModule()) {
+if ($configuration->getShowAdministrationModule() && !ExtensionManagementUtility::isLoaded('news_administration')) {
     return [
         'web_newsAdministration' => [
             'parent' => 'web',
