@@ -1336,4 +1336,23 @@ class News extends AbstractEntity
         }
         return $items;
     }
+
+    public function getCacheLifetime(): int
+    {
+        if ($this->starttime || $this->endtime) {
+            $now = (new \DateTimeImmutable())->getTimestamp();
+
+            $startTimestamp = (int)$this->starttime?->getTimestamp();
+            if ($startTimestamp > $now) {
+                return $startTimestamp - $now;
+            }
+
+            $endTimestamp = (int)$this->endtime?->getTimestamp();
+            if ($endTimestamp > $now) {
+                return $endTimestamp - $now;
+            }
+        }
+
+        return PHP_INT_MAX;
+    }
 }
