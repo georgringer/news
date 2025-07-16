@@ -63,6 +63,7 @@
     },
     "config": {
         "allow-plugins": {
+            "a9f/fractor-extension-installer": true,
             "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true,
             "typo3/class-alias-loader": true,
             "typo3/cms-composer-installers": true

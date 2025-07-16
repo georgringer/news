@@ -171,6 +171,7 @@ Options:
             - coveralls: Generate coverage
             - docsGenerate: Renders the extension ReST documentation.
             - rector: Run rector
+            - fractor: Run Fractor
             - functional: functional tests
             - lint: PHP linting
             - unit: PHP unit tests
@@ -259,7 +260,7 @@ Options:
         is not listening on default port.
 
     -n
-        Only with -s cgl|composerNormalize
+        Only with -s cgl|composerNormalize|fractor
         Activate dry-run in CGL check that does not actively change files and only prints broken ones.
 
     -u
@@ -594,6 +595,15 @@ case ${TEST_SUITE} in
             DRY_RUN_OPTIONS='--dry-run'
         fi
         COMMAND="php -dxdebug.mode=off .Build/bin/rector process ${DRY_RUN_OPTIONS} --config=Build/rector/rector.php --no-progress-bar --ansi"
+        ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-command-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
+        SUITE_EXIT_CODE=$?
+        ;;
+    fractor)
+        DRY_RUN_OPTIONS=''
+        if [ "${DRY_RUN}" -eq 1 ]; then
+            DRY_RUN_OPTIONS='--dry-run'
+        fi
+        COMMAND="php -dxdebug.mode=off .Build/bin/fractor process ${DRY_RUN_OPTIONS} --config=Build/fractor/fractor.php --ansi"
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-command-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/sh -c "${COMMAND}"
         SUITE_EXIT_CODE=$?
         ;;

@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <T3DataStructure>
 	<sheets>
 		<!--
@@ -20,7 +21,6 @@
 							<minitems>1</minitems>
 						</config>
 					</settings.selectedList>
-
 					<!-- order -->
 					<settings.orderBy>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy</label>
@@ -29,7 +29,7 @@
 							<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_orderBy</itemsProcFunc>
 							<renderType>selectSingle</renderType>
 							<items>
-								<numIndex index="0" type="array">
+								<numIndex index="0">
 									<label/>
 									<value/>
 								</numIndex>
@@ -52,7 +52,6 @@
 							</items>
 						</config>
 					</settings.orderBy>
-
 					<!-- order direction  -->
 					<settings.orderDirection>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection</label>
@@ -60,7 +59,7 @@
 							<type>select</type>
 							<renderType>selectSingle</renderType>
 							<items>
-								<numIndex index="0" type="array">
+								<numIndex index="0">
 									<label/>
 									<value/>
 								</numIndex>
@@ -105,7 +104,6 @@
 							</suggestOptions>
 						</config>
 					</settings.detailPid>
-
 					<!-- PID List Page -->
 					<settings.listPid>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.listPid</label>
@@ -123,7 +121,6 @@
 							</suggestOptions>
 						</config>
 					</settings.listPid>
-
 					<!-- PID Back -->
 					<settings.backPid>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.backPid</label>
@@ -141,7 +138,6 @@
 							</suggestOptions>
 						</config>
 					</settings.backPid>
-
 					<!-- Limit Start -->
 					<settings.limit>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit</label>
@@ -151,7 +147,6 @@
 							<eval>num</eval>
 						</config>
 					</settings.limit>
-
 					<!-- Offset -->
 					<settings.offset>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.offset</label>
@@ -161,7 +156,6 @@
 							<eval>num</eval>
 						</config>
 					</settings.offset>
-
 					<!-- Tags -->
 					<settings.tags>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.tags</label>
@@ -173,7 +167,6 @@
 							<maxitems>99</maxitems>
 						</config>
 					</settings.tags>
-
 					<!-- Hide pagination -->
 					<settings.hidePagination>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.hidePagination</label>
@@ -181,7 +174,6 @@
 							<type>check</type>
 						</config>
 					</settings.hidePagination>
-
 					<settings.list.paginate.itemsPerPage>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.itemsPerPage</label>
 						<config>
@@ -189,7 +181,6 @@
 							<size>2</size>
 						</config>
 					</settings.list.paginate.itemsPerPage>
-
 					<!-- topNewsFirst -->
 					<settings.topNewsFirst>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.topNewsFirst</label>
@@ -197,7 +188,6 @@
 							<type>check</type>
 						</config>
 					</settings.topNewsFirst>
-
 					<!-- only not displayed news -->
 					<settings.excludeAlreadyDisplayedNews>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.excludeAlreadyDisplayedNews</label>
@@ -205,7 +195,6 @@
 							<type>check</type>
 						</config>
 					</settings.excludeAlreadyDisplayedNews>
-
 					<!-- disable overrideDemand -->
 					<settings.disableOverrideDemand>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.disableOverrideDemand</label>
@@ -217,7 +206,6 @@
 				</el>
 			</ROOT>
 		</additional>
-
 		<!--
 			################################
 			  SHEET Template
@@ -228,7 +216,6 @@
 				<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.template</sheetTitle>
 				<type>array</type>
 				<el>
-
 					<!-- Image Width -->
 					<settings.media.maxWidth>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.mediaMaxWidth</label>
@@ -238,7 +225,6 @@
 							<eval>num</eval>
 						</config>
 					</settings.media.maxWidth>
-
 					<!-- Image Height -->
 					<settings.media.maxHeight>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.mediaMaxHeight</label>
@@ -248,7 +234,6 @@
 							<eval>num</eval>
 						</config>
 					</settings.media.maxHeight>
-
 					<!-- crop length Teaser -->
 					<settings.cropMaxCharacters>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.cropMaxCharacters</label>
@@ -258,7 +243,6 @@
 							<eval>num</eval>
 						</config>
 					</settings.cropMaxCharacters>
-
 					<!-- Template Layout -->
 					<settings.templateLayout>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout</label>
@@ -267,7 +251,7 @@
 							<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
 							<renderType>selectSingle</renderType>
 							<items>
-								<numIndex index="0" type="array">
+								<numIndex index="0">
 									<label/>
 									<value/>
 								</numIndex>

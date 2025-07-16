@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <T3DataStructure>
 	<sheets>
 		<!--
@@ -27,7 +28,6 @@
 							</suggestOptions>
 						</config>
 					</settings.listPid>
-
 					<!-- Tags -->
 					<settings.tags>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.tags</label>
@@ -42,7 +42,6 @@
 				</el>
 			</ROOT>
 		</additional>
-
 		<!--
 			################################
 			  SHEET Template
@@ -61,7 +60,7 @@
 							<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
 							<renderType>selectSingle</renderType>
 							<items>
-								<numIndex index="0" type="array">
+								<numIndex index="0">
 									<label/>
 									<value/>
 								</numIndex>
