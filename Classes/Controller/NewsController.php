@@ -616,7 +616,7 @@ class NewsController extends NewsBaseController
             ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
         );
 
-        $propertiesNotAllowedViaFlexForms = ['orderByAllowed'];
+        $propertiesNotAllowedViaFlexForms = GeneralUtility::trimExplode(',', $originalSettings['orderByAllowed'], true);
         foreach ($propertiesNotAllowedViaFlexForms as $property) {
             $originalSettings[$property] = ($tsSettings['settings'] ?? [])[$property] ?? ($originalSettings[$property] ?? '');
         }
