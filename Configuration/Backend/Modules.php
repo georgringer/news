@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use GeorgRinger\News\Controller\AdministrationController;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 $configuration = GeneralUtility::makeInstance(
