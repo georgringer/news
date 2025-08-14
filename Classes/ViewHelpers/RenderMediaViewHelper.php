@@ -163,9 +163,15 @@ class RenderMediaViewHelper extends AbstractViewHelper
         /** @var News $news */
         $news = $this->arguments['news'];
 
-        $this->imgClass = htmlspecialchars($this->arguments['imgClass']);
-        $this->videoClass = htmlspecialchars($this->arguments['videoClass']);
-        $this->audioClass = htmlspecialchars($this->arguments['audioClass']);
+        if (isset($this->arguments['imgClass'])) {
+            $this->imgClass = htmlspecialchars($this->arguments['imgClass']);
+        }
+        if (isset(this->arguments['videoClass'])) {
+            $this->videoClass = htmlspecialchars($this->arguments['videoClass']);
+        }
+        if (isset(this->arguments['audioClass'])) {
+            $this->audioClass = htmlspecialchars($this->arguments['audioClass']);
+        }
 
         $mediaFiles = $news->getMediaNonPreviews();
 
