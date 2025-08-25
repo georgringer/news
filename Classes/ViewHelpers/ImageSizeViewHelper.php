@@ -42,7 +42,6 @@ class ImageSizeViewHelper extends AbstractViewHelper
             VersionNumberUtility::getNumericTypo3Version()
         );
 
-        // Ensure image argument is always treated as string
         $imageArgument = (string)($arguments['image'] ?? '');
 
         // If TYPO3 version is previous version 11
