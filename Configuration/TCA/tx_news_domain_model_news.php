@@ -344,7 +344,7 @@ $tx_news_domain_model_news = [
         ],
         'keywords' => [
             'exclude' => true,
-            'label' => $GLOBALS['TCA']['pages']['columns']['keywords']['label'] ?? 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.keywords',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.keywords',
             'config' => [
                 'type' => 'text',
                 'placeholder' => $ll . 'tx_news_domain_model_news.keywords.placeholder',
