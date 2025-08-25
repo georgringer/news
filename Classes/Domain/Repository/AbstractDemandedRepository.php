@@ -12,6 +12,7 @@ namespace GeorgRinger\News\Domain\Repository;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Event\ModifyDemandRepositoryEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface;
@@ -110,7 +111,9 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
         $query->getQuerySettings()->setRespectStoragePage(false);
 
         if ($disableLanguageOverlayMode) {
-            $query->getQuerySettings()->setLanguageOverlayMode(false);
+            $languageAspect = $query->getQuerySettings()->getLanguageAspect();
+            $languageAspect = new LanguageAspect($languageAspect->getId(), $languageAspect->getContentId(), LanguageAspect::OVERLAYS_OFF);
+            $query->getQuerySettings()->setLanguageAspect($languageAspect);
         }
 
         $constraints = $this->createConstraintsFromDemand($query, $demand);

@@ -6,6 +6,7 @@ use Rector\Config\RectorConfig;
 use Rector\ValueObject\PhpVersion;
 use Ssch\TYPO3Rector\CodeQuality\General\ConvertImplicitVariablesToExplicitGlobalsRector;
 use Ssch\TYPO3Rector\CodeQuality\General\ExtEmConfRector;
+use Ssch\TYPO3Rector\CodeQuality\General\GeneralUtilityMakeInstanceToConstructorPropertyRector;
 use Ssch\TYPO3Rector\CodeQuality\General\InjectMethodToConstructorInjectionRector;
 use Ssch\TYPO3Rector\Configuration\Typo3Option;
 use Ssch\TYPO3Rector\Set\Typo3LevelSetList;
@@ -33,6 +34,9 @@ return RectorConfig::configure()
     ->withPHPStanConfigs([Typo3Option::PHPSTAN_FOR_RECTOR_PATH])
     ->withRules([
         ConvertImplicitVariablesToExplicitGlobalsRector::class,
+    ])
+    ->withSkip([
+        GeneralUtilityMakeInstanceToConstructorPropertyRector::class,
     ])
     ->withImportNames(true, true, false, true)
     ->withConfiguredRule(ExtEmConfRector::class, [
