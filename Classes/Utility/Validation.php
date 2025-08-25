@@ -42,8 +42,8 @@ class Validation
                         }
                         break;
                     case 2:
-                        if ((strtolower($split[1]) !== 'desc' && strtolower($split[1]) !== 'asc') ||
-                            !GeneralUtility::inList($allowedSettings, $split[0])
+                        if ((strtolower($split[1]) !== 'desc' && strtolower($split[1]) !== 'asc')
+                            || !GeneralUtility::inList($allowedSettings, $split[0])
                         ) {
                             $isValid = false;
                         }
