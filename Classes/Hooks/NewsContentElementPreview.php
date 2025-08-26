@@ -14,14 +14,10 @@ use TYPO3\CMS\Core\Page\PageRenderer;
  */
 class NewsContentElementPreview
 {
-
     public function __construct(
-        protected IconFactory  $iconFactory,
+        protected IconFactory $iconFactory,
         protected PageRenderer $pageRenderer,
-
-    )
-    {
-    }
+    ) {}
 
     public function run(array $params): string
     {
@@ -35,7 +31,8 @@ class NewsContentElementPreview
         }
         $this->pageRenderer->addInlineLanguageLabelArray($labels);
 
-        return sprintf('<button type="button" class="btn btn-info" data-news-content-element-preview="1">%s %s</button>',
+        return sprintf(
+            '<button type="button" class="btn btn-info" data-news-content-element-preview="1">%s %s</button>',
             $this->iconFactory->getIcon('ext-news-addon', Icon::SIZE_SMALL),
             $labels['newsContentElement.preview.modal.title'],
         );

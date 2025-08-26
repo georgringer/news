@@ -1,5 +1,6 @@
 <?php
 
+use GeorgRinger\News\Hooks\NewsContentElementPreview;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 defined('TYPO3') or die;
@@ -68,7 +69,7 @@ $boot = static function (): void {
 
     if (!ExtensionManagementUtility::isLoaded('news_content_elements')) {
         $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['content_elements']['config']['customControls']['ce'] = [
-            'userFunc' => \GeorgRinger\News\Hooks\NewsContentElementPreview::class . '->run',
+            'userFunc' => NewsContentElementPreview::class . '->run',
         ];
     }
 };
