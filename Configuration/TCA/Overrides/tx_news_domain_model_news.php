@@ -65,6 +65,12 @@ $boot = static function (): void {
             'after:alternative_title'
         );
     }
+
+    if (!ExtensionManagementUtility::isLoaded('news_content_elements')) {
+        $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['content_elements']['config']['customControls']['ce'] = [
+            'userFunc' => \GeorgRinger\News\Hooks\NewsContentElementPreview::class . '->run',
+        ];
+    }
 };
 
 $boot();

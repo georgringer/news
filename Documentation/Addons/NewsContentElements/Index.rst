@@ -25,8 +25,8 @@ Requirements:
 Pricing
 -------
 
-- € 100.00 (ex. VAT) for 1 site
-- € 300.00 (ex. VAT) for unlimited sites related to the agency itself or its customers
+- € 150.00 (ex. VAT) for 1 site
+- € 450.00 (ex. VAT) for unlimited sites related to the agency itself or its customers
 
 **Included**: Bugfix & feature releases
 
