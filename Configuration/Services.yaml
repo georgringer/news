@@ -36,6 +36,9 @@ services:
   GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList:
     public: true
 
+  GeorgRinger\News\Hooks\NewsContentElementPreview:
+    public: true
+
   GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor:
     tags:
       - { name: 'data.processor', identifier: 'add-news-to-menu' }
