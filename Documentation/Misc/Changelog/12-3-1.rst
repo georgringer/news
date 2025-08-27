@@ -1,0 +1,38 @@
+12.3.1 - 27th August 2025
+=========================
+
+Regular release, please read the following notes carefully.
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2025-08-26 [TASK] Render preview for ext:news_content_elements (#2675) (Commit eeb1fd6e by Georg Ringer)
+    2025-08-25 [BUGFIX] Output timestamp including timezone for datePublished meta data (#2667) (Commit 7612d6ff by Ayke Halder)
+    2025-08-25 [TASK] add fallback for ['TCA'] usage in tx_news_domain_model_news TC… (#2674) (Commit b0f3c243 by bahammes)
+    2025-08-25 [TASK] Use rector UseLanguageAspectInExtbasePersistenceRector (Commit 8f40d218 by Georg Ringer)
+    2025-08-25 [TASK] Make csfixer happy (Commit cc464410 by Georg Ringer)
+    2025-08-26 [BUGFIX] prevent deprecation warning from null passed to trim() (#2657) (Commit c7fbd87d by Himanshu Ramavat)
+    2025-08-25 [TASK] Add Fractor (#2660) (Commit db4e916f by Simon Schaufelberger)
+    2025-08-25 [BUGFIX] Show size of images with special characters in url (#2671) (Commit 75a1cbde by Ayke Halder)
+    2025-08-25 [BUGFIX] Type cast arguments in RenderMediaVh (Commit 2cb2d222 by Georg Ringer)
+    2025-08-07 [DOC] Add compatibility of news_content_elements with TYPO3 13 (#2661) (Commit af4850c7 by Simon Schaufelberger)
+    2025-08-07 [BUGFIX] Added missing use statement (#2663) (Commit bdaecfd9 by vnc-jboe)
+    2025-07-15 Ensure Advertising Module for newsadministration is hidden, when it's installed (#2659) (Commit 32afe5d5 by Kay Strobach)
+    2025-07-08 [BUGFIX] Reset cacheTagsToFlush array after flush operation (#2656) (Commit f0e94c88 by Markus Klein)
+    2025-06-10 [BUGFIX] Prevent uncaught TYPO3 exceptions for typed property exceptions (Commit ec9ed455 by Rico Sonntag)
+    2025-06-02 [TASK] Improve type icons (Commit 6eb63d5f by Georg Ringer)
+    2025-05-19 [DOC] Update plugin creation #2599 (Commit ed325b04 by Georg Ringer)
+    2025-04-30 [TASK] Fix code style and prepare for fractor integration (#2593) (Commit e11bc1b0 by Simon Schaufelberger)
+    2025-04-28 [TASK] Adopt test after fluid changes (#2636) (Commit 3fbdfe5b by Georg Ringer)
+    2025-04-23 [DOC] Fixed a heading in Documentation (Commit bfa79133 by layland34)
+    2025-04-10 [TASK] Remove unused facebookLocale setting (#2634) (Commit f0a79e0b by Torben Hansen)
+    2025-03-06 [TASK] Set typo3/cms-install as hard dependency (#2624) (#2625) (Commit 28d9317d by Maik Schneider)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
