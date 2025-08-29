@@ -18,3 +18,9 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 4
 max_line_length = 80
+
+[*.xml]
+charset = utf-8
+end_of_line = lf
+indent_style = tab
+insert_final_newline = true

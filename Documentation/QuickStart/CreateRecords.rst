@@ -82,14 +82,9 @@ Detail page
    "News display".
 
 #. Add a new content element and select the entry
-   :guilabel:`Plugins > News system`.
+   :guilabel:`News article detail view`.
 
-#. Switch to the tab :guilabel:`Plugin` where you can define the plugins settings.
-   The most important settings are :guilabel:`What to display` and :guilabel:`Startingpoint`.
-
-   #. Change the 1 :sup:`st` select box :guilabel:`What to display` to :guilabel:`Detail view`.
-
-   #. Save the plugin.
+#. #. Save the plugin.
 
 List page
 ---------
@@ -100,12 +95,10 @@ List page
    "News list".
 
 #. Add a new content element and select the entry
-   :guilabel:`Plugins > News system`.
+   :guilabel:`News article list (incl. detail view).`.
 
 #. Switch to the tab :guilabel:`Plugin` where you can define the plugins settings.
-   The most important settings are :guilabel:`What to display` and :guilabel:`Startingpoint`.
-
-   #. The selected view is already :guilabel:`List view`. This is fine.
+   The most important settings is :guilabel:`Startingpoint`.
 
    #. Fill the field :guilabel:`Startingpoint` by selecting the :guilabel:`sysfolder` you created
       in the beginning of the tutorial.

@@ -29,10 +29,10 @@ class ChunkViewHelperTest extends FunctionalTestCase
     {
         $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
         $standaloneView->setTemplateSource(
-            '{namespace n=GeorgRinger\News\ViewHelpers}' . LF .
-            '<f:for each="{news -> n:iterator.chunk(count: 3)}" as="col" iteration="cycle">' .
-            '<div class="row"><f:for each="{col}" as="item"><div class="col">{item.title}</div></f:for></div>' .
-            '</f:for>'
+            '{namespace n=GeorgRinger\News\ViewHelpers}' . LF
+            . '<f:for each="{news -> n:iterator.chunk(count: 3)}" as="col" iteration="cycle">'
+            . '<div class="row"><f:for each="{col}" as="item"><div class="col">{item.title}</div></f:for></div>'
+            . '</f:for>'
         );
         $standaloneView->assign('news', [
             ['title' => 'el1'],
@@ -41,11 +41,11 @@ class ChunkViewHelperTest extends FunctionalTestCase
             ['title' => 'el4'],
         ]);
 
-        $expected = '<div class="row"><div class="col">el1</div><div class="col">el2</div><div class="col">el3</div>' .
-            '</div>' .
-            '<div class="row">' .
-            '<div class="col">el4</div>' .
-            '</div>';
+        $expected = '<div class="row"><div class="col">el1</div><div class="col">el2</div><div class="col">el3</div>'
+            . '</div>'
+            . '<div class="row">'
+            . '<div class="col">el4</div>'
+            . '</div>';
         self::assertEquals(trim($expected), trim($standaloneView->render()));
     }
 }

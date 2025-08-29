@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <T3DataStructure>
 	<sheets>
 		<!--
@@ -18,7 +19,7 @@
 							<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_orderBy</itemsProcFunc>
 							<renderType>selectSingle</renderType>
 							<items>
-								<numIndex index="0" type="array">
+								<numIndex index="0">
 									<label/>
 									<value/>
 								</numIndex>
@@ -37,7 +38,6 @@
 							</items>
 						</config>
 					</settings.orderBy>
-
 					<!-- order direction  -->
 					<settings.orderDirection>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection</label>
@@ -45,7 +45,7 @@
 							<type>select</type>
 							<renderType>selectSingle</renderType>
 							<items>
-								<numIndex index="0" type="array">
+								<numIndex index="0">
 									<label/>
 									<value/>
 								</numIndex>
@@ -60,7 +60,6 @@
 							</items>
 						</config>
 					</settings.orderDirection>
-
 					<!-- startingpoint -->
 					<settings.startingpoint>
 						<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
@@ -72,39 +71,38 @@
 							<minitems>0</minitems>
 						</config>
 					</settings.startingpoint>
-
 					<!-- recursive -->
 					<settings.recursive>
 						<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.recursive</label>
 						<config>
 							<type>select</type>
 							<renderType>selectSingle</renderType>
-							<items type="array">
-								<numIndex index="1" type="array">
+							<items>
+								<numIndex index="1">
 									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.recursive.I.inherit</label>
 									<value/>
 								</numIndex>
-								<numIndex index="2" type="array">
+								<numIndex index="2">
 									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.0</label>
 									<value>0</value>
 								</numIndex>
-								<numIndex index="3" type="array">
+								<numIndex index="3">
 									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.1</label>
 									<value>1</value>
 								</numIndex>
-								<numIndex index="4" type="array">
+								<numIndex index="4">
 									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.2</label>
 									<value>2</value>
 								</numIndex>
-								<numIndex index="5" type="array">
+								<numIndex index="5">
 									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.3</label>
 									<value>3</value>
 								</numIndex>
-								<numIndex index="6" type="array">
+								<numIndex index="6">
 									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.4</label>
 									<value>4</value>
 								</numIndex>
-								<numIndex index="7" type="array">
+								<numIndex index="7">
 									<label>LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.5</label>
 									<value>250</value>
 								</numIndex>
@@ -141,7 +139,6 @@
 							</suggestOptions>
 						</config>
 					</settings.listPid>
-
 					<!-- PID Back -->
 					<settings.backPid>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.backPid</label>
@@ -159,7 +156,6 @@
 							</suggestOptions>
 						</config>
 					</settings.backPid>
-
 					<!-- Tags -->
 					<settings.tags>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.tags</label>
@@ -171,7 +167,6 @@
 							<maxitems>99</maxitems>
 						</config>
 					</settings.tags>
-
 					<!-- disable overrideDemand -->
 					<settings.disableOverrideDemand>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.disableOverrideDemand</label>
@@ -183,7 +178,6 @@
 				</el>
 			</ROOT>
 		</additional>
-
 		<!--
 			################################
 			  SHEET Template
@@ -202,7 +196,7 @@
 							<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
 							<renderType>selectSingle</renderType>
 							<items>
-								<numIndex index="0" type="array">
+								<numIndex index="0">
 									<label/>
 									<value/>
 								</numIndex>

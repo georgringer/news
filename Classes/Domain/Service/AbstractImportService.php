@@ -32,7 +32,7 @@ class AbstractImportService implements LoggerAwareInterface
     protected PersistenceManager $persistenceManager;
     protected array $postPersistQueue = [];
     protected EmConfiguration $emSettings;
-    protected Folder $importFolder;
+    protected ?Folder $importFolder = null;
     protected EventDispatcherInterface $eventDispatcher;
     protected CategoryRepository $categoryRepository;
 

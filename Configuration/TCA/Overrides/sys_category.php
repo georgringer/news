@@ -189,5 +189,5 @@ ExtensionManagementUtility::addToAllTCAtypes(
 $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage']['tx_news_domain_model_news']
     = [0 => 'categories'];
 
-$GLOBALS['TCA']['sys_category']['ctrl']['label_userFunc'] =
-    Labels::class . '->getUserLabelCategory';
+$GLOBALS['TCA']['sys_category']['ctrl']['label_userFunc']
+    = Labels::class . '->getUserLabelCategory';
