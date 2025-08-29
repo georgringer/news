@@ -70,49 +70,57 @@ class Cache
             $event = new ModifyCacheTagsFromNewsEvent($cacheTagsOfNews, $news);
             GeneralUtility::makeInstance(EventDispatcher::class)->dispatch($event);
             foreach ($event->getCacheTags() as $cacheTag) {
-                $cacheTags[] = $cacheTag;
+                $cacheTags[$cacheTag] = $news->getCacheLifetime();
             }
         }
-        if (count($cacheTags) > 0) {
-            if ((new Typo3Version())->getMajorVersion() >= 13) {
-                $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
-                foreach ($cacheTags as $cacheTag) {
-                    $cacheDataCollector->addCacheTags(new CacheTag($cacheTag));
-                }
-            } else {
-                $GLOBALS['TSFE']->addCacheTags($cacheTags);
-            }
-        }
+        self::addCacheTags($cacheTags);
     }
 
     /**
+     * @param list<News> $newsRecords
      * Adds page cache tags by used storagePages.
      * This adds tags with the scheme tx_news_pid_[news:pid]
      */
-    public static function addPageCacheTagsByDemandObject(NewsDemand $demand): void
+    public static function addPageCacheTagsByDemandObject(NewsDemand $demand, array $newsRecords = []): void
     {
         $cacheTags = [];
 
         if ($demand->getStoragePage()) {
             // Add cache tags for each storage page
-            foreach (GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
-                $cacheTags[] = 'tx_news_pid_' . $pageId;
+            foreach (GeneralUtility::intExplode(',', $demand->getStoragePage()) as $pageId) {
+                $cacheLifetime = PHP_INT_MAX;
+                foreach ($newsRecords as $newsRecord) {
+                    if ($newsRecord->getPid() === $pageId) {
+                        $cacheLifetime = min($cacheLifetime, $newsRecord->getCacheLifetime());
+                    }
+                }
+                $cacheTags['tx_news_pid_' . $pageId] = $cacheLifetime;
             }
         } else {
-            $cacheTags[] = 'tx_news_domain_model_news';
+            $cacheLifetime = PHP_INT_MAX;
+            foreach ($newsRecords as $newsRecord) {
+                $cacheLifetime = min($cacheLifetime, $newsRecord->getCacheLifetime());
+            }
+            $cacheTags['tx_news_domain_model_news'] = $cacheLifetime;
         }
         $event = new ModifyCacheTagsFromDemandEvent($cacheTags, $demand);
         GeneralUtility::makeInstance(EventDispatcher::class)->dispatch($event);
-        $cacheTags = $event->getCacheTags();
-        if (count($cacheTags) > 0) {
-            if ((new Typo3Version())->getMajorVersion() >= 13) {
-                $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
-                foreach ($cacheTags as $cacheTag) {
-                    $cacheDataCollector->addCacheTags(new CacheTag($cacheTag));
-                }
-            } else {
-                $GLOBALS['TSFE']->addCacheTags($cacheTags);
+        self::addCacheTags($event->getCacheTags());
+    }
+
+    protected static function addCacheTags(array $cacheTags): void
+    {
+        if (!$cacheTags) {
+            return;
+        }
+
+        if ((new Typo3Version())->getMajorVersion() >= 13) {
+            $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
+            foreach ($cacheTags as $cacheTag => $cacheLifetime) {
+                $cacheDataCollector->addCacheTags(new CacheTag($cacheTag, $cacheLifetime));
             }
+        } else {
+            $GLOBALS['TSFE']->addCacheTags(array_keys($cacheTags));
         }
     }
 }
