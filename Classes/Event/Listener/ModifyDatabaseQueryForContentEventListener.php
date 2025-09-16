@@ -18,6 +18,7 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -46,7 +47,7 @@ final class ModifyDatabaseQueryForContentEventListener
                     $event->getQueryBuilder()->expr()->eq('tx_news_related_news', $event->getQueryBuilder()->createNamedParameter(0, Connection::PARAM_INT))
                 );
 
-                if (self::$count === 0) {
+                if (self::$count === 0 && !ExtensionManagementUtility::isLoaded('news_content_elements')) {
                     $this->addFlashMessage();
                 }
 
