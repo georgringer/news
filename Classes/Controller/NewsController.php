@@ -21,6 +21,7 @@ use GeorgRinger\News\Event\NewsControllerOverrideSettingsEvent;
 use GeorgRinger\News\Event\NewsDateMenuActionEvent;
 use GeorgRinger\News\Event\NewsDetailActionEvent;
 use GeorgRinger\News\Event\NewsListActionEvent;
+use GeorgRinger\News\Event\NewsListPostPaginationEvent;
 use GeorgRinger\News\Event\NewsListSelectedActionEvent;
 use GeorgRinger\News\Event\NewsSearchFormActionEvent;
 use GeorgRinger\News\Event\NewsSearchResultActionEvent;
@@ -261,11 +262,16 @@ class NewsController extends NewsBaseController
             $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
             $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
 
-            $this->view->assign('pagination', [
+            $assignedPagination = [
                 'currentPage' => $currentPage,
                 'paginator' => $paginator,
                 'pagination' => $pagination,
-            ]);
+            ];
+
+            $event = $this->eventDispatcher->dispatch(new NewsListPostPaginationEvent($this, $assignedPagination, $this->request));
+
+            $this->view->assign('pagination', $event->getAssignedPagination());
+
         }
 
         Cache::addPageCacheTagsByDemandObject($demand);
