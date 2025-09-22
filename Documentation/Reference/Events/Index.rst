@@ -28,6 +28,7 @@ fired. For additional items see column "Access to" in the table below.
    "NewsDateMenuActionEvent", "NewsController", "getAssignedValues()", "dateMenuAction (NewsController::SIGNAL_NEWS_DATEMENU_ACTION)"
    "NewsDetailActionEvent", "NewsController", "getAssignedValues()", "detailAction (NewsController::SIGNAL_NEWS_DETAIL_ACTION)"
    "NewsListActionEvent", "NewsController", "getAssignedValues()", "listAction (NewsController::SIGNAL_NEWS_LIST_ACTION)"
+   "NewsListPostPaginationEvent", "NewsController", "getAssignedPagination()", ""
    "NewsListSelectedActionEvent", "NewsController", "getAssignedValues()", "selectedListAction (NewsController::SIGNAL_NEWS_LIST_SELECTED_ACTION)"
    "NewsSearchFormActionEvent", "NewsController", "getAssignedValues()", "searchFormAction (NewsController::SIGNAL_NEWS_SEARCHFORM_ACTION)"
    "NewsSearchResultActionEvent", "NewsController", "getAssignedValues()", "searchResultAction (NewsController::SIGNAL_NEWS_SEARCHRESULT_ACTION)"
