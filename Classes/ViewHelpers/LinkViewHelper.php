@@ -102,7 +102,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         // Options with stdWrap enabled won't override $tsSettings as intended here: override them explicit.
         if (isset($settings['useStdWrap']) && $settings['useStdWrap']) {
             foreach (GeneralUtility::trimExplode(',', $settings['useStdWrap'], true) as $stdWrapProperty) {
-                if (is_array($tsSettings[$stdWrapProperty]) && array_key_exists($stdWrapProperty, $settings)) {
+                if (array_key_exists($stdWrapProperty, $tsSettings) && is_array($tsSettings[$stdWrapProperty]) && array_key_exists($stdWrapProperty, $settings)) {
                     $tsSettings[$stdWrapProperty] = $settings[$stdWrapProperty];
                 }
             }
