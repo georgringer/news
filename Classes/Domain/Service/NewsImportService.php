@@ -376,10 +376,9 @@ class NewsImportService extends AbstractImportService
             foreach ($items as $item) {
                 // only check already persisted items
                 if ($item->getFileUid() === (int)$file->getUid()
-                    ||
-                    ($item->getUid() &&
-                        $item->getOriginalResource()->getName() === $file->getName() &&
-                        $item->getOriginalResource()->getSize() === (int)$file->getSize())
+                    || ($item->getUid()
+                        && $item->getOriginalResource()->getName() === $file->getName()
+                        && $item->getOriginalResource()->getSize() === (int)$file->getSize())
                 ) {
                     $result = $item;
                     break;

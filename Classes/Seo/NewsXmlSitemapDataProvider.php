@@ -228,8 +228,8 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
     protected function getUrlFieldParameterMap(array $additionalParams, array $data): array
     {
-        if (!empty($this->config['url']['fieldToParameterMap']) &&
-            \is_array($this->config['url']['fieldToParameterMap'])) {
+        if (!empty($this->config['url']['fieldToParameterMap'])
+            && \is_array($this->config['url']['fieldToParameterMap'])) {
             foreach ($this->config['url']['fieldToParameterMap'] as $field => $urlPart) {
                 $additionalParams[$urlPart] = $data[$field];
             }
@@ -240,8 +240,8 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
     protected function getUrlAdditionalParams(array $additionalParams): array
     {
-        if (!empty($this->config['url']['additionalGetParameters']) &&
-            is_array($this->config['url']['additionalGetParameters'])) {
+        if (!empty($this->config['url']['additionalGetParameters'])
+            && is_array($this->config['url']['additionalGetParameters'])) {
             foreach ($this->config['url']['additionalGetParameters'] as $extension => $extensionConfig) {
                 foreach ($extensionConfig as $key => $value) {
                     $additionalParams[$extension . '[' . $key . ']'] = $value;

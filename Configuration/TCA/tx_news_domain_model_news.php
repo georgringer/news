@@ -344,7 +344,7 @@ $tx_news_domain_model_news = [
         ],
         'keywords' => [
             'exclude' => true,
-            'label' => $GLOBALS['TCA']['pages']['columns']['keywords']['label'],
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.keywords',
             'config' => [
                 'type' => 'text',
                 'placeholder' => $ll . 'tx_news_domain_model_news.keywords.placeholder',
@@ -711,8 +711,8 @@ if ($categoryRestrictionSetting) {
 
     // prepend category restriction at the beginning of foreign_table_where
     if (!empty($categoryRestriction)) {
-        $tx_news_domain_model_news['columns']['categories']['config']['foreign_table_where'] = $categoryRestriction .
-            $tx_news_domain_model_news['columns']['categories']['config']['foreign_table_where'];
+        $tx_news_domain_model_news['columns']['categories']['config']['foreign_table_where'] = $categoryRestriction
+            . $tx_news_domain_model_news['columns']['categories']['config']['foreign_table_where'];
     }
 }
 

@@ -611,6 +611,33 @@
             <trans-unit id="hiddenContentElements.description">
                 <source>Content elements are hidden in sys folders of type "news"!</source>
             </trans-unit>
-        </body>
+            <trans-unit id="newsContentElement.preview.modal.title">
+                <source>Improved editing of content elements</source>
+            </trans-unit>
+            <trans-unit id="newsContentElement.preview.modal.lead">
+                <source>The extension EXT:news_content_elements can improve the handling of content elements within a news record drastically.</source>
+            </trans-unit>
+            <trans-unit id="newsContentElement.preview.modal.line1">
+                <source>Easy editing experience</source>
+            </trans-unit>
+            <trans-unit id="newsContentElement.preview.modal.line2">
+                 <source>Instead of using the inline relation, editors can now use the familiar Page Module to add any content element (like Text with media elements) inside their news article.</source>
+             </trans-unit>
+            <trans-unit id="newsContentElement.preview.modal.line3">
+                 <source>Better stories, same workflow</source>
+             </trans-unit>
+            <trans-unit id="newsContentElement.preview.modal.line4">
+                 <source>This gives editors the freedom to create richer, more engaging news articles while continuing to work within the familiar News module.</source>
+             </trans-unit>
+            <trans-unit id="newsContentElement.preview.modal.line5">
+                 <source>Available as an add-on!</source>
+             </trans-unit>
+            <trans-unit id="newsContentElement.preview.modal.line6">
+                 <source>This feature is provided as a payed add-on for EXT:news!</source>
+             </trans-unit>
+             <trans-unit id="newsContentElement.preview.modal.link">
+                 <source>Details &amp; Purchase information</source>
+             </trans-unit>
+         </body>
     </file>
 </xliff>

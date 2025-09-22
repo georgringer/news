@@ -106,9 +106,9 @@ class TagRepository extends AbstractDemandedRepository
                 list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
                 // count == 1 means that no direction is given
                 if ($ascDesc) {
-                    $orderings[$orderField] = (strtolower($ascDesc) == 'desc') ?
-                        QueryInterface::ORDER_DESCENDING :
-                        QueryInterface::ORDER_ASCENDING;
+                    $orderings[$orderField] = (strtolower($ascDesc) == 'desc')
+                        ? QueryInterface::ORDER_DESCENDING
+                        : QueryInterface::ORDER_ASCENDING;
                 } else {
                     $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
                 }

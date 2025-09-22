@@ -30,14 +30,9 @@ class RenderMediaViewHelper extends AbstractViewHelper
 
     protected $replaceMediaTag = '/(?:<p>\s*)?\\[media\\](?:\s*<\/p>)?/';
 
-    /** @var string */
-    protected $imgClass = '';
-
-    /** @var string */
-    protected $videoClass = '';
-
-    /** @var string */
-    protected $audioClass = '';
+    protected string $imgClass = '';
+    protected string $videoClass = '';
+    protected string $audioClass = '';
 
     /**
      * Initialize all arguments. You need to override this method and call
@@ -48,9 +43,9 @@ class RenderMediaViewHelper extends AbstractViewHelper
     public function initializeArguments()
     {
         $this->registerArgument('news', 'object', 'the news post', true);
-        $this->registerArgument('imgClass', 'string', 'add css class to images');
-        $this->registerArgument('videoClass', 'string', 'wrap videos in a div with this class');
-        $this->registerArgument('audioClass', 'string', 'wrap audio files in a div with this class');
+        $this->registerArgument('imgClass', 'string', 'add css class to images', false, '');
+        $this->registerArgument('videoClass', 'string', 'wrap videos in a div with this class', false, '');
+        $this->registerArgument('audioClass', 'string', 'wrap audio files in a div with this class', false, '');
         $this->registerArgument('fileIndex', 'int', 'index of image to start with', false, 0);
         $this->registerArgument('cropVariant', 'string', 'select a cropping variant, in case multiple croppings have been specified or stored in FileReference', false, 'default');
     }
@@ -163,9 +158,9 @@ class RenderMediaViewHelper extends AbstractViewHelper
         /** @var News $news */
         $news = $this->arguments['news'];
 
-        $this->imgClass = htmlspecialchars($this->arguments['imgClass']);
-        $this->videoClass = htmlspecialchars($this->arguments['videoClass']);
-        $this->audioClass = htmlspecialchars($this->arguments['audioClass']);
+        $this->imgClass = htmlspecialchars((string)($this->arguments['imgClass'] ?? ''));
+        $this->videoClass = htmlspecialchars((string)($this->arguments['videoClass'] ?? ''));
+        $this->audioClass = htmlspecialchars((string)($this->arguments['audioClass'] ?? ''));
 
         $mediaFiles = $news->getMediaNonPreviews();
 

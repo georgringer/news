@@ -486,9 +486,9 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
             }
 
             if (!empty($recursiveLevelText)) {
-                $recursiveLevelText = '<br />' .
-                    htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.recursive')) . ' ' .
-                    $recursiveLevelText;
+                $recursiveLevelText = '<br />'
+                    . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.recursive')) . ' '
+                    . $recursiveLevelText;
             }
 
             $this->tableData[] = [
