@@ -274,7 +274,7 @@ class NewsController extends NewsBaseController
 
         }
 
-        Cache::addPageCacheTagsByDemandObject($demand);
+        Cache::addPageCacheTagsByDemandObject($demand, $newsRecords->toArray());
         return $this->htmlResponse();
     }
 
