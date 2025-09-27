@@ -2,3 +2,11 @@
     /*border-left:3px solid #d9534f;*/
     border-inline-start:3px solid var(--token-color-blue-40) !important;
 }
+
+@media (prefers-color-scheme: dark) {
+    img[src*="news_domain_model_news"][src$=".svg"],
+    img[src$="donation.svg"],
+    img[src$="double_check.svg"] {    
+	filter: brightness(0) invert(1);
+    }
+}
