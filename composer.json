@@ -84,7 +84,15 @@
         "post-autoload-dump": [
             "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
         ],
+        "doc-init": "docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:latest --config=Documentation",
+        "doc-make": "make docs",
+        "doc-watch": "docker run --rm -it --pull always \\\n  -v \"./Documentation:/project/Documentation\" \\\n  -v \"./Documentation-GENERATED-temp:/project/Documentation-GENERATED-temp\" \\\n  -p 5173:5173 ghcr.io/garvinhicking/typo3-documentation-browsersync:latest\nopen \"http://localhost:5173/Documentation-GENERATED-temp/Index.html\"",
         "cs": "php ./.Build/bin/php-cs-fixer fix  --dry-run -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
         "csfix": "php ./.Build/bin/php-cs-fixer fix  -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./"
+    },
+    "scripts-descriptions": {
+      "doc-init": "Initialize documentation rendering",
+      "doc-make": "Render documentation",
+      "doc-watch": "Render documentation including a watcher"
     }
 }
