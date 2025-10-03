@@ -3,19 +3,19 @@ plugin.tx_news {
     templateRootPaths {
       0 = EXT:news/Resources/Private/Templates/
       1 = EXT:news/Resources/Private/Templates/Styles/Twb/Templates/
-      2 = {$plugin.tx_news.view.twb.templateRootPath}
+      2 = {$plugin.tx_news.view.twb.templateRootPath ?? $news.view.templateRootPath}
     }
 
     partialRootPaths {
       0 = EXT:news/Resources/Private/Partials/
       1 = EXT:news/Resources/Private/Templates/Styles/Twb/Partials/
-      2 = {$plugin.tx_news.view.twb.partialRootPath}
+      2 =  {$plugin.tx_news.view.twb.partialRootPath ?? $news.view.partialRootPath}
     }
 
     layoutRootPaths {
       0 = EXT:news/Resources/Private/Layouts/
       1 = EXT:news/Resources/Private/Templates/Styles/Twb/Layouts/
-      2 = {$plugin.tx_news.view.twb.layoutRootPath}
+      2 = {$plugin.tx_news.view.twb.layoutRootPath ?? $news.view.layoutRootPath}
     }
   }
 

@@ -1,0 +1,10 @@
+<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+
+    <g>
+        <title>Layer 1</title>
+        <rect stroke="#0000bc" id="svg_2" height="39.4109" width="39.26362" y="0.29412" x="0.29455" fill="#d7e5de"/>
+        <path id="svg_1"
+              d="m31.52841,13.09804l-17.998,0l0,-2l17.998,0l0,2zm-17.999,8l17.999,0l0,-2l-17.999,0l0,2zm0,-4l17.999,0l0,-2l-17.999,0l0,2zm-4,6l2,0l0,-16l22,0l0,28l-16,0l0,2l18,0l0,-32l-26,0l0,18zm8,7l-6,-5l0,4l-8,0l0,2l8,0l0,4l6,-5z"
+              fill="currentColor"/>
+    </g>
+</svg>
