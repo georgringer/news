@@ -43,3 +43,4 @@ Every TSconfig configuration of extension news starts with :typoscript:`tx_news.
    General
    Administration
    Plugin
+   NewContentElementWizard
