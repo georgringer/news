@@ -19,10 +19,10 @@ plugin.tx_seo {
 						# set if you need another sort direction
 						# sortDirection = DESC
 						lastModifiedField = tstamp
-						pid = {$plugin.tx_news.settings.sitemap.startingpoint ?? $news.sitemap.startingpoint}
-						recursive = {$plugin.tx_news.settings.sitemap.recursive ?? $news.sitemap.recursive}
+						pid = {$plugin.tx_news.settings.sitemap.startingpoint}
+						recursive = {$plugin.tx_news.settings.sitemap.recursive}
 						url {
-							pageId = {$plugin.tx_news.settings.sitemap.detailPid ?? $news.sitemap.detail}
+							pageId = {$plugin.tx_news.settings.sitemap.detailPid}
 
 							## enable to use date in url
 							# hrDate = 0

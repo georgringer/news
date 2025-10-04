@@ -1,8 +1,0 @@
-config.recordLinks.tx_news {
-    forceLink = 0
-    typolink {
-        parameter = {$news.recordLinks.detail}
-        additionalParams.data = field:uid
-        additionalParams.wrap = &tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[news]=|
-    }
-}

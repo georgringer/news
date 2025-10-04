@@ -136,7 +136,7 @@ detailPidDetermination
 .. confval:: detailPidDetermination
 
    :type: string, comma separated list of keywords
-   :Default: "flexform, categories, siteSettings, default"
+   :Default: "flexform, categories, default"
    :Path: plugin.tx_news.settings
 
    This setting defines which page is used for the link to the detail view.

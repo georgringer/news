@@ -13,7 +13,6 @@ use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Service\SettingsService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 
-use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -57,10 +56,10 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     /** @var SettingsService */
     protected $pluginSettingsService;
 
-    protected array $detailPidDeterminationCallbacks = [
+    /** @var array */
+    protected $detailPidDeterminationCallbacks = [
         'flexform' => 'getDetailPidFromFlexform',
         'categories' => 'getDetailPidFromCategories',
-        'siteSettings' => 'getDetailPidFromSiteSettings',
         'default' => 'getDetailPidFromDefaultDetailPid',
     ];
 
@@ -181,9 +180,9 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     ): array {
         if (!isset($configuration['parameter'])) {
             $detailPid = 0;
-            // if TS is not set, use hardcoded fallback
+            // if TS is not set, prefer flexform setting
             if (!isset($tsSettings['detailPidDetermination'])) {
-                $detailPidDeterminationMethods = ['flexform', 'siteSettings'];
+                $detailPidDeterminationMethods = ['flexform'];
             } else {
                 $detailPidDeterminationMethods = GeneralUtility::trimExplode(
                     ',',
@@ -210,7 +209,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $configuration['additionalParams'] = ($configuration['additionalParams'] ?? '') . '&tx_news_pi1[news]=' . $this->getNewsId($newsItem);
         $configuration['additionalParams'] .= '&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail';
 
-        // Add date as human-readable
+        // Add date as human readable
         if ((isset($tsSettings['link']['hrDate']) && $tsSettings['link']['hrDate'] == 1)
             || (isset($tsSettings['link']['hrDate']['_typoScriptNodeValue']) && $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1)
         ) {
@@ -293,15 +292,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     protected function getDetailPidFromFlexform($settings, $newsItem): int
     {
         return isset($settings['detailPid']) ? (int)$settings['detailPid'] : 0;
-    }
-
-    protected function getDetailPidFromSiteSettings(): int
-    {
-        $site = $GLOBALS['TYPO3_REQUEST']->getAttribute('site');
-        if ($site instanceof Site) {
-            return (int)$site->getSettings()->get('news.pages.detail');
-        }
-        return 0;
     }
 
     protected function initializeContentObjectRenderer(): void

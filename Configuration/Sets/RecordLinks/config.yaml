@@ -1,4 +1,0 @@
-name: georgringer/news-recordlinks
-label: 'EXT:news :: Record Links'
-dependencies:
-  - georgringer/news
