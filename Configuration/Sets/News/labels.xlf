@@ -53,16 +53,13 @@
 				<source>Page with detail view</source>
 			</trans-unit>
 			<trans-unit id="settings.description.news.pages.detail">
-				<source>Global configuration for the detail view, used for all links</source>
+				<source>Site-wide configuration for the detail view, used for all links</source>
 			</trans-unit>
 			<trans-unit id="settings.news.preview.page">
-				<source>Page with detail plugin</source>
+				<source>Page with detail plugin used for previews</source>
 			</trans-unit>
             <trans-unit id="settings.news.preview.mode">
 				<source>Preview mode</source>
-			</trans-unit>
-			 <trans-unit id="settings.description.news.preview.mode">
-				<source>FO</source>
 			</trans-unit>
 
 			<trans-unit id="settings.news.view.templateRootPath">

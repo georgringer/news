@@ -9,7 +9,7 @@ Configuration with Site-Sets
 
 The extension ships sets which can are used to configure various features.
 
-.. tip::
+.. seealso::
     Read more about Site Sets in the general documentation: :ref:`Site sets <t3coreapi/13:site-sets>`!
 
 
@@ -31,6 +31,7 @@ The extension ships sets which can are used to configure various features.
     .. figure:: /Images/References/Sets/set-settings.png
        :class: with-shadow
 
+#.  All settings are persisted in :file:`/config/sites/<your-site-identifier>/settings.yaml`.
 
 Available Site Sets
 ===================
@@ -42,15 +43,82 @@ Available Site Sets
     :local:
     :depth: 1
 
+.. _siteset-basic:
 
 EXT:news :: Basic Setup
 -----------------------
 
-EXT:news :: Bootstrap 5 Styles
-------------------------------
+This is the basic site set. It is loaded **automatically** by all other site sets of this extension.
 
-EXT:news :: Bootstrap 4 Styles
-------------------------------
+Available settings
+~~~~~~~~~~~~~~~~~~
+
+..  confval-menu::
+    :name: confval-group-basic
+    :type:
+    :required:
+    :display: table
+
+    .. confval:: news.view.templateRootPath
+       :type: string
+       :required: false
+       :default: EXT:news/Resources/Private/Templates/
+
+       Path to the templates
+
+    .. confval:: news.view.partialRootPath
+       :type: string
+       :required: false
+       :default: EXT:news/Resources/Private/Partials/
+
+       Path to the partials
+
+    .. confval:: news.view.layoutRootPath
+       :type: string
+       :required: false
+       :default: EXT:news/Resources/Private/Layouts/
+
+       Path to the layouts
+
+    .. confval:: news.pages.detail
+       :type: page
+       :required: false
+       :default: 0
+
+       Page with detail view. This can be used as a site wide configuration for the detail view, used for all links to news records.
+
+    .. confval:: news.preview.page
+       :type: page
+       :required: false
+       :default: 0
+
+       Page with detail plugin used for previews.
+       Allow editors to "save & view" a news record by providing the detail page
+
+    .. confval:: news.preview.mode
+       :type: enum
+       :required: false
+       :default: news
+
+       Either select "news" or "news_preview" as used argument name.
+       The latter is required if preview should also work for hidden or restricted records.
+
+       .. seealso::
+        Read more about the required additional configuration at :ref:`tsPreviewHiddenRecords`.
+
+
+.. _siteset-twb5:
+
+EXT:news :: Twitter Bootstrap 5 Styles
+--------------------------------------
+Load the default template variants using Twitter Bootstrap v5 styles.
+
+
+.. _siteset-twb4:
+
+EXT:news :: Twitter Bootstrap 4 Styles
+--------------------------------------
+Load the default template variants using Twitter Bootstrap v4 styles.
 
 .. _siteset-record-links:
 
@@ -104,6 +172,8 @@ Available settings
        :default: 0
 
        Detail page. Select the page used for the detail view of the link.
+
+.. _siteset-sitemap:
 
 EXT:news :: Sitemap
 -------------------
