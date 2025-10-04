@@ -1,1 +1,15 @@
 @import 'EXT:news/Configuration/TypoScript/setup.typoscript'
+
+plugin.tx_news.view {
+    templateRootPaths {
+        1 = {$news.view.templateRootPath}
+    }
+
+    partialRootPaths {
+        1 = {$news.view.partialRootPath}
+    }
+
+    layoutRootPaths {
+        1 = {$news.view.layoutRootPath}
+    }
+}

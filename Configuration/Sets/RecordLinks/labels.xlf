@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:news/Configuration/Sets/RecordLinks/labels.xlf" product-name="news">
+		<header/>
+		<body>
+			<trans-unit id="settings.news.recordLinks.label">
+				<source>The label used in the Link Browser</source>
+			</trans-unit>
+			<trans-unit id="settings.description.news.recordLinks.label">
+				<source>Use either a localized label path or define the label directly.</source>
+			</trans-unit>
+
+			<trans-unit id="settings.news.recordLinks.storagePid">
+				<source>The link browser starts with the given page</source>
+			</trans-unit>
+			<trans-unit id="settings.description.news.recordLinks.storagePid">
+				<source>Ease the workflow by preselecting the news article storage page.</source>
+			</trans-unit>
+
+			<trans-unit id="settings.news.recordLinks.hidePageTree">
+				<source>Hide the page tree in the link browser</source>
+			</trans-unit>
+			<trans-unit id="settings.description.news.recordLinks.hidePageTree">
+				<source>If only one storage page is used, the page tree can be hidden with this setting.</source>
+			</trans-unit>
+
+			<trans-unit id="settings.news.recordLinks.detail">
+                <source>Detail page</source>
+            </trans-unit>
+            <trans-unit id="settings.description.news.recordLinks.detail">
+                <source>Select the page used for the detail view of the link.</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

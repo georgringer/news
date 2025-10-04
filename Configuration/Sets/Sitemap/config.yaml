@@ -1,5 +1,5 @@
 name: georgringer/news-sitemap
-label: News Sitemap
+label: 'EXT:news :: Sitemap'
 dependencies:
   - georgringer/news
   - typo3/seo-sitemap

@@ -11,6 +11,7 @@ In-depth reference for integrators and developers.
    :glob:
 
    ExtensionConfiguration/Index
+   SiteSets/Index
    TypoScript/Index
    TsConfig/Index
    Events/Index

@@ -1,1 +1,17 @@
 @import 'EXT:news/Configuration/TypoScript/SeoSitemap/setup.typoscript'
+
+plugin.tx_seo.config {
+    xmlSitemap {
+        sitemaps {
+            news {
+                config {
+                    pid = {$news.sitemap.startingpoint}
+                    recursive = {$news.sitemap.recursive}
+                    url {
+                        pageId = {$news.sitemap.detail}
+                    }
+                }
+            }
+        }
+    }
+}

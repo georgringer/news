@@ -1,0 +1,13 @@
+TCEMAIN.preview {
+    tx_news_domain_model_news {
+        previewPageId = {$news.preview.page}
+        useDefaultLanguageRecord = 0
+        fieldToParameterMap {
+            uid = tx_news_pi1[{$news.preview.mode}]
+        }
+        additionalGetParameters {
+            tx_news_pi1.controller = News
+            tx_news_pi1.action = detail
+        }
+    }
+}

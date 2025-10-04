@@ -11,6 +11,10 @@ Until 8 LTS a 3rd party extension has been required but since then it is integra
    This tutorial is also valid for creating links to any other record.
 
 
+..  versionadded:: news v13.0
+    A site is provided to configure record links on one place. See :ref:`siteset-record-links`.
+
+
 Configuration for the backend
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

@@ -4,31 +4,16 @@
 Configuration
 =============
 
-.. _configuration-site-set:
-
 Site Sets
 =========
 
-..  versionadded:: TYPO3 v13.1 / news v12.0
+..  versionadded:: TYPO3 v13.4.15 / news v13.0
     If you are working with TYPO3 v12.4, use :ref:`configuration-typoscript-record`.
 
-The extension ships some TypoScript code which can be included in the site
-configuration via :ref:`Site sets <t3coreapi/13:site-sets>`:
+Using Site Sets is the new way how to configure your site and extensions.
+Read more about it in the TYPO3 documentation at :ref:`Site sets <t3coreapi/13:site-sets>`.
 
-#.  Got to backend module :guilabel:`Site Management > Sites`.
-
-#.  Edit the configuration of your site.
-
-#.  On the first tab go to :guilabel:`Sets for this Site`.
-
-#.  If you want to news with the plain template choose site set :guilabel:`News`.
-
-#.  If you need bootstrap styles choose the site set :guilabel:`News Twb5`
-    instead.
-
-#.  If :composer:`typo3/cms-seo` is installed and you want to feature a sitemap
-    containing all news, choose :guilabel:`News Sitemap`.
-
+Follow :ref:`configuration-site-set` how to use EXT:news in combination with Site Sets.
 
 .. _configuration-typoscript-record:
 
