@@ -638,6 +638,9 @@
              <trans-unit id="newsContentElement.preview.modal.link">
                  <source>Details &amp; Purchase information</source>
              </trans-unit>
+             <trans-unit id="pluginPreview.global.detailPid">
+                <source>Global set pageId for single news display</source>
+            </trans-unit>
              <trans-unit id="recordLinks.label">
                  <source>News records</source>
              </trans-unit>
