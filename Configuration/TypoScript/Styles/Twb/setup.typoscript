@@ -9,7 +9,7 @@ plugin.tx_news {
     partialRootPaths {
       0 = EXT:news/Resources/Private/Partials/
       1 = EXT:news/Resources/Private/Templates/Styles/Twb/Partials/
-      2 =  {$plugin.tx_news.view.twb.partialRootPath}
+      2 = {$plugin.tx_news.view.twb.partialRootPath}
     }
 
     layoutRootPaths {
