@@ -297,7 +297,11 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
     protected function getDetailPidFromSiteSettings(): int
     {
-        $site = $GLOBALS['TYPO3_REQUEST']->getAttribute('site');
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        if ($request === null) {
+            return 0;
+        }
+        $site = $request->getAttribute('site');
         if ($site instanceof Site) {
             return (int)$site->getSettings()->get('news.pages.detail');
         }
