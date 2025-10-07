@@ -620,6 +620,50 @@
         <source>Content elements are hidden in sys folders of type "news"!</source>
         <target state="final">Indholdselementer er skjult i systemmapper af typen "nyheder"!</target>
       </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.title" approved="yes">
+        <source>Improved editing of content elements</source>
+        <target state="final">Forbedret redigering af indholdselementer</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.lead" approved="yes">
+        <source>The extension EXT:news_content_elements can improve the handling of content elements within a news record drastically.</source>
+        <target state="final">Udvidelsen EXT:news_content_elements kan forbedre håndteringen af indholdselementer i et nyhedselement.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line1" approved="yes">
+        <source>Easy editing experience</source>
+        <target state="final">Nem redigeringsoplevelse</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line2" approved="yes">
+        <source>Instead of using the inline relation, editors can now use the familiar Page Module to add any content element (like Text with media elements) inside their news article.</source>
+        <target state="final">I stedet for at bruge inline relation, kan redaktører nu bruge det velkendte sidemodul til at tilføje ethvert indholdselement (som for eksempel Tekst med medie elementer) inde i deres nyhedsartikel.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line3" approved="yes">
+        <source>Better stories, same workflow</source>
+        <target state="final">Bedre historier, samme arbejdsgang</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line4" approved="yes">
+        <source>This gives editors the freedom to create richer, more engaging news articles while continuing to work within the familiar News module.</source>
+        <target state="final">Dette giver redaktørerne frihed til at skabe bredere og mere engagerende nyhedsartikler, mens de fortsætter med at arbejde inden for det nyhedsmodul de allerede kender.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line5" approved="yes">
+        <source>Available as an add-on!</source>
+        <target state="final">Tilgængelig som tilføjelse!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line6" approved="yes">
+        <source>This feature is provided as a payed add-on for EXT:news!</source>
+        <target state="final">Denne funktion leveres som en betalt tilføjelse til EXT:news!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.link" approved="yes">
+        <source>Details &amp; Purchase information</source>
+        <target state="final">Detaljer &amp; Indkøbsoplysninger</target>
+      </trans-unit>
+      <trans-unit id="pluginPreview.global.detailPid" approved="yes">
+        <source>Global set pageId for single news display</source>
+        <target state="final">Global sæt sideId for enkelt nyhedsvisning</target>
+      </trans-unit>
+      <trans-unit id="recordLinks.label" approved="yes">
+        <source>News records</source>
+        <target state="final">Nyhedselementer</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
