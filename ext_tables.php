@@ -64,7 +64,7 @@ $boot = static function (): void {
                 'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
                 'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
                 'inheritNavigationComponentFromMainModule' => false,
-                'path' => '/module/web/NewsAdministration/',
+                'path' => '/module/web/NewsAdministration',
             ]
         );
     }
