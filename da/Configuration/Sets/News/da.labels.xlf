@@ -3,30 +3,94 @@
   <file source-language="en" datatype="plaintext" original="EXT:news/Configuration/Sets/News/labels.xlf" product-name="news" target-language="da">
     <header/>
     <body>
-			
-			
-			
-			
-			
-			
-			
-		    
-			
-            
-			
-			
-            
-            
-            
-
-			
-			
-			
-            
-
-			
-			
-			
-		</body>
+      <trans-unit id="label" approved="yes">
+        <source>EXT:news</source>
+        <target state="final">EXT:news</target>
+      </trans-unit>
+      <trans-unit id="categories.news.preview" approved="yes">
+        <source>Preview</source>
+        <target state="final">Forhåndsvisning</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.preview" approved="yes">
+        <source>Show a view icon in the toolbar to be able to see how the article looks in the frontend.</source>
+        <target state="final">Vis en visningsikon i værktøjslinjen for at se hvordan artiklen ser ud i frontend.</target>
+      </trans-unit>
+      <trans-unit id="categories.news.pages" approved="yes">
+        <source>Pages</source>
+        <target state="final">Sider</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.pages" approved="yes">
+        <source>Configuration of important pages</source>
+        <target state="final">Konfiguration af vigtige sider</target>
+      </trans-unit>
+      <trans-unit id="categories.news.templates" approved="yes">
+        <source>Templates</source>
+        <target state="final">Skabeloner</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.templates" approved="yes">
+        <source>Configuration of Layouts, Templates &amp; Partials</source>
+        <target state="final">Konfiguration af layouts, skabeloner &amp; partials</target>
+      </trans-unit>
+      <trans-unit id="categories.news.sitemap" approved="yes">
+        <source>Sitemap</source>
+        <target state="final">Sitemap</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.sitemap" approved="yes">
+        <source>The primary benefits of an XML sitemap are improved search engine discovery and indexing. It increases crawl efficiency, especially for large or complex sites, and helps search engines understand the importance and structure of your content.</source>
+        <target state="final">De primære fordele ved en XML sitemap er forbedret søgemaskineoptimering og -indeksering. Det øger gennemgangseffektivitet, især for store eller komplekse websteder, og hjælper søgemaskiner med at forstå betydningen og strukturen af dit indhold.</target>
+      </trans-unit>
+      <trans-unit id="categories.news.recordLinks" approved="yes">
+        <source>Record Links</source>
+        <target state="final">Elementlinks</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.recordLinks" approved="yes">
+        <source>Enable editors to create links to news records</source>
+        <target state="final">Giv redaktører mulighed for at oprette links til nyhedselementer</target>
+      </trans-unit>
+      <trans-unit id="categories.news.recordLinks.backend" approved="yes">
+        <source>Backend</source>
+        <target state="final">Backend</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.recordLinks.backend" approved="yes">
+        <source>Configuration for Backend (used in Tsconfig)</source>
+        <target state="final">Konfiguration af Backend (brugt i Tsconfig)</target>
+      </trans-unit>
+      <trans-unit id="categories.news.recordLinks.frontend" approved="yes">
+        <source>Frontend</source>
+        <target state="final">Frontend</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.recordLinks.frontend" approved="yes">
+        <source>Configuration for Frontend (used in TypoScript)</source>
+        <target state="final">Konfiguration af Frontend (brugt i Tsconfig)</target>
+      </trans-unit>
+      <trans-unit id="settings.news.pages.detail" approved="yes">
+        <source>Page with detail view</source>
+        <target state="final">Side med detaljevisning</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.pages.detail" approved="yes">
+        <source>Site-wide configuration for the detail view, used for all links</source>
+        <target state="final">Sidevis konfiguration for detaljevisning, brugt for alle links</target>
+      </trans-unit>
+      <trans-unit id="settings.news.preview.page" approved="yes">
+        <source>Page with detail plugin used for previews</source>
+        <target state="final">Side med detalje-plugin brugt til forhåndsvisninger</target>
+      </trans-unit>
+      <trans-unit id="settings.news.preview.mode" approved="yes">
+        <source>Preview mode</source>
+        <target state="final">Forhåndsvisningstilstand</target>
+      </trans-unit>
+      <trans-unit id="settings.news.view.templateRootPath" approved="yes">
+        <source>Path to template root</source>
+        <target state="final">Sti til skabelonrod</target>
+      </trans-unit>
+      <trans-unit id="settings.news.view.partialRootPath" approved="yes">
+        <source>Path to template partials</source>
+        <target state="final">Sti til skabelon partials</target>
+      </trans-unit>
+      <trans-unit id="settings.news.view.layoutRootPath" approved="yes">
+        <source>Path to template layouts</source>
+        <target state="final">Sti til skabelonlayouts</target>
+      </trans-unit>
+    </body>
   </file>
 </xliff>
