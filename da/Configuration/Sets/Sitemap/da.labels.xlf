@@ -3,13 +3,10 @@
   <file source-language="en" datatype="plaintext" original="EXT:news/Configuration/Sets/Sitemap/labels.xlf" product-name="news" target-language="da">
     <header/>
     <body>
-			
-			
-			
-			
-            
-            
-			
-		</body>
+      <trans-unit id="settings.news.sitemap.detail" approved="yes">
+        <source>Detail page</source>
+        <target state="final">Detaljeside</target>
+      </trans-unit>
+    </body>
   </file>
 </xliff>
