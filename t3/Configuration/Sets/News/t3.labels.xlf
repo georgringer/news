@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="EXT:news/Configuration/Sets/News/labels.xlf" product-name="news" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="label">
+        <source>EXT:news</source>
+        <target>crwdns377730:0crwdne377730:0</target>
+      </trans-unit>
+      <trans-unit id="categories.news.preview">
+        <source>Preview</source>
+        <target>crwdns377732:0crwdne377732:0</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.preview">
+        <source>Show a view icon in the toolbar to be able to see how the article looks in the frontend.</source>
+        <target>crwdns377734:0crwdne377734:0</target>
+      </trans-unit>
+      <trans-unit id="categories.news.pages">
+        <source>Pages</source>
+        <target>crwdns377736:0crwdne377736:0</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.pages">
+        <source>Configuration of important pages</source>
+        <target>crwdns377738:0crwdne377738:0</target>
+      </trans-unit>
+      <trans-unit id="categories.news.templates">
+        <source>Templates</source>
+        <target>crwdns377740:0crwdne377740:0</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.templates">
+        <source>Configuration of Layouts, Templates &amp; Partials</source>
+        <target>crwdns377742:0crwdne377742:0</target>
+      </trans-unit>
+      <trans-unit id="categories.news.sitemap">
+        <source>Sitemap</source>
+        <target>crwdns377744:0crwdne377744:0</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.sitemap">
+        <source>The primary benefits of an XML sitemap are improved search engine discovery and indexing. It increases crawl efficiency, especially for large or complex sites, and helps search engines understand the importance and structure of your content.</source>
+        <target>crwdns377746:0crwdne377746:0</target>
+      </trans-unit>
+      <trans-unit id="categories.news.recordLinks">
+        <source>Record Links</source>
+        <target>crwdns377748:0crwdne377748:0</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.recordLinks">
+        <source>Enable editors to create links to news records</source>
+        <target>crwdns377750:0crwdne377750:0</target>
+      </trans-unit>
+      <trans-unit id="categories.news.recordLinks.backend">
+        <source>Backend</source>
+        <target>crwdns377752:0crwdne377752:0</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.recordLinks.backend">
+        <source>Configuration for Backend (used in Tsconfig)</source>
+        <target>crwdns377754:0crwdne377754:0</target>
+      </trans-unit>
+      <trans-unit id="categories.news.recordLinks.frontend">
+        <source>Frontend</source>
+        <target>crwdns377756:0crwdne377756:0</target>
+      </trans-unit>
+      <trans-unit id="categories.description.news.recordLinks.frontend">
+        <source>Configuration for Frontend (used in TypoScript)</source>
+        <target>crwdns377758:0crwdne377758:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.pages.detail">
+        <source>Page with detail view</source>
+        <target>crwdns377760:0crwdne377760:0</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.pages.detail">
+        <source>Site-wide configuration for the detail view, used for all links</source>
+        <target>crwdns377762:0crwdne377762:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.preview.page">
+        <source>Page with detail plugin used for previews</source>
+        <target>crwdns377764:0crwdne377764:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.preview.mode">
+        <source>Preview mode</source>
+        <target>crwdns377766:0crwdne377766:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.view.templateRootPath">
+        <source>Path to template root</source>
+        <target>crwdns377768:0crwdne377768:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.view.partialRootPath">
+        <source>Path to template partials</source>
+        <target>crwdns377770:0crwdne377770:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.view.layoutRootPath">
+        <source>Path to template layouts</source>
+        <target>crwdns377772:0crwdne377772:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
