@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news" target-language="da">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>News system</source>
+			<target state="final">Nyhedssystem</target></trans-unit>
+      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
+				<source>Versatile news system</source>
+			<target state="final">Alsidigt nyhedssystem</target></trans-unit>
+      <trans-unit id="plugin.news_list.title" xml:space="preserve" approved="yes">
+				<source>News article list (incl. detail view)</source>
+			<target state="final">Nyhedsartikelliste (inkl. detaljevisning)</target></trans-unit>
+      <trans-unit id="plugin.news_list.description" xml:space="preserve" approved="yes">
+				<source>Listing of news articles chosen by various properties like storage folder, categories, time constraints, etc.
+					This plugin is capable of rendering the detail view as well.</source>
+			<target state="final">Liste over nyhedsartikler valgt med forskellige egenskaber som storage-mappe, kategorier, tidsbegrænsninger, osv.
+					Dette plugin er også i stand til at gengive detaljevisningen.</target></trans-unit>
+      <trans-unit id="plugin.news_list_sticky.title" xml:space="preserve" approved="yes">
+				<source>News article list</source>
+			<target state="final">Nyhedsartikelliste</target></trans-unit>
+      <trans-unit id="plugin.news_list_sticky.description" xml:space="preserve" approved="yes">
+				<source>Listing of news articles chosen by various properties like storage folder, categories, time constraints, etc.
+					This plugin cannot render the detail view of news articles.</source>
+			<target state="final">Liste over nyhedsartikler valgt med forskellige egenskaber som storage-mappe, kategorier, tidsbegrænsninger, osv.
+					Denne plugin er ikke i stand til at gengive detaljevisningen.</target></trans-unit>
+      <trans-unit id="plugin.news_detail.title" xml:space="preserve" approved="yes">
+				<source>News article detail view</source>
+			<target state="final">Nyhedsartikel detaljevisning</target></trans-unit>
+      <trans-unit id="plugin.news_detail.description" xml:space="preserve" approved="yes">
+				<source>Rendering the detail view of a news article.</source>
+			<target state="final">Viser detaljevisningen af en nyhedsartikel.</target></trans-unit>
+      <trans-unit id="plugin.news_date_menu.title" xml:space="preserve" approved="yes">
+				<source>Date menu of news articles</source>
+			<target state="final">Datomenu for nyhedsartikler</target></trans-unit>
+      <trans-unit id="plugin.news_date_menu.description" xml:space="preserve" approved="yes">
+				<source>Display a menu of months &amp; years of articles. The menu can be used to filter a list view dynamically.</source>
+			<target state="final">Vis en menu for måneder og års artikler. Menuen kan bruges til at filtrere en listevisning dynamisk.</target></trans-unit>
+      <trans-unit id="plugin.news_search_form.title" xml:space="preserve" approved="yes">
+				<source>News search form</source>
+			<target state="final">Nyheds søgeformular</target></trans-unit>
+      <trans-unit id="plugin.news_search_form.description" xml:space="preserve" approved="yes">
+				<source>Display a search form to let users search within articles.</source>
+			<target state="final">Vis en søgeformular, så brugerne kan søge i artikler.</target></trans-unit>
+      <trans-unit id="plugin.news_search_result.title" xml:space="preserve" approved="yes">
+				<source>News search result</source>
+			<target state="final">Nyheds søgeresultat</target></trans-unit>
+      <trans-unit id="plugin.news_search_result.description" xml:space="preserve" approved="yes">
+				<source>Display the result of the search.</source>
+			<target state="final">Vis resultatet af søgningen.</target></trans-unit>
+      <trans-unit id="plugin.news_selected_list.title" xml:space="preserve" approved="yes">
+				<source>News article list (curated)</source>
+			<target state="final">Nyhedsartikelliste (kurateret)</target></trans-unit>
+      <trans-unit id="plugin.news_selected_list.description" xml:space="preserve" approved="yes">
+				<source>Listing of manually picked news articles.</source>
+			<target state="final">Liste over manuelt valgte nyhedsartikler.</target></trans-unit>
+      <trans-unit id="plugin.category_list.title" xml:space="preserve" approved="yes">
+				<source>News category menu</source>
+			<target state="final">Nyhedskategori menu</target></trans-unit>
+      <trans-unit id="plugin.category_list.description" xml:space="preserve" approved="yes">
+				<source>Display a menu of categories. The menu can be used to filter a news list view dynamically.</source>
+			<target state="final">Vis en menu over kategorier. Menuen kan bruges til at filtrere en nyhedslistevisning dynamisk.</target></trans-unit>
+      <trans-unit id="plugin.tag_list.title" xml:space="preserve" approved="yes">
+				<source>News tag list</source>
+			<target state="final">Nyheds tagliste</target></trans-unit>
+      <trans-unit id="plugin.tag_list.description" xml:space="preserve" approved="yes">
+				<source>Display a list of tags. The list can be used to filter a news list view dynamically.</source>
+			<target state="final">Vis en liste over tags. Listen kan bruges til at filtrere en nyhedslistevisning dynamisk.</target></trans-unit>
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="final">Indstillinger</target></trans-unit>
+      <trans-unit id="flexforms_tab.additional" xml:space="preserve" approved="yes">
+				<source>Additional</source>
+			<target state="final">Yderligere</target></trans-unit>
+      <trans-unit id="flexforms_tab.template" xml:space="preserve" approved="yes">
+				<source>Template</source>
+			<target state="final">Skabelon</target></trans-unit>
+      <trans-unit id="flexforms_general.mode" xml:space="preserve" approved="yes">
+				<source>What to display</source>
+			<target state="final">Hvad skal vises</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_list" xml:space="preserve" approved="yes">
+				<source>List view</source>
+			<target state="final">Listevisning</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_listOnly" xml:space="preserve" approved="yes">
+				<source>List view (without overloading detail view)</source>
+			<target state="final">Listevisning (uden brug af detaljevisning)</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_detail" xml:space="preserve" approved="yes">
+				<source>Detail view</source>
+			<target state="final">Detaljevisning</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchform" xml:space="preserve" approved="yes">
+				<source>Search form</source>
+			<target state="final">Søgeformular</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchresult" xml:space="preserve" approved="yes">
+				<source>Search result</source>
+			<target state="final">Søgeresultater</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve" approved="yes">
+				<source>Date menu</source>
+			<target state="final">Datomenu</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_selectedlist" xml:space="preserve" approved="yes">
+				<source>List of selected items</source>
+			<target state="final">Liste over valgte artikler</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve" approved="yes">
+				<source>Category Menu</source>
+			<target state="final">Kategorimenu</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve" approved="yes">
+				<source>No view yet configured</source>
+			<target state="final">Ingen visningstype er valgt.</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="final">Søg</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve" approved="yes">
+				<source>Others</source>
+			<target state="final">Andre</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve" approved="yes">
+				<source>Tag list</source>
+			<target state="final">Tag-liste</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve" approved="yes">
+				<source>Archive</source>
+			<target state="final">Arkiv</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve" approved="yes">
+				<source>Only active (non archived)</source>
+			<target state="final">Kun aktive (ikke-arkiverede)</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve" approved="yes">
+				<source>Archived</source>
+			<target state="final">Arkiverede</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy" xml:space="preserve" approved="yes">
+				<source>Sort by</source>
+			<target state="final">Sortér efter</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve" approved="yes">
+				<source>Uid</source>
+			<target state="final">Unik ID</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
+				<source>Manual sorting</source>
+			<target state="final">Manuel sortering</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve" approved="yes">
+				<source>Last edited</source>
+			<target state="final">Sidst redigeret</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve" approved="yes">
+				<source>Created</source>
+			<target state="final">Oprettet</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="final">Indtastet dato/tid</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve" approved="yes">
+				<source>Title</source>
+			<target state="final">Titel</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection" xml:space="preserve" approved="yes">
+				<source>Sort direction</source>
+			<target state="final">Sorteringsrækkefølge</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve" approved="yes">
+				<source>Ascending</source>
+			<target state="final">Stigende</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve" approved="yes">
+				<source>Descending</source>
+			<target state="final">Faldende</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField" xml:space="preserve" approved="yes">
+				<source>Date field to use</source>
+			<target state="final">Datofelt der skal benyttes</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="final">Indtastet dato/tid</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve" approved="yes">
+				<source>Archive date</source>
+			<target state="final">Arkivdato</target></trans-unit>
+      <trans-unit id="flexforms_general.categories" xml:space="preserve" approved="yes">
+				<source>Category selection</source>
+			<target state="final">Kategorivalg</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve" approved="yes">
+				<source>Category mode</source>
+			<target state="final">Kategoriudvælgelse</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve" approved="yes">
+				<source>Don't care, show all</source>
+			<target state="final">Ligegyldigt, vis alle</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve" approved="yes">
+				<source>Show items with selected categories (OR)</source>
+			<target state="final">Vis nyheder med de valgte kategorier ("eller")</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve" approved="yes">
+				<source>Show items with selected categories (AND)</source>
+			<target state="final">Vis nyheder med de valgte kategorier ("og")</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve" approved="yes">
+				<source>Do NOT show items with selected categories (AND)</source>
+			<target state="final">Vis IKKE nyheder med de valgte kategorier (OG)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve" approved="yes">
+				<source>Do NOT show items with selected categories (OR)</source>
+			<target state="final">Vis IKKE nyheder med de valgte kategorier (ELLER)</target></trans-unit>
+      <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve" approved="yes">
+				<source>Include subcategories</source>
+			<target state="final">Inkludér underkategorier</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Article date higher than:</source>
+			<target state="final">Artikeldato højere end:</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Article date lower than:</source>
+			<target state="final">Artikeldato lavere end:</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction" xml:space="preserve" approved="yes">
+				<source>Top News</source>
+			<target state="final">Topnyhed</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.1" xml:space="preserve" approved="yes">
+				<source>only Top News records</source>
+			<target state="final">Vis kun topnyheder</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.2" xml:space="preserve" approved="yes">
+				<source>except Top News records</source>
+			<target state="final">Vis ikke topnyheder</target></trans-unit>
+      <trans-unit id="flexforms_general.singleNews" xml:space="preserve" approved="yes">
+				<source>Show a single news record</source>
+			<target state="final">Vis en enkelt nyhed</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve" approved="yes">
+				<source>Allow preview of hidden records</source>
+			<target state="final">Tillad forhåndsvisning af skjulte nyheder</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="final">Nej</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="final">Ja</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="final">Defineret i TypoScript</target></trans-unit>
+      <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="final">Defineret i TypoScript</target></trans-unit>
+      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
+				<source>[no constraint]</source>
+			<target state="final">[ingen begrænsning]</target></trans-unit>
+      <trans-unit id="flexforms_general.selectedList" xml:space="preserve" approved="yes">
+				<source>List of articles</source>
+			<target state="final">Liste over artikler</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve" approved="yes">
+				<source>Max width for media elements</source>
+			<target state="final">Maksimal bredde af medie-elementer</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve" approved="yes">
+				<source>Max height for media elements</source>
+			<target state="final">Maksimal højde af medie-elementer</target></trans-unit>
+      <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve" approved="yes">
+				<source>Length of teaser (in chars)</source>
+			<target state="final">Længde af koncentrat-tekst (antal bogstaver)</target></trans-unit>
+      <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
+				<source>Template Layout</source>
+			<target state="final">Skabelon-layout</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve" approved="yes">
+				<source>1</source>
+			<target state="final">1</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve" approved="yes">
+				<source>2</source>
+			<target state="final">2</target></trans-unit>
+      <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
+				<source>PageId for single news display</source>
+			<target state="final">Side der håndterer enkeltvisning af nyheder</target></trans-unit>
+      <trans-unit id="flexforms_additional.backPid" xml:space="preserve" approved="yes">
+				<source>PageId to return to</source>
+			<target state="final">Side man skal vende tilbage til</target></trans-unit>
+      <trans-unit id="flexforms_additional.listPid" xml:space="preserve" approved="yes">
+				<source>PageId for list display</source>
+			<target state="final">Side der håndterer listevisning</target></trans-unit>
+      <trans-unit id="flexforms_additional.limit" xml:space="preserve" approved="yes">
+				<source>Max records displayed</source>
+			<target state="final">Maksimalt antal nyheder der skal vises</target></trans-unit>
+      <trans-unit id="flexforms_additional.offset" xml:space="preserve" approved="yes">
+				<source>Starting with given news record. 0 means first record, 1 the 2nd one!</source>
+			<target state="final">Start fra indlæg nr.</target></trans-unit>
+      <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve" approved="yes">
+				<source>Hide the pagination</source>
+			<target state="final">Skjul sideinddelingen</target></trans-unit>
+      <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve" approved="yes">
+				<source>Items per Page</source>
+			<target state="final">Elementer pr. side</target></trans-unit>
+      <trans-unit id="flexforms_additional.topNewsFirst" xml:space="preserve" approved="yes">
+				<source>Sort &quot;Top news&quot; before</source>
+			<target state="final">Sortér "topnyheder" øverst</target></trans-unit>
+      <trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve" approved="yes">
+				<source>Disable override demand</source>
+			<target state="final">Deaktivér "override"-krav</target></trans-unit>
+      <trans-unit id="flexforms_additional.excludeAlreadyDisplayedNews" xml:space="preserve" approved="yes">
+				<source>Exclude already displayed news</source>
+			<target state="final">Udeluk allerede viste nyheder</target></trans-unit>
+      <trans-unit id="flexforms_additional.tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="final">Tags</target></trans-unit>
+      <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve" approved="yes">
+				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
+			<target state="final">Siden med uid "%s" er ikke længere tilgængelig!</target></trans-unit>
+      <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve" approved="yes">
+				<source>Record with uid "%s" is not available anymore!</source>
+			<target state="final">Nyhedselement med uid "%s" er ikke længere tilgængelig!</target></trans-unit>
+      <trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve" approved="yes">
+				<source>News record with uid &quot;%s&quot; is not available anymore!</source>
+			<target state="final">Nyhedselement med uid "%s" er ikke længere tilgængelig!</target></trans-unit>
+      <trans-unit id="pagemodule.switchToPage" xml:space="preserve" approved="yes">
+				<source>Switch to this page</source>
+			<target state="final">Skift til denne side</target></trans-unit>
+      <trans-unit id="pagemodule_simple" xml:space="preserve" approved="yes">
+				<source>Simple list</source>
+			<target state="final">Simpel liste</target></trans-unit>
+      <trans-unit id="pagemodule_advanced" xml:space="preserve" approved="yes">
+				<source>Advanced list</source>
+			<target state="final">Avanceret liste</target></trans-unit>
+      <trans-unit id="pagemodule_complex" xml:space="preserve" approved="yes">
+				<source>Full list</source>
+			<target state="final">Fuld liste</target></trans-unit>
+      <trans-unit id="extmng.prependAtCopy" xml:space="preserve" approved="yes">
+				<source>Prepend at copy: Prepend string &quot;copy X&quot;.</source>
+			<target state="final">Tilføj kopieringstekst v. kopi:Ved kopiering af nyheder tilføjes "Kopi X" til titlen</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction" xml:space="preserve" approved="yes">
+				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
+			</source>
+			<target state="final">Kategoribegrænsning: Begræns hvilke kategorier, der er tilgængelige i nyhedselementer.  PageTsConfig:
+	 	 	 	 TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_ID=120. Funktionen er under udvikling og kan derfor ikke forventes at virke korrekt!
+			</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve" approved="yes">
+				<source>Categories from current page</source>
+			<target state="final">Kategorier fra denne side</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.siteroot" xml:space="preserve" approved="yes">
+				<source>Categories from site root</source>
+			<target state="final">Kategorier fra sitets rodside</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.pages_tsconfig" xml:space="preserve" approved="yes">
+				<source>Page TsConfig</source>
+			<target state="final">Sidens TS-konfiguration</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.none" xml:space="preserve" approved="yes">
+				<source>No restriction</source>
+			<target state="final">Ingen restriktioner</target></trans-unit>
+      <trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve" approved="yes">
+				<source>Editor needs to have permissions to all selected categories to save a news item</source>
+			<target state="final">Redaktør skal have tilladelser til alle valgte kategorier for at gemme et nyhedselement</target></trans-unit>
+      <trans-unit id="extmng.manualSorting" xml:space="preserve" approved="yes">
+				<source>Enable manual sorting of news records</source>
+			<target state="final">Tillad manuel sortering af nyheder</target></trans-unit>
+      <trans-unit id="extmng.contentElementRelation" xml:space="preserve" approved="yes">
+				<source>Use content element relation:If set, content elements can be added to news records.</source>
+			<target state="final">Tillad indholdselement-relationer:Hvis denne er sat kan indholdselementer tilføjes til nyheder.</target></trans-unit>
+      <trans-unit id="extmng.contentElementPreview" xml:space="preserve" approved="yes">
+				<source>Improved preview of content element relations:If set, the preview in the backend is rendered as in the page module.</source>
+			<target state="final">Forbedret forhåndsvisning af indholdselement-relation: Hvis angivet vil forhåndsvisning i backend blive renderet som i sidemodulet.</target></trans-unit>
+      <trans-unit id="extmng.tagPid" xml:space="preserve" approved="yes">
+				<source>Define pid of tag records:Tags are collected on one central page.</source>
+			<target state="final">Definér pid for tags:Tags samles på een central side</target></trans-unit>
+      <trans-unit id="extmng.archiveDate" xml:space="preserve" approved="yes">
+				<source>Archive Date: Define if the archive date is a &quot;Date&quot; or &quot;Date &amp; Time&quot;</source>
+			<target state="final">Arkivdato:Definér om arkivdatoen er af typen "Date" eller "Date &amp; time"</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.date" xml:space="preserve" approved="yes">
+				<source>Date</source>
+			<target state="final">Dato</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve" approved="yes">
+				<source>Date &amp; Time</source>
+			<target state="final">Dato &amp; tid</target></trans-unit>
+      <trans-unit id="extmng.showImporter" xml:space="preserve" approved="yes">
+				<source>Show importer:Backend module to import into news</source>
+			<target state="final">Vis importmodul:Hvis dette er sat vil importmodulet i backend blive vist.</target></trans-unit>
+      <trans-unit id="extmng.storageUidImporter" xml:space="preserve" approved="yes">
+				<source>UID of storage to use when importing files/images:Default (fileadmin) storage is 1</source>
+			<target state="final">UID af lagringssted når filer/billeder importeres: Standard (fileadmin) lagringssted er 1</target></trans-unit>
+      <trans-unit id="extmng.resourceFolderImporter" xml:space="preserve" approved="yes">
+				<source>In which folder should the importer save files/images (has to exist)</source>
+			<target state="final">I hvilken mappe skal import gemme filer/billeder (skal eksistere)</target></trans-unit>
+      <trans-unit id="extmng.showAdministrationModule" xml:space="preserve" approved="yes">
+				<source>Show administration module:Backend module to administrate news records</source>
+			<target state="final">Vis administrationsmodul: Backendmodul til administration af nyhedselementer</target></trans-unit>
+      <trans-unit id="extmng.rteForTeaser" xml:space="preserve" approved="yes">
+				<source>Enable a RTE for the teaser field.</source>
+			<target state="final">Aktivér en RTE for koncentrat-felt.</target></trans-unit>
+      <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve" approved="yes">
+				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
+			<target state="final">Deaktivér krævet dato-felt: Hvis angivet vil datofeltet ikke være krævet og ikke automatisk blive udfyldt, når der oprettes et element.</target></trans-unit>
+      <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve" approved="yes">
+				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
+			<target state="final">Skjul sidetræ i administartionsmodul: For at forbedre brugervenligheden, kan sidetræet skjules for administrationsmodulet.</target></trans-unit>
+      <trans-unit id="extmng.mediaPreview" xml:space="preserve" approved="yes">
+				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
+			<target state="final">Vis miniaturer i backend listemodul: Hvis aktiveret, vil miniaturer af medieemner blive vist i listemodulet.</target></trans-unit>
+      <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve" approved="yes">
+				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
+			<target state="final">Avanceret konfiguration af forhåndsvisning for mediefiler: Hvis aktiveret, vil flere muligheder være tilgængelige for redaktører, som definerer hvor et medieelement skal vises.</target></trans-unit>
+      <trans-unit id="extmng.slugBehaviour" xml:space="preserve" approved="yes">
+				<source>Slug behaviour: uniqueInSite: The same slug can be used for news in different sites. Use this setting *only* if no news records are shared between sites. "unique" means that same news title will lead to different slug names.</source>
+			<target state="final">URL-segment egenskab: uniqueInSite: det samme URL-segmentkan bruges til nyheder på forskellige websider. Brug *kun* denne indstilling hvis ingen nyheder er delt mellem websider. "Unique" betyder at samme nyhedstitel vil føre til forskellige URL-segment navne.</target></trans-unit>
+      <trans-unit id="extmng.pageTreePluginPreview" xml:space="preserve" approved="yes">
+				<source>Plugin preview in page tree: If enabled pages with news plugins are highlighted by showing the plugin icon as status information [TYPO3 13 only]</source>
+			<target state="final">Plug-in forhåndsvisning i sidetræ: Hvis det er aktiveret, fremhæves sider med nyheds-plug-ins ved at vise plug-in-ikonet som status [kun TYPO3 13]</target></trans-unit>
+      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
+				<source>Use this overlay for news categories in the Backend</source>
+			<target state="final">Brug dette overlay for nyhedskategorier i backend.</target></trans-unit>
+      <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
+				<source>There are no languages available, so nothing to choose.</source>
+			<target state="final">Ingen sprog er tilgængelige, så intet kan vælges her.</target></trans-unit>
+      <trans-unit id="start_import" xml:space="preserve" approved="yes">
+				<source>Start import with %s record(s).</source>
+			<target state="final">Start importering af %s indlæg</target></trans-unit>
+      <trans-unit id="tag_suggest" xml:space="preserve" approved="yes">
+				<source>Tag &quot;%s&quot; could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
+			<target state="final">Tag "%s" kunne ikke findes. Ønsker du at oprette det? &lt;strong&gt;Klik her&lt;/strong&gt;</target></trans-unit>
+      <trans-unit id="tag_suggest2" xml:space="preserve" approved="yes">
+				<source>Tag could not be found, wanna create it? Click here!</source>
+			<target state="final">Tag kunne ikke findes. Vil du oprette det? Klik her!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve" approved="yes">
+				<source>No tag submitted!</source>
+			<target state="final">Intet tag blev gemt!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-newsid" xml:space="preserve" approved="yes">
+				<source>No news id given!</source>
+			<target state="final">Intet nyheds-ID blev opgivet!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-found" xml:space="preserve" approved="yes">
+				<source>No pid for the tag record could be found by reading settings of Extension Manager!</source>
+			<target state="final">Der er ikke defineret hvilken pid, forslag til tags skal hentes fra. Du kan rette dette i Extension Manageren</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag-created" xml:space="preserve" approved="yes">
+				<source>No new tag created!</source>
+			<target state="final">Der er ikke blevet oprettet et nyt tag!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-defined" xml:space="preserve" approved="yes">
+				<source>No page defined to save tag. Please add the id in the settings of the extension manager.</source>
+			<target state="final">Ingen side er defineret i gem-tagget. Tilføj id'et i indstillingerne i udvidelsesmanageren.</target></trans-unit>
+      <trans-unit id="module.headline" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="final">Indstillinger</target></trans-unit>
+      <trans-unit id="module.recursive" xml:space="preserve" approved="yes">
+				<source>Recursive</source>
+			<target state="final">Rekursivt</target></trans-unit>
+      <trans-unit id="module.timeRange" xml:space="preserve" approved="yes">
+				<source>Time range</source>
+			<target state="final">Tidsområde</target></trans-unit>
+      <trans-unit id="module.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Time Restriction</source>
+			<target state="final">Tidsbegrænsning</target></trans-unit>
+      <trans-unit id="module.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Time Restriction High</source>
+			<target state="final">Høj tidsbegrænsning</target></trans-unit>
+      <trans-unit id="module.createNewCategory" xml:space="preserve" approved="yes">
+				<source>Create a new category</source>
+			<target state="final">Opret en ny kategori</target></trans-unit>
+      <trans-unit id="module.createNewNewsRecord" xml:space="preserve" approved="yes">
+				<source>Create new news record</source>
+			<target state="final">Opret en ny nyhed</target></trans-unit>
+      <trans-unit id="module.createNewTag" xml:space="preserve" approved="yes">
+				<source>Create new tag record</source>
+			<target state="final">Opret nyt tag-element</target></trans-unit>
+      <trans-unit id="module.topNewsYes" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="final">Ja</target></trans-unit>
+      <trans-unit id="module.topNewsNo" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="final">Nej</target></trans-unit>
+      <trans-unit id="module.searchWord" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="final">Søg</target></trans-unit>
+      <trans-unit id="module.newsListing" xml:space="preserve" approved="yes">
+				<source>News Listing</source>
+			<target state="final">Nyhedsvisning</target></trans-unit>
+      <trans-unit id="module.newsCount" xml:space="preserve" approved="yes">
+				<source>%s news records</source>
+			<target state="final">%s nyhedselementer</target></trans-unit>
+      <trans-unit id="module.newsPidListing" xml:space="preserve" approved="yes">
+				<source>News Pid listing</source>
+			<target state="final">Nyheds Pid-visning</target></trans-unit>
+      <trans-unit id="module.donate" xml:space="preserve" approved="yes">
+				<source>Support &amp; Donate</source>
+			<target state="final">Support &amp; donér</target></trans-unit>
+      <trans-unit id="administration.title" xml:space="preserve" approved="yes">
+				<source>News administration</source>
+			<target state="final">Nyhedsadministration</target></trans-unit>
+      <trans-unit id="administration.nopageselected" xml:space="preserve" approved="yes">
+				<source>Please click the page title in the page tree to the left to show the records on that page.</source>
+			<target state="final">Klik på sidetitlen i sidetræet til venstre for at få vist elementer på siden.</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.header" xml:space="preserve" approved="yes">
+				<source>List pages with count of news &amp; category records</source>
+			<target state="final">Vis sider med antallet af nyheds- og kategorielementer</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.description" xml:space="preserve" approved="yes">
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
+			</source>
+			<target state="final">Vælg et rekursivt niveau for at få vist dit sidetræ med de relaterede elementer. Klik på sidetitlen for at få vist nyhedselementer på en side.
+			</target></trans-unit>
+      <trans-unit id="administration.nolimit" xml:space="preserve" approved="yes">
+				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
+			<target state="final">Ingen grænse er defineret i indstillingen "%s"! Inkludér standard TypoScript i root-siden.</target></trans-unit>
+      <trans-unit id="administration.toggleForm" xml:space="preserve" approved="yes">
+				<source>Show/Hide filter</source>
+			<target state="final">Vis/skjul filter</target></trans-unit>
+      <trans-unit id="administration.nonewsfound" xml:space="preserve" approved="yes">
+				<source>No news found</source>
+			<target state="final">Ingen nyheder fundet</target></trans-unit>
+      <trans-unit id="administration.nonewsfoundText" xml:space="preserve" approved="yes">
+				<source>The current page does not contain any news records. Either select another page in the page tree on the left or create the first news record on this page.</source>
+			<target state="final">Den aktuelle side indeholder ikke nogen nyhedselementer. Vælge enten en anden side i sidetræet til venstre, eller opret det første nyhedselement på denne side.</target></trans-unit>
+      <trans-unit id="administration.nonewsfoundSwitch" xml:space="preserve" approved="yes">
+				<source>See all pages containing news records</source>
+			<target state="final">Se alle sider der indeholder nyhedselementer</target></trans-unit>
+      <trans-unit id="administration.filter.hidden" xml:space="preserve" approved="yes">
+				<source>Hidden</source>
+			<target state="final">Skjult</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.hidden" xml:space="preserve" approved="yes">
+				<source>only hidden</source>
+			<target state="final">kun skjult</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve" approved="yes">
+				<source>only non-hidden</source>
+			<target state="final">kun synlig</target></trans-unit>
+      <trans-unit id="administration.donation.title" xml:space="preserve" approved="yes">
+				<source>Support &amp; Donate</source>
+			<target state="final">Support &amp; donér</target></trans-unit>
+      <trans-unit id="administration.donation.link" xml:space="preserve" approved="yes">
+				<source>Click so see all options</source>
+			<target state="final">Klik for at se alle muligheder</target></trans-unit>
+      <trans-unit id="administration.donation.lead_intro" xml:space="preserve" approved="yes">
+				<source>Great that you are using this extension!</source>
+			<target state="final">Tak fordi du bruger denne udvidelse!</target></trans-unit>
+      <trans-unit id="administration.donation.lead_full" xml:space="preserve" approved="yes">
+				<source>The editors have created %d articles with %d relations to categories.</source>
+			<target state="final">Redaktørerne har oprettet %d artikler med %d relationer til kategorier.</target></trans-unit>
+      <trans-unit id="administration.donation.lead_news_only" xml:space="preserve" approved="yes">
+				<source>The editors have created %d articles.</source>
+			<target state="final">Redaktørerne har oprettet %d artikler.</target></trans-unit>
+      <trans-unit id="administration.donation.lead_none" xml:space="preserve" approved="yes">
+				<source>Did you just setup the system? No articles yet created.</source>
+			<target state="final">Har du netop sat systemet op? Ingen artikler er oprettet endnu.</target></trans-unit>
+      <trans-unit id="administration.donation.support" xml:space="preserve" approved="yes">
+				<source>Help supporting further development</source>
+			<target state="final">Hjælp med at støtte fremtidig udvikling.</target></trans-unit>
+      <trans-unit id="administration.donation.why" xml:space="preserve" approved="yes">
+				<source>Why?</source>
+			<target state="final">Hvorfor?</target></trans-unit>
+      <trans-unit id="administration.donation.why.text" xml:space="preserve" approved="yes">
+				<source>The news extension is a powerful tool with a lot of features, always trying to thrive on the latest
+            possibilities of the TYPO3 core.
+            This implies a lot of work bringing this to the TYPO3 community.</source>
+			<target state="final">Udvidelsen news er et stærkt værktøj med en masse features, som altid udnytter de seneste
+            muligheder i TYPO3 core.
+            Den involverer en masse arbejde at levere dette til TYPO3 fællesskabet.</target></trans-unit>
+      <trans-unit id="administration.donation.how" xml:space="preserve" approved="yes">
+				<source>How?</source>
+			<target state="final">Hvordan?</target></trans-unit>
+      <trans-unit id="administration.donation.how.text" xml:space="preserve" approved="yes">
+				<source>There are multiple ways to support the further development:</source>
+			<target state="final">Der er flere måder at støtte den fremtidige udvikling:</target></trans-unit>
+      <trans-unit id="administration.donation.invoice" xml:space="preserve" approved="yes">
+				<source>Invoice</source>
+			<target state="final">Faktura</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.sub" xml:space="preserve" approved="yes">
+				<source>An invoice is possible!</source>
+			<target state="final">En faktura er mulig!</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.text" xml:space="preserve" approved="yes">
+				<source>I can create a proper invoice to keep your accounting happy - contact me for details.</source>
+			<target state="final">Jeg kan oprette en faktura, så dit bogholderi er glade - kontakt mig for detaljer.</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.sub" xml:space="preserve" approved="yes">
+				<source>Support me on patreon.com</source>
+			<target state="final">Støt mig på patreon.com</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.text" xml:space="preserve" approved="yes">
+				<source>Support me on patreon and get access to additional extensions and snippets as reward.</source>
+			<target state="final">Støt mig på patreon og få adgang til yderligere udvidelser og snippets til gengæld.</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.sub" xml:space="preserve" approved="yes">
+				<source>Donate via PayPal</source>
+			<target state="final">Donér via PatPal</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.text" xml:space="preserve" approved="yes">
+				<source>Support me by a donation on paypal.com. It is just one click away.</source>
+			<target state="final">Støt mig med en donation på paypal.com. Kun et klik væk.</target></trans-unit>
+      <trans-unit id="administration.donation.amazon" xml:space="preserve" approved="yes">
+				<source>Amazon wishlist</source>
+			<target state="final">Amazon ønskeliste</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.sub" xml:space="preserve" approved="yes">
+				<source>Satisfy a wish of my Amazon wishlist</source>
+			<target state="final">Opfyld et ønske på min Amazon ønskeliste</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.text" xml:space="preserve" approved="yes">
+				<source>Most of the listed products are for my family and our hobby cooking. Make us happy!</source>
+			<target state="final">De fleste viste produkter er til min familie og vores hobby med madlavning. Gør os glade!</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors" xml:space="preserve" approved="yes">
+				<source>Current sponsors</source>
+			<target state="final">Aktuelle sponsorer</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors.text" xml:space="preserve" approved="yes">
+				<source>The following companies and people have already supported me.</source>
+			<target state="final">Følgende firmaer og personer har allerede støttet mig.</target></trans-unit>
+      <trans-unit id="news-folder" xml:space="preserve" approved="yes">
+				<source>News</source>
+			<target state="final">Nyheder</target></trans-unit>
+      <trans-unit id="news-page" xml:space="preserve" approved="yes">
+				<source>Page with news plugins</source>
+			<target state="final">Side med nyhedsplugin</target></trans-unit>
+      <trans-unit id="import.header" xml:space="preserve" approved="yes">
+				<source>News Importer</source>
+			<target state="final">Nyhedsimportør</target></trans-unit>
+      <trans-unit id="import.choose_a_job" xml:space="preserve" approved="yes">
+				<source>Choose a job</source>
+			<target state="final">Vælg et job</target></trans-unit>
+      <trans-unit id="import.description" xml:space="preserve" approved="yes">
+				<source>This is the "News importer module". </source>
+			<target state="final">Dette er "Nyhedsimportør modulet". </target></trans-unit>
+      <trans-unit id="import.done" xml:space="preserve" approved="yes">
+				<source>The import has been completed. Reload the module to start a new one.</source>
+			<target state="final">Importen er gennemført. Genindlæs modulet for at starte en ny.</target></trans-unit>
+      <trans-unit id="import.backupwarning" xml:space="preserve" approved="yes">
+				<source>It's strongly recommended to backup all news tables before running an import job.</source>
+			<target state="final">Det må stærkt anbefales at tage en backup af alle nyhedstabeller, før import-jobbet afvikles.</target></trans-unit>
+      <trans-unit id="import.backupwarning.header" xml:space="preserve" approved="yes">
+				<source>Important!</source>
+			<target state="final">Vigtigt!</target></trans-unit>
+      <trans-unit id="import.nojobs" xml:space="preserve" approved="yes">
+				<source>No jobs available for the importer.</source>
+			<target state="final">Ingen jobs tilgængelige for importøren.</target></trans-unit>
+      <trans-unit id="import.error.configuration.title" xml:space="preserve" approved="yes">
+				<source>The configuration for the import is incomplete!</source>
+			<target state="final">Konforgurationen til importen er ufuldstændig!</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter" xml:space="preserve" approved="yes">
+				<source>Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</source>
+			<target state="final">Definér indstillingen "resourceFolderImporter" i konfigurationen i udvidelsesmanageren! Den angivne folder vil indeholde alle importerede filer.</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter.notExist" xml:space="preserve" approved="yes">
+				<source>The directory defined in the setting "resourceFolderImporter" does not exist!</source>
+			<target state="final">Mappen defineret i indstillingen "ressourceFolderImporter" findes ikke!</target></trans-unit>
+      <trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve" approved="yes">
+				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
+			<target state="final">Definér indstillingen "storageUidImporter" i konfigurationen i udvidelsesmanageren! Det angivne id er det anvendte fil-lager.</target></trans-unit>
+      <trans-unit id="record.savingdisabled.header" approved="yes">
+        <source>Saving is disabled</source>
+        <target state="final">Gem er deaktiveret</target>
+      </trans-unit>
+      <trans-unit id="record.savingdisabled.content" approved="yes">
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">Dette element har følgende kategorier tilknyttet, som ikke er defineret i dine tilladelser:
+                </target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.title" approved="yes">
+        <source>Content elements are hidden</source>
+        <target state="final">Indholdselementer er skjult</target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.description" approved="yes">
+        <source>Content elements are hidden in sys folders of type "news"!</source>
+        <target state="final">Indholdselementer er skjult i systemmapper af typen "nyheder"!</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
