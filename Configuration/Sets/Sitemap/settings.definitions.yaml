@@ -1,0 +1,29 @@
+settings:
+
+  news.sitemap.detail:
+    category: news.sitemap
+    default: 0
+    type: page
+
+  # todo: now only 1 startingpoint is possible?
+  news.sitemap.startingpoint:
+    category: news.sitemap
+    default: 0
+    type: page
+
+  news.sitemap.recursive:
+    category: news.sitemap
+    default: '0'
+    type: int
+    enum:
+      0: '0'
+      1: '1'
+      2: '2'
+      3: '3'
+      4: '4'
+      5: '5'
+
+  news.sitemap.additionalWhere:
+    category: news.sitemap
+    default: ''
+    type: string

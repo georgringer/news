@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:news/Configuration/Sets/Sitemap/labels.xlf" product-name="news">
+		<header/>
+		<body>
+			<trans-unit id="settings.news.sitemap.detail">
+				<source>Detail page</source>
+			</trans-unit>
+			<trans-unit id="settings.description.news.sitemap.detail">
+				<source>Select the page used for the detail view of the article. Check documentation for dynamic page resolution based on e.g. the category of a record.</source>
+			</trans-unit>
+			<trans-unit id="settings.news.sitemap.startingpoint">
+				<source>Page with news records (Startingpoint)</source>
+			</trans-unit>
+			<trans-unit id="settings.description.news.sitemap.startingpoint">
+				<source>Select the page where the articles are persisted.</source>
+			</trans-unit>
+            <trans-unit id="settings.news.sitemap.recursive">
+				<source>Recursion level of startingpoint</source>
+			</trans-unit>
+            <trans-unit id="settings.news.sitemap.additionalWhere">
+				<source>Additional where clause</source>
+			</trans-unit>
+			<trans-unit id="settings.description.news.sitemap.additionalWhere">
+				<source>Apply additional restrictions to exclude records, e.g. (author="Auto-Import")</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
