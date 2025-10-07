@@ -3,17 +3,38 @@
   <file source-language="en" datatype="plaintext" original="EXT:news/Configuration/Sets/RecordLinks/labels.xlf" product-name="news" target-language="da">
     <header/>
     <body>
-			
-			
-
-			
-			
-
-			
-			
-
-			
-            
-		</body>
+      <trans-unit id="settings.news.recordLinks.label" approved="yes">
+        <source>The label used in the Link Browser</source>
+        <target state="final">Etiketten der bruges i linkbrowseren</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.recordLinks.label" approved="yes">
+        <source>Use either a localized label path or define the label directly.</source>
+        <target state="final">Brug enten en lokaliseret etiketsti eller definér etiketten direkte.</target>
+      </trans-unit>
+      <trans-unit id="settings.news.recordLinks.storagePid" approved="yes">
+        <source>The link browser starts with the given page</source>
+        <target state="final">Linkbrowseren starter med den givne side</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.recordLinks.storagePid" approved="yes">
+        <source>Ease the workflow by preselecting the news article storage page.</source>
+        <target state="final">Let arbejdsgangen ved at trykke på lagersiden til nyhedsartiklen.</target>
+      </trans-unit>
+      <trans-unit id="settings.news.recordLinks.hidePageTree" approved="yes">
+        <source>Hide the page tree in the link browser</source>
+        <target state="final">Skjul sidetræet i linkbrowseren</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.recordLinks.hidePageTree" approved="yes">
+        <source>If only one storage page is used, the page tree can be hidden with this setting.</source>
+        <target state="final">Hvis kun en lagerside bruges, kan sidetræet skjules med denne indstilling.</target>
+      </trans-unit>
+      <trans-unit id="settings.news.recordLinks.detail" approved="yes">
+        <source>Detail page</source>
+        <target state="final">Detaljeside</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.recordLinks.detail" approved="yes">
+        <source>Select the page used for the detail view of the link.</source>
+        <target state="final">Vælg den side der bruges til detaljevisningen af linket.</target>
+      </trans-unit>
+    </body>
   </file>
 </xliff>
