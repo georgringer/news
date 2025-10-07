@@ -23,6 +23,8 @@ use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Core\Site\Entity\Site;
+use TYPO3\CMS\Core\Site\Entity\SiteSettings;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -195,6 +197,15 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.detailPid'),
                 $content,
             ];
+        } else {
+            $siteSettings = $this->getSiteSettings();
+            if ($siteSettings !== null && $detailPid = $siteSettings->get('news.pages.detail')) {
+                $content = $this->getRecordData($detailPid);
+                $this->tableData[] = [
+                    $this->getLanguageService()->sL(self::LLPATH . 'pluginPreview.global.detailPid'),
+                    $content,
+                ];
+            }
         }
     }
 
@@ -570,5 +581,14 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
             ]);
         }
         return (string)$editLink;
+    }
+
+    protected function getSiteSettings(): ?SiteSettings
+    {
+        $site = $GLOBALS['TYPO3_REQUEST']->getAttribute('site');
+        if (!($site instanceof Site)) {
+            return null;
+        }
+        return $site->getSettings();
     }
 }
