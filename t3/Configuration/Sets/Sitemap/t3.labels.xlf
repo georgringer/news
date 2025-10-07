@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="EXT:news/Configuration/Sets/Sitemap/labels.xlf" product-name="news" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="settings.news.sitemap.detail">
+        <source>Detail page</source>
+        <target>crwdns377790:0crwdne377790:0</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.sitemap.detail">
+        <source>Select the page used for the detail view of the article. Check documentation for dynamic page resolution based on e.g. the category of a record.</source>
+        <target>crwdns377792:0crwdne377792:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.sitemap.startingpoint">
+        <source>Page with news records (Startingpoint)</source>
+        <target>crwdns377794:0crwdne377794:0</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.sitemap.startingpoint">
+        <source>Select the page where the articles are persisted.</source>
+        <target>crwdns377796:0crwdne377796:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.sitemap.recursive">
+        <source>Recursion level of startingpoint</source>
+        <target>crwdns377798:0crwdne377798:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.sitemap.additionalWhere">
+        <source>Additional where clause</source>
+        <target>crwdns377800:0crwdne377800:0</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.sitemap.additionalWhere">
+        <source>Apply additional restrictions to exclude records, e.g. (author="Auto-Import")</source>
+        <target>crwdns377802:0crwdne377802:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
