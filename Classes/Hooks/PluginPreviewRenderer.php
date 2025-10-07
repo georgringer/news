@@ -13,7 +13,6 @@ namespace GeorgRinger\News\Hooks;
 
 use GeorgRinger\News\Event\PluginPreviewSummaryEvent;
 use GeorgRinger\News\Utility\TemplateLayout;
-use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
@@ -46,16 +45,16 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
      * Flexform information
      */
     public array $flexformData = [];
-    protected IconFactory $iconFactory;
     protected TemplateLayout $templateLayoutsUtility;
-    protected EventDispatcherInterface $eventDispatchter;
     private int $pageId = 0;
 
-    public function __construct()
+    public function __construct(
+        protected readonly IconFactory $iconFactory,
+        protected readonly UriBuilder $backendUriBuilder,
+        protected readonly EventDispatcher $eventDispatcher,
+    )
     {
         $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
-        $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
-        $this->eventDispatchter = GeneralUtility::makeInstance(EventDispatcher::class);
     }
 
     public function renderPageModulePreviewContent(GridColumnItem $item): string
@@ -129,7 +128,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
             }
 
             $event = new PluginPreviewSummaryEvent($item, $this);
-            $this->eventDispatchter->dispatch($event);
+            $this->eventDispatcher->dispatch($event);
 
             // for all views
             $this->getOverrideDemandSettings();
@@ -243,10 +242,8 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
             $linkTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle($table, $record));
 
             if ($table === 'pages') {
-                $id = $record['uid'];
-                $link = htmlspecialchars($this->getEditLink($record, $this->pageId));
-                $switchLabel = $this->getLanguageService()->sL(self::LLPATH . 'pagemodule.switchToPage');
-                $content .= ' <a href="#" data-toggle="tooltip" data-placement="top" data-title="' . $switchLabel . '" onclick=\'top.jump("' . $link . '", "web_layout", "web", ' . $id . ');return false\'>' . $linkTitle . '</a>';
+                $switchLabel = htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.switchToPage'));
+                $content .= sprintf('<a href="%s" title="%s">%s</a>', htmlspecialchars($this->getEditLink($record, $this->pageId)), $switchLabel, $linkTitle);
             } else {
                 $content .= $linkTitle;
             }
@@ -569,18 +566,30 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
 
     protected function getEditLink(array $row, int $currentPageUid): string
     {
-        $editLink = '';
-        $localCalcPerms = $GLOBALS['BE_USER']->calcPerms(BackendUtilityCore::getRecord('pages', $row['uid']));
+        $targetPageUid = $row['uid'];
+        $localCalcPerms = $GLOBALS['BE_USER']->calcPerms(BackendUtilityCore::getRecord('pages', $targetPageUid));
         $permsEdit = $localCalcPerms & Permission::PAGE_EDIT;
-        if ($permsEdit) {
-            $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
-            $returnUrl = $uriBuilder->buildUriFromRoute('web_layout', ['id' => $currentPageUid]);
-            $editLink = $uriBuilder->buildUriFromRoute('web_layout', [
-                'id' => $row['uid'],
-                'returnUrl' => $returnUrl,
-            ]);
+        if (!$permsEdit) {
+            return '';
         }
-        return (string)$editLink;
+
+        $returnUrl = (string)$this->backendUriBuilder->buildUriFromRoute(
+            'web_layout',
+            ['id' => $currentPageUid, 'action' => 'links'],
+        );
+
+        $uriParameters = [
+            'edit' => [
+                'pages' => [
+                    $targetPageUid => 'edit',
+                ],
+            ],
+            'returnUrl' => $returnUrl,
+        ];
+        return (string)$this->backendUriBuilder->buildUriFromRoute(
+            'record_edit',
+            $uriParameters,
+        );
     }
 
     protected function getSiteSettings(): ?SiteSettings
