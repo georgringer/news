@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="EXT:news/Configuration/Sets/RecordLinks/labels.xlf" product-name="news" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="settings.news.recordLinks.label">
+        <source>The label used in the Link Browser</source>
+        <target>crwdns377774:0crwdne377774:0</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.recordLinks.label">
+        <source>Use either a localized label path or define the label directly.</source>
+        <target>crwdns377776:0crwdne377776:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.recordLinks.storagePid">
+        <source>The link browser starts with the given page</source>
+        <target>crwdns377778:0crwdne377778:0</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.recordLinks.storagePid">
+        <source>Ease the workflow by preselecting the news article storage page.</source>
+        <target>crwdns377780:0crwdne377780:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.recordLinks.hidePageTree">
+        <source>Hide the page tree in the link browser</source>
+        <target>crwdns377782:0crwdne377782:0</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.recordLinks.hidePageTree">
+        <source>If only one storage page is used, the page tree can be hidden with this setting.</source>
+        <target>crwdns377784:0crwdne377784:0</target>
+      </trans-unit>
+      <trans-unit id="settings.news.recordLinks.detail">
+        <source>Detail page</source>
+        <target>crwdns377786:0crwdne377786:0</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.recordLinks.detail">
+        <source>Select the page used for the detail view of the link.</source>
+        <target>crwdns377788:0crwdne377788:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
