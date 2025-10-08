@@ -52,8 +52,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
         protected readonly IconFactory $iconFactory,
         protected readonly UriBuilder $backendUriBuilder,
         protected readonly EventDispatcher $eventDispatcher,
-    )
-    {
+    ) {
         $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
     }
 
