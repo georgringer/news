@@ -23,7 +23,6 @@ use TYPO3\CMS\Core\LinkHandling\Event\BeforeTypoLinkEncodedEvent;
 )]
 class BeforeTypoLinkEncodedEventListener
 {
-
     public function __invoke(BeforeTypoLinkEncodedEvent $event): void
     {
         $parameters = $event->getParameters();
@@ -49,5 +48,4 @@ class BeforeTypoLinkEncodedEventListener
 
         $event->setParameters($parameters);
     }
-
 }
