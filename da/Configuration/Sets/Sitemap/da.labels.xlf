@@ -7,6 +7,30 @@
         <source>Detail page</source>
         <target state="final">Detaljeside</target>
       </trans-unit>
+      <trans-unit id="settings.description.news.sitemap.detail" approved="yes">
+        <source>Select the page used for the detail view of the article. Check documentation for dynamic page resolution based on e.g. the category of a record.</source>
+        <target state="final">Vælg siden der bruges til detaljevisningen af artiklen. Tjek dokumentation for dynamisk sideopløsning baseret på f.eks. kategorien af et element.</target>
+      </trans-unit>
+      <trans-unit id="settings.news.sitemap.startingpoint" approved="yes">
+        <source>Page with news records (Startingpoint)</source>
+        <target state="final">Side med nyhedselementer (startpunkt)</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.sitemap.startingpoint" approved="yes">
+        <source>Select the page where the articles are persisted.</source>
+        <target state="final">Vælg den side, hvor artiklerne er gemt.</target>
+      </trans-unit>
+      <trans-unit id="settings.news.sitemap.recursive" approved="yes">
+        <source>Recursion level of startingpoint</source>
+        <target state="final">Rekursionsniveau for startpunkt</target>
+      </trans-unit>
+      <trans-unit id="settings.news.sitemap.additionalWhere" approved="yes">
+        <source>Additional where clause</source>
+        <target state="final">Supplerende begrænsninger</target>
+      </trans-unit>
+      <trans-unit id="settings.description.news.sitemap.additionalWhere" approved="yes">
+        <source>Apply additional restrictions to exclude records, e.g. (author="Auto-Import")</source>
+        <target state="final">Anvend yderligere begrænsninger for at udelukke poster, f.eks. (forfatter="Auto-Import")</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
