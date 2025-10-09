@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news" target-language="sl">
+    <header/>
+    <body>
+      <trans-unit id="search-subject" xml:space="preserve" approved="yes">
+				<source>Text</source>
+			<target state="final">Besedilo</target></trans-unit>
+      <trans-unit id="related-news" xml:space="preserve" approved="yes">
+				<source>Related News</source>
+			<target state="final">Podobne novice</target></trans-unit>
+      <trans-unit id="related-files" xml:space="preserve" approved="yes">
+				<source>Related Files</source>
+			<target state="final">Podobne datoteke</target></trans-unit>
+      <trans-unit id="related-links" xml:space="preserve" approved="yes">
+				<source>Related Links</source>
+			<target state="final">Podobne povezave</target></trans-unit>
+      <trans-unit id="categories" xml:space="preserve" approved="yes">
+				<source>Categories</source>
+			<target state="final">Kategorije</target></trans-unit>
+      <trans-unit id="list_nonewsfound" xml:space="preserve" approved="yes">
+				<source>No news available.</source>
+			<target state="final">Novice niso na voljo.</target></trans-unit>
+    </body>
+  </file>
+</xliff>
