@@ -233,7 +233,6 @@ $tx_news_domain_model_news = [
                 'type' => 'select',
                 'renderType' => 'selectTree',
                 'treeConfig' => [
-                    //                    'dataProvider' => \GeorgRinger\News\TreeProvider\DatabaseTreeDataProvider::class,
                     'parentField' => 'parent',
                     'appearance' => [
                         'showHeader' => true,
