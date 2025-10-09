@@ -1,5 +1,3 @@
 files:
   - source: /Resources/Private/Language/locallang*.xlf
     translation: /Resources/Private/Language/%two_letters_code%.%original_file_name%
-  - source: /Configuration/Sets/*/labels.xlf
-    translation: '%original_path%/%two_letters_code%.%original_file_name%'
