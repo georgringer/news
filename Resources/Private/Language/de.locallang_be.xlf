@@ -258,7 +258,7 @@
 			<target state="final">Maximale Anzahl anzuzeigender Datensätze</target></trans-unit>
       <trans-unit id="flexforms_additional.offset" xml:space="preserve" approved="yes">
 				<source>Starting with given news record. 0 means first record, 1 the 2nd one!</source>
-			<target state="final">Beginnend mit Nachrichtenelement #</target></trans-unit>
+			<target state="final">Beginnend mit dem angegebenen Artikel. 0 bedeutet mit dem ersten Datensatz, 1 dem zweiten!</target></trans-unit>
       <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve" approved="yes">
 				<source>Hide the pagination</source>
 			<target state="final">Paginierung ausblenden</target></trans-unit>
@@ -619,6 +619,50 @@ TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Fe
       <trans-unit id="hiddenContentElements.description" approved="yes">
         <source>Content elements are hidden in sys folders of type "news"!</source>
         <target state="final">Inhaltselemente sind in Ordnern des Typs "Nachrichten" versteckt!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.title" approved="yes">
+        <source>Improved editing of content elements</source>
+        <target state="final">Verbesserte Bearbeitung von Inhaltselementen</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.lead" approved="yes">
+        <source>The extension EXT:news_content_elements can improve the handling of content elements within a news record drastically.</source>
+        <target state="final">Die Erweiterung EXT:news_content_elements kann die Handhabung von Inhaltselementen innerhalb eines Newseintrags drastisch verbessern.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line1" approved="yes">
+        <source>Easy editing experience</source>
+        <target state="final">Einfaches Bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line2" approved="yes">
+        <source>Instead of using the inline relation, editors can now use the familiar Page Module to add any content element (like Text with media elements) inside their news article.</source>
+        <target state="final">Anstelle der Inline-Relation können Redakteure das vertraute Seitenmodul verwenden, um jedes Inhaltselement (wie Text mit Medienelementen) in ihren Artikel einzufügen.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line3" approved="yes">
+        <source>Better stories, same workflow</source>
+        <target state="final">Bessere Artikel, gleicher Workflow</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line4" approved="yes">
+        <source>This gives editors the freedom to create richer, more engaging news articles while continuing to work within the familiar News module.</source>
+        <target state="final">Dies gibt Redakteuren die Freiheit, umfangreichere und spannendere Nachrichtenartikel zu erstellen und gleichzeitig die Arbeit im bekannten News-Modul fortzusetzen.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line5" approved="yes">
+        <source>Available as an add-on!</source>
+        <target state="final">Als Add-on verfügbar!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line6" approved="yes">
+        <source>This feature is provided as a payed add-on for EXT:news!</source>
+        <target state="final">Diese Funktion wird als kostenpflichtiges Add-on für EXT:news bereitgestellt!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.link" approved="yes">
+        <source>Details &amp; Purchase information</source>
+        <target state="final">Details &amp; Kaufinformationen</target>
+      </trans-unit>
+      <trans-unit id="pluginPreview.global.detailPid" approved="yes">
+        <source>Global set pageId for single news display</source>
+        <target state="final">Global gesetzte Seiten-ID für Detailansicht</target>
+      </trans-unit>
+      <trans-unit id="recordLinks.label" approved="yes">
+        <source>News records</source>
+        <target state="final">News-Datensätze</target>
       </trans-unit>
     </body>
   </file>
