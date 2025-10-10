@@ -444,8 +444,8 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
         if (!empty($field)) {
             $layouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageUid);
             foreach ($layouts as $layout) {
-                if ((string)$layout[1] === $field) {
-                    $title = $layout[0];
+                if ((string)$layout['key'] === $field) {
+                    $title = $layout['label'] ?? '';
                 }
             }
         }

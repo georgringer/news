@@ -22,18 +22,6 @@ The sorting can be extended by adding the value to
 
 Default values are: tstamp,datetime,crdate,title
 
-Additional Template Selector
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you need a kind of template selector inside a plugin, you can add
-your own selections by adding those to
-
-.. code-block:: php
-
-   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']['myext'] = ['My Title', 'my value'];
-
-You can then access the variable in your template with
-:code:`{settings.templateLayout}` and use it for a condition or whatever.
-
 Extend FlexForms with custom fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you need additional fields in the FlexForm configuration, this can be done by using a hook in the Core.

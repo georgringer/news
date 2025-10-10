@@ -20,28 +20,23 @@ class TemplateLayout implements SingletonInterface
 {
     /**
      * Get available template layouts for a certain page
-     *
-     * @param int $pageUid
      */
-    public function getAvailableTemplateLayouts($pageUid): array
+    public function getAvailableTemplateLayouts(int $pageUid): array
     {
-        $templateLayouts = [];
-
-        // Check if the layouts are extended by ext_tables
-        if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])
-            && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])
-        ) {
-            $templateLayouts = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'];
-        }
-
         // Add TsConfig values
-        foreach ($this->getTemplateLayoutsFromTsConfig($pageUid) as $templateKey => $title) {
-            if (is_string($title) && str_starts_with($title, '--div--')) {
-                $optGroupParts = GeneralUtility::trimExplode(',', $title, true, 2);
-                $title = $optGroupParts[1];
+        foreach ($this->getTemplateLayoutsFromTsConfig($pageUid) as $templateKey => $titleOrConfiguration) {
+            if (is_string($titleOrConfiguration) && str_starts_with($titleOrConfiguration, '--div--')) {
+                $optGroupParts = GeneralUtility::trimExplode(',', $titleOrConfiguration, true, 2);
+                $titleOrConfiguration = $optGroupParts[1];
                 $templateKey = $optGroupParts[0];
+            } elseif (is_array($titleOrConfiguration) && str_ends_with($templateKey, '.')) {
+                $templateKey = substr($templateKey, 0, -1);
+                if (isset($titleOrConfiguration['allowedColPos'])) {
+                    $templateLayouts[$templateKey]['allowedColPos'] = $titleOrConfiguration['allowedColPos'];
+                }
+                continue;
             }
-            $templateLayouts[] = [$title, $templateKey];
+            $templateLayouts[$templateKey] = ['label' => $titleOrConfiguration, 'key' => $templateKey];
         }
 
         return $templateLayouts;
@@ -49,8 +44,6 @@ class TemplateLayout implements SingletonInterface
 
     /**
      * Get template layouts defined in TsConfig
-     *
-     * @param $pageUid
      */
     protected function getTemplateLayoutsFromTsConfig(int $pageUid): array
     {

@@ -47,12 +47,11 @@ class ItemsProcFunc
             $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
 
             $templateLayouts = $this->reduceTemplateLayouts($templateLayouts, $currentColPos);
-            foreach ($templateLayouts as $layout) {
-                $additionalLayout = [
-                    htmlspecialchars($this->getLanguageService()->sL($layout[0])),
-                    $layout[1],
+            foreach ($templateLayouts as $identifier => $label) {
+                $config['items'][] = [
+                    'label' => $this->getLanguageService()->sL($label),
+                    'value' => $identifier,
                 ];
-                array_push($config['items'], $additionalLayout);
             }
         }
     }
@@ -65,26 +64,16 @@ class ItemsProcFunc
      */
     protected function reduceTemplateLayouts($templateLayouts, $currentColPos): array
     {
+        $finalLayouts = [];
         $currentColPos = (int)$currentColPos;
-        $restrictions = [];
-        $allLayouts = [];
-        foreach ($templateLayouts as $key => $layout) {
-            if (is_array($layout[0])) {
-                if (isset($layout[0]['allowedColPos']) && str_ends_with((string)$layout[1], '.')) {
-                    $layoutKey = substr($layout[1], 0, -1);
-                    $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout[0]['allowedColPos'], true);
-                }
-            } else {
-                $allLayouts[$key] = $layout;
+        foreach ($templateLayouts as $key => $configuration) {
+            if (isset($configuration['allowedColPos']) && !GeneralUtility::inList($configuration['allowedColPos'], (string)$currentColPos)) {
+                continue;
             }
-        }
-        foreach ($restrictions as $restrictedIdentifier => $restrictedColPosList) {
-            if (!in_array($currentColPos, $restrictedColPosList, true)) {
-                unset($allLayouts[$restrictedIdentifier]);
-            }
+            $finalLayouts[$key] = $configuration['label'];
         }
 
-        return $allLayouts;
+        return $finalLayouts;
     }
 
     /**

@@ -174,7 +174,7 @@ class PluginPreviewRendererTest extends BaseTestCase
         $flexform = [];
         $mockedTemplateLayout = $this->getAccessibleMock(TemplateLayout::class, ['getAvailableTemplateLayouts']);
 
-        $mockedTemplateLayout->expects(self::once())->method('getAvailableTemplateLayouts')->willReturn([['bar', 'fo']]);
+        $mockedTemplateLayout->expects(self::once())->method('getAvailableTemplateLayouts')->willReturn(['fo' => ['key' => 'fo', 'label' => 'bar']]);
 
         $this->addContentToFlexform($flexform, 'settings.templateLayout', 'fo', 'template');
         $this->pageLayoutView->_set('flexformData', $flexform);
