@@ -19,26 +19,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 class TemplateLayoutTest extends BaseTestCase
 {
     #[Test]
-    public function templatesFoundInTypo3ConfVars(): void
-    {
-        $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] = [
-            0 => [
-                0 => 'Layout 1',
-                1 => 'layout1',
-            ],
-            1 => [
-                0 => 'Layout 2',
-                1 => 'layout2',
-            ],
-        ];
-
-        $templateLayoutUtility = $this->getAccessibleMock(TemplateLayout::class, ['getTemplateLayoutsFromTsConfig']);
-        $templateLayoutUtility->expects(self::once())->method('getTemplateLayoutsFromTsConfig')->willReturn([]);
-        $templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
-        self::assertSame($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'], $templateLayouts);
-    }
-
-    #[Test]
     public function templatesFoundInPageTsConfig(): void
     {
         $tsConfigArray = [
@@ -46,50 +26,13 @@ class TemplateLayoutTest extends BaseTestCase
             'layout2' => 'Layout 2',
         ];
         $result = [
-            0 => [
-                0 => 'Layout 1',
-                1 => 'layout1',
+            'layout1' => [
+                'label' => 'Layout 1',
+                'key' => 'layout1',
             ],
-            1 => [
-                0 => 'Layout 2',
-                1 => 'layout2',
-            ],
-        ];
-
-        // clear TYPO3_CONF_VARS
-        unset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']);
-
-        $templateLayoutUtility = $this->getAccessibleMock(TemplateLayout::class, ['getTemplateLayoutsFromTsConfig']);
-        $templateLayoutUtility->expects(self::once())->method('getTemplateLayoutsFromTsConfig')->willReturn($tsConfigArray);
-        $templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
-        self::assertSame($result, $templateLayouts);
-    }
-
-    #[Test]
-    public function templatesFoundInCombinedResources(): void
-    {
-        $tsConfigArray = [
-            'layout1' => 'Layout 1',
-            'layout2' => 'Layout 2',
-        ];
-        $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] = [
-            0 => [
-                0 => 'Layout 4',
-                1 => 'layout4',
-            ],
-        ];
-        $result = [
-            0 => [
-                0 => 'Layout 4',
-                1 => 'layout4',
-            ],
-            1 => [
-                0 => 'Layout 1',
-                1 => 'layout1',
-            ],
-            2 => [
-                0 => 'Layout 2',
-                1 => 'layout2',
+            'layout2' => [
+                'label' => 'Layout 2',
+                'key' => 'layout2',
             ],
         ];
 
