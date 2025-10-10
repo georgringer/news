@@ -189,11 +189,26 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
             PHP_QUERY_RFC3986
         );
 
-        $typoLinkConfig = [
-            'parameter' => $pageId,
-            'additionalParams' => $additionalParamsString ? '&' . $additionalParamsString : '',
-            'forceAbsoluteUrl' => 1,
-        ];
+        switch ($data['data']['type']) {
+            case '1':
+                $typoLinkConfig = [
+                    'parameter' => $data['data']['internalurl'],
+                    'forceAbsoluteUrl' => 1,
+                ];
+                break;
+            case '2':
+                $typoLinkConfig = [
+                    'parameter' => $data['data']['externalurl'],
+                    'forceAbsoluteUrl' => 1,
+                ];
+                break;
+            default:
+                $typoLinkConfig = [
+                    'parameter' => $pageId,
+                    'additionalParams' => $additionalParamsString ? '&' . $additionalParamsString : '',
+                    'forceAbsoluteUrl' => 1,
+                ];
+        }
 
         $data['loc'] = $this->cObj->typoLink_URL($typoLinkConfig);
 
