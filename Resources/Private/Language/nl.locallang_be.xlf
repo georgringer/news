@@ -621,6 +621,50 @@
         <source>Content elements are hidden in sys folders of type "news"!</source>
         <target state="final">Inhoudselementen in sysfolders van het type "news" zijn verborgen!</target>
       </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.title" approved="yes">
+        <source>Improved editing of content elements</source>
+        <target state="final">Verbeterde bewerking van inhoudselementen</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.lead" approved="yes">
+        <source>The extension EXT:news_content_elements can improve the handling of content elements within a news record drastically.</source>
+        <target state="final">De extensie EXT:news_content_element kan de afhandeling van inhoudselementen binnen een nieuwsrecord drastisch verbeteren.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line1" approved="yes">
+        <source>Easy editing experience</source>
+        <target state="final">Eenvoudige bewerkingservaring</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line2" approved="yes">
+        <source>Instead of using the inline relation, editors can now use the familiar Page Module to add any content element (like Text with media elements) inside their news article.</source>
+        <target state="final">In plaats van de inline relatie te gebruiken editors kunnen nu de bekende pagina-module gebruiken om een inhoudselement (zoals tekst met media-elementen) toe te voegen in hun nieuwsartikel.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line3" approved="yes">
+        <source>Better stories, same workflow</source>
+        <target state="final">Betere verhalen, dezelfde werkwijze</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line4" approved="yes">
+        <source>This gives editors the freedom to create richer, more engaging news articles while continuing to work within the familiar News module.</source>
+        <target state="final">Dit geeft redacteuren de vrijheid om rijkere nieuwsartikelen te maken terwijl ze blijven werken in de vertrouwde nieuwsmodule.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line5" approved="yes">
+        <source>Available as an add-on!</source>
+        <target state="final">Beschikbaar als een extra module!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line6" approved="yes">
+        <source>This feature is provided as a payed add-on for EXT:news!</source>
+        <target state="final">Deze functie wordt verstrekt als een betaalde toevoeging voor EXT:news!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.link" approved="yes">
+        <source>Details &amp; Purchase information</source>
+        <target state="final">Details &amp; aanschafinformatie</target>
+      </trans-unit>
+      <trans-unit id="pluginPreview.global.detailPid" approved="yes">
+        <source>Global set pageId for single news display</source>
+        <target state="final">Globaal ingesteld pagina-ID voor detailweergave</target>
+      </trans-unit>
+      <trans-unit id="recordLinks.label" approved="yes">
+        <source>News records</source>
+        <target state="final">Nieuwsitems</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
