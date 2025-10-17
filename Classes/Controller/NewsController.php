@@ -34,6 +34,7 @@ use GeorgRinger\News\Utility\TypoScript;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Cache\CacheTag;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
@@ -155,10 +156,9 @@ class NewsController extends NewsBaseController
         $demand->setMonth((int)($settings['month'] ?? 0));
         $demand->setYear((int)($settings['year'] ?? 0));
 
-        $demand->setStoragePage(Page::extendPidListByChildren(
-            (string)($settings['startingpoint'] ?? ''),
-            (int)($settings['recursive'] ?? 0)
-        ));
+        $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
+        $idList = $pageRepository->getPageIdsRecursive(GeneralUtility::intExplode(',', (string)($settings['startingpoint'] ?? '')), (int)($settings['recursive'] ?? 0));
+        $demand->setStoragePage(implode(',', $idList));
 
         if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'] ?? []) {
             trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\'Controller/NewsController.php\'][\'createDemandObjectFromSettings\'] has been deprecated, use event CreateDemandObjectFromSettingsEvent instead', E_USER_DEPRECATED);
@@ -420,14 +420,9 @@ class NewsController extends NewsBaseController
      */
     protected function checkPidOfNewsRecord(News $news): ?News
     {
-        $allowedStoragePages = GeneralUtility::trimExplode(
-            ',',
-            Page::extendPidListByChildren(
-                (string)($this->settings['startingpoint'] ?? ''),
-                (int)($this->settings['recursive'] ?? 0)
-            ),
-            true
-        );
+        $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
+        $allowedStoragePages = $pageRepository->getPageIdsRecursive(GeneralUtility::intExplode(',', (string)($settings['startingpoint'] ?? '')), (int)($settings['recursive'] ?? 0));
+
         if (count($allowedStoragePages) > 0 && !in_array($news->getPid(), $allowedStoragePages)) {
             $this->eventDispatcher->dispatch(new NewsCheckPidOfNewsRecordFailedInDetailActionEvent($this, $news, $this->request));
             $news = null;
