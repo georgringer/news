@@ -210,6 +210,7 @@ $boot = static function (): void {
         );
     }
     $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = '^tx_news_pi1[search][';
+    $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['requireCacheHashPresenceParameters'][] = 'tx_news_pi1[currentPage]';
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][ExtensionService::class] = [
         'className' => ExtensionServiceXclassed::class,
