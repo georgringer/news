@@ -75,29 +75,29 @@ class News extends AbstractEntity
     /** @var string */
     protected $authorEmail = '';
 
-    /** @var ObjectStorage<Category> */
+    /** @var ObjectStorage<Category>|null */
     #[Lazy]
-    protected ObjectStorage $categories;
+    protected ?ObjectStorage $categories = null;
 
-    /** @var ObjectStorage<\GeorgRinger\News\Domain\Model\News> */
+    /** @var ObjectStorage<\GeorgRinger\News\Domain\Model\News>|null */
     #[Lazy]
-    protected $related;
+    protected ?ObjectStorage $related = null;
 
-    /** @var ObjectStorage<\GeorgRinger\News\Domain\Model\News> */
+    /** @var ObjectStorage<\GeorgRinger\News\Domain\Model\News>|null */
     #[Lazy]
-    protected $relatedFrom;
+    protected ?ObjectStorage $relatedFrom = null;
 
     /**
      * Fal related files
      *
-     * @var ObjectStorage<FileReference>
+     * @var ObjectStorage<FileReference>|null
      */
     #[Lazy]
-    protected ObjectStorage $falRelatedFiles;
+    protected ?ObjectStorage $falRelatedFiles = null;
 
-    /** @var ObjectStorage<Link> */
+    /** @var ObjectStorage<Link>|null */
     #[Lazy]
-    protected ObjectStorage $relatedLinks;
+    protected ?ObjectStorage $relatedLinks = null;
 
     /** @var array */
     protected $sortingForeign;
@@ -114,10 +114,10 @@ class News extends AbstractEntity
     /**
      * Fal media items
      *
-     * @var ObjectStorage<FileReference>
+     * @var ObjectStorage<FileReference>|null
      */
     #[Lazy]
-    protected $falMedia;
+    protected ?ObjectStorage $falMedia = null;
 
     /**
      * Fal media items with showinpreview set
@@ -144,13 +144,13 @@ class News extends AbstractEntity
     /** @var bool */
     protected $istopnews = false;
 
-    /** @var ObjectStorage<TtContent> */
+    /** @var ObjectStorage<TtContent>|null */
     #[Lazy]
-    protected ObjectStorage $contentElements;
+    protected ?ObjectStorage $contentElements = null;
 
-    /** @var ObjectStorage<Tag> */
+    /** @var ObjectStorage<Tag>|null */
     #[Lazy]
-    protected ObjectStorage $tags;
+    protected ?ObjectStorage $tags = null;
 
     /** @var string */
     protected $pathSegment = '';
