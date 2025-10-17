@@ -24,7 +24,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 class Page
 {
-
     /**
      * Set properties of an object/array in cobj->LOAD_REGISTER which can then
      * be used to be loaded via TS with register:name
