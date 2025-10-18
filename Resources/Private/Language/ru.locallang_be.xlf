@@ -304,9 +304,6 @@
       <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve" approved="yes">
 				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
 			<target state="final">Расширенная конфигурация предварительного просмотра для файлов мультимедиа. Если этот параметр включен, для редакторов доступно больше параметров, определяющих, где должен отображаться элемент мультимедиа.</target></trans-unit>
-      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
-				<source>Use this overlay for news categories in the Backend</source>
-			<target state="final">Использовать это переопредеделение для категорий новостей во внутреннем интерфейсе</target></trans-unit>
       <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
 				<source>There are no languages available, so nothing to choose.</source>
 			<target state="final">Нет доступных языков, так что выбрать нечего.</target></trans-unit>
