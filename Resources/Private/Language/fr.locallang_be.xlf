@@ -374,9 +374,6 @@
       <trans-unit id="extmng.slugBehaviour" xml:space="preserve" approved="yes">
 				<source>Slug behaviour: uniqueInSite: The same slug can be used for news in different sites. Use this setting *only* if no news records are shared between sites. "unique" means that same news title will lead to different slug names.</source>
 			<target state="final">Comportement du slug : "uniqueInSite" : le même slug peut être utilisé pour des news dans différents sites. Utilisez ce paramètre *seulement* si aucune news n'est partagée entre les sites. "unique" signifie que le même titre de news génèrera slugs différents.</target></trans-unit>
-      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
-				<source>Use this overlay for news categories in the Backend</source>
-			<target state="final">Utilise ce masque de langue pour les catégories de news dans le backend</target></trans-unit>
       <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
 				<source>There are no languages available, so nothing to choose.</source>
 			<target state="final">Il n'y a pas de langue disponible, aucun choix à faire.</target></trans-unit>
