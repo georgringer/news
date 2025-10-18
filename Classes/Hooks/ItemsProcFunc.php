@@ -143,41 +143,6 @@ class ItemsProcFunc
     }
 
     /**
-     * Generate a select box of languages to choose an overlay
-     *
-     * @return string select box
-     */
-    public function user_categoryOverlay(): string
-    {
-        $html = '';
-
-        $languages = $this->getAllLanguages();
-        // if any language is available
-        if (count($languages) > 0) {
-            $html = '<select name="data[newsoverlay]" id="field_newsoverlay" class="form-control">';
-
-            if (!isset($languages[0])) {
-                $html .= '<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value')) . '</option>';
-            }
-
-            foreach ($languages as $language) {
-                $selected = ((int)($GLOBALS['BE_USER']->uc['newsoverlay'] ?? 0) === (int)$language['uid']) ? ' selected="selected" ' : '';
-                $html .= '<option ' . $selected . 'value="' . $language['uid'] . '">' . htmlspecialchars($language['title']) . '</option>';
-            }
-
-            $html .= '</select>';
-        } else {
-            $html .= htmlspecialchars(
-                $this->getLanguageService()->sL(
-                    'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available'
-                )
-            );
-        }
-
-        return $html;
-    }
-
-    /**
      * Get all languages
      */
     protected function getAllLanguages(): array
