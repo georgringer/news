@@ -141,9 +141,6 @@
       <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
 				<source>Defined in TypoScript</source>
 			<target state="final">Određeno u Typoscriptu</target></trans-unit>
-      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
-				<source>[no constraint]</source>
-			<target state="final">(bez ograničenja)</target></trans-unit>
       <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve" approved="yes">
 				<source>Max width for media elements</source>
 			<target state="final">Maksimalna širina za medijski element</target></trans-unit>
