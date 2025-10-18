@@ -156,9 +156,6 @@
       <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
 				<source>Defined in TypoScript</source>
 			<target state="final">Määritetty TypScriptissä</target></trans-unit>
-      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
-				<source>[no constraint]</source>
-			<target state="final">[ei rajoituksia]</target></trans-unit>
       <trans-unit id="flexforms_general.selectedList" xml:space="preserve" approved="yes">
 				<source>List of articles</source>
 			<target state="final">Lista artikkeleista</target></trans-unit>
