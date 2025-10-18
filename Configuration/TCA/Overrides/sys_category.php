@@ -1,7 +1,6 @@
 <?php
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use GeorgRinger\News\Hooks\Labels;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
