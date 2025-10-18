@@ -60,19 +60,6 @@ CREATE TABLE sys_category (
 	KEY import (import_id,import_source)
 );
 
-
-#
-# Table structure for table 'tx_news_domain_model_news_ttcontent_mm'
-#
-#
-CREATE TABLE tx_news_domain_model_news_ttcontent_mm (
-	uid_local int(11) DEFAULT '0' NOT NULL,
-	uid_foreign int(11) DEFAULT '0' NOT NULL,
-	sorting int(11) DEFAULT '0' NOT NULL,
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
-);
-
 #
 # Table structure for table 'tx_news_domain_model_news_related_mm'
 #
