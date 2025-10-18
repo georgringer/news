@@ -105,6 +105,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
                     break;
                 case 'news_categorylist':
                     $this->getStartingPoint();
+                    $this->getListPidSetting();
                     $this->getCategorySettings(false);
                     $this->getTemplateLayoutSettings($row['pid']);
                     break;
@@ -112,6 +113,10 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
                     $this->getStartingPoint();
                     $this->getListPidSetting();
                     $this->getOrderSettings();
+                    $this->getTemplateLayoutSettings($row['pid']);
+                    break;
+                case 'news_newssearchform':
+                    $this->getListPidSetting();
                     $this->getTemplateLayoutSettings($row['pid']);
                     break;
                 default:
