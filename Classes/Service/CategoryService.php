@@ -9,7 +9,6 @@
 
 namespace GeorgRinger\News\Service;
 
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -107,43 +106,6 @@ class CategoryService
             $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
         }
         return implode(',', $result);
-    }
-
-    /**
-     * Translate a category record in the backend
-     *
-     * @param string $default default label
-     * @param array $row category record
-     */
-    public static function translateCategoryRecord($default, array $row = []): string
-    {
-        $overlayLanguage = (int)($GLOBALS['BE_USER']->uc['newsoverlay'] ?? 0);
-
-        $title = '';
-
-        if ($row['uid'] > 0 && $overlayLanguage > 0 && !isset($row['sys_language_uid'])) {
-            $row = BackendUtility::getRecord('sys_category', $row['uid']);
-        }
-
-        if ($row['uid'] > 0 && $overlayLanguage > 0 && $row['sys_language_uid'] === 0) {
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getQueryBuilderForTable('sys_category');
-            $overlayRecord = $queryBuilder
-                ->select('title')
-                ->from('sys_category')
-                ->where(
-                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($overlayLanguage, Connection::PARAM_INT)),
-                    $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($row['uid'], Connection::PARAM_INT))
-                )
-                ->setMaxResults(1)
-                ->executeQuery()->fetchAssociative();
-
-            if (is_array($overlayRecord) && !empty($overlayRecord)) {
-                $title = $overlayRecord['title'] . ' (' . $row['title'] . ')';
-            }
-        }
-
-        return $title ?: $default ?: '';
     }
 
     /**
