@@ -374,9 +374,6 @@
       <trans-unit id="extmng.pageTreePluginPreview" xml:space="preserve">
 				<source>Plugin preview in page tree: If enabled pages with news plugins are highlighted by showing the plugin icon as status information [TYPO3 13 only]</source>
 			<target>crwdns342550:0crwdne342550:0</target></trans-unit>
-      <trans-unit id="usersettings.overlay" xml:space="preserve">
-				<source>Use this overlay for news categories in the Backend</source>
-			<target>crwdns18192:0crwdne18192:0</target></trans-unit>
       <trans-unit id="usersettings.no-languages-available" xml:space="preserve">
 				<source>There are no languages available, so nothing to choose.</source>
 			<target>crwdns18194:0crwdne18194:0</target></trans-unit>
