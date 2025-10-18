@@ -292,9 +292,6 @@
       <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve" approved="yes">
 				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
 			<target state="final">Skrýt strom stránek pro Administrační modul: Chcete-li zjednodušit použitelnost, skryjte strom stránek pro administrační modul.</target></trans-unit>
-      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
-				<source>Use this overlay for news categories in the Backend</source>
-			<target state="final">Použít tuto šablonu pro kategorie zpráv v backendu</target></trans-unit>
       <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
 				<source>There are no languages available, so nothing to choose.</source>
 			<target state="final">Nejsou dostupné žádné jazyky, takže není z čeho vybírat.</target></trans-unit>
