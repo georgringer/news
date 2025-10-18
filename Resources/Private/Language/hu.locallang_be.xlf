@@ -150,9 +150,6 @@
       <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
 				<source>Defined in TypoScript</source>
 			<target state="final">TypoScript szerint</target></trans-unit>
-      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
-				<source>[no constraint]</source>
-			<target state="final">[nincs korlát]</target></trans-unit>
       <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve" approved="yes">
 				<source>Max width for media elements</source>
 			<target state="final">Max. szélesség a média elemeknek</target></trans-unit>
