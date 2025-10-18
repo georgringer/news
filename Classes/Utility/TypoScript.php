@@ -42,7 +42,7 @@ class TypoScript
                     ) {
                         $base[$fieldName] = $overload['settings'][$fieldName];
                     }
-                } else if (((!isset($base[$fieldName]) || $base[$fieldName] === '0') || (strlen($base[$fieldName]) === 0))
+                } elseif (((!isset($base[$fieldName]) || $base[$fieldName] === '0') || (strlen($base[$fieldName]) === 0))
                     && isset($overload['settings'][$fieldName])
                 ) {
                     $base[$fieldName] = $overload['settings'][$fieldName];
