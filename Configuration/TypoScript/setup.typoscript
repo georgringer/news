@@ -101,7 +101,6 @@ plugin.tx_news {
 		detail {
 			errorHandling = showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404
 			checkPidOfNewsRecord = 0
-			registerProperties = keywords,title
 			showPrevNext = 0
 			showSocialShareButtons = 1
 			showMetaTags = 1

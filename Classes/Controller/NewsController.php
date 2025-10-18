@@ -29,7 +29,6 @@ use GeorgRinger\News\Pagination\QueryResultPaginator;
 use GeorgRinger\News\Seo\NewsTitleProvider;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\ClassCacheManager;
-use GeorgRinger\News\Utility\Page;
 use GeorgRinger\News\Utility\TypoScript;
 use GeorgRinger\NumberedPagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
@@ -393,7 +392,6 @@ class NewsController extends NewsBaseController
         }
 
         if ($news !== null) {
-            Page::setRegisterProperties($this->settings['detail']['registerProperties'] ?? false, $news);
             Cache::addCacheTagsByNewsRecords([$news]);
             Cache::addCacheTagsByNewsRecords($news->getRelated()->toArray());
 
