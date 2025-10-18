@@ -378,9 +378,6 @@ TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Fe
       <trans-unit id="extmng.pageTreePluginPreview" xml:space="preserve" approved="yes">
 				<source>Plugin preview in page tree: If enabled pages with news plugins are highlighted by showing the plugin icon as status information [TYPO3 13 only]</source>
 			<target state="final">Plugin-Vorschau im Seitenbaum: Wenn aktiviert, werden Seiten mit Nachrichten-Plugins durch die Anzeige des Plugin-Symbols als Statusinformation hervorgehoben. [Nur TYPO3 13]</target></trans-unit>
-      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
-				<source>Use this overlay for news categories in the Backend</source>
-			<target state="final">Benutze folgenden Overlay für Kategorien im Backend</target></trans-unit>
       <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
 				<source>There are no languages available, so nothing to choose.</source>
 			<target state="final">Es sind keine Sprachen verfügbar, daher wird nichts anzeigt.</target></trans-unit>
