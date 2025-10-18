@@ -304,9 +304,6 @@ TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST = 120. Tätä 
       <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve" approved="yes">
 				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
 			<target state="final">Mediatiedostojen edistynyt esikatselunäkymä: Jos tämä on käytössä, toimittajille on saatavana enemmän vaihtoehtoja, jotka määrittelevät, missä mediaelementti tulisi näyttää.</target></trans-unit>
-      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
-				<source>Use this overlay for news categories in the Backend</source>
-			<target state="final">Käytä tätä peittokuvaa taustaohjelman uutisluokissa</target></trans-unit>
       <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
 				<source>There are no languages available, so nothing to choose.</source>
 			<target state="final">Kieliä ei ole saatavilla, joten ei valittavaa.</target></trans-unit>
