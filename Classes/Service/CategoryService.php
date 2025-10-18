@@ -25,7 +25,7 @@ class CategoryService
      * Get child categories by calling recursive function
      * and using the caching framework to save some queries
      *
-     * @param string $idList list of category ids to start
+     * @param int|string $idList list of category ids to start
      * @param int $counter
      * @param string $additionalWhere additional where clause
      * @param bool $removeGivenIdListFromResult remove the given id list from result
@@ -50,7 +50,7 @@ class CategoryService
         }
 
         if ($removeGivenIdListFromResult) {
-            $entry = self::removeValuesFromString($entry, $idList);
+            $entry = self::removeValuesFromString((string)$entry, (string)$idList);
         }
 
         return $entry;
