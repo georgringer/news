@@ -119,6 +119,9 @@
       <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve">
 				<source>Only active (non archived)</source>
 			<target>crwdns18026:0crwdne18026:0</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.none" xml:space="preserve">
+                <source>None</source>
+            <target>crwdns377922:0crwdne377922:0</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve">
 				<source>Archived</source>
 			<target>crwdns18028:0crwdne18028:0</target></trans-unit>
@@ -219,8 +222,8 @@
 				<source>Defined in TypoScript</source>
 			<target>crwdns18092:0crwdne18092:0</target></trans-unit>
       <trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
-				<source>[no constraint]</source>
-			<target>crwdns18094:0crwdne18094:0</target></trans-unit>
+				<source>No constraint </source>
+			<target>crwdns377924:0crwdne377924:0 </target></trans-unit>
       <trans-unit id="flexforms_general.selectedList" xml:space="preserve">
 				<source>List of articles</source>
 			<target>crwdns18096:0crwdne18096:0</target></trans-unit>
