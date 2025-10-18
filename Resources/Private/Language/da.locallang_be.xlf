@@ -377,9 +377,6 @@
       <trans-unit id="extmng.pageTreePluginPreview" xml:space="preserve" approved="yes">
 				<source>Plugin preview in page tree: If enabled pages with news plugins are highlighted by showing the plugin icon as status information [TYPO3 13 only]</source>
 			<target state="final">Plug-in forhåndsvisning i sidetræ: Hvis det er aktiveret, fremhæves sider med nyheds-plug-ins ved at vise plug-in-ikonet som status [kun TYPO3 13]</target></trans-unit>
-      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
-				<source>Use this overlay for news categories in the Backend</source>
-			<target state="final">Brug dette overlay for nyhedskategorier i backend.</target></trans-unit>
       <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
 				<source>There are no languages available, so nothing to choose.</source>
 			<target state="final">Ingen sprog er tilgængelige, så intet kan vælges her.</target></trans-unit>
