@@ -23,6 +23,7 @@ class TemplateLayout implements SingletonInterface
      */
     public function getAvailableTemplateLayouts(int $pageUid): array
     {
+        $templateLayouts = [];
         // Add TsConfig values
         foreach ($this->getTemplateLayoutsFromTsConfig($pageUid) as $templateKey => $titleOrConfiguration) {
             if (is_string($titleOrConfiguration) && str_starts_with($titleOrConfiguration, '--div--')) {
