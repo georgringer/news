@@ -264,9 +264,6 @@
       <trans-unit id="extmng.rteForTeaser" xml:space="preserve" approved="yes">
 				<source>Enable a RTE for the teaser field.</source>
 			<target state="final">RTE engedélyezése a bevezető mezőre.</target></trans-unit>
-      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
-				<source>Use this overlay for news categories in the Backend</source>
-			<target state="final">Használja ezt az elrendezést a hírkategóriákhoz a Backend felületen</target></trans-unit>
       <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
 				<source>There are no languages available, so nothing to choose.</source>
 			<target state="final">Nincsenek elérhető nyelvek, így nincs mit választani.</target></trans-unit>
