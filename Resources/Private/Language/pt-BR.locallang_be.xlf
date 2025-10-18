@@ -252,9 +252,6 @@
       <trans-unit id="extmng.rteForTeaser" xml:space="preserve" approved="yes">
 				<source>Enable a RTE for the teaser field.</source>
 			<target state="final">Habilita um RTE para o campo prévia.</target></trans-unit>
-      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
-				<source>Use this overlay for news categories in the Backend</source>
-			<target state="final">Utilize esta sobreposição para categorias de notícias no Backend</target></trans-unit>
       <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
 				<source>There are no languages available, so nothing to choose.</source>
 			<target state="final">Não existem idiomas disponíveis, portanto nada para selecionar.</target></trans-unit>
