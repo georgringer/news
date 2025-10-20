@@ -121,6 +121,9 @@
       <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve" approved="yes">
 				<source>Only active (non archived)</source>
 			<target state="final">Kun aktive (ikke-arkiverede)</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.none" xml:space="preserve" approved="yes">
+                <source>None</source>
+            <target state="final">Ingen</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve" approved="yes">
 				<source>Archived</source>
 			<target state="final">Arkiverede</target></trans-unit>
@@ -220,6 +223,9 @@
       <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
 				<source>Defined in TypoScript</source>
 			<target state="final">Defineret i TypoScript</target></trans-unit>
+      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
+				<source>No constraint </source>
+			<target state="final">Ingen begrænsning </target></trans-unit>
       <trans-unit id="flexforms_general.selectedList" xml:space="preserve" approved="yes">
 				<source>List of articles</source>
 			<target state="final">Liste over artikler</target></trans-unit>
