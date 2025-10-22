@@ -16,7 +16,7 @@ if ($configuration->getShowAdministrationModule() && !ExtensionManagementUtility
         'web_newsAdministration' => [
             'parent' => 'web',
             'position' => ['after' => '*'],
-            'access' => 'user,group',
+            'access' => 'admin',
             'path' => '/module/web/NewsAdministration/',
             'iconIdentifier' => 'ext-news-module-administration',
             'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
