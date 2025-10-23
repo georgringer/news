@@ -9,7 +9,7 @@
 
 	<!-- date -->
 	<span class="glyphicon glyphicon-calendar"> </span>
-	<time itemprop="datePublished" datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
+	<time itemprop="datePublished" datetime="{f:format.date(date:newsItem.datetime, format:'c')}">
 		<f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
 	</time>
 

@@ -6,6 +6,7 @@ use Rector\Config\RectorConfig;
 use Rector\ValueObject\PhpVersion;
 use Ssch\TYPO3Rector\CodeQuality\General\ConvertImplicitVariablesToExplicitGlobalsRector;
 use Ssch\TYPO3Rector\CodeQuality\General\ExtEmConfRector;
+use Ssch\TYPO3Rector\CodeQuality\General\GeneralUtilityMakeInstanceToConstructorPropertyRector;
 use Ssch\TYPO3Rector\CodeQuality\General\InjectMethodToConstructorInjectionRector;
 use Ssch\TYPO3Rector\Configuration\Typo3Option;
 use Ssch\TYPO3Rector\Set\Typo3LevelSetList;
@@ -34,10 +35,13 @@ return RectorConfig::configure()
     ->withRules([
         ConvertImplicitVariablesToExplicitGlobalsRector::class,
     ])
+    ->withSkip([
+        GeneralUtilityMakeInstanceToConstructorPropertyRector::class,
+    ])
     ->withImportNames(true, true, false, true)
     ->withConfiguredRule(ExtEmConfRector::class, [
         ExtEmConfRector::PHP_VERSION_CONSTRAINT => '8.1.0-8.4.99',
-        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '12.4.2-13.9.99',
+        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '12.4.37-13.9.99',
         ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])
     ->withSkip([

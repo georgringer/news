@@ -47,12 +47,11 @@ class ItemsProcFunc
             $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
 
             $templateLayouts = $this->reduceTemplateLayouts($templateLayouts, $currentColPos);
-            foreach ($templateLayouts as $layout) {
-                $additionalLayout = [
-                    htmlspecialchars($this->getLanguageService()->sL($layout[0])),
-                    $layout[1],
+            foreach ($templateLayouts as $identifier => $label) {
+                $config['items'][] = [
+                    'label' => $this->getLanguageService()->sL($label),
+                    'value' => $identifier,
                 ];
-                array_push($config['items'], $additionalLayout);
             }
         }
     }
@@ -65,26 +64,16 @@ class ItemsProcFunc
      */
     protected function reduceTemplateLayouts($templateLayouts, $currentColPos): array
     {
+        $finalLayouts = [];
         $currentColPos = (int)$currentColPos;
-        $restrictions = [];
-        $allLayouts = [];
-        foreach ($templateLayouts as $key => $layout) {
-            if (is_array($layout[0])) {
-                if (isset($layout[0]['allowedColPos']) && str_ends_with((string)$layout[1], '.')) {
-                    $layoutKey = substr($layout[1], 0, -1);
-                    $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout[0]['allowedColPos'], true);
-                }
-            } else {
-                $allLayouts[$key] = $layout;
+        foreach ($templateLayouts as $key => $configuration) {
+            if (isset($configuration['allowedColPos']) && !GeneralUtility::inList($configuration['allowedColPos'], (string)$currentColPos)) {
+                continue;
             }
-        }
-        foreach ($restrictions as $restrictedIdentifier => $restrictedColPosList) {
-            if (!in_array($currentColPos, $restrictedColPosList, true)) {
-                unset($allLayouts[$restrictedIdentifier]);
-            }
+            $finalLayouts[$key] = $configuration['label'];
         }
 
-        return $allLayouts;
+        return $finalLayouts;
     }
 
     /**
@@ -151,41 +140,6 @@ class ItemsProcFunc
                 unset($config['items'][$key]);
             }
         }
-    }
-
-    /**
-     * Generate a select box of languages to choose an overlay
-     *
-     * @return string select box
-     */
-    public function user_categoryOverlay(): string
-    {
-        $html = '';
-
-        $languages = $this->getAllLanguages();
-        // if any language is available
-        if (count($languages) > 0) {
-            $html = '<select name="data[newsoverlay]" id="field_newsoverlay" class="form-control">';
-
-            if (!isset($languages[0])) {
-                $html .= '<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value')) . '</option>';
-            }
-
-            foreach ($languages as $language) {
-                $selected = ((int)($GLOBALS['BE_USER']->uc['newsoverlay'] ?? 0) === (int)$language['uid']) ? ' selected="selected" ' : '';
-                $html .= '<option ' . $selected . 'value="' . $language['uid'] . '">' . htmlspecialchars($language['title']) . '</option>';
-            }
-
-            $html .= '</select>';
-        } else {
-            $html .= htmlspecialchars(
-                $this->getLanguageService()->sL(
-                    'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available'
-                )
-            );
-        }
-
-        return $html;
     }
 
     /**

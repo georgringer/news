@@ -76,8 +76,8 @@ class MetaTagViewHelper extends AbstractViewHelper
         if ($forceAbsoluteUrl) {
             $parsedPath = parse_url($content);
             if (is_array($parsedPath) && !isset($parsedPath['host'])) {
-                $content =
-                    rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/')
+                $content
+                    = rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/')
                     . '/'
                     . ltrim($content, '/');
             }

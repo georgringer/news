@@ -493,19 +493,6 @@ detail.showPrevNext
 
    If enabled, links to the previous and next news records are shown
 
-.. _tsDetailRegisterProperties:
-
-detail.registerProperties
-=========================
-
-.. confval:: detail.registerProperties
-
-   :type: string
-   :Path: plugin.tx_news.settings
-   :Default: keywords,title
-
-   This property is currently not used.
-
 .. _tsDetailShowSocialShareButtons:
 
 detail.showSocialShareButtons

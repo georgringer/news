@@ -110,26 +110,16 @@ $boot = static function (): void {
         ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
 
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['news_clearcache'] =
-        DataHandlerHook::class . '->clearCachePostProc';
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['moveRecordClass']['news_clearcache'] =
-        DataHandlerHook::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['news_clearcache']
+        = DataHandlerHook::class . '->clearCachePostProc';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['moveRecordClass']['news_clearcache']
+        = DataHandlerHook::class;
 
     // Edit restriction for news records
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['news'] =
-        DataHandlerHook::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news'] =
-        DataHandlerHook::class;
-
-    //    // Modify flexform fields since core 8.5 via formEngine: Inject a data provider between TcaFlexPrepare and TcaFlexProcess
-    //    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation::class] = [
-    //        'depends' => [
-    //            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexPrepare::class,
-    //        ],
-    //        'before' => [
-    //            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexProcess::class,
-    //        ],
-    //    ];
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['news']
+        = DataHandlerHook::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news']
+        = DataHandlerHook::class;
 
     /* ===========================================================================
         Custom cache, done with the caching framework
@@ -176,8 +166,8 @@ $boot = static function (): void {
     if (class_exists(ClassLoader::class)) {
         ClassLoader::registerAutoloader();
     }
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['ext:news'] =
-        ClassCacheManager::class . '->reBuild';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['ext:news']
+        = ClassCacheManager::class . '->reBuild';
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][NewsRowInitializeNew::class] = [
         'depends' => [
@@ -219,6 +209,8 @@ $boot = static function (): void {
             ]
         );
     }
+    $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = '^tx_news_pi1[search][';
+    $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['requireCacheHashPresenceParameters'][] = 'tx_news_pi1[currentPage]';
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][ExtensionService::class] = [
         'className' => ExtensionServiceXclassed::class,

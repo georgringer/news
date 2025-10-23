@@ -42,11 +42,13 @@ class ImageSizeViewHelper extends AbstractViewHelper
             VersionNumberUtility::getNumericTypo3Version()
         );
 
+        $imageArgument = (string)($arguments['image'] ?? '');
+
         // If TYPO3 version is previous version 11
         if ($typo3VersionNumber < 11000000) {
-            $usedImage = trim($arguments['image'], '/');
+            $usedImage = trim($imageArgument, '/');
         } else {
-            $usedImage = trim($arguments['image']);
+            $usedImage = trim($imageArgument);
         }
 
         $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
@@ -61,10 +63,11 @@ class ImageSizeViewHelper extends AbstractViewHelper
                     $value = $imagesOnPage[$usedImage][1];
                     break;
                 case 'size':
-                    $file = Environment::getPublicPath() . '/' . ltrim(parse_url($usedImage, PHP_URL_PATH), '/');
+                    $file = Environment::getPublicPath() . '/' . ltrim(urldecode(parse_url($usedImage, PHP_URL_PATH)), '/');
                     if (is_file($file)) {
                         $value = @filesize($file);
                     }
+                    break;
             }
         }
 

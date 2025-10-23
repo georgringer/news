@@ -1,7 +1,6 @@
 <?php
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use GeorgRinger\News\Hooks\Labels;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -188,6 +187,3 @@ ExtensionManagementUtility::addToAllTCAtypes(
 
 $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage']['tx_news_domain_model_news']
     = [0 => 'categories'];
-
-$GLOBALS['TCA']['sys_category']['ctrl']['label_userFunc'] =
-    Labels::class . '->getUserLabelCategory';

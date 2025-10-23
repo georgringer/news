@@ -35,7 +35,14 @@ class TypoScript
                 }
             } else {
                 // if flexform setting is empty and value is available in TS
-                if (((!isset($base[$fieldName]) || $base[$fieldName] === '0') || (strlen($base[$fieldName]) === 0))
+                if ($fieldName === 'recursive') {
+                    // recursive is defined in flexforms by having empty string as TS overload and 0 as valid entry
+                    if (((!isset($base[$fieldName]) || $base[$fieldName] === '') || (strlen($base[$fieldName]) === 0))
+                        && isset($overload['settings'][$fieldName])
+                    ) {
+                        $base[$fieldName] = $overload['settings'][$fieldName];
+                    }
+                } elseif (((!isset($base[$fieldName]) || $base[$fieldName] === '0') || (strlen($base[$fieldName]) === 0))
                     && isset($overload['settings'][$fieldName])
                 ) {
                     $base[$fieldName] = $overload['settings'][$fieldName];

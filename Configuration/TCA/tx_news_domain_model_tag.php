@@ -104,7 +104,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'required' => true,
-                'eval' => 'unique,trim',
+                'eval' => 'trim',
             ],
         ],
         'slug' => [

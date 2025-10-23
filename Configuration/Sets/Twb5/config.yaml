@@ -1,4 +1,4 @@
 name: georgringer/news-twb5
-label: News Bootstrap 5 Styles [Addon]
+label: 'EXT:news :: Twitter Bootstrap 5 Styles'
 dependencies:
   - georgringer/news
