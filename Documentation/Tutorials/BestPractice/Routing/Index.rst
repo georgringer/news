@@ -224,7 +224,7 @@ The following example will only provide routing for the detail view:
            _arguments:
              news-title: news
        aspects:
-         news:
+         news-title:
            type: NewsTitle
 
 Please note the placeholder :code:`{news-title}`:
@@ -314,7 +314,7 @@ If you want to have  categories+pagination, that configuration has to stand befo
        defaults:
          page: '0'
        aspects:
-         news:
+         news-title:
            type: NewsTitle
          page:
            type: StaticRangeMapper
@@ -461,7 +461,7 @@ by date. Also includes configuration for the pagination.
          date-year: '\d+'
          page: '\d+'
        aspects:
-         news:
+         news-title:
            type: NewsTitle
          page:
            type: StaticRangeMapper
@@ -545,7 +545,8 @@ Understanding routing is sometimes not that easy and straight forward.
 The aspect :yaml:`NewsTitle` is not only shorter to use but more important, it
 automatically configures a default value. This is needed to do an error handling
 within the extension instead of showing the general "Page not found error".
-More information can be found in the official manual: `Aspect fallback value handling <https://docs.typo3.org/permalink/t3coreapi:routing-aspect-fallback-handling>`_.
+More information can be found in the official manual: `Aspect fallback value handling <https://docs.typo3.org/permalink/t3coreapi:routing-aspect-fallback-handling>`_
+and :ref:`here <tsDetailErrorHandling>` regarding the error handling.
 
 However, defining a fallback value (either manually or using the mentioned aspect)
 can interfere with your general error handling configuration.
