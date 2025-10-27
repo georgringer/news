@@ -261,10 +261,10 @@ If you want to have  categories+pagination, that configuration has to stand befo
 
 * Detail view: ``https://www.example.com/news/detail/the-news-title``
 * Pagination: ``https://www.example.com/news/page-2``
-* Category filter: ``https://www.example.com/news/my-category``
-* Category filter + pagination: ``https://www.example.com/news/my-category/page-2``
-* Tag filter: ``https://www.example.com/news/my-tag``
-* Tag filter + pagination: ``https://www.example.com/news/my-tag/page-2``
+* Category filter: ``https://www.example.com/news/category/my-category``
+* Category filter + pagination: ``https://www.example.com/news/category/my-category/page-2``
+* Tag filter: ``https://www.example.com/news/tag/my-tag``
+* Tag filter + pagination: ``https://www.example.com/news/tag/my-tag/page-2``
 
 .. code-block:: yaml
    :caption: :file:`/config/sites/<your_identifier>/config.yaml`
