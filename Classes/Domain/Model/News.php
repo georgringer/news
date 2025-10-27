@@ -860,7 +860,7 @@ class News extends AbstractEntity
         $contentElements = $this->getContentElements();
         if ($contentElements) {
             foreach ($contentElements as $contentElement) {
-                if ($contentElement->getColPos() >= 0) {
+                if ($contentElement->getColPos() >= 0 && $contentElement->getSysLanguageUid() === $this->getSysLanguageUid()) {
                     $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
                 }
             }
@@ -880,7 +880,7 @@ class News extends AbstractEntity
         $contentElements = $this->getContentElements();
         if ($contentElements) {
             foreach ($contentElements as $contentElement) {
-                if ($contentElement->getColPos() >= 0 && $contentElement->getTxContainerParent() === 0) {
+                if ($contentElement->getColPos() >= 0 && $contentElement->getTxContainerParent() === 0 && $contentElement->getSysLanguageUid() === $this->getSysLanguageUid()) {
                     $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
                 }
             }
