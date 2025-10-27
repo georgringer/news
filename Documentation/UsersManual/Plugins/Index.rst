@@ -91,6 +91,11 @@ Use this action to show a list of categories. The categories are listed as tree.
 If you define a specific page id in field :guilabel:`PageId for list display` (inside the tab "*Additional*") and
 placing a news plugin with the type :guilabel:`List` there, it is possible to create a category filter.
 
+.. tip::
+
+   To have the selected category available, the checkbox "Disable override demand" must not be set in the category plugin.
+
+
 .. _plugin-tagList:
 
 Tag list
@@ -99,3 +104,7 @@ Use this action to show a list of tags.
 
 If you define a specific page id in field :guilabel:`PageId for list display` (inside the tab "*Additional*") and
 placing a news plugin with the type :guilabel:`List` there, it is possible to create a tag filter.
+
+.. tip::
+
+   To keep the tags available after selecting one, the checkbox "Disable override demand" must be active in the tag plugin.
