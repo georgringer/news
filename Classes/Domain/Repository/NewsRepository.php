@@ -59,6 +59,8 @@ class NewsRepository extends AbstractDemandedRepository
 
         if (!is_array($categories)) {
             $categories = GeneralUtility::intExplode(',', $categories, true);
+        } else {
+            $categories = GeneralUtility::intExplode(',', implode(',', $categories), true);
         }
         foreach ($categories as $category) {
             if ($includeSubCategories) {

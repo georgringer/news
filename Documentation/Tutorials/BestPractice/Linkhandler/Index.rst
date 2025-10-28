@@ -40,6 +40,9 @@ Also have a look at TYPO3 documentation about the ``RecordLinkHandler`` at https
       scanAfter = page
    }
 
+..  versionadded:: EXT:news 13.0.0
+    If the identifier starts with `tx_news`, the URLs of articles of the type "Internal" and "External" are correctly retrieved.
+
 
 Configuration for the frontend
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

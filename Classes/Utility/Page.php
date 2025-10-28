@@ -9,7 +9,6 @@
 
 namespace GeorgRinger\News\Utility;
 
-use GeorgRinger\News\Database\QueryGenerator;
 use TYPO3\CMS\Backend\Tree\View\PageTreeView;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -18,7 +17,6 @@ use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -26,35 +24,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 class Page
 {
-    /**
-     * Find all ids from given ids and level
-     *
-     * @param string $pidList comma separated list of ids
-     * @param int $recursive recursive levels
-     * @return string comma separated list of ids
-     */
-    public static function extendPidListByChildren($pidList = '', $recursive = 0): string
-    {
-        $recursive = (int)$recursive;
-        if ($recursive <= 0) {
-            return $pidList ?? '';
-        }
-
-        $queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
-        $recursiveStoragePids = $pidList;
-        $storagePids = GeneralUtility::intExplode(',', $pidList);
-        foreach ($storagePids as $startPid) {
-            if ($startPid >= 0) {
-                // @extensionScannerIgnoreLine
-                $pids = $queryGenerator->getTreeList($startPid, $recursive);
-                if (strlen($pids) > 0) {
-                    $recursiveStoragePids .= ',' . $pids;
-                }
-            }
-        }
-        return StringUtility::uniqueList($recursiveStoragePids);
-    }
-
     /**
      * Set properties of an object/array in cobj->LOAD_REGISTER which can then
      * be used to be loaded via TS with register:name
