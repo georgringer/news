@@ -183,6 +183,19 @@ class News extends AbstractEntity
         $this->tags = new ObjectStorage();
     }
 
+    /**
+     * Called again with initialize object, as fetching an entity from the DB does not use the constructor
+     */
+    public function initializeObject(): void
+    {
+        $this->categories = $this->categories ?? new ObjectStorage();
+        $this->contentElements = $this->contentElements ?? new ObjectStorage();
+        $this->relatedLinks = $this->relatedLinks ?? new ObjectStorage();
+        $this->falMedia = $this->falMedia ?? new ObjectStorage();
+        $this->falRelatedFiles = $this->falRelatedFiles ?? new ObjectStorage();
+        $this->tags = $this->tags ?? new ObjectStorage();
+    }
+
     public function getTitle(): string
     {
         return $this->title;
