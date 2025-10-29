@@ -419,7 +419,7 @@ class NewsController extends NewsBaseController
     protected function checkPidOfNewsRecord(News $news): ?News
     {
         $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
-        $allowedStoragePages = $pageRepository->getPageIdsRecursive(GeneralUtility::intExplode(',', (string)($settings['startingpoint'] ?? '')), (int)($settings['recursive'] ?? 0));
+        $allowedStoragePages = $pageRepository->getPageIdsRecursive(GeneralUtility::intExplode(',', (string)($this->settings['startingpoint'] ?? '')), (int)($this->settings['recursive'] ?? 0));
 
         if (count($allowedStoragePages) > 0 && !in_array($news->getPid(), $allowedStoragePages)) {
             $this->eventDispatcher->dispatch(new NewsCheckPidOfNewsRecordFailedInDetailActionEvent($this, $news, $this->request));
