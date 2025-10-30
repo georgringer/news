@@ -245,17 +245,8 @@ Common routeEnhancer configurations
 Basic setup (including categories, tags and the RSS/Atom feed)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Prerequisites:**
-
-The plugins for :guilabel:`List View` and :guilabel:`Detail View` are on
-separate pages.
-
-If you use the :guilabel:`Category Menu` or :guilabel:`Tag List` plugins to
-filter news records, their titles (slugs) are used.
-
 The order of the config does matter!
-If you want to have  categories+pagination, that configuration has to stand before the part for categpries alone
-
+If you want to have  categories+pagination, that configuration has to stand before the part for categories alone
 
 **Result:**
 
