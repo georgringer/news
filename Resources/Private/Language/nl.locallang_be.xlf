@@ -121,6 +121,9 @@
       <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve" approved="yes">
 				<source>Only active (non archived)</source>
 			<target state="final">Alleen actief (niet gearchiveerd)</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.none" xml:space="preserve" approved="yes">
+                <source>None</source>
+            <target state="final">Geen</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve" approved="yes">
 				<source>Archived</source>
 			<target state="final">Gearchiveerd</target></trans-unit>
@@ -220,6 +223,9 @@
       <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
 				<source>Defined in TypoScript</source>
 			<target state="final">Gedefinieerd in TypoScript</target></trans-unit>
+      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
+				<source>No constraint </source>
+			<target state="final">Geen beperking </target></trans-unit>
       <trans-unit id="flexforms_general.selectedList" xml:space="preserve" approved="yes">
 				<source>List of articles</source>
 			<target state="final">Lijst van artikelen</target></trans-unit>
