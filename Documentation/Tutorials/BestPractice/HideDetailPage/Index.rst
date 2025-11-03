@@ -86,7 +86,7 @@ Use the following TypoScript to define a variable depending if the news detail v
     [end]
 
 The page template (which can be typically found in `Pages/Default.html`) can now
-be modified to render only the plugin of EXT:news
+be modified to render only the plugin of EXT:news.
 
 .. code-block:: html
 
@@ -112,3 +112,43 @@ be modified to render only the plugin of EXT:news
             </f:for>
         </f:else>
     </f:if>
+
+Alternative solution
+
+.. code-block:: html
+
+    <f:if condition="{isDetail}">
+        <f:then>
+            <f:cObject typoscriptObjectPath="lib.tx_news.myNewsDetail" />
+        </f:then>
+        <f:else>
+            <f:for each="{content.main.records}" as="contentElement">
+                <f:cObject
+                    typoscriptObjectPath="{contentElement.mainType}"
+                    table="{contentElement.mainType}"
+                    data="{contentElement}"
+                />
+            </f:for>
+        </f:else>
+    </f:if>
+
+and
+
+.. code-block:: typoscript
+
+    lib.tx_news.myNewsDetail = USER
+    lib.tx_news.myNewsDetail {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = News
+        pluginName = NewsDetail
+        vendorName = GeorgRinger
+
+        mvc {
+            callDefaultActionIfActionCantBeResolved = 1
+        }
+
+        settings < plugin.tx_news.settings
+        settings {
+            myCustomView = 1
+        }
+    }
