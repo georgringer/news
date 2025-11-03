@@ -90,6 +90,14 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+    2025-11-03 [DOCS] Improve plugin description (Commit 5293d87e by Georg Ringer)
+    2025-10-30 [TASK] Initialize ObjectStorages in models (#2722) (Commit 5f1c8ddb by Georg Ringer)
+    2025-10-30 [DOC] Remove not needed paragraph in routing (Commit 472a1a91 by Georg Ringer)
+    2025-10-29 [BUGFIX] Use correct variable (#2723) (Commit ffc71694 by Georg Ringer)
+    2025-10-29 [TASK] Streamline label of site set "Sitemap" (#2720) (Commit 00df7cb7 by Stefan Frömken)
+    2025-10-27 [DOC] Improve routing documentation (#2713) (Commit a4f96405 by Georg Ringer)
+    2025-10-27 [DOC] Add hints about override demand checkbox #2718 (Commit c8a877e4 by Georg Ringer)
+    2025-10-27 [DOC] Prepare v13 (Commit d4ceb383 by Georg Ringer)
     2025-10-27 [DOC] Add example for rendering news with PAGEVIEW #2717 (Commit 32dcf872 by Georg Ringer)
     2025-10-27 [BUGFIX] Prevent duplicate content element IDs in translated news records (#2715) (Commit 3a077663 by Eric Harrer)
     2025-10-22 [BUGFIX]  Set allowed access option in the backend module registration (#2712) (Commit 20abd508 by Josef Glatz)
@@ -142,5 +150,6 @@ This is a list of all changes in this release: ::
     2025-09-16 [TASK] Hide hiddenContentElements flash message if news_content_elements is installed (#2681) (Commit c66cfee3 by Simon Schaufelberger)
     2025-09-03 [BUGFIX] Fix #2676 - Avoid fatal error by assigning images in backend (#2677) (Commit da6fe949 by Tim)
     2025-08-27 [TASK] Add Makefile to gitattributes to be skipped (Commit 5e8e0250 by Georg Ringer)
+
 
 This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
