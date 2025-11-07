@@ -32,7 +32,7 @@ visibility of the storage pages.
 Defining template layouts via `$GLOBALS`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 *Template layouts* which can be selected in the plugin can now only be defined
-using *Page TSconfig`. The usage of :php:`$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']` has been removed.
+using *Page TSconfig*. The usage of :php:`$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']` has been removed.
 
 Force cHash for pagination argument
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
