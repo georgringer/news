@@ -1,9 +1,16 @@
-13.0.0 - xxth November 2025
-===========================
+13.0.0 - 7th November 2025
+==========================
 
-This is the first release of the extension that supports TYPO3 12 and 13.
-This also means that the **active** support for TYPO3 11 has been stopped.
+This major release focuses on two key areas:
 
+- **Improved integration with site set settings**, ensuring better flexibility and configuration consistency.
+- **Cleanup and removal of outdated or rarely used features**, paving the way for a smoother upgrade path to future versions.
+
+With this release, the foundation is set for the next development cycle.
+The upcoming work will focus on adding full support for TYPO3 v14, while
+dropping compatibility with TYPO3 v12 LTS.
+
+Further details about new features, changes, and breaking updates can be found in the sections below.
 
 .. contents::
         :local:
@@ -90,6 +97,7 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+    2025-11-03 [DOCS] Update changelog (Commit 5dfdcd17 by Georg Ringer)
     2025-11-03 [DOCS] Improve plugin description (Commit 5293d87e by Georg Ringer)
     2025-10-30 [TASK] Initialize ObjectStorages in models (#2722) (Commit 5f1c8ddb by Georg Ringer)
     2025-10-30 [DOC] Remove not needed paragraph in routing (Commit 472a1a91 by Georg Ringer)
