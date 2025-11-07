@@ -183,6 +183,19 @@ class News extends AbstractEntity
         $this->tags = new ObjectStorage();
     }
 
+    /**
+     * Called again with initialize object, as fetching an entity from the DB does not use the constructor
+     */
+    public function initializeObject(): void
+    {
+        $this->categories = $this->categories ?? new ObjectStorage();
+        $this->contentElements = $this->contentElements ?? new ObjectStorage();
+        $this->relatedLinks = $this->relatedLinks ?? new ObjectStorage();
+        $this->falMedia = $this->falMedia ?? new ObjectStorage();
+        $this->falRelatedFiles = $this->falRelatedFiles ?? new ObjectStorage();
+        $this->tags = $this->tags ?? new ObjectStorage();
+    }
+
     public function getTitle(): string
     {
         return $this->title;
@@ -860,7 +873,7 @@ class News extends AbstractEntity
         $contentElements = $this->getContentElements();
         if ($contentElements) {
             foreach ($contentElements as $contentElement) {
-                if ($contentElement->getColPos() >= 0) {
+                if ($contentElement->getColPos() >= 0 && $contentElement->getSysLanguageUid() === $this->getSysLanguageUid()) {
                     $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
                 }
             }
@@ -880,7 +893,7 @@ class News extends AbstractEntity
         $contentElements = $this->getContentElements();
         if ($contentElements) {
             foreach ($contentElements as $contentElement) {
-                if ($contentElement->getColPos() >= 0 && $contentElement->getTxContainerParent() === 0) {
+                if ($contentElement->getColPos() >= 0 && $contentElement->getTxContainerParent() === 0 && $contentElement->getSysLanguageUid() === $this->getSysLanguageUid()) {
                     $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
                 }
             }

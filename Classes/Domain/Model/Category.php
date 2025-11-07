@@ -95,6 +95,14 @@ class Category extends AbstractEntity
         $this->images = new ObjectStorage();
     }
 
+    /**
+     * Called again with initialize object, as fetching an entity from the DB does not use the constructor
+     */
+    public function initializeObject(): void
+    {
+        $this->images = $this->images ?? new ObjectStorage();
+    }
+
     public function getSorting(): int
     {
         return $this->sorting;
