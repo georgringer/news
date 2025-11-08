@@ -24,7 +24,7 @@ return RectorConfig::configure()
         __DIR__ . '/../../ext_tables.php',
     ])
     //->withPhpSets(php81: true)
-    ->withPhpVersion(PhpVersion::PHP_81)
+    ->withPhpVersion(PhpVersion::PHP_82)
     ->withSets([
         Typo3SetList::CODE_QUALITY,
         Typo3SetList::GENERAL,
@@ -40,8 +40,8 @@ return RectorConfig::configure()
     ])
     ->withImportNames(true, true, false, true)
     ->withConfiguredRule(ExtEmConfRector::class, [
-        ExtEmConfRector::PHP_VERSION_CONSTRAINT => '8.1.0-8.4.99',
-        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '12.4.37-13.9.99',
+        ExtEmConfRector::PHP_VERSION_CONSTRAINT => '8.2.0-8.4.99',
+        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '13.4.19-14.0.0',
         ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])
     ->withSkip([

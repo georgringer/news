@@ -27,6 +27,15 @@ jobs:
         name: Validate code against CGL
         run: PHP_CS_FIXER_IGNORE_ENV=1 Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -s cgl -n
 
+      - if: matrix.php == '8.3' && matrix.composerInstall == 'composerInstallHighest'
+        name: Run Rector
+        run: Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -s rector -n
+
+      - if: matrix.php == '8.3' && matrix.composerInstall == 'composerInstallHighest'
+        name: Run Fractor
+        run: Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -s fractor -n
+
+
       - name: Unit Tests
         run: Build/Scripts/runTests.sh -t 13 -p ${{ matrix.php }} -s unit
 
