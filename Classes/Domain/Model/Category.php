@@ -49,7 +49,7 @@ class Category extends AbstractEntity
     /** @var string */
     protected $description = '';
 
-    /** @var \GeorgRinger\News\Domain\Model\Category */
+    /** @var Category */
     #[Lazy]
     protected $parentcategory;
 
@@ -204,14 +204,14 @@ class Category extends AbstractEntity
         $this->description = $description;
     }
 
-    public function getParentcategory(): ?\GeorgRinger\News\Domain\Model\Category
+    public function getParentcategory(): ?Category
     {
         return $this->parentcategory instanceof LazyLoadingProxy
             ? $this->parentcategory->_loadRealInstance()
             : $this->parentcategory;
     }
 
-    public function setParentcategory(\GeorgRinger\News\Domain\Model\Category $category): void
+    public function setParentcategory(Category $category): void
     {
         $this->parentcategory = $category;
     }

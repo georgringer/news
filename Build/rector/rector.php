@@ -12,6 +12,7 @@ use Ssch\TYPO3Rector\Configuration\Typo3Option;
 use Ssch\TYPO3Rector\Set\Typo3LevelSetList;
 use Ssch\TYPO3Rector\Set\Typo3SetList;
 use Ssch\TYPO3Rector\TYPO311\v0\DateTimeAspectInsteadOfGlobalsExecTimeRector;
+use Ssch\TYPO3Rector\TYPO311\v0\GetClickMenuOnIconTagParametersRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -45,6 +46,7 @@ return RectorConfig::configure()
         ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])
     ->withSkip([
+        GetClickMenuOnIconTagParametersRector::class,
         InjectMethodToConstructorInjectionRector::class => [
             __DIR__ . '/../../Classes/Controller/AdministrationController.php',
             __DIR__ . '/../../Classes/Domain/Repository/AbstractDemandedRepository.php',

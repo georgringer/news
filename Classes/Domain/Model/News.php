@@ -423,7 +423,7 @@ class News extends AbstractEntity
     /**
      * Get related news
      *
-     * @return \GeorgRinger\News\Domain\Model\News[]
+     * @return News[]
      */
     public function getRelated()
     {
@@ -433,7 +433,7 @@ class News extends AbstractEntity
     /**
      * Set related from
      *
-     * @param ObjectStorage<\GeorgRinger\News\Domain\Model\News> $relatedFrom
+     * @param ObjectStorage<News> $relatedFrom
      */
     public function setRelatedFrom($relatedFrom): void
     {
@@ -443,7 +443,7 @@ class News extends AbstractEntity
     /**
      * Get related from
      *
-     * @return \GeorgRinger\News\Domain\Model\News[]
+     * @return News[]
      */
     public function getRelatedFrom()
     {
