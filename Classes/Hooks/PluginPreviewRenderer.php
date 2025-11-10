@@ -17,6 +17,7 @@ use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
+use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
@@ -62,6 +63,11 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
     {
         $this->pageId = $item->getContext()->getPageId();
         $row = $item->getRecord();
+        if ((new Typo3Version())->getMajorVersion() >= 14) {
+            /** @var RecordInterface  $row */
+            $row = $row->getRawRecord()->toArray();
+        }
+
         $result = '';
         $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
         $this->tableData = [];

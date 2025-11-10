@@ -10,7 +10,9 @@
 namespace GeorgRinger\News\ViewHelpers;
 
 use GeorgRinger\News\Seo\NewsTitleProvider;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -37,6 +39,12 @@ class TitleTagViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ): void {
+        if ((new Typo3Version())->getVersion() >= 14) {
+            $isInsertRecord = $renderingContext->getVariableProvider()->getByPath('settings.insertRecord');
+            if ($isInsertRecord) {
+                return;
+            }
+        } else {
         // Skip if current record is part of tt_content CType shortcut
         $tsfe = self::getTsfe();
         if (!empty($tsfe->recordRegister)
@@ -46,6 +54,7 @@ class TitleTagViewHelper extends AbstractViewHelper
             && str_contains($tsfe->currentRecord, 'tx_news_domain_model_news:')
         ) {
             return;
+        }
         }
         $content = trim($renderChildrenClosure());
         if (!empty($content)) {
