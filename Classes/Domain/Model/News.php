@@ -79,11 +79,11 @@ class News extends AbstractEntity
     #[Lazy]
     protected ObjectStorage $categories;
 
-    /** @var ObjectStorage<\GeorgRinger\News\Domain\Model\News> */
+    /** @var ObjectStorage<News> */
     #[Lazy]
     protected $related;
 
-    /** @var ObjectStorage<\GeorgRinger\News\Domain\Model\News> */
+    /** @var ObjectStorage<News> */
     #[Lazy]
     protected $relatedFrom;
 
