@@ -126,7 +126,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
             }
 
             // @deprecated, use PluginPreviewRendererEvent instead
-            if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news'][\GeorgRinger\News\Hooks\PluginPreviewRenderer::class]['extensionSummary'] ?? []) {
+            if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news'][PluginPreviewRenderer::class]['extensionSummary'] ?? []) {
                 trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\GeorgRinger\News\Hooks\PluginPreviewRenderer::class][\'extensionSummary\'] has been deprecated, use event PluginPreviewSummaryEvent instead', E_USER_DEPRECATED);
                 $params['item'] = $item;
                 foreach ($hooks as $reference) {
@@ -242,7 +242,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
                 $data,
                 $table,
                 $record['uid'],
-                true,
+                '',
                 $record
             );
 
