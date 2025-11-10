@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Hooks;
 
-use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Information\Typo3Version;
