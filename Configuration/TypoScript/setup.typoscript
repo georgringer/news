@@ -227,7 +227,7 @@ tt_content.shortcut.20.conf.tx_news_domain_model_news {
 		useStdWrap = singleNews
 		insertRecord = 10
 		isShortcut = 1
-        detail.pageTitle._typoScriptNodeValue = 0
+		detail.pageTitle._typoScriptNodeValue = 0
 	}
 }
 # For fluid_styled_content
