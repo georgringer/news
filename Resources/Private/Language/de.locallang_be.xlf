@@ -583,7 +583,7 @@ TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Fe
 			<target state="final">Der Import wurde erfolgreich abgeschlossen. Laden Sie das Modul neu um einen neuen Import zu starten.</target></trans-unit>
       <trans-unit id="import.backupwarning" xml:space="preserve" approved="yes">
 				<source>It's strongly recommended to backup all news tables before running an import job.</source>
-			<target state="final">Es wird dringend dazu geraten, ein Backup der Datenbank und Dateien zu erstellen, bevor der Import Job durchgeführt wird</target></trans-unit>
+			<target state="final">Es wird dringend dazu geraten, ein Backup der Datenbank und Dateien zu erstellen, bevor der Import Job durchgeführt wird.</target></trans-unit>
       <trans-unit id="import.backupwarning.header" xml:space="preserve" approved="yes">
 				<source>Important!</source>
 			<target state="final">Wichtig!</target></trans-unit>
