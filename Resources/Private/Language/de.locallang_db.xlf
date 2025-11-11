@@ -93,6 +93,9 @@
       <trans-unit id="tx_news_domain_model_tag.seo.seo_headline" xml:space="preserve" approved="yes">
 				<source>Headline (H1)</source>
 			<target state="final">Überschrift (H1)</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_text" xml:space="preserve" approved="yes">
+				<source>SEO Text-Container</source>
+			<target state="final">SEO-Text-Container</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve" approved="yes">
 				<source>SEO</source>
 			<target state="final">SEO</target></trans-unit>
