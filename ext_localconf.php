@@ -121,16 +121,6 @@ $boot = static function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news']
         = DataHandlerHook::class;
 
-    //    // Modify flexform fields since core 8.5 via formEngine: Inject a data provider between TcaFlexPrepare and TcaFlexProcess
-    //    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation::class] = [
-    //        'depends' => [
-    //            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexPrepare::class,
-    //        ],
-    //        'before' => [
-    //            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexProcess::class,
-    //        ],
-    //    ];
-
     /* ===========================================================================
         Custom cache, done with the caching framework
     =========================================================================== */
@@ -219,6 +209,8 @@ $boot = static function (): void {
             ]
         );
     }
+    $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = '^tx_news_pi1[search][';
+    $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['requireCacheHashPresenceParameters'][] = 'tx_news_pi1[currentPage]';
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][ExtensionService::class] = [
         'className' => ExtensionServiceXclassed::class,

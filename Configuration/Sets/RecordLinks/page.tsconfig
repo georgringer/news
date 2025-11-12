@@ -1,0 +1,12 @@
+TCEMAIN.linkHandler.tx_news {
+    handler = TYPO3\CMS\Backend\LinkHandler\RecordLinkHandler
+    label = News
+    configuration {
+        table = tx_news_domain_model_news
+        # Default storage pid
+        storagePid = {$news.recordLinks.storagePid}
+        # Hide the page tree by setting it to 1
+        hidePageTree = {$news.recordLinks.hidePageTree}
+    }
+    scanAfter = page
+}

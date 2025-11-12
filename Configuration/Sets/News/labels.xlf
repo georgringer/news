@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:news/Configuration/Sets/News/labels.xlf" product-name="news">
+		<header/>
+		<body>
+			<trans-unit id="label">
+				<source>EXT:news</source>
+			</trans-unit>
+			<trans-unit id="categories.news.preview">
+				<source>Preview</source>
+			</trans-unit>
+			<trans-unit id="categories.description.news.preview">
+				<source>Show a view icon in the toolbar to be able to see how the article looks in the frontend.</source>
+			</trans-unit>
+			<trans-unit id="categories.news.pages">
+				<source>Pages</source>
+			</trans-unit>
+			<trans-unit id="categories.description.news.pages">
+				<source>Configuration of important pages</source>
+			</trans-unit>
+			<trans-unit id="categories.news.templates">
+				<source>Templates</source>
+			</trans-unit>
+			<trans-unit id="categories.description.news.templates">
+				<source>Configuration of Layouts, Templates &amp; Partials</source>
+			</trans-unit>
+		    <trans-unit id="categories.news.sitemap">
+				<source>Sitemap</source>
+			</trans-unit>
+			<trans-unit id="categories.description.news.sitemap">
+				<source>The primary benefits of an XML sitemap are improved search engine discovery and indexing. It increases crawl efficiency, especially for large or complex sites, and helps search engines understand the importance and structure of your content.</source>
+			</trans-unit>
+            <trans-unit id="categories.news.recordLinks">
+				<source>Record Links</source>
+			</trans-unit>
+			<trans-unit id="categories.description.news.recordLinks">
+				<source>Enable editors to create links to news records</source>
+			</trans-unit>
+			<trans-unit id="categories.news.recordLinks.backend">
+                <source>Backend</source>
+            </trans-unit>
+            <trans-unit id="categories.description.news.recordLinks.backend">
+                <source>Configuration for Backend (used in Tsconfig)</source>
+            </trans-unit>
+            <trans-unit id="categories.news.recordLinks.frontend">
+                <source>Frontend</source>
+            </trans-unit>
+            <trans-unit id="categories.description.news.recordLinks.frontend">
+                <source>Configuration for Frontend (used in TypoScript)</source>
+            </trans-unit>
+
+			<trans-unit id="settings.news.pages.detail">
+				<source>Page with detail view</source>
+			</trans-unit>
+			<trans-unit id="settings.description.news.pages.detail">
+				<source>Site-wide configuration for the detail view, used for all links</source>
+			</trans-unit>
+			<trans-unit id="settings.news.preview.page">
+				<source>Page with detail plugin used for previews</source>
+			</trans-unit>
+            <trans-unit id="settings.news.preview.mode">
+				<source>Preview mode</source>
+			</trans-unit>
+
+			<trans-unit id="settings.news.view.templateRootPath">
+				<source>Path to template root</source>
+			</trans-unit>
+			<trans-unit id="settings.news.view.partialRootPath">
+				<source>Path to template partials</source>
+			</trans-unit>
+			<trans-unit id="settings.news.view.layoutRootPath">
+				<source>Path to template layouts</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

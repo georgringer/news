@@ -25,20 +25,20 @@
     "require": {
         "php": ">= 8.1 < 8.5",
         "symfony/console": "^5.4 || ^6.4 || ^7.0",
-        "typo3/cms-backend": "^12.4.2 || ^13.1",
-        "typo3/cms-core": "^12.4.2 || ^13.1",
-        "typo3/cms-extbase": "^12.4.2 || ^13.1",
-        "typo3/cms-fluid": "^12.4.2 || ^13.1",
-        "typo3/cms-frontend": "^12.4.2 || ^13.1",
-        "typo3/cms-install": "^12.4.2 || ^13.1"
+        "typo3/cms-backend": "^12.4.37 || ^13.4.15",
+        "typo3/cms-core": "^12.4.37 || ^13.4.15",
+        "typo3/cms-extbase": "^12.4.37 || ^13.4.15",
+        "typo3/cms-fluid": "^12.4.37 || ^13.4.15",
+        "typo3/cms-frontend": "^12.4.37 || ^13.4.15",
+        "typo3/cms-install": "^12.4.37 || ^13.4.15"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.47.1",
         "phpstan/phpdoc-parser": "^1.12.10",
-        "phpunit/phpunit": "^10.5",
-        "typo3/cms-seo": "^12.4.2 || ^13.1",
+        "phpunit/phpunit": "^10.5.58",
+        "typo3/cms-seo": "^12.4.37 || ^13.4.15",
         "typo3/coding-standards": "^0.5.5",
-        "typo3/testing-framework": "^8.0.9",
+        "typo3/testing-framework": "^8.2.7",
         "webmozart/assert": "^1.11.0"
     },
     "replace": {
@@ -84,7 +84,15 @@
         "post-autoload-dump": [
             "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
         ],
-        "cs": "php ./.Build/bin/php-cs-fixer fix  --dry-run -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
-        "csfix": "php ./.Build/bin/php-cs-fixer fix  -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./"
+        "doc-init": "docker run --rm --pull always -v $(pwd):/project -it ghcr.io/typo3-documentation/render-guides:latest --config=Documentation",
+        "doc-make": "make docs",
+        "doc-watch": "docker run --rm -it --pull always \\\n  -v \"./Documentation:/project/Documentation\" \\\n  -v \"./Documentation-GENERATED-temp:/project/Documentation-GENERATED-temp\" \\\n  -p 5173:5173 ghcr.io/garvinhicking/typo3-documentation-browsersync:latest\nopen \"http://localhost:5173/Documentation-GENERATED-temp/Index.html\"",
+        "cs": "PHP_CS_FIXER_IGNORE_ENV=1 php ./.Build/bin/php-cs-fixer fix  --dry-run -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
+        "csfix": "PHP_CS_FIXER_IGNORE_ENV=1 php ./.Build/bin/php-cs-fixer fix  -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./"
+    },
+    "scripts-descriptions": {
+      "doc-init": "Initialize documentation rendering",
+      "doc-make": "Render documentation",
+      "doc-watch": "Render documentation including a watcher"
     }
 }

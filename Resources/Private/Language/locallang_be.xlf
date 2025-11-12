@@ -120,6 +120,9 @@
             <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve">
 				<source>Only active (non archived)</source>
 			</trans-unit>
+			<trans-unit id="flexforms_general.archiveRestriction.none" xml:space="preserve">
+                <source>None</source>
+            </trans-unit>
             <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve">
 				<source>Archived</source>
 			</trans-unit>
@@ -220,7 +223,7 @@
 				<source>Defined in TypoScript</source>
 			</trans-unit>
             <trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
-				<source>[no constraint]</source>
+				<source>No constraint </source>
 			</trans-unit>
             <trans-unit id="flexforms_general.selectedList" xml:space="preserve">
 				<source>List of articles</source>
@@ -373,9 +376,6 @@
 			</trans-unit>
 			<trans-unit id="extmng.pageTreePluginPreview" xml:space="preserve">
 				<source>Plugin preview in page tree: If enabled pages with news plugins are highlighted by showing the plugin icon as status information [TYPO3 13 only]</source>
-			</trans-unit>
-            <trans-unit id="usersettings.overlay" xml:space="preserve">
-				<source>Use this overlay for news categories in the Backend</source>
 			</trans-unit>
             <trans-unit id="usersettings.no-languages-available" xml:space="preserve">
 				<source>There are no languages available, so nothing to choose.</source>
@@ -637,6 +637,12 @@
              </trans-unit>
              <trans-unit id="newsContentElement.preview.modal.link">
                  <source>Details &amp; Purchase information</source>
+             </trans-unit>
+             <trans-unit id="pluginPreview.global.detailPid">
+                <source>Global set pageId for single news display</source>
+            </trans-unit>
+             <trans-unit id="recordLinks.label">
+                 <source>News records</source>
              </trans-unit>
          </body>
     </file>

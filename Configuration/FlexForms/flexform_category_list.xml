@@ -19,7 +19,6 @@
 							<renderMode>tree</renderMode>
 							<renderType>selectTree</renderType>
 							<treeConfig>
-								<!--<dataProvider>GeorgRinger\News\TreeProvider\DatabaseTreeDataProvider</dataProvider>-->
 								<parentField>parent</parentField>
 								<appearance>
 									<maxLevels>99</maxLevels>

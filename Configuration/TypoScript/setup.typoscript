@@ -101,7 +101,6 @@ plugin.tx_news {
 		detail {
 			errorHandling = showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404
 			checkPidOfNewsRecord = 0
-			registerProperties = keywords,title
 			showPrevNext = 0
 			showSocialShareButtons = 1
 			showMetaTags = 1
@@ -240,39 +239,4 @@ tt_content.shortcut.variables.shortcuts.conf.tx_news_domain_model_news < tt_cont
 module.tx_news < plugin.tx_news
 module.tx_news {
 	settings.list.paginate.itemsPerPage = 25
-}
-
-# ==============================================
-# Persistence object mapping configuration
-# ==============================================
-config.tx_extbase.persistence.classes {
-	GeorgRinger\News\Domain\Model\News {
-		subclasses {
-			0 = GeorgRinger\News\Domain\Model\NewsDefault
-			1 = GeorgRinger\News\Domain\Model\NewsInternal
-			2 = GeorgRinger\News\Domain\Model\NewsExternal
-		}
-	}
-
-	GeorgRinger\News\Domain\Model\NewsDefault {
-		mapping {
-			recordType = 0
-			tableName = tx_news_domain_model_news
-		}
-	}
-
-	GeorgRinger\News\Domain\Model\NewsInternal {
-		mapping {
-			recordType = 1
-			tableName = tx_news_domain_model_news
-		}
-	}
-
-	GeorgRinger\News\Domain\Model\NewsExternal {
-		mapping {
-			recordType = 2
-			tableName = tx_news_domain_model_news
-		}
-	}
-
 }

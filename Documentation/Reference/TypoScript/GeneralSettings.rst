@@ -416,6 +416,10 @@ detail.errorHandling
 
    If no news entry is found, it is possible to use various types of error handling.
 
+   .. Important::
+      If routing is used, read about potential problems and how to avoid
+      those: :ref:`<routing_fallbacks>`!
+
    showStandaloneTemplate
       A template is rendered. The syntax is
       `showStandaloneTemplate,<path>,<errorCode>`, for example
@@ -492,19 +496,6 @@ detail.showPrevNext
    :Default:  0
 
    If enabled, links to the previous and next news records are shown
-
-.. _tsDetailRegisterProperties:
-
-detail.registerProperties
-=========================
-
-.. confval:: detail.registerProperties
-
-   :type: string
-   :Path: plugin.tx_news.settings
-   :Default: keywords,title
-
-   This property is currently not used.
 
 .. _tsDetailShowSocialShareButtons:
 

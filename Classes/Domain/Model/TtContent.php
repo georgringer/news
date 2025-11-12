@@ -134,6 +134,14 @@ class TtContent extends AbstractEntity
         $this->tstamp = $tstamp;
     }
 
+    /**
+     * Get sys language
+     */
+    public function getSysLanguageUid(): int
+    {
+        return $this->_languageUid;
+    }
+
     public function getCType(): string
     {
         return $this->CType;

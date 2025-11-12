@@ -124,7 +124,6 @@
 							<renderMode>tree</renderMode>
 							<renderType>selectTree</renderType>
 							<treeConfig>
-								<!--<dataProvider>GeorgRinger\News\TreeProvider\DatabaseTreeDataProvider</dataProvider>-->
 								<parentField>parent</parentField>
 								<appearance>
 									<maxLevels>99</maxLevels>
@@ -161,7 +160,7 @@
 									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction.active</label>
 									<value>active</value>
 								</numIndex>
-								<numIndex index="2">
+								<numIndex index="4">
 									<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction.archived</label>
 									<value>archived</value>
 								</numIndex>

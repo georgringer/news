@@ -1,0 +1,163 @@
+13.0.0 - 7th November 2025
+==========================
+
+This major release focuses on two key areas:
+
+- **Improved integration with site set settings**, ensuring better flexibility and configuration consistency.
+- **Cleanup and removal of outdated or rarely used features**, paving the way for a smoother upgrade path to future versions.
+
+With this release, the foundation is set for the next development cycle.
+The upcoming work will focus on adding full support for TYPO3 v14, while
+dropping compatibility with TYPO3 v12 LTS.
+
+Further details about new features, changes, and breaking updates can be found in the sections below.
+
+.. contents::
+        :local:
+        :depth: 3
+
+Breaking changes
+-----------------
+
+News of hidden storage pages are not rendered
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If a storage page (e.g., a *sysfolder*) containing news records is set to **hidden**,
+the related news records will also **not be rendered**.
+
+This behavior allows editors to quickly show or hide groups of news records by simply toggling the visibility of their storage page.
+
+This also enables editors to quickly hide & unhide news records by changing the
+visibility of the storage pages.
+
+Defining template layouts via `$GLOBALS`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*Template layouts* which can be selected in the plugin can now only be defined
+using *Page TSconfig*. The usage of :php:`$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']` has been removed.
+
+Force cHash for pagination argument
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The pagination argument `tx_news_pi1[currentPage]` now requires a cHash.
+In most setups, this hash is generated automatically, so no manual action is typically needed.
+
+Remove deprecated sitemap option
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Before the introduction of EXT:seo, sitemaps were created using an `HMENU`.
+This legacy code has now been removed, as all sitemap generation should use EXT:seo.
+
+Remove tx_news_domain_model_news_ttcontent_mm
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The table `tx_news_domain_model_news_ttcontent_mm` has been once used many versions ago.
+
+As this table is not used anymore, its definition has been removed.
+
+Remove label overlay for categories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Previously, editors could configure a language in their user settings to
+dynamically overlay category labels in the backend.
+
+As EXT:news was the only extension implementing such backend label overlays,
+this feature has now been removed.
+
+Remove usage of LOAD_REGISTER
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The method :php:`\GeorgRinger\News\Utility\Page::setRegisterProperties` and the related
+setting `detail.registerProperties` have been removed.
+
+These were used to populate the ContentObjectRenderer’s register with values from news objects.
+As this behavior has been obsolete for several versions, and controllers should
+not modify the register directly, the functionality was dropped.
+
+
+Features
+--------
+
+Improved support of site sets
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Since version 13, Site sets and site settings are the best way to configure your
+site package and extensions.
+
+EXT:news ships now several site sets which allow to configure the extension per site.
+Read more about it at: :ref:`configuration-site-set`
+
+One nice feature, especially for smaller sites is to define the detail page only once.
+
+Convert internal + external urls for record links
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If the record link identifier starts with `tx_news`, the record links to records of the type
+"Internal" and "External" are correctly retrieved.
+
+Various other features
+^^^^^^^^^^^^^^^^^^^^^^
+
+- Plugin preview in the backend renders the listPid of search actions
+- Add event for news list after the pagination has been built
+- Allow archiveRestriction to be set in TS and overridable in plugin
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2025-11-03 [DOCS] Update changelog (Commit 5dfdcd17 by Georg Ringer)
+    2025-11-03 [DOCS] Improve plugin description (Commit 5293d87e by Georg Ringer)
+    2025-10-30 [TASK] Initialize ObjectStorages in models (#2722) (Commit 5f1c8ddb by Georg Ringer)
+    2025-10-30 [DOC] Remove not needed paragraph in routing (Commit 472a1a91 by Georg Ringer)
+    2025-10-29 [BUGFIX] Use correct variable (#2723) (Commit ffc71694 by Georg Ringer)
+    2025-10-29 [TASK] Streamline label of site set "Sitemap" (#2720) (Commit 00df7cb7 by Stefan Frömken)
+    2025-10-27 [DOC] Improve routing documentation (#2713) (Commit a4f96405 by Georg Ringer)
+    2025-10-27 [DOC] Add hints about override demand checkbox #2718 (Commit c8a877e4 by Georg Ringer)
+    2025-10-27 [DOC] Prepare v13 (Commit d4ceb383 by Georg Ringer)
+    2025-10-27 [DOC] Add example for rendering news with PAGEVIEW #2717 (Commit 32dcf872 by Georg Ringer)
+    2025-10-27 [BUGFIX] Prevent duplicate content element IDs in translated news records (#2715) (Commit 3a077663 by Eric Harrer)
+    2025-10-22 [BUGFIX]  Set allowed access option in the backend module registration (#2712) (Commit 20abd508 by Josef Glatz)
+    2025-10-21 [DOC] Fix PHP compatibility version range in doc (#2709) (Commit f1a15308 by Sebastian Mendel)
+    2025-10-18 [BUGFIX] Proper init variable in TemplateLayout (Commit 675db46a by Georg Ringer)
+    2025-10-18 [DOC] Add missing events to documentation #1645 (Commit c36be29b by Georg Ringer)
+    2025-10-18 [TASK] Make sure categories are integers #2495 (#2707) (Commit 455cfa71 by Georg Ringer)
+    2025-10-18 [TASK] Add listPid to plugin preview of search plugins (Commit 104f128d by Georg Ringer)
+    2025-10-18 [FEATURE] Allow archiveRestriction to be set in TS and overridable in plugin (Commit e0110cb3 by Georg Ringer)
+    2025-10-18 [TASK] Add startingpoint to preview of category listing plugin (Commit 18e0ad4f by Georg Ringer)
+    2025-10-18 [BUGFIX] Handle overrideFlexformSettingsIfEmpty with recursive correctly (Commit 5a051131 by Georg Ringer)
+    2025-10-18 [!!!][TASK] Remove usage of LOAD_REGISTER with news values (#2705) (Commit 0f9890dd by Georg Ringer)
+    2025-10-18 [!!!][TASK] Remove label overlay for categories (#2704) (Commit b7dbeba9 by Georg Ringer)
+    2025-10-18 [!!!][TASK] Drop unused table tx_news_domain_model_news_ttcontent_mm (Commit 54da4979 by Georg Ringer)
+    2025-10-18 [!!!][TASK] Remove deprecated sitemap option (Commit 45ef57b8 by Georg Ringer)
+    2025-10-17 [!!!][TASK] Replace QueryGenerator (#2703) (Commit f701db50 by Georg Ringer)
+    2025-10-17 [!!!][TASK] Encorce chash for currentPage argument (Commit a6f0d8e3 by Georg Ringer)
+    2025-10-10 [!!!][BUGFIX] Fix templateLayout allowedColPos issues (Commit 8b3887d0 by Georg Ringer)
+    2025-10-10 [!!!][BUGFIX] Fix templateLayout allowedColPos issues (#2698) (Commit b112b176 by Georg Ringer)
+    2025-10-10 [BUGFIX] Skip search related arguments for chash generation #2642 (Commit 7110a4b0 by Georg Ringer)
+    2025-10-09 [BUGFIX] Include hidden categories in categoryservice #2650 (Commit 218719f4 by Georg Ringer)
+    2025-10-09 [BUGFIX] Improve usage of tags in multilanguage setups (#2697) (Commit 0d5dde33 by Georg Ringer)
+    2025-10-09 [TASK] Remove dead code (Commit cd8e3a7e by Georg Ringer)
+    2025-10-09 [TASK] Drop unused DatabaseTreeDataProvider (Commit 73a0ee2c by Georg Ringer)
+    2025-10-09 [TASK] Revert crowdin for yaml for timebeing (Commit 81de9125 by Georg Ringer)
+    2025-10-08 [TASK] Make fractor happy (Commit 5acbd872 by Georg Ringer)
+    2025-10-08 [TASK] Set PHP_CS_FIXER_IGNORE_ENV for local cs-fixer call (Commit 4465406b by Georg Ringer)
+    2025-10-08 [TASK] Make cs-fixer happy (Commit 0df3182a by Georg Ringer)
+    2025-10-07 [FEATURE] Convert internal + external urls for record links #1973 (Commit d5852931 by Georg Ringer)
+    2025-10-07 [BUGFIX] Fix outdated code in pagerenderer #2688 (Commit f44469d0 by Georg Ringer)
+    2025-10-07 [TASK] Add missing site config files (Commit 2670edb3 by Georg Ringer)
+    2025-10-07 [TASK] Enable site sets for crowdin (Commit 9c156253 by Georg Ringer)
+    2025-10-07 [FEATURE] Improved support of site sets (Commit ada720f6 by Georg Ringer)
+    2025-10-07 [TASK] Remove bogus template (Commit df6881a9 by Georg Ringer)
+    2025-10-06 [TASK] Set minimum version to 12.4.37 (Commit 74ee0a39 by Georg Ringer)
+    2025-10-06 [TASK] Set minimum version to 12.4.37 (Commit ebac9259 by Georg Ringer)
+    2025-10-06 [TASK] Fix line endings in ts files (Commit c48b341c by Georg Ringer)
+    2025-10-06 [TASK] Update min deps (Commit 0eeb308a by Georg Ringer)
+    2025-10-06 [TASK] Make fractor happy again (Commit b25db381 by Georg Ringer)
+    2025-10-06 [BUGFIX] Fix test (Commit ce6b07c6 by Georg Ringer)
+    2025-10-05 [FEATURE] Plugin previews renders global detail pid (Commit 4b17fea8 by Georg Ringer)
+    2025-10-04 Revert "[FEATURE] Provide site sets for features" (Commit f6e13d84 by Georg Ringer)
+    2025-10-04 [TASK] Remove unused TS for type definition (Commit f93ac734 by Georg Ringer)
+    2025-10-04 [TASK] Finish site set docs (Commit b86880b0 by Georg Ringer)
+    2025-10-03 [DOC] Starting with documentation (Commit b2b77dcb by Georg Ringer)
+    2025-10-03 [FEATURE] Provide site sets for features (Commit 2a2e9aa0 by Georg Ringer)
+    2025-10-03 [DOC] Add example for setting default values in New content element wizard (#2689) (Commit ef5a01aa by thomasrawiel)
+    2025-09-22 [FEATURE] Add event for news list after the pagination has been built (#2683) (Commit c0ea57e7 by Niklas Grieger)
+    2025-09-22 fix: prevent undefined array key warning in LinkViewHelper (#2685) (Commit 2a8e99d1 by Himanshu Ramavat)
+    2025-09-16 [TASK] Hide hiddenContentElements flash message if news_content_elements is installed (#2681) (Commit c66cfee3 by Simon Schaufelberger)
+    2025-09-03 [BUGFIX] Fix #2676 - Avoid fatal error by assigning images in backend (#2677) (Commit da6fe949 by Tim)
+    2025-08-27 [TASK] Add Makefile to gitattributes to be skipped (Commit 5e8e0250 by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
