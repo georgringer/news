@@ -115,6 +115,6 @@ class CategoryService
      */
     private static function cleanIntList($list): string
     {
-        return implode(',', GeneralUtility::intExplode(',', $list));
+        return implode(',', GeneralUtility::intExplode(',', (string)$list));
     }
 }
