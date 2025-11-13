@@ -159,18 +159,6 @@ class NewsController extends NewsBaseController
         $idList = $pageRepository->getPageIdsRecursive(GeneralUtility::intExplode(',', (string)($settings['startingpoint'] ?? '')), (int)($settings['recursive'] ?? 0));
         $demand->setStoragePage(implode(',', $idList));
 
-        if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'] ?? []) {
-            trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\'Controller/NewsController.php\'][\'createDemandObjectFromSettings\'] has been deprecated, use event CreateDemandObjectFromSettingsEvent instead', E_USER_DEPRECATED);
-            $params = [
-                'demand' => $demand,
-                'settings' => $settings,
-                'class' => $class,
-            ];
-            foreach ($hooks as $reference) {
-                GeneralUtility::callUserFunction($reference, $params, $this);
-            }
-        }
-
         $event = new CreateDemandObjectFromSettingsEvent($demand, $settings, $class);
         $this->eventDispatcher->dispatch($event);
         $demand = $event->getDemand();
@@ -641,15 +629,6 @@ class NewsController extends NewsBaseController
         if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
             $typoScriptUtility = GeneralUtility::makeInstance(TypoScript::class);
             $originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
-        }
-
-        foreach ($hooks = ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'] ?? []) as $_funcRef) {
-            trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\'Controller/NewsController.php\'][\'overrideSettings\'] has been deprecated, use event NewsControllerOverrideSettingsEvent instead', E_USER_DEPRECATED);
-            $_params = [
-                'originalSettings' => $originalSettings,
-                'tsSettings' => $tsSettings,
-            ];
-            $originalSettings = GeneralUtility::callUserFunction($_funcRef, $_params, $this);
         }
 
         $event = new NewsControllerOverrideSettingsEvent($originalSettings, $tsSettings, $this);

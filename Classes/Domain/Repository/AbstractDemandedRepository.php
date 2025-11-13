@@ -118,20 +118,6 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
         $constraints = $this->createConstraintsFromDemand($query, $demand);
 
-        // Call hook functions for additional constraints
-        if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] ?? []) {
-            trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\'Domain/Repository/AbstractDemandedRepository.php\'][\'findDemanded\'] has been deprecated. Use the ModifyDemandRepositoryEvent instead.', E_USER_DEPRECATED);
-            $params = [
-                'demand' => $demand,
-                'respectEnableFields' => &$respectEnableFields,
-                'query' => $query,
-                'constraints' => &$constraints,
-            ];
-            foreach ($hooks as $reference) {
-                GeneralUtility::callUserFunction($reference, $params, $this);
-            }
-        }
-
         $event = new ModifyDemandRepositoryEvent($demand, $respectEnableFields, $query, $constraints);
         $this->eventDispatcher->dispatch($event);
         $respectEnableFields = $event->isRespectEnableFields();
