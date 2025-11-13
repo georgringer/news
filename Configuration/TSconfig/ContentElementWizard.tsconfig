@@ -1,3 +1,4 @@
+# unused, will be removed in EXT:news v15
 mod.wizards.newContentElement.wizardItems.ext-news {
     header = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title
     after = common
