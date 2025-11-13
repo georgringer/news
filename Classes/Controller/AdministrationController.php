@@ -38,13 +38,7 @@ class AdministrationController extends NewsController
             'counts' => $this->administrationRepository->getTotalCounts(),
         ]);
 
-        if ((new Typo3Version())->getMajorVersion() >= 13) {
-            $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-            return $moduleTemplate->renderResponse('Administration/IndexV13');
-        }
-
         $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-        $moduleTemplate->setContent($this->view->render());
-        return $this->htmlResponse($moduleTemplate->renderContent());
+        return $moduleTemplate->renderResponse('Administration/IndexV13');
     }
 }
