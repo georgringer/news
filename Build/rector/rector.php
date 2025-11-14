@@ -40,8 +40,8 @@ return RectorConfig::configure()
     ])
     ->withImportNames(true, true, false, true)
     ->withConfiguredRule(ExtEmConfRector::class, [
-        ExtEmConfRector::PHP_VERSION_CONSTRAINT => '8.1.0-8.4.99',
-        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '12.4.37-13.9.99',
+        ExtEmConfRector::PHP_VERSION_CONSTRAINT => '8.1.0-8.5.99',
+        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '12.4.39-13.9.99',
         ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])
     ->withSkip([
