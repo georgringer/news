@@ -17,7 +17,6 @@ use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
-
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
