@@ -45,7 +45,7 @@ class CategoryService
 
         $entry = $cache->get($cacheIdentifier);
         if (!$entry) {
-            $entry = self::getChildrenCategoriesRecursive($idList, $counter, $additionalWhere);
+            $entry = self::getChildrenCategoriesRecursive((string)$idList, $counter);
             $cache->set($cacheIdentifier, $entry);
         }
 
@@ -102,7 +102,7 @@ class CategoryService
                 GeneralUtility::makeInstance(TimeTracker::class)->setTSlogMessage('EXT:news: one or more recursive categories where found');
                 return implode(',', $result);
             }
-            $subcategories = self::getChildrenCategoriesRecursive($row['uid'], $counter);
+            $subcategories = self::getChildrenCategoriesRecursive((string)$row['uid'], $counter);
             $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
         }
         return implode(',', $result);
