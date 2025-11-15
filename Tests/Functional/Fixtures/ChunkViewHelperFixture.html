@@ -1,0 +1,2 @@
+{namespace n=GeorgRinger\News\ViewHelpers}
+<f:for each="{news -> n:iterator.chunk(count: 3)}" as="col" iteration="cycle"><div class="row"><f:for each="{col}" as="item"><div class="col">{item.title}</div></f:for></div></f:for>

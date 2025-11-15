@@ -160,10 +160,10 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
         $singleNewsRecord = (int)$this->getFieldFromFlexform('settings.singleNews');
 
         if ($singleNewsRecord > 0) {
-            $newsRecord = BackendUtilityCore::getRecord('tx_news_domain_model_news', $singleNewsRecord);
+            $newsRecord = $this->getRecord('tx_news_domain_model_news', $singleNewsRecord);
 
             if (is_array($newsRecord)) {
-                $pageRecord = BackendUtilityCore::getRecord('pages', $newsRecord['pid']);
+                $pageRecord = $this->getRecord('pages', $newsRecord['pid']);
 
                 if (is_array($pageRecord)) {
                     $content = $this->getRecordData($newsRecord['uid'], 'tx_news_domain_model_news');
@@ -228,7 +228,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
 
     public function getRecordData(int $id, string $table = 'pages'): string
     {
-        $record = BackendUtilityCore::getRecord($table, $id);
+        $record = $this->getRecord($table, $id);
 
         if (is_array($record)) {
             $data = '<span data-toggle="tooltip" data-placement="top" data-title="id=' . $record['uid'] . '">'
@@ -609,5 +609,10 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
             return null;
         }
         return $site->getSettings();
+    }
+
+    protected function getRecord(string $table, int $id): ?array
+    {
+        return BackendUtilityCore::getRecord($table, $id);
     }
 }

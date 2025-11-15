@@ -34,7 +34,8 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $GLOBALS['LANG'] = $languageService;
 
-        $this->pageLayoutView = $this->getAccessibleMock(PluginPreviewRenderer::class, null, [], '', false);
+        $this->pageLayoutView = $this->getAccessibleMock(PluginPreviewRenderer::class, ['getRecord'], [], '', false);
+        $this->pageLayoutView->expects(self::any())->method('getRecord')->willReturn(null);
     }
 
     #[Test]
