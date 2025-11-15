@@ -12,7 +12,6 @@ namespace GeorgRinger\News\Controller;
 use GeorgRinger\News\Domain\Repository\AdministrationRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
-use TYPO3\CMS\Core\Information\Typo3Version;
 
 class AdministrationController extends NewsController
 {
