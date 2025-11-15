@@ -1,0 +1,58 @@
+name: core 14
+
+on: [ push, pull_request ]
+
+jobs:
+  tests:
+    name: v14
+    runs-on: ubuntu-22.04
+    strategy:
+      # This prevents cancellation of matrix job runs, if one/two already failed and let the
+      # rest matrix jobs be executed anyway.
+      fail-fast: false
+      matrix:
+        php: [ '8.2', '8.3', '8.4']
+        composerInstall: [ 'composerInstallLowest', 'composerInstallHighest' ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install testing system
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }}  -s ${{ matrix.composerInstall }}
+
+      - name: Lint PHP
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -s lint
+
+      - if: matrix.php == '8.3'
+        name: Validate code against CGL
+        run: PHP_CS_FIXER_IGNORE_ENV=1 Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -s cgl -n
+
+      - if: matrix.php == '8.3' && matrix.composerInstall == 'composerInstallHighest'
+        name: Run Rector
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -s rector -n
+
+      - if: matrix.php == '8.3' && matrix.composerInstall == 'composerInstallHighest'
+        name: Run Fractor
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -s fractor -n
+
+
+      - name: Unit Tests
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -s unit
+
+      - name: Functional Tests with mariadb and mysqli
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mariadb -a mysqli -s functional
+
+      - name: Functional Tests with mariadb and pdo_mysql
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mariadb -a pdo_mysql -s functional
+
+      - name: Functional Tests with mysql and mysqli
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mysql -a mysqli -s functional
+
+      - name: Functional Tests with mysql and pdo_mysql
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d mysql -a pdo_mysql -s functional
+
+      - name: Functional Tests with postgres
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d postgres -s functional
+
+      - name: Functional Tests with sqlite
+        run: Build/Scripts/runTests.sh -t 14 -p ${{ matrix.php }} -d sqlite -s functional
