@@ -34,19 +34,19 @@ class NewsAliasMapper extends PersistedAliasMapper
         // Use the shorthand to reduce configuration overhead
         switch ($settings['type']) {
             case 'NewsCategory':
-                $settings['tableName'] = $settings['tableName'] ?? 'sys_category';
-                $settings['routeFieldName'] = $settings['routeFieldName'] ?? 'slug';
+                $settings['tableName'] ??= 'sys_category';
+                $settings['routeFieldName'] ??= 'slug';
                 $settings['fallbackValue'] = array_key_exists('fallbackValue', $settings) ? $settings['fallbackValue'] : null;
                 break;
             case 'NewsTag':
-                $settings['tableName'] = $settings['tableName'] ?? 'tx_news_domain_model_tag';
-                $settings['routeFieldName'] = $settings['routeFieldName'] ?? 'slug';
+                $settings['tableName'] ??= 'tx_news_domain_model_tag';
+                $settings['routeFieldName'] ??= 'slug';
                 $settings['fallbackValue'] = array_key_exists('fallbackValue', $settings) ? $settings['fallbackValue'] : null;
                 break;
             case 'NewsTitle':
             default:
-                $settings['tableName'] = $settings['tableName'] ?? 'tx_news_domain_model_news';
-                $settings['routeFieldName'] = $settings['routeFieldName'] ?? 'path_segment';
+                $settings['tableName'] ??= 'tx_news_domain_model_news';
+                $settings['routeFieldName'] ??= 'path_segment';
                 $settings['fallbackValue'] = array_key_exists('fallbackValue', $settings) ? $settings['fallbackValue'] : null;
         }
         parent::__construct($settings);
