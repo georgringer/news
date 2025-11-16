@@ -100,7 +100,7 @@ class Category extends AbstractEntity
      */
     public function initializeObject(): void
     {
-        $this->images = $this->images ?? new ObjectStorage();
+        $this->images ??= new ObjectStorage();
     }
 
     public function getSorting(): int

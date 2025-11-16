@@ -15,8 +15,8 @@ class NewsCategoryMapper extends AbstractNewsAliasMapper
 {
     public function __construct(array $settings)
     {
-        $settings['tableName'] = $settings['tableName'] ?? 'sys_category';
-        $settings['routeFieldName'] = $settings['routeFieldName'] ?? 'slug';
+        $settings['tableName'] ??= 'sys_category';
+        $settings['routeFieldName'] ??= 'slug';
         parent::__construct($settings);
     }
 }

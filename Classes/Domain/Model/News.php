@@ -188,12 +188,12 @@ class News extends AbstractEntity
      */
     public function initializeObject(): void
     {
-        $this->categories = $this->categories ?? new ObjectStorage();
-        $this->contentElements = $this->contentElements ?? new ObjectStorage();
-        $this->relatedLinks = $this->relatedLinks ?? new ObjectStorage();
-        $this->falMedia = $this->falMedia ?? new ObjectStorage();
-        $this->falRelatedFiles = $this->falRelatedFiles ?? new ObjectStorage();
-        $this->tags = $this->tags ?? new ObjectStorage();
+        $this->categories ??= new ObjectStorage();
+        $this->contentElements ??= new ObjectStorage();
+        $this->relatedLinks ??= new ObjectStorage();
+        $this->falMedia ??= new ObjectStorage();
+        $this->falRelatedFiles ??= new ObjectStorage();
+        $this->tags ??= new ObjectStorage();
     }
 
     public function getTitle(): string
