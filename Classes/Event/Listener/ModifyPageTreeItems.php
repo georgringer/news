@@ -24,7 +24,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 #[AsEventListener(
     identifier: 'ext-news/backend/modify-page-tree-items',
 )]
-final class ModifyPageTreeItems
+final readonly class ModifyPageTreeItems
 {
     private EmConfiguration $emConfiguration;
     private const NEWS_TYPES = [
