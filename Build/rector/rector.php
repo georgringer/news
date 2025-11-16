@@ -1,10 +1,10 @@
 <?php
 
 declare(strict_types=1);
-
 use Rector\Config\RectorConfig;
+use Rector\Php80\Rector\Class_\ClassPropertyAssignToConstructorPromotionRector;
+use Rector\Php81\Rector\FuncCall\NullToStrictStringFuncCallArgRector;
 use Rector\ValueObject\PhpVersion;
-use Ssch\TYPO3Rector\CodeQuality\General\ConvertImplicitVariablesToExplicitGlobalsRector;
 use Ssch\TYPO3Rector\CodeQuality\General\ExtEmConfRector;
 use Ssch\TYPO3Rector\CodeQuality\General\GeneralUtilityMakeInstanceToConstructorPropertyRector;
 use Ssch\TYPO3Rector\CodeQuality\General\InjectMethodToConstructorInjectionRector;
@@ -24,7 +24,7 @@ return RectorConfig::configure()
         __DIR__ . '/../../ext_localconf.php',
         __DIR__ . '/../../ext_tables.php',
     ])
-    //->withPhpSets(php81: true)
+    ->withPhpSets(php82: true)
     ->withPhpVersion(PhpVersion::PHP_82)
     ->withSets([
         Typo3SetList::CODE_QUALITY,
@@ -33,10 +33,11 @@ return RectorConfig::configure()
     ])
     // To have a better analysis from PHPStan, we teach it here some more things
     ->withPHPStanConfigs([Typo3Option::PHPSTAN_FOR_RECTOR_PATH])
-    ->withRules([
-        ConvertImplicitVariablesToExplicitGlobalsRector::class,
-    ])
     ->withSkip([
+
+        //  NullCoalescingOperatorRector::class,
+        NullToStrictStringFuncCallArgRector::class,
+        ClassPropertyAssignToConstructorPromotionRector::class,
         GeneralUtilityMakeInstanceToConstructorPropertyRector::class,
     ])
     ->withImportNames(true, true, false, true)
