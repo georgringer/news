@@ -165,9 +165,7 @@ class ClassCacheManager
                     $this->constructorLines['doc'],
                     -1,
                     0,
-                    array_filter(explode("\n", $constructorInfo['doc'] ?? ''), function ($value) {
-                        return str_contains($value, '@param');
-                    })
+                    array_filter(explode("\n", $constructorInfo['doc'] ?? ''), fn($value) => str_contains($value, '@param'))
                 );
             }
             $codePart = false;
