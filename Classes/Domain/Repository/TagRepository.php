@@ -103,7 +103,7 @@ class TagRepository extends AbstractDemandedRepository
 
             // go through every order statement
             foreach ($orderList as $orderItem) {
-                list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
+                [$orderField, $ascDesc] = GeneralUtility::trimExplode(' ', $orderItem, true);
                 // count == 1 means that no direction is given
                 if ($ascDesc) {
                     $orderings[$orderField] = (strtolower($ascDesc) == 'desc')
