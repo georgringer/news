@@ -43,6 +43,9 @@
         "typo3/testing-framework": "^8.3.1",
         "webmozart/assert": "^1.12.1"
     },
+    "conflict": {
+        "sebastian/recursion-context": "<6.0.3"
+    },
     "replace": {
         "typo3-ter/news": "self.version"
     },
