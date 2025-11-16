@@ -458,9 +458,7 @@ class News extends AbstractEntity
         $items = $this->getRelatedFrom();
         if ($items) {
             $items = $items->toArray();
-            usort($items, function ($a, $b): int {
-                return $b->getDatetime() <=> $a->getDatetime();
-            });
+            usort($items, fn($a, $b): int => $b->getDatetime() <=> $a->getDatetime());
         }
         return $items;
     }
@@ -483,9 +481,7 @@ class News extends AbstractEntity
         $all = array_unique($all);
 
         if (count($all) > 0) {
-            usort($all, function ($a, $b): int {
-                return $b->getDatetime() <=> $a->getDatetime();
-            });
+            usort($all, fn($a, $b): int => $b->getDatetime() <=> $a->getDatetime());
         }
         return $all;
     }
@@ -498,9 +494,7 @@ class News extends AbstractEntity
         $items = $this->getRelated();
         if ($items) {
             $items = $items->toArray();
-            usort($items, function ($a, $b): int {
-                return $b->getDatetime() <=> $a->getDatetime();
-            });
+            usort($items, fn($a, $b): int => $b->getDatetime() <=> $a->getDatetime());
         }
         return $items;
     }
@@ -1343,9 +1337,7 @@ class News extends AbstractEntity
         $items = $this->getRelated();
         if ($items) {
             $items = $items->toArray();
-            usort($items, function ($a, $b): int {
-                return $b->getSortingForeign() <=> $a->getSortingForeign();
-            });
+            usort($items, fn($a, $b): int => $b->getSortingForeign() <=> $a->getSortingForeign());
         }
         return $items;
     }
