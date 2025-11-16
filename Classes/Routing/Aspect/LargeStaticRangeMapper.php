@@ -50,7 +50,7 @@ class LargeStaticRangeMapper extends StaticRangeMapper
 
     protected function buildRange(): array
     {
-        $range = array_map('strval', range($this->start, $this->end));
+        $range = array_map(strval(...), range($this->start, $this->end));
         if (count($range) > $this->getCountOfRecords($this->settings['table'], (int)($this->settings['perPage'] ?? 10))) {
             throw new \LengthException(
                 'Range is too large',
