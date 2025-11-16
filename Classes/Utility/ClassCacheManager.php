@@ -166,7 +166,7 @@ class ClassCacheManager
                     -1,
                     0,
                     array_filter(explode("\n", $constructorInfo['doc'] ?? ''), function ($value) {
-                        return strpos($value, '@param') !== false;
+                        return str_contains($value, '@param');
                     })
                 );
             }
