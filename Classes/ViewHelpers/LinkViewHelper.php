@@ -134,7 +134,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
         // link could not be generated
         if ($url === '' || $linkedContent === $url) {
-            return $linkedContent;
+            return (string)$linkedContent;
         }
 
         if ($this->hasArgument('section')) {
