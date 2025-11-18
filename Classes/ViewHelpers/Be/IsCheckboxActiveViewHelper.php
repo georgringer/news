@@ -22,9 +22,8 @@ class IsCheckboxActiveViewHelper extends AbstractViewHelper
     /**
      * Initialize arguments.
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
-        parent::initializeArguments();
         $this->registerArgument('id', 'int', 'Category id', true);
         $this->registerArgument('categories', 'array', 'List of categories', false, []);
     }
