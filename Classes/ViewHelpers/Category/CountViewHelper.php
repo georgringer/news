@@ -15,10 +15,7 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * Get usage count. This ViewHelper retrieves a simple count and does *not* take any additional constraints into account!
@@ -28,28 +25,22 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  * {n:category.count(categoryUid:category.item.uid) -> f:variable(name: 'categoryUsageCount')}
  * {categoryUsageCount}
  */
-class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
+class CountViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
     /**
      * Initialize arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
-        parent::initializeArguments();
         $this->registerArgument('categoryUid', 'int', 'Uid of the category', true);
     }
 
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ): int {
+    public function render(): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
 
-        $categoryUid = $arguments['categoryUid'];
+        $categoryUid = $this->arguments['categoryUid'];
         $languageUid = GeneralUtility::makeInstance(Context::class)->getAspect('language')->getId();
 
         return $queryBuilder

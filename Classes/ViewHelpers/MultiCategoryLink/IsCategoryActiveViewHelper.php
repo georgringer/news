@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to check if th
@@ -28,16 +28,12 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  * "du stuff" will be shown if the category is currently in demand
  * </output>
  */
-class IsCategoryActiveViewHelper extends AbstractConditionViewHelper implements ViewHelperInterface
+class IsCategoryActiveViewHelper extends AbstractConditionViewHelper
 {
-    /**
-     * Initialize arguments
-     */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('list', 'string', 'List of news', false, '');
         $this->registerArgument('item', 'int', 'Category id', true);
-        parent::initializeArguments();
     }
 
     /**
@@ -51,10 +47,18 @@ class IsCategoryActiveViewHelper extends AbstractConditionViewHelper implements 
         return GeneralUtility::inList($arguments['list'], $arguments['item']);
     }
 
+    public static function verdict(array $arguments, RenderingContextInterface $renderingContext): bool
+    {
+        if (empty($arguments['list'])) {
+            return false;
+        }
+        return GeneralUtility::inList($arguments['list'], $arguments['item']);
+    }
+
     /**
      * @return mixed
      */
-    public function render()
+    public function render(): string
     {
         if (static::evaluateCondition($this->arguments)) {
             return $this->renderThenChild();

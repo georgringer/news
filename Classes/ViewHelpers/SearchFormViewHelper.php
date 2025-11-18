@@ -51,9 +51,8 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     /**
      * Initialize arguments.
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
-        parent::initializeArguments();
         $this->registerArgument('action', 'string', 'Target action');
         $this->registerArgument('arguments', 'array', 'Arguments', false, []);
         $this->registerArgument('controller', 'string', 'Target controller');
@@ -87,7 +86,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      *
      * @return string rendered form
      */
-    public function render()
+    public function render(): string
     {
         $this->setFormActionUri();
         if (isset($this->arguments['method']) && strtolower($this->arguments['method']) === 'get') {

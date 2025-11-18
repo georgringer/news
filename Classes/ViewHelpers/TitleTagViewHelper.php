@@ -13,9 +13,7 @@ use GeorgRinger\News\Seo\NewsTitleProvider;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * ViewHelper to render the page title
@@ -31,15 +29,10 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  */
 class TitleTagViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ): void {
+    public function render(): void
+    {
         if ((new Typo3Version())->getVersion() >= 14) {
-            $isInsertRecord = $renderingContext->getVariableProvider()->getByPath('settings.insertRecord');
+            $isInsertRecord = $this->renderingContext->getVariableProvider()->getByPath('settings.insertRecord');
             if ($isInsertRecord) {
                 return;
             }
@@ -55,7 +48,7 @@ class TitleTagViewHelper extends AbstractViewHelper
                 return;
             }
         }
-        $content = trim($renderChildrenClosure());
+        $content = trim($this->renderChildren());
         if (!empty($content)) {
             GeneralUtility::makeInstance(NewsTitleProvider::class)->setTitle($content);
         }

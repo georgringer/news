@@ -15,16 +15,12 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
 class ExtensionLoadedViewHelper extends AbstractConditionViewHelper
 {
-    /**
-     * Initialize additional argument
-     */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('extensionKey', 'string', 'Extension which must be checked', true);
-        parent::initializeArguments();
     }
 
-    public static function verdict(array $arguments, RenderingContextInterface $renderingContext)
+    public static function verdict(array $arguments, RenderingContextInterface $renderingContext): bool
     {
         return ExtensionManagementUtility::isLoaded($arguments['extensionKey']);
     }

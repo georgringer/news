@@ -9,9 +9,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * ViewHelper to get the target out of the typolink
@@ -27,14 +25,8 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  */
 class TargetLinkViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
-    /**
-     * Initialize arguments.
-     */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
-        parent::initializeArguments();
         $this->registerArgument('link', 'string', 'Link', true);
         $this->registerArgument('forceBlankForExternal', 'bool', 'Force blank for external links', false, true);
     }
@@ -44,16 +36,16 @@ class TargetLinkViewHelper extends AbstractViewHelper
      *
      * @return mixed
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
+    public function render()
     {
-        $params = explode(' ', $arguments['link']);
+        $params = explode(' ', $this->arguments['link']);
 
         // The target is on the 2nd place and must start with a '_'
         if (count($params) >= 2 && str_starts_with($params[1], '_')) {
             return $params[1];
         }
 
-        if (($arguments['forceBlankForExternal'] ?? true) && (str_starts_with($params[0], 'https://') || str_starts_with($params[0], 'http://'))) {
+        if (($this->arguments['forceBlankForExternal'] ?? true) && (str_starts_with($params[0], 'https://') || str_starts_with($params[0], 'http://'))) {
             return '_blank';
         }
 
