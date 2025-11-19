@@ -4,9 +4,9 @@
 FormDataProvider
 ================
 
-If `displayCond` and `eval` in TCA are no longer sufficient to meet certain requirements that's where
-`FormDataProvider <https://docs.typo3.org/permalink/t3coreapi:formengine-datacompiling>`_ can be used.
-Among other things, a FormDataProvider allows changes to be made to the TCA when loading a record in the TYPO3 backend.
+`FormDataProvider <https://docs.typo3.org/permalink/t3coreapi:formengine-datacompiling>`_
+can be used to offer form-handling beyond the options provided by `displayCond` and `eval` in the TCA.
+Among other things, a FormDataProvider allows dynamic TCA changes while records are loaded in the TYPO3 backend.
 
 Example
 -------
