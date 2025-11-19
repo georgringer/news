@@ -11,7 +11,7 @@ Among other things, a FormDataProvider allows dynamic TCA changes while records 
 Example
 -------
 
-This example explains how to make at least one image mandatory for top news.
+This example explains how to make at least one image mandatory if the record is flagged as top news.
 
 1) Update TCA
 ~~~~~~~~~~~~~
@@ -40,7 +40,7 @@ Update file `ext_localconf.php` in your extension:
 
     defined('TYPO3') or die();
 
-    use Vendor\SitepackageName\Backend\Form\FormDataProvider\ImageMinItems;
+    use Vendor\CustomExtension\Backend\Form\FormDataProvider\ImageMinItems;
     use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew;
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][ImageMinItems::class] = [
