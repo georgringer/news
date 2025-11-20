@@ -45,6 +45,10 @@ Extend News
 
       Add additional custom news types
 
+   .. card:: :ref:`FormDataProvider <formDataProvider>`
+
+      Modify the TCA with the help of a FormDataProvider
+
 .. toctree::
    :maxdepth: 5
    :titlesonly:
@@ -58,3 +62,4 @@ Extend News
    DataProcessing/Index
    ProxyClassGenerator/Index
    AddCustomType/Index
+   FormDataProvider/Index
