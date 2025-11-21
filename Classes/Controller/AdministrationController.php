@@ -33,11 +33,8 @@ class AdministrationController extends NewsController
 
     public function indexAction(): ResponseInterface
     {
-        $this->view->assignMultiple([
-            'counts' => $this->administrationRepository->getTotalCounts(),
-        ]);
-
         $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+        $moduleTemplate = $moduleTemplate->assign('counts' , $this->administrationRepository->getTotalCounts());
         return $moduleTemplate->renderResponse('Administration/IndexV13');
     }
 }
