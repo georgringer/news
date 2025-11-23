@@ -72,6 +72,10 @@ $boot = static function (): void {
             'userFunc' => NewsContentElementPreview::class . '->run',
         ];
     }
+
+    if ((new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() >= 14) {
+        unset($GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['searchFields'], $GLOBALS['TCA']['tx_news_domain_model_tag']['ctrl']['searchFields'], $GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['searchFields']);
+    }
 };
 
 $boot();
