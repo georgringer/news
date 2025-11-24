@@ -74,7 +74,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
     public function initializeArguments(): void
     {
-        $this->registerUniversalTagAttributes();
         $this->registerArgument('newsItem', News::class, 'news item', true);
         $this->registerArgument('settings', 'array', 'Settings', false, []);
         $this->registerArgument('uriOnly', 'bool', 'url only', false, false);
