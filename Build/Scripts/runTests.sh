@@ -512,8 +512,8 @@ case ${TEST_SUITE} in
             if [ ${TYPO3_VERSION} -eq 14 ]; then
               composer config minimum-stability dev
               composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:dev-main \
-                typo3/cms-install:dev-main \
+                typo3/cms-core:^14 \
+                typo3/cms-install:^14 \
                 typo3/testing-framework:dev-main \
                 phpunit/phpunit:^11.5.44 \
                  || exit 1
