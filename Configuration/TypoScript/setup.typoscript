@@ -54,7 +54,7 @@ plugin.tx_news {
 			}
 		}
 
-		detailPidDetermination = flexform, categories, default
+		detailPidDetermination = flexform, siteSettings, categories, default
 
 		defaultDetailPid = 0
 		dateField = datetime
