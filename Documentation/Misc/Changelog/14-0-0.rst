@@ -38,6 +38,7 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+    2025-11-25 [TASK] Use 14.0.0 release (Commit dc3dbab9 by Georg Ringer)
     2025-11-25 Merge branch 'main' into v14 (Commit 5109ddbf by Georg Ringer)
     2025-11-24 [TASK] Simplify FQN (Commit 9f5c8ae2 by Georg Ringer)
     2025-11-24 [TASK] Remove calls to registerUniversalTagAttributes (Commit 727ec3fa by Georg Ringer)
@@ -91,7 +92,6 @@ This is a list of all changes in this release: ::
     2025-06-02 [TASK] Make rector happy (Commit 3e39d0d8 by Georg Ringer)
     2025-06-02 [TASK] Remove hash service (Commit ef23f20b by Georg Ringer)
     2025-06-02 [TASK] Update file type (Commit b2900d05 by Georg Ringer)
-
 
 
 This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
