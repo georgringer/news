@@ -510,7 +510,6 @@ case ${TEST_SUITE} in
                 typo3/cms-core:^13.4 || exit 1
             fi
             if [ ${TYPO3_VERSION} -eq 14 ]; then
-              composer config minimum-stability dev
               composer require --no-ansi --no-interaction --no-progress --no-install \
                 typo3/cms-core:dev-main \
                 typo3/cms-install:dev-main \
@@ -530,13 +529,13 @@ case ${TEST_SUITE} in
         ${CONTAINER_BIN} run ${CONTAINER_COMMON_PARAMS} --name composer-install-lowest-${SUFFIX} -e COMPOSER_CACHE_DIR=.cache/composer -e COMPOSER_ROOT_VERSION=${COMPOSER_ROOT_VERSION} ${IMAGE_PHP} /bin/bash -c "
             if [ ${TYPO3_VERSION} -eq 13 ]; then
               composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:^13.4.19 || exit 1
+                typo3/cms-core:^13.4.20 || exit 1
             fi
             if [ ${TYPO3_VERSION} -eq 14 ]; then
               composer config minimum-stability dev
               composer require --no-ansi --no-interaction --no-progress --no-install \
-                typo3/cms-core:dev-main \
-                typo3/cms-install:dev-main \
+                typo3/cms-core:^14 \
+                typo3/cms-install:^14 \
                 typo3/testing-framework:dev-main \
                 phpunit/phpunit:^11.5.44 \
                  || exit 1
