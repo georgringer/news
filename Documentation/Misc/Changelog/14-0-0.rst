@@ -1,4 +1,4 @@
-14.0.0 - xxth November 2025
+14.0.0 - 25th November 2025
 ===========================
 
 This major release is all about moving forward with the latest platform updates:
@@ -38,6 +38,13 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+    2025-11-25 Merge branch 'main' into v14 (Commit 5109ddbf by Georg Ringer)
+    2025-11-24 [TASK] Simplify FQN (Commit 9f5c8ae2 by Georg Ringer)
+    2025-11-24 [TASK] Remove calls to registerUniversalTagAttributes (Commit 727ec3fa by Georg Ringer)
+    2025-11-24 [TASK] Rename admin template file (Commit ff8e126e by Georg Ringer)
+    2025-11-23 [TASK] Handle deprecated usage of ctrl|searchFields (Commit b3b5370a by Georg Ringer)
+    2025-11-21 Refactor indexAction to use assign method (#2748) (Commit 11f7ecc1 by RamizP)
+    2025-11-19 [DOCS] Add changelog of 14.0.0 (Commit b764b049 by Georg Ringer)
     2025-11-19 [!!!][TASK] Remove unused fields from table tx_news_domain_model_news (Commit abb91a00 by Georg Ringer)
     2025-11-18 [TASK] Update ViewHelper to support latest fluid (Commit 48dcbcd1 by Georg Ringer)
     2025-11-16 [TASK] Apply rector rule FunctionFirstClassCallableRector (Commit 13fbbbcf by Georg Ringer)
@@ -57,7 +64,6 @@ This is a list of all changes in this release: ::
     2025-11-15 [TASK] Let tests run for TYPO3 14 (#2739) (Commit 9012b37d by Georg Ringer)
     2025-11-15 [FEATURE] Add support for PHP 8.5 (#2735) (Commit 554b87db by Oliver Klee)
     2025-11-15 [TASK] Fix dev deps (#2738) (Commit 2450777c by Georg Ringer)
-    2025-11-15 [CLEANUP] Drop blank lines from imports (#2736) (Commit d9742b8a by Oliver Klee)
     2025-11-15 [BUGFIX] Drop unused import (#2737) (Commit fcba696a by Oliver Klee)
     2025-11-13 [TASK] Remove more TYPO3 version checks (Commit 23262555 by Georg Ringer)
     2025-11-13 [TASK] Remove version check from icon size usage (Commit e9a4ffe5 by Georg Ringer)
@@ -67,9 +73,6 @@ This is a list of all changes in this release: ::
     2025-11-13 [!!!][TASK] Remove deprecated hooks (Commit 18d92878 by Georg Ringer)
     2025-11-13 [TASK] Update the development dependencies (#2733) (Commit ab54ecd2 by Oliver Klee)
     2025-11-13 [BUGFIX] Force category list as string #2729 (Commit 2192b630 by Georg Ringer)
-    2025-11-13 [BUGFIX] Force category list as string #2729 (Commit c3bc6d5c by Georg Ringer)
-    2025-11-13 [TASK] Update the development dependencies (#2733) (Commit 6d5f3822 by Oliver Klee)
-    2025-11-13 [TASK] Align the Symfony dependencies with the TYPO3 Core (#2734) (Commit b28c84ff by Oliver Klee)
     2025-11-11 [TASK] Use correct spaces in TS (Commit 7d49fbd6 by Georg Ringer)
     2025-11-11 [TASK] Fix CS issues (Commit 5c3b8b84 by Georg Ringer)
     2025-11-10 [TASK] Respect breaking change in PluginPreviewRenderer (Commit a8c721f8 by Georg Ringer)
@@ -88,7 +91,7 @@ This is a list of all changes in this release: ::
     2025-06-02 [TASK] Make rector happy (Commit 3e39d0d8 by Georg Ringer)
     2025-06-02 [TASK] Remove hash service (Commit ef23f20b by Georg Ringer)
     2025-06-02 [TASK] Update file type (Commit b2900d05 by Georg Ringer)
-    2025-11-07 [DOCS] Fix rst syntax in v13 changelog (#2727) (Commit 33d45c08 by Elias Häußler)
+
 
 
 This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
