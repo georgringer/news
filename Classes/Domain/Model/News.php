@@ -79,11 +79,11 @@ class News extends AbstractEntity
     #[Lazy]
     protected ObjectStorage $categories;
 
-    /** @var ObjectStorage<\GeorgRinger\News\Domain\Model\News> */
+    /** @var ObjectStorage<News> */
     #[Lazy]
     protected $related;
 
-    /** @var ObjectStorage<\GeorgRinger\News\Domain\Model\News> */
+    /** @var ObjectStorage<News> */
     #[Lazy]
     protected $relatedFrom;
 
@@ -188,12 +188,12 @@ class News extends AbstractEntity
      */
     public function initializeObject(): void
     {
-        $this->categories = $this->categories ?? new ObjectStorage();
-        $this->contentElements = $this->contentElements ?? new ObjectStorage();
-        $this->relatedLinks = $this->relatedLinks ?? new ObjectStorage();
-        $this->falMedia = $this->falMedia ?? new ObjectStorage();
-        $this->falRelatedFiles = $this->falRelatedFiles ?? new ObjectStorage();
-        $this->tags = $this->tags ?? new ObjectStorage();
+        $this->categories ??= new ObjectStorage();
+        $this->contentElements ??= new ObjectStorage();
+        $this->relatedLinks ??= new ObjectStorage();
+        $this->falMedia ??= new ObjectStorage();
+        $this->falRelatedFiles ??= new ObjectStorage();
+        $this->tags ??= new ObjectStorage();
     }
 
     public function getTitle(): string
@@ -423,7 +423,7 @@ class News extends AbstractEntity
     /**
      * Get related news
      *
-     * @return \GeorgRinger\News\Domain\Model\News[]
+     * @return News[]
      */
     public function getRelated()
     {
@@ -433,7 +433,7 @@ class News extends AbstractEntity
     /**
      * Set related from
      *
-     * @param ObjectStorage<\GeorgRinger\News\Domain\Model\News> $relatedFrom
+     * @param ObjectStorage<News> $relatedFrom
      */
     public function setRelatedFrom($relatedFrom): void
     {
@@ -443,7 +443,7 @@ class News extends AbstractEntity
     /**
      * Get related from
      *
-     * @return \GeorgRinger\News\Domain\Model\News[]
+     * @return News[]
      */
     public function getRelatedFrom()
     {
@@ -458,9 +458,7 @@ class News extends AbstractEntity
         $items = $this->getRelatedFrom();
         if ($items) {
             $items = $items->toArray();
-            usort($items, function ($a, $b): int {
-                return $b->getDatetime() <=> $a->getDatetime();
-            });
+            usort($items, fn($a, $b): int => $b->getDatetime() <=> $a->getDatetime());
         }
         return $items;
     }
@@ -483,9 +481,7 @@ class News extends AbstractEntity
         $all = array_unique($all);
 
         if (count($all) > 0) {
-            usort($all, function ($a, $b): int {
-                return $b->getDatetime() <=> $a->getDatetime();
-            });
+            usort($all, fn($a, $b): int => $b->getDatetime() <=> $a->getDatetime());
         }
         return $all;
     }
@@ -498,9 +494,7 @@ class News extends AbstractEntity
         $items = $this->getRelated();
         if ($items) {
             $items = $items->toArray();
-            usort($items, function ($a, $b): int {
-                return $b->getDatetime() <=> $a->getDatetime();
-            });
+            usort($items, fn($a, $b): int => $b->getDatetime() <=> $a->getDatetime());
         }
         return $items;
     }
@@ -1343,9 +1337,7 @@ class News extends AbstractEntity
         $items = $this->getRelated();
         if ($items) {
             $items = $items->toArray();
-            usort($items, function ($a, $b): int {
-                return $b->getSortingForeign() <=> $a->getSortingForeign();
-            });
+            usort($items, fn($a, $b): int => $b->getSortingForeign() <=> $a->getSortingForeign());
         }
         return $items;
     }

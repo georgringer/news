@@ -75,9 +75,8 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     /**
      * Initialize arguments.
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
-        parent::initializeArguments();
         $this->registerArgument('news', News::class, 'news item', true);
         $this->registerArgument('pidList', 'string', 'pid list', false, '');
         $this->registerArgument('sortField', 'string', 'sort field', false, 'datetime');

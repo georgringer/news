@@ -30,10 +30,9 @@ class IfIsActiveViewHelper extends AbstractConditionViewHelper
     public function initializeArguments(): void
     {
         $this->registerArgument('newsItem', 'object', 'News item', false);
-        parent::initializeArguments();
     }
 
-    public static function verdict(array $arguments, RenderingContextInterface $renderingContext)
+    public static function verdict(array $arguments, RenderingContextInterface $renderingContext): bool
     {
         /** @var PageArguments $routing */
         $routing = $renderingContext->getRequest()?->getAttribute('routing');

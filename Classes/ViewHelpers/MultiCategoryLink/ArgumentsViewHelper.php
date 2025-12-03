@@ -13,11 +13,8 @@ namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
 
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to get additional params including add/remove categories from list
@@ -36,37 +33,28 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  *    <title>TYPO3 is awesome</title>
  * </output>
  */
-class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterface
+class ArgumentsViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
-    /**
-     * Initialize arguments
-     */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('mode', 'string', 'Mode, either "add" or "remove"', true);
         $this->registerArgument('list', 'string', 'Category list', false, '');
         $this->registerArgument('item', 'int', 'Category id', true);
         $this->registerArgument('additionalParams', 'array', 'Additional params', false, []);
-        parent::initializeArguments();
     }
 
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ): array {
-        if ($arguments['mode'] !== 'add' && $arguments['mode'] !== 'remove') {
+    public function render(): array
+    {
+        if ($this->arguments['mode'] !== 'add' && $this->arguments['mode'] !== 'remove') {
             throw new Exception('Mode must be either "add" or "remove', 1522293549);
         }
 
-        $allArguments = (array)$arguments['additionalParams'];
-        $categoryId = $arguments['item'] ?? 0;
+        $allArguments = (array)$this->arguments['additionalParams'];
+        $categoryId = $this->arguments['item'] ?? 0;
 
         // All IDs are numeric. Hence, split and type cast.
-        $categoryList = GeneralUtility::intExplode(',', $arguments['list'] ?? '', true);
-        if ($arguments['mode'] === 'add') {
+        $categoryList = GeneralUtility::intExplode(',', $this->arguments['list'] ?? '', true);
+        if ($this->arguments['mode'] === 'add') {
             $categoryList[] = $categoryId;
         } else {
             // array_diff has the advantage, that it does not care how often the searched value occurs.

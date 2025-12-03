@@ -14,7 +14,6 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -87,12 +86,11 @@ class Page
         BackendUtility::workspaceOL('pages', $treeStartingRecord);
 
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
-        $iconSize = (new Typo3Version())->getMajorVersion() >= 13 ? IconSize::SMALL : 'small';
 
         // Creating top icon; the current page
         $tree->tree[] = [
             'row' => $treeStartingRecord,
-            'HTML' => is_array($treeStartingRecord) ? $iconFactory->getIconForRecord('pages', $treeStartingRecord, $iconSize)->render() : '',
+            'HTML' => is_array($treeStartingRecord) ? $iconFactory->getIconForRecord('pages', $treeStartingRecord, IconSize::SMALL)->render() : '',
         ];
 
         $tree->getTree($pageUid, $treeLevel, '');

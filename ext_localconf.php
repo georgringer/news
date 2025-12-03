@@ -15,7 +15,6 @@ use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew;
 use TYPO3\CMS\Core\Cache\Backend\FileBackend;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Service\ExtensionService;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
@@ -131,20 +130,6 @@ $boot = static function (): void {
     // and overrides the default variable frontend of 4.6
     if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news_category']['frontend'])) {
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news_category']['frontend'] = VariableFrontend::class;
-    }
-
-    /* ===========================================================================
-        Add TSconfig
-    =========================================================================== */
-    if ((new Typo3Version())->getMajorVersion() < 13) {
-        // @extensionScannerIgnoreLine
-        ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/ContentElementWizard.tsconfig\'');
-
-        // For linkvalidator
-        if (ExtensionManagementUtility::isLoaded('linkvalidator')) {
-            // @extensionScannerIgnoreLine
-            ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Page/mod.linkvalidator.tsconfig\'');
-        }
     }
 
     /* ===========================================================================

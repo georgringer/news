@@ -104,8 +104,8 @@ class TtContent extends AbstractEntity
 
     public function initializeObject(): void
     {
-        $this->image = $this->image ?? new ObjectStorage();
-        $this->media = $this->media ?? new ObjectStorage();
+        $this->image ??= new ObjectStorage();
+        $this->media ??= new ObjectStorage();
     }
 
     public function getCrdate(): ?\DateTime

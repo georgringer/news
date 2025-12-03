@@ -17,8 +17,8 @@ class NewsTitleMapper extends AbstractNewsAliasMapper
 
     public function __construct(array $settings)
     {
-        $settings['tableName'] = $settings['tableName'] ?? 'tx_news_domain_model_news';
-        $settings['routeFieldName'] = $settings['routeFieldName'] ?? 'path_segment';
+        $settings['tableName'] ??= 'tx_news_domain_model_news';
+        $settings['routeFieldName'] ??= 'path_segment';
         parent::__construct($settings);
     }
 }

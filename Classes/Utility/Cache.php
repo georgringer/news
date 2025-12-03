@@ -15,10 +15,8 @@ use GeorgRinger\News\Event\ModifyCacheTagsFromDemandEvent;
 use GeorgRinger\News\Event\ModifyCacheTagsFromNewsEvent;
 use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
-
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -74,13 +72,9 @@ class Cache
             }
         }
         if (count($cacheTags) > 0) {
-            if ((new Typo3Version())->getMajorVersion() >= 13) {
-                $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
-                foreach ($cacheTags as $cacheTag) {
-                    $cacheDataCollector->addCacheTags(new CacheTag($cacheTag));
-                }
-            } else {
-                $GLOBALS['TSFE']->addCacheTags($cacheTags);
+            $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
+            foreach ($cacheTags as $cacheTag) {
+                $cacheDataCollector->addCacheTags(new CacheTag($cacheTag));
             }
         }
     }
@@ -105,13 +99,9 @@ class Cache
         GeneralUtility::makeInstance(EventDispatcher::class)->dispatch($event);
         $cacheTags = $event->getCacheTags();
         if (count($cacheTags) > 0) {
-            if ((new Typo3Version())->getMajorVersion() >= 13) {
-                $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
-                foreach ($cacheTags as $cacheTag) {
-                    $cacheDataCollector->addCacheTags(new CacheTag($cacheTag));
-                }
-            } else {
-                $GLOBALS['TSFE']->addCacheTags($cacheTags);
+            $cacheDataCollector = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.cache.collector');
+            foreach ($cacheTags as $cacheTag) {
+                $cacheDataCollector->addCacheTags(new CacheTag($cacheTag));
             }
         }
     }

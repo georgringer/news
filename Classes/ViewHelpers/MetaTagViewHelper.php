@@ -11,9 +11,7 @@ namespace GeorgRinger\News\ViewHelpers;
 
 use TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * ViewHelper to render meta tags
@@ -36,12 +34,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  */
 class MetaTagViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
-    /**
-     * Arguments initialization
-     */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('property', 'string', 'Property of meta tag', false, '', false);
         $this->registerArgument('name', 'string', 'Content of meta tag using the name attribute', false, '', false);
@@ -51,7 +44,7 @@ class MetaTagViewHelper extends AbstractViewHelper
         $this->registerArgument('replace', 'boolean', 'Replace potential existing tag', false, false);
     }
 
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
+    public function render()
     {
         // Skip if current record is part of tt_content CType shortcut
         if (!empty($GLOBALS['TSFE']->recordRegister)
@@ -63,9 +56,9 @@ class MetaTagViewHelper extends AbstractViewHelper
             return;
         }
 
-        $useCurrentDomain = $arguments['useCurrentDomain'];
-        $forceAbsoluteUrl = $arguments['forceAbsoluteUrl'];
-        $content = (string)$arguments['content'];
+        $useCurrentDomain = $this->arguments['useCurrentDomain'];
+        $forceAbsoluteUrl = $this->arguments['forceAbsoluteUrl'];
+        $content = (string)$this->arguments['content'];
 
         // set current domain
         if ($useCurrentDomain) {
@@ -85,12 +78,12 @@ class MetaTagViewHelper extends AbstractViewHelper
 
         if ($content !== '') {
             $registry = GeneralUtility::makeInstance(MetaTagManagerRegistry::class);
-            if ($arguments['property']) {
-                $manager = $registry->getManagerForProperty($arguments['property']);
-                $manager->addProperty($arguments['property'], $content, [], $arguments['replace'], 'property');
-            } elseif ($arguments['name']) {
-                $manager = $registry->getManagerForProperty($arguments['name']);
-                $manager->addProperty($arguments['name'], $content, [], $arguments['replace'], 'name');
+            if ($this->arguments['property']) {
+                $manager = $registry->getManagerForProperty($this->arguments['property']);
+                $manager->addProperty($this->arguments['property'], $content, [], $this->arguments['replace'], 'property');
+            } elseif ($this->arguments['name']) {
+                $manager = $registry->getManagerForProperty($this->arguments['name']);
+                $manager->addProperty($this->arguments['name'], $content, [], $this->arguments['replace'], 'name');
             }
         }
     }

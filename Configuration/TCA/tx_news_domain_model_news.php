@@ -3,6 +3,7 @@
 use GeorgRinger\News\Backend\FormEngine\SlugPrefix;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\FileType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 defined('TYPO3') or die;
@@ -503,37 +504,37 @@ $tx_news_domain_model_news = [
                 ],
                 'overrideChildTca' => [
                     'types' => [
-                        File::FILETYPE_UNKNOWN => [
+                        (class_exists(FileType::class) ? FileType::UNKNOWN->value : File::FILETYPE_UNKNOWN) => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
                                     --palette--;;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
-                        File::FILETYPE_TEXT => [
+                        (class_exists(FileType::class) ? FileType::TEXT->value : File::FILETYPE_TEXT) => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
                                     --palette--;;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
-                        File::FILETYPE_IMAGE => [
+                        (class_exists(FileType::class) ? FileType::IMAGE->value : File::FILETYPE_IMAGE) => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
                                     --palette--;;imageoverlayPalette,
                                     --palette--;;filePalette',
                         ],
-                        File::FILETYPE_AUDIO => [
+                        (class_exists(FileType::class) ? FileType::AUDIO->value : File::FILETYPE_AUDIO) => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
                                     --palette--;;audioOverlayPalette,
                                     --palette--;;filePalette',
                         ],
-                        File::FILETYPE_VIDEO => [
+                        (class_exists(FileType::class) ? FileType::VIDEO->value : File::FILETYPE_VIDEO) => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
                                     --palette--;;videoOverlayPalette,
                                     --palette--;;filePalette',
                         ],
-                        File::FILETYPE_APPLICATION => [
+                        (class_exists(FileType::class) ? FileType::APPLICATION->value : File::FILETYPE_APPLICATION) => [
                             'showitem' => '
                                     --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
                                     --palette--;;imageoverlayPalette,

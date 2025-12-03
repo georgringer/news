@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Hooks;
 
-use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\PageRenderer;
 
@@ -33,7 +33,7 @@ class NewsContentElementPreview
 
         return sprintf(
             '<button type="button" class="btn btn-info" data-news-content-element-preview="1">%s %s</button>',
-            $this->iconFactory->getIcon('ext-news-addon', Icon::SIZE_SMALL),
+            $this->iconFactory->getIcon('ext-news-addon', IconSize::SMALL),
             $labels['newsContentElement.preview.modal.title'],
         );
     }

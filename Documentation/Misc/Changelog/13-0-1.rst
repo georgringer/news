@@ -1,0 +1,27 @@
+13.0.1 - 20th November 2025
+===========================
+
+
+Breaking changes
+-----------------
+
+No breaking changes
+
+
+Features
+--------
+
+No features
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+2025-11-20 [BUGFIX] Add siteSettings to TS detailPidDetermination (Commit 458f99f7 by Georg Ringer)
+2025-11-15 [CLEANUP] Drop blank lines from imports (#2736) (Commit d9742b8a by Oliver Klee)
+2025-11-13 [BUGFIX] Force category list as string #2729 (Commit c3bc6d5c by Georg Ringer)
+2025-11-13 [TASK] Update the development dependencies (#2733) (Commit 6d5f3822 by Oliver Klee)
+2025-11-13 [TASK] Align the Symfony dependencies with the TYPO3 Core (#2734) (Commit b28c84ff by Oliver Klee)
+2025-11-07 [DOCS] Fix rst syntax in v13 changelog (#2727) (Commit 33d45c08 by Elias Häußler)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

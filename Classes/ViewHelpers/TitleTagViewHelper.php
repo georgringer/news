@@ -10,11 +10,10 @@
 namespace GeorgRinger\News\ViewHelpers;
 
 use GeorgRinger\News\Seo\NewsTitleProvider;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * ViewHelper to render the page title
@@ -30,24 +29,26 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  */
 class TitleTagViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ): void {
-        // Skip if current record is part of tt_content CType shortcut
-        $tsfe = self::getTsfe();
-        if (!empty($tsfe->recordRegister)
-            && is_array($tsfe->recordRegister)
-            && str_contains(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:')
-            && !empty($tsfe->currentRecord)
-            && str_contains($tsfe->currentRecord, 'tx_news_domain_model_news:')
-        ) {
-            return;
+    public function render(): void
+    {
+        if ((new Typo3Version())->getVersion() >= 14) {
+            $isInsertRecord = $this->renderingContext->getVariableProvider()->getByPath('settings.insertRecord');
+            if ($isInsertRecord) {
+                return;
+            }
+        } else {
+            // Skip if current record is part of tt_content CType shortcut
+            $tsfe = self::getTsfe();
+            if (!empty($tsfe->recordRegister)
+                && is_array($tsfe->recordRegister)
+                && str_contains(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:')
+                && !empty($tsfe->currentRecord)
+                && str_contains($tsfe->currentRecord, 'tx_news_domain_model_news:')
+            ) {
+                return;
+            }
         }
-        $content = trim($renderChildrenClosure());
+        $content = trim($this->renderChildren());
         if (!empty($content)) {
             GeneralUtility::makeInstance(NewsTitleProvider::class)->setTitle($content);
         }

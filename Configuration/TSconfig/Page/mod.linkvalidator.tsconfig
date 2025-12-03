@@ -1,3 +1,4 @@
+# unused, will be removed in EXT:news v15, EXT:news/Configuration/page.tsconfig with same content is included automatically
 mod.linkvalidator.searchFields {
 	tx_news_domain_model_news = bodytext,internalurl,externalurl
 	tx_news_domain_model_link = uri

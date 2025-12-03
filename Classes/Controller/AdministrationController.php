@@ -12,7 +12,6 @@ namespace GeorgRinger\News\Controller;
 use GeorgRinger\News\Domain\Repository\AdministrationRepository;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
-use TYPO3\CMS\Core\Information\Typo3Version;
 
 class AdministrationController extends NewsController
 {
@@ -34,17 +33,8 @@ class AdministrationController extends NewsController
 
     public function indexAction(): ResponseInterface
     {
-        $this->view->assignMultiple([
-            'counts' => $this->administrationRepository->getTotalCounts(),
-        ]);
-
-        if ((new Typo3Version())->getMajorVersion() >= 13) {
-            $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-            return $moduleTemplate->renderResponse('Administration/IndexV13');
-        }
-
         $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-        $moduleTemplate->setContent($this->view->render());
-        return $this->htmlResponse($moduleTemplate->renderContent());
+        $moduleTemplate = $moduleTemplate->assign('counts', $this->administrationRepository->getTotalCounts());
+        return $moduleTemplate->renderResponse('Administration/Index');
     }
 }
