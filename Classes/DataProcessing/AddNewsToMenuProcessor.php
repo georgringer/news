@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\DataProcessing;
 
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\LanguageAspect;
@@ -28,6 +29,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  * 20 = add-news-to-menu
  * 20.menus = breadcrumbMenu,specialMenu
  */
+#[Autoconfigure(public: true)]
 class AddNewsToMenuProcessor implements DataProcessorInterface
 {
     public function __construct(
