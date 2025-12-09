@@ -16,11 +16,11 @@ use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Add the current news record to any menu, e.g. breadcrumb
@@ -30,6 +30,10 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class AddNewsToMenuProcessor implements DataProcessorInterface
 {
+    public function __construct(
+        protected readonly PageRepository $pageRepository,
+    ) {}
+
     public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData): array
     {
         if (isset($processorConfiguration['if.']) && !$cObj->checkIf($processorConfiguration['if.'])) {
@@ -91,7 +95,11 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
                 ->executeQuery()->fetchAssociative();
 
             if ($row) {
-                $row = $this->getTsfe()->sys_page->getLanguageOverlay('tx_news_domain_model_news', $row, $this->getCurrentLanguageAspect());
+                $row = $this->pageRepository->getLanguageOverlay(
+                    'tx_news_domain_model_news',
+                    $row,
+                    $this->getCurrentLanguageAspect()
+                );
             }
 
             if (is_array($row) && !empty($row)) {
@@ -120,10 +128,5 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
     protected function getCurrentLanguageAspect(): LanguageAspect
     {
         return GeneralUtility::makeInstance(Context::class)->getAspect('language');
-    }
-
-    protected function getTsfe(): TypoScriptFrontendController
-    {
-        return $GLOBALS['TSFE'];
     }
 }
