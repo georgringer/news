@@ -83,7 +83,11 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
     {
         /** @var PageArguments $routing */
         $routing = $GLOBALS['TYPO3_REQUEST']->getAttribute('routing');
-        $newsId = (int)($routing->getArguments()['tx_news_pi1']['news'] ?? 0);
+        $newsId = (int)(
+            $routing->getArguments()['tx_news_pi1']['news']
+            ?? $routing->getArguments()['tx_news_pi1']['news_preview']
+            ?? 0
+        );
 
         if ($newsId) {
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
