@@ -17,6 +17,7 @@ use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
+use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
@@ -26,6 +27,8 @@ use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteSettings;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\View\ViewFactoryData;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
@@ -60,6 +63,11 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
     {
         $this->pageId = $item->getContext()->getPageId();
         $row = $item->getRecord();
+        if ((new Typo3Version())->getMajorVersion() >= 14) {
+            /** @var RecordInterface  $row */
+            $row = $row->getRawRecord()->toArray();
+        }
+
         $result = '';
         $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
         $this->tableData = [];
@@ -123,15 +131,6 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
                     $this->getTemplateLayoutSettings($row['pid']);
             }
 
-            // @deprecated, use PluginPreviewRendererEvent instead
-            if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news'][\GeorgRinger\News\Hooks\PluginPreviewRenderer::class]['extensionSummary'] ?? []) {
-                trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\GeorgRinger\News\Hooks\PluginPreviewRenderer::class][\'extensionSummary\'] has been deprecated, use event PluginPreviewSummaryEvent instead', E_USER_DEPRECATED);
-                $params['item'] = $item;
-                foreach ($hooks as $reference) {
-                    GeneralUtility::callUserFunction($reference, $params, $this);
-                }
-            }
-
             $event = new PluginPreviewSummaryEvent($item, $this);
             $this->eventDispatcher->dispatch($event);
 
@@ -161,10 +160,10 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
         $singleNewsRecord = (int)$this->getFieldFromFlexform('settings.singleNews');
 
         if ($singleNewsRecord > 0) {
-            $newsRecord = BackendUtilityCore::getRecord('tx_news_domain_model_news', $singleNewsRecord);
+            $newsRecord = $this->getRecord('tx_news_domain_model_news', $singleNewsRecord);
 
             if (is_array($newsRecord)) {
-                $pageRecord = BackendUtilityCore::getRecord('pages', $newsRecord['pid']);
+                $pageRecord = $this->getRecord('pages', $newsRecord['pid']);
 
                 if (is_array($pageRecord)) {
                     $content = $this->getRecordData($newsRecord['uid'], 'tx_news_domain_model_news');
@@ -229,18 +228,17 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
 
     public function getRecordData(int $id, string $table = 'pages'): string
     {
-        $record = BackendUtilityCore::getRecord($table, $id);
+        $record = $this->getRecord($table, $id);
 
         if (is_array($record)) {
-            $iconSize = (new Typo3Version())->getMajorVersion() >= 13 ? IconSize::SMALL : 'small';
             $data = '<span data-toggle="tooltip" data-placement="top" data-title="id=' . $record['uid'] . '">'
-                . $this->iconFactory->getIconForRecord($table, $record, $iconSize)->render()
+                . $this->iconFactory->getIconForRecord($table, $record, IconSize::SMALL)->render()
                 . '</span> ';
             $content = BackendUtilityCore::wrapClickMenuOnIcon(
                 $data,
                 $table,
                 $record['uid'],
-                true,
+                '',
                 $record
             );
 
@@ -541,8 +539,15 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
         $pageRenderer->loadJavaScriptModule('@georgringer/news/page-layout.js');
         $pageRenderer->addCssFile('EXT:news/Resources/Public/Css/Backend/PageLayoutView.css');
 
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:news/Resources/Private/Backend/PageLayoutView.html'));
+        if (class_exists(StandaloneView::class)) {
+            $view = GeneralUtility::makeInstance(StandaloneView::class);
+            $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:news/Resources/Private/Backend/PageLayoutView.html'));
+        } else {
+            $viewFactoryData = new ViewFactoryData(
+                templatePathAndFilename: 'EXT:news/Resources/Private/Backend/PageLayoutView.html'
+            );
+            $view = GeneralUtility::makeInstance(ViewFactoryInterface::class)->create($viewFactoryData);
+        }
         $view->assignMultiple([
             'header' => $header,
             'rows' => [
@@ -604,5 +609,10 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
             return null;
         }
         return $site->getSettings();
+    }
+
+    protected function getRecord(string $table, int $id): ?array
+    {
+        return BackendUtilityCore::getRecord($table, $id);
     }
 }

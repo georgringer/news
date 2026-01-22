@@ -72,10 +72,10 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $this->pluginSettingsService = $pluginSettingsService;
     }
 
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
-        $this->registerUniversalTagAttributes();
+
         $this->registerArgument('newsItem', News::class, 'news item', true);
         $this->registerArgument('settings', 'array', 'Settings', false, []);
         $this->registerArgument('uriOnly', 'bool', 'url only', false, false);
@@ -87,9 +87,9 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     /**
      * Render link to news item or internal/external pages
      *
-     * @return string|null link
+     * @return string link
      */
-    public function render(): ?string
+    public function render(): string
     {
         /** @var News|null $newsItem */
         $newsItem = $this->arguments['newsItem'];
@@ -113,7 +113,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $linkedContent = $this->renderChildren();
 
         if ($newsItem === null) {
-            return $linkedContent;
+            return (string)$linkedContent;
         }
 
         $newsType = (int)$newsItem->getType();
@@ -135,7 +135,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
         // link could not be generated
         if ($url === '' || $linkedContent === $url) {
-            return $linkedContent;
+            return (string)$linkedContent;
         }
 
         if ($this->hasArgument('section')) {
@@ -251,7 +251,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     {
         $configuration['returnLast'] = 'target';
 
-        return $this->cObj->typoLink('dummy', $configuration);
+        return (string)$this->cObj->typoLink('dummy', $configuration);
     }
 
     /**

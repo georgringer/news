@@ -34,7 +34,6 @@ use GeorgRinger\NumberedPagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -94,11 +93,7 @@ class NewsController extends NewsBaseController
             /** @var $typoScriptFrontendController \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
             $typoScriptFrontendController = $GLOBALS['TSFE'];
             if (!$cacheTagsSet) {
-                if ((new Typo3Version())->getMajorVersion() >= 13) {
-                    $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_news'));
-                } else {
-                    $typoScriptFrontendController->addCacheTags(['tx_news']);
-                }
+                $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_news'));
                 $cacheTagsSet = true;
             }
         }
@@ -158,18 +153,6 @@ class NewsController extends NewsBaseController
         $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
         $idList = $pageRepository->getPageIdsRecursive(GeneralUtility::intExplode(',', (string)($settings['startingpoint'] ?? '')), (int)($settings['recursive'] ?? 0));
         $demand->setStoragePage(implode(',', $idList));
-
-        if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'] ?? []) {
-            trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\'Controller/NewsController.php\'][\'createDemandObjectFromSettings\'] has been deprecated, use event CreateDemandObjectFromSettingsEvent instead', E_USER_DEPRECATED);
-            $params = [
-                'demand' => $demand,
-                'settings' => $settings,
-                'class' => $class,
-            ];
-            foreach ($hooks as $reference) {
-                GeneralUtility::callUserFunction($reference, $params, $this);
-            }
-        }
 
         $event = new CreateDemandObjectFromSettingsEvent($demand, $settings, $class);
         $this->eventDispatcher->dispatch($event);
@@ -643,15 +626,6 @@ class NewsController extends NewsBaseController
             $originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
         }
 
-        foreach ($hooks = ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'] ?? []) as $_funcRef) {
-            trigger_error('The hook $GLOBALS[\'TYPO3_CONF_VARS\'][\'EXT\'][\'news\'][\'Controller/NewsController.php\'][\'overrideSettings\'] has been deprecated, use event NewsControllerOverrideSettingsEvent instead', E_USER_DEPRECATED);
-            $_params = [
-                'originalSettings' => $originalSettings,
-                'tsSettings' => $tsSettings,
-            ];
-            $originalSettings = GeneralUtility::callUserFunction($_funcRef, $_params, $this);
-        }
-
         $event = new NewsControllerOverrideSettingsEvent($originalSettings, $tsSettings, $this);
         $this->eventDispatcher->dispatch($event);
         $originalSettings = $event->getSettings();
@@ -665,7 +639,7 @@ class NewsController extends NewsBaseController
      *
      * @param TemplateView $view the view to inject
      */
-    public function setView(TemplateView $view): void
+    public function setView($view): void
     {
         $this->view = $view;
     }

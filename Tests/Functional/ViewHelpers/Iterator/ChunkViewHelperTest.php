@@ -12,7 +12,8 @@ namespace GeorgRinger\News\Tests\Functional\ViewHelpers\Iterator;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Core\View\ViewFactoryData;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -27,13 +28,10 @@ class ChunkViewHelperTest extends FunctionalTestCase
     #[IgnoreDeprecations]
     public function chunkIsProperlyCreated(): void
     {
-        $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
-        $standaloneView->setTemplateSource(
-            '{namespace n=GeorgRinger\News\ViewHelpers}' . LF
-            . '<f:for each="{news -> n:iterator.chunk(count: 3)}" as="col" iteration="cycle">'
-            . '<div class="row"><f:for each="{col}" as="item"><div class="col">{item.title}</div></f:for></div>'
-            . '</f:for>'
+        $viewFactoryData = new ViewFactoryData(
+            templatePathAndFilename: 'EXT:news/Tests/Functional/Fixtures/ChunkViewHelperFixture.html'
         );
+        $standaloneView = GeneralUtility::makeInstance(ViewFactoryInterface::class)->create($viewFactoryData);
         $standaloneView->assign('news', [
             ['title' => 'el1'],
             ['title' => 'el2'],

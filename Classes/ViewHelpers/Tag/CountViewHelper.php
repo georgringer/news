@@ -15,10 +15,7 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * Get usage count
@@ -27,23 +24,15 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  * {n:tag.count(tagUid:tag.uid) -> f:variable(name: 'tagUsageCount')}
  * {tagUsageCount}
  */
-class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
+class CountViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
-    /**
-     * Initialize arguments
-     */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('tagUid', 'int', 'Uid of the tag', true);
     }
 
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ): int {
+    public function render(): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
 
@@ -65,7 +54,7 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
                 $queryBuilder->expr()->eq('tx_news_domain_model_tag.uid', $queryBuilder->quoteIdentifier('tx_news_domain_model_news_tag_mm.uid_foreign'))
             )
             ->where(
-                $queryBuilder->expr()->eq('tx_news_domain_model_tag.uid', $queryBuilder->createNamedParameter($arguments['tagUid'], Connection::PARAM_INT)),
+                $queryBuilder->expr()->eq('tx_news_domain_model_tag.uid', $queryBuilder->createNamedParameter($this->arguments['tagUid'], Connection::PARAM_INT)),
                 $queryBuilder->expr()->in(
                     'tx_news_domain_model_news.sys_language_uid',
                     $queryBuilder->createNamedParameter([-1, $languageUid], Connection::PARAM_INT_ARRAY)

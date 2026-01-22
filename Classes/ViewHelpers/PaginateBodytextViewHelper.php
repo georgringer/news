@@ -67,9 +67,8 @@ class PaginateBodytextViewHelper extends AbstractViewHelper
     /**
      * Initialize arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
-        parent::initializeArguments();
         $this->registerArgument('object', News::class, 'news item', true);
         $this->registerArgument('as', 'string', 'as', true);
         $this->registerArgument('currentPage', 'int', 'current page', true);

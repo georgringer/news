@@ -21,10 +21,9 @@ class PageAvailableInLanguageViewHelper extends AbstractConditionViewHelper
     /**
      * Initialize additional argument
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         $this->registerArgument('language', 'int', 'Language ot check', true);
-        parent::initializeArguments();
     }
 
     /**
@@ -40,10 +39,7 @@ class PageAvailableInLanguageViewHelper extends AbstractConditionViewHelper
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function render()
+    public function render(): mixed
     {
         if (static::evaluateCondition($this->arguments)) {
             return $this->renderThenChild();

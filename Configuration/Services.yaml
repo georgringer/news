@@ -33,9 +33,6 @@ services:
         after: 'typo3-seo/hreflangGenerator'
         event: TYPO3\CMS\Frontend\Event\ModifyHrefLangTagsEvent
 
-  GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList:
-    public: true
-
   GeorgRinger\News\Hooks\NewsContentElementPreview:
     public: true
 
