@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news" target-language="ja">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>News system</source>
+			<target state="final">ニュースシステム</target></trans-unit>
+      <trans-unit id="plugin.news_list.title" xml:space="preserve" approved="yes">
+				<source>News article list (incl. detail view)</source>
+			<target state="final">ニュース記事一覧（詳細表示を含む）</target></trans-unit>
+      <trans-unit id="plugin.news_list.description" xml:space="preserve" approved="yes">
+				<source>Listing of news articles chosen by various properties like storage folder, categories, time constraints, etc.
+					This plugin is capable of rendering the detail view as well.</source>
+			<target state="final">ストレージフォルダ、カテゴリ、時間制約など、さまざまなプロパティで選択されたニュース記事の一覧です。
+					このプラグインは、詳細ビューをレンダリングすることもできます。</target></trans-unit>
+      <trans-unit id="plugin.news_list_sticky.title" xml:space="preserve" approved="yes">
+				<source>News article list</source>
+			<target state="final">ニュース記事一覧</target></trans-unit>
+      <trans-unit id="plugin.news_list_sticky.description" xml:space="preserve" approved="yes">
+				<source>Listing of news articles chosen by various properties like storage folder, categories, time constraints, etc.
+					This plugin cannot render the detail view of news articles.</source>
+			<target state="final">ストレージフォルダ、カテゴリ、時間制約など、さまざまなプロパティで選択されたニュース記事の一覧です。
+					このプラグインは、詳細ビューをレンダリングすることもできます。</target></trans-unit>
+      <trans-unit id="plugin.news_detail.title" xml:space="preserve" approved="yes">
+				<source>News article detail view</source>
+			<target state="final">ニュース記事の詳細表示</target></trans-unit>
+      <trans-unit id="plugin.news_detail.description" xml:space="preserve" approved="yes">
+				<source>Rendering the detail view of a news article.</source>
+			<target state="final">ニュース記事の詳細ビューをレンダリングします。</target></trans-unit>
+      <trans-unit id="plugin.news_date_menu.title" xml:space="preserve" approved="yes">
+				<source>Date menu of news articles</source>
+			<target state="final">ニュース記事の日付メニュー</target></trans-unit>
+      <trans-unit id="plugin.news_date_menu.description" xml:space="preserve" approved="yes">
+				<source>Display a menu of months &amp; years of articles. The menu can be used to filter a list view dynamically.</source>
+			<target state="final">月 &amp; 年の記事のメニューを表示します。メニューはリストビューを動的にフィルタリングするために使用できます。</target></trans-unit>
+      <trans-unit id="plugin.news_search_form.title" xml:space="preserve" approved="yes">
+				<source>News search form</source>
+			<target state="final">ニュース検索フォーム</target></trans-unit>
+      <trans-unit id="plugin.news_search_form.description" xml:space="preserve" approved="yes">
+				<source>Display a search form to let users search within articles.</source>
+			<target state="final">ユーザが記事内で検索できるように検索フォームを表示します。</target></trans-unit>
+      <trans-unit id="plugin.news_search_result.title" xml:space="preserve" approved="yes">
+				<source>News search result</source>
+			<target state="final">ニュース検索結果</target></trans-unit>
+      <trans-unit id="plugin.news_search_result.description" xml:space="preserve" approved="yes">
+				<source>Display the result of the search.</source>
+			<target state="final">検索結果を表示します</target></trans-unit>
+      <trans-unit id="plugin.news_selected_list.title" xml:space="preserve" approved="yes">
+				<source>News article list (curated)</source>
+			<target state="final">ニュース記事一覧（キュレート済）</target></trans-unit>
+      <trans-unit id="plugin.news_selected_list.description" xml:space="preserve" approved="yes">
+				<source>Listing of manually picked news articles.</source>
+			<target state="final">手動で選択したニュース記事の一覧です。</target></trans-unit>
+      <trans-unit id="plugin.category_list.title" xml:space="preserve" approved="yes">
+				<source>News category menu</source>
+			<target state="final">ニュースカテゴリメニュー</target></trans-unit>
+      <trans-unit id="plugin.category_list.description" xml:space="preserve" approved="yes">
+				<source>Display a menu of categories. The menu can be used to filter a news list view dynamically.</source>
+			<target state="final">カテゴリのメニューを表示します。メニューは、ニュース一覧表示を動的にフィルタリングするために使用できます。</target></trans-unit>
+      <trans-unit id="plugin.tag_list.title" xml:space="preserve" approved="yes">
+				<source>News tag list</source>
+			<target state="final">ニュースタグリスト</target></trans-unit>
+      <trans-unit id="plugin.tag_list.description" xml:space="preserve" approved="yes">
+				<source>Display a list of tags. The list can be used to filter a news list view dynamically.</source>
+			<target state="final">タグ一覧を表示します。リストは動的にニュース一覧をフィルタリングするために使用できます。</target></trans-unit>
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="final">設定</target></trans-unit>
+      <trans-unit id="flexforms_tab.template" xml:space="preserve" approved="yes">
+				<source>Template</source>
+			<target state="final">テンプレート</target></trans-unit>
+      <trans-unit id="extmng.pageTreePluginPreview" xml:space="preserve" approved="yes">
+				<source>Plugin preview in page tree: If enabled pages with news plugins are highlighted by showing the plugin icon as status information [TYPO3 13 only]</source>
+			<target state="final">ページツリーでのプラグインプレビュー: ニュースプラグインで有効になっているページをステータス情報として表示することでハイライト表示する場合 [TYPO3 13 のみ]</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.description" xml:space="preserve" approved="yes">
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
+			</source>
+			<target state="final">再帰的なレベルを選択すると、関連するエントリとともにページツリーが表示されます。 ページタイトルをクリックすると、ページのニュース項目が表示されます。
+			</target></trans-unit>
+    </body>
+  </file>
+</xliff>
