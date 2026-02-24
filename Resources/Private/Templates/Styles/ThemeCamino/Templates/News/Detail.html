@@ -1,0 +1,245 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:layout name="Detail" />
+
+<f:comment>
+	=====================
+		Templates/News/Detail.html
+</f:comment>
+
+<f:section name="content">
+	<f:if condition="{newsItem}">
+		<n:format.nothing>
+			<n:excludeDisplayedNews newsItem="{newsItem}" />
+			<f:if condition="{settings.detail.showMetaTags}">
+				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings: settings}" />
+			</f:if>
+			<f:if condition="{newsItem.alternativeTitle}">
+				<f:then>
+					<n:titleTag>
+						<f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
+					</n:titleTag>
+				</f:then>
+				<f:else>
+					<n:titleTag>
+						<f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+					</n:titleTag>
+				</f:else>
+			</f:if>
+		</n:format.nothing>
+
+		<div class="article" itemscope="itemscope" itemtype="https://schema.org/Article">
+			<div class="article__content">
+				<f:render section="headline" arguments="{_all}" />
+				<f:render section="inner-content" arguments="{_all}" />
+			</div>
+
+			<f:if condition="{newsItem.mediaNonPreviews} || {newsItem.categories} || {newsItem.tags} || {newsItem.allRelatedSorted}">
+				<aside class="article__aside">
+					<f:render section="aside" arguments="{_all}" />
+				</aside>
+			</f:if>
+		</div>
+	</f:if>
+</f:section>
+
+<f:section name="headline">
+	<h1 class="headline headline--large" itemprop="headline">{newsItem.title}</h1>
+	<f:render partial="General/AdditionalInformation" arguments="{settings: settings, newsItem: newsItem}" />
+</f:section>
+
+<f:section name="inner-content">
+	<f:if condition="{settings.detail.showPrevNext}">
+		<n:simplePrevNext pidList="{newsItem.pid}" news="{newsItem}" as="paginated" sortField="datetime">
+			<f:if condition="{paginated}">
+				<nav class="news-prevnext" aria-label="{f:translate(key: 'pagination.label', extensionName: 'fluid')}">
+					<f:if condition="{paginated.prev}">
+						<n:link newsItem="{paginated.prev}" settings="{settings}" class="button button--secondary">
+							<span class="button__content">
+								<span class="button__text">&#8592; {paginated.prev.title}</span>
+							</span>
+						</n:link>
+					</f:if>
+					<f:if condition="{paginated.next}">
+						<n:link newsItem="{paginated.next}" settings="{settings}" class="button button--secondary">
+							<span class="button__content">
+								<span class="button__text">{paginated.next.title} &#8594;</span>
+							</span>
+						</n:link>
+					</f:if>
+				</nav>
+			</f:if>
+		</n:simplePrevNext>
+	</f:if>
+
+	<n:renderMedia news="{newsItem}" imgClass="image" videoClass="news-video" audioClass="news-audio">
+		<f:if condition="{newsItem.teaser}">
+			<div class="subline" itemprop="description">
+				<f:format.html>{newsItem.teaser}</f:format.html>
+			</div>
+		</f:if>
+
+		<f:if condition="{newsItem.contentElements}">
+			<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+		</f:if>
+
+		<div class="news-text-wrap" itemprop="articleBody">
+			<f:format.html>{newsItem.bodytext}</f:format.html>
+		</div>
+	</n:renderMedia>
+
+	<f:if condition="{settings.backPid}">
+		<f:link.page class="button button--secondary" pageUid="{settings.backPid}">
+			<span class="die rebutton__content">
+				<span class="button__text">
+					<f:translate key="back-link" />
+				</span>
+			</span>
+		</f:link.page>
+	</f:if>
+
+	<f:if condition="{settings.detail.showSocialShareButtons}">
+		<n:extensionLoaded extensionKey="rx_shariff">
+			<f:render partial="Detail/Shariff" />
+		</n:extensionLoaded>
+	</f:if>
+
+	<f:if condition="{newsItem.relatedFiles}">
+		<div class="news-related news-related-files">
+			<h3 class="headline"><f:translate key="related-files" /></h3>
+			<ul class="linklist">
+				<f:for each="{newsItem.relatedFiles}" as="relatedFile">
+					<li class="linklist__item">
+						<a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}"
+						   target="_blank"
+						   class="button button--text">
+							<span class="button__content">
+								<span class="button__text">
+									{f:if(condition: relatedFile.originalResource.title, then: relatedFile.originalResource.title, else: relatedFile.originalResource.name)}
+								</span>
+								<svg aria-hidden="true" class="icon icon--download" width="32" height="32" viewBox="0 0 32 32" fill="none">
+									<path d="M16 21.3333L9.33337 14.6667L11.2 12.7333L14.6667 16.2V5.33334H17.3334V16.2L20.8 12.7333L22.6667 14.6667L16 21.3333ZM5.33337 26.6667V20H8.00004V24H24V20H26.6667V26.6667H5.33337Z" fill="currentColor"/>
+								</svg>
+							</span>
+						</a>
+						<span class="news-related-files-size subline subline--small">
+							{relatedFile.originalResource.size -> f:format.bytes()}
+						</span>
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:if>
+
+	<f:if condition="{newsItem.relatedLinks}">
+		<div class="news-related news-related-links">
+			<h3 class="headline"><f:translate key="related-links" /></h3>
+			<ul class="linklist">
+				<f:for each="{newsItem.relatedLinks}" as="relatedLink">
+					<li class="linklist__item">
+						<f:link.typolink
+							parameter="{relatedLink.uri}"
+							class="button button--text"
+							title="{relatedLink.title}"
+							target="{n:targetLink(link: relatedLink.uri)}"
+						>
+							<span class="button__content">
+								<span class="button__text">
+									{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}
+								</span>
+								<svg aria-hidden="true" class="icon icon--launch" width="32" height="32" viewBox="0 0 32 32" fill="none">
+									<path d="M7.86667 26L6 24.1333L21.4667 8.66667H12.6667V6H26V19.3333H23.3333V10.5333L7.86667 26Z" fill="currentColor"/>
+								</svg>
+							</span>
+						</f:link.typolink>
+						<f:if condition="{relatedLink.description}">
+							<p class="subline subline--small">{relatedLink.description}</p>
+						</f:if>
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:if>
+</f:section>
+
+<f:section name="aside">
+	<f:if condition="{newsItem.mediaNonPreviews}">
+		<div class="news-media-aside">
+			<f:for each="{newsItem.mediaNonPreviews}" as="mediaElement">
+				<figure class="figure">
+					<f:media file="{mediaElement}" class="image" />
+					<f:if condition="{mediaElement.description}">
+						<figcaption class="figure__caption">{mediaElement.description}</figcaption>
+					</f:if>
+				</figure>
+			</f:for>
+		</div>
+	</f:if>
+
+	<f:if condition="{newsItem.categories}">
+		<div class="news-categories">
+			<h3><f:translate key="categories" /></h3>
+			<ul class="linklist linklist--inline">
+				<f:for each="{newsItem.categories}" as="category">
+					<li class="linklist__item">
+						<span class="button button--soft">
+							<span class="button__content">
+								<span class="button__text">{category.title}</span>
+							</span>
+						</span>
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:if>
+
+	<f:if condition="{newsItem.tags}">
+		<div class="news-tags">
+			<h3><f:translate key="tags" /></h3>
+			<ul class="linklist linklist--inline">
+				<f:for each="{newsItem.tags}" as="tag">
+					<li class="linklist__item">
+						<span class="button button--soft">
+							<span class="button__content">
+								<span class="button__text">{tag.title}</span>
+							</span>
+						</span>
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:if>
+
+	<f:comment>
+		<!-- Various options for related news:
+		- {newsItem.allRelatedSorted}: all related, sorted by date
+		- {newsItem.related}: all related
+		- {newsItem.relatedFrom}: all related from -->
+	</f:comment>
+	<f:if condition="{newsItem.allRelatedSorted}">
+		<div class="news-related news-related-news">
+			<h3><f:translate key="related-news" /></h3>
+			<ul class="linklist">
+				<f:for each="{newsItem.allRelatedSorted}" as="related">
+					<li class="linklist__item">
+						<n:link newsItem="{related}" settings="{settings}" title="{related.title}" class="button button--text">
+							<span class="button__content">
+								<span class="button__text">{related.title}</span>
+								<svg aria-hidden="true" class="icon icon--arrow-right" width="32" height="32" viewBox="0 0 32 32" fill="none">
+									<path d="M20 25.3333L29.3334 16L20 6.66666L18.1334 8.53332L24.2334 14.6667H2.66671V17.3333H24.2334L18.1 23.4667L20 25.3333Z" fill="currentColor"/>
+								</svg>
+							</span>
+						</n:link>
+						<time class="subline subline--small" datetime="{f:format.date(date: related.datetime, format: 'c')}">
+							<f:format.date format="{f:translate(key: 'dateFormat')}">{related.datetime}</f:format.date>
+						</time>
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:if>
+</f:section>
+
+</html>

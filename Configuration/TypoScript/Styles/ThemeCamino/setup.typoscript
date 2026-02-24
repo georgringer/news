@@ -1,0 +1,33 @@
+plugin.tx_news {
+  view {
+    templateRootPaths {
+      0 = EXT:news/Resources/Private/Templates/
+      1 = EXT:news/Resources/Private/Templates/Styles/ThemeCamino/Templates/
+      2 = {$plugin.tx_news.view.theme_camino.templateRootPath}
+    }
+
+    partialRootPaths {
+      0 = EXT:news/Resources/Private/Partials/
+      1 = EXT:news/Resources/Private/Templates/Styles/ThemeCamino/Partials/
+      2 = {$plugin.tx_news.view.theme_camino.partialRootPath}
+    }
+
+    layoutRootPaths {
+      0 = EXT:news/Resources/Private/Layouts/
+      1 = EXT:news/Resources/Private/Templates/Styles/ThemeCamino/Layouts/
+      2 = {$plugin.tx_news.view.theme_camino.layoutRootPath}
+    }
+  }
+
+  settings {
+    list {
+      media {
+        image >
+        image {
+          lazyLoading = {$styles.content.image.lazyLoading}
+          width = 300
+        }
+      }
+    }
+  }
+}

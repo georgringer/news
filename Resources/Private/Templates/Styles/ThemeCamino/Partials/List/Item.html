@@ -1,0 +1,73 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+<f:comment>
+	=====================
+		Partials/List/Item.html
+</f:comment>
+
+<n:link
+	newsItem="{newsItem}"
+	settings="{settings}"
+	title="{newsItem.title}"
+	class="textmedia-teaser textmedia-teaser--link{f:if(condition: newsItem.istopnews, then: ' textmedia-teaser--highlight')}"
+	itemscope="itemscope"
+	itemtype="https://schema.org/Article"
+>
+	<n:excludeDisplayedNews newsItem="{newsItem}" />
+
+	<f:if condition="{newsItem.mediaPreviews}">
+		<div class="textmedia-teaser__media">
+			<f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+				<f:if condition="{mediaElement.originalResource.type} == 2 || {mediaElement.originalResource.type} == 5">
+					<f:image
+						image="{mediaElement}"
+						class="image"
+						title="{mediaElement.originalResource.title}"
+						alt="{mediaElement.originalResource.alternative}"
+						loading="{settings.list.media.image.lazyLoading}"
+						maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}"
+						maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"
+					/>
+				</f:if>
+			</f:alias>
+		</div>
+	</f:if>
+
+	<div class="textmedia-teaser__content">
+		<h3 itemprop="headline">{newsItem.title}</h3>
+
+		<p class="textmedia-teaser__meta">
+			<time itemprop="datePublished" datetime="{f:format.date(date: newsItem.datetime, format: 'c')}">
+				<f:format.date format="{f:translate(key: 'dateFormat')}">{newsItem.datetime}</f:format.date>
+			</time>
+			<f:if condition="{newsItem.firstCategory}">
+				| <span itemprop="about">{newsItem.firstCategory.title}</span>
+			</f:if>
+		</p>
+
+		<f:if condition="{newsItem.teaser} || {newsItem.bodytext}">
+			<div class="textmedia-teaser__text">
+				<n:removeMediaTags>
+					<f:if condition="{newsItem.teaser}">
+						<f:then>
+							<p itemprop="description">{newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries: '1')}</p>
+						</f:then>
+						<f:else>
+							<p itemprop="description">{newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries: '1') -> f:format.html()}</p>
+						</f:else>
+					</f:if>
+				</n:removeMediaTags>
+			</div>
+		</f:if>
+
+		<span class="button button--secondary" aria-hidden="true" tabindex="-1">
+			<span class="button__content">
+				<span class="button__text">
+					<f:translate key="more-link" />
+				</span>
+			</span>
+		</span>
+	</div>
+</n:link>
+</html>

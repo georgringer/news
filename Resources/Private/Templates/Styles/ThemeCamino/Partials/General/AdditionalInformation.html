@@ -1,0 +1,13 @@
+<html data-namespace-typo3-fluid="true"
+	  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+
+<p class="subline subline--small">
+	<f:if condition="{newsItem.author}">
+		<f:translate arguments="{0: newsItem.author}" key="author" />
+		|
+	</f:if>
+	<time datetime="{f:format.date(date: newsItem.datetime, format: 'c')}" itemprop="datePublished">
+		<f:format.date format="{f:translate(key: 'dateFormat')}">{newsItem.datetime}</f:format.date>
+	</time>
+</p>
+</html>

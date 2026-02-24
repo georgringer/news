@@ -63,3 +63,13 @@ $newFields = [
     ],
 ];
 ExtensionManagementUtility::addTCAcolumns('tt_content', $newFields);
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+    'tt_content',
+    'CType',
+    [
+        'label' => 'myy',
+        'value' => 'xxxx',
+        'icon' => 'mimetypes-x-content-table',
+    ],
+);

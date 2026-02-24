@@ -1,0 +1,5 @@
+name: georgringer/news-camino
+label: 'EXT:news :: TYPO3 14 - Theme Camino'
+dependencies:
+  - georgringer/news
+  - typo3/theme-camino
