@@ -13,7 +13,6 @@ use DateTime;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
-
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Model\Tag;
 use PHPUnit\Framework\Attributes\Test;

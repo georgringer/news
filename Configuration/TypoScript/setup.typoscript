@@ -54,7 +54,7 @@ plugin.tx_news {
 			}
 		}
 
-		detailPidDetermination = flexform, categories, default
+		detailPidDetermination = flexform, siteSettings, categories, default
 
 		defaultDetailPid = 0
 		dateField = datetime
@@ -225,8 +225,9 @@ tt_content.shortcut.20.conf.tx_news_domain_model_news {
 	settings {
 		singleNews.field = uid
 		useStdWrap = singleNews
-		insertRecord = 1
+		insertRecord = 10
 		isShortcut = 1
+		detail.pageTitle._typoScriptNodeValue = 0
 	}
 }
 # For fluid_styled_content

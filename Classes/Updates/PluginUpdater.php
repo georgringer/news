@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Updates;
 
+use Doctrine\DBAL\Schema\Column;
 use GeorgRinger\News\Event\PluginUpdaterListTypeEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
@@ -122,7 +123,7 @@ class PluginUpdater implements UpgradeWizardInterface
 
         // Initialize the global $LANG object if it does not exist.
         // This is needed by the ext:form flexforms hook in Core v11
-        $GLOBALS['LANG'] = $GLOBALS['LANG'] ?? GeneralUtility::makeInstance(LanguageServiceFactory::class)->create('default');
+        $GLOBALS['LANG'] ??= GeneralUtility::makeInstance(LanguageServiceFactory::class)->create('default');
 
         foreach ($records as $record) {
             $flexForm = $this->flexFormService->convertFlexFormContentToArray($record['pi_flexform']);
@@ -164,6 +165,9 @@ class PluginUpdater implements UpgradeWizardInterface
 
     protected function getMigrationRecords(): array
     {
+        if (!$this->columnsExistInContentTable()) {
+            return [];
+        }
         $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
         $queryBuilder = $connectionPool->getQueryBuilderForTable('tt_content');
         $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
@@ -237,5 +241,27 @@ class PluginUpdater implements UpgradeWizardInterface
         $spaceInd = 4;
         $output = GeneralUtility::array2xml($input, '', 0, 'T3FlexForms', $spaceInd, $options);
         return '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>' . LF . $output;
+    }
+
+    protected function columnsExistInContentTable(): bool
+    {
+        $schemaManager = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tt_content')
+            ->createSchemaManager();
+
+        $tableColumnNames = array_flip(
+            array_map(
+                static fn(Column $column) => $column->getName(),
+                $schemaManager->listTableColumns('tt_content')
+            )
+        );
+
+        foreach (['CType', 'list_type'] as $column) {
+            if (!isset($tableColumnNames[$column])) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

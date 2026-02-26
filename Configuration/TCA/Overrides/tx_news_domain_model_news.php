@@ -1,6 +1,7 @@
 <?php
 
 use GeorgRinger\News\Hooks\NewsContentElementPreview;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 defined('TYPO3') or die;
@@ -71,6 +72,10 @@ $boot = static function (): void {
         $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['content_elements']['config']['customControls']['ce'] = [
             'userFunc' => NewsContentElementPreview::class . '->run',
         ];
+    }
+
+    if ((new Typo3Version())->getMajorVersion() >= 14) {
+        unset($GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['searchFields'], $GLOBALS['TCA']['tx_news_domain_model_tag']['ctrl']['searchFields'], $GLOBALS['TCA']['tx_news_domain_model_link']['ctrl']['searchFields']);
     }
 };
 

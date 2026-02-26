@@ -1,10 +1,10 @@
 <?php
 
 declare(strict_types=1);
-
 use Rector\Config\RectorConfig;
+use Rector\Php80\Rector\Class_\ClassPropertyAssignToConstructorPromotionRector;
+use Rector\Php81\Rector\FuncCall\NullToStrictStringFuncCallArgRector;
 use Rector\ValueObject\PhpVersion;
-use Ssch\TYPO3Rector\CodeQuality\General\ConvertImplicitVariablesToExplicitGlobalsRector;
 use Ssch\TYPO3Rector\CodeQuality\General\ExtEmConfRector;
 use Ssch\TYPO3Rector\CodeQuality\General\GeneralUtilityMakeInstanceToConstructorPropertyRector;
 use Ssch\TYPO3Rector\CodeQuality\General\InjectMethodToConstructorInjectionRector;
@@ -12,6 +12,7 @@ use Ssch\TYPO3Rector\Configuration\Typo3Option;
 use Ssch\TYPO3Rector\Set\Typo3LevelSetList;
 use Ssch\TYPO3Rector\Set\Typo3SetList;
 use Ssch\TYPO3Rector\TYPO311\v0\DateTimeAspectInsteadOfGlobalsExecTimeRector;
+use Ssch\TYPO3Rector\TYPO311\v0\GetClickMenuOnIconTagParametersRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -23,8 +24,8 @@ return RectorConfig::configure()
         __DIR__ . '/../../ext_localconf.php',
         __DIR__ . '/../../ext_tables.php',
     ])
-    //->withPhpSets(php81: true)
-    ->withPhpVersion(PhpVersion::PHP_81)
+    ->withPhpSets(php82: true)
+    ->withPhpVersion(PhpVersion::PHP_82)
     ->withSets([
         Typo3SetList::CODE_QUALITY,
         Typo3SetList::GENERAL,
@@ -32,19 +33,21 @@ return RectorConfig::configure()
     ])
     // To have a better analysis from PHPStan, we teach it here some more things
     ->withPHPStanConfigs([Typo3Option::PHPSTAN_FOR_RECTOR_PATH])
-    ->withRules([
-        ConvertImplicitVariablesToExplicitGlobalsRector::class,
-    ])
     ->withSkip([
+
+        //  NullCoalescingOperatorRector::class,
+        NullToStrictStringFuncCallArgRector::class,
+        ClassPropertyAssignToConstructorPromotionRector::class,
         GeneralUtilityMakeInstanceToConstructorPropertyRector::class,
     ])
     ->withImportNames(true, true, false, true)
     ->withConfiguredRule(ExtEmConfRector::class, [
-        ExtEmConfRector::PHP_VERSION_CONSTRAINT => '8.1.0-8.4.99',
-        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '12.4.37-13.9.99',
+        ExtEmConfRector::PHP_VERSION_CONSTRAINT => '8.2.0-8.5.99',
+        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '13.4.20-14.4.99',
         ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])
     ->withSkip([
+        GetClickMenuOnIconTagParametersRector::class,
         InjectMethodToConstructorInjectionRector::class => [
             __DIR__ . '/../../Classes/Controller/AdministrationController.php',
             __DIR__ . '/../../Classes/Domain/Repository/AbstractDemandedRepository.php',

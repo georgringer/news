@@ -15,8 +15,8 @@ class NewsTagMapper extends AbstractNewsAliasMapper
 {
     public function __construct(array $settings)
     {
-        $settings['tableName'] = $settings['tableName'] ?? 'tx_news_domain_model_tag';
-        $settings['routeFieldName'] = $settings['routeFieldName'] ?? 'slug';
+        $settings['tableName'] ??= 'tx_news_domain_model_tag';
+        $settings['routeFieldName'] ??= 'slug';
         parent::__construct($settings);
     }
 }

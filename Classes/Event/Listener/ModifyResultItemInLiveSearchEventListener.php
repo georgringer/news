@@ -10,8 +10,8 @@ use TYPO3\CMS\Backend\Search\LiveSearch\DatabaseRecordProvider;
 use TYPO3\CMS\Backend\Search\LiveSearch\ResultItem;
 use TYPO3\CMS\Backend\Search\LiveSearch\ResultItemAction;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 
@@ -87,7 +87,7 @@ final class ModifyResultItemInLiveSearchEventListener
             }
             $action = (new ResultItemAction('tx_news_domain_model_news' . '_' . $fieldName))
                 ->setLabel($content)
-                ->setIcon($field['icon'] ? $this->iconFactory->getIcon($field['icon'], Icon::SIZE_SMALL) : null);
+                ->setIcon($field['icon'] ? $this->iconFactory->getIcon($field['icon'], IconSize::SMALL) : null);
             $resultItem->addAction($action);
         }
     }
@@ -100,7 +100,7 @@ final class ModifyResultItemInLiveSearchEventListener
 
             $action = (new ResultItemAction('tx_news_domain_model_news' . '_descriptionColumn'))
                 ->setLabel($content)
-                ->setIcon($this->iconFactory->getIcon('actions-notebook', Icon::SIZE_SMALL));
+                ->setIcon($this->iconFactory->getIcon('actions-notebook', IconSize::SMALL));
             $resultItem->addAction($action);
         }
     }

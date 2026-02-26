@@ -11,10 +11,7 @@ namespace GeorgRinger\News\ViewHelpers;
 
 use GeorgRinger\News\Domain\Model\News;
 
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to exclude news items in other plugins
@@ -28,25 +25,19 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  * None
  * </output>
  */
-class ExcludeDisplayedNewsViewHelper extends AbstractViewHelper implements ViewHelperInterface
+class ExcludeDisplayedNewsViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-
     /**
      * Initialize arguments
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
-        parent::initializeArguments();
         $this->registerArgument('newsItem', News::class, 'news item', true);
     }
 
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ) {
-        $newsItem = $arguments['newsItem'];
+    public function render()
+    {
+        $newsItem = $this->arguments['newsItem'];
         $uid = $newsItem->getUid();
 
         if (empty($GLOBALS['EXT']['news']['alreadyDisplayed'])) {

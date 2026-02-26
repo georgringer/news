@@ -55,16 +55,13 @@ class ChunkViewHelper extends AbstractViewHelper
     /**
      * @return array|mixed
      */
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ) {
-        $count = (int)$arguments['count'];
-        $fixed = (bool)($arguments['fixed'] ?? false);
-        $preserveKeys = (bool)($arguments['preserveKeys'] ?? false);
+    public function render()
+    {
+        $count = (int)$this->arguments['count'];
+        $fixed = (bool)($this->arguments['fixed'] ?? false);
+        $preserveKeys = (bool)($this->arguments['preserveKeys'] ?? false);
         $subject = static::arrayFromArrayOrTraversableOrCSVStatic(
-            empty($arguments['as']) ? ($arguments['subject'] ?? $renderChildrenClosure()) : $arguments['subject'],
+            empty($this->arguments['as']) ? ($this->arguments['subject'] ?? $this->renderChildren()) : $this->arguments['subject'],
             $preserveKeys
         );
         $output = [];
@@ -87,11 +84,11 @@ class ChunkViewHelper extends AbstractViewHelper
             $output = array_chunk($subject, $count, $preserveKeys);
         }
 
-        return static::renderChildrenWithVariableOrReturnInputStatic(
+        return $this->renderChildrenWithVariableOrReturnInputStatic(
             $output,
-            $arguments['as'],
-            $renderingContext,
-            $renderChildrenClosure
+            $this->arguments['as'],
+            $this->renderingContext,
+            $this->renderChildren()
         );
     }
 
@@ -99,7 +96,7 @@ class ChunkViewHelper extends AbstractViewHelper
      * @param bool $useKeys
      * @throws Exception
      */
-    protected static function arrayFromArrayOrTraversableOrCSVStatic(mixed $candidate, $useKeys = true): array
+    protected function arrayFromArrayOrTraversableOrCSVStatic(mixed $candidate, $useKeys = true): array
     {
         if ($candidate instanceof \Traversable) {
             return iterator_to_array($candidate, $useKeys);
@@ -120,18 +117,18 @@ class ChunkViewHelper extends AbstractViewHelper
      * @param string $as
      * @return mixed
      */
-    protected static function renderChildrenWithVariableOrReturnInputStatic(
+    protected function renderChildrenWithVariableOrReturnInputStatic(
         mixed $variable,
         $as,
         RenderingContextInterface $renderingContext,
-        \Closure $renderChildrenClosure
+        $renderChildrenClosure
     ) {
         if (empty($as) === true) {
             return $variable;
         }
         $variables = [$as => $variable];
 
-        return static::renderChildrenWithVariablesStatic(
+        return $this->renderChildrenWithVariablesStatic(
             $variables,
             $renderingContext->getVariableProvider(),
             $renderChildrenClosure
@@ -148,7 +145,7 @@ class ChunkViewHelper extends AbstractViewHelper
      * @param \Closure $renderChildrenClosure
      * @return mixed
      */
-    protected static function renderChildrenWithVariablesStatic(
+    protected function renderChildrenWithVariablesStatic(
         array $variables,
         $templateVariableContainer,
         $renderChildrenClosure

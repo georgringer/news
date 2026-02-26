@@ -13,7 +13,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
-use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
 use TYPO3\CMS\Extbase\Service\ExtensionService;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormViewHelper;
@@ -24,9 +23,6 @@ class SearchFormViewHelper extends AbstractFormViewHelper
 {
     /** @var string */
     protected $tagName = 'form';
-
-    /** @var HashService */
-    protected $hashService;
 
     /** @var MvcPropertyMappingConfigurationService */
     protected $mvcPropertyMappingConfigurationService;
@@ -42,11 +38,6 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      */
     protected $formActionUriArguments;
 
-    public function injectHashService(HashService $hashService)
-    {
-        $this->hashService = $hashService;
-    }
-
     public function injectMvcPropertyMappingConfigurationService(MvcPropertyMappingConfigurationService $mvcPropertyMappingConfigurationService)
     {
         $this->mvcPropertyMappingConfigurationService = $mvcPropertyMappingConfigurationService;
@@ -60,9 +51,8 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     /**
      * Initialize arguments.
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
-        parent::initializeArguments();
         $this->registerArgument('action', 'string', 'Target action');
         $this->registerArgument('arguments', 'array', 'Arguments', false, []);
         $this->registerArgument('controller', 'string', 'Target controller');
@@ -78,7 +68,6 @@ class SearchFormViewHelper extends AbstractFormViewHelper
         $this->registerArgument('absolute', 'bool', 'If set, an absolute action URI is rendered (only active if $actionUri is not set)', false, false);
         $this->registerArgument('addQueryString', 'bool', 'If set, the current query parameters will be kept in the action URI (only active if $actionUri is not set)', false, false);
         $this->registerArgument('argumentsToBeExcludedFromQueryString', 'array', 'arguments to be removed from the action URI. Only active if $addQueryString = TRUE and $actionUri is not set', false, []);
-        $this->registerArgument('addQueryStringMethod', 'string', 'This argument is not evaluated anymore and will be removed in TYPO3 v12.');
         $this->registerArgument('fieldNamePrefix', 'string', 'Prefix that will be added to all field names within this form. If not set the prefix will be tx_yourExtension_plugin');
         $this->registerArgument('actionUri', 'string', 'can be used to overwrite the "action" attribute of the form tag');
         $this->registerArgument('objectName', 'string', 'name of the object that is bound to this form. If this argument is not specified, the name attribute of this form is used to determine the FormObjectName');
@@ -89,7 +78,6 @@ class SearchFormViewHelper extends AbstractFormViewHelper
         $this->registerTagAttribute('onsubmit', 'string', 'JavaScript: On submit of the form');
         $this->registerTagAttribute('target', 'string', 'Target attribute of the form');
         $this->registerTagAttribute('novalidate', 'bool', 'Indicate that the form is not to be validated on submit.');
-        $this->registerUniversalTagAttributes();
     }
 
     /**
@@ -97,7 +85,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      *
      * @return string rendered form
      */
-    public function render()
+    public function render(): string
     {
         $this->setFormActionUri();
         if (isset($this->arguments['method']) && strtolower($this->arguments['method']) === 'get') {
@@ -132,10 +120,6 @@ class SearchFormViewHelper extends AbstractFormViewHelper
         if ($this->hasArgument('actionUri')) {
             $formActionUri = $this->arguments['actionUri'];
         } else {
-            if (isset($this->arguments['addQueryStringMethod'])) {
-                trigger_error('Using the argument "addQueryStringMethod" in <f:form> ViewHelper has no effect anymore and will be removed in TYPO3 v12. Remove the argument in your fluid template, as it will result in a fatal error.', E_USER_DEPRECATED);
-            }
-
             /** @var RenderingContext $renderingContext */
             $renderingContext = $this->renderingContext;
             /** @var RequestInterface $request */

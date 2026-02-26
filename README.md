@@ -1,10 +1,10 @@
 [![Latest Stable Version](https://poser.pugx.org/georgringer/news/v/stable)](https://extensions.typo3.org/extension/news/)
-[![TYPO3 12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
 [![TYPO3 13](https://img.shields.io/badge/TYPO3-13-orange.svg)](https://get.typo3.org/version/13)
+[![TYPO3 14](https://img.shields.io/badge/TYPO3-14-orange.svg)](https://get.typo3.org/version/14)
 [![Total Downloads](https://poser.pugx.org/georgringer/news/d/total)](https://packagist.org/packages/georgringer/news)
 [![Monthly Downloads](https://poser.pugx.org/georgringer/news/d/monthly)](https://packagist.org/packages/georgringer/news)
-![Build v12](https://github.com/georgringer/news/actions/workflows/core12.yml/badge.svg)
 ![Build v13](https://github.com/georgringer/news/actions/workflows/core13.yml/badge.svg)
+![Build v14](https://github.com/georgringer/news/actions/workflows/core14.yml/badge.svg)
 [![Crowdin](https://badges.crowdin.net/typo3-extension-news/localized.svg)](https://crowdin.com/project/typo3-extension-news)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/GeorgRinger/25)
 
@@ -42,9 +42,10 @@ It includes these features:
 
 | News | TYPO3     | PHP       | Support / Development                |
 |------|-----------|-----------|--------------------------------------|
-| 13   | 12 - 13   | 8.1 - 8.4 | features, bugfixes, security updates |
+| 14   | 13 - 14   | 8.2 - 8.5 | features, bugfixes, security updates |
+| 13   | 12 - 13   | 8.1 - 8.4 | none                                 |
 | 12   | 12 - 13   | 8.1 - 8.4 | none                                 |
-| 11   | 11 - 12   | 7.4 - 8.3 | security updates                     |
+| 11   | 11 - 12   | 7.4 - 8.3 | none                                 |
 | 10   | 10 - 11   | 7.4 - 8.1 | none                                 |
 | 9    | 10 - 11   | 7.4 - 8.1 | none                                 |
 | 8    | 9.5 - 10  | 7.2 - 7.4 | none                                 |
