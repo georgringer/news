@@ -11,6 +11,7 @@ use GeorgRinger\News\Routing\NewsTitleMapper;
 use GeorgRinger\News\Utility\ClassCacheManager;
 use GeorgRinger\News\Utility\ClassLoader;
 use GeorgRinger\News\Xclass\ExtensionServiceXclassed;
+use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowDateTimeFields;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew;
 use TYPO3\CMS\Core\Cache\Backend\FileBackend;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
@@ -157,6 +158,9 @@ $boot = static function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][NewsRowInitializeNew::class] = [
         'depends' => [
             DatabaseRowInitializeNew::class,
+        ],
+        'before' => [
+            DatabaseRowDateTimeFields::class,
         ],
     ];
 
