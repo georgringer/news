@@ -3,219 +3,664 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news" target-language="lo">
     <header/>
     <body>
-            
-            
-			
-			
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-			
-            
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-			
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-			
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-
-            
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-             
-             
-             
-         </body>
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>News system</source>
+			<target state="final">ລະບົບຂ່າວສານ</target></trans-unit>
+      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
+				<source>Versatile news system</source>
+			<target state="final">ລະບົບຂ່າວສານທີ່ຫຼາກຫຼາຍ</target></trans-unit>
+      <trans-unit id="plugin.news_list.title" xml:space="preserve" approved="yes">
+				<source>News article list (incl. detail view)</source>
+			<target state="final">ລາຍການບົດຄວາມຂ່າວ (ລວມທັງການເບິ່ງລາຍລະອຽດ)</target></trans-unit>
+      <trans-unit id="plugin.news_list.description" xml:space="preserve" approved="yes">
+				<source>Listing of news articles chosen by various properties like storage folder, categories, time constraints, etc.
+					This plugin is capable of rendering the detail view as well.</source>
+			<target state="final">ລາຍການບົດຄວາມຂ່າວທີ່ຖືກເລືອກໂດຍຄຸນສົມບັດຕ່າງໆ ເຊັ່ນ: ໂຟນເດີຈັດເກັບ, ໝວດໝູ່, ຂໍ້ຈຳກັດດ້ານເວລາ ແລະ ອື່ນໆ.
+ປລັກອິນນີ້ສາມາດສະແດງຜົນການເບິ່ງລາຍລະອຽດໄດ້ຄືກັນ.</target></trans-unit>
+      <trans-unit id="plugin.news_list_sticky.title" xml:space="preserve" approved="yes">
+				<source>News article list</source>
+			<target state="final">ລາຍການບົດຄວາມຂ່າວ</target></trans-unit>
+      <trans-unit id="plugin.news_list_sticky.description" xml:space="preserve" approved="yes">
+				<source>Listing of news articles chosen by various properties like storage folder, categories, time constraints, etc.
+					This plugin cannot render the detail view of news articles.</source>
+			<target state="final">ລາຍການບົດຄວາມຂ່າວທີ່ຖືກເລືອກໂດຍຄຸນສົມບັດຕ່າງໆ ເຊັ່ນ: ໂຟນເດີຈັດເກັບ, ໝວດໝູ່, ຂໍ້ຈຳກັດດ້ານເວລາ ແລະ ອື່ນໆ.
+ປລັກອິນນີ້ບໍ່ສາມາດສະແດງຜົນການເບິ່ງລາຍລະອຽດຂອງບົດຄວາມຂ່າວໄດ້.</target></trans-unit>
+      <trans-unit id="plugin.news_detail.title" xml:space="preserve" approved="yes">
+				<source>News article detail view</source>
+			<target state="final">ການເບິ່ງລາຍລະອຽດບົດຄວາມຂ່າວ</target></trans-unit>
+      <trans-unit id="plugin.news_detail.description" xml:space="preserve" approved="yes">
+				<source>Rendering the detail view of a news article.</source>
+			<target state="final">ສະແດງຜົນການເບິ່ງລາຍລະອຽດຂອງບົດຄວາມຂ່າວ.</target></trans-unit>
+      <trans-unit id="plugin.news_date_menu.title" xml:space="preserve" approved="yes">
+				<source>Date menu of news articles</source>
+			<target state="final">ເມນູວັນທີຂອງບົດຄວາມຂ່າວ</target></trans-unit>
+      <trans-unit id="plugin.news_date_menu.description" xml:space="preserve" approved="yes">
+				<source>Display a menu of months &amp; years of articles. The menu can be used to filter a list view dynamically.</source>
+			<target state="final">ສະແດງເມນູເດືອນ ແລະ ປີຂອງບົດຄວາມ. ເມນູນີ້ສາມາດໃຊ້ເພື່ອຕອງລາຍການແບບໄດນາມິກ.</target></trans-unit>
+      <trans-unit id="plugin.news_search_form.title" xml:space="preserve" approved="yes">
+				<source>News search form</source>
+			<target state="final">ແບບຟອມຄົ້ນຫາຂ່າວ</target></trans-unit>
+      <trans-unit id="plugin.news_search_form.description" xml:space="preserve" approved="yes">
+				<source>Display a search form to let users search within articles.</source>
+			<target state="final">ສະແດງແບບຟອມຄົ້ນຫາເພື່ອໃຫ້ຜູ້ໃຊ້ສາມາດຄົ້ນຫາພາຍໃນບົດຄວາມ.</target></trans-unit>
+      <trans-unit id="plugin.news_search_result.title" xml:space="preserve" approved="yes">
+				<source>News search result</source>
+			<target state="final">ຜົນການຄົ້ນຫາຂ່າວ</target></trans-unit>
+      <trans-unit id="plugin.news_search_result.description" xml:space="preserve" approved="yes">
+				<source>Display the result of the search.</source>
+			<target state="final">ສະແດງຜົນການຄົ້ນຫາ.</target></trans-unit>
+      <trans-unit id="plugin.news_selected_list.title" xml:space="preserve" approved="yes">
+				<source>News article list (curated)</source>
+			<target state="final">ລາຍການບົດຄວາມຂ່າວ (ທີ່ຄັດເລືອກມາ)</target></trans-unit>
+      <trans-unit id="plugin.news_selected_list.description" xml:space="preserve" approved="yes">
+				<source>Listing of manually picked news articles.</source>
+			<target state="final">ລາຍການບົດຄວາມຂ່າວທີ່ເລືອກດ້ວຍຕົນເອງ.</target></trans-unit>
+      <trans-unit id="plugin.category_list.title" xml:space="preserve" approved="yes">
+				<source>News category menu</source>
+			<target state="final">ເມນູໝວດໝູ່ຂ່າວ</target></trans-unit>
+      <trans-unit id="plugin.category_list.description" xml:space="preserve" approved="yes">
+				<source>Display a menu of categories. The menu can be used to filter a news list view dynamically.</source>
+			<target state="final">ສະແດງເມນູໝວດໝູ່. ເມນູນີ້ສາມາດໃຊ້ເພື່ອຕອງລາຍການຂ່າວແບບໄດນາມິກ.</target></trans-unit>
+      <trans-unit id="plugin.tag_list.title" xml:space="preserve" approved="yes">
+				<source>News tag list</source>
+			<target state="final">ລາຍການແທັກຂ່າວ</target></trans-unit>
+      <trans-unit id="plugin.tag_list.description" xml:space="preserve" approved="yes">
+				<source>Display a list of tags. The list can be used to filter a news list view dynamically.</source>
+			<target state="final">ສະແດງລາຍການແທັກ. ລາຍການນີ້ສາມາດໃຊ້ເພື່ອຕອງລາຍການຂ່າວແບບໄດນາມິກ.</target></trans-unit>
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="final">ການຕັ້ງຄ່າ</target></trans-unit>
+      <trans-unit id="flexforms_tab.additional" xml:space="preserve" approved="yes">
+				<source>Additional</source>
+			<target state="final">ເພີ່ມເຕີມ</target></trans-unit>
+      <trans-unit id="flexforms_tab.template" xml:space="preserve" approved="yes">
+				<source>Template</source>
+			<target state="final">ເທມເພລດ</target></trans-unit>
+      <trans-unit id="flexforms_general.mode" xml:space="preserve" approved="yes">
+				<source>What to display</source>
+			<target state="final">ສິ່ງທີ່ຈະສະແດງ</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_list" xml:space="preserve" approved="yes">
+				<source>List view</source>
+			<target state="final">ມຸມມອງລາຍການ</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_listOnly" xml:space="preserve" approved="yes">
+				<source>List view (without overloading detail view)</source>
+			<target state="final">ມຸມມອງລາຍການ (ໂດຍບໍ່ໂຫຼດມຸມມອງລາຍລະອຽດທັບຊ້ອນ)</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_detail" xml:space="preserve" approved="yes">
+				<source>Detail view</source>
+			<target state="final">ມຸມມອງລາຍລະອຽດ</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchform" xml:space="preserve" approved="yes">
+				<source>Search form</source>
+			<target state="final">ແບບຟອມຄົ້ນຫາ</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchresult" xml:space="preserve" approved="yes">
+				<source>Search result</source>
+			<target state="final">ຜົນການຄົ້ນຫາ</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve" approved="yes">
+				<source>Date menu</source>
+			<target state="final">ເມນູວັນທີ</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_selectedlist" xml:space="preserve" approved="yes">
+				<source>List of selected items</source>
+			<target state="final">ລາຍການຂອງລາຍການທີ່ເລືອກ</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve" approved="yes">
+				<source>Category Menu</source>
+			<target state="final">ເມນູໝວດໝູ່</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve" approved="yes">
+				<source>No view yet configured</source>
+			<target state="final">ຍັງບໍ່ທັນໄດ້ຕັ້ງຄ່າມຸມມອງ</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="final">ຄົ້ນຫາ</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve" approved="yes">
+				<source>Others</source>
+			<target state="final">ອື່ນໆ</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve" approved="yes">
+				<source>Tag list</source>
+			<target state="final">ລາຍການແທັກ</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve" approved="yes">
+				<source>Archive</source>
+			<target state="final">ຄັງເກັບ</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve" approved="yes">
+				<source>Only active (non archived)</source>
+			<target state="final">ສະເພາະທີ່ໃຊ້ງານຢູ່ (ບໍ່ໄດ້ເກັບເຂົ້າຄັງ)</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.none" xml:space="preserve" approved="yes">
+                <source>None</source>
+            <target state="final">ບໍ່ມີ</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve" approved="yes">
+				<source>Archived</source>
+			<target state="final">ເກັບເຂົ້າຄັງແລ້ວ</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy" xml:space="preserve" approved="yes">
+				<source>Sort by</source>
+			<target state="final">ຈັດລຽງໂດຍ</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve" approved="yes">
+				<source>Uid</source>
+			<target state="final">Uid</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
+				<source>Manual sorting</source>
+			<target state="final">ຈັດລຽງດ້ວຍຕົນເອງ</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve" approved="yes">
+				<source>Last edited</source>
+			<target state="final">ແກ້ໄຂລ້າສຸດ</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve" approved="yes">
+				<source>Created</source>
+			<target state="final">ສ້າງເມື່ອ</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="final">ວັນທີ/ເວລາ ທີ່ກຳນົດ</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve" approved="yes">
+				<source>Title</source>
+			<target state="final">ຫົວຂໍ້</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection" xml:space="preserve" approved="yes">
+				<source>Sort direction</source>
+			<target state="final">ທິດທາງການຈັດລຽງ</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve" approved="yes">
+				<source>Ascending</source>
+			<target state="final">ຈາກນ້ອຍໄປຫາຫຼາຍ</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve" approved="yes">
+				<source>Descending</source>
+			<target state="final">ຈາກຫຼາຍໄປຫານ້ອຍ</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField" xml:space="preserve" approved="yes">
+				<source>Date field to use</source>
+			<target state="final">ຟິວວັນທີທີ່ຈະໃຊ້</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="final">ວັນທີ/ເວລາ ທີ່ກຳນົດ</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve" approved="yes">
+				<source>Archive date</source>
+			<target state="final">ວັນທີເກັບເຂົ້າຄັງ</target></trans-unit>
+      <trans-unit id="flexforms_general.categories" xml:space="preserve" approved="yes">
+				<source>Category selection</source>
+			<target state="final">ການເລືອກໝວດໝູ່</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve" approved="yes">
+				<source>Category mode</source>
+			<target state="final">ໂໝດໝວດໝູ່</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve" approved="yes">
+				<source>Don't care, show all</source>
+			<target state="final">ບໍ່ຈຳກັດ, ສະແດງທັງໝົດ</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve" approved="yes">
+				<source>Show items with selected categories (OR)</source>
+			<target state="final">ສະແດງລາຍການທີ່ມີໝວດໝູ່ທີ່ເລືອກ (OR)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve" approved="yes">
+				<source>Show items with selected categories (AND)</source>
+			<target state="final">ສະແດງລາຍການທີ່ມີໝວດໝູ່ທີ່ເລືອກທັງໝົດ (AND)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve" approved="yes">
+				<source>Do NOT show items with selected categories (AND)</source>
+			<target state="final">ບໍ່ສະແດງລາຍການທີ່ມີໝວດໝູ່ທີ່ເລືອກ (AND)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve" approved="yes">
+				<source>Do NOT show items with selected categories (OR)</source>
+			<target state="final">ບໍ່ສະແດງລາຍການທີ່ມີໝວດໝູ່ທີ່ເລືອກ (OR)</target></trans-unit>
+      <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve" approved="yes">
+				<source>Include subcategories</source>
+			<target state="final">ລວມໝວດໝູ່ຍ່ອຍ</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Article date higher than:</source>
+			<target state="final">ວັນທີບົດຄວາມຫຼາຍກວ່າ:</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Article date lower than:</source>
+			<target state="final">ວັນທີບົດຄວາມໜ້ອຍກວ່າ:</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction" xml:space="preserve" approved="yes">
+				<source>Top News</source>
+			<target state="final">ຂ່າວເດັ່ນ</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.1" xml:space="preserve" approved="yes">
+				<source>only Top News records</source>
+			<target state="final">ສະເພາະຂໍ້ມູນຂ່າວເດັ່ນ</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.2" xml:space="preserve" approved="yes">
+				<source>except Top News records</source>
+			<target state="final">ຍົກເວັ້ນຂໍ້ມູນຂ່າວເດັ່ນ</target></trans-unit>
+      <trans-unit id="flexforms_general.singleNews" xml:space="preserve" approved="yes">
+				<source>Show a single news record</source>
+			<target state="final">ສະແດງຂໍ້ມູນຂ່າວດຽວ</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve" approved="yes">
+				<source>Allow preview of hidden records</source>
+			<target state="final">ອະນຸຍາດໃຫ້ເບິ່ງຕົວຢ່າງຂໍ້ມູນທີ່ຖືກເຊື່ອງໄວ້</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="final">ບໍ່</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="final">ແມ່ນ</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="final">ກຳນົດໃນ TypoScript</target></trans-unit>
+      <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="final">ກຳນົດໃນ TypoScript</target></trans-unit>
+      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
+				<source>No constraint </source>
+			<target state="final">ບໍ່ມີຂໍ້ຈຳກັດ </target></trans-unit>
+      <trans-unit id="flexforms_general.selectedList" xml:space="preserve" approved="yes">
+				<source>List of articles</source>
+			<target state="final">ລາຍການບົດຄວາມ</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve" approved="yes">
+				<source>Max width for media elements</source>
+			<target state="final">ຄວາມກວ້າງສູງສຸດສຳລັບອົງປະກອບສື່</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve" approved="yes">
+				<source>Max height for media elements</source>
+			<target state="final">ຄວາມສູງສູງສຸດສຳລັບອົງປະກອບສື່</target></trans-unit>
+      <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve" approved="yes">
+				<source>Length of teaser (in chars)</source>
+			<target state="final">ຄວາມຍາວຂອງເນື້ອຫາຫຍໍ້ (ເປັນຕົວອັກສອນ)</target></trans-unit>
+      <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
+				<source>Template Layout</source>
+			<target state="final">ເລເອົາຂອງເທມເພລດ</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve" approved="yes">
+				<source>1</source>
+			<target state="final">1</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve" approved="yes">
+				<source>2</source>
+			<target state="final">2</target></trans-unit>
+      <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
+				<source>PageId for single news display</source>
+			<target state="final">PageId ສຳລັບການສະແດງຂ່າວດຽວ</target></trans-unit>
+      <trans-unit id="flexforms_additional.backPid" xml:space="preserve" approved="yes">
+				<source>PageId to return to</source>
+			<target state="final">PageId ສຳລັບການກັບຄືນ</target></trans-unit>
+      <trans-unit id="flexforms_additional.listPid" xml:space="preserve" approved="yes">
+				<source>PageId for list display</source>
+			<target state="final">PageId ສຳລັບການສະແດງລາຍການ</target></trans-unit>
+      <trans-unit id="flexforms_additional.limit" xml:space="preserve" approved="yes">
+				<source>Max records displayed</source>
+			<target state="final">ຈຳນວນຂໍ້ມູນສູງສຸດທີ່ສະແດງ</target></trans-unit>
+      <trans-unit id="flexforms_additional.offset" xml:space="preserve" approved="yes">
+				<source>Starting with given news record. 0 means first record, 1 the 2nd one!</source>
+			<target state="final">ເລີ່ມຕົ້ນດ້ວຍຂໍ້ມູນຂ່າວທີ່ກຳນົດ. 0 ໝາຍເຖິງຂໍ້ມູນທຳອິດ, 1 ໝາຍເຖິງຂໍ້ມູນທີສອງ!</target></trans-unit>
+      <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve" approved="yes">
+				<source>Hide the pagination</source>
+			<target state="final">ເຊື່ອງການແບ່ງໜ້າ</target></trans-unit>
+      <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve" approved="yes">
+				<source>Items per Page</source>
+			<target state="final">ຈຳນວນລາຍການຕໍ່ໜ້າ</target></trans-unit>
+      <trans-unit id="flexforms_additional.topNewsFirst" xml:space="preserve" approved="yes">
+				<source>Sort &quot;Top news&quot; before</source>
+			<target state="final">ຈັດລຽງ "ຂ່າວເດັ່ນ" ໄວ້ກ່ອນ</target></trans-unit>
+      <trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve" approved="yes">
+				<source>Disable override demand</source>
+			<target state="final">ປິດການນຳໃຊ້ການຂຽນທັບຄວາມຕ້ອງການ</target></trans-unit>
+      <trans-unit id="flexforms_additional.excludeAlreadyDisplayedNews" xml:space="preserve" approved="yes">
+				<source>Exclude already displayed news</source>
+			<target state="final">ຍົກເວັ້ນຂ່າວທີ່ສະແດງໄປແລ້ວ</target></trans-unit>
+      <trans-unit id="flexforms_additional.tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="final">ແທັກ</target></trans-unit>
+      <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve" approved="yes">
+				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
+			<target state="final">ໜ້າທີ່ມີ uid "%s" ບໍ່ມີໃຫ້ບໍລິການແລ້ວ!</target></trans-unit>
+      <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve" approved="yes">
+				<source>Record with uid "%s" is not available anymore!</source>
+			<target state="final">ຂໍ້ມູນທີ່ມີ uid "%s" ບໍ່ມີໃຫ້ບໍລິການແລ້ວ!</target></trans-unit>
+      <trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve" approved="yes">
+				<source>News record with uid &quot;%s&quot; is not available anymore!</source>
+			<target state="final">ຂໍ້ມູນຂ່າວທີ່ມີ uid "%s" ບໍ່ມີໃຫ້ບໍລິການແລ້ວ!</target></trans-unit>
+      <trans-unit id="pagemodule.switchToPage" xml:space="preserve" approved="yes">
+				<source>Switch to this page</source>
+			<target state="final">ປ່ຽນໄປໜ້ານີ້</target></trans-unit>
+      <trans-unit id="pagemodule_simple" xml:space="preserve" approved="yes">
+				<source>Simple list</source>
+			<target state="final">ລາຍການແບບງ່າຍ</target></trans-unit>
+      <trans-unit id="pagemodule_advanced" xml:space="preserve" approved="yes">
+				<source>Advanced list</source>
+			<target state="final">ລາຍການແບບຂັ້ນສູງ</target></trans-unit>
+      <trans-unit id="pagemodule_complex" xml:space="preserve" approved="yes">
+				<source>Full list</source>
+			<target state="final">ລາຍການເຕັມ</target></trans-unit>
+      <trans-unit id="extmng.prependAtCopy" xml:space="preserve" approved="yes">
+				<source>Prepend at copy: Prepend string &quot;copy X&quot;.</source>
+			<target state="final">ເພີ່ມທາງໜ້າເມື່ອສຳເນົາ: ເພີ່ມຂໍ້ຄວາມ "copy X".</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction" xml:space="preserve" approved="yes">
+				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
+			</source>
+			<target state="final">ການຈຳກັດໝວດໝູ່: ຈຳກັດໝວດໝູ່ທີ່ມີໃຫ້ໃນຂໍ້ມູນຂ່າວ. PageTsConfig: TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. ຟີເຈີນີ້ກຳລັງຢູ່ໃນການພັດທະນາ ແລະ ອາດຈະຍັງບໍ່ທັນໃຊ້ງານໄດ້!
+			</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve" approved="yes">
+				<source>Categories from current page</source>
+			<target state="final">ໝວດໝູ່ຈາກໜ້າປັດຈຸບັນ</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.siteroot" xml:space="preserve" approved="yes">
+				<source>Categories from site root</source>
+			<target state="final">ໝວດໝູ່ຈາກຮາກຂອງເວັບໄຊ (Site root)</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.pages_tsconfig" xml:space="preserve" approved="yes">
+				<source>Page TsConfig</source>
+			<target state="final">Page TsConfig</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.none" xml:space="preserve" approved="yes">
+				<source>No restriction</source>
+			<target state="final">ບໍ່ມີການຈຳກັດ</target></trans-unit>
+      <trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve" approved="yes">
+				<source>Editor needs to have permissions to all selected categories to save a news item</source>
+			<target state="final">ຜູ້ແກ້ໄຂຕ້ອງມີສິດໃນທຸກໝວດໝູ່ທີ່ເລືອກເພື່ອບັນທຶກຂ່າວ</target></trans-unit>
+      <trans-unit id="extmng.manualSorting" xml:space="preserve" approved="yes">
+				<source>Enable manual sorting of news records</source>
+			<target state="final">ເປີດໃຊ້ການຈັດລຽງຂໍ້ມູນຂ່າວດ້ວຍຕົນເອງ</target></trans-unit>
+      <trans-unit id="extmng.contentElementRelation" xml:space="preserve" approved="yes">
+				<source>Use content element relation:If set, content elements can be added to news records.</source>
+			<target state="final">ໃຊ້ຄວາມສຳພັນຂອງອົງປະກອບເນື້ອຫາ: ຖ້າຕັ້ງໄວ້, ຈະສາມາດເພີ່ມອົງປະກອບເນື້ອຫາເຂົ້າໃນຂໍ້ມູນຂ່າວໄດ້.</target></trans-unit>
+      <trans-unit id="extmng.contentElementPreview" xml:space="preserve" approved="yes">
+				<source>Improved preview of content element relations:If set, the preview in the backend is rendered as in the page module.</source>
+			<target state="final">ປັບປຸງການເບິ່ງຕົວຢ່າງຂອງຄວາມສຳພັນອົງປະກອບເນື້ອຫາ: ຖ້າຕັ້ງໄວ້, ການເບິ່ງຕົວຢ່າງໃນ Backend ຈະຖືກສະແດງຄືກັນກັບໃນໂມດູນໜ້າ.</target></trans-unit>
+      <trans-unit id="extmng.tagPid" xml:space="preserve" approved="yes">
+				<source>Define pid of tag records:Tags are collected on one central page.</source>
+			<target state="final">ກຳນົດ pid ຂອງຂໍ້ມູນແທັກ: ແທັກຕ່າງໆຈະຖືກລວບລວມໄວ້ໃນໜ້າສູນກາງໜຶ່ງ.</target></trans-unit>
+      <trans-unit id="extmng.archiveDate" xml:space="preserve" approved="yes">
+				<source>Archive Date: Define if the archive date is a &quot;Date&quot; or &quot;Date &amp; Time&quot;</source>
+			<target state="final">ວັນທີເກັບເຂົ້າຄັງ: ກຳນົດວ່າວັນທີເກັບເຂົ້າຄັງຈະເປັນ "ວັນທີ" ຫຼື "ວັນທີ ແລະ ເວລາ"</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.date" xml:space="preserve" approved="yes">
+				<source>Date</source>
+			<target state="final">ວັນທີ</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve" approved="yes">
+				<source>Date &amp; Time</source>
+			<target state="final">ວັນທີ ແລະ ເວລາ</target></trans-unit>
+      <trans-unit id="extmng.showImporter" xml:space="preserve" approved="yes">
+				<source>Show importer:Backend module to import into news</source>
+			<target state="final">ສະແດງເຄື່ອງມືນຳເຂົ້າ (Importer): ໂມດູນ Backend ເພື່ອນຳເຂົ້າຂໍ້ມູນຂ່າວ</target></trans-unit>
+      <trans-unit id="extmng.storageUidImporter" xml:space="preserve" approved="yes">
+				<source>UID of storage to use when importing files/images:Default (fileadmin) storage is 1</source>
+			<target state="final">UID ຂອງບ່ອນຈັດເກັບຂໍ້ມູນທີ່ຈະໃຊ້ເວລານຳເຂົ້າໄຟລ໌/ຮູບພາບ: ຄ່າເລີ່ມຕົ້ນ (fileadmin) ແມ່ນ 1</target></trans-unit>
+      <trans-unit id="extmng.resourceFolderImporter" xml:space="preserve" approved="yes">
+				<source>In which folder should the importer save files/images (has to exist)</source>
+			<target state="final">ໂຟນເດີໃດທີ່ເຄື່ອງມືນຳເຂົ້າຄວນບັນທຶກໄຟລ໌/ຮູບພາບ (ຕ້ອງມີຢູ່ແລ້ວ)</target></trans-unit>
+      <trans-unit id="extmng.showAdministrationModule" xml:space="preserve" approved="yes">
+				<source>Show administration module:Backend module to administrate news records</source>
+			<target state="final">ສະແດງໂມດູນການຈັດການ: ໂມດູນ Backend ເພື່ອຈັດການຂໍ້ມູນຂ່າວ</target></trans-unit>
+      <trans-unit id="extmng.rteForTeaser" xml:space="preserve" approved="yes">
+				<source>Enable a RTE for the teaser field.</source>
+			<target state="final">ເປີດໃຊ້ RTE ສຳລັບຟິວເນື້ອຫາຫຍໍ້ (Teaser).</target></trans-unit>
+      <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve" approved="yes">
+				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
+			<target state="final">ປິດການບັງຄັບຟິວວັນທີ: ຖ້າຕັ້ງໄວ້, ຟິວວັນທີຈະບໍ່ຈຳເປັນຕ້ອງໃສ່ ແລະ ຈະບໍ່ຖືກເຕີມໃຫ້ໂດຍອັດຕະໂນມັດເມື່ອສ້າງຂໍ້ມູນໃໝ່.</target></trans-unit>
+      <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve" approved="yes">
+				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
+			<target state="final">ເຊື່ອງຜັງຕົ້ນໄມ້ຂອງໜ້າ (Page tree) ສຳລັບໂມດູນການຈັດການ: ເພື່ອຄວາມສະດວກໃນການໃຊ້ງານ.</target></trans-unit>
+      <trans-unit id="extmng.mediaPreview" xml:space="preserve" approved="yes">
+				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
+			<target state="final">ສະແດງຮູບຂະໜາດນ້ອຍ (Thumbnails) ໃນໂມດູນລາຍການ Backend.</target></trans-unit>
+      <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve" approved="yes">
+				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
+			<target state="final">ການຕັ້ງຄ່າການເບິ່ງຕົວຢ່າງສື່ແບບຂັ້ນສູງ: ຖ້າເປີດໃຊ້, ຜູ້ແກ້ໄຂຈະມີຕົວເລືອກຫຼາຍຂຶ້ນໃນການກຳນົດບ່ອນທີ່ຈະສະແດງອົງປະກອບສື່.</target></trans-unit>
+      <trans-unit id="extmng.slugBehaviour" xml:space="preserve" approved="yes">
+				<source>Slug behaviour: uniqueInSite: The same slug can be used for news in different sites. Use this setting *only* if no news records are shared between sites. "unique" means that same news title will lead to different slug names.</source>
+			<target state="final">ພຶດຕິກຳຂອງ Slug: uniqueInSite: ສາມາດໃຊ້ Slug ດຽວກັນສຳລັບຂ່າວໃນເວັບໄຊຕ່າງກັນໄດ້. ໃຊ້ການຕັ້ງຄ່ານີ້ *ສະເພາະ* ຖ້າບໍ່ມີການແບ່ງປັນຂໍ້ມູນຂ່າວລະຫວ່າງເວັບໄຊ. "unique" ໝາຍຄວາມວ່າຫົວຂໍ້ຂ່າວທີ່ຄືກັນຈະນຳໄປສູ່ Slug ທີ່ຕ່າງກັນ.</target></trans-unit>
+      <trans-unit id="extmng.pageTreePluginPreview" xml:space="preserve" approved="yes">
+				<source>Plugin preview in page tree: If enabled pages with news plugins are highlighted by showing the plugin icon as status information [TYPO3 13 only]</source>
+			<target state="final">ເບິ່ງຕົວຢ່າງປລັກອິນໃນຜັງຕົ້ນໄມ້ຂອງໜ້າ: ຖ້າເປີດໃຊ້, ໜ້າທີ່ມີປລັກອິນຂ່າວຈະຖືກເນັ້ນໂດຍການສະແດງໄອຄອນປລັກອິນເປັນຂໍ້ມູນສະຖານະ [ສະເພາະ TYPO3 13 编译]</target></trans-unit>
+      <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
+				<source>There are no languages available, so nothing to choose.</source>
+			<target state="final">ບໍ່ມີພາສາໃຫ້ເລືອກ, ສະນັ້ນຈຶ່ງບໍ່ມີຫຍັງໃຫ້ເລືອກ.</target></trans-unit>
+      <trans-unit id="start_import" xml:space="preserve" approved="yes">
+				<source>Start import with %s record(s).</source>
+			<target state="final">ເລີ່ມການນຳເຂົ້າດ້ວຍ %s ຂໍ້ມູນ.</target></trans-unit>
+      <trans-unit id="tag_suggest" xml:space="preserve" approved="yes">
+				<source>Tag &quot;%s&quot; could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
+			<target state="final">ບໍ່ພົບແທັກ "%s", ຕ້ອງການສ້າງໃໝ່ບໍ່? &lt;strong&gt;ຄລິກທີ່ນີ້&lt;/strong&gt;</target></trans-unit>
+      <trans-unit id="tag_suggest2" xml:space="preserve" approved="yes">
+				<source>Tag could not be found, wanna create it? Click here!</source>
+			<target state="final">ບໍ່ພົບແທັກ, ຕ້ອງການສ້າງໃໝ່ບໍ່? ຄລິກທີ່ນີ້!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve" approved="yes">
+				<source>No tag submitted!</source>
+			<target state="final">ບໍ່ມີແທັກທີ່ຖືກສົ່ງ!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-newsid" xml:space="preserve" approved="yes">
+				<source>No news id given!</source>
+			<target state="final">ບໍ່ມີ news id ທີ່ກຳນົດ!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-found" xml:space="preserve" approved="yes">
+				<source>No pid for the tag record could be found by reading settings of Extension Manager!</source>
+			<target state="final">ບໍ່ພົບ pid ສຳລັບຂໍ້ມູນແທັກຈາກການຕັ້ງຄ່າຂອງ Extension Manager!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag-created" xml:space="preserve" approved="yes">
+				<source>No new tag created!</source>
+			<target state="final">ບໍ່ມີແທັກໃໝ່ຖືກສ້າງຂຶ້ນ!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-defined" xml:space="preserve" approved="yes">
+				<source>No page defined to save tag. Please add the id in the settings of the extension manager.</source>
+			<target state="final">ບໍ່ໄດ້ກຳນົດໜ້າເພື່ອບັນທຶກແທັກ. ກະລຸນາເພີ່ມ id ໃນການຕັ້ງຄ່າຂອງ Extension Manager.</target></trans-unit>
+      <trans-unit id="module.headline" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="final">ການຕັ້ງຄ່າ</target></trans-unit>
+      <trans-unit id="module.recursive" xml:space="preserve" approved="yes">
+				<source>Recursive</source>
+			<target state="final">ລຳດັບຊັ້ນ (Recursive)</target></trans-unit>
+      <trans-unit id="module.timeRange" xml:space="preserve" approved="yes">
+				<source>Time range</source>
+			<target state="final">ຊ່ວງເວລາ</target></trans-unit>
+      <trans-unit id="module.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Time Restriction</source>
+			<target state="final">ການຈຳກັດເວລາ</target></trans-unit>
+      <trans-unit id="module.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Time Restriction High</source>
+			<target state="final">ການຈຳກັດເວລາສູງສຸດ</target></trans-unit>
+      <trans-unit id="module.createNewCategory" xml:space="preserve" approved="yes">
+				<source>Create a new category</source>
+			<target state="final">ສ້າງໝວດໝູ່ໃໝ່</target></trans-unit>
+      <trans-unit id="module.createNewNewsRecord" xml:space="preserve" approved="yes">
+				<source>Create new news record</source>
+			<target state="final">ສ້າງຂໍ້ມູນຂ່າວໃໝ່</target></trans-unit>
+      <trans-unit id="module.createNewTag" xml:space="preserve" approved="yes">
+				<source>Create new tag record</source>
+			<target state="final">ສ້າງຂໍ້ມູນແທັກໃໝ່</target></trans-unit>
+      <trans-unit id="module.topNewsYes" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="final">ແມ່ນ</target></trans-unit>
+      <trans-unit id="module.topNewsNo" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="final">ບໍ່</target></trans-unit>
+      <trans-unit id="module.searchWord" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="final">ຄົ້ນຫາ</target></trans-unit>
+      <trans-unit id="module.newsListing" xml:space="preserve" approved="yes">
+				<source>News Listing</source>
+			<target state="final">ລາຍການຂ່າວ</target></trans-unit>
+      <trans-unit id="module.newsCount" xml:space="preserve" approved="yes">
+				<source>%s news records</source>
+			<target state="final">%s ຂໍ້ມູນຂ່າວ</target></trans-unit>
+      <trans-unit id="module.newsPidListing" xml:space="preserve" approved="yes">
+				<source>News Pid listing</source>
+			<target state="final">ລາຍການ Pid ຂອງຂ່າວ</target></trans-unit>
+      <trans-unit id="module.donate" xml:space="preserve" approved="yes">
+				<source>Support &amp; Donate</source>
+			<target state="final">ສະໜັບສະໜູນ ແລະ ບໍລິຈາກ</target></trans-unit>
+      <trans-unit id="administration.title" xml:space="preserve" approved="yes">
+				<source>News administration</source>
+			<target state="final">ການຈັດການຂ່າວສານ</target></trans-unit>
+      <trans-unit id="administration.nopageselected" xml:space="preserve" approved="yes">
+				<source>Please click the page title in the page tree to the left to show the records on that page.</source>
+			<target state="final">ກະລຸນາຄລິກທີ່ຫົວຂໍ້ໜ້າໃນຜັງຕົ້ນໄມ້ທາງດ້ານຊ້າຍເພື່ອສະແດງຂໍ້ມູນໃນໜ້ານັ້ນ.</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.header" xml:space="preserve" approved="yes">
+				<source>List pages with count of news &amp; category records</source>
+			<target state="final">ລາຍການໜ້າທີ່ມີຈຳນວນຂໍ້ມູນຂ່າວ ແລະ ໝວດໝູ່</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.description" xml:space="preserve" approved="yes">
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
+			</source>
+			<target state="final">ເລືອກລະດັບ recursive ເພື່ອສະແດງຜັງຕົ້ນໄມ້ຂອງໜ້າພ້ອມກັບລາຍການທີ່ກ່ຽວຂ້ອງ. ຄລິກທີ່ຫົວຂໍ້ໜ້າເພື່ອເບິ່ງຂໍ້ມູນຂ່າວຂອງໜ້ານັ້ນ.
+			</target></trans-unit>
+      <trans-unit id="administration.nolimit" xml:space="preserve" approved="yes">
+				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
+			<target state="final">ບໍ່ໄດ້ກຳນົດຂີດຈຳກັດໃນການຕັ້ງຄ່າ "%s"! ກະລຸນາລວມ TypoScript ເລີ່ມຕົ້ນເຂົ້າໃນໜ້າຮາກ (Root page).</target></trans-unit>
+      <trans-unit id="administration.toggleForm" xml:space="preserve" approved="yes">
+				<source>Show/Hide filter</source>
+			<target state="final">ສະແດງ/ເຊື່ອງ ຕົວຕອງ</target></trans-unit>
+      <trans-unit id="administration.nonewsfound" xml:space="preserve" approved="yes">
+				<source>No news found</source>
+			<target state="final">ບໍ່ພົບຂ່າວ</target></trans-unit>
+      <trans-unit id="administration.nonewsfoundText" xml:space="preserve" approved="yes">
+				<source>The current page does not contain any news records. Either select another page in the page tree on the left or create the first news record on this page.</source>
+			<target state="final">ໜ້າປັດຈຸບັນບໍ່ມີຂໍ້ມູນຂ່າວໃດໆ. ກະລຸນາເລືອກໜ້າອື່ນໃນຜັງຕົ້ນໄມ້ທາງຊ້າຍ ຫຼື ສ້າງຂໍ້ມູນຂ່າວທຳອິດໃນໜ້ານີ້.</target></trans-unit>
+      <trans-unit id="administration.nonewsfoundSwitch" xml:space="preserve" approved="yes">
+				<source>See all pages containing news records</source>
+			<target state="final">ເບິ່ງທຸກໜ້າທີ່ມີຂໍ້ມູນຂ່າວ</target></trans-unit>
+      <trans-unit id="administration.filter.hidden" xml:space="preserve" approved="yes">
+				<source>Hidden</source>
+			<target state="final">ຖືກເຊື່ອງໄວ້</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.hidden" xml:space="preserve" approved="yes">
+				<source>only hidden</source>
+			<target state="final">ສະເພາະທີ່ຖືກເຊື່ອງ</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve" approved="yes">
+				<source>only non-hidden</source>
+			<target state="final">ສະເພາະທີ່ບໍ່ໄດ້ຖືກເຊື່ອງ</target></trans-unit>
+      <trans-unit id="administration.donation.title" xml:space="preserve" approved="yes">
+				<source>Support &amp; Donate</source>
+			<target state="final">ສະໜັບສະໜູນ ແລະ ບໍລິຈາກ</target></trans-unit>
+      <trans-unit id="administration.donation.link" xml:space="preserve" approved="yes">
+				<source>Click so see all options</source>
+			<target state="final">ຄລິກເພື່ອເບິ່ງຕົວເລືອກທັງໝົດ</target></trans-unit>
+      <trans-unit id="administration.donation.lead_intro" xml:space="preserve" approved="yes">
+				<source>Great that you are using this extension!</source>
+			<target state="final">ດີຫຼາຍທີ່ທ່ານກຳລັງໃຊ້ສ່ວນເສີມ (Extension) ນີ້!</target></trans-unit>
+      <trans-unit id="administration.donation.lead_full" xml:space="preserve" approved="yes">
+				<source>The editors have created %d articles with %d relations to categories.</source>
+			<target state="final">ຜູ້ແກ້ໄຂໄດ້ສ້າງບົດຄວາມ %d ບົດ ພ້ອມກັບຄວາມສຳພັນໝວດໝູ່ %d ລາຍການ.</target></trans-unit>
+      <trans-unit id="administration.donation.lead_news_only" xml:space="preserve" approved="yes">
+				<source>The editors have created %d articles.</source>
+			<target state="final">ຜູ້ແກ້ໄຂໄດ້ສ້າງບົດຄວາມ %d ບົດ.</target></trans-unit>
+      <trans-unit id="administration.donation.lead_none" xml:space="preserve" approved="yes">
+				<source>Did you just setup the system? No articles yet created.</source>
+			<target state="final">ທ່ານຫາກໍ່ຕິດຕັ້ງລະບົບແມ່ນບໍ່? ຍັງບໍ່ມີບົດຄວາມໃດຖືກສ້າງຂຶ້ນເທື່ອ.</target></trans-unit>
+      <trans-unit id="administration.donation.support" xml:space="preserve" approved="yes">
+				<source>Help supporting further development</source>
+			<target state="final">ຊ່ວຍສະໜັບສະໜູນການພັດທະນາຕໍ່ໄປ</target></trans-unit>
+      <trans-unit id="administration.donation.why" xml:space="preserve" approved="yes">
+				<source>Why?</source>
+			<target state="final">ຍ້ອນຫຍັງ?</target></trans-unit>
+      <trans-unit id="administration.donation.why.text" xml:space="preserve" approved="yes">
+				<source>The news extension is a powerful tool with a lot of features, always trying to thrive on the latest
+            possibilities of the TYPO3 core.
+            This implies a lot of work bringing this to the TYPO3 community.</source>
+			<target state="final">ສ່ວນເສີມຂ່າວເປັນເຄື່ອງມືທີ່ມີປະສິດທິພາບສູງ ພ້ອມດ້ວຍຟີເຈີຫຼາກຫຼາຍ, ເຊິ່ງພະຍາຍາມປັບປຸງໃຫ້ເຂົ້າກັບຄວາມສາມາດລ້າສຸດຂອງ TYPO3 core ຢູ່ສະເໝີ. ສິ່ງນີ້ຕ້ອງໃຊ້ຄວາມພະຍາຍາມຢ່າງຫຼວງຫຼາຍເພື່ອມອບໃຫ້ແກ່ຊຸມຊົນ TYPO3.</target></trans-unit>
+      <trans-unit id="administration.donation.how" xml:space="preserve" approved="yes">
+				<source>How?</source>
+			<target state="final">ແນວໃດ?</target></trans-unit>
+      <trans-unit id="administration.donation.how.text" xml:space="preserve" approved="yes">
+				<source>There are multiple ways to support the further development:</source>
+			<target state="final">ມີຫຼາຍວິທີທີ່ຈະສະໜັບສະໜູນການພັດທະນາຕໍ່ໄປ:</target></trans-unit>
+      <trans-unit id="administration.donation.invoice" xml:space="preserve" approved="yes">
+				<source>Invoice</source>
+			<target state="final">ໃບແຈ້ງໜີ້</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.sub" xml:space="preserve" approved="yes">
+				<source>An invoice is possible!</source>
+			<target state="final">ສາມາດອອກໃບແຈ້ງໜີ້ໄດ້!</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.text" xml:space="preserve" approved="yes">
+				<source>I can create a proper invoice to keep your accounting happy - contact me for details.</source>
+			<target state="final">ຂ້ອຍສາມາດອອກໃບແຈ້ງໜີ້ທີ່ຖືກຕ້ອງເພື່ອໃຫ້ຝ່າຍບັນຊີຂອງເຈົ້າສະດວກ - ຕິດຕໍ່ຂ້ອຍສຳລັບລາຍລະອຽດ.</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.sub" xml:space="preserve" approved="yes">
+				<source>Support me on patreon.com</source>
+			<target state="final">ສະໜັບສະໜູນຂ້ອຍຜ່ານ patreon.com</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.text" xml:space="preserve" approved="yes">
+				<source>Support me on patreon and get access to additional extensions and snippets as reward.</source>
+			<target state="final">ສະໜັບສະໜູນຂ້ອຍໃນ patreon ແລະ ຮັບສິດເຂົ້າເຖິງສ່ວນເສີມ ແລະ ໂຄ້ດຕົວຢ່າງເພີ່ມເຕີມເພື່ອເປັນການຕອບແທນ.</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.sub" xml:space="preserve" approved="yes">
+				<source>Donate via PayPal</source>
+			<target state="final">ບໍລິຈາກຜ່ານ PayPal</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.text" xml:space="preserve" approved="yes">
+				<source>Support me by a donation on paypal.com. It is just one click away.</source>
+			<target state="final">ສະໜັບສະໜູນຂ້ອຍດ້ວຍການບໍລິຈາກໃນ paypal.com ພຽງແຕ່ຄລິກດຽວ.</target></trans-unit>
+      <trans-unit id="administration.donation.amazon" xml:space="preserve" approved="yes">
+				<source>Amazon wishlist</source>
+			<target state="final">ລາຍການສິນຄ້າທີ່ຢາກໄດ້ໃນ Amazon</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.sub" xml:space="preserve" approved="yes">
+				<source>Satisfy a wish of my Amazon wishlist</source>
+			<target state="final">ມອບຂອງຂວັນຈາກລາຍການທີ່ຂ້ອຍຢາກໄດ້ໃນ Amazon</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.text" xml:space="preserve" approved="yes">
+				<source>Most of the listed products are for my family and our hobby cooking. Make us happy!</source>
+			<target state="final">ສິນຄ້າສ່ວນໃຫຍ່ແມ່ນສຳລັບຄອບຄົວຂອງຂ້ອຍ ແລະ ວຽກອະດິເລກໃນການເຮັດອາຫານ. ຊ່ວຍໃຫ້ພວກເຮົາໄດ້ມີຄວາມສຸກ!</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors" xml:space="preserve" approved="yes">
+				<source>Current sponsors</source>
+			<target state="final">ຜູ້ສະໜັບສະໜູນປັດຈຸບັນ</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors.text" xml:space="preserve" approved="yes">
+				<source>The following companies and people have already supported me.</source>
+			<target state="final">ບໍລິສັດ ແລະ ບຸກຄົນຕໍ່ໄປນີ້ໄດ້ໃຫ້ການສະໜັບສະໜູນຂ້ອຍແລ້ວ.</target></trans-unit>
+      <trans-unit id="news-folder" xml:space="preserve" approved="yes">
+				<source>News</source>
+			<target state="final">ຂ່າວ</target></trans-unit>
+      <trans-unit id="news-page" xml:space="preserve" approved="yes">
+				<source>Page with news plugins</source>
+			<target state="final">ໜ້າທີ່ມີປລັກອິນຂ່າວ</target></trans-unit>
+      <trans-unit id="import.header" xml:space="preserve" approved="yes">
+				<source>News Importer</source>
+			<target state="final">ເຄື່ອງມືນຳເຂົ້າຂ່າວ</target></trans-unit>
+      <trans-unit id="import.choose_a_job" xml:space="preserve" approved="yes">
+				<source>Choose a job</source>
+			<target state="final">ເລືອກງານ</target></trans-unit>
+      <trans-unit id="import.description" xml:space="preserve" approved="yes">
+				<source>This is the "News importer module". </source>
+			<target state="final">ນີ້ແມ່ນ "ໂມດູນນຳເຂົ້າຂ່າວ". </target></trans-unit>
+      <trans-unit id="import.done" xml:space="preserve" approved="yes">
+				<source>The import has been completed. Reload the module to start a new one.</source>
+			<target state="final">ການນຳເຂົ້າສຳເລັດແລ້ວ. ກະລຸນາໂຫຼດໂມດູນໃໝ່ເພື່ອເລີ່ມງານໃໝ່.</target></trans-unit>
+      <trans-unit id="import.backupwarning" xml:space="preserve" approved="yes">
+				<source>It's strongly recommended to backup all news tables before running an import job.</source>
+			<target state="final">ແນະນຳຢ່າງຍິ່ງໃຫ້ສຳຮອງຂໍ້ມູນຕາຕະລາງຂ່າວທັງໝົດກ່ອນທີ່ຈະເລີ່ມງານນຳເຂົ້າ.</target></trans-unit>
+      <trans-unit id="import.backupwarning.header" xml:space="preserve" approved="yes">
+				<source>Important!</source>
+			<target state="final">ສຳຄັນ!</target></trans-unit>
+      <trans-unit id="import.nojobs" xml:space="preserve" approved="yes">
+				<source>No jobs available for the importer.</source>
+			<target state="final">ບໍ່ມີງານສຳລັບເຄື່ອງມືນຳເຂົ້າ.</target></trans-unit>
+      <trans-unit id="import.error.configuration.title" xml:space="preserve" approved="yes">
+				<source>The configuration for the import is incomplete!</source>
+			<target state="final">ການຕັ້ງຄ່າສຳລັບການນຳເຂົ້າບໍ່ຄົບຖ້ວນ!</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter" xml:space="preserve" approved="yes">
+				<source>Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</source>
+			<target state="final">ກະລຸນາກຳນົດຄ່າ "resourceFolderImporter" ໃນການຕັ້ງຄ່າຂອງ Extension Manager! ໂຟນເດີທີ່ກຳນົດຈະເກັບໄຟລ໌ທີ່ນຳເຂົ້າມາທັງໝົດ.</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter.notExist" xml:space="preserve" approved="yes">
+				<source>The directory defined in the setting "resourceFolderImporter" does not exist!</source>
+			<target state="final">ໂຟນເດີທີ່ກຳນົດໃນ "resourceFolderImporter" ບໍ່ມີຢູ່ຈິງ!</target></trans-unit>
+      <trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve" approved="yes">
+				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
+			<target state="final">ກະລຸນາກຳນົດຄ່າ "storageUidImporter" ໃນການຕັ້ງຄ່າຂອງ Extension Manager! id ທີ່ກຳນົດແມ່ນບ່ອນຈັດເກັບໄຟລ໌ທີ່ຈະໃຊ້.</target></trans-unit>
+      <trans-unit id="record.savingdisabled.header" approved="yes">
+        <source>Saving is disabled</source>
+        <target state="final">ການບັນທຶກຖືກປິດໃຊ້ງານ</target>
+      </trans-unit>
+      <trans-unit id="record.savingdisabled.content" approved="yes">
+        <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+        <target state="final">ຂໍ້ມູນນີ້ມີໝວດໝູ່ທີ່ຖືກກຳນົດໄວ້ ເຊິ່ງບໍ່ໄດ້ຢູ່ໃນຂອບເຂດສິດທິຂອງທ່ານ:
+                </target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.title" approved="yes">
+        <source>Content elements are hidden</source>
+        <target state="final">ອົງປະກອບເນື້ອຫາຖືກເຊື່ອງໄວ້</target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.description" approved="yes">
+        <source>Content elements are hidden in sys folders of type "news"!</source>
+        <target state="final">ອົງປະກອບເນື້ອຫາຖືກເຊື່ອງໄວ້ໃນໂຟນເດີລະບົບປະເພດ "news"!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.title" approved="yes">
+        <source>Improved editing of content elements</source>
+        <target state="final">ປັບປຸງການແກ້ໄຂອົງປະກອບເນື້ອຫາ</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.lead" approved="yes">
+        <source>The extension EXT:news_content_elements can improve the handling of content elements within a news record drastically.</source>
+        <target state="final">ສ່ວນເສີມ EXT:news_content_elements ສາມາດປັບປຸງການຈັດການອົງປະກອບເນື້ອຫາພາຍໃນຂໍ້ມູນຂ່າວໄດ້ຢ່າງຫຼວງຫຼາຍ.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line1" approved="yes">
+        <source>Easy editing experience</source>
+        <target state="final">ປະສົບການການແກ້ໄຂທີ່ງ່າຍດາຍ</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line2" approved="yes">
+        <source>Instead of using the inline relation, editors can now use the familiar Page Module to add any content element (like Text with media elements) inside their news article.</source>
+        <target state="final">ແທນທີ່ຈະໃຊ້ຄວາມສຳພັນແບບ inline, ຕອນນີ້ຜູ້ແກ້ໄຂສາມາດໃຊ້ໂມດູນໜ້າທີ່ຄຸ້ນເຄີຍເພື່ອເພີ່ມອົງປະກອບເນື້ອຫາໃດໆ (ເຊັ່ນ ຂໍ້ຄວາມພ້ອມສື່) ເຂົ້າໃນບົດຄວາມຂ່າວຂອງເຂົາເຈົ້າ.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line3" approved="yes">
+        <source>Better stories, same workflow</source>
+        <target state="final">ເລື່ອງລາວທີ່ດີກວ່າ ດ້ວຍຂັ້ນຕອນການເຮັດວຽກເດີມ</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line4" approved="yes">
+        <source>This gives editors the freedom to create richer, more engaging news articles while continuing to work within the familiar News module.</source>
+        <target state="final">ສິ່ງນີ້ຊ່ວຍໃຫ້ຜູ້ແກ້ໄຂມີອິດສະຫຼະໃນການສ້າງບົດຄວາມຂ່າວທີ່ໜ້າສົນໃຈຫຼາຍຂຶ້ນ ໃນຂະນະທີ່ຍັງເຮັດວຽກຢູ່ໃນໂມດູນຂ່າວທີ່ຄຸ້ນເຄີຍ.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line5" approved="yes">
+        <source>Available as an add-on!</source>
+        <target state="final">ມີໃຫ້ບໍລິການເປັນສ່ວນເສີມ (Add-on)!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line6" approved="yes">
+        <source>This feature is provided as a payed add-on for EXT:news!</source>
+        <target state="final">ຟີເຈີນີ້ເປັນສ່ວນເສີມແບບມີຄ່າໃຊ້ຈ່າຍສຳລັບ EXT:news!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.link" approved="yes">
+        <source>Details &amp; Purchase information</source>
+        <target state="final">ລາຍລະອຽດ ແລະ ຂໍ້ມູນການສັ່ງຊື້</target>
+      </trans-unit>
+      <trans-unit id="pluginPreview.global.detailPid" approved="yes">
+        <source>Global set pageId for single news display</source>
+        <target state="final">ການຕັ້ງຄ່າ PageId ທົ່ວໂລກສຳລັບການສະແດງຂ່າວດຽວ</target>
+      </trans-unit>
+      <trans-unit id="recordLinks.label" approved="yes">
+        <source>News records</source>
+        <target state="final">ຂໍ້ມູນຂ່າວສານ</target>
+      </trans-unit>
+    </body>
   </file>
 </xliff>
