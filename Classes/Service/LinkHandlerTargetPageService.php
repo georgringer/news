@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Service;
 
+use TYPO3\CMS\Core\Attribute\AsAllowedCallable;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -28,7 +29,7 @@ class LinkHandlerTargetPageService
     {
         $this->cObj = $cObj;
     }
-
+    #[AsAllowedCallable]
     public function process(string $content = '', array $configuration = []): int
     {
         $fallbackPageId = (int)($configuration['fallback'] ?? 0);
