@@ -27,6 +27,9 @@ class ClassCacheManager
     /** @var array */
     protected $constructorLines = [];
 
+    /** @var array */
+    protected $initializeObjectLines = [];
+
     public function __construct(?PhpFrontend $classCache = null)
     {
         if ($classCache === null) {
@@ -89,6 +92,10 @@ class ClassCacheManager
             if (isset($this->constructorLines['code']) && count($this->constructorLines['code'])) {
                 $code .= LF . implode("\n", $this->constructorLines['doc']);
                 $code .= LF . '    public function __construct(' . implode(',', $this->constructorLines['parameters'] ?? []) . ')' . LF . '    {' . LF . implode(LF, $this->constructorLines['code'] ?? []) . LF . '    }' . LF;
+            }
+            if (isset($this->initializeObjectLines['code']) && count($this->initializeObjectLines['code'])) {
+                $code .= LF . implode("\n", $this->initializeObjectLines['doc']);
+                $code .= LF . '    public function initializeObject(): void' . LF . '    {' . LF . implode(LF, $this->initializeObjectLines['code'] ?? []) . LF . '    }' . LF;
             }
             $code = $this->closeClassDefinition($code);
 
@@ -181,6 +188,29 @@ class ClassCacheManager
             }
             unset($innerPart[$constructorInfo['inner_start'] - 1]);
             unset($innerPart[$constructorInfo['inner_end']]);
+        }
+
+        if (isset($classParserInformation['functions']['initializeObject'])) {
+            $initializeInfo = $classParserInformation['functions']['initializeObject'];
+            $initializeInfo['inner_start'] = $initializeInfo['start'] - $offsetForInnerPart;
+            $initializeInfo['inner_end'] = $initializeInfo['end'] - $offsetForInnerPart;
+
+            if ($baseClass) {
+                $this->initializeObjectLines['doc'] = explode("\n", $initializeInfo['doc'] ?? '');
+            }
+
+            $codePart = false;
+            for ($i = $initializeInfo['inner_start']; $i < $initializeInfo['inner_end']; $i++) {
+                if ($codePart) {
+                    $this->initializeObjectLines['code'][] = $innerPart[$i];
+                } elseif (trim($innerPart[$i]) === ') {' || trim($innerPart[$i]) === '{') {
+                    $codePart = true;
+                }
+                unset($innerPart[$i]);
+            }
+
+            unset($innerPart[$initializeInfo['inner_start'] - 1]);
+            unset($innerPart[$initializeInfo['inner_end']]);
         }
 
         $codePart = implode(LF, $innerPart);
