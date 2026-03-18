@@ -111,7 +111,7 @@ class CategoryRepository extends AbstractDemandedRepository
 
         // If leaves are selected without its parents selected, those are shown as parent
         foreach ($flatCategories as $id => &$flatCategory) {
-            if (!isset($flatCategories[$flatCategory['parent']])) {
+            if ($flatCategory['parent'] === null || !isset($flatCategories[$flatCategory['parent']])) {
                 $flatCategory['parent'] = null;
             }
         }
