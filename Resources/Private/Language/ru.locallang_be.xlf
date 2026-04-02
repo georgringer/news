@@ -9,6 +9,46 @@
       <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
 				<source>Versatile news system</source>
 			<target state="final">Универсальная система новостей</target></trans-unit>
+      <trans-unit id="plugin.news_list.title" xml:space="preserve" approved="yes">
+				<source>News article list (incl. detail view)</source>
+			<target state="final">Список новостных статей (вкл. подробный просмотр)</target></trans-unit>
+      <trans-unit id="plugin.news_list.description" xml:space="preserve" approved="yes">
+				<source>Listing of news articles chosen by various properties like storage folder, categories, time constraints, etc.
+					This plugin is capable of rendering the detail view as well.</source>
+			<target state="final">Список новостных статей, отобранных по различным параметрам, таким как папка хранения, категории, временные ограничения и т. д.
+					Этот плагин также позволяет отображать подробную информацию.</target></trans-unit>
+      <trans-unit id="plugin.news_list_sticky.title" xml:space="preserve" approved="yes">
+				<source>News article list</source>
+			<target state="final">Список новостей</target></trans-unit>
+      <trans-unit id="plugin.news_list_sticky.description" xml:space="preserve" approved="yes">
+				<source>Listing of news articles chosen by various properties like storage folder, categories, time constraints, etc.
+					This plugin cannot render the detail view of news articles.</source>
+			<target state="final">Список статей новостей, отобранных по разным критериям – по папке хранилищу, категориями, временным диапазонам и т. д.
+					Это дополнение не может выводить полный текст статьи.</target></trans-unit>
+      <trans-unit id="plugin.news_detail.title" xml:space="preserve" approved="yes">
+				<source>News article detail view</source>
+			<target state="final">Подробный просмотр новостной статьи</target></trans-unit>
+      <trans-unit id="plugin.news_detail.description" xml:space="preserve" approved="yes">
+				<source>Rendering the detail view of a news article.</source>
+			<target state="final">Отображение полного текста статьи новостей.</target></trans-unit>
+      <trans-unit id="plugin.news_date_menu.title" xml:space="preserve" approved="yes">
+				<source>Date menu of news articles</source>
+			<target state="final">Меню статей по датам</target></trans-unit>
+      <trans-unit id="plugin.news_date_menu.description" xml:space="preserve" approved="yes">
+				<source>Display a menu of months &amp; years of articles. The menu can be used to filter a list view dynamically.</source>
+			<target state="final">Отображение меню со статьями по месяцам или годам. Меню можно использовать в качестве динамического фильтра списка статей.</target></trans-unit>
+      <trans-unit id="plugin.news_search_form.title" xml:space="preserve" approved="yes">
+				<source>News search form</source>
+			<target state="final">Форма поиска новостей</target></trans-unit>
+      <trans-unit id="plugin.news_search_form.description" xml:space="preserve" approved="yes">
+				<source>Display a search form to let users search within articles.</source>
+			<target state="final">Вывод формы поиска по статьям для пользователей сайта.</target></trans-unit>
+      <trans-unit id="plugin.news_search_result.title" xml:space="preserve" approved="yes">
+				<source>News search result</source>
+			<target state="final">Результаты поиска новостей</target></trans-unit>
+      <trans-unit id="plugin.news_search_result.description" xml:space="preserve" approved="yes">
+				<source>Display the result of the search.</source>
+			<target state="final">Вывод результатов поиска.</target></trans-unit>
       <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
 				<source>Settings</source>
 			<target state="final">Настройки</target></trans-unit>
