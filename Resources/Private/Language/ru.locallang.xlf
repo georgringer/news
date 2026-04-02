@@ -42,6 +42,9 @@
       <trans-unit id="author_simple" xml:space="preserve" approved="yes">
 				<source>Created by</source>
 			<target state="final">автор</target></trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
+				<source>Page %s of %s</source>
+			<target state="final">Страница %s из %s</target></trans-unit>
       <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
 				<source>Next</source>
 			<target state="final">Далее</target></trans-unit>
