@@ -19,7 +19,7 @@
 					Этот плагин также позволяет отображать подробную информацию.</target></trans-unit>
       <trans-unit id="plugin.news_list_sticky.title" xml:space="preserve" approved="yes">
 				<source>News article list</source>
-			<target state="final">Список новостей</target></trans-unit>
+			<target state="final">News article list</target></trans-unit>
       <trans-unit id="plugin.news_list_sticky.description" xml:space="preserve" approved="yes">
 				<source>Listing of news articles chosen by various properties like storage folder, categories, time constraints, etc.
 					This plugin cannot render the detail view of news articles.</source>
@@ -30,7 +30,7 @@
 			<target state="final">Подробный просмотр новостной статьи</target></trans-unit>
       <trans-unit id="plugin.news_detail.description" xml:space="preserve" approved="yes">
 				<source>Rendering the detail view of a news article.</source>
-			<target state="final">Отображение полного текста статьи новостей.</target></trans-unit>
+			<target state="final">Отображение подробной информации о новостной статье.</target></trans-unit>
       <trans-unit id="plugin.news_date_menu.title" xml:space="preserve" approved="yes">
 				<source>Date menu of news articles</source>
 			<target state="final">Меню статей по датам</target></trans-unit>
@@ -49,6 +49,24 @@
       <trans-unit id="plugin.news_search_result.description" xml:space="preserve" approved="yes">
 				<source>Display the result of the search.</source>
 			<target state="final">Вывод результатов поиска.</target></trans-unit>
+      <trans-unit id="plugin.news_selected_list.title" xml:space="preserve" approved="yes">
+				<source>News article list (curated)</source>
+			<target state="final">Список новостных статей (отобранных вручную)</target></trans-unit>
+      <trans-unit id="plugin.news_selected_list.description" xml:space="preserve" approved="yes">
+				<source>Listing of manually picked news articles.</source>
+			<target state="final">Список новостных статей, отобранных вручную.</target></trans-unit>
+      <trans-unit id="plugin.category_list.title" xml:space="preserve" approved="yes">
+				<source>News category menu</source>
+			<target state="final">Меню категорий новостей</target></trans-unit>
+      <trans-unit id="plugin.category_list.description" xml:space="preserve" approved="yes">
+				<source>Display a menu of categories. The menu can be used to filter a news list view dynamically.</source>
+			<target state="final">Отображение меню категорий. Меню можно использовать в качестве динамического фильтра списка статей.</target></trans-unit>
+      <trans-unit id="plugin.tag_list.title" xml:space="preserve" approved="yes">
+				<source>News tag list</source>
+			<target state="final">Список тегов новостей</target></trans-unit>
+      <trans-unit id="plugin.tag_list.description" xml:space="preserve" approved="yes">
+				<source>Display a list of tags. The list can be used to filter a news list view dynamically.</source>
+			<target state="final">Отображение списка тегов. Список можно использовать для динамической фильтрации списка новостей.</target></trans-unit>
       <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
 				<source>Settings</source>
 			<target state="final">Настройки</target></trans-unit>
@@ -103,6 +121,9 @@
       <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve" approved="yes">
 				<source>Only active (non archived)</source>
 			<target state="final">Активные (не в архиве)</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.none" xml:space="preserve" approved="yes">
+                <source>None</source>
+            <target state="final">Нет</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve" approved="yes">
 				<source>Archived</source>
 			<target state="final">Архивные</target></trans-unit>
@@ -169,6 +190,12 @@
       <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve" approved="yes">
 				<source>Include subcategories</source>
 			<target state="final">Включая подкатегории</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Article date higher than:</source>
+			<target state="final">Дата выпуска статьи выше, чем:</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Article date lower than:</source>
+			<target state="final">Дата выпуска товара ниже, чем:</target></trans-unit>
       <trans-unit id="flexforms_general.topNewsRestriction" xml:space="preserve" approved="yes">
 				<source>Top News</source>
 			<target state="final">Главные новости</target></trans-unit>
@@ -196,6 +223,9 @@
       <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
 				<source>Defined in TypoScript</source>
 			<target state="final">Определено в TypoScript</target></trans-unit>
+      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
+				<source>No constraint </source>
+			<target state="final">Без ограничений </target></trans-unit>
       <trans-unit id="flexforms_general.selectedList" xml:space="preserve" approved="yes">
 				<source>List of articles</source>
 			<target state="final">Список статей</target></trans-unit>
@@ -338,9 +368,18 @@
       <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve" approved="yes">
 				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
 			<target state="final">Скрыть дерево страниц для модуля администрирования. Для упрощения пользования, скройте дерево страниц в модуле администрирования.</target></trans-unit>
+      <trans-unit id="extmng.mediaPreview" xml:space="preserve" approved="yes">
+				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
+			<target state="final">Показывать миниатюры в модуле внутреннего интерфейса Список: если этот параметр включен, модуль список будет отображать миниатюры элементов мультимедиа.</target></trans-unit>
       <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve" approved="yes">
 				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
 			<target state="final">Расширенная конфигурация предварительного просмотра для файлов мультимедиа. Если этот параметр включен, для редакторов доступно больше параметров, определяющих, где должен отображаться элемент мультимедиа.</target></trans-unit>
+      <trans-unit id="extmng.slugBehaviour" xml:space="preserve" approved="yes">
+				<source>Slug behaviour: uniqueInSite: The same slug can be used for news in different sites. Use this setting *only* if no news records are shared between sites. "unique" means that same news title will lead to different slug names.</source>
+			<target state="final">Поведение части пути: uniqueInSite: та же часть может использоваться для новостей на разных сайтах. Используйте эту настройку *только* если новости не являются общими для сайтов. "unique" означает, что тот же заголовок новости будет выдаваться под разными частями пути к странице.</target></trans-unit>
+      <trans-unit id="extmng.pageTreePluginPreview" xml:space="preserve" approved="yes">
+				<source>Plugin preview in page tree: If enabled pages with news plugins are highlighted by showing the plugin icon as status information [TYPO3 13 only]</source>
+			<target state="final">Предварительный просмотр дополнений в дереве страниц: если включено, страницы с дополнением новости выделяются, показывая значок дополнения в качестве информации о состоянии [только TYPO3 13]</target></trans-unit>
       <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
 				<source>There are no languages available, so nothing to choose.</source>
 			<target state="final">Нет доступных языков, так что выбрать нечего.</target></trans-unit>
@@ -580,6 +619,50 @@
       <trans-unit id="hiddenContentElements.description" approved="yes">
         <source>Content elements are hidden in sys folders of type "news"!</source>
         <target state="final">Элементы содержимого скрыты в системных папках типа "новости"!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.title" approved="yes">
+        <source>Improved editing of content elements</source>
+        <target state="final">Улучшено редактирование элементов содержимого</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.lead" approved="yes">
+        <source>The extension EXT:news_content_elements can improve the handling of content elements within a news record drastically.</source>
+        <target state="final">Расширение EXT:news_content_elements может значительно улучшить обработку элементов содержимого в записи новостей.</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line1" approved="yes">
+        <source>Easy editing experience</source>
+        <target state="final">Простое редактирование</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line2" approved="yes">
+        <source>Instead of using the inline relation, editors can now use the familiar Page Module to add any content element (like Text with media elements) inside their news article.</source>
+        <target state="final">Вместо встроенных связей редакторы теперь могут использовать привычный модуль «Страница», чтобы добавлять в новостную статью любой элемент из материалов (например, текст с медиаэлементами).</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line3" approved="yes">
+        <source>Better stories, same workflow</source>
+        <target state="final">Better stories, same workflow</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line4" approved="yes">
+        <source>This gives editors the freedom to create richer, more engaging news articles while continuing to work within the familiar News module.</source>
+        <target state="final">Это дает редакторам возможность создавать более содержательные и увлекательные новостные статьи, не выходя за рамки привычного модуля «Новости».</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line5" approved="yes">
+        <source>Available as an add-on!</source>
+        <target state="final">Доступно как дополнение!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.line6" approved="yes">
+        <source>This feature is provided as a payed add-on for EXT:news!</source>
+        <target state="final">Эта функция предоставляется как платное дополнение для EXT:news!</target>
+      </trans-unit>
+      <trans-unit id="newsContentElement.preview.modal.link" approved="yes">
+        <source>Details &amp; Purchase information</source>
+        <target state="final">Подробная информация и условия покупки</target>
+      </trans-unit>
+      <trans-unit id="pluginPreview.global.detailPid" approved="yes">
+        <source>Global set pageId for single news display</source>
+        <target state="final">Глобальная установка pageId для отображения одной новости</target>
+      </trans-unit>
+      <trans-unit id="recordLinks.label" approved="yes">
+        <source>News records</source>
+        <target state="final">Записи новостей</target>
       </trans-unit>
     </body>
   </file>
