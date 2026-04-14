@@ -27,6 +27,7 @@ foreach ([
     'ext-news-amazon' => 'donation_amazon.svg',
     'ext-news-doublecheck' => 'double_check.svg',
     'ext-news-module-administration' => 'module_administration.svg',
+    'ext-news-module-administration-v14' => 'module_administration-v14.svg',
     'ext-news-addon' => 'addon.svg',
 ] as $identifier => $path) {
     $iconList[$identifier] = [
