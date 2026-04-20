@@ -244,6 +244,9 @@ class NewsRepository extends AbstractDemandedRepository
         // Id list
         $idList = $demand->getIdList();
         if ($idList) {
+            $query->getQuerySettings()->setRespectStoragePage(false);
+            $query->getQuerySettings()->setRespectSysLanguage(false);
+            $query->getQuerySettings()->setLanguageOverlayMode(true);
             $constraints['idList'] = $query->in('uid', GeneralUtility::intExplode(',', $idList, true));
         }
 
