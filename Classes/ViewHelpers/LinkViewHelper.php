@@ -200,7 +200,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
                 }
             }
 
-            if (!$detailPid && $this->renderingContext->hasAttribute(ServerRequestInterface::class)) {
+            if (!$detailPid && $this->renderingContext?->hasAttribute(ServerRequestInterface::class)) {
                 $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
                 $detailPid = $request->getAttribute('routing')->getPageId();
             }
