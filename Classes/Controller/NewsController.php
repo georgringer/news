@@ -34,6 +34,7 @@ use GeorgRinger\NumberedPagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
+use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -86,12 +87,10 @@ class NewsController extends NewsBaseController
             $this->request = $this->request->withFormat($this->settings['format']);
         }
         // Only do this in Frontend Context
-        if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+        if (ApplicationType::fromRequest($this->request)->isFrontend()) {
             // We only want to set the tag once in one request, so we have to cache that statically if it has been done
             static $cacheTagsSet = false;
 
-            /** @var $typoScriptFrontendController \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
-            $typoScriptFrontendController = $GLOBALS['TSFE'];
             if (!$cacheTagsSet) {
                 $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_news'));
                 $cacheTagsSet = true;
@@ -457,7 +456,7 @@ class NewsController extends NewsBaseController
         $statistics = $this->newsRepository->countByDate($demand);
 
         $assignedValues = [
-            'listPid' => ($this->settings['listPid'] ?: $GLOBALS['TSFE']->id),
+            'listPid' => ($this->settings['listPid'] ?: $this->request->getAttribute('routing')->getPageId()),
             'dateField' => $dateField,
             'data' => $statistics,
             'news' => $newsRecords,
