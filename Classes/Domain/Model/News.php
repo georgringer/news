@@ -81,11 +81,11 @@ class News extends AbstractEntity
 
     /** @var ObjectStorage<News> */
     #[Lazy]
-    protected $related;
+    protected ObjectStorage $related;
 
     /** @var ObjectStorage<News> */
     #[Lazy]
-    protected $relatedFrom;
+    protected ObjectStorage $relatedFrom;
 
     /**
      * Fal related files
@@ -117,7 +117,7 @@ class News extends AbstractEntity
      * @var ObjectStorage<FileReference>
      */
     #[Lazy]
-    protected $falMedia;
+    protected ObjectStorage $falMedia;
 
     /**
      * Fal media items with showinpreview set
