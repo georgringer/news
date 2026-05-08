@@ -664,6 +664,18 @@ TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Fe
         <source>News records</source>
         <target state="final">News-Datensätze</target>
       </trans-unit>
+      <trans-unit id="wizard.step.basics" approved="yes">
+        <source>Basic Information</source>
+        <target state="final">Grundlegende Information</target>
+      </trans-unit>
+      <trans-unit id="wizard.step.content" approved="yes">
+        <source>Content</source>
+        <target state="final">Inhalt</target>
+      </trans-unit>
+      <trans-unit id="wizard.step.meta" approved="yes">
+        <source>Meta &amp; Categories</source>
+        <target state="final">Meta &amp; Kategorien</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
