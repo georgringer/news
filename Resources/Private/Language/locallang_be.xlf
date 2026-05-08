@@ -644,6 +644,15 @@
              <trans-unit id="recordLinks.label">
                  <source>News records</source>
              </trans-unit>
+             <trans-unit id="wizard.step.basics">
+                 <source>Basic Information</source>
+             </trans-unit>
+             <trans-unit id="wizard.step.content">
+                 <source>Content</source>
+             </trans-unit>
+             <trans-unit id="wizard.step.meta">
+                 <source>Meta &amp; Categories</source>
+             </trans-unit>
          </body>
     </file>
 </xliff>
