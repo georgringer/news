@@ -659,6 +659,18 @@
         <source>News records</source>
         <target>crwdns377728:0crwdne377728:0</target>
       </trans-unit>
+      <trans-unit id="wizard.step.basics">
+        <source>Basic Information</source>
+        <target>crwdns409444:0crwdne409444:0</target>
+      </trans-unit>
+      <trans-unit id="wizard.step.content">
+        <source>Content</source>
+        <target>crwdns409446:0crwdne409446:0</target>
+      </trans-unit>
+      <trans-unit id="wizard.step.meta">
+        <source>Meta &amp; Categories</source>
+        <target>crwdns409448:0crwdne409448:0</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
