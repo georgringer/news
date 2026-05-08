@@ -664,6 +664,18 @@
         <source>News records</source>
         <target state="final">Nyhedselementer</target>
       </trans-unit>
+      <trans-unit id="wizard.step.basics" approved="yes">
+        <source>Basic Information</source>
+        <target state="final">Grundlæggende oplysninger</target>
+      </trans-unit>
+      <trans-unit id="wizard.step.content" approved="yes">
+        <source>Content</source>
+        <target state="final">Indhold</target>
+      </trans-unit>
+      <trans-unit id="wizard.step.meta" approved="yes">
+        <source>Meta &amp; Categories</source>
+        <target state="final">Meta &amp; kategorier</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
