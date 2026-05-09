@@ -158,7 +158,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
     protected function defineUrl(array $data): array
     {
         // @extensionScannerIgnoreLine
-        $pageId = $this->config['url']['pageId'] ?? $GLOBALS['TSFE']->id;
+        $pageId = $this->config['url']['pageId'] ?? $this->request->getAttribute('routing')->getPageId();
         if (($this->config['url']['useCategorySinglePid'] ?? false) && $pageIdFromCategory = $this->getSinglePidFromCategory($data['data']['uid'])) {
             $pageId = $pageIdFromCategory;
         }
