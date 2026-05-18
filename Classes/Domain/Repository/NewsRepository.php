@@ -369,6 +369,8 @@ class NewsRepository extends AbstractDemandedRepository
      */
     public function countByDate(DemandInterface $demand): array
     {
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_news_domain_model_news');
         $data = [];
         $sql = $this->findDemandedRaw($demand);
 
@@ -377,10 +379,8 @@ class NewsRepository extends AbstractDemandedRepository
 
         // Get the month/year into the result
         $field = $demand->getDateField();
-        $field = empty($field) ? 'datetime' : $field;
+        $field = $connection->quoteIdentifier(empty($field) ? 'datetime' : $field);
 
-        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getConnectionForTable('tx_news_domain_model_news');
         $isPostgres = $connection->getDatabasePlatform() instanceof PostgreSQLPlatform;
         if ($isPostgres) {
             $sql = 'SELECT count(*), date_trunc(\'year\', to_timestamp(' . $field . '/1)::date) as _year, date_trunc(\'month\', to_timestamp(' . $field . '/1)::date)  as _MONTH 

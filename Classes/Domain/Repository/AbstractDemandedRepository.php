@@ -88,10 +88,11 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
         $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
         $queryParameters = $queryBuilder->getParameters();
+        $connection = $queryBuilder->getConnection();
         $params = [];
         foreach ($queryParameters as $key => $value) {
             // prefix array keys with ':'
-            $params[':' . $key] = "'" . $value . "'";
+            $params[':' . $key] = $connection->quote($value);
             unset($params[$key]);
         }
         // replace placeholders with real values
