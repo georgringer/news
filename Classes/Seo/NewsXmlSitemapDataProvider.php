@@ -144,7 +144,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      */
     public function getItems(): array
     {
-        return array_map([$this, 'defineUrl'], $this->items);
+        return array_map($this->defineUrl(...), $this->items);
     }
 
     /**
