@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use GeorgRinger\News\Controller\AdministrationController;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -12,7 +13,7 @@ $configuration = GeneralUtility::makeInstance(
 );
 
 if ($configuration->getShowAdministrationModule() && !ExtensionManagementUtility::isLoaded('news_administration')) {
-    $version = (new \TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion();
+    $version = (new Typo3Version())->getMajorVersion();
     return [
         'web_newsAdministration' => [
             'parent' => 'web',
