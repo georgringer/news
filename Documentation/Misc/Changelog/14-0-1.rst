@@ -1,0 +1,30 @@
+14.0.1 - 10th December 2025
+===========================
+
+
+Breaking changes
+-----------------
+
+No breaking changes
+
+
+Features
+--------
+
+No features
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2025-12-09 [BUGFIX] Replace last usages of TSFE (Commit 0a4b07f7 by Georg Ringer)
+    2025-12-09 [BUGFIX] Remove wrong namespace declaration (Commit a5af63de by Georg Ringer)
+    2025-12-09 [BUGFIX] Mark AddNewsToMenuProcessor as public (Commit f7b8c25c by Stefan Froemken)
+    2025-12-09 [BUGFIX] Use PageRepository instead of TSFE (Commit 5d4633d2 by Stefan Froemken)
+    2025-12-08 Fix line endings (Commit 73a92eba by Marco Kuprat)
+    2025-12-05 [BUGFIX] Fix additionalAttributes in LinkViewHelper (2752) (Commit 7e7c7082 by Marco Kuprat)
+    2025-12-06 [fix] Tag based viewhelpers can receive arbitrary attributes, additional fix for #2752 (Commit 0648bead by Thomas Rawiel)
+    2025-12-02 [BUGFIX] Match composer description with v14 title handling (Commit e52fa187 by Eric Harrer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

@@ -20,7 +20,7 @@
 </f:if>
 
 <f:if condition="{ogImage}">
-	<f:variable name="ogImagePath" value="{f:uri.image(src:'{ogImage.uid}', treatIdAsReference:1, maxWidth:'1200')}" />
+	<f:variable name="ogImagePath" value="{f:uri.image(image:'{ogImage}', maxWidth:'1200')}" />
 	<n:metaTag
 		property="og:image"
 		content="{ogImagePath}"

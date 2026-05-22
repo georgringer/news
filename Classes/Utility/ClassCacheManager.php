@@ -98,6 +98,7 @@ class ClassCacheManager
                 $cacheEntryIdentifier = 'tx_news_' . strtolower(str_replace('/', '_', $key));
                 try {
                     $this->classCache->set($cacheEntryIdentifier, $code);
+                    GeneralUtility::makeInstance(CacheManager::class)->getCache('extbase')->flush();
                 } catch (\Exception $e) {
                     throw new \Exception($e->getMessage(), 2006286512);
                 }

@@ -11,16 +11,17 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\DataProcessing;
 
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Add the current news record to any menu, e.g. breadcrumb
@@ -28,8 +29,13 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  * 20 = add-news-to-menu
  * 20.menus = breadcrumbMenu,specialMenu
  */
+#[Autoconfigure(public: true)]
 class AddNewsToMenuProcessor implements DataProcessorInterface
 {
+    public function __construct(
+        protected readonly PageRepository $pageRepository,
+    ) {}
+
     public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData): array
     {
         if (isset($processorConfiguration['if.']) && !$cObj->checkIf($processorConfiguration['if.'])) {
@@ -77,7 +83,11 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
     {
         /** @var PageArguments $routing */
         $routing = $GLOBALS['TYPO3_REQUEST']->getAttribute('routing');
-        $newsId = (int)($routing->getArguments()['tx_news_pi1']['news'] ?? 0);
+        $newsId = (int)(
+            $routing->getArguments()['tx_news_pi1']['news']
+            ?? $routing->getArguments()['tx_news_pi1']['news_preview']
+            ?? 0
+        );
 
         if ($newsId) {
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -91,7 +101,11 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
                 ->executeQuery()->fetchAssociative();
 
             if ($row) {
-                $row = $this->getTsfe()->sys_page->getLanguageOverlay('tx_news_domain_model_news', $row, $this->getCurrentLanguageAspect());
+                $row = $this->pageRepository->getLanguageOverlay(
+                    'tx_news_domain_model_news',
+                    $row,
+                    $this->getCurrentLanguageAspect()
+                );
             }
 
             if (is_array($row) && !empty($row)) {
@@ -120,10 +134,5 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
     protected function getCurrentLanguageAspect(): LanguageAspect
     {
         return GeneralUtility::makeInstance(Context::class)->getAspect('language');
-    }
-
-    protected function getTsfe(): TypoScriptFrontendController
-    {
-        return $GLOBALS['TSFE'];
     }
 }

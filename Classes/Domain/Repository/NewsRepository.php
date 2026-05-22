@@ -21,6 +21,7 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Database\Query\Restriction\FrontendRestrictionContainer;
 use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface;
@@ -352,6 +353,8 @@ class NewsRepository extends AbstractDemandedRepository
      */
     public function countByDate(DemandInterface $demand): array
     {
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_news_domain_model_news');
         $data = [];
         $sql = $this->findDemandedRaw($demand);
 
@@ -360,10 +363,8 @@ class NewsRepository extends AbstractDemandedRepository
 
         // Get the month/year into the result
         $field = $demand->getDateField();
-        $field = empty($field) ? 'datetime' : $field;
+        $field = $connection->quoteIdentifier(empty($field) ? 'datetime' : $field);
 
-        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getConnectionForTable('tx_news_domain_model_news');
         $isPostgres = $connection->getDatabasePlatform() instanceof PostgreSQLPlatform;
         $isSqlite = $connection->getDatabasePlatform() instanceof SQLitePlatform;
         if ($isPostgres) {
@@ -384,8 +385,19 @@ from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
         }
 
         if (ApplicationType::fromRequest($GLOBALS['TYPO3_REQUEST'])->isFrontend()) {
-            // @extensionScannerIgnoreLine
-            $sql .= $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
+            $queryBuilder = $connection->createQueryBuilder();
+            $queryBuilder->getRestrictions()->removeAll();
+            $queryBuilder->getRestrictions()->add(
+                GeneralUtility::makeInstance(FrontendRestrictionContainer::class)
+            );
+            $queryBuilder->from('tx_news_domain_model_news');
+
+            $enableFieldsSql = (string)$queryBuilder
+                ->getRestrictions()
+                ->buildExpression(['tx_news_domain_model_news' => 'tx_news_domain_model_news'], $queryBuilder->expr());
+            if ($enableFieldsSql !== '') {
+                $sql .= ' AND ' . $enableFieldsSql;
+            }
         } else {
             $expressionBuilder = $connection
                 ->createQueryBuilder()

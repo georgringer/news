@@ -13,6 +13,7 @@ namespace GeorgRinger\News\Hooks;
 
 use GeorgRinger\News\Event\PluginPreviewSummaryEvent;
 use GeorgRinger\News\Utility\TemplateLayout;
+use TYPO3\CMS\Backend\Preview\PreviewRendererInterface;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
@@ -22,6 +23,7 @@ use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteSettings;
@@ -34,7 +36,7 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 /**
  * Render selected options of plugin in Web>Page module
  */
-class PluginPreviewRenderer extends StandardContentPreviewRenderer
+class PluginPreviewRenderer implements PreviewRendererInterface
 {
     protected const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
     protected const SETTINGS_IN_PREVIEW = 7;
@@ -55,8 +57,24 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
         protected readonly IconFactory $iconFactory,
         protected readonly UriBuilder $backendUriBuilder,
         protected readonly EventDispatcher $eventDispatcher,
+        protected readonly StandardContentPreviewRenderer $standardContentPreviewRenderer,
     ) {
         $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
+    }
+
+    public function renderPageModulePreviewHeader(GridColumnItem $item): string
+    {
+        return $this->standardContentPreviewRenderer->renderPageModulePreviewHeader($item);
+    }
+
+    public function renderPageModulePreviewFooter(GridColumnItem $item): string
+    {
+        return $this->standardContentPreviewRenderer->renderPageModulePreviewFooter($item);
+    }
+
+    public function wrapPageModulePreview(string $previewHeader, string $previewContent, GridColumnItem $item): string
+    {
+        return $this->standardContentPreviewRenderer->wrapPageModulePreview($previewHeader, $previewContent, $item);
     }
 
     public function renderPageModulePreviewContent(GridColumnItem $item): string
@@ -615,4 +633,10 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
     {
         return BackendUtilityCore::getRecord($table, $id);
     }
+
+    protected function getLanguageService(): LanguageService
+    {
+        return $GLOBALS['LANG'];
+    }
+
 }

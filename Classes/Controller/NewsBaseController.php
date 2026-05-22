@@ -13,10 +13,13 @@ use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\View\ViewFactoryData;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Frontend\Cache\CacheInstruction;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Frontend\Page\PageInformation;
 
 class NewsBaseController extends ActionController
 {
@@ -25,8 +28,11 @@ class NewsBaseController extends ActionController
         $contentObjectData = $this->request->getAttribute('currentContentObject');
         $view->assign('contentObjectData', $contentObjectData ? $contentObjectData->data : null);
         $view->assign('emConfiguration', GeneralUtility::makeInstance(EmConfiguration::class));
-        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-            $view->assign('pageData', $GLOBALS['TSFE']->page);
+
+        /** @var PageInformation $pageInformation */
+        $pageInformation = $this->request->getAttribute('frontend.page.information');
+        if ($pageInformation !== null) {
+            $view->assign('pageData', $pageInformation->getPageRecord());
         }
     }
 
@@ -76,20 +82,23 @@ class NewsBaseController extends ActionController
             case 'showStandaloneTemplate':
                 $statusCode = (int)($options[2] ?? 404);
 
-                $this->getTypoScriptFrontendController()->set_no_cache('News record not found');
+                $cacheInstruction = $this->request->getAttribute('frontend.cache.instruction', new CacheInstruction());
+                $cacheInstruction->disableCache('News record not found');
 
-                $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
-                $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($options[1]));
+                if (class_exists(StandaloneView::class)) {
+                    $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
+                    $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($options[1]));
+                } else {
+                    $viewFactoryData = new ViewFactoryData(
+                        templatePathAndFilename: $options[1]
+                    );
+                    $standaloneTemplate = GeneralUtility::makeInstance(ViewFactoryInterface::class)->create($viewFactoryData);
+                }
 
                 return $this->responseFactory->createResponse($statusCode)
                     ->withHeader('Content-Type', 'text/html; charset=utf-8')
                     ->withBody($this->streamFactory->createStream($standaloneTemplate->render()));
         }
         return null;
-    }
-
-    protected function getTypoScriptFrontendController(): TypoScriptFrontendController
-    {
-        return $GLOBALS['TSFE'];
     }
 }

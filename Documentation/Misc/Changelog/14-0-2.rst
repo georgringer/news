@@ -1,0 +1,34 @@
+14.0.2 - 17th April 2026
+========================
+
+
+Breaking changes
+-----------------
+
+No breaking changes
+
+
+Features
+--------
+
+No features
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2026-04-14 [BUGFIX] Register icon (Commit d8308623 by Georg Ringer)
+    2026-04-14 [TASK] Add v14 admin module icon (Commit a055224c by Georg Ringer)
+    2026-04-14 [DOC] Update version constraints of news_content_elements (Commit 9694e0b5 by Georg Ringer)
+    2026-04-04 Use image object for creating ogImagePath (Commit 11d47606 by Andreas Kießling)
+    2026-02-27 [BUGFIX] Ensure news datetime defaults are converted in FormEngine (Commit b8a2e8b6 by Eric Harrer)
+    2026-03-13 [TASK]Add new AsAllowedCallable (Commit 0d4fbdef by Tobias Quadflieg)
+    2026-02-13 [BUGFIX] Make `mailto:` link work in news administration module (Commit 6649cf59 by Elias Häußler)
+    2026-02-03 [BUGFIX] Don't extend plugin preview from StandardContentPreviewRenderer (Commit 334c2b80 by Georg Ringer)
+    2026-01-29 [BUGFIX] Replace PageRepository->enableFields usage #2769 (Commit 64cc93ff by Georg Ringer)
+    2026-01-20 [BUGFIX] Remove inline styles from icons #2767 (Commit 39dc1452 by Georg Ringer)
+    2026-01-08 Add support for news preview in AddNewsToMenuProcessor (Commit 04d0d77d by sdelcroix)
+    2025-12-22 [TASK] Add table-striped to plugin preview data rendering (Commit ab119c00 by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
