@@ -73,10 +73,11 @@ Create the file :file:`ext_tables.sql` in the root of the extension directory wi
 .. code-block:: sql
 
 
-   # Table structure for table 'tx_news_domain_model_news '
+   # Table structure for table 'tx_news_domain_model_news'
    #
    CREATE TABLE tx_news_domain_model_news (
-      location_simple varchar(255) DEFAULT '' NOT NULL
+      location_simple varchar(255) DEFAULT '' NOT NULL,
+      other_categories int(11) DEFAULT '0' NOT NULL
    );
 
 
@@ -84,8 +85,8 @@ TCA definition
 """"""""""""""
 The TCA defines which tables and fields are available in the backend and how those are rendered (e.g. as input field, textarea, select field, ...).
 
-In this example, the table :sql:`tx_news_domain_model_news` will be extended by a simple input field.
-Therefore, create the file :file:`Configuration/TCA/Overrides/tx_news_domain_model_news.php`.
+In this example, the table :sql:`tx_news_domain_model_news` will be extended by a simple input field and a
+2nd category relation. Create the file :file:`Configuration/TCA/Overrides/tx_news_domain_model_news.php`.
 
 .. code-block:: php
 
@@ -94,17 +95,22 @@ Therefore, create the file :file:`Configuration/TCA/Overrides/tx_news_domain_mod
 
    $fields = [
       'location_simple' => [
-         'exclude' => 1,
          'label' => 'My location',
          'config' => [
             'type' => 'input',
             'size' => 15
          ],
-      ]
+      ],
+      'other_categories' => [
+         'label' => 'Other categories',
+         'config' => [
+            'type' => 'category',
+         ],
+      ],
    ];
 
    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_news_domain_model_news', $fields);
-   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'location_simple');
+   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'location_simple,other_categories');
 
 
 Install the extension
@@ -144,20 +150,63 @@ As the class :php:`Domain/Model/News` should be extended, create a file at the s
 
    namespace GeorgRinger\Eventnews\Domain\Model;
 
+   use GeorgRinger\News\Domain\Model\Category;
+   use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+   use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
    class News extends \GeorgRinger\News\Domain\Model\News
    {
-      protected string $locationSimple;
+      protected string $locationSimple = '';
+
+      /**
+       * @var ?ObjectStorage<Category>
+       */
+      #[Lazy]
+      protected ?ObjectStorage $otherCategories = null;
+
+      public function __construct()
+      {
+         $this->otherCategories = new ObjectStorage();
+      }
 
       public function getLocationSimple(): string
       {
          return $this->locationSimple;
       }
 
-      public function setLocationSimple(string $locationSimple)
+      public function setLocationSimple(string $locationSimple): void
       {
          $this->locationSimple = $locationSimple;
       }
+
+      /**
+       * @return ?ObjectStorage<Category>
+       */
+      public function getOtherCategories(): ?ObjectStorage
+      {
+         return $this->otherCategories;
+      }
+
+      /**
+       * @param ObjectStorage<Category> $otherCategories
+       */
+      public function setOtherCategories(ObjectStorage $otherCategories): void
+      {
+         $this->otherCategories = $otherCategories;
+      }
    }
+
+.. important::
+
+   Typed ObjectStorage properties **must** be declared with a default value of :php:`= null`. Without it, the
+   property is in PHP's "uninitialized" state. Since Extbase does not call :php:`__construct()` when loading
+   entities from the database, accessing an uninitialized typed property will throw:
+
+   ``Typed property ... must not be accessed before initialization``
+
+   The proxy class generator merges all :php:`__construct()` methods from extending classes into a single
+   combined constructor, so your constructor code **will** run when creating new objects. But for entities
+   loaded from the database, the :php:`= null` default is what keeps the property safe.
 
 3) Exclude the class from dependecy injection
 ---------------------------------------------
