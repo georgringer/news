@@ -233,7 +233,17 @@ As the class you define will be added to a new generated class, the class needs 
 
    If you reference other objects, you must define the full namespace at the location and don't use namespace imports (with "use")!
 
-Clear system cache
-^^^^^^^^^^^^^^^^^^
-Now it is time to clear the :guilabel:`system cache`, either via the dropdown in the backend or in the module :guilabel:`Admin Tools`.
+Rebuild proxy classes
+^^^^^^^^^^^^^^^^^^^^^
+After changes to the extending class or its registration, rebuild the proxy classes:
+
+.. code-block:: bash
+
+   bin/typo3 news:rebuildProxyClasses
+
+This regenerates the merged class files in :file:`var/cache/code/news/`. You should run this command
+after every change to the news model or any extension that extends it.
+
+Alternatively, clearing the :guilabel:`system cache` via the backend or the :guilabel:`Admin Tools` module
+will also trigger a rebuild on the next request.
 
