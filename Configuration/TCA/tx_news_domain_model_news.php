@@ -576,6 +576,17 @@ $tx_news_domain_model_news = [
     'types' => [
         // default news
         '0' => [
+            'wizardSteps' => [
+                'basics' => [
+                    'title' => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:wizard.step.basics',
+                    'fields' => ['title', 'path_segment'],
+                ],
+                'content' => [
+                    'title' => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:wizard.step.content',
+                    'fields' => ['datetime', 'teaser'],
+                    'after' => ['basics'],
+                ],
+            ],
             'showitem' => '
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     --palette--;;paletteDate,
@@ -604,6 +615,12 @@ $tx_news_domain_model_news = [
         ],
         // internal url
         '1' => [
+            'wizardSteps' => [
+                'basics' => [
+                    'title' => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:wizard.step.basics',
+                    'fields' => ['title', 'path_segment', 'internalurl'],
+                ],
+            ],
             'showitem' => '
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     internalurl,
@@ -630,6 +647,12 @@ $tx_news_domain_model_news = [
         ],
         // external url
         '2' => [
+            'wizardSteps' => [
+                'basics' => [
+                    'title' => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:wizard.step.basics',
+                    'fields' => ['title', 'path_segment', 'externalurl'],
+                ],
+            ],
             'showitem' => '
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     externalurl,
