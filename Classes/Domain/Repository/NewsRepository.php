@@ -364,6 +364,8 @@ class NewsRepository extends AbstractDemandedRepository
      */
     public function countByDate(DemandInterface $demand): array
     {
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_news_domain_model_news');
         $data = [];
         $sql = $this->findDemandedRaw($demand);
 
@@ -372,16 +374,13 @@ class NewsRepository extends AbstractDemandedRepository
 
         // Get the month/year into the result
         $field = $demand->getDateField();
-        $field = empty($field) ? 'datetime' : $field;
+        $field = $connection->quoteIdentifier(empty($field) ? 'datetime' : $field);
 
         $sql = 'SELECT MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND ) AS "_Month",' .
             ' YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND) AS "_Year" ,' .
             ' count(MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND )) as count_month,' .
             ' count(YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND)) as count_year' .
             ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
-
-        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getConnectionForTable('tx_news_domain_model_news');
 
         if (TYPO3_MODE === 'FE') {
             $sql .= $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
