@@ -124,7 +124,6 @@ class NewsController extends NewsBaseController
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
         /* @var $demand NewsDemand */
-        $demand = GeneralUtility::makeInstance($class, $settings);
         if (!is_a($class, NewsDemand::class, true)) {
             throw new \UnexpectedValueException(
                 sprintf(
