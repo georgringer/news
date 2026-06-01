@@ -95,11 +95,12 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
         }
 
         $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
+        $connection = $queryBuilder->getConnection();
         $queryParameters = $queryBuilder->getParameters();
         $params = [];
         foreach ($queryParameters as $key => $value) {
             // prefix array keys with ':'
-            $params[':' . $key] = (is_numeric($value)) ? $value : "'" . $value . "'"; //all non numeric values have to be quoted
+            $params[':' . $key] = (is_numeric($value)) ? $value : $connection->quote($value); //all non numeric values have to be quoted
             unset($params[$key]);
         }
         // replace placeholders with real values

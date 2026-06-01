@@ -124,8 +124,7 @@ class NewsController extends NewsBaseController
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
         /* @var $demand NewsDemand */
-        $demand = GeneralUtility::makeInstance($class, $settings);
-        if (!$demand instanceof NewsDemand) {
+        if (!is_a($class, NewsDemand::class, true)) {
             throw new \UnexpectedValueException(
                 sprintf(
                     'The demand object must be an instance of %s, but %s given!',
@@ -135,7 +134,7 @@ class NewsController extends NewsBaseController
                 1423157953
             );
         }
-
+        $demand = GeneralUtility::makeInstance($class, $settings);
         $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'] ?? '', true));
         $demand->setCategoryConjunction((string)($settings['categoryConjunction'] ?? ''));
         $demand->setIncludeSubCategories((bool)($settings['includeSubCategories'] ?? false));
