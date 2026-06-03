@@ -19,14 +19,14 @@
     <f:comment>Category</f:comment>
     <f:if condition="{newsItem.firstCategory}">
         | <i class="fas fa-folder-open me-1"></i>
-        <span class="label label-info">{newsItem.firstCategory.title}</span>
+        <span class="label label-info">{newsItem.firstCategory -> f:render.text(field: 'title')}</span>
     </f:if>
 
     <f:comment>Tags</f:comment>
     <f:if condition="{newsItem.tags}">
         | <i class="fas fa-tags me-1"></i> <span class="news-list-tags me-1" itemprop="keywords">
             <f:for as="tag" each="{newsItem.tags}">
-                <span class="label label-info me-1">{tag.title}</span>
+                <span class="label label-info me-1">{tag -> f:render.text(field: 'title')}</span>
             </f:for>
 	    </span>
     </f:if>

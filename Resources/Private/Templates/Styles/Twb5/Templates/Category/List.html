@@ -24,7 +24,7 @@
 				<div class="btn-group me-2" role="group">
 					<f:link.page title="{category.item.title}" pageUid="{settings.listPid}"
 								 additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">
-						<button type="button" class="btn btn-primary"><i class="fas fa-folder-open me-1"></i> {category.item.title}</button>
+						<button type="button" class="btn btn-primary"><i class="fas fa-folder-open me-1"></i> {category.item -> f:render.text(field: 'title')}</button>
 					</f:link.page>
 
 					<f:link.page title="{category.item.title}" pageUid="{settings.listPid}"
@@ -37,7 +37,7 @@
 				<div class="btn-group me-2" role="group">
 					<f:link.page title="{category.item.title}" pageUid="{settings.listPid}"
 								 additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">
-						<button type="button" class="btn btn-primary"><i class="fas fa-folder-open me-1"></i> {category.item.title}</button>
+						<button type="button" class="btn btn-primary"><i class="fas fa-folder-open me-1"></i> {category.item -> f:render.text(field: 'title')}</button>
 					</f:link.page>
 					<f:link.page title="{category.item.title}" pageUid="{settings.listPid}"
 								 additionalParams="{n:multiCategoryLink.arguments(mode:'add',item:category.item.uid,list:overwriteDemand.categories)}">

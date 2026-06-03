@@ -18,12 +18,12 @@
 					<f:if condition="{tag.uid} == {overwriteDemand.tags}">
 						<f:then>
 							<f:link.page title="{tag.title}" class="active" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{tags: tag}}}">
-								{tag.title}
+								{tag -> f:render.text(field: 'title')}
 							</f:link.page>
 						</f:then>
 						<f:else>
 							<f:link.page title="{tag.title}" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{tags: tag}}}">
-								{tag.title}
+								{tag -> f:render.text(field: 'title')}
 							</f:link.page>
 						</f:else>
 					</f:if>

@@ -54,7 +54,7 @@
 				</n:simplePrevNext>
 			</f:if>
 			<div class="header">
-				<h1 itemprop="headline">{newsItem.title}</h1>
+				<h1 itemprop="headline">{newsItem -> f:render.text(field: 'title')}</h1>
 			</div>
 			<div class="footer">
 				<p>
@@ -73,7 +73,7 @@
 						<!-- Tags -->
 						<span class="news-list-tags" itemprop="keywords">
 						<f:for each="{newsItem.tags}" as="tag">
-							{tag.title}
+							{tag -> f:render.text(field: 'title')}
 						</f:for>
 						</span>
 					</f:if>
@@ -81,16 +81,17 @@
 					<f:if condition="{newsItem.author}">
 						<!-- author -->
 						<span class="news-list-author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
-							<f:translate key="author_simple" /> <span itemprop="name">{newsItem.author}</span>
+							<f:translate key="author_simple" /> <span itemprop="name">{newsItem -> f:render.text(field: 'author')}</span>
 						</span>
 					</f:if>
 				</p>
 			</div>
 			<n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
-				<f:if condition="{newsItem.teaser}">
+				<f:variable name="newsItemTeasertext">{newsItem -> f:render.text(field: 'teasertext')}</f:variable>
+				<f:if condition="{newsItemTeasertext}">
 					<!-- teaser -->
 					<div class="teaser-text" itemprop="description">
-						<f:format.html>{newsItem.teaser}</f:format.html>
+						{newsItemTeasertext}
 					</div>
 				</f:if>
 
@@ -103,7 +104,7 @@
 
 				<!-- main text -->
 				<div class="news-text-wrap" itemprop="articleBody">
-					<f:format.html>{newsItem.bodytext}</f:format.html>
+					{newsItem -> f:render.text(field: 'bodytext')}
 				</div>
 			</n:renderMedia>
 
@@ -150,7 +151,7 @@
 								<li>
 									<span class="news-related-news-date"><f:format.date format="{f:translate(key:'dateFormat')}">{related.datetime}</f:format.date></span>
 									<n:link newsItem="{related}" settings="{settings}" title="{related.title}">
-										{related.title}
+										{related -> f:render.text(field: 'title')}
 									</n:link>
 								</li>
 
@@ -192,7 +193,8 @@
 							<f:for each="{newsItem.relatedLinks}" as="relatedLink">
 								<li>
 									<f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}">{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.typolink>
-									<f:if condition="{relatedLink.description}"><span>{relatedLink.description}</span></f:if>
+									<f:variable name="relatedLinkDescription">{relatedLink -> f:render.text(field: 'description')}</f:variable>
+									<f:if condition="{relatedLinkDescription}"><span>{relatedLinkDescription}</span></f:if>
 								</li>
 							</f:for>
 						</ul>
