@@ -162,11 +162,16 @@ As the class :php:`Domain/Model/News` should be extended, create a file at the s
        * @var ?ObjectStorage<Category>
        */
       #[Lazy]
-      protected ?ObjectStorage $otherCategories = null;
+      protected ?ObjectStorage $otherCategories;
 
       public function __construct()
       {
          $this->otherCategories = new ObjectStorage();
+      }
+
+      public function initializeObject(): void
+      {
+         $this->otherCategories = $this->otherCategories ?? new ObjectStorage();
       }
 
       public function getLocationSimple(): string
@@ -198,15 +203,9 @@ As the class :php:`Domain/Model/News` should be extended, create a file at the s
 
 .. important::
 
-   Typed ObjectStorage properties **must** be declared with a default value of :php:`= null`. Without it, the
-   property is in PHP's "uninitialized" state. Since Extbase does not call :php:`__construct()` when loading
-   entities from the database, accessing an uninitialized typed property will throw:
-
-   ``Typed property ... must not be accessed before initialization``
-
-   The proxy class generator merges all :php:`__construct()` methods from extending classes into a single
-   combined constructor, so your constructor code **will** run when creating new objects. But for entities
-   loaded from the database, the :php:`= null` default is what keeps the property safe.
+   The proxy class generator merges all :php:`__construct()` and :php:`initializeObject()` methods from
+   extending classes into single combined methods, so your constructor code **will** run when creating
+   new objects and your object initialization code when loading entities from the database.
 
 3) Exclude the class from dependecy injection
 ---------------------------------------------
