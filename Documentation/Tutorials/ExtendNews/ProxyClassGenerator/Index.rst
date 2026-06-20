@@ -207,8 +207,8 @@ As the class :php:`Domain/Model/News` should be extended, create a file at the s
    extending classes into single combined methods, so your constructor code **will** run when creating
    new objects and your object initialization code when loading entities from the database.
 
-3) Exclude the class from dependecy injection
----------------------------------------------
+3) Exclude the class from dependency injection
+----------------------------------------------
 
 As the class you define will be added to a new generated class, the class needs to be excluded from dependency injection in Configuration/Services.yaml:
 
