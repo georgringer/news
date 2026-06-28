@@ -458,7 +458,6 @@ $tx_news_domain_model_news = [
         ],
         'path_segment' => [
             'label' => $ll . 'tx_news_domain_model_news.path_segment',
-            'displayCond' => 'VERSION:IS:false',
             'config' => [
                 'type' => 'slug',
                 'size' => 50,
