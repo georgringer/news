@@ -366,7 +366,7 @@ class PluginPreviewRenderer implements PreviewRendererInterface
             if ($includeSubcategories) {
                 $this->tableData[] = [
                     $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.includeSubCategories'),
-                    '<i class="fa fa-check"></i>',
+                    $this->iconFactory->getIcon('actions-check', IconSize::SMALL)->render(),
                 ];
             }
         }
@@ -411,7 +411,7 @@ class PluginPreviewRenderer implements PreviewRendererInterface
         if ($hidePagination) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.hidePagination'),
-                '<i class="fa fa-check"></i>',
+                $this->iconFactory->getIcon('actions-check', IconSize::SMALL)->render(),
             ];
         }
     }
@@ -489,7 +489,7 @@ class PluginPreviewRenderer implements PreviewRendererInterface
                 $this->getLanguageService()->sL(
                     self::LLPATH . 'flexforms_additional.disableOverrideDemand'
                 ),
-                '<i class="fa fa-check"></i>',
+                $this->iconFactory->getIcon('actions-check', IconSize::SMALL)->render(),
             ];
         }
     }
