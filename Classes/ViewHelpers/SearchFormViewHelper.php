@@ -9,6 +9,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
@@ -71,13 +72,9 @@ class SearchFormViewHelper extends AbstractFormViewHelper
         $this->registerArgument('fieldNamePrefix', 'string', 'Prefix that will be added to all field names within this form. If not set the prefix will be tx_yourExtension_plugin');
         $this->registerArgument('actionUri', 'string', 'can be used to overwrite the "action" attribute of the form tag');
         $this->registerArgument('objectName', 'string', 'name of the object that is bound to this form. If this argument is not specified, the name attribute of this form is used to determine the FormObjectName');
-        $this->registerTagAttribute('enctype', 'string', 'MIME type with which the form is submitted');
-        $this->registerTagAttribute('method', 'string', 'Transfer type (GET or POST)');
-        $this->registerTagAttribute('name', 'string', 'Name of form');
-        $this->registerTagAttribute('onreset', 'string', 'JavaScript: On reset of the form');
-        $this->registerTagAttribute('onsubmit', 'string', 'JavaScript: On submit of the form');
-        $this->registerTagAttribute('target', 'string', 'Target attribute of the form');
-        $this->registerTagAttribute('novalidate', 'bool', 'Indicate that the form is not to be validated on submit.');
+        $this->registerArgument('method', 'string', 'Transfer type (GET or POST)');
+        $this->registerArgument('name', 'string', 'Name of form');
+        $this->registerArgument('novalidate', 'bool', 'Indicate that the form is not to be validated on submit.');
     }
 
     /**
@@ -123,7 +120,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
             /** @var RenderingContext $renderingContext */
             $renderingContext = $this->renderingContext;
             /** @var RequestInterface $request */
-            $request = $renderingContext->getRequest();
+            $request = $renderingContext->getAttribute(ServerRequestInterface::class);
             /** @var UriBuilder $uriBuilder */
             $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
             $uriBuilder
@@ -300,7 +297,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      */
     protected function getDefaultFieldNamePrefix()
     {
-        $request = $this->renderingContext->getRequest();
+        $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
         if ($this->hasArgument('extensionName')) {
             $extensionName = $this->arguments['extensionName'];
         } else {
