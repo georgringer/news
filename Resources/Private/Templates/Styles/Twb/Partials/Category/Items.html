@@ -5,11 +5,11 @@
 		<f:if condition="{category.shortcut}">
 			<f:then>
 				<f:link.typolink parameter="{category.shortcut}">
-					{category.title}
+					{category -> f:render.text(field: 'title')}
 				</f:link.typolink>
 			</f:then>
 			<f:else>
-				{category.title}
+				{category -> f:render.text(field: 'title')}
 			</f:else>
 		</f:if>
 	</f:for>
