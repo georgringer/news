@@ -13,6 +13,8 @@ use DateTime;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\FileReference;
 use PHPUnit\Framework\Attributes\Test;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
+use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -323,6 +325,60 @@ class CategoryTest extends BaseTestCase
         self::assertSame(
             $value,
             $this->instance->getParentcategory()
+        );
+    }
+
+    #[Test]
+    public function getParentcategoryUidInitiallyReturnsNull(): void
+    {
+        self::assertNull(
+            $this->instance->getParentcategoryUid()
+        );
+    }
+
+    #[Test]
+    public function getParentcategoryUidReturnsUidOfParentcategory(): void
+    {
+        $value = new Category();
+        $value->_setProperty('uid', 123);
+        $this->instance->setParentcategory($value);
+        self::assertSame(
+            123,
+            $this->instance->getParentcategoryUid()
+        );
+    }
+
+    #[Test]
+    public function getParentcategoryUidDoesNotResolveTheLazyLoadingProxy(): void
+    {
+        $dataMapper = $this->getMockBuilder(DataMapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $dataMapper->expects(self::never())->method('fetchRelated');
+        $this->instance->_setProperty(
+            'parentcategory',
+            new LazyLoadingProxy($this->instance, 'parentcategory', 123, $dataMapper)
+        );
+
+        self::assertSame(
+            123,
+            $this->instance->getParentcategoryUid()
+        );
+    }
+
+    #[Test]
+    public function getParentcategoryUidReturnsNullForAnEmptyLazyLoadingProxy(): void
+    {
+        $dataMapper = $this->getMockBuilder(DataMapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->instance->_setProperty(
+            'parentcategory',
+            new LazyLoadingProxy($this->instance, 'parentcategory', 0, $dataMapper)
+        );
+
+        self::assertNull(
+            $this->instance->getParentcategoryUid()
         );
     }
 
