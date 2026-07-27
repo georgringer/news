@@ -211,6 +211,22 @@ class Category extends AbstractEntity
             : $this->parentcategory;
     }
 
+    /**
+     * Uid of the parent category, without loading the parent category itself.
+     *
+     * Use this instead of getParentcategory()->getUid() if only the uid is needed,
+     * as the parent category is a lazy relation and would have to be fetched first.
+     */
+    public function getParentcategoryUid(): ?int
+    {
+        $parentcategory = $this->parentcategory;
+        if ($parentcategory instanceof LazyLoadingProxy) {
+            return $parentcategory->getUid() ?: null;
+        }
+
+        return $parentcategory?->getUid() ?: null;
+    }
+
     public function setParentcategory(Category $category): void
     {
         $this->parentcategory = $category;

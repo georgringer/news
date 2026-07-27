@@ -54,4 +54,29 @@ class CategoryRepositoryTest extends FunctionalTestCase
 
         self::assertEquals('findRecordByImportSource', $category->getTitle());
     }
+
+    #[Test]
+    public function findTreeReturnsNestedCategories(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/sys_category_nested.csv');
+
+        $tree = $this->categoryRepository->findTree([1]);
+
+        self::assertSame([1], array_keys($tree));
+        self::assertSame([2, 5], array_keys($tree[1]['children']));
+        self::assertSame([3, 4], array_keys($tree[1]['children'][2]['children']));
+        self::assertArrayNotHasKey('children', $tree[1]['children'][5]);
+    }
+
+    #[Test]
+    public function findTreeShowsCategoriesWithoutSelectedParentAsRoot(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/sys_category_nested.csv');
+
+        // 2 is a child of 1, but 1 is not part of the tree
+        $tree = $this->categoryRepository->findTree([2]);
+
+        self::assertSame([2], array_keys($tree));
+        self::assertSame([3, 4], array_keys($tree[2]['children']));
+    }
 }
