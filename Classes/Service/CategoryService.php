@@ -85,27 +85,77 @@ class CategoryService
             $result[] = self::cleanIntList($idList);
         }
 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('sys_category');
-        $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
-        $res = $queryBuilder
-            ->select('uid')
-            ->from('sys_category')
-            ->where(
-                $queryBuilder->expr()->in('parent', $queryBuilder->createNamedParameter(array_map(intval(...), explode(',', $idList)), Connection::PARAM_INT_ARRAY))
-            )
-            ->executeQuery();
+        $rootIdList = array_map(intval(...), explode(',', (string)$idList));
+        $childrenByParent = self::fetchChildrenGroupedByParent($rootIdList, $counter);
+        self::addChildrenOfParents($rootIdList, $childrenByParent, $result);
 
-        while ($row = $res->fetchAssociative()) {
-            $counter++;
-            if ($counter > 10000) {
-                GeneralUtility::makeInstance(TimeTracker::class)->setTSlogMessage('EXT:news: one or more recursive categories where found');
-                return implode(',', $result);
-            }
-            $subcategories = self::getChildrenCategoriesRecursive((string)$row['uid'], $counter);
-            $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
-        }
         return implode(',', $result);
+    }
+
+    /**
+     * Fetch all descendants of the given categories, grouped by their parent.
+     *
+     * The categories are collected level by level, so the number of queries depends
+     * on the depth of the category tree instead of on the number of categories.
+     *
+     * @param int[] $parentIdList
+     * @return array<int, int[]> child uids, grouped by their parent uid
+     */
+    private static function fetchChildrenGroupedByParent(array $parentIdList, int $counter): array
+    {
+        $childrenByParent = [];
+        // Categories which are their own ancestor would otherwise be looked up forever
+        $seenIdList = array_fill_keys($parentIdList, true);
+
+        while ($parentIdList !== []) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable('sys_category');
+            $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+            $rows = $queryBuilder
+                ->select('uid', 'parent')
+                ->from('sys_category')
+                ->where(
+                    $queryBuilder->expr()->in('parent', $queryBuilder->createNamedParameter($parentIdList, Connection::PARAM_INT_ARRAY))
+                )
+                ->executeQuery()
+                ->fetchAllAssociative();
+
+            $parentIdList = [];
+            foreach ($rows as $row) {
+                $uid = (int)$row['uid'];
+                if (isset($seenIdList[$uid])) {
+                    continue;
+                }
+                $counter++;
+                if ($counter > 10000) {
+                    GeneralUtility::makeInstance(TimeTracker::class)->setTSlogMessage('EXT:news: one or more recursive categories where found');
+                    return $childrenByParent;
+                }
+                $seenIdList[$uid] = true;
+                $childrenByParent[(int)$row['parent']][] = $uid;
+                $parentIdList[] = $uid;
+            }
+        }
+
+        return $childrenByParent;
+    }
+
+    /**
+     * Append the children of the given categories to the result, depth first,
+     * so that every category is directly followed by its own descendants.
+     *
+     * @param int[] $parentIdList
+     * @param array<int, int[]> $childrenByParent
+     * @param array<int, int|string> $result
+     */
+    private static function addChildrenOfParents(array $parentIdList, array $childrenByParent, array &$result): void
+    {
+        foreach ($parentIdList as $parentId) {
+            foreach ($childrenByParent[$parentId] ?? [] as $uid) {
+                $result[] = $uid;
+                self::addChildrenOfParents([$uid], $childrenByParent, $result);
+            }
+        }
     }
 
     /**
