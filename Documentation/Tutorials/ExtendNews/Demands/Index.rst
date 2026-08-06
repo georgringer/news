@@ -56,6 +56,67 @@ extending EXT:news. Read more about using a demand object in a custom
 controller:
 :ref:`Extension based on EXT:news: FilterController.php <extension_custom_controller>`.
 
+.. _demand_factory:
+
+Building a demand outside of a controller
+=========================================
+
+The service :php:`GeorgRinger\News\Service\NewsDemandFactory` turns a settings
+array - typically the TypoScript settings of a news plugin - into a demand
+object. Use it whenever news records have to be fetched outside of the
+:php:`NewsController`, for example in a ViewHelper, a DataProcessor, a
+middleware or an API endpoint.
+
+The service applies the same rules as the plugin does: it respects
+:ref:`settings.demandClass <tsDemandClass>`, resolves
+:code:`settings.startingpoint` and :code:`settings.recursive` into the storage
+page list and dispatches the
+:php:`\GeorgRinger\News\Event\CreateDemandObjectFromSettingsEvent`. Listeners
+registered for that event therefore also apply to demands built this way.
+
+.. code-block:: php
+
+   <?php
+
+   namespace Vendor\MyNews\Api;
+
+   use GeorgRinger\News\Domain\Repository\NewsRepository;
+   use GeorgRinger\News\Service\NewsDemandFactory;
+
+   class LatestNewsProvider
+   {
+      public function __construct(
+         private readonly NewsDemandFactory $newsDemandFactory,
+         private readonly NewsRepository $newsRepository
+      ) {}
+
+      public function findLatest(int $storagePid): array
+      {
+         $demand = $this->newsDemandFactory->create([
+            'startingpoint' => (string)$storagePid,
+            'orderBy' => 'datetime',
+            'orderDirection' => 'desc',
+            'limit' => 5,
+         ]);
+
+         return $this->newsRepository->findDemanded($demand)->toArray();
+      }
+   }
+
+The second, optional argument of :php:`create()` defines the demand class to
+use when the settings contain no :code:`demandClass` key:
+
+.. code-block:: php
+
+   $demand = $this->newsDemandFactory->create($settings, MyNewsDemand::class);
+
+.. note::
+
+   The protected method :php:`NewsController::createDemandObjectFromSettings()`
+   is deprecated since version 14.1 and only delegates to this service. Custom
+   controllers extending :php:`NewsController` should use the factory or the
+   :php:`CreateDemandObjectFromSettingsEvent` instead of overriding it.
+
 Events
 ======
 
