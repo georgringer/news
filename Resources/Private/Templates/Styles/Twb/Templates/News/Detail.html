@@ -64,9 +64,10 @@
 						<f:for each="{newsItem.mediaNonPreviews}" as="mediaElement">
 							<div class="thumbnail">
 								<f:media file="{mediaElement}" class="img-responsive" />
-								<f:if condition="{mediaElement.description}">
+								<f:variable name="mediaElementDescription">{mediaElement -> f:render.text(field: 'description')}</f:variable>
+								<f:if condition="{mediaElementDescription}">
 									<div class="caption">
-										{mediaElement.description}
+										{mediaElementDescription}
 									</div>
 								</f:if>
 							</div>
@@ -83,16 +84,17 @@
 </f:section>
 
 <f:section name="headline">
-	<h1 itemprop="headline">{newsItem.title}</h1>
+	<h1 itemprop="headline">{newsItem -> f:render.text(field: 'title')}</h1>
 	<f:render partial="General/AdditionalInformation" arguments="{settings:settings,newsItem:newsItem}" />
 </f:section>
 
 <f:section name="inner-content">
 	<n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
-		<f:if condition="{newsItem.teaser}">
+		<f:variable name="newsItemTeaser">{newsItem -> f:render.text(field: 'teaser')}</f:variable>
+		<f:if condition="{newsItemTeaser}">
 			<!-- teaser -->
 			<div class="lead" itemprop="description">
-				<f:format.html>{newsItem.teaser}</f:format.html>
+				{newsItemTeaser}
 			</div>
 		</f:if>
 
@@ -103,7 +105,7 @@
 
 		<!-- main text -->
 		<div class="news-text-wrap" itemprop="articleBody">
-			<f:format.html>{newsItem.bodytext}</f:format.html>
+			{newsItem -> f:render.text(field: 'bodytext')}
 		</div>
 	</n:renderMedia>
 
@@ -147,7 +149,7 @@
 							<f:format.date format="{f:translate(key:'dateFormat')}">{related.datetime}</f:format.date>
 						</span>
 						<n:link newsItem="{related}" settings="{settings}" title="{related.title}">
-							{related.title}
+							{related -> f:render.text(field: 'title')}
 						</n:link>
 					</li>
 
@@ -188,7 +190,8 @@
 				<f:for each="{newsItem.relatedLinks}" as="relatedLink">
 					<li>
 						<f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}">{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.typolink>
-						<f:if condition="{relatedLink.description}"><span>{relatedLink.description}</span>
+						<f:variable name="relatedLinkDescription">{relatedLink -> f:render.text(field: 'description')}</f:variable>
+						<f:if condition="{relatedLinkDescription}"><span>{relatedLinkDescription}</span>
 						</f:if>
 					</li>
 				</f:for>

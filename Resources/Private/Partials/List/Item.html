@@ -11,7 +11,7 @@
 	<div class="header">
 		<h3>
 			<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" itemprop="url">
-				<span itemprop="headline">{newsItem.title}</span>
+				<span itemprop="headline">{newsItem -> f:render.text(field: 'title')}</span>
 			</n:link>
 		</h3>
 	</div>
