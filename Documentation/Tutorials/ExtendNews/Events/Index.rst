@@ -101,6 +101,7 @@ Now create the file ``Classes/EventListener/ModifyDemandRepositoryEventListener.
     {
         public function __invoke(ModifyDemandRepositoryEvent $event) {
             $constraints = $event->getConstraints();
+            $query = $event->getQuery();
             $constraints[] = $query->like('title', '%' . $subject . '%');
             $event->setConstraints($constraints);
         }

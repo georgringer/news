@@ -1,0 +1,32 @@
+14.0.4 - 7th August 2026
+========================
+
+Regular release, please read the following notes carefully.
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2026-08-07 [TASK] Update rector constraints (Commit 82a18672 by Georg Ringer)
+    2026-08-07 [BUGFIX] Adopt failing test (Commit c88d391b by Georg Ringer)
+    2026-04-18 [BUGFIX] There should be no version 14.4 of TYPO3, 14.3 should be fine (Commit e9bca841 by Maik Kempe)
+    2026-07-27 [TASK] Do not load every parent category to build the category tree (Commit 6b5960db by Benni Mack)
+    2026-08-07 [BUGFIX] Adopt failing test (Commit d503d6bd by Georg Ringer)
+    2026-06-20 [DOCS] Fix typo (Commit 7c832695 by Philipp Kitzberger)
+    2026-06-20 [DOCS] Mention initializeObject() in example as well (Commit 9b820d67 by Philipp Kitzberger)
+    2026-05-23 [DOCS] Mention bin/typo3 news:rebuildProxyClasses (Commit 900e06eb by Philipp Kitzberger)
+    2026-05-23 [DOCS] Add example with n:m relationship (Commit 20e434ad by Philipp Kitzberger)
+    2026-06-28 [TASK] Allow path_segment/slug in workspaces (Commit c75cbcbb by Philipp Kitzberger)
+    2026-06-29 [BUGFIX] Render plugin preview check icons via IconFactory (Commit c31dc53e by huh)
+    2026-06-08 [BUGFIX] Missing initialization of $related and $relatedFrom properties (Commit 00621875 by chris)
+    2026-05-26 [TASK] Cleanup di usage (Commit 62f14b5a by Georg Ringer)
+    2026-03-16 [BUGFIX] Respect initializeObject function on extending news model (Commit 01773079 by Can Karadağ)
+    2026-05-24 [BUGFIX] Remove usage of $GLOBALS['TSFE'] (Commit f7f05324 by GM)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
