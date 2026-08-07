@@ -1,7 +1,7 @@
-sys_category,,,,
-,uid,pid,parent,title
-,1,1,0,"Root A"
-,2,1,1,"A-1"
-,3,1,2,"A-1-1"
-,4,1,2,"A-1-2"
-,5,1,1,"A-2"
+sys_category,,,,,
+,uid,pid,parent,sorting,title
+,1,1,0,1,"Root A"
+,2,1,1,2,"A-1"
+,3,1,2,3,"A-1-1"
+,4,1,2,4,"A-1-2"
+,5,1,1,5,"A-2"
