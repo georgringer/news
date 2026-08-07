@@ -18,7 +18,9 @@ use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
+use TYPO3\CMS\Core\Schema\TcaSchemaFactory;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Attribute\UpgradeWizard;
@@ -139,8 +141,14 @@ class PluginUpdater implements UpgradeWizardInterface
             $record['CType'] = $targetListType;
             $record['list_type'] = '';
 
-            // Clean up flexform
-            $newFlexform = $this->flexFormTools->cleanFlexFormXML('tt_content', 'pi_flexform', $record);
+            // Clean up flexform. Since TYPO3 v14 cleanFlexFormXML() requires the TCA schema
+            // as a fourth argument, while v13 only accepts three. The argument list is built
+            // dynamically and spread into the call so the schema is only passed on v14.
+            $arguments = ['tt_content', 'pi_flexform', $record];
+            if ((new Typo3Version())->getMajorVersion() >= 14) {
+                $arguments[] = GeneralUtility::makeInstance(TcaSchemaFactory::class)->get('tt_content');
+            }
+            $newFlexform = $this->flexFormTools->cleanFlexFormXML(...$arguments);
             $flexFormData = GeneralUtility::xml2array($newFlexform);
 
             // Remove flexform data which do not exist in flexform of new plugin
