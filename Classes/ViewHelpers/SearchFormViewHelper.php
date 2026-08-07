@@ -10,13 +10,11 @@
 namespace GeorgRinger\News\ViewHelpers;
 
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService;
-use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Service\ExtensionService;
-use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormViewHelper;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\CheckboxViewHelper;
 use TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper;
@@ -95,18 +93,19 @@ class SearchFormViewHelper extends AbstractFormViewHelper
         $this->setFormActionUri();
 
         if ((new Typo3Version())->getMajorVersion() < 14 && method_exists($this, 'registerTagAttribute')) {
-            if (isset($this->arguments['method']) && strtolower($this->arguments['method']) === 'get') {
-                $this->tag->addAttribute('method', 'get');
-            } else {
-                $this->tag->addAttribute('method', 'post');
-            }
-            if (isset($this->arguments['novalidate']) && in_array($this->arguments['novalidate'], ['true', 'novalidate', 1])) {
-                $this->tag->addAttribute('novalidate', 'novalidate');
-            }
+            // On TYPO3 v13 the values are registered tag attributes and land in $this->arguments.
+            $method = $this->arguments['method'] ?? 'post';
+            $novalidate = $this->arguments['novalidate'] ?? null;
         } else {
-            if (isset($this->additionalArguments['novalidate']) && in_array($this->additionalArguments['novalidate'], ['true', 'novalidate', 1])) {
-                $this->tag->addAttribute('novalidate', 'novalidate');
-            }
+            // Fluid v4 (TYPO3 v14) dropped registerTagAttribute(); the values arrive as
+            // additional arguments instead.
+            $method = $this->additionalArguments['method'] ?? 'post';
+            $novalidate = $this->additionalArguments['novalidate'] ?? null;
+        }
+
+        $this->tag->addAttribute('method', strtolower((string)$method) === 'get' ? 'get' : 'post');
+        if ($this->isNovalidate($novalidate)) {
+            $this->tag->addAttribute('novalidate', 'novalidate');
         }
 
         $this->addFormObjectNameToViewHelperVariableContainer();
@@ -344,5 +343,14 @@ class SearchFormViewHelper extends AbstractFormViewHelper
             $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
         }
         return $request;
+    }
+
+    /**
+     * Whether the "novalidate" attribute should be set. The value is a bool on TYPO3 v13
+     * (registered tag attribute) and a string/int coming from the additional arguments on v14.
+     */
+    protected function isNovalidate(mixed $value): bool
+    {
+        return $value === true || in_array($value, ['true', 'novalidate', '1', 1], true);
     }
 }
