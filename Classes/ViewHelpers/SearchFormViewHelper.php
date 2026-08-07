@@ -9,12 +9,12 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService;
-use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Service\ExtensionService;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormViewHelper;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\CheckboxViewHelper;
 use TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper;
@@ -71,13 +71,16 @@ class SearchFormViewHelper extends AbstractFormViewHelper
         $this->registerArgument('fieldNamePrefix', 'string', 'Prefix that will be added to all field names within this form. If not set the prefix will be tx_yourExtension_plugin');
         $this->registerArgument('actionUri', 'string', 'can be used to overwrite the "action" attribute of the form tag');
         $this->registerArgument('objectName', 'string', 'name of the object that is bound to this form. If this argument is not specified, the name attribute of this form is used to determine the FormObjectName');
-        $this->registerTagAttribute('enctype', 'string', 'MIME type with which the form is submitted');
-        $this->registerTagAttribute('method', 'string', 'Transfer type (GET or POST)');
-        $this->registerTagAttribute('name', 'string', 'Name of form');
-        $this->registerTagAttribute('onreset', 'string', 'JavaScript: On reset of the form');
-        $this->registerTagAttribute('onsubmit', 'string', 'JavaScript: On submit of the form');
-        $this->registerTagAttribute('target', 'string', 'Target attribute of the form');
-        $this->registerTagAttribute('novalidate', 'bool', 'Indicate that the form is not to be validated on submit.');
+
+        if ((new Typo3Version())->getMajorVersion() < 14 && method_exists($this, 'registerTagAttribute')) {
+            $this->registerTagAttribute('enctype', 'string', 'MIME type with which the form is submitted');
+            $this->registerTagAttribute('method', 'string', 'Transfer type (GET or POST)');
+            $this->registerTagAttribute('name', 'string', 'Name of form');
+            $this->registerTagAttribute('onreset', 'string', 'JavaScript: On reset of the form');
+            $this->registerTagAttribute('onsubmit', 'string', 'JavaScript: On submit of the form');
+            $this->registerTagAttribute('target', 'string', 'Target attribute of the form');
+            $this->registerTagAttribute('novalidate', 'bool', 'Indicate that the form is not to be validated on submit.');
+        }
     }
 
     /**
@@ -88,13 +91,20 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     public function render(): string
     {
         $this->setFormActionUri();
-        if (isset($this->arguments['method']) && strtolower($this->arguments['method']) === 'get') {
-            $this->tag->addAttribute('method', 'get');
+
+        if ((new Typo3Version())->getMajorVersion() < 14 && method_exists($this, 'registerTagAttribute')) {
+            // On TYPO3 v13 the values are registered tag attributes and land in $this->arguments.
+            $method = $this->arguments['method'] ?? 'post';
+            $novalidate = $this->arguments['novalidate'] ?? null;
         } else {
-            $this->tag->addAttribute('method', 'post');
+            // Fluid v4 (TYPO3 v14) dropped registerTagAttribute(); the values arrive as
+            // additional arguments instead.
+            $method = $this->additionalArguments['method'] ?? 'post';
+            $novalidate = $this->additionalArguments['novalidate'] ?? null;
         }
 
-        if (isset($this->arguments['novalidate']) && $this->arguments['novalidate'] === true) {
+        $this->tag->addAttribute('method', strtolower((string)$method) === 'get' ? 'get' : 'post');
+        if ($this->isNovalidate($novalidate)) {
             $this->tag->addAttribute('novalidate', 'novalidate');
         }
 
@@ -120,10 +130,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
         if ($this->hasArgument('actionUri')) {
             $formActionUri = $this->arguments['actionUri'];
         } else {
-            /** @var RenderingContext $renderingContext */
-            $renderingContext = $this->renderingContext;
-            /** @var RequestInterface $request */
-            $request = $renderingContext->getRequest();
+            $request = $this->getRequest();
             /** @var UriBuilder $uriBuilder */
             $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
             $uriBuilder
@@ -300,7 +307,8 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      */
     protected function getDefaultFieldNamePrefix()
     {
-        $request = $this->renderingContext->getRequest();
+        $request = $this->getRequest();
+
         if ($this->hasArgument('extensionName')) {
             $extensionName = $this->arguments['extensionName'];
         } else {
@@ -326,5 +334,23 @@ class SearchFormViewHelper extends AbstractFormViewHelper
         if ($viewHelperVariableContainer->exists(CheckboxViewHelper::class, 'checkboxFieldNames')) {
             $viewHelperVariableContainer->remove(CheckboxViewHelper::class, 'checkboxFieldNames');
         }
+    }
+
+    protected function getRequest(): ?ServerRequestInterface
+    {
+        $request = null;
+        if ($this->renderingContext->hasAttribute(ServerRequestInterface::class)) {
+            $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
+        }
+        return $request;
+    }
+
+    /**
+     * Whether the "novalidate" attribute should be set. The value is a bool on TYPO3 v13
+     * (registered tag attribute) and a string/int coming from the additional arguments on v14.
+     */
+    protected function isNovalidate(mixed $value): bool
+    {
+        return $value === true || in_array($value, ['true', 'novalidate', '1', 1], true);
     }
 }

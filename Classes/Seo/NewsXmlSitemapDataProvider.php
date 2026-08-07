@@ -119,9 +119,9 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         $queryBuilder->count('*');
         $this->itemCount = $queryBuilder->executeQuery()->fetchOne();
 
-        // Select only the right range
         $queryBuilder->select('*');
-        $pageNumber = (int)($this->request->getQueryParams()['page'] ?? 0);
+        $queryParams = $this->request->getQueryParams();
+        $pageNumber = (int)($queryParams['tx_seo']['page'] ?? $queryParams['page'] ?? 0);
         $page = $pageNumber > 0 ? $pageNumber : 0;
         $queryBuilder
             ->setFirstResult($page * $this->numberOfItemsPerPage)

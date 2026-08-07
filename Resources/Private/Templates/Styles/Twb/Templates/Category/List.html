@@ -23,12 +23,12 @@
 				<f:if condition="{category.item.uid} == {overwriteDemand.categories}">
 					<f:then>
 						<f:link.page title="{category.item.title}" class="active" pageUid="{settings.listPid}"
-							additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">{category.item.title}
+							additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">{category.item -> f:render.text(field: 'title')}
 						</f:link.page>
 					</f:then>
 					<f:else>
 						<f:link.page title="{category.item.title}" pageUid="{settings.listPid}"
-							additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">{category.item.title}
+							additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">{category.item -> f:render.text(field: 'title')}
 						</f:link.page>
 					</f:else>
 				</f:if>
