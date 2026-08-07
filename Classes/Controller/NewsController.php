@@ -250,6 +250,7 @@ class NewsController extends NewsBaseController
     {
         $newsRecords = [];
 
+        $this->settings['categories'] = '';
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, self::class);
 
