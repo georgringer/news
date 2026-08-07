@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace GeorgRinger\News\Tests\Functional\Seo;
 
 use GeorgRinger\News\Seo\NewsXmlSitemapDataProvider;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -20,6 +21,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  * Ensures the news sitemap honours the pagination parameter on both TYPO3 v13
  * (flat "page") and v14 (namespaced "tx_seo[page]", breaking change #104422).
  */
+#[IgnoreDeprecations]
 class NewsXmlSitemapDataProviderTest extends FunctionalTestCase
 {
     protected array $coreExtensionsToLoad = ['seo'];
