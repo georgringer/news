@@ -11,6 +11,7 @@ namespace GeorgRinger\News\Tests\Functional\Service;
 
 use GeorgRinger\News\Service\CategoryService;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -18,6 +19,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 /**
  * Functional test for the CategoryService
  */
+#[IgnoreDeprecations]
 class CategoryServiceTest extends FunctionalTestCase
 {
     protected array $testExtensionsToLoad = ['typo3conf/ext/news'];

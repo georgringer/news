@@ -117,6 +117,8 @@ class CategoryService
                 ->where(
                     $queryBuilder->expr()->in('parent', $queryBuilder->createNamedParameter($parentIdList, Connection::PARAM_INT_ARRAY))
                 )
+                // Deterministic order so the resulting id list is stable across DBMS
+                ->orderBy('uid')
                 ->executeQuery()
                 ->fetchAllAssociative();
 
