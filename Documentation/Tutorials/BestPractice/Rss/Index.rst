@@ -121,7 +121,7 @@ The TypoScript code looks like this.
 
 .. code-block:: typoscript
 
-   [getTSFE() && getTSFE().type == {$plugin.tx_news.rss.channel.typeNum}]
+   [request && request.getPageArguments()?.getPageType() == {$plugin.tx_news.rss.channel.typeNum}]
       lib.stdheader >
       tt_content.stdWrap.innerWrap >
       tt_content.stdWrap.wrap >
