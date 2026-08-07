@@ -11,8 +11,8 @@ namespace GeorgRinger\News\ViewHelpers;
 
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Service\SettingsService;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -200,9 +200,9 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
                 }
             }
 
-            if (!$detailPid && isset($GLOBALS['TSFE'])) {
-                // @extensionScannerIgnoreLine
-                $detailPid = $GLOBALS['TSFE']->id;
+            if (!$detailPid && $this->renderingContext?->hasAttribute(ServerRequestInterface::class)) {
+                $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
+                $detailPid = $request->getAttribute('routing')->getPageId();
             }
             $configuration['parameter'] = $detailPid;
         }

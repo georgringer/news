@@ -181,6 +181,8 @@ class News extends AbstractEntity
         $this->falMedia = new ObjectStorage();
         $this->falRelatedFiles = new ObjectStorage();
         $this->tags = new ObjectStorage();
+        $this->related = new ObjectStorage();
+        $this->relatedFrom = new ObjectStorage();
     }
 
     /**
@@ -194,6 +196,8 @@ class News extends AbstractEntity
         $this->falMedia ??= new ObjectStorage();
         $this->falRelatedFiles ??= new ObjectStorage();
         $this->tags ??= new ObjectStorage();
+        $this->related ??= new ObjectStorage();
+        $this->relatedFrom ??= new ObjectStorage();
     }
 
     public function getTitle(): string

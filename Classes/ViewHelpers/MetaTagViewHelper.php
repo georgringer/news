@@ -46,13 +46,8 @@ class MetaTagViewHelper extends AbstractViewHelper
 
     public function render()
     {
-        // Skip if current record is part of tt_content CType shortcut
-        if (!empty($GLOBALS['TSFE']->recordRegister)
-            && is_array($GLOBALS['TSFE']->recordRegister)
-            && str_contains(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:')
-            && !empty($GLOBALS['TSFE']->currentRecord)
-            && str_contains($GLOBALS['TSFE']->currentRecord, 'tx_news_domain_model_news:')
-        ) {
+        $isInsertRecord = $this->renderingContext->getVariableProvider()->getByPath('settings.insertRecord');
+        if ($isInsertRecord) {
             return;
         }
 

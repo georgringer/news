@@ -15,6 +15,7 @@ use GeorgRinger\News\Service\CategoryService;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
@@ -103,7 +104,7 @@ class CategoryRepository extends AbstractDemandedRepository
         foreach ($categories as $category) {
             $flatCategories[$category->getUid()] = [
                 'item' => $category,
-                'parent' => ($category->getParentcategory()) ? $category->getParentcategory()->getUid() : null,
+                'parent' => $category->getParentcategoryUid(),
             ];
         }
 
@@ -111,7 +112,7 @@ class CategoryRepository extends AbstractDemandedRepository
 
         // If leaves are selected without its parents selected, those are shown as parent
         foreach ($flatCategories as $id => &$flatCategory) {
-            if (!isset($flatCategories[$flatCategory['parent']])) {
+            if ($flatCategory['parent'] === null || !isset($flatCategories[$flatCategory['parent']])) {
                 $flatCategory['parent'] = null;
             }
         }
@@ -190,7 +191,7 @@ class CategoryRepository extends AbstractDemandedRepository
     {
         $language = $this->getSysLanguageUid();
         if ($language > 0 && !empty($idList)) {
-            if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+            if (ApplicationType::fromRequest($GLOBALS['TYPO3_REQUEST'])->isFrontend()) {
                 $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                     ->getQueryBuilderForTable('sys_category');
                 $rows = $queryBuilder
@@ -215,7 +216,7 @@ class CategoryRepository extends AbstractDemandedRepository
     {
         $sysLanguage = 0;
 
-        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+        if (ApplicationType::fromRequest($GLOBALS['TYPO3_REQUEST'])->isFrontend()) {
             $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'contentId');
         } elseif ((int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['L'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['L'] ?? null)) {
             $sysLanguage = (int)($GLOBALS['TYPO3_REQUEST']->getParsedBody()['L'] ?? $GLOBALS['TYPO3_REQUEST']->getQueryParams()['L'] ?? null);

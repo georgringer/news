@@ -110,7 +110,6 @@ return [
         'slug' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:pages.slug',
-            'displayCond' => 'VERSION:IS:false',
             'config' => [
                 'type' => 'slug',
                 'size' => 50,
