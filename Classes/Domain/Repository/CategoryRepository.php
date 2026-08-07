@@ -104,7 +104,7 @@ class CategoryRepository extends AbstractDemandedRepository
         foreach ($categories as $category) {
             $flatCategories[$category->getUid()] = [
                 'item' => $category,
-                'parent' => ($category->getParentcategory()) ? $category->getParentcategory()->getUid() : null,
+                'parent' => $category->getParentcategoryUid(),
             ];
         }
 
@@ -112,7 +112,7 @@ class CategoryRepository extends AbstractDemandedRepository
 
         // If leaves are selected without its parents selected, those are shown as parent
         foreach ($flatCategories as $id => &$flatCategory) {
-            if (!isset($flatCategories[$flatCategory['parent']])) {
+            if ($flatCategory['parent'] === null || !isset($flatCategories[$flatCategory['parent']])) {
                 $flatCategory['parent'] = null;
             }
         }
