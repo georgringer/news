@@ -15,7 +15,6 @@ use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Domain\Repository\TagRepository;
-use GeorgRinger\News\Event\CreateDemandObjectFromSettingsEvent;
 use GeorgRinger\News\Event\NewsCheckPidOfNewsRecordFailedInDetailActionEvent;
 use GeorgRinger\News\Event\NewsControllerOverrideSettingsEvent;
 use GeorgRinger\News\Event\NewsDateMenuActionEvent;
@@ -27,6 +26,7 @@ use GeorgRinger\News\Event\NewsSearchFormActionEvent;
 use GeorgRinger\News\Event\NewsSearchResultActionEvent;
 use GeorgRinger\News\Pagination\QueryResultPaginator;
 use GeorgRinger\News\Seo\NewsTitleProvider;
+use GeorgRinger\News\Service\NewsDemandFactory;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\ClassCacheManager;
 use GeorgRinger\News\Utility\TypoScript;
@@ -56,6 +56,8 @@ class NewsController extends NewsBaseController
 
     protected TagRepository $tagRepository;
 
+    protected NewsDemandFactory $newsDemandFactory;
+
     /** @var array */
     protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed', 'selectedList'];
 
@@ -69,11 +71,13 @@ class NewsController extends NewsBaseController
     public function __construct(
         NewsRepository $newsRepository,
         CategoryRepository $categoryRepository,
-        TagRepository $tagRepository
+        TagRepository $tagRepository,
+        NewsDemandFactory $newsDemandFactory
     ) {
         $this->newsRepository = $newsRepository;
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
+        $this->newsDemandFactory = $newsDemandFactory;
     }
 
     /**
@@ -102,63 +106,15 @@ class NewsController extends NewsBaseController
      * Create the demand object which define which records will get shown
      *
      * @param string $class optional class which must be an instance of \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+     * @deprecated since 14.1, use \GeorgRinger\News\Service\NewsDemandFactory::create() instead. The method is
+     *             still called internally so that existing overrides keep working, but new code should use the
+     *             factory or the \GeorgRinger\News\Event\CreateDemandObjectFromSettingsEvent.
      */
     protected function createDemandObjectFromSettings(
         array $settings,
         $class = NewsDemand::class
     ): NewsDemand {
-        $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
-
-        /* @var $demand NewsDemand */
-        if (!is_a($class, NewsDemand::class, true)) {
-            throw new \UnexpectedValueException(
-                sprintf(
-                    'The demand object must be an instance of %s, but %s given!',
-                    NewsDemand::class,
-                    $class
-                ),
-                1423157953
-            );
-        }
-        /* @var $demand NewsDemand */
-        $demand = GeneralUtility::makeInstance($class, $settings);
-
-        $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'] ?? '', true));
-        $demand->setCategoryConjunction((string)($settings['categoryConjunction'] ?? ''));
-        $demand->setIncludeSubCategories((bool)($settings['includeSubCategories'] ?? false));
-        $demand->setTags((string)($settings['tags'] ?? ''));
-
-        $demand->setTopNewsRestriction((int)($settings['topNewsRestriction'] ?? 0));
-        $demand->setTimeRestriction($settings['timeRestriction'] ?? '');
-        $demand->setTimeRestrictionHigh($settings['timeRestrictionHigh'] ?? '');
-        $demand->setArchiveRestriction((string)($settings['archiveRestriction'] ?? ''));
-        $demand->setExcludeAlreadyDisplayedNews((bool)($settings['excludeAlreadyDisplayedNews'] ?? false));
-        $demand->setHideIdList((string)($settings['hideIdList'] ?? ''));
-
-        if ($settings['orderBy'] ?? '') {
-            $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
-        }
-        $demand->setOrderByAllowed((string)($settings['orderByAllowed'] ?? ''));
-
-        $demand->setTopNewsFirst((bool)($settings['topNewsFirst'] ?? false));
-
-        $demand->setLimit((int)($settings['limit'] ?? 0));
-        $demand->setOffset((int)($settings['offset'] ?? 0));
-
-        $demand->setSearchFields((string)($settings['search']['fields'] ?? ''));
-        $demand->setDateField((string)($settings['dateField'] ?? ''));
-        $demand->setMonth((int)($settings['month'] ?? 0));
-        $demand->setYear((int)($settings['year'] ?? 0));
-
-        $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
-        $idList = $pageRepository->getPageIdsRecursive(GeneralUtility::intExplode(',', (string)($settings['startingpoint'] ?? '')), (int)($settings['recursive'] ?? 0));
-        $demand->setStoragePage(implode(',', $idList));
-
-        $event = new CreateDemandObjectFromSettingsEvent($demand, $settings, $class);
-        $this->eventDispatcher->dispatch($event);
-        $demand = $event->getDemand();
-
-        return $demand;
+        return $this->newsDemandFactory->create($settings, $class);
     }
 
     /**
