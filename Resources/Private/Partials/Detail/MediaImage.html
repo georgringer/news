@@ -23,10 +23,9 @@
 		</f:else>
 	</f:if>
 </div>
-<f:variable name="mediaElementDescription">{mediaElement -> f:render.text(field: 'description')}</f:variable>
-<f:if condition="{mediaElementDescription}">
+<f:if condition="{mediaElement.description}">
 	<p class="news-img-caption">
-		{mediaElementDescription}
+		{mediaElement.description}
 	</p>
 </f:if>
 </html>
