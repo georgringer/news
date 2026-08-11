@@ -1,0 +1,4 @@
+pages,,,,,,
+,uid,pid,sorting,doktype,slug,title
+,1,0,256,1,"/","Root"
+,2,1,256,1,"/list","List"

@@ -1,0 +1,4 @@
+tx_news_domain_model_news,,,,,,,,,,
+,uid,pid,type,title,teaser,bodytext,author,datetime,istopnews,archive
+,1,2,0,"Rendering Test News One","Teaser of news one","Bodytext of news one","Test Author",1754870400,0,0
+,2,2,0,"Rendering Test News Two","Teaser of news two","Bodytext of news two","Test Author",1723334400,0,0

@@ -1,0 +1,24 @@
+page = PAGE
+
+# Plugin-Records werden direkt gerendert, statt ueber styles.content.get zu
+# gehen - das haelt die Ausgabe schlank und die Assertions robust.
+page.10 = CONTENT
+page.10 {
+  table = tt_content
+  select {
+    orderBy = sorting
+    where = {#colPos}=0
+  }
+}
+
+# Ohne das schluckt TYPO3 Fehler pro Content-Element, liefert
+# "Oops, an error occurred" und Status 200 - Tests waeren faelschlich gruen.
+config.contentObjectExceptionHandler = 0
+config.no_cache = 1
+config.disableAllHeaderCode = 1
+
+plugin.tx_news.settings {
+  listPid = 2
+  defaultDetailPid = 2
+  backPid = 2
+}
