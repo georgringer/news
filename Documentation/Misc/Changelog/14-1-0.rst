@@ -1,5 +1,5 @@
-14.1.0 - 7th August 2026
-========================
+14.1.0 - 11th August 2026
+=========================
 
 Regular release, please read the following notes carefully.
 
@@ -7,11 +7,82 @@ Regular release, please read the following notes carefully.
         :local:
         :depth: 3
 
+Important changes
+-----------------
+
+Raised minimum TYPO3 version
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The minimum required TYPO3 version has been raised from 13.4.20 to **13.4.29**.
+This is needed by the ViewHelper :html:`f:render.text` which is used in the
+templates now, see the feature below.
+
+Breaking changes
+----------------
+
+No breaking changes known
+
+Features
+--------
+
+Build demand objects outside of the controller
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The new service :php:`GeorgRinger\News\Service\NewsDemandFactory` creates a
+demand object out of a settings array, e.g. the TypoScript settings of a news
+plugin. Until now this logic was only available in the protected method
+:php:`NewsController::createDemandObjectFromSettings()` which forced developers
+to either extend the controller or copy the code.
+
+.. code-block:: php
+
+   $demand = $this->newsDemandFactory->create([
+      'startingpoint' => '123',
+      'orderBy' => 'datetime',
+      'orderDirection' => 'desc',
+      'limit' => 5,
+   ]);
+
+   $news = $this->newsRepository->findDemanded($demand);
+
+Templates support EXT:visual_editor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The shipped templates now output text fields with :html:`f:render.text` instead
+of plain variable access, e.g.
+
+.. code-block:: html
+
+   <!-- old -->
+   <h1>{newsItem.title}</h1>
+   <f:format.html>{newsItem.bodytext}</f:format.html>
+
+   <!-- new -->
+   <h1>{newsItem -> f:render.text(field: 'title')}</h1>
+   {newsItem -> f:render.text(field: 'bodytext')}
+
+The rendered output stays the same, but the fields are now annotated in a way
+that EXT:visual_editor can pick up. Editors can therefore edit titles, teasers,
+bodytext, authors, tags and category titles directly in the frontend preview.
 
 All Changes
 -----------
 This is a list of all changes in this release: ::
 
+    2026-08-07 [DOCS] Update RSS/iCalendar TypoScript condition for TYPO3 13+ (#2833) (Commit b1958585 by Georg Ringer)
+    2026-08-07 [BUGFIX] Reset categories for selectedListAction (#2832) (Commit ca6ba761 by Georg Ringer)
+    2026-08-07 [TASK] Update actions/checkout to v5 (#2831) (Commit 854ed37a by Georg Ringer)
+    2026-08-07 [BUGFIX] Pass TCA schema to cleanFlexFormXML() in PluginUpdater (#2829) (Commit e83ba1a0 by Georg Ringer)
+    2026-08-07 [TASK] Remove duplicate export-ignore entries in .gitattributes (#2777) (Commit 516b246c by Himanshu Ramavat)
+    2026-08-07 [TASK] Resolve category subtrees without one query per category (#2818) (Commit be02d12a by Benni Mack)
+    2026-08-07 [BUGFIX] Make typo3/seo-sitemap an optional set dependency (#2828) (Commit 0e5e3b10 by Georg Ringer)
+    2026-08-07 [DOC] Adopt upcoming changelog (Commit 3eabe212 by Georg Ringer)
+    2026-08-07 [DOC] Add missing line in example (Commit f336b0e2 by Georg Ringer)
+    2026-08-07 [FEATURE] Use f:render.text to allow editing text in EXT:visual_editor (#2807) (Commit 9d5b1846 by Matthias Vogel)
+    2026-08-07 [BUGFIX] Fix imports and keep form method attribute on v14 (Commit 40d0f069 by Georg Ringer)
+    2026-08-06 [BUGFIX] make registerTagAttribute() in VH version-dependent. (Commit 6a5057f1 by David Bruchmann)
+    2026-08-07 [TASK] Ignore pre-existing deprecation in sitemap pagination test (Commit ebd3f243 by Georg Ringer)
+    2026-08-07 [BUGFIX] Respect tx_seo namespace for news sitemap pagination (Commit b63f9ef1 by Georg Ringer)
+    2026-08-06 [FEATURE] Add NewsDemandFactory to build demands outside the controller (Commit 6219a835 by Sebastian Michaelsen)
+    2026-05-09 [TASK] Switch schema.org annotations to TSL (Commit c59974ee by Marcus Förster)
+    2026-08-07 [BUGFIX] Make category tree fixture ordering deterministic (Commit 777e0691 by Georg Ringer)
     2026-08-07 [TASK] Update rector constraints (Commit 82a18672 by Georg Ringer)
     2026-08-07 [BUGFIX] Adopt failing test (Commit c88d391b by Georg Ringer)
     2026-04-18 [BUGFIX] There should be no version 14.4 of TYPO3, 14.3 should be fine (Commit e9bca841 by Maik Kempe)
@@ -27,6 +98,5 @@ This is a list of all changes in this release: ::
     2026-05-26 [TASK] Cleanup di usage (Commit 62f14b5a by Georg Ringer)
     2026-03-16 [BUGFIX] Respect initializeObject function on extending news model (Commit 01773079 by Can Karadağ)
     2026-05-24 [BUGFIX] Remove usage of $GLOBALS['TSFE'] (Commit f7f05324 by GM)
-
 
 This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
