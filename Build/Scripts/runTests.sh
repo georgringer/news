@@ -516,6 +516,7 @@ case ${TEST_SUITE} in
                 typo3/cms-install:^14.3 \
                 typo3/testing-framework:dev-main \
                 phpunit/phpunit:^11.5.44 \
+                phpstan/phpdoc-parser:^2.1 \
                  || exit 1
             fi
             composer update --no-progress --no-interaction  || exit 1
@@ -539,6 +540,7 @@ case ${TEST_SUITE} in
                 typo3/cms-install:^14.3 \
                 typo3/testing-framework:dev-main \
                 phpunit/phpunit:^11.5.44 \
+                phpstan/phpdoc-parser:^2.1 \
                  || exit 1
             fi
             composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest || exit 1
