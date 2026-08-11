@@ -87,11 +87,11 @@
 				</p>
 			</div>
 			<n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
-				<f:variable name="newsItemTeasertext">{newsItem -> f:render.text(field: 'teasertext')}</f:variable>
-				<f:if condition="{newsItemTeasertext}">
+				<f:variable name="newsItemTeaser">{newsItem -> f:render.text(field: 'teaser')}</f:variable>
+				<f:if condition="{newsItemTeaser}">
 					<!-- teaser -->
 					<div class="teaser-text" itemprop="description">
-						{newsItemTeasertext}
+						{newsItemTeaser}
 					</div>
 				</f:if>
 
