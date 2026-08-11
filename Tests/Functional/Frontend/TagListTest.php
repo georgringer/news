@@ -15,31 +15,32 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 
-class NewsListTest extends AbstractFrontendTestCase
+class TagListTest extends AbstractFrontendTestCase
 {
     #[IgnoreDeprecations]
     #[Test]
     #[DataProvider('templateStyleProvider')]
-    public function listActionRendersNewsTitles(string $stylePath): void
+    public function listActionRendersTagTitle(string $stylePath): void
     {
         $this->setUpFrontend($stylePath);
 
-        $html = $this->assertRendersWithoutError($this->renderPage(2));
+        $html = $this->assertRendersWithoutError($this->renderPage(5));
 
-        self::assertStringContainsString('Rendering Test News One', $html);
-        self::assertStringContainsString('Rendering Test News Two', $html);
+        self::assertStringContainsString('Rendering Test Tag', $html);
     }
 
     #[IgnoreDeprecations]
     #[Test]
     #[DataProvider('templateStyleProvider')]
-    public function selectedListActionRendersConfiguredNews(string $stylePath): void
+    public function listActionRendersActiveTag(string $stylePath): void
     {
         $this->setUpFrontend($stylePath);
 
-        $html = $this->assertRendersWithoutError($this->renderPage(9));
+        $response = $this->renderPage(5, [
+            'tx_news_pi1[overwriteDemand][tags]' => 1,
+        ]);
+        $html = $this->assertRendersWithoutError($response);
 
-        self::assertStringContainsString('Rendering Test News One', $html);
-        self::assertStringContainsString('Rendering Test News Two', $html);
+        self::assertStringContainsString('Rendering Test Tag', $html);
     }
 }

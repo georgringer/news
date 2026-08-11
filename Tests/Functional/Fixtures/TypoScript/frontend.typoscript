@@ -19,6 +19,13 @@ config.disableAllHeaderCode = 1
 
 plugin.tx_news.settings {
   listPid = 2
-  defaultDetailPid = 2
+  defaultDetailPid = 3
+  detailPid = 3
   backPid = 2
+
+  # Die Detail-Action bekommt ohne tx_news_pi1[news] kein News-Argument und
+  # faellt auf singleNews zurueck. Das spart den cHash im Test.
+  singleNews = 1
+
+  selectedList = 1,2
 }

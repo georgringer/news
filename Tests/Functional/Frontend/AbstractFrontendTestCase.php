@@ -36,6 +36,14 @@ abstract class AbstractFrontendTestCase extends FunctionalTestCase
      * cHash-Pruefung ausgenommen. Ohne diese Abschaltung muesste jeder Test einen
      * gueltigen cHash berechnen.
      */
+    /**
+     * Das Bild aus media.csv muss physisch existieren, sonst scheitert
+     * LocalDriver::hash() beim Verarbeiten in f:image.
+     */
+    protected array $pathsToProvideInTestInstance = [
+        'typo3conf/ext/news/Tests/Functional/Fixtures/Frontend/fileadmin' => 'fileadmin',
+    ];
+
     protected array $configurationToUseInTestInstance = [
         'FE' => [
             'cacheHash' => [
@@ -51,6 +59,7 @@ abstract class AbstractFrontendTestCase extends FunctionalTestCase
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/Frontend/pages.csv');
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/Frontend/tt_content.csv');
         $this->importCSVDataSet(__DIR__ . '/../Fixtures/Frontend/news.csv');
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/Frontend/media.csv');
 
         $this->writeSiteConfiguration();
     }
@@ -105,6 +114,17 @@ abstract class AbstractFrontendTestCase extends FunctionalTestCase
         self::assertNotSame('', trim($html));
 
         return $html;
+    }
+
+    /**
+     * @return array<string, array{string}>
+     */
+    public static function templateStyleProvider(): array
+    {
+        return [
+            'default' => [''],
+            'twb5' => ['EXT:news/Resources/Private/Templates/Styles/Twb5/'],
+        ];
     }
 
     private function writeSiteConfiguration(): void

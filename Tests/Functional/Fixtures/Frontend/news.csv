@@ -1,4 +1,19 @@
-tx_news_domain_model_news,,,,,,,,,,
-,uid,pid,type,title,teaser,bodytext,author,datetime,istopnews,archive
-,1,2,0,"Rendering Test News One","Teaser of news one","Bodytext of news one","Test Author",1754870400,0,0
-,2,2,0,"Rendering Test News Two","Teaser of news two","Bodytext of news two","Test Author",1723334400,0,0
+tx_news_domain_model_news,,,,,,,,,,,,,,
+,uid,pid,type,title,teaser,bodytext,author,datetime,istopnews,archive,categories,tags,related_links,fal_media
+,1,2,0,"Rendering Test News One","Teaser of news one","Bodytext of news one","Test Author",1754870400,0,0,1,1,1,1
+,2,2,0,"Rendering Test News Two","Teaser of news two","Bodytext of news two","Test Author",1723334400,0,0,0,0,0,0
+sys_category,,,,
+,uid,pid,title,sorting
+,1,1,"Rendering Test Category",256
+tx_news_domain_model_tag,,,
+,uid,pid,title
+,1,1,"Rendering Test Tag"
+sys_category_record_mm,,,,,
+,uid_local,uid_foreign,tablenames,fieldname,sorting_foreign
+,1,1,"tx_news_domain_model_news","categories",1
+tx_news_domain_model_news_tag_mm,,,
+,uid_local,uid_foreign,sorting
+,1,1,1
+tx_news_domain_model_link,,,,,,
+,uid,pid,parent,sorting,title,uri,description
+,1,2,1,256,"Rendering Test Link","https://example.org/","Description of the related link"
