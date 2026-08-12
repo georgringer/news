@@ -1,0 +1,22 @@
+14.1.1 - 11th August 2026
+=========================
+
+Regression release of 14.1.0
+
+.. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2026-08-11 [BUGFIX] Revert usage of  f:render.text (Commit 5ca12e64 by Georg Ringer)
+    2026-08-11 [BUGFIX] Use correct field for f:render.text (Commit d84b8f50 by Georg Ringer)
+    2026-08-11 [BUGFIX] Avoid PHP notice (Commit a37dc93f by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
