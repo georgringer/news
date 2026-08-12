@@ -8,11 +8,11 @@ preferences do not belong here — put those in an untracked `CLAUDE.local.md`
 
 - One Composer package, `georgringer/news`, PSR-4 `GeorgRinger\News\` →
   `Classes/` and `GeorgRinger\News\Tests\` → `Tests/`.
-- **One branch serves TYPO3 13.4 LTS and 14**, on PHP 8.2–8.5. Every change has
-  to work on both cores; `.github/workflows/core13.yml` and `core14.yml` define
-  the matrix that decides. Where the cores differ, switch on
-  `(new Typo3Version())->getMajorVersion()` — see `Classes/Utility/Page.php` or
-  `Classes/ViewHelpers/LinkViewHelper.php`.
+- **One branch serves TYPO3 13.4 LTS and 14**, on PHP 8.2–8.5. Every change
+  has to work on both cores; `.github/workflows/core13.yml` and `core14.yml`
+  define the matrix that decides. Where the cores differ, switch on
+  `(new Typo3Version())->getMajorVersion()` — see `Classes/Utility/Page.php`
+  or `Classes/ViewHelpers/LinkViewHelper.php`.
 - Issues and code review both happen on GitHub,
   <https://github.com/georgringer/news>. There is no Gerrit and no Forge here;
   TYPO3 Core conventions around `Change-Id`, `Releases:` trailers or
@@ -49,8 +49,8 @@ preferences do not belong here — put those in an untracked `CLAUDE.local.md`
   `php-cs-fixer/`, `rector/`, `fractor/`.
 - Root: `ext_emconf.php`, `ext_localconf.php`, `ext_tables.php`,
   `ext_tables.sql`, `ext_conf_template.txt`.
-- `.Build/` holds Composer's vendor and web dir (`vendor-dir: .Build/vendor`) —
-  generated, gitignored, never edit.
+- `.Build/` holds Composer's vendor and web dir (`vendor-dir: .Build/vendor`),
+  generated and gitignored — never edit.
 
 ## Commands
 
