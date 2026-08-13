@@ -14,54 +14,14 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconSize;
-use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * Page Utility class
  */
 class Page
 {
-    /**
-     * Set properties of an object/array in cobj->LOAD_REGISTER which can then
-     * be used to be loaded via TS with register:name
-     *
-     * @param string $properties comma separated list of properties
-     * @param mixed $object object or array to get the properties
-     * @param string $prefix optional prefix
-     */
-    public static function setRegisterProperties($properties, mixed $object, $prefix = 'news'): void
-    {
-        if (!empty($properties) && $object !== null) {
-            $cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
-            $items = GeneralUtility::trimExplode(',', $properties, true);
-
-            $register = [];
-            foreach ($items as $item) {
-                $key = $prefix . ucfirst($item);
-                if (is_object($object)) {
-                    $getter = 'get' . ucfirst($item);
-                    try {
-                        $value = $object->$getter();
-                        if ($value instanceof \DateTime) {
-                            $value = $value->getTimestamp();
-                        }
-                        $register[$key] = $value;
-                    } catch (\Exception $e) {
-                        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(self::class);
-                        $logger->warning($e->getMessage());
-                    }
-                }
-                if (is_array($object)) {
-                    $value = $object[$item];
-                    $register[$key] = $value;
-                }
-            }
-            $cObj->cObjGetSingle('LOAD_REGISTER', $register);
-        }
-    }
-
     /**
      * Return a page tree
      *
@@ -74,7 +34,11 @@ class Page
     {
         $pageUid = (int)$pageUid;
         if ($pageUid === 0 && !self::getBackendUser()->isAdmin()) {
-            $mounts = self::getBackendUser()->returnWebmounts();
+            if ((new Typo3Version())->getMajorVersion() >= 14) {
+                $mounts = self::getBackendUser()->getWebmounts();
+            } else {
+                $mounts = self::getBackendUser()->returnWebmounts();
+            }
             $pageUid = array_shift($mounts);
         }
 

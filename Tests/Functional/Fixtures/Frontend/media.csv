@@ -1,0 +1,26 @@
+"sys_file_storage"
+,"uid","pid","name","processingfolder","driver","is_browsable","is_public","is_writable","is_online","configuration"
+,1,0,"fileadmin/ (auto-created)","typo3temp/assets/_processed_/","Local",1,1,1,1,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?>
+<T3FlexForms>
+	<data>
+		<sheet index=""sDEF"">
+			<language index=""lDEF"">
+				<field index=""basePath"">
+					<value index=""vDEF"">fileadmin/</value>
+				</field>
+				<field index=""pathType"">
+					<value index=""vDEF"">relative</value>
+				</field>
+				<field index=""caseSensitive"">
+					<value index=""vDEF"">1</value>
+				</field>
+			</language>
+		</sheet>
+	</data>
+</T3FlexForms>"
+"sys_file"
+,"uid","pid","storage","identifier","identifier_hash","folder_hash","extension","mime_type","name","sha1","size","type"
+,1,0,1,"/rendering-test.png","e0b4a1e2ba7e2f1e1f4d0f0b3f1a5d6c7e8f9a0b","d41d8cd98f00b204e9800998ecf8427e","png","image/png","rendering-test.png","b069aa085f06da6743b904400b0e412c3b0b5b07",25896,2
+"sys_file_reference"
+,"uid","pid","uid_local","uid_foreign","tablenames","fieldname","sorting_foreign","title","description","showinpreview"
+,1,2,1,1,"tx_news_domain_model_news","fal_media",1,"Title of the test image","Caption of the test image",1

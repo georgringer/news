@@ -1,0 +1,10 @@
+tt_content,,,,,,
+,uid,pid,sorting,colPos,CType,header
+,1,2,256,0,"news_pi1","List Plugin"
+,2,3,256,0,"news_newsdetail","Detail Plugin"
+,3,4,256,0,"news_categorylist","Category List Plugin"
+,4,5,256,0,"news_taglist","Tag List Plugin"
+,5,6,256,0,"news_newsdatemenu","Date Menu Plugin"
+,6,7,256,0,"news_newssearchform","Search Form Plugin"
+,7,8,256,0,"news_newssearchresult","Search Result Plugin"
+,8,9,256,0,"news_newsselectedlist","Selected List Plugin"
