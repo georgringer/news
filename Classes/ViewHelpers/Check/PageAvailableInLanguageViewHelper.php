@@ -11,6 +11,7 @@ namespace GeorgRinger\News\ViewHelpers\Check;
 
 use GeorgRinger\News\Seo\NewsAvailability;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
 /**
@@ -26,10 +27,7 @@ class PageAvailableInLanguageViewHelper extends AbstractConditionViewHelper
         $this->registerArgument('language', 'int', 'Language ot check', true);
     }
 
-    /**
-     * @param array|null $arguments
-     */
-    protected static function evaluateCondition($arguments = null): bool
+    public static function verdict(array $arguments, RenderingContextInterface $renderingContext): bool
     {
         try {
             $newsAvailabilityChecker = GeneralUtility::makeInstance(NewsAvailability::class);
@@ -37,13 +35,5 @@ class PageAvailableInLanguageViewHelper extends AbstractConditionViewHelper
         } catch (\UnexpectedValueException) {
             return true;
         }
-    }
-
-    public function render(): mixed
-    {
-        if (static::evaluateCondition($this->arguments)) {
-            return $this->renderThenChild();
-        }
-        return $this->renderElseChild();
     }
 }

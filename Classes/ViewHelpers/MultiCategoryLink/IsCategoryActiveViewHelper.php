@@ -36,17 +36,6 @@ class IsCategoryActiveViewHelper extends AbstractConditionViewHelper
         $this->registerArgument('item', 'int', 'Category id', true);
     }
 
-    /**
-     * @param array|null $arguments
-     */
-    protected static function evaluateCondition($arguments = null): bool
-    {
-        if (empty($arguments['list'])) {
-            return false;
-        }
-        return GeneralUtility::inList($arguments['list'], $arguments['item']);
-    }
-
     public static function verdict(array $arguments, RenderingContextInterface $renderingContext): bool
     {
         if (empty($arguments['list'])) {
