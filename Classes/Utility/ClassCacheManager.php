@@ -73,6 +73,7 @@ class ClassCacheManager
 
         foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'] as $key => $extensionsWithThisClass) {
             $this->constructorLines = [];
+            $this->initializeObjectLines = [];
             $extendingClassFound = false;
 
             $path = ExtensionManagementUtility::extPath('news') . $classPath . $key . '.php';
@@ -94,7 +95,7 @@ class ClassCacheManager
                 $code .= LF . '    public function __construct(' . implode(',', $this->constructorLines['parameters'] ?? []) . ')' . LF . '    {' . LF . implode(LF, $this->constructorLines['code'] ?? []) . LF . '    }' . LF;
             }
             if (isset($this->initializeObjectLines['code']) && count($this->initializeObjectLines['code'])) {
-                $code .= LF . implode("\n", $this->initializeObjectLines['doc']);
+                $code .= LF . implode("\n", $this->initializeObjectLines['doc'] ?? []);
                 $code .= LF . '    public function initializeObject(): void' . LF . '    {' . LF . implode(LF, $this->initializeObjectLines['code'] ?? []) . LF . '    }' . LF;
             }
             $code = $this->closeClassDefinition($code);
