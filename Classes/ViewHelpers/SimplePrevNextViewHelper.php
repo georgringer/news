@@ -16,6 +16,7 @@ use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -124,12 +125,14 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
 
         $rawRecord = $this->getRawRecord($id);
 
-        /** @var LanguageAspect $languageAspect */
-        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+        $context = GeneralUtility::makeInstance(Context::class);
 
-        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']) && $languageAspect->getContentId() > 0) {
-            // @extensionScannerIgnoreLine
-            $overlay = $GLOBALS['TSFE']->sys_page->getLanguageOverlay(
+        /** @var LanguageAspect $languageAspect */
+        $languageAspect = $context->getAspect('language');
+
+        if ($languageAspect->getContentId() > 0) {
+            $pageRepository = GeneralUtility::makeInstance(PageRepository::class, $context);
+            $overlay = $pageRepository->getLanguageOverlay(
                 'tx_news_domain_model_news',
                 $rawRecord,
                 $languageAspect

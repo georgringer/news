@@ -73,10 +73,11 @@ Create the file :file:`ext_tables.sql` in the root of the extension directory wi
 .. code-block:: sql
 
 
-   # Table structure for table 'tx_news_domain_model_news '
+   # Table structure for table 'tx_news_domain_model_news'
    #
    CREATE TABLE tx_news_domain_model_news (
-      location_simple varchar(255) DEFAULT '' NOT NULL
+      location_simple varchar(255) DEFAULT '' NOT NULL,
+      other_categories int(11) DEFAULT '0' NOT NULL
    );
 
 
@@ -84,8 +85,8 @@ TCA definition
 """"""""""""""
 The TCA defines which tables and fields are available in the backend and how those are rendered (e.g. as input field, textarea, select field, ...).
 
-In this example, the table :sql:`tx_news_domain_model_news` will be extended by a simple input field.
-Therefore, create the file :file:`Configuration/TCA/Overrides/tx_news_domain_model_news.php`.
+In this example, the table :sql:`tx_news_domain_model_news` will be extended by a simple input field and a
+2nd category relation. Create the file :file:`Configuration/TCA/Overrides/tx_news_domain_model_news.php`.
 
 .. code-block:: php
 
@@ -94,17 +95,22 @@ Therefore, create the file :file:`Configuration/TCA/Overrides/tx_news_domain_mod
 
    $fields = [
       'location_simple' => [
-         'exclude' => 1,
          'label' => 'My location',
          'config' => [
             'type' => 'input',
             'size' => 15
          ],
-      ]
+      ],
+      'other_categories' => [
+         'label' => 'Other categories',
+         'config' => [
+            'type' => 'category',
+         ],
+      ],
    ];
 
    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_news_domain_model_news', $fields);
-   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'location_simple');
+   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'location_simple,other_categories');
 
 
 Install the extension
@@ -144,23 +150,65 @@ As the class :php:`Domain/Model/News` should be extended, create a file at the s
 
    namespace GeorgRinger\Eventnews\Domain\Model;
 
+   use GeorgRinger\News\Domain\Model\Category;
+   use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+   use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
    class News extends \GeorgRinger\News\Domain\Model\News
    {
-      protected string $locationSimple;
+      protected string $locationSimple = '';
+
+      /**
+       * @var ?ObjectStorage<Category>
+       */
+      #[Lazy]
+      protected ?ObjectStorage $otherCategories;
+
+      public function __construct()
+      {
+         $this->otherCategories = new ObjectStorage();
+      }
+
+      public function initializeObject(): void
+      {
+         $this->otherCategories = $this->otherCategories ?? new ObjectStorage();
+      }
 
       public function getLocationSimple(): string
       {
          return $this->locationSimple;
       }
 
-      public function setLocationSimple(string $locationSimple)
+      public function setLocationSimple(string $locationSimple): void
       {
          $this->locationSimple = $locationSimple;
       }
+
+      /**
+       * @return ?ObjectStorage<Category>
+       */
+      public function getOtherCategories(): ?ObjectStorage
+      {
+         return $this->otherCategories;
+      }
+
+      /**
+       * @param ObjectStorage<Category> $otherCategories
+       */
+      public function setOtherCategories(ObjectStorage $otherCategories): void
+      {
+         $this->otherCategories = $otherCategories;
+      }
    }
 
-3) Exclude the class from dependecy injection
----------------------------------------------
+.. important::
+
+   The proxy class generator merges all :php:`__construct()` and :php:`initializeObject()` methods from
+   extending classes into single combined methods, so your constructor code **will** run when creating
+   new objects and your object initialization code when loading entities from the database.
+
+3) Exclude the class from dependency injection
+----------------------------------------------
 
 As the class you define will be added to a new generated class, the class needs to be excluded from dependency injection in Configuration/Services.yaml:
 
@@ -184,7 +232,17 @@ As the class you define will be added to a new generated class, the class needs 
 
    If you reference other objects, you must define the full namespace at the location and don't use namespace imports (with "use")!
 
-Clear system cache
-^^^^^^^^^^^^^^^^^^
-Now it is time to clear the :guilabel:`system cache`, either via the dropdown in the backend or in the module :guilabel:`Admin Tools`.
+Rebuild proxy classes
+^^^^^^^^^^^^^^^^^^^^^
+After changes to the extending class or its registration, rebuild the proxy classes:
+
+.. code-block:: bash
+
+   bin/typo3 news:rebuildProxyClasses
+
+This regenerates the merged class files in :file:`var/cache/code/news/`. You should run this command
+after every change to the news model or any extension that extends it.
+
+Alternatively, clearing the :guilabel:`system cache` via the backend or the :guilabel:`Admin Tools` module
+will also trigger a rebuild on the next request.
 

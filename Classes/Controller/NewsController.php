@@ -15,7 +15,6 @@ use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Domain\Repository\TagRepository;
-use GeorgRinger\News\Event\CreateDemandObjectFromSettingsEvent;
 use GeorgRinger\News\Event\NewsCheckPidOfNewsRecordFailedInDetailActionEvent;
 use GeorgRinger\News\Event\NewsControllerOverrideSettingsEvent;
 use GeorgRinger\News\Event\NewsDateMenuActionEvent;
@@ -27,6 +26,7 @@ use GeorgRinger\News\Event\NewsSearchFormActionEvent;
 use GeorgRinger\News\Event\NewsSearchResultActionEvent;
 use GeorgRinger\News\Pagination\QueryResultPaginator;
 use GeorgRinger\News\Seo\NewsTitleProvider;
+use GeorgRinger\News\Service\NewsDemandFactory;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\ClassCacheManager;
 use GeorgRinger\News\Utility\TypoScript;
@@ -34,6 +34,7 @@ use GeorgRinger\NumberedPagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
+use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -55,6 +56,8 @@ class NewsController extends NewsBaseController
 
     protected TagRepository $tagRepository;
 
+    protected NewsDemandFactory $newsDemandFactory;
+
     /** @var array */
     protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed', 'selectedList'];
 
@@ -68,11 +71,13 @@ class NewsController extends NewsBaseController
     public function __construct(
         NewsRepository $newsRepository,
         CategoryRepository $categoryRepository,
-        TagRepository $tagRepository
+        TagRepository $tagRepository,
+        NewsDemandFactory $newsDemandFactory
     ) {
         $this->newsRepository = $newsRepository;
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
+        $this->newsDemandFactory = $newsDemandFactory;
     }
 
     /**
@@ -86,12 +91,10 @@ class NewsController extends NewsBaseController
             $this->request = $this->request->withFormat($this->settings['format']);
         }
         // Only do this in Frontend Context
-        if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+        if (ApplicationType::fromRequest($this->request)->isFrontend()) {
             // We only want to set the tag once in one request, so we have to cache that statically if it has been done
             static $cacheTagsSet = false;
 
-            /** @var $typoScriptFrontendController \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
-            $typoScriptFrontendController = $GLOBALS['TSFE'];
             if (!$cacheTagsSet) {
                 $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_news'));
                 $cacheTagsSet = true;
@@ -103,62 +106,15 @@ class NewsController extends NewsBaseController
      * Create the demand object which define which records will get shown
      *
      * @param string $class optional class which must be an instance of \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+     * @deprecated since 14.1, use \GeorgRinger\News\Service\NewsDemandFactory::create() instead. The method is
+     *             still called internally so that existing overrides keep working, but new code should use the
+     *             factory or the \GeorgRinger\News\Event\CreateDemandObjectFromSettingsEvent.
      */
     protected function createDemandObjectFromSettings(
         array $settings,
         $class = NewsDemand::class
     ): NewsDemand {
-        $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
-
-        /* @var $demand NewsDemand */
-        $demand = GeneralUtility::makeInstance($class, $settings);
-        if (!$demand instanceof NewsDemand) {
-            throw new \UnexpectedValueException(
-                sprintf(
-                    'The demand object must be an instance of %s, but %s given!',
-                    NewsDemand::class,
-                    $class
-                ),
-                1423157953
-            );
-        }
-
-        $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'] ?? '', true));
-        $demand->setCategoryConjunction((string)($settings['categoryConjunction'] ?? ''));
-        $demand->setIncludeSubCategories((bool)($settings['includeSubCategories'] ?? false));
-        $demand->setTags((string)($settings['tags'] ?? ''));
-
-        $demand->setTopNewsRestriction((int)($settings['topNewsRestriction'] ?? 0));
-        $demand->setTimeRestriction($settings['timeRestriction'] ?? '');
-        $demand->setTimeRestrictionHigh($settings['timeRestrictionHigh'] ?? '');
-        $demand->setArchiveRestriction((string)($settings['archiveRestriction'] ?? ''));
-        $demand->setExcludeAlreadyDisplayedNews((bool)($settings['excludeAlreadyDisplayedNews'] ?? false));
-        $demand->setHideIdList((string)($settings['hideIdList'] ?? ''));
-
-        if ($settings['orderBy'] ?? '') {
-            $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
-        }
-        $demand->setOrderByAllowed((string)($settings['orderByAllowed'] ?? ''));
-
-        $demand->setTopNewsFirst((bool)($settings['topNewsFirst'] ?? false));
-
-        $demand->setLimit((int)($settings['limit'] ?? 0));
-        $demand->setOffset((int)($settings['offset'] ?? 0));
-
-        $demand->setSearchFields((string)($settings['search']['fields'] ?? ''));
-        $demand->setDateField((string)($settings['dateField'] ?? ''));
-        $demand->setMonth((int)($settings['month'] ?? 0));
-        $demand->setYear((int)($settings['year'] ?? 0));
-
-        $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
-        $idList = $pageRepository->getPageIdsRecursive(GeneralUtility::intExplode(',', (string)($settings['startingpoint'] ?? '')), (int)($settings['recursive'] ?? 0));
-        $demand->setStoragePage(implode(',', $idList));
-
-        $event = new CreateDemandObjectFromSettingsEvent($demand, $settings, $class);
-        $this->eventDispatcher->dispatch($event);
-        $demand = $event->getDemand();
-
-        return $demand;
+        return $this->newsDemandFactory->create($settings, $class);
     }
 
     /**
@@ -294,6 +250,7 @@ class NewsController extends NewsBaseController
     {
         $newsRecords = [];
 
+        $this->settings['categories'] = '';
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, self::class);
 
@@ -457,7 +414,7 @@ class NewsController extends NewsBaseController
         $statistics = $this->newsRepository->countByDate($demand);
 
         $assignedValues = [
-            'listPid' => ($this->settings['listPid'] ?: $GLOBALS['TSFE']->id),
+            'listPid' => ($this->settings['listPid'] ?: $this->request->getAttribute('routing')->getPageId()),
             'dateField' => $dateField,
             'data' => $statistics,
             'news' => $newsRecords,

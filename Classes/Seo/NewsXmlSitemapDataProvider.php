@@ -119,9 +119,9 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         $queryBuilder->count('*');
         $this->itemCount = $queryBuilder->executeQuery()->fetchOne();
 
-        // Select only the right range
         $queryBuilder->select('*');
-        $pageNumber = (int)($this->request->getQueryParams()['page'] ?? 0);
+        $queryParams = $this->request->getQueryParams();
+        $pageNumber = (int)($queryParams['tx_seo']['page'] ?? $queryParams['page'] ?? 0);
         $page = $pageNumber > 0 ? $pageNumber : 0;
         $queryBuilder
             ->setFirstResult($page * $this->numberOfItemsPerPage)
@@ -144,7 +144,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      */
     public function getItems(): array
     {
-        return array_map([$this, 'defineUrl'], $this->items);
+        return array_map($this->defineUrl(...), $this->items);
     }
 
     /**
@@ -158,7 +158,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
     protected function defineUrl(array $data): array
     {
         // @extensionScannerIgnoreLine
-        $pageId = $this->config['url']['pageId'] ?? $GLOBALS['TSFE']->id;
+        $pageId = $this->config['url']['pageId'] ?? $this->request->getAttribute('routing')->getPageId();
         if (($this->config['url']['useCategorySinglePid'] ?? false) && $pageIdFromCategory = $this->getSinglePidFromCategory($data['data']['uid'])) {
             $pageId = $pageIdFromCategory;
         }

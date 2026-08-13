@@ -81,11 +81,11 @@ class News extends AbstractEntity
 
     /** @var ObjectStorage<News> */
     #[Lazy]
-    protected $related;
+    protected ObjectStorage $related;
 
     /** @var ObjectStorage<News> */
     #[Lazy]
-    protected $relatedFrom;
+    protected ObjectStorage $relatedFrom;
 
     /**
      * Fal related files
@@ -117,7 +117,7 @@ class News extends AbstractEntity
      * @var ObjectStorage<FileReference>
      */
     #[Lazy]
-    protected $falMedia;
+    protected ObjectStorage $falMedia;
 
     /**
      * Fal media items with showinpreview set
@@ -181,6 +181,8 @@ class News extends AbstractEntity
         $this->falMedia = new ObjectStorage();
         $this->falRelatedFiles = new ObjectStorage();
         $this->tags = new ObjectStorage();
+        $this->related = new ObjectStorage();
+        $this->relatedFrom = new ObjectStorage();
     }
 
     /**
@@ -194,6 +196,8 @@ class News extends AbstractEntity
         $this->falMedia ??= new ObjectStorage();
         $this->falRelatedFiles ??= new ObjectStorage();
         $this->tags ??= new ObjectStorage();
+        $this->related ??= new ObjectStorage();
+        $this->relatedFrom ??= new ObjectStorage();
     }
 
     public function getTitle(): string

@@ -9,12 +9,11 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Service\ExtensionService;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormViewHelper;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\CheckboxViewHelper;
 use TYPO3\CMS\Fluid\ViewHelpers\FormViewHelper;
@@ -24,39 +23,26 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     /** @var string */
     protected $tagName = 'form';
 
-    /** @var MvcPropertyMappingConfigurationService */
-    protected $mvcPropertyMappingConfigurationService;
-
-    /** @var ExtensionService */
-    protected $extensionService;
+    protected ExtensionService $extensionService;
 
     /**
-     * We need the arguments of the formActionUri on requesthash calculation
+     * We need the arguments of the formActionUri on request hash calculation
      * therefore we will store them in here right after calling uriBuilder
-     *
-     * @var array
      */
-    protected $formActionUriArguments;
+    protected array $formActionUriArguments = [];
 
-    public function injectMvcPropertyMappingConfigurationService(MvcPropertyMappingConfigurationService $mvcPropertyMappingConfigurationService)
-    {
-        $this->mvcPropertyMappingConfigurationService = $mvcPropertyMappingConfigurationService;
-    }
-
-    public function injectExtensionService(ExtensionService $extensionService)
+    public function injectExtensionService(ExtensionService $extensionService): void
     {
         $this->extensionService = $extensionService;
     }
 
-    /**
-     * Initialize arguments.
-     */
     public function initializeArguments(): void
     {
+        parent::initializeArguments();
         $this->registerArgument('action', 'string', 'Target action');
-        $this->registerArgument('arguments', 'array', 'Arguments', false, []);
+        $this->registerArgument('arguments', 'array', 'Arguments (do not use reserved keywords "action", "controller" or "format" if not referring to these internal variables specifically)', false, []);
         $this->registerArgument('controller', 'string', 'Target controller');
-        $this->registerArgument('extensionName', 'string', 'Target Extension Name (without "tx_" prefix and no underscores). If NULL the current extension name is used');
+        $this->registerArgument('extensionName', 'string', 'Target Extension Name (without `tx_` prefix and no underscores). If NULL the current extension name is used');
         $this->registerArgument('pluginName', 'string', 'Target plugin. If empty, the current plugin name is used');
         $this->registerArgument('pageUid', 'int', 'Target page uid');
         $this->registerArgument('object', 'mixed', 'Object to use for the form. Use in conjunction with the "property" attribute on the sub tags');
@@ -66,32 +52,29 @@ class SearchFormViewHelper extends AbstractFormViewHelper
         $this->registerArgument('format', 'string', 'The requested format (e.g. ".html") of the target page (only active if $actionUri is not set)', false, '');
         $this->registerArgument('additionalParams', 'array', 'additional action URI query parameters that won\'t be prefixed like $arguments (overrule $arguments) (only active if $actionUri is not set)', false, []);
         $this->registerArgument('absolute', 'bool', 'If set, an absolute action URI is rendered (only active if $actionUri is not set)', false, false);
-        $this->registerArgument('addQueryString', 'bool', 'If set, the current query parameters will be kept in the action URI (only active if $actionUri is not set)', false, false);
+        $this->registerArgument('addQueryString', 'string', 'If set, the current query parameters will be kept in the URL. If set to "untrusted", then ALL query parameters will be added. Be aware, that this might lead to problems when the generated link is cached.', false, false);
         $this->registerArgument('argumentsToBeExcludedFromQueryString', 'array', 'arguments to be removed from the action URI. Only active if $addQueryString = TRUE and $actionUri is not set', false, []);
         $this->registerArgument('fieldNamePrefix', 'string', 'Prefix that will be added to all field names within this form. If not set the prefix will be tx_yourExtension_plugin');
         $this->registerArgument('actionUri', 'string', 'can be used to overwrite the "action" attribute of the form tag');
         $this->registerArgument('objectName', 'string', 'name of the object that is bound to this form. If this argument is not specified, the name attribute of this form is used to determine the FormObjectName');
-        $this->registerTagAttribute('enctype', 'string', 'MIME type with which the form is submitted');
-        $this->registerTagAttribute('method', 'string', 'Transfer type (GET or POST)');
-        $this->registerTagAttribute('name', 'string', 'Name of form');
-        $this->registerTagAttribute('onreset', 'string', 'JavaScript: On reset of the form');
-        $this->registerTagAttribute('onsubmit', 'string', 'JavaScript: On submit of the form');
-        $this->registerTagAttribute('target', 'string', 'Target attribute of the form');
-        $this->registerTagAttribute('novalidate', 'bool', 'Indicate that the form is not to be validated on submit.');
+        $this->registerArgument('method', 'string', 'Transfer type (get or post)', false, 'post');
+        $this->registerArgument('name', 'string', 'Name of form');
+        $this->registerArgument('novalidate', 'bool', 'Indicate that the form is not to be validated on submit.');
     }
 
-    /**
-     * Render the form.
-     *
-     * @return string rendered form
-     */
     public function render(): string
     {
         $this->setFormActionUri();
+
+        // Force 'method="get"' or 'method="post"', defaulting to "post".
         if (isset($this->arguments['method']) && strtolower($this->arguments['method']) === 'get') {
             $this->tag->addAttribute('method', 'get');
         } else {
             $this->tag->addAttribute('method', 'post');
+        }
+
+        if (!empty($this->arguments['name'])) {
+            $this->tag->addAttribute('name', $this->arguments['name']);
         }
 
         if (isset($this->arguments['novalidate']) && $this->arguments['novalidate'] === true) {
@@ -115,25 +98,21 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     /**
      * Sets the "action" attribute of the form tag
      */
-    protected function setFormActionUri()
+    protected function setFormActionUri(): void
     {
         if ($this->hasArgument('actionUri')) {
             $formActionUri = $this->arguments['actionUri'];
         } else {
-            /** @var RenderingContext $renderingContext */
-            $renderingContext = $this->renderingContext;
             /** @var RequestInterface $request */
-            $request = $renderingContext->getRequest();
-            /** @var UriBuilder $uriBuilder */
+            $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
             $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
             $uriBuilder
                 ->reset()
-                ->setRequest($request);
-            $uriBuilder
-                ->setTargetPageType($this->arguments['pageType'] ?? 0)
-                ->setNoCache($this->arguments['noCache'] ?? false)
+                ->setRequest($request)
+                ->setTargetPageType((int)($this->arguments['pageType'] ?? 0))
+                ->setNoCache((bool)($this->arguments['noCache'] ?? false))
                 ->setSection($this->arguments['section'] ?? '')
-                ->setCreateAbsoluteUri($this->arguments['absolute'] ?? false)
+                ->setCreateAbsoluteUri((bool)($this->arguments['absolute'] ?? false))
                 ->setArguments(isset($this->arguments['additionalParams']) ? (array)$this->arguments['additionalParams'] : [])
                 ->setAddQueryString($this->arguments['addQueryString'] ?? false)
                 ->setArgumentsToBeExcludedFromQueryString(isset($this->arguments['argumentsToBeExcludedFromQueryString']) ? (array)$this->arguments['argumentsToBeExcludedFromQueryString'] : [])
@@ -160,7 +139,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     /**
      * Adds the form object name to the ViewHelperVariableContainer if "objectName" argument or "name" attribute is specified.
      */
-    protected function addFormObjectNameToViewHelperVariableContainer()
+    protected function addFormObjectNameToViewHelperVariableContainer(): void
     {
         $formObjectName = $this->getFormObjectName();
         if ($formObjectName !== null) {
@@ -171,7 +150,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     /**
      * Removes the form name from the ViewHelperVariableContainer.
      */
-    protected function removeFormObjectNameFromViewHelperVariableContainer()
+    protected function removeFormObjectNameFromViewHelperVariableContainer(): void
     {
         $formObjectName = $this->getFormObjectName();
         if ($formObjectName !== null) {
@@ -186,7 +165,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      *
      * @return string specified Form name or NULL if neither $objectName nor $name arguments have been specified
      */
-    protected function getFormObjectName()
+    protected function getFormObjectName(): ?string
     {
         $formObjectName = null;
         if ($this->hasArgument('objectName')) {
@@ -200,7 +179,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     /**
      * Adds the object that is bound to this form to the ViewHelperVariableContainer if the formObject attribute is specified.
      */
-    protected function addFormObjectToViewHelperVariableContainer()
+    protected function addFormObjectToViewHelperVariableContainer(): void
     {
         if ($this->hasArgument('object')) {
             $viewHelperVariableContainer = $this->renderingContext->getViewHelperVariableContainer();
@@ -212,7 +191,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     /**
      * Removes the form object from the ViewHelperVariableContainer.
      */
-    protected function removeFormObjectFromViewHelperVariableContainer()
+    protected function removeFormObjectFromViewHelperVariableContainer(): void
     {
         if ($this->hasArgument('object')) {
             $viewHelperVariableContainer = $this->renderingContext->getViewHelperVariableContainer();
@@ -222,20 +201,15 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     }
 
     /**
-     * Adds the field name prefix to the ViewHelperVariableContainer
+     * Adds the field name prefix to the ViewHelperVariableContainer.
      */
-    protected function addFieldNamePrefixToViewHelperVariableContainer()
+    protected function addFieldNamePrefixToViewHelperVariableContainer(): void
     {
         $fieldNamePrefix = $this->getFieldNamePrefix();
         $this->renderingContext->getViewHelperVariableContainer()->add(FormViewHelper::class, 'fieldNamePrefix', $fieldNamePrefix);
     }
 
-    /**
-     * Get the field name prefix
-     *
-     * @return string
-     */
-    protected function getFieldNamePrefix()
+    protected function getFieldNamePrefix(): string
     {
         if ($this->hasArgument('fieldNamePrefix')) {
             return $this->arguments['fieldNamePrefix'];
@@ -244,25 +218,25 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     }
 
     /**
-     * Removes field name prefix from the ViewHelperVariableContainer
+     * Removes field name prefix from the ViewHelperVariableContainer.
      */
-    protected function removeFieldNamePrefixFromViewHelperVariableContainer()
+    protected function removeFieldNamePrefixFromViewHelperVariableContainer(): void
     {
         $this->renderingContext->getViewHelperVariableContainer()->remove(FormViewHelper::class, 'fieldNamePrefix');
     }
 
     /**
-     * Adds a container for form field names to the ViewHelperVariableContainer
+     * Adds a container for form field names to the ViewHelperVariableContainer.
      */
-    protected function addFormFieldNamesToViewHelperVariableContainer()
+    protected function addFormFieldNamesToViewHelperVariableContainer(): void
     {
         $this->renderingContext->getViewHelperVariableContainer()->add(FormViewHelper::class, 'formFieldNames', []);
     }
 
     /**
-     * Removes the container for form field names from the ViewHelperVariableContainer
+     * Removes the container for form field names from the ViewHelperVariableContainer.
      */
-    protected function removeFormFieldNamesFromViewHelperVariableContainer()
+    protected function removeFormFieldNamesFromViewHelperVariableContainer(): void
     {
         $viewHelperVariableContainer = $this->renderingContext->getViewHelperVariableContainer();
         $viewHelperVariableContainer->remove(FormViewHelper::class, 'formFieldNames');
@@ -272,35 +246,12 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     }
 
     /**
-     * Add the URI arguments after postprocessing to the request hash as well.
-     * @param array $arguments
-     * @param array $results
-     * @param string $currentPrefix
-     * @param int $level
-     */
-    protected function postProcessUriArgumentsForRequestHash($arguments, &$results, $currentPrefix = '', $level = 0)
-    {
-        if (count($arguments)) {
-            foreach ($arguments as $argumentName => $argumentValue) {
-                $argumentName = (string)$argumentName;
-                if (is_array($argumentValue)) {
-                    $prefix = $level == 0 ? $argumentName : $currentPrefix . '[' . $argumentName . ']';
-                    $this->postProcessUriArgumentsForRequestHash($argumentValue, $results, $prefix, $level + 1);
-                } else {
-                    $results[] = $level == 0 ? $argumentName : $currentPrefix . '[' . $argumentName . ']';
-                }
-            }
-        }
-    }
-
-    /**
      * Retrieves the default field name prefix for this form
-     *
-     * @return string default field name prefix
      */
-    protected function getDefaultFieldNamePrefix()
+    protected function getDefaultFieldNamePrefix(): string
     {
-        $request = $this->renderingContext->getRequest();
+        /** @var RequestInterface $request */
+        $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
         if ($this->hasArgument('extensionName')) {
             $extensionName = $this->arguments['extensionName'];
         } else {
@@ -320,7 +271,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
     /**
      * Remove Checkbox field names from ViewHelper variable container, to start from scratch when a new form starts.
      */
-    protected function removeCheckboxFieldNamesFromViewHelperVariableContainer()
+    protected function removeCheckboxFieldNamesFromViewHelperVariableContainer(): void
     {
         $viewHelperVariableContainer = $this->renderingContext->getViewHelperVariableContainer();
         if ($viewHelperVariableContainer->exists(CheckboxViewHelper::class, 'checkboxFieldNames')) {

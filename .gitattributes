@@ -3,7 +3,6 @@
 /Tests/ export-ignore
 /.editorconfig export-ignore
 /.gitattributes export-ignore
-/.github/ export-ignore
 /.gitignore export-ignore
 /.scrutinizer export-ignore
 /.styleci.yml export-ignore

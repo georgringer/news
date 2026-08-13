@@ -10,9 +10,13 @@
 namespace GeorgRinger\News\Tests\Unit\Hooks;
 
 use GeorgRinger\News\Hooks\PluginPreviewRenderer;
+use GeorgRinger\News\Tests\Unit\Hooks\Fixtures\FakeIconFactory;
 use GeorgRinger\News\Utility\TemplateLayout;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
+use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -34,7 +38,16 @@ class PluginPreviewRendererTest extends BaseTestCase
 
         $GLOBALS['LANG'] = $languageService;
 
-        $this->pageLayoutView = $this->getAccessibleMock(PluginPreviewRenderer::class, ['getRecord'], [], '', false);
+        $this->pageLayoutView = $this->getAccessibleMock(
+            PluginPreviewRenderer::class,
+            ['getRecord'],
+            [
+                new FakeIconFactory(),
+                $this->createMock(UriBuilder::class),
+                $this->createMock(EventDispatcher::class),
+                $this->createMock(StandardContentPreviewRenderer::class),
+            ],
+        );
         $this->pageLayoutView->expects(self::any())->method('getRecord')->willReturn(null);
     }
 

@@ -27,7 +27,7 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
 
 .. code-block:: typoscript
 
-    [getTSFE() && getTSFE().type == 9819]
+    [request && request.getPageArguments()?.getPageType() == 9819]
     config {
        disableAllHeaderCode = 1
        xhtml_cleaning = none
@@ -119,7 +119,7 @@ The TypoScript code looks like this.
 
 .. code-block:: typoscript
 
-    [getTSFE() && getTSFE().type == 9819]
+    [request && request.getPageArguments()?.getPageType() == 9819]
        lib.stdheader >
        tt_content.stdWrap.innerWrap >
        tt_content.stdWrap.wrap >

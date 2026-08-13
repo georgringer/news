@@ -1,0 +1,15 @@
+sys_category,,,,,,
+,uid,pid,parent,title,hidden,deleted
+,1,1,0,"Root A",0,0
+,2,1,1,"A-1",0,0
+,3,1,2,"A-1-1",0,0
+,4,1,2,"A-1-2",0,0
+,5,1,1,"A-2",0,0
+,10,1,0,"Root B",0,0
+,11,1,10,"B-1",0,0
+,20,1,0,"Root C without children",0,0
+,30,1,0,"Root D",0,0
+,31,1,30,"D-1 hidden",1,0
+,32,1,30,"D-2 deleted",0,1
+,40,1,41,"Cycle A",0,0
+,41,1,40,"Cycle B",0,0

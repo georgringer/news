@@ -10,9 +10,7 @@
 namespace GeorgRinger\News\ViewHelpers;
 
 use GeorgRinger\News\Seo\NewsTitleProvider;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -31,32 +29,14 @@ class TitleTagViewHelper extends AbstractViewHelper
 {
     public function render(): void
     {
-        if ((new Typo3Version())->getVersion() >= 14) {
-            $isInsertRecord = $this->renderingContext->getVariableProvider()->getByPath('settings.insertRecord');
-            if ($isInsertRecord) {
-                return;
-            }
-        } else {
-            // Skip if current record is part of tt_content CType shortcut
-            $tsfe = self::getTsfe();
-            if (!empty($tsfe->recordRegister)
-                && is_array($tsfe->recordRegister)
-                && str_contains(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:')
-                && !empty($tsfe->currentRecord)
-                && str_contains($tsfe->currentRecord, 'tx_news_domain_model_news:')
-            ) {
-                return;
-            }
+        $isInsertRecord = $this->renderingContext->getVariableProvider()->getByPath('settings.insertRecord');
+        if ($isInsertRecord) {
+            return;
         }
+
         $content = trim($this->renderChildren());
         if (!empty($content)) {
             GeneralUtility::makeInstance(NewsTitleProvider::class)->setTitle($content);
         }
-    }
-
-    protected static function getTsfe(): TypoScriptFrontendController
-    {
-        $request = $GLOBALS['TYPO3_REQUEST'];
-        return $request->getAttribute('frontend.controller', $GLOBALS['TSFE']);
     }
 }
