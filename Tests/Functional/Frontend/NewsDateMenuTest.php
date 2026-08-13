@@ -18,8 +18,8 @@ use PHPUnit\Framework\Attributes\Test;
 class NewsDateMenuTest extends AbstractFrontendTestCase
 {
     /**
-     * Die Fixture-News liegen in 2024 und 2025, das Datumsmenue muss beide
-     * Jahre auflisten.
+     * The fixture news are dated 2024 and 2025, so the date menu has to list
+     * both years.
      */
     #[IgnoreDeprecations]
     #[Test]

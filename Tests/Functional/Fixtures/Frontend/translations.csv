@@ -1,0 +1,12 @@
+pages,,,,,,,,
+,uid,pid,sorting,doktype,slug,title,sys_language_uid,l10n_parent
+,101,0,256,1,"/","Root Translated",1,1
+,102,1,256,1,"/list","List Translated",1,2
+,103,1,512,1,"/detail","Detail Translated",1,3
+tt_content,,,,,,,,
+,uid,pid,sorting,colPos,CType,header,sys_language_uid,l18n_parent
+,101,2,256,0,"news_pi1","List Plugin Translated",1,1
+,102,3,256,0,"news_newsdetail","Detail Plugin Translated",1,2
+tx_news_domain_model_news,,,,,,,,
+,uid,pid,type,title,path_segment,datetime,sys_language_uid,l10n_parent
+,3,2,0,"Translated Test News","translated-test-news",1754870400,1,1

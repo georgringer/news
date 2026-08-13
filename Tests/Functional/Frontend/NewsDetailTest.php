@@ -32,8 +32,8 @@ class NewsDetailTest extends AbstractFrontendTestCase
     }
 
     /**
-     * Der Teaser wird im Default-Template ueber ein anderes Feld gerendert
-     * als in den Twb-Templates - genau dort ist der Drift entstanden.
+     * The default template renders the teaser from a different field than the
+     * Twb templates do - that is exactly where the drift came from.
      */
     #[IgnoreDeprecations]
     #[Test]

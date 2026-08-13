@@ -27,7 +27,10 @@ preferences do not belong here — put those in an untracked `CLAUDE.local.md`
   write a test that reproduces it, then fix and prove it with that test
   passing. The only exception is a purely mechanical fix with no testable
   behaviour, such as a typo in a label, comment or documentation.
-- Only add code comments when they add meaning; otherwise leave them out.
+- Only add code comments when they add meaning. Anything the code already says
+  plainly needs no comment — do not restate the method name, the parameters or
+  the obvious control flow. Comment the surprising part: why a workaround
+  exists, which edge case a branch guards, what breaks without it.
 - Do not break public API and do not drop TYPO3 13 support in passing.
 
 ## Project structure
@@ -129,6 +132,10 @@ when a local PHP is available.
 
 ## Coding style
 
+- **Everything in the code base is written in English**: class, method and
+  variable names, code comments, docblocks, commit messages, changelog and
+  documentation. Never leave German (or any other language) in source files —
+  only the translated `*.xlf` files hold non-English text.
 - PSR-12 via `typo3/coding-standards`, configured in
   `Build/php-cs-fixer/php-cs-fixer.php`. `-s cgl` is the authority; CI runs it
   as a dry-run on PHP 8.3.

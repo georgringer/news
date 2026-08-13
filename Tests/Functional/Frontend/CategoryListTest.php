@@ -30,8 +30,8 @@ class CategoryListTest extends AbstractFrontendTestCase
     }
 
     /**
-     * Die Templates rendern fuer eine ausgewaehlte Kategorie anderes Markup
-     * als fuer eine nicht ausgewaehlte - beide Zweige muessen laufen.
+     * The templates render different markup for a selected category than for
+     * an unselected one, so both branches need coverage.
      */
     #[IgnoreDeprecations]
     #[Test]

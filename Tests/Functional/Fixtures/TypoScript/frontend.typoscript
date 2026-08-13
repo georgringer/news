@@ -1,7 +1,7 @@
 page = PAGE
 
-# Plugin-Records werden direkt gerendert, statt ueber styles.content.get zu
-# gehen - das haelt die Ausgabe schlank und die Assertions robust.
+# Render the plugin records directly instead of going through
+# styles.content.get, which keeps the output lean and the assertions robust.
 page.10 = CONTENT
 page.10 {
   table = tt_content
@@ -11,8 +11,8 @@ page.10 {
   }
 }
 
-# Ohne das schluckt TYPO3 Fehler pro Content-Element, liefert
-# "Oops, an error occurred" und Status 200 - Tests waeren faelschlich gruen.
+# Without this TYPO3 swallows errors per content element, returns
+# "Oops, an error occurred" and status 200 - tests would be green by mistake.
 config.contentObjectExceptionHandler = 0
 config.no_cache = 1
 config.disableAllHeaderCode = 1
@@ -23,8 +23,8 @@ plugin.tx_news.settings {
   detailPid = 3
   backPid = 2
 
-  # Die Detail-Action bekommt ohne tx_news_pi1[news] kein News-Argument und
-  # faellt auf singleNews zurueck. Das spart den cHash im Test.
+  # Without tx_news_pi1[news] the detail action gets no news argument and falls
+  # back to singleNews, which saves calculating a cHash in the test.
   singleNews = 1
 
   selectedList = 1,2

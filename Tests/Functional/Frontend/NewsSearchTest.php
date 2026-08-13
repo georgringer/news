@@ -18,9 +18,9 @@ use PHPUnit\Framework\Attributes\Test;
 class NewsSearchTest extends AbstractFrontendTestCase
 {
     /**
-     * SearchFormViewHelper nutzt auf TYPO3 v13 bewusst registerTagAttribute(),
-     * das in Fluid v5 entfaellt. Der BC-Pfad ist per Versionsweiche abgesichert,
-     * die Deprecation ist dort erwartet.
+     * On TYPO3 v13 the SearchFormViewHelper deliberately uses
+     * registerTagAttribute(), which is gone in Fluid v5. That BC path is
+     * guarded by a version switch, so the deprecation is expected here.
      */
     #[Test]
     #[IgnoreDeprecations]

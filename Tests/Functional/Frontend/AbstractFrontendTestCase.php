@@ -24,26 +24,25 @@ abstract class AbstractFrontendTestCase extends FunctionalTestCase
     protected array $testExtensionsToLoad = ['typo3conf/ext/news'];
 
     /**
-     * fluid_styled_content wird gebraucht, weil Extbase das TypoScript fuer
-     * tt_content.news_* ueber "defaultContentRendering" registriert. Das wird
-     * nur eingebunden, wenn FE/contentRenderingTemplates gesetzt ist - und das
-     * macht fluid_styled_content.
+     * fluid_styled_content is required because Extbase registers the TypoScript
+     * for tt_content.news_* via "defaultContentRendering". That is only included
+     * when FE/contentRenderingTemplates is set, which fluid_styled_content does.
      */
     protected array $coreExtensionsToLoad = ['fluid', 'fluid_styled_content'];
 
     /**
-     * tx_news_pi1[news] und tx_news_pi1[overwriteDemand][...] sind nicht von der
-     * cHash-Pruefung ausgenommen. Ohne diese Abschaltung muesste jeder Test einen
-     * gueltigen cHash berechnen.
-     */
-    /**
-     * Das Bild aus media.csv muss physisch existieren, sonst scheitert
-     * LocalDriver::hash() beim Verarbeiten in f:image.
+     * The image from media.csv has to exist physically, otherwise
+     * LocalDriver::hash() fails while processing it in f:image.
      */
     protected array $pathsToProvideInTestInstance = [
         'typo3conf/ext/news/Tests/Functional/Fixtures/Frontend/fileadmin' => 'fileadmin',
     ];
 
+    /**
+     * tx_news_pi1[news] and tx_news_pi1[overwriteDemand][...] are not excluded
+     * from the cHash check. Without disabling it, every test would have to
+     * calculate a valid cHash.
+     */
     protected array $configurationToUseInTestInstance = [
         'FE' => [
             'cacheHash' => [
@@ -65,8 +64,8 @@ abstract class AbstractFrontendTestCase extends FunctionalTestCase
     }
 
     /**
-     * Richtet das Root-Page-TypoScript ein. Ein leerer $stylePath bedeutet
-     * Default-Templates.
+     * Sets up the root page TypoScript. An empty $stylePath means the default
+     * templates.
      */
     protected function setUpFrontend(string $stylePath = ''): void
     {
@@ -97,11 +96,14 @@ abstract class AbstractFrontendTestCase extends FunctionalTestCase
     /**
      * @param array<string, int|string> $query
      */
-    protected function renderPage(int $pageUid, array $query = []): ResponseInterface
+    protected function renderPage(int $pageUid, array $query = [], int $languageId = 0): ResponseInterface
     {
-        return $this->executeFrontendSubRequest(
-            (new InternalRequest())->withPageId($pageUid)->withQueryParameters($query)
-        );
+        $request = (new InternalRequest())->withPageId($pageUid)->withQueryParameters($query);
+        if ($languageId > 0) {
+            $request = $request->withLanguageId($languageId);
+        }
+
+        return $this->executeFrontendSubRequest($request);
     }
 
     protected function assertRendersWithoutError(ResponseInterface $response): string
@@ -127,25 +129,41 @@ abstract class AbstractFrontendTestCase extends FunctionalTestCase
         ];
     }
 
-    private function writeSiteConfiguration(): void
+    protected function writeSiteConfiguration(): void
     {
         $path = $this->instancePath . '/typo3conf/sites/testing';
         GeneralUtility::mkdir_deep($path);
 
-        file_put_contents($path . '/config.yaml', Yaml::dump([
+        file_put_contents($path . '/config.yaml', Yaml::dump($this->getSiteConfiguration(), 99, 2));
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    protected function getSiteConfiguration(): array
+    {
+        return [
             'rootPageId' => self::ROOT_PAGE_ID,
             'base' => 'http://localhost/',
             'languages' => [
-                [
-                    'title' => 'English',
-                    'enabled' => true,
-                    'languageId' => 0,
-                    'base' => '/',
-                    'locale' => 'en_US.UTF-8',
-                    'navigationTitle' => 'English',
-                    'flag' => 'us',
-                ],
+                $this->getDefaultSiteLanguage(),
             ],
-        ], 99, 2));
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    protected function getDefaultSiteLanguage(): array
+    {
+        return [
+            'title' => 'English',
+            'enabled' => true,
+            'languageId' => 0,
+            'base' => '/',
+            'locale' => 'en_US.UTF-8',
+            'navigationTitle' => 'English',
+            'flag' => 'us',
+        ];
     }
 }
