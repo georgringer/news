@@ -34,8 +34,13 @@ class NewsDemandFactory
     /**
      * Create the demand object which defines which records will get shown
      *
+     * A non-empty $settings['demandClass'] takes precedence over $class, so the inferred return
+     * type only holds as long as a caller does not use both at once.
+     *
+     * @template T of NewsDemand
      * @param array $settings settings of the plugin, e.g. plugin.tx_news.settings
-     * @param string $class optional class which must be an instance of \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+     * @param class-string<T> $class optional class which must be an instance of \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+     * @return T
      */
     public function create(array $settings, string $class = NewsDemand::class): NewsDemand
     {
