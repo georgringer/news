@@ -99,9 +99,7 @@ class AbstractImportService implements LoggerAwareInterface
      */
     protected function getImportFolder(): Folder
     {
-        if ($this->importFolder === null) {
-            $this->importFolder = $this->getResourceFactory()->getFolderObjectFromCombinedIdentifier($this->emSettings->getStorageUidImporter() . ':' . $this->emSettings->getResourceFolderImporter());
-        }
+        $this->importFolder ??= $this->getResourceFactory()->getFolderObjectFromCombinedIdentifier($this->emSettings->getStorageUidImporter() . ':' . $this->emSettings->getResourceFolderImporter());
         return $this->importFolder;
     }
 

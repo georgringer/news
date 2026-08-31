@@ -48,13 +48,11 @@ class SettingsService
      */
     public function getSettings(): array
     {
-        if ($this->settings === null) {
-            $this->settings = $this->configurationManager->getConfiguration(
-                ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
-                'News',
-                'Pi1'
-            );
-        }
+        $this->settings ??= $this->configurationManager->getConfiguration(
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
+            'News',
+            'Pi1'
+        );
         return $this->settings;
     }
 
