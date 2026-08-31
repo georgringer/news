@@ -97,9 +97,7 @@ class TypoScript
     {
         while (count($path) > 1) {
             $key = array_shift($path);
-            if (!isset($array[$key])) {
-                $array[$key] = [];
-            }
+            $array[$key] ??= [];
             $array = &$array[$key];
         }
 

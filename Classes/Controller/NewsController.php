@@ -443,9 +443,7 @@ class NewsController extends NewsBaseController
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
-        if (is_null($search)) {
-            $search = GeneralUtility::makeInstance(Search::class);
-        }
+        $search ??= GeneralUtility::makeInstance(Search::class);
         $demand->setSearch($search);
 
         $assignedValues = [

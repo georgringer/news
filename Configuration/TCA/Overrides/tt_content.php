@@ -44,14 +44,12 @@ $GLOBALS['TCA']['tt_content']['columns']['CType']['config']['itemGroups']['news'
 ExtensionManagementUtility::addToInsertRecords('tx_news_domain_model_news');
 
 foreach (['crdate', 'tstamp'] as $fakeField) {
-    if (!isset($GLOBALS['TCA']['tt_content']['columns'][$fakeField])) {
-        $GLOBALS['TCA']['tt_content']['columns'][$fakeField] = [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.' . $fakeField,
-            'config' => [
-                'type' => 'datetime',
-            ],
-        ];
-    }
+    $GLOBALS['TCA']['tt_content']['columns'][$fakeField] ??= [
+        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.' . $fakeField,
+        'config' => [
+            'type' => 'datetime',
+        ],
+    ];
 }
 
 $newFields = [
