@@ -150,12 +150,10 @@ class ItemsProcFunc
         $siteLanguages = [];
         foreach (GeneralUtility::makeInstance(SiteFinder::class)->getAllSites() as $site) {
             foreach ($site->getAllLanguages() as $languageId => $language) {
-                if (!isset($siteLanguages[$languageId])) {
-                    $siteLanguages[$languageId] = [
-                        'uid' => $languageId,
-                        'title' => $language->getTitle(),
-                    ];
-                }
+                $siteLanguages[$languageId] ??= [
+                    'uid' => $languageId,
+                    'title' => $language->getTitle(),
+                ];
             }
         }
         return $siteLanguages;

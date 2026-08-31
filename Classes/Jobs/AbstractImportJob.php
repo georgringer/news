@@ -43,9 +43,7 @@ abstract class AbstractImportJob implements ImportJobInterface
     public function getNumberOfRecordsPerRun(): int
     {
         // If not explicit defined by the job we import all records at once.
-        if ($this->numberOfRecordsPerRun === null) {
-            $this->numberOfRecordsPerRun = $this->importDataProviderService->getTotalRecordCount();
-        }
+        $this->numberOfRecordsPerRun ??= $this->importDataProviderService->getTotalRecordCount();
         return $this->numberOfRecordsPerRun;
     }
 
