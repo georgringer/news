@@ -8,7 +8,6 @@ use GeorgRinger\News\Hooks\DataHandlerHook;
 use GeorgRinger\News\Routing\NewsCategoryMapper;
 use GeorgRinger\News\Routing\NewsTagMapper;
 use GeorgRinger\News\Routing\NewsTitleMapper;
-use GeorgRinger\News\Utility\ClassCacheManager;
 use GeorgRinger\News\Utility\ClassLoader;
 use GeorgRinger\News\Xclass\ExtensionServiceXclassed;
 use TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowDateTimeFields;
@@ -150,8 +149,6 @@ $boot = static function (): void {
     if (class_exists(ClassLoader::class)) {
         ClassLoader::registerAutoloader();
     }
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['ext:news']
-        = ClassCacheManager::class . '->reBuild';
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][NewsRowInitializeNew::class] = [
         'depends' => [
