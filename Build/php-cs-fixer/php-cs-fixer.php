@@ -20,6 +20,7 @@ $config->setFinder(
         ->notPath('/^Build\/phpunit\/(UnitTestsBootstrap|FunctionalTestsBootstrap).php/')
         ->notPath('/^Configuration\//')
         ->notPath('/^Documentation\//')
+        ->notPath('/^Tests\/Functional\/Fixtures\/Extensions\//')
         ->notName('/^ext_(emconf|localconf|tables).php/')
 )
     ->setRiskyAllowed(true)

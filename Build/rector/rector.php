@@ -34,6 +34,8 @@ return RectorConfig::configure()
     // To have a better analysis from PHPStan, we teach it here some more things
     ->withPHPStanConfigs([Typo3Option::PHPSTAN_FOR_RECTOR_PATH])
     ->withSkip([
+        // Proxy-class partials must keep their fully qualified class names
+        __DIR__ . '/../../Tests/Functional/Fixtures/Extensions',
 
         //  NullCoalescingOperatorRector::class,
         NullToStrictStringFuncCallArgRector::class,

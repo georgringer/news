@@ -1,0 +1,14 @@
+{
+    "name": "georgringer/news-extend-newsdefault",
+    "type": "typo3-cms-extension",
+    "description": "Test fixture: extends GeorgRinger\\News\\Domain\\Model\\NewsDefault",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "georgringer/news": "*"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "news_extend_newsdefault"
+        }
+    }
+}
