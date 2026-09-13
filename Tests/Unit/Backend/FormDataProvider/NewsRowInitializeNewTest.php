@@ -11,11 +11,13 @@ namespace GeorgRinger\News\Tests\Unit\Backend\FormDataProvider;
 
 use GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
+#[BackupGlobals(true)]
 class NewsRowInitializeNewTest extends BaseTestCase
 {
     #[Test]

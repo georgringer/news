@@ -12,6 +12,7 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
 use GeorgRinger\News\Hooks\PluginPreviewRenderer;
 use GeorgRinger\News\Tests\Unit\Hooks\Fixtures\FakeIconFactory;
 use GeorgRinger\News\Utility\TemplateLayout;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
@@ -24,6 +25,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 /**
  * Tests for PluginPreviewRenderer
  */
+#[BackupGlobals(true)]
 class PluginPreviewRendererTest extends BaseTestCase
 {
     /** @var PluginPreviewRenderer|MockObject|AccessibleObjectInterface */
