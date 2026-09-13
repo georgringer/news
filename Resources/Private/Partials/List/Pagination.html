@@ -10,7 +10,7 @@
                     </li>
                 </f:comment>
                 <li class="previous">
-                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber},addQueryString:'untrusted')}" title="{f:translate(key:'pagination.previous')}">
+                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber},addQueryString:'untrusted')}" rel="prev" title="{f:translate(key:'pagination.previous')}">
                         {f:translate(key:'widget.pagination.previous', extensionName: 'fluid')}
                     </a>
                 </li>
@@ -28,7 +28,7 @@
         <f:for each="{pagination.allPageNumbers}" as="page">
             <f:if condition="{page} == {paginator.currentPageNumber}">
                 <f:then>
-                    <li class="current">{page}</li>
+                    <li class="current"><span aria-current="page">{page}</span></li>
                 </f:then>
                 <f:else>
                     <li>
@@ -44,7 +44,7 @@
         <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
             <f:then>
                 <li class="next">
-                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber},addQueryString:'untrusted')}" title="{f:translate(key:'pagination.next')}">
+                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber},addQueryString:'untrusted')}" rel="next" title="{f:translate(key:'pagination.next')}">
                         {f:translate(key:'widget.pagination.next', extensionName: 'fluid')}
                     </a>
                 </li>
