@@ -1,4 +1,4 @@
-tx_news_domain_model_news,,,
-,uid,pid,datetime
-,1,1,1000
-,2,1,2000
+tx_news_domain_model_news,,,,
+,uid,pid,datetime,tstamp
+,1,1,1000,3000
+,2,1,2000,5000
