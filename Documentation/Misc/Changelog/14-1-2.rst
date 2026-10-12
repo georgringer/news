@@ -1,0 +1,33 @@
+14.1.2 - 12th October 2026
+==========================
+
+.. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2026-09-13 [TASK] Limit global backup to stateful unit tests (Commit d69827ca by Georg Ringer)
+    2026-09-04 [TASK] Add functional test for the proxy class generator (Commit 3a69b6f3 by Benni Mack)
+    2026-08-31 [BUGFIX] Rebuild the class cache when an extension is set up (Commit 744787df by Georg Ringer)
+    2026-08-31 [BUGFIX] Remove clearCachePostProc hook that rebuilt class cache on every record save (Commit 3bda85ce by copilot-swe-agent[bot])
+    2026-08-31 [TASK] Apply IfToNullCoalescingAssignRector (Commit e14a2ace by Georg Ringer)
+    2026-08-17 [TASK] Add generic return type to NewsDemandFactory::create() (Commit 805d535a by Sebastian Michaelsen)
+    2026-08-13 [TASK] Fix PageAvailableInLanguageViewHelper (Commit bd1a302a by Georg Ringer)
+    2026-08-13 [BUGFIX] Avoid type exception in IsCategoryActiveVh (Commit f7a0923f by Georg Ringer)
+    2026-08-13 [BUGFIX] Reset initializeObject lines per class in ClassCacheManager (#2841) (Commit 56837868 by Benni Mack)
+    2026-08-12 [BUGFIX] Set correct path for twb4 in site set (Commit 3cfd4632 by Georg Ringer)
+    2026-08-12 [TASK] Test frontend rendering (#2836) (Commit af4d7183 by Georg Ringer)
+    2026-08-12 [TASK] Wrap AGENTS.md at 80 characters (Commit 96d58a78 by Georg Ringer)
+    2026-08-12 [TASK] Add agents/claude.md (Commit a18947c5 by Georg Ringer)
+    2026-08-12 [TASK] Make cgl compliant (Commit 0cc4b427 by Georg Ringer)
+    2026-08-12 [TASK] Remove deprecation by adding request (Commit bfb8c34d by Georg Ringer)
+    2026-08-12 [BUGFIX] Update SearchFormViewHelper (#2843) (Commit 5f20eda6 by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
