@@ -33,6 +33,9 @@
         "typo3/cms-install": "^13.4.29 || ^14.3"
     },
     "require-dev": {
+        "a9f/fractor": "~1.0.0",
+        "a9f/fractor-xliff": "~1.0.0",
+        "a9f/fractor-xml": "~1.0.0",
         "a9f/typo3-fractor": "@dev",
         "friendsofphp/php-cs-fixer": "^3.89.2",
         "phpstan/phpdoc-parser": "^1.33.0",
