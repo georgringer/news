@@ -51,16 +51,33 @@ class NewsXmlSitemapDataProviderTest extends FunctionalTestCase
         self::assertSame([2], $this->uidsForPage(['page' => 1]));
     }
 
+    #[Test]
+    public function lastModifiedIsDeterminedOverAllItemsNotOnlyTheCurrentPage(): void
+    {
+        self::assertSame(5000, $this->createProvider([])->getLastModified());
+    }
+
     /**
      * @param array<string, mixed> $queryParams
      * @return int[] uids of the news records on the requested sitemap page
      */
     private function uidsForPage(array $queryParams): array
     {
+        return array_map(
+            static fn(array $item): int => (int)$item['data']['uid'],
+            $this->createProvider($queryParams)->getRawItems()
+        );
+    }
+
+    /**
+     * @param array<string, mixed> $queryParams
+     */
+    private function createProvider(array $queryParams): NewsXmlSitemapDataProvider
+    {
         $request = (new ServerRequest())->withQueryParams($queryParams);
 
         // One item per page so two fixture records span two sitemap pages.
-        $provider = new class ($request, 'news', []) extends NewsXmlSitemapDataProvider {
+        return new class ($request, 'news', []) extends NewsXmlSitemapDataProvider {
             protected int $numberOfItemsPerPage = 1;
 
             public function getRawItems(): array
@@ -68,10 +85,5 @@ class NewsXmlSitemapDataProviderTest extends FunctionalTestCase
                 return $this->items;
             }
         };
-
-        return array_map(
-            static fn(array $item): int => (int)$item['data']['uid'],
-            $provider->getRawItems()
-        );
     }
 }
