@@ -175,6 +175,15 @@ desired pages.
        plugin: Pi1
        # etc.
 
+.. warning::
+
+   Enhancers for the same extension and plugin must not apply to the same
+   page. Routes are registered per page under a name derived from extension
+   and plugin. If two enhancers have no :yaml:`limitToPages` or overlapping
+   page lists, their routes override each other silently and only the
+   enhancer defined last is used for matching. In this case, define all
+   routes in the :yaml:`routes` list of a single enhancer.
+
 About routes and aspects
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
