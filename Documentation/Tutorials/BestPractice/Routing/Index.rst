@@ -184,6 +184,55 @@ desired pages.
    enhancer defined last is used for matching. In this case, define all
    routes in the :yaml:`routes` list of a single enhancer.
 
+**Don't:** Two enhancers for the same plugin without :yaml:`limitToPages`.
+The route :yaml:`/list/{page}` replaces :yaml:`/article/{news-title}`.
+
+.. code-block:: yaml
+   :caption: :file:`/config/sites/<your_identifier>/config.yaml`
+
+   routeEnhancers:
+     NewsDetail:
+       type: Extbase
+       extension: News
+       plugin: Pi1
+       routes:
+         - routePath: '/article/{news-title}'
+           _controller: 'News::detail'
+           _arguments:
+             news-title: news
+     NewsList:
+       type: Extbase
+       extension: News
+       plugin: Pi1
+       routes:
+         - routePath: '/list/{page}'
+           _controller: 'News::list'
+           _arguments:
+             page: 'currentPage'
+
+**Do:** Put all routes into one enhancer.
+
+.. code-block:: yaml
+   :caption: :file:`/config/sites/<your_identifier>/config.yaml`
+
+   routeEnhancers:
+     News:
+       type: Extbase
+       extension: News
+       plugin: Pi1
+       routes:
+         - routePath: '/list/{page}'
+           _controller: 'News::list'
+           _arguments:
+             page: 'currentPage'
+         - routePath: '/article/{news-title}'
+           _controller: 'News::detail'
+           _arguments:
+             news-title: news
+
+Or keep separate enhancers and assign each of them to different pages with
+:yaml:`limitToPages`, as shown above.
+
 About routes and aspects
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
