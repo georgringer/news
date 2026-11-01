@@ -572,10 +572,10 @@ configuration of PHP function `date <http://www.php.net/date>`__.
    | Possible range of all mappers is larger than 10000 items
 
    Using the :yaml:`StaticRangeMapper` is strictly limited to 1000 items per
-   a single range and 10000 items per routing enhancer.
+   a single range and 10000 items per route.
 
-   That means you'll have to multiply all possible combinations in a routing
-   enhancer, for example:
+   That means you'll have to multiply all possible combinations in a route, for
+   example:
 
    12 months × 30 years *(2000-2030)* × 25 pages *(pagination)* = 9000 possible
    items
