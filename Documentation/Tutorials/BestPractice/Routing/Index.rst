@@ -360,8 +360,6 @@ If you want to have  categories+pagination, that configuration has to stand befo
            _arguments:
              news-title: news
        defaultController: 'News::list'
-       defaults:
-         page: '0'
        aspects:
          news-title:
            type: NewsTitle
@@ -409,12 +407,12 @@ The website provides several frontend languages.
        extension: News
        plugin: Pi1
        routes:
+         - routePath: '/'
+           _controller: 'News::list'
          - routePath: '/{page-label}-{page}'
            _controller: 'News::list'
            _arguments: {'page': 'currentPage'}
        defaultController: 'News::list'
-       defaults:
-         page: ''
        requirements:
          page: '\d+'
        aspects:
@@ -501,14 +499,6 @@ by date. Also includes configuration for the pagination.
            _arguments:
              news-title: news
        defaultController: 'News::list'
-       defaults:
-         page: '0'
-         date-month: ''
-         date-year: ''
-       requirements:
-         date-month: '\d+'
-         date-year: '\d+'
-         page: '\d+'
        aspects:
          news-title:
            type: NewsTitle
@@ -540,6 +530,14 @@ by date. Also includes configuration for the pagination.
 
 You will need a new :yaml:`routePath` for every possible combination of
 arguments (pagination, month with/without pagination, ...).
+
+Do not add :yaml:`defaults` for these arguments. They make a route fit even
+though the link does not supply all of its arguments, and the list view would
+get a URL like :code:`/news/page`.
+
+:yaml:`requirements` check the value in the URL. A rule like
+:yaml:`date-month: '\d+'` therefore rejects :code:`march`, and the URL
+:code:`/news/2018/march` is neither generated nor resolved.
 
 **Potential errors:**
 
