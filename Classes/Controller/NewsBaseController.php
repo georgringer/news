@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\View\ViewFactoryData;
 use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\Cache\CacheInstruction;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Page\PageInformation;
@@ -85,15 +84,10 @@ class NewsBaseController extends ActionController
                 $cacheInstruction = $this->request->getAttribute('frontend.cache.instruction', new CacheInstruction());
                 $cacheInstruction->disableCache('News record not found');
 
-                if (class_exists(StandaloneView::class)) {
-                    $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
-                    $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($options[1]));
-                } else {
-                    $viewFactoryData = new ViewFactoryData(
-                        templatePathAndFilename: $options[1]
-                    );
-                    $standaloneTemplate = GeneralUtility::makeInstance(ViewFactoryInterface::class)->create($viewFactoryData);
-                }
+                $viewFactoryData = new ViewFactoryData(
+                    templatePathAndFilename: $options[1]
+                );
+                $standaloneTemplate = GeneralUtility::makeInstance(ViewFactoryInterface::class)->create($viewFactoryData);
 
                 return $this->responseFactory->createResponse($statusCode)
                     ->withHeader('Content-Type', 'text/html; charset=utf-8')

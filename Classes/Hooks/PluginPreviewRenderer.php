@@ -31,7 +31,6 @@ use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\View\ViewFactoryData;
 use TYPO3\CMS\Core\View\ViewFactoryInterface;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Render selected options of plugin in Web>Page module
@@ -557,15 +556,10 @@ class PluginPreviewRenderer implements PreviewRendererInterface
         $pageRenderer->loadJavaScriptModule('@georgringer/news/page-layout.js');
         $pageRenderer->addCssFile('EXT:news/Resources/Public/Css/Backend/PageLayoutView.css');
 
-        if (class_exists(StandaloneView::class)) {
-            $view = GeneralUtility::makeInstance(StandaloneView::class);
-            $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:news/Resources/Private/Backend/PageLayoutView.html'));
-        } else {
-            $viewFactoryData = new ViewFactoryData(
-                templatePathAndFilename: 'EXT:news/Resources/Private/Backend/PageLayoutView.html'
-            );
-            $view = GeneralUtility::makeInstance(ViewFactoryInterface::class)->create($viewFactoryData);
-        }
+        $viewFactoryData = new ViewFactoryData(
+            templatePathAndFilename: 'EXT:news/Resources/Private/Backend/PageLayoutView.html'
+        );
+        $view = GeneralUtility::makeInstance(ViewFactoryInterface::class)->create($viewFactoryData);
         $view->assignMultiple([
             'header' => $header,
             'rows' => [
