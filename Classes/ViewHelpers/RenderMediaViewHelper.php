@@ -12,8 +12,8 @@ namespace GeorgRinger\News\ViewHelpers;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
-use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileInterface;
+use TYPO3\CMS\Core\Resource\FileType;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\ImageService;
@@ -131,9 +131,9 @@ class RenderMediaViewHelper extends AbstractViewHelper
 
                 // check if media tag needs to be wrapped in div, depends on type of media file
                 $wrapClass = '';
-                if ($media->getType() === File::FILETYPE_VIDEO) {
+                if ($media->getType() === FileType::VIDEO->value) {
                     $wrapClass = $this->videoClass;
-                } elseif ($media->getType() === File::FILETYPE_AUDIO) {
+                } elseif ($media->getType() === FileType::AUDIO->value) {
                     $wrapClass = $this->audioClass;
                 }
 
