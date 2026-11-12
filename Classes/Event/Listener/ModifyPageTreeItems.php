@@ -39,6 +39,8 @@ final readonly class ModifyPageTreeItems
         'news_taglist' => 'ext-news-plugin-tag-list',
     ];
 
+    private const PAGES_PER_QUERY = 500;
+
     public function __construct()
     {
         $this->emConfiguration = GeneralUtility::makeInstance(EmConfiguration::class);
@@ -50,8 +52,10 @@ final readonly class ModifyPageTreeItems
             return;
         }
         $items = $event->getItems();
-        foreach ($items as &$item) {
-            $ctype = $this->getFirstFoundNewsType($item['_page']['uid']);
+        $pageIds = array_map(static fn(array $item): int => (int)$item['_page']['uid'], $items);
+        $newsTypes = $this->getFirstFoundNewsTypes($pageIds);
+        foreach ($items as $index => &$item) {
+            $ctype = $newsTypes[$pageIds[$index]] ?? null;
             if ($ctype === null) {
                 continue;
             }
@@ -69,23 +73,32 @@ final readonly class ModifyPageTreeItems
         $event->setItems($items);
     }
 
-    private function getFirstFoundNewsType(int $pageId): ?string
+    /**
+     * @param int[] $pageIds
+     * @return array<int, string> CType of the first news plugin, by page id
+     */
+    private function getFirstFoundNewsTypes(array $pageIds): array
     {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
-        $row = $queryBuilder
-            ->select('CType', 'header')
-            ->from('tt_content')
-            ->where(
-                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageId, Connection::PARAM_INT)),
-                $queryBuilder->expr()->in('CType', $queryBuilder->createNamedParameter(array_keys(self::NEWS_TYPES), Connection::PARAM_STR_ARRAY)),
-            )
-            ->orderBy('colPos', 'desc')
-            ->addOrderBy('sorting', 'asc')
-            ->setMaxResults(1)
-            ->executeQuery()
-            ->fetchAssociative();
+        $newsTypes = [];
+        foreach (array_chunk(array_unique($pageIds), self::PAGES_PER_QUERY) as $chunk) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
+            $rows = $queryBuilder
+                ->select('pid', 'CType')
+                ->from('tt_content')
+                ->where(
+                    $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter($chunk, Connection::PARAM_INT_ARRAY)),
+                    $queryBuilder->expr()->in('CType', $queryBuilder->createNamedParameter(array_keys(self::NEWS_TYPES), Connection::PARAM_STR_ARRAY)),
+                )
+                ->orderBy('colPos', 'desc')
+                ->addOrderBy('sorting', 'asc')
+                ->executeQuery()
+                ->fetchAllAssociative();
+            foreach ($rows as $row) {
+                $newsTypes[(int)$row['pid']] ??= $row['CType'];
+            }
+        }
 
-        return $row['CType'] ?? null;
+        return $newsTypes;
     }
 
     private function getLanguageService(): LanguageService
