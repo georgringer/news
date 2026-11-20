@@ -42,7 +42,7 @@ It includes these features:
 
 | News | TYPO3     | PHP       | Support / Development                |
 |------|-----------|-----------|--------------------------------------|
-| 14   | 13 - 14   | 8.2 - 8.5 | features, bugfixes, security updates |
+| 14   | 13 - 14   | 8.2 - 8.6 | features, bugfixes, security updates |
 | 13   | 12 - 13   | 8.1 - 8.4 | none                                 |
 | 12   | 12 - 13   | 8.1 - 8.4 | none                                 |
 | 11   | 11 - 12   | 7.4 - 8.3 | none                                 |
