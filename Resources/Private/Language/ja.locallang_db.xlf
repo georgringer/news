@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="news" target-language="ja">
+    <header/>
+    <body>
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_text" xml:space="preserve" approved="yes">
+				<source>SEO Text-Container</source>
+			<target state="final">SEOテキストコンテナ</target></trans-unit>
+    </body>
+  </file>
+</xliff>

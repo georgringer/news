@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:33Z" product-name="news" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="mlang_tabs_tab" xml:space="preserve">
+				<source>News Import</source>
+			<target>crwdns18614:0crwdne18614:0</target></trans-unit>
+      <trans-unit id="mlang_labels_tablabel" xml:space="preserve">
+				<source>Generic import module</source>
+			<target>crwdns18616:0crwdne18616:0</target></trans-unit>
+      <trans-unit id="mlang_labels_tabdescr" xml:space="preserve">
+				<source>Extensions can provide an import service from various sources (e.g. RSS).</source>
+			<target>crwdns18618:0crwdne18618:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>
