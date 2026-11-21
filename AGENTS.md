@@ -8,7 +8,7 @@ preferences do not belong here — put those in an untracked `CLAUDE.local.md`
 
 - One Composer package, `georgringer/news`, PSR-4 `GeorgRinger\News\` →
   `Classes/` and `GeorgRinger\News\Tests\` → `Tests/`.
-- **One branch serves TYPO3 13.4 LTS and 14**, on PHP 8.2–8.5. Every change
+- **One branch serves TYPO3 13.4 LTS and 14.3 LTS**, on PHP 8.2–8.6. Every change
   has to work on both cores; `.github/workflows/core13.yml` and `core14.yml`
   define the matrix that decides. Where the cores differ, switch on
   `(new Typo3Version())->getMajorVersion()` — see `Classes/Utility/Page.php`
