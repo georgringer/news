@@ -44,4 +44,13 @@
         <ini name="display_errors" value="1"/>
         <env name="TYPO3_CONTEXT" value="Testing"/>
     </php>
+	<!--
+		Added to only fail if deprecation inside the EXT:news and not within
+		it's sub-dependencies.
+	-->
+	<source restrictDeprecations="true">
+		<include>
+			<directory>../../Classes</directory>
+		</include>
+	</source>
 </phpunit>
