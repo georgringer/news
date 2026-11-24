@@ -60,7 +60,12 @@ class ClassLoader implements SingletonInterface
             $this->classCacheManager->reBuild();
         }
 
-        $this->classCache->requireOnce($cacheEntryIdentifier);
+        // A concurrent cache flush may remove the cache entry after has() returned true. Without
+        // the proxy class, composer would silently load the original class of EXT:news.
+        if ($this->classCache->requireOnce($cacheEntryIdentifier) === false) {
+            $this->classCacheManager->reBuild();
+            $this->classCache->requireOnce($cacheEntryIdentifier);
+        }
         return true;
     }
 
