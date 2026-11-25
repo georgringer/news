@@ -210,19 +210,55 @@ As the class :php:`Domain/Model/News` should be extended, create a file at the s
 3) Exclude the class from dependency injection
 ----------------------------------------------
 
-As the class you define will be added to a new generated class, the class needs to be excluded from dependency injection in Configuration/Services.yaml:
+Your class is never used on its own. EXT:news merges it into a generated
+proxy class that replaces :php:`\GeorgRinger\News\Domain\Model\News`. The
+class loader for this proxy class and your registration in
+:php:`$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']` both live in
+:file:`ext_localconf.php`.
+
+TYPO3 builds the dependency injection container *before* any
+:file:`ext_localconf.php` file is loaded. If the container has to be compiled,
+for example after a cache flush, and your class is loaded during compilation,
+PHP loads its parent class as well. At this point Composer only knows the
+original news model. It stays defined for the rest of the request, so the
+proxy class cannot be loaded anymore.
+
+If the same request renders news, Extbase builds the class schema and the
+data map from the original model and caches them without your properties.
+All following requests reuse these cache entries: your fields stay empty or
+are not mapped at all until the caches are flushed again. The error only
+shows up when the container is compiled in a request that also renders news.
+That is why it appears sporadically.
+
+Symfony reflects every class matched by a ``resource`` entry while compiling
+the container. Exclude the domain models of your extension in
+:file:`Configuration/Services.yaml`:
 
 .. code-block:: yaml
+    :caption: EXT:eventnews/Configuration/Services.yaml
 
     services:
       _defaults:
         autowire: true
         autoconfigure: true
         public: false
-    
+
       GeorgRinger\Eventnews\:
         resource: '../Classes/*'
+        # Keep the extending model out of container compilation
         exclude: '../Classes/Domain/Model/*'
+
+.. warning::
+
+    ``exclude`` only applies to the ``resource`` entry. An explicit service
+    definition of a model is still registered. It inherits ``autowire`` and
+    ``autoconfigure`` from ``_defaults``, so its class gets reflected during
+    compilation. Public services are additionally loaded by the container
+    dumper.
+
+    Never define your extending model or
+    :php:`\GeorgRinger\News\Domain\Model\News` as a service, whether public,
+    private or tagged.
 
 .. hint::
 
