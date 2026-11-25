@@ -40,6 +40,7 @@
         "friendsofphp/php-cs-fixer": "^3.89.2",
         "phpstan/phpdoc-parser": "^1.33.0",
         "phpunit/phpunit": "11.5.58",
+        "rector/rector": "2.8.5",
         "ssch/typo3-rector": "3.17.0",
         "typo3/cms-fluid-styled-content": "^13.4.29 || ^14.3",
         "typo3/cms-seo": "^13.4.29 || ^14.3",
