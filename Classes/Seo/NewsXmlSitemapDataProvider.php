@@ -17,6 +17,7 @@ use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\WorkspaceAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -35,6 +36,11 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      * @var int
      */
     protected $itemCount = 0;
+
+    /**
+     * The newest modification timestamp of all elements
+     */
+    protected int $lastModified = 0;
     protected PageRepository $pageRepository;
 
     /**
@@ -54,12 +60,58 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      */
     public function generateItems(): void
     {
-        $table = 'tx_news_domain_model_news';
-
-        $pids = !empty($this->config['pid']) ? GeneralUtility::intExplode(',', $this->config['pid']) : [];
         $lastModifiedField = $this->config['lastModifiedField'] ?? 'tstamp';
         $sortField = $this->config['sortField'] ?? 'datetime';
         $sortDirection = $this->config['sortDirection'] ?? 'ASC';
+        $forGoogleNews = $this->config['googleNews'] ?? false;
+
+        $pids = !empty($this->config['pid']) ? GeneralUtility::intExplode(',', $this->config['pid']) : [];
+        if (!empty($pids)) {
+            $recursiveLevel = (int)($this->config['recursive'] ?? 0);
+            $pids = $this->pageRepository->getPageIdsRecursive($pids, $recursiveLevel);
+        }
+
+        $this->itemCount = (int)$this->getQueryBuilder($pids)
+            ->count('*')
+            ->executeQuery()
+            ->fetchOne();
+
+        // Items are fetched page by page, but the sitemap index uses the last modification of all items
+        $queryBuilder = $this->getQueryBuilder($pids);
+        $this->lastModified = (int)$queryBuilder
+            ->selectLiteral('MAX(' . $queryBuilder->quoteIdentifier($lastModifiedField) . ')')
+            ->executeQuery()
+            ->fetchOne();
+
+        $queryParams = $this->request->getQueryParams();
+        $pageNumber = (int)($queryParams['tx_seo']['page'] ?? $queryParams['page'] ?? 0);
+        $page = $pageNumber > 0 ? $pageNumber : 0;
+        $rows = $this->getQueryBuilder($pids)
+            ->select('*')
+            ->orderBy($sortField, $forGoogleNews ? 'DESC' : $sortDirection)
+            ->setFirstResult($page * $this->numberOfItemsPerPage)
+            ->setMaxResults($this->numberOfItemsPerPage)
+            ->executeQuery()
+            ->fetchAllAssociative();
+
+        foreach ($rows as $row) {
+            $this->items[] = [
+                'data' => $row,
+                'lastMod' => (int)$row[$lastModifiedField],
+                'priority' => 0.5,
+            ];
+        }
+    }
+
+    /**
+     * Returns a new QueryBuilder for all news records matching the configuration
+     *
+     * @param int[] $pids
+     */
+    protected function getQueryBuilder(array $pids): QueryBuilder
+    {
+        $table = 'tx_news_domain_model_news';
+        $sortField = $this->config['sortField'] ?? 'datetime';
         $forGoogleNews = $this->config['googleNews'] ?? false;
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -78,9 +130,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         }
 
         if (!empty($pids)) {
-            $recursiveLevel = (int)($this->config['recursive'] ?? 0);
-            $pids = $this->pageRepository->getPageIdsRecursive($pids, $recursiveLevel);
-
             $constraints[] = $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter($pids, Connection::PARAM_INT_ARRAY));
         }
 
@@ -106,8 +155,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
             GeneralUtility::makeInstance(WorkspaceRestriction::class, $this->getCurrentWorkspaceAspect()->getId())
         );
 
-        $queryBuilder->select('*')
-            ->from($table);
+        $queryBuilder->from($table);
 
         if (!empty($constraints)) {
             $queryBuilder->where(
@@ -115,28 +163,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
             );
         }
 
-        // Count all items
-        $queryBuilder->count('*');
-        $this->itemCount = $queryBuilder->executeQuery()->fetchOne();
-
-        $queryBuilder->select('*');
-        $queryParams = $this->request->getQueryParams();
-        $pageNumber = (int)($queryParams['tx_seo']['page'] ?? $queryParams['page'] ?? 0);
-        $page = $pageNumber > 0 ? $pageNumber : 0;
-        $queryBuilder
-            ->setFirstResult($page * $this->numberOfItemsPerPage)
-            ->setMaxResults($this->numberOfItemsPerPage);
-
-        $rows = $queryBuilder->orderBy($sortField, $forGoogleNews ? 'DESC' : $sortDirection)
-            ->executeQuery()->fetchAllAssociative();
-
-        foreach ($rows as $row) {
-            $this->items[] = [
-                'data' => $row,
-                'lastMod' => (int)$row[$lastModifiedField],
-                'priority' => 0.5,
-            ];
-        }
+        return $queryBuilder;
     }
 
     /**
@@ -153,6 +180,14 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
     public function getNumberOfPages(): int
     {
         return (int)ceil($this->itemCount / $this->numberOfItemsPerPage);
+    }
+
+    /**
+     * Get the newest modification timestamp of all items, not only of the current page
+     */
+    public function getLastModified(): int
+    {
+        return $this->lastModified;
     }
 
     protected function defineUrl(array $data): array
