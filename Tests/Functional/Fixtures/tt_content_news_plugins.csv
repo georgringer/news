@@ -1,0 +1,14 @@
+tt_content,,,,,,,,,
+,uid,pid,CType,colPos,sorting,hidden,deleted,starttime,endtime
+,1,10,news_pi1,0,256,0,0,0,0
+,2,10,news_newsdetail,1,512,0,0,0,0
+,3,11,news_pi1,0,512,0,0,0,0
+,4,11,news_taglist,0,256,0,0,0,0
+,5,12,news_pi1,0,256,1,0,0,0
+,6,13,news_pi1,0,256,0,1,0,0
+,7,14,text,0,256,0,0,0,0
+,8,15,news_pi1,0,256,0,0,0,1
+,9,16,text,0,256,0,0,0,0
+,10,16,news_pi1,0,512,0,0,0,0
+,11,600,news_newsdatemenu,0,256,0,0,0,0
+,12,18,news_pi1,0,256,0,0,2147483647,0
