@@ -16,6 +16,7 @@ use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
@@ -158,8 +159,12 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getConnectionForTable('tx_news_domain_model_news');
 
+        $context = GeneralUtility::makeInstance(Context::class);
+        $workspaceId = (int)$context->getPropertyFromAspect('workspace', 'id', 0);
+
         foreach (['prev', 'next'] as $label) {
             $queryBuilder = $connection->createQueryBuilder();
+            $queryBuilder->getRestrictions()->add(new WorkspaceRestriction($workspaceId));
 
             $extraWhere = [
                 $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), Connection::PARAM_INT)),
